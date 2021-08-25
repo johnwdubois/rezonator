@@ -31,17 +31,17 @@ functionTabs = "tabs";
 
 
 
-functionChainList_tabLine = "import_line_unit";
-functionChainList_tabRezBrush = "menu_rez";
-functionChainList_tabTrackBrush = "menu_track";
-functionChainList_tabStackBrush = "menu_stack";
-functionChainList_tabShow = "Show";
-functionChainList_tabField = "help_label_tag";
-functionChainList_tabTranslations = "import_mapping_fields_trnaslation";
-functionChainList_tabSearch = "help_header_search";
-functionChainList_tabChunk = "Chunk";
-functionChainList_tabClique = "menu_clique";
-functionChainList_tabTree = "Tree";
+functionChainList_tabLine = "tab_name_unit";
+functionChainList_tabRezBrush = "tab_name_resonate";
+functionChainList_tabTrackBrush = "tab_name_track";
+functionChainList_tabStackBrush = "tab_name_stack";
+functionChainList_tabShow = "tab_name_show";
+functionChainList_tabField = "tab_name_tag";
+functionChainList_tabTranslations = "tab_name_translate";
+functionChainList_tabSearch = "tab_name_search";
+functionChainList_tabChunk = "tab_name_chunk";
+functionChainList_tabClique = "tab_name_clique";
+functionChainList_tabTree = "tab_name_tree";
 
 
 var defaultScrollPlusY = 16;

@@ -20,13 +20,13 @@ function scr_randomChainLoop() {
 	var tokenList = discourseSubMap[?"tokenList"];
 	var tokenListSize = ds_list_size(tokenList);
 	var encounteredTokens = ds_list_create();
-	var amountOfTokens = floor(irandom(15));
+	var amountOfTokens = tokenListSize//floor(irandom(15));
 	for(var i  = 0 ; i < tokenListSize; i++){
 		if(i == tokenListSize-1){
 			obj_chain.quickLinkCreated = false;
 		}
 		var currentToken = tokenList[| i];
-		
+		show_debug_message("currentTokenBeing \"clicked\": " + string(i));
 		scr_tokenClicked(currentToken);
 		//var tokenSubMap = global.nodeMap[? currentToken];
 		amountOfTokens--;

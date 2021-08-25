@@ -83,7 +83,7 @@ function scr_alignChain2ElectricBoogaloo(chainID){
 		if (ds_list_find_index(unitList, currentUnitID) == -1) {
 			ds_list_add(unitList, currentUnitID);
 			currentTokenSubMap[? "displayCol"] = furthestDisplayCol;
-			show_debug_message("setting token " + string(currentTokenID) + " to displayCol " + string(furthestDisplayCol));
+			//show_debug_message("setting token " + string(currentTokenID) + " to displayCol " + string(furthestDisplayCol));
 		}
 	}
 	

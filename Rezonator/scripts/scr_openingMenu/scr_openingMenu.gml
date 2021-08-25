@@ -95,7 +95,7 @@ function scr_openingMenu() {
 
 	// help/documentation button
 	draw_set_alpha(1);
-	scr_adaptFont(scr_get_translation("msg_open_docs"),"M");
+	scr_adaptFont(scr_get_translation("msg_go-to-guide"),"M");
 	var documentationStr = scr_get_translation("menu_help");
 	var documentationButtonX1 = newProjectButtonX2 + verticalYSpacing;
 	var documentationButtonY1 = openProjectButtonY1;

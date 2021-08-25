@@ -71,8 +71,8 @@ function scr_preImportScreen(){
 	
 	
 	draw_set_color(global.colorThemeText);
-	scr_adaptFont("Data", "L");
-	draw_text(dataTabX1 + textBufferLeft, floor(tabTextY), "Data");
+	scr_adaptFont(scr_get_translation("import_col_data"), "L");
+	draw_text(dataTabX1 + textBufferLeft, floor(tabTextY), scr_get_translation("import_col_data"));
 		
 	///////////// DESCRIPTION WINDOW ////////////////
 
@@ -94,9 +94,9 @@ function scr_preImportScreen(){
 	
 	// draw window title
 	draw_set_color(global.colorThemeText);
-	scr_adaptFont("Description", "L");
+	scr_adaptFont(scr_get_translation("import_col_description"), "L");
 	draw_set_alpha(1);
-	draw_text(descriptionWindowX1 + textBufferLeft, floor(tabTextY), "Description");
+	draw_text(descriptionWindowX1 + textBufferLeft, floor(tabTextY), scr_get_translation("import_col_description"));
 	
 	
 	
@@ -153,10 +153,10 @@ function scr_preImportScreen(){
 	
 	
 	// draw window title
-	scr_adaptFont(scr_get_translation("msg_example"), "L");
+	scr_adaptFont(scr_get_translation("import_col_example"), "L");
 	draw_set_color(global.colorThemeText);
 	draw_set_alpha(1);
-	draw_text(exampleTabX1+textBufferLeft, floor(tabTextY), scr_get_translation("msg_example"));
+	draw_text(exampleTabX1+textBufferLeft, floor(tabTextY), scr_get_translation("import_col_example"));
 	
 	
 	

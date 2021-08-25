@@ -30,7 +30,7 @@ function scr_openFile() {
 		fileExtension = "CoNLL-U (.txt)|*.txt";
 	}
 	else if (global.importType == global.importType_PlainText) {
-		fileExtension = "Song & Verse (.txt)|*.txt";
+		fileExtension = scr_get_translation("import_type_song") +" (.txt)|*.txt";
 	}
 	else if (global.importType == global.importType_Paragraph) {
 		fileExtension = "Paragraph (.txt)|*.txt";

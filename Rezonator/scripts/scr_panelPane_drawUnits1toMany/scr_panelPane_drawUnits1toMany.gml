@@ -67,6 +67,7 @@ function scr_panelPane_drawUnits1toMany() {
 				// get current entry (if this is an entry)
 				var currentEntry = functionChainContents_IDList[| i];
 				var currentEntrySubMap = global.nodeMap[? currentEntry];
+				//if(!scr_isNumericAndExists(currentEntrySubMap,ds_type_map)){continue;}
 				var currentEntryType = currentEntrySubMap[? "type"];
 				drawDropDowns = false;
 				
