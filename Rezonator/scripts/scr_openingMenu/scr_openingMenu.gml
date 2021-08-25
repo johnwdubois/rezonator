@@ -137,14 +137,7 @@ function scr_openingMenu() {
 	var userSignInBoxY2 = userSignInBoxY1 + stringHeight*1.5;
 
 
-	draw_set_color(global.colorThemeBG);
-	draw_rectangle(userSignInBoxX1, userSignInBoxY1, userSignInBoxX2, userSignInBoxY2, false);
-	draw_set_color(global.colorThemeBorders);
-	draw_rectangle(userSignInBoxX1, userSignInBoxY1, userSignInBoxX2, userSignInBoxY2, true);
 	draw_set_color(global.colorThemeText);
-
-
-
 	draw_text(mean(userSignInBoxX1, userSignInBoxX2), userSignInBoxY2 + string_height(scr_get_translation("menu_remember"))/2, scr_get_translation("menu_remember"));
 
 	draw_set_alpha(0.5);
@@ -153,10 +146,7 @@ function scr_openingMenu() {
 		obj_openingScreen.clickedIn = true;
 	}
 
-	if(string_length(obj_openingScreen.inputText) == 0 and obj_openingScreen.clickedIn == false){
-		scr_adaptFont(scr_get_translation("msg_signin"),"M");
-		draw_text(mean(userSignInBoxX1, userSignInBoxX2), mean(userSignInBoxY1, userSignInBoxY2), scr_get_translation("msg_signin"));
-	}
+
 	draw_set_alpha(1);
 	var rememberMeButtonWidth = camHeight*0.02;
 
@@ -168,7 +158,9 @@ function scr_openingMenu() {
 
 	draw_rectangle(remeberMeBoxX1, remeberMeBoxY1, remeberMeBoxX2,remeberMeBoxY2, true);
 	if (global.rememberMe) {
-		draw_rectangle(remeberMeBoxX1, remeberMeBoxY1, remeberMeBoxX2, remeberMeBoxY2, false);	
+		var checkScale = 0.6;
+		if (camWidth > 2000) checkScale = 1;
+		draw_sprite_ext(spr_checkmark, 0, floor(mean(remeberMeBoxX1, remeberMeBoxX2)), floor(mean(remeberMeBoxY1, remeberMeBoxY2)), checkScale, checkScale, 0, global.colorThemeBorders, 1);
 	}
 
 	if (point_in_rectangle(mouse_x, mouse_y,userSignInBoxX1, userSignInBoxY1, userSignInBoxX2, userSignInBoxY2)){
@@ -226,6 +218,7 @@ function scr_openingMenu() {
 		draw_text(floor(mean(changeLanguageButtonRectX1, changeLanguageButtonRectX2)), floor(mean(changeLanguageButtonRectY1, changeLanguageButtonRectY2)), scr_get_translation(currentLanguageString));
 */
 
+	/*
 	if(global.menuOpen){
 		//code for keyboard input into user sign in
 		// Variables
@@ -361,6 +354,23 @@ function scr_openingMenu() {
 	
 		global.userName = obj_openingScreen.inputText;
 	}
+	*/
+
+	
+
+	if (instance_exists(obj_inputBox)) {
+		obj_inputBox.x = userSignInBoxX1;
+		obj_inputBox.y = userSignInBoxY1;
+		obj_inputBox.windowWidth = userSignInBoxX2 - userSignInBoxX1;
+		obj_inputBox.windowHeight = userSignInBoxY2 - userSignInBoxY1;
+		obj_openingScreen.inputText = obj_inputBox.str;
+	}
+	else {
+		instance_create_layer(0,0,"InstancesInput", obj_inputBox);
+	}
+
+	
+	
 	
 	
 	

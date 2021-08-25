@@ -39,5 +39,7 @@ function scr_inputBoxCreate(){
 	clipHeight = 100;
 	clipX = 0;
 	clipY = 0;
+	
+	clickedIn = (room != rm_openingScreen);
 
 }

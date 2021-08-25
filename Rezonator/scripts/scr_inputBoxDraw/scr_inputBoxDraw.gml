@@ -9,6 +9,8 @@ function scr_inputBoxDraw(){
 	textX = floor(x + textMarginX + xOffset);
 	textY = floor(y + textMarginY);
 	windowHeight = strHeight + (textMarginY * 2);
+	
+
 
 	// moving cursor with mouse click
 	var mouseoverWindow = point_in_rectangle(mouse_x, mouse_y, x, y, x + windowWidth, y + windowHeight);
@@ -36,26 +38,8 @@ function scr_inputBoxDraw(){
 	if (mouse_check_button_released(mb_left)) validDrag = true;
 
 
-/*
-
-	// dev vars
-	draw_set_color(c_yellow);
-	draw_set_alpha(1);
-	draw_text(10, 10, "keyboard_string: " + string(keyboard_string));
-	draw_text(10, 40, "cursorIndex: " + string(cursorIndex));
-	draw_text(10, 70, "highlightIndex: " + string(highlightIndex));
-	draw_text(10, 100, "strToCursor: " + string(strToCursor));
-	draw_text(10, 130, "backspaceHold: " + string(backspaceHold));
-	draw_text(10, 160, "xOffset: " + string(xOffset));
-	draw_text(10, 190, "validDrag: " + string(validDrag));
-	draw_text(10, 220, "clipboard: " + string(clipboard_get_text()));
-	draw_text(10, 260, "clipX: " + string(clipX));
-	draw_text(10, 300, "clipY: " + string(clipY));
-*/
-
-
 	// BG rect
-	draw_set_color(c_white);
+	draw_set_color(global.colorThemeBG);
 	draw_rectangle(x, y, x + windowWidth, y + windowHeight, false);
 
 	// start clipping for text
@@ -63,22 +47,33 @@ function scr_inputBoxDraw(){
 
 
 	// draw text
-	draw_set_color(c_black);
+	draw_set_color(global.colorThemeText);
 	draw_set_alpha(1);
 	draw_set_halign(fa_left);
 	draw_set_valign(fa_top);
 	scr_adaptFont(str, "M",false);
 	draw_text(textX - clipX, textY - clipY, str);
 
+	// draw user sign in text on opening screen
+	if (room == rm_openingScreen){
+		if (string_length(str) < 1) {
+			scr_adaptFont(scr_get_translation("msg_signin"),"M");
+			draw_set_color(global.colorThemeSelected2);
+			draw_text(textX - clipX, textY - clipY, " " + scr_get_translation("msg_signin"));
+		}
+	}
+
 
 	// draw cursor
-	cursorX = textX + string_width(strToCursor);
 	var cursorY1 = textY;
 	var cursorY2 = cursorY1 + strHeight;
-	draw_set_color(global.colorThemeRezPink);
-	var drawCursorReal = false;
-	if (drawCursor || keyboard_check(vk_anykey)) drawCursorReal = true;
-	if (drawCursorReal) draw_line_width(cursorX - clipX, cursorY1 - clipY, cursorX - clipX, cursorY2 - clipY, 2);
+	cursorX = textX + string_width(strToCursor);
+	if (clickedIn) {
+		draw_set_color(global.colorThemeRezPink);
+		var drawCursorReal = false;
+		if (drawCursor || keyboard_check(vk_anykey)) drawCursorReal = true;
+		if (drawCursorReal) draw_line_width(cursorX - clipX, cursorY1 - clipY, cursorX - clipX, cursorY2 - clipY, 2);
+	}
 
 
 	// draw highlight rect if we need to

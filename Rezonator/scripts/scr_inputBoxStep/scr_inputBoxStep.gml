@@ -2,22 +2,31 @@
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
 function scr_inputBoxStep(){
 	
-	if(!instance_exists(obj_dialogueBox))instance_destroy();
+	if(!instance_exists(obj_dialogueBox) && room != rm_openingScreen) instance_destroy();
 	
 	var controlHold = global.ctrlHold;//(os_type == os_macosx) ? keyboard_check(vk_lcommand) || keyboard_check(vk_rcommand) : keyboard_check(vk_control);
-
-	if (keyboard_check(vk_alt)) {
-		x = mouse_x;
-		y = mouse_y;
-		if (keyboard_check_released(ord("R"))) {
-			game_restart();
+	
+	// click in and out of box
+	if (mouse_check_button_released(mb_left)) {
+		if (point_in_rectangle(mouse_x, mouse_y, x, y, x + windowWidth, y + windowHeight)) {
+			clickedIn = true;
+			drawCursor = true;
+			alarm[0] = blinkRate;
 		}
 	}
+	else if (mouse_check_button_pressed(mb_left)) {
+		if (!point_in_rectangle(mouse_x, mouse_y, x, y, x + windowWidth, y + windowHeight)) {
+			clickedIn = false;
+		}
+	}
+	
+	
 
 	// make sure we don't get multiple keys inputting at once
 	if (string_length(keyboard_string) > 1) {
 		keyboard_string = string_char_at(keyboard_string, 1);
 	}
+	
 
 
 	var input = "";
@@ -25,6 +34,11 @@ function scr_inputBoxStep(){
 	var paste = controlHold && keyboard_check_pressed(ord("V"));
 	if (paste) {
 		if (clipboard_has_text()) input = clipboard_get_text();
+	}
+	
+	if (!clickedIn) {
+		input = "";
+		keyboard_string = "";
 	}
 
 
