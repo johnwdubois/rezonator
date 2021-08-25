@@ -18,7 +18,9 @@ if (!allSaved) {
 			}
 
 		}
-*/		
+*/	
+
+	/*
 	if (os_type == os_macosx) {
 
 		with (obj_fileLoader) {
@@ -27,11 +29,12 @@ if (!allSaved) {
 		
 	}
 	else {
+	*/
 		if (show_question("Would you like to save before exiting?")) {
 			with (obj_fileLoader) {
 				scr_saveREZ(false);
 			}
 		}
-	}
+	//}
 		
 }
