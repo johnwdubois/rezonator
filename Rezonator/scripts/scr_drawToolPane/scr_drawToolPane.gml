@@ -90,29 +90,7 @@ function scr_drawToolPane(toolSprScale) {
 		
 		
 		if (mouse_check_button_released(mb_left)) {
-			
-			if (filterListSize > 0) {
-				// toggle filter depending on tab
-				if (obj_panelPane.functionChainList_currentTab == obj_panelPane.functionChainList_tabRezBrush) obj_control.filterActiveRez = !obj_control.filterActiveRez;
-				else if (obj_panelPane.functionChainList_currentTab == obj_panelPane.functionChainList_tabTrackBrush) obj_control.filterActiveTrack = !obj_control.filterActiveTrack;
-				else if (obj_panelPane.functionChainList_currentTab == obj_panelPane.functionChainList_tabStackBrush) obj_control.filterActiveStack = !obj_control.filterActiveStack;
-							
-				// determine if filter should be activated or disabled
-				obj_control.filterGridActive = (obj_panelPane.functionChainList_currentTab == obj_panelPane.functionChainList_tabRezBrush && obj_control.filterActiveRez)
-												|| (obj_panelPane.functionChainList_currentTab == obj_panelPane.functionChainList_tabTrackBrush && obj_control.filterActiveTrack)
-												|| (obj_panelPane.functionChainList_currentTab == obj_panelPane.functionChainList_tabStackBrush && obj_control.filterActiveStack);
-							
-				if (obj_control.filterGridActive) {
-					
-					scr_renderFilter2();
-				}
-				else {
-					scr_disableFilter();
-				}
-			}
-			if (obj_control.quickFilterGridActive) {
-				scr_disableFilter();
-			}
+			scr_toggleFilter();
 		}
 	}
 	

@@ -4,7 +4,7 @@ function scr_inputBoxStep(){
 	
 	if(!instance_exists(obj_dialogueBox) && room != rm_openingScreen) instance_destroy();
 	
-	var controlHold = global.ctrlHold;//(os_type == os_macosx) ? keyboard_check(vk_lcommand) || keyboard_check(vk_rcommand) : keyboard_check(vk_control);
+	var controlHold = global.ctrlHold;
 	
 	// click in and out of box
 	if (mouse_check_button_released(mb_left)) {

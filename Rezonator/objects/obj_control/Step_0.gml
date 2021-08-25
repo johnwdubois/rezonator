@@ -606,34 +606,40 @@ if (keyboard_check(vk_alt) and keyboard_check(vk_shift) and keyboard_check_press
 
 
 // quick filter
-if (keyboard_check_pressed(ord("P")) and !global.ctrlHold and !keyboard_check(vk_lshift) and !keyboard_check(vk_rshift)
+if (keyboard_check_pressed(ord("P")) and !keyboard_check(vk_lshift) and !keyboard_check(vk_rshift)
 and shortcutsEnabled and mouseoverTagShortcut == "" and currentActiveLineGrid != searchGrid and !instance_exists(obj_dropDown) and !instance_exists(obj_dialogueBox)) {
 	
-	// If filter is active, deactivate it
-	if (obj_control.quickFilterGridActive) {
+	if (!global.ctrlHold) {
+		// If filter is active, deactivate it
+		if (obj_control.quickFilterGridActive) {
 			
-		// Switch to active grid
-		obj_control.quickFilterGridActive = false;
-		if (obj_control.filterGridActive) {
-			obj_control.currentActiveLineGrid = obj_control.filterGrid;
-		}
-		else if (obj_control.searchGridActive) {
-			obj_control.currentActiveLineGrid = obj_control.searchGrid;
-		}
-		else {
-			scr_disableFilter();
-		}
+			// Switch to active grid
+			obj_control.quickFilterGridActive = false;
+			if (obj_control.filterGridActive) {
+				obj_control.currentActiveLineGrid = obj_control.filterGrid;
+			}
+			else if (obj_control.searchGridActive) {
+				obj_control.currentActiveLineGrid = obj_control.searchGrid;
+			}
+			else {
+				scr_disableFilter();
+			}
 
-	}
-	else if (obj_chain.currentFocusedChainID != "" || quickPickedChainID != "") {
+		}
+		else if (obj_chain.currentFocusedChainID != "" || quickPickedChainID != "") {
 			
-		obj_control.prevCenterYDest = obj_control.scrollPlusYDest;
-		obj_control.quickPickedChainID = obj_chain.currentFocusedChainID;
+			obj_control.prevCenterYDest = obj_control.scrollPlusYDest;
+			obj_control.quickPickedChainID = obj_chain.currentFocusedChainID;
 		
-		// activate quick filter!
-		scr_renderFilter2();
+			// activate quick filter!
+			scr_renderFilter2();
+		}
+	}
+	else {
+		scr_toggleFilter();
 	}
 }
+
 
 
 if (keyboard_check_pressed(ord("Y")) and global.ctrlHold){
