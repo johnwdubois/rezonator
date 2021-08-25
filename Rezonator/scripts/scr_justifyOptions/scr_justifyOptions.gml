@@ -17,6 +17,8 @@ function scr_justifyOptions(optionSelected) {
 	
 
 	scr_refreshDisplayCol();
+	scr_refreshPrevToken();
+
 
 
 }

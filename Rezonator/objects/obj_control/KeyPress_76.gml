@@ -10,12 +10,12 @@ if(global.ctrlHold){
 if(obj_control.drawLineState == obj_control.lineState_ltr){
 	obj_control.drawLineState = obj_control.lineState_rtl;
 	obj_control.justify = obj_control.justifyRight;
-	exit;
 }
 else if(obj_control.drawLineState == obj_control.lineState_rtl) {
 	obj_control.drawLineState = obj_control.lineState_ltr;
 	obj_control.justify = obj_control.justifyLeft;
-	exit;
 }
+
+scr_refreshPrevToken();
 
 //change text direction

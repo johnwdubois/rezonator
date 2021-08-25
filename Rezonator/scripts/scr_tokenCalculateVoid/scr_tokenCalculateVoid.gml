@@ -38,6 +38,7 @@ function scr_tokenCalculateVoid(tokenID){
 		}
 	}
 	
+	
 
 
 

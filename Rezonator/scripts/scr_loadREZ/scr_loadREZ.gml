@@ -230,9 +230,10 @@ show_debug_message("global.previousRezDirectory:  "+string(global.previousRezDir
 	}
 
 	ds_list_destroy(newInstList);
-
-
+	
 	scr_verifyRez(rezFileVerison);
+	
+	scr_refreshPrevToken();
 	
 	
 	// set focused unit in panelPane

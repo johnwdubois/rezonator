@@ -23,7 +23,7 @@ function scr_getUnitTextStupid(unitSubMap){
 		// concatenate the UnitText string
 		unitText += scr_adaptFont(currentDisplayStr, "M");
 		
-		if(obj_control.drawLineState = obj_control.lineState_ltr){ i++; }
+		if(obj_control.drawLineState == obj_control.lineState_ltr){ i++; }
 		else{i--;}
 	}
 	
