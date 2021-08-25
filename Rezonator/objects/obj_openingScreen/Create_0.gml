@@ -395,7 +395,7 @@ ds_map_add(global.keyboardShortcutMap, "menu_wide", "CTRL +");
 ds_map_add(global.keyboardShortcutMap, "menu_narrow", "CTRL -");
 ds_map_add(global.keyboardShortcutMap, "menu_justify", "J");
 ds_map_add(global.keyboardShortcutMap, "menu_prose", "K");
-ds_map_add(global.keyboardShortcutMap, "menu_exit", "CTRL+Q");
+ds_map_add(global.keyboardShortcutMap, "menu_exit", "ALT+SHIFT+Q");
 ds_map_add(global.keyboardShortcutMap, "menu_search", "V");
 ds_map_add(global.keyboardShortcutMap, "menu_filter", "CTRL+P");
 ds_map_add(global.keyboardShortcutMap, "menu_track", "T");

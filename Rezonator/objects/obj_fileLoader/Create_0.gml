@@ -2,7 +2,12 @@ if (global.openProject) {
 	show_debug_message("obj_loadingControl Create ... loading REZ");
 	scr_loadREZ();
 }
-
+with(obj_control){
+	displayTokenList = ds_list_create();
+	ds_list_add(displayTokenList, global.displayTokenField);
+	//Look for where global.displayTokenField changes in order to interact with this list
+displayTokenListIndex = 0;	
+}
 discourseProcessing = 0;
 fileLineRipListElement = 0;
 
