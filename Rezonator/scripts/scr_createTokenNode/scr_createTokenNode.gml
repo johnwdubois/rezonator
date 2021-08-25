@@ -9,7 +9,6 @@ function scr_createTokenNode(discourseTokenSeq , textToDisplay,newTokenSeq,newDi
 		ds_map_add(currentTokenSubMap, "displayCol", newDisplayCol);
 		ds_map_add(currentTokenSubMap, "void", 1);
 		ds_map_add(currentTokenSubMap, "pixelX", 0);
-		ds_map_add(currentTokenSubMap, "border", "");
 		ds_map_add(currentTokenSubMap, "searched", false);
 		ds_map_add(currentTokenSubMap, "unit", unitID);
 		ds_map_add_list(currentTokenSubMap, "inChainsList", ds_list_create());

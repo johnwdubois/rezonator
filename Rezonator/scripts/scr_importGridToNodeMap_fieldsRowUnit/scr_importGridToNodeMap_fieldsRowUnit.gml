@@ -36,8 +36,6 @@ function scr_importGridToNodeMap_fieldsRowUnit(row){
 	ds_map_add_list(unitSubMap, "entryList", entryList);
 	ds_map_add_list(unitSubMap, "inChainsList", ds_list_create());
 	ds_map_add(unitSubMap, "pixelY", 0);
-	ds_map_add(unitSubMap, "pID", 0);
-	ds_map_add(unitSubMap, "speakerColor", c_ltblue);
 	ds_map_add(unitSubMap, "filter", false);
 	ds_map_add(unitSubMap, "active", true);
 	ds_map_add(unitSubMap, "doc", global.discourseNode);
@@ -164,7 +162,6 @@ function scr_importGridToNodeMap_fieldsRowUnit(row){
 					ds_map_add(currentTokenSubMap, "displayCol", tokenCount - 1);
 					ds_map_add(currentTokenSubMap, "void", 1);
 					ds_map_add(currentTokenSubMap, "pixelX", 0);
-					ds_map_add(currentTokenSubMap, "border", "");
 					ds_map_add(currentTokenSubMap, "searched", false);
 					ds_map_add(currentTokenSubMap, "unit", unitNode);
 					ds_map_add_list(currentTokenSubMap, "inChainsList", ds_list_create());

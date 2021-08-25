@@ -18,10 +18,6 @@ function scr_setMouseLineWordID(){
 						focusedEntryTokenID = scr_getFirstWordOfChunk(focusedEntryTokenID);
 					}
 					mouseLineWordID = focusedEntryTokenID;
-					var tokenSubMap = global.nodeMap[? focusedEntryTokenID];
-					if (scr_isNumericAndExists(tokenSubMap, ds_type_map)) {
-						tokenSubMap[?"border"] = (chainType == "rezChain")? "rez":"track";
-					}
 				}
 			}
 		}

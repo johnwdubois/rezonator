@@ -56,7 +56,6 @@ function scr_initializeDiscourseNodes(){
 				ds_map_add(currentTokenSubMap, "displayCol", j);
 				ds_map_add(currentTokenSubMap, "void", 1);
 				ds_map_add(currentTokenSubMap, "pixelX", 0);
-				ds_map_add(currentTokenSubMap, "border", "");
 				ds_map_add(currentTokenSubMap, "searched", false);
 				ds_map_add(currentTokenSubMap, "unit", currentUnitNode);
 				ds_map_add_list(currentTokenSubMap, "inChainsList", ds_list_create());
@@ -174,8 +173,6 @@ function scr_initializeDiscourseNodes(){
 		ds_map_add_list(currentUnitSubMap, "entryList", currentEntryList);
 		ds_map_add_list(currentUnitSubMap, "inChainsList", ds_list_create());
 		ds_map_add(currentUnitSubMap, "pixelY", 0);
-		ds_map_add(currentUnitSubMap, "pID", currentPID);
-		ds_map_add(currentUnitSubMap, "speakerColor", currentSpeakerColor);
 		ds_map_add(currentUnitSubMap, "filter", false);
 		ds_map_add(currentUnitSubMap, "active", true);
 		if (!ds_map_exists(currentUnitSubMap, "unitStart")) ds_map_add(currentUnitSubMap, "unitStart", "");

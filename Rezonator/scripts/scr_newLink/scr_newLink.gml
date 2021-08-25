@@ -103,12 +103,6 @@ function scr_newLink(ID) {
 				ds_map_add(setSubMap, "sourceLink", "");
 				ds_map_add(setSubMap, "clickTime", scr_getCurrentSessionTime() / 1000);
 				ds_map_add_list(setSubMap, "goalLinkList", ds_list_create());
-				if (focusedChainType == "rezChain") {
-					ds_map_add(setSubMap, "alignEntry", true);
-				}
-				else if (focusedChainType == "trackChain") {
-					ds_map_add(setSubMap, "alignEntry", false);
-				}
 							
 				// add tagmap to this entry's submap
 				var tagMap = ds_map_create();
