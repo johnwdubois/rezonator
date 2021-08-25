@@ -1,6 +1,6 @@
 ///@description GoToLine / gridview
 // Check for gridView switch first
-if (keyboard_check(vk_control) and !gridView) {
+if (global.ctrlHold and !gridView) {
 		gridView = true;
 }
 else if (gridView) {

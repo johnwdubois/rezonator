@@ -329,11 +329,11 @@ function scr_drawToolPane(toolSprScale) {
 
 	// Prevent typing in text from changing the tool mode
 	if (!obj_control.gridView and !obj_control.dialogueBoxActive and !instance_exists(obj_dropDown) and !instance_exists(obj_dialogueBox) and obj_control.mouseoverTagShortcut == "") {
-		if (keyboard_check_pressed(ord("E")) and not keyboard_check(vk_control)) {
+		if (keyboard_check_pressed(ord("E")) and !global.ctrlHold) {
 			currentMode = modeRead;
 			//obj_panelPane.functionChainList_currentTab = obj_panelPane.functionChainList_tabLine;
 		}
-		if (keyboard_check_pressed(ord("R")) and not keyboard_check(vk_control)) {
+		if (keyboard_check_pressed(ord("R")) and !global.ctrlHold) {
 			currentMode = modeRez;
 			//obj_panelPane.functionChainList_currentTab = obj_panelPane.functionChainList_tabRezBrush;
 		}

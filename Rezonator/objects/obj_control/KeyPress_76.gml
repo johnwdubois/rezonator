@@ -3,7 +3,7 @@
 
 if(!shortcutsEnabled || instance_exists(obj_dialogueBox)) exit;
 
-if(keyboard_check(vk_control)){
+if(global.ctrlHold){
 	obj_control.showTranslation = !obj_control.showTranslation
 }
 

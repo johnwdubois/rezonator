@@ -148,7 +148,7 @@ function scr_drawLineEntryList(unitID, unitSubMap, entryList, pixelY){
 					}
 				}
 				
-				if (obj_control.ctrlHold) {
+				if (global.ctrlHold) {
 					// combine chains
 					var inChainsList = currentTokenSubMap[?"inChainsList"];
 					scr_combineChainsDrawLine(inChainsList);

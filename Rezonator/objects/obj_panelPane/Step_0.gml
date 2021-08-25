@@ -1,15 +1,3 @@
-
-if (obj_control.showDevVars) {
-	if (keyboard_check(vk_control) and keyboard_check(vk_alt) and keyboard_check_pressed(vk_numpad0)
-	and currentFunction == functionChainList) {
-		instance_destroy();
-	}
-	if (keyboard_check(vk_control) and keyboard_check(vk_alt) and keyboard_check_pressed(vk_numpad1)
-	and currentFunction == functionChainContents) {
-		instance_destroy();
-	}
-}
-
 originalWindowHeight = obj_menuBar.menuHeight;
 
 switch (currentFunction) {
@@ -44,7 +32,7 @@ else {
 	holdUp = 0;
 }
 
-if (keyboard_check_pressed(ord("N")) and keyboard_check(vk_control)) {
+if (keyboard_check_pressed(ord("N")) and global.ctrlHold) {
 	with(obj_panelPane){
 		showNav = not showNav;
 

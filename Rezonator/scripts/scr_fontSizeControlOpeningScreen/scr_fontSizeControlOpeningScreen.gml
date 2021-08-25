@@ -6,8 +6,8 @@ function scr_fontSizeControlOpeningScreen() {
 
 	// font size decrease
 	if (canPressMinus) {
-		if (keyboard_check(vk_control) and keyboard_check_pressed(vk_subtract)
-		or (keyboard_check(vk_control) and keyboardCheckMinusKey)) {
+		if (global.ctrlHold and keyboard_check_pressed(vk_subtract)
+		or (global.ctrlHold and keyboardCheckMinusKey)) {
 			if (keyboard_check(vk_shift)) {
 				if (global.fontSize > 0) {
 					global.fontSize--;
@@ -28,8 +28,8 @@ function scr_fontSizeControlOpeningScreen() {
 
 	// font size increase
 	if (canPressPlus) {
-		if (keyboard_check(vk_control) and keyboard_check_pressed(vk_add)
-		or (keyboard_check(vk_control) and keyboardCheckPlusKey)) {
+		if (global.ctrlHold and keyboard_check_pressed(vk_add)
+		or (global.ctrlHold and keyboardCheckPlusKey)) {
 			if (keyboard_check(vk_shift)) {
 				if (global.fontSize < 5) {
 					global.fontSize++;

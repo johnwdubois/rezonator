@@ -161,7 +161,7 @@ function scr_drawLine() {
 				obj_control.mouseoverNeutralSpace = false;
 				if (device_mouse_check_button_released(0, mb_left) and (not mouseRectExists and touchReleaseCheck) and not obj_control.speakerLabelHoldingDelay) {
 					var currentWordID = ds_list_find_value(currentWordIDList, 0);
-					if (obj_control.ctrlHold) {
+					if (global.ctrlHold) {
 						
 						// make a temporary "fake" inChainsList that will contain the chain that this stack is in (or no chain if there is none)
 						var fakeInChainsList = ds_list_create();

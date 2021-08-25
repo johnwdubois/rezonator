@@ -114,53 +114,55 @@ function scr_drawNodeList(){
 	}
 	
 	// search
-	if (keyboard_check(vk_control) && keyboard_check_pressed(ord("F"))) {
-		nodeListSearch = get_string("", "");
+	if (global.ctrlHold && keyboard_check_pressed(ord("F"))) {
+		if (os_type != os_macosx) {
+			nodeListSearch = get_string("", "");
 		
-		if (string_length(nodeListSearch) > 0) {
+			if (string_length(nodeListSearch) > 0) {
 			
-			// check if user is doing a filter by type
-			var typeFilter = (string_char_at(nodeListSearch, 1) == "*");
-			var type = "";
-			if (typeFilter) {
-				type = string_replace_all(nodeListSearch, "*", "");
-			}
-		
-			ds_list_clear(subNodeList);
-			var fullNodeList = global.nodeMap[? "nodeList"];
-			var fullNodeListSize = ds_list_size(fullNodeList);
-			
-			// loop through nodeList to find nodes that match the search
-			for (var i = 0; i < fullNodeListSize; i++) {
-				var currentNode = string(fullNodeList[| i]);
-				var addNode = false;
-				
+				// check if user is doing a filter by type
+				var typeFilter = (string_char_at(nodeListSearch, 1) == "*");
+				var type = "";
 				if (typeFilter) {
-					var currentNodeSubMap = global.nodeMap[? currentNode];
-					if (scr_isNumericAndExists(currentNodeSubMap, ds_type_map)) {
-						if (currentNodeSubMap[? "type"] == type) {
+					type = string_replace_all(nodeListSearch, "*", "");
+				}
+		
+				ds_list_clear(subNodeList);
+				var fullNodeList = global.nodeMap[? "nodeList"];
+				var fullNodeListSize = ds_list_size(fullNodeList);
+			
+				// loop through nodeList to find nodes that match the search
+				for (var i = 0; i < fullNodeListSize; i++) {
+					var currentNode = string(fullNodeList[| i]);
+					var addNode = false;
+				
+					if (typeFilter) {
+						var currentNodeSubMap = global.nodeMap[? currentNode];
+						if (scr_isNumericAndExists(currentNodeSubMap, ds_type_map)) {
+							if (currentNodeSubMap[? "type"] == type) {
+								addNode = true;
+							}
+						}
+					}
+					else {
+						if (string_count(string_lower(nodeListSearch), string_lower(currentNode)) > 0) {
 							addNode = true;
 						}
 					}
-				}
-				else {
-					if (string_count(string_lower(nodeListSearch), string_lower(currentNode)) > 0) {
-						addNode = true;
-					}
-				}
 				
-				// if the node matches the search, add it to the list
-				if (addNode) ds_list_add(subNodeList, currentNode);
+					// if the node matches the search, add it to the list
+					if (addNode) ds_list_add(subNodeList, currentNode);
+				}
 			}
 		}
 	}
 	
-	var ctrlKey = os_type == os_macosx ? vk_lcommand : vk_control;
+
 	
-	if( keyboard_check(ctrlKey) and keyboard_check_pressed(vk_down)){
+	if (global.ctrlHold and keyboard_check_pressed(vk_down)){
 		scrollPlusYDest -= 999999;
 	}
-	if( keyboard_check(ctrlKey) and keyboard_check_pressed(vk_up)){
+	if (global.ctrlHold and keyboard_check_pressed(vk_up)){
 		scrollPlusYDest += 999999;
 	}
 	

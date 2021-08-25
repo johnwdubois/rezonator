@@ -1,5 +1,7 @@
+scr_ctrlHold();
+
 // CSV group import
-if (keyboard_check(vk_shift) && keyboard_check(vk_control) && keyboard_check_released(ord("I"))) {
+if (keyboard_check(vk_shift) && global.ctrlHold && keyboard_check_released(ord("I"))) {
 	
 	if (os_type == os_macosx) {
 		global.importGroupOutputDir = "/Users/terry/Desktop/newrez";

@@ -3,10 +3,10 @@
   "isCompatibility": false,
   "parent": {
     "name": "functions",
-    "path": "folders/Scripts/import/functions.yy",
+    "path": "folders/Scripts/functions.yy",
   },
   "resourceVersion": "1.0",
-  "name": "scr_importPlainTextDraw",
+  "name": "scr_ctrlHold",
   "tags": [],
   "resourceType": "GMScript",
 }

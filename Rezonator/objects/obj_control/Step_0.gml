@@ -46,17 +46,8 @@ if (doubleClickTimer > -1) {
 
 
 
-ctrlHold = false;
-if(os_type == os_macosx){
-	if ( keyboard_check(vk_rcommand) or keyboard_check(vk_lcommand)) {
-		ctrlHold = true;
-	}
-}
-else {
-	if (keyboard_check(vk_control)) {
-		ctrlHold = true;
-	}
-}
+scr_ctrlHold();
+
 if (keyboard_check_released(vk_rcommand) || keyboard_check_released(vk_lcommand)) {
 	keyboard_key_release(vk_up);
 	keyboard_key_release(vk_down);
@@ -326,29 +317,29 @@ if (!clickedInChainList and !clickedInChainContents and not mouseoverHelpPane an
 		//}
 	
 		// Sends user to the bottom of the main screen
-		if ((ctrlHold and (keyboard_check_pressed(vk_down) or keyboard_check_pressed(vk_end))) or (keyboard_check(vk_alt) and (keyboard_check_pressed(vk_down) or keyboard_check_pressed(vk_end)))) {
+		if ((global.ctrlHold and (keyboard_check_pressed(vk_down) or keyboard_check_pressed(vk_end))) or (keyboard_check(vk_alt) and (keyboard_check_pressed(vk_down) or keyboard_check_pressed(vk_end)))) {
 			scrollPlusYDest = -999999999999;
 		}
 		// Sends user to the top of the main screen
-		else if ((ctrlHold and (keyboard_check_pressed(vk_up) or keyboard_check_pressed(vk_home))) or (keyboard_check(vk_alt) and (keyboard_check_pressed(vk_up)  or keyboard_check_pressed(vk_home)))) {
+		else if ((global.ctrlHold and (keyboard_check_pressed(vk_up) or keyboard_check_pressed(vk_home))) or (keyboard_check(vk_alt) and (keyboard_check_pressed(vk_up)  or keyboard_check_pressed(vk_home)))) {
 			scrollPlusYDest = 100;
 		}
 		
-		if (keyboard_check_pressed(vk_right) and not keyboard_check(vk_control) and not dialogueBoxActive) {
+		if (keyboard_check_pressed(vk_right) and !global.ctrlHold and not dialogueBoxActive) {
 			scrollPlusXDest -= gridSpaceHorizontal;
 		}
-		if ((keyboard_check_pressed(vk_right) and keyboard_check(vk_control))
-		or (keyboard_check_pressed(vk_end) and not keyboard_check(vk_control))
+		if ((keyboard_check_pressed(vk_right) and global.ctrlHold)
+		or (keyboard_check_pressed(vk_end) and !global.ctrlHold)
 		or (keyboard_check_pressed(vk_right) and keyboard_check(vk_alt))) {
 			scr_homeEnd(false);
 		}
 
 
-		if (keyboard_check_pressed(vk_left) and not keyboard_check(vk_control) and not dialogueBoxActive) {
+		if (keyboard_check_pressed(vk_left) and !global.ctrlHold and not dialogueBoxActive) {
 			scrollPlusXDest += gridSpaceHorizontal;
 		}
-		if ((keyboard_check_pressed(vk_left) and keyboard_check(vk_control))
-		or (keyboard_check_pressed(vk_home) and not keyboard_check(vk_control))
+		if ((keyboard_check_pressed(vk_left) and global.ctrlHold)
+		or (keyboard_check_pressed(vk_home) and !global.ctrlHold)
 		or (keyboard_check_pressed(vk_left) and keyboard_check(vk_alt)) ) {
 			scr_homeEnd(true);
 		}
@@ -394,7 +385,7 @@ var filterGridPopulated = ds_grid_height(filterGrid);
 // Culprit
 if (shortcutsEnabled) {
 	if(os_type == os_macosx){
-		if (keyboard_check(vk_shift) and !keyboard_check(vk_control)) {
+		if (keyboard_check(vk_shift) and !global.ctrlHold) {
 			if (keyboard_check(24) and canPressPlus) {
 				
 				canPressPlus = false;
@@ -435,7 +426,7 @@ if (shortcutsEnabled) {
 		}
 	}
 	else{
-		if (keyboard_check(vk_shift) and !keyboard_check(vk_control)) {
+		if (keyboard_check(vk_shift) and !global.ctrlHold) {
 			if (keyboard_check_direct(187) and canPressPlus) {
 
 				canPressPlus = false;
@@ -518,7 +509,7 @@ currentCenterDisplayRow = min(currentCenterDisplayRow, ds_grid_height(currentAct
 
 // hide participant names
 if (!gridView) {
-	if (keyboard_check(vk_control) and keyboard_check_pressed(ord("H"))) {
+	if (global.ctrlHold and keyboard_check_pressed(ord("H"))) {
 		scr_showSpeakerName(!obj_control.showSpeakerName);
 	}
 }
@@ -615,7 +606,7 @@ if (keyboard_check(vk_alt) and keyboard_check(vk_shift) and keyboard_check_press
 
 
 // quick filter
-if (keyboard_check_pressed(ord("P")) and !keyboard_check(vk_control) and !keyboard_check(vk_lshift) and !keyboard_check(vk_rshift)
+if (keyboard_check_pressed(ord("P")) and !global.ctrlHold and !keyboard_check(vk_lshift) and !keyboard_check(vk_rshift)
 and shortcutsEnabled and mouseoverTagShortcut == "" and currentActiveLineGrid != searchGrid and !instance_exists(obj_dropDown) and !instance_exists(obj_dialogueBox)) {
 	
 	// If filter is active, deactivate it
@@ -645,7 +636,7 @@ and shortcutsEnabled and mouseoverTagShortcut == "" and currentActiveLineGrid !=
 }
 
 
-if (keyboard_check_pressed(ord("Y")) and keyboard_check(vk_control)){
+if (keyboard_check_pressed(ord("Y")) and global.ctrlHold){
 	with(obj_fileLoader){
 		alarm[7] = 2;
 	}

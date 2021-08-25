@@ -174,11 +174,13 @@ function scr_panelPane_drawChainsList() {
 
 					
 					// get dimensions of checkbox rect
+					/*
 					var checkboxRectX1 = checkboxColX + (checkboxColWidth / 2) - (checkboxSize / 2);
 					var checkboxRectY1 = mean(chainNameRectY1, chainNameRectY2) - (checkboxSize / 2);
 					var checkboxRectX2 = checkboxRectX1 + checkboxSize;
 					var checkboxRectY2 = checkboxRectY1 + checkboxSize;
-					var mouseoverCheckbox = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, checkboxRectX1, checkboxRectY1, checkboxRectX2, checkboxRectY2) && !mouseoverHeaderRegion && !mouseoverScrollBar;
+					*/
+					var mouseoverCheckbox = false;//scr_pointInRectangleClippedWindow(mouse_x, mouse_y, checkboxRectX1, checkboxRectY1, checkboxRectX2, checkboxRectY2) && !mouseoverHeaderRegion && !mouseoverScrollBar;
 					
 					// Check mouse clicks to focus a chain in the list
 					if (mouseoverChainNameRect) {
@@ -271,6 +273,7 @@ function scr_panelPane_drawChainsList() {
 					}
 					
 					// draw checkbox
+					/*
 					if (mouseoverCheckbox) {
 						scr_createTooltip(mean(checkboxRectX1, checkboxRectX2), checkboxRectY2, "Select", obj_tooltip.arrowFaceUp);
 					}
@@ -297,6 +300,7 @@ function scr_panelPane_drawChainsList() {
 							scr_deleteFromList(selectedList, currentChainID);
 						}
 					}
+					*/
 					
 					// setup filter/align/visible buttons
 					var optionsChainY = floor(mean(chainNameRectY1, chainNameRectY2));
@@ -449,12 +453,12 @@ function scr_panelPane_drawChainsList() {
 		}
 	
 		// CTRL+UP and CTRL+DOWN
-		if (keyboard_check(vk_control) && keyboard_check_pressed(vk_up)) {
+		if (global.ctrlHold && keyboard_check_pressed(vk_up)) {
 			with (instToScroll) {
 				scrollPlusYDest = 100;
 			}
 		}
-		if (keyboard_check(vk_control) && keyboard_check_pressed(vk_down)) {
+		if (global.ctrlHold && keyboard_check_pressed(vk_down)) {
 			with (instToScroll) {
 				scrollPlusYDest = -999999999999;
 			}
@@ -497,6 +501,9 @@ function scr_panelPane_drawChainsList() {
 	
 	// draw column headers
 	for (var i = 0; i < 5; i++) {
+		
+		// skip checkbox header
+		if (i == 0) continue;
 		
 		// get column data
 		var headerRectX1 = 0;

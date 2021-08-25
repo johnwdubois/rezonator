@@ -2,7 +2,7 @@
 	Purpose: Instantiate all variables used by the openingScreen object
 */
 
-
+global.ctrlHold = false;
 
 window_set_cursor(cr_default);
 

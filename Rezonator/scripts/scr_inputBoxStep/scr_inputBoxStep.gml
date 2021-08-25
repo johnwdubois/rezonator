@@ -4,7 +4,7 @@ function scr_inputBoxStep(){
 	
 	if(!instance_exists(obj_dialogueBox))instance_destroy();
 	
-	var controlHold = (os_type == os_macosx) ? keyboard_check(vk_lcommand) || keyboard_check(vk_rcommand) : keyboard_check(vk_control);
+	var controlHold = global.ctrlHold;//(os_type == os_macosx) ? keyboard_check(vk_lcommand) || keyboard_check(vk_rcommand) : keyboard_check(vk_control);
 
 	if (keyboard_check(vk_alt)) {
 		x = mouse_x;

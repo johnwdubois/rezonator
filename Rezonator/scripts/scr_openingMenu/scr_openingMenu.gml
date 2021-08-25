@@ -231,10 +231,10 @@ function scr_openingMenu() {
 		// Variables
 		var ctext = "";
 		// Clipboard
-		if(keyboard_check(vk_control) && keyboard_check(ord("V")) && clipboard_has_text()) {
+		if(global.ctrlHold && keyboard_check(ord("V")) && clipboard_has_text()) {
 			ctext = clipboard_get_text();
 		}
-		if(ctext!="" && (keyboard_check_pressed(ord("V")) || keyboard_check_pressed(vk_control))) { 
+		if(ctext!="" && (keyboard_check_pressed(ord("V")) || global.ctrlHold)) { 
 			obj_openingScreen.inputText = string_insert(ctext, obj_openingScreen.inputText, obj_openingScreen.cursorPos);
 			obj_openingScreen.cursorPos += string_length(ctext);
 		}

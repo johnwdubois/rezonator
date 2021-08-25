@@ -15,7 +15,7 @@ function scr_drawGridViewerClipped() {
 		var gridIndex = ds_list_find_index(gridList, grid);
 	
 		if (gridIndex > -1) {
-			gridIndex += (keyboard_check(vk_control)) ? -1 : 1;
+			gridIndex += (global.ctrlHold) ? -1 : 1;
 			if (gridIndex < 0) {
 				gridIndex = ds_list_size(gridList) - 1;
 			}
@@ -449,10 +449,10 @@ function scr_drawGridViewerClipped() {
 			}
 
 			// CTRL+UP and CTRL+DOWN
-			if (keyboard_check(vk_control) && keyboard_check_pressed(vk_up)) {
+			if (global.ctrlHold && keyboard_check_pressed(vk_up)) {
 				scrollPlusYDest = 100;
 			}
-			if (keyboard_check(vk_control) && keyboard_check_pressed(vk_down)) {
+			if (global.ctrlHold && keyboard_check_pressed(vk_down)) {
 				scrollPlusYDest = -999999999999;
 			}
 	

@@ -4,7 +4,7 @@
 
 
 
-if (keyboard_check(vk_control) and keyboard_check_pressed(ord("S")) and ableToHotkey) {
+if (global.ctrlHold and keyboard_check_pressed(ord("S")) and ableToHotkey) {
 
 	ableToHotkey = false;
 	var instLoading = instance_create_layer(0, 0, "InstanceLoading", obj_loadingScreen);
@@ -15,7 +15,7 @@ if (keyboard_check(vk_control) and keyboard_check_pressed(ord("S")) and ableToHo
 
 }
 
-if (not keyboard_check(vk_control) and not ableToHotkey) {
+if (!global.ctrlHold and not ableToHotkey) {
 	ableToHotkey = true;
 }
 

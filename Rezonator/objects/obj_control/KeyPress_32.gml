@@ -1,7 +1,7 @@
 /// @description Experimental show stack toggle
 // You can write your code in this editor
 if (showDevVars) {
-	if (keyboard_check(vk_control)) {
+	if (global.ctrlHold) {
 		obj_stacker.alarm[2] = 1;	
 	}
 	else {

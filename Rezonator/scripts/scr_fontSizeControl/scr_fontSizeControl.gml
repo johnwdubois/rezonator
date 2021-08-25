@@ -3,8 +3,8 @@ function scr_fontSizeControl() {
 
 	if(os_type == os_macosx){
 			// Adjust the font size
-		if (keyboard_check(vk_control) and keyboard_check_pressed(vk_subtract)
-		or (keyboard_check(vk_control) and keyboard_check_direct(109)) and canPressPlus) {
+		if (global.ctrlHold and keyboard_check_pressed(vk_subtract)
+		or (global.ctrlHold and keyboard_check_direct(109)) and canPressPlus) {
 			if (keyboard_check(vk_shift)) {
 				if (global.fontSize > 0) {
 					global.fontSize--;
@@ -58,8 +58,8 @@ function scr_fontSizeControl() {
 			canPressPlus = false;
 			alarm[3] = 15;
 		}
-		if (keyboard_check(vk_control) and keyboard_check_pressed(vk_add)
-		or (keyboard_check(vk_control) and keyboard_check(24)) and canPressMinus) {
+		if (global.ctrlHold and keyboard_check_pressed(vk_add)
+		or (global.ctrlHold and keyboard_check(24)) and canPressMinus) {
 			if (keyboard_check(vk_shift)) {
 				if (global.fontSize < 5) {
 					global.fontSize++;
@@ -112,8 +112,8 @@ function scr_fontSizeControl() {
 			canPressMinus = false;
 			alarm[4] = 15;
 		}
-		if (keyboard_check(vk_control) and keyboard_check_pressed(vk_numpad0)
-		or keyboard_check(vk_control) and keyboard_check_pressed(ord("0"))) {
+		if (global.ctrlHold and keyboard_check_pressed(vk_numpad0)
+		or global.ctrlHold and keyboard_check_pressed(ord("0"))) {
 			if (!gridView) {
 				gridSpaceHorizontal = 100;
 				if (!scr_checkNativeJustification() && obj_control.shape == obj_control.shapeBlock) scr_refreshDisplayCol();
@@ -122,8 +122,8 @@ function scr_fontSizeControl() {
 	
 	}
 	else{
-		if (keyboard_check(vk_control) and keyboard_check_pressed(vk_subtract)
-		or (keyboard_check(vk_control) and keyboard_check(189)) and canPressPlus) {
+		if (global.ctrlHold and keyboard_check_pressed(vk_subtract)
+		or (global.ctrlHold and keyboard_check(189)) and canPressPlus) {
 			if (keyboard_check(vk_shift)) {
 				if (global.fontSize > 0) {
 					global.fontSize--;
@@ -177,8 +177,8 @@ function scr_fontSizeControl() {
 			canPressPlus = false;
 			alarm[3] = 15;
 		}
-		else if (keyboard_check(vk_control) and keyboard_check_pressed(vk_add)
-		or (keyboard_check(vk_control) and keyboard_check_direct(187)) and canPressMinus) {
+		else if (global.ctrlHold and keyboard_check_pressed(vk_add)
+		or (global.ctrlHold and keyboard_check_direct(187)) and canPressMinus) {
 			if (keyboard_check(vk_shift)) {
 				if (global.fontSize < 5) {
 					global.fontSize++;
@@ -231,8 +231,8 @@ function scr_fontSizeControl() {
 			canPressMinus = false;
 			alarm[4] = 15;
 		}
-		else if (keyboard_check(vk_control) and keyboard_check_pressed(vk_numpad0)
-		or keyboard_check(vk_control) and keyboard_check_pressed(ord("0"))) {
+		else if (global.ctrlHold and keyboard_check_pressed(vk_numpad0)
+		or global.ctrlHold and keyboard_check_pressed(ord("0"))) {
 			if (!gridView) {
 				gridSpaceHorizontal = 100;
 				if (!scr_checkNativeJustification() && obj_control.shape == obj_control.shapeBlock) scr_refreshDisplayCol();

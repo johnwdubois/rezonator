@@ -1,12 +1,12 @@
 // Check for user inputs to switch between chain tools
 if (!obj_control.gridView and !obj_control.dialogueBoxActive and !instance_exists(obj_dialogueBox) and !instance_exists(obj_dropDown) and obj_control.mouseoverTagShortcut == "") {
-	if (keyboard_check_pressed(ord("R")) and not keyboard_check(vk_control)) {
+	if (keyboard_check_pressed(ord("R")) and !global.ctrlHold) {
 		with (obj_chain) {
 			scr_chainDeselect();
 		}
 		currentTool = toolRezBrush;
 	}
-	else if (keyboard_check_pressed(ord("T")) and not keyboard_check(vk_control)) {
+	else if (keyboard_check_pressed(ord("T")) and !global.ctrlHold) {
 		with (obj_chain) {
 			scr_chainDeselect();
 		}

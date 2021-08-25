@@ -55,7 +55,6 @@ function scr_setTokenX(tokenSubMap, displayCol, entryListSize, indexOfList, unit
 	}
 	
 	
-
 	
 	// make pixelX drift over to pixelXDest
 	tokenPixelX = floor(lerp(tokenPixelX, tokenPixelXDest, 0.2));

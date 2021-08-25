@@ -1,7 +1,7 @@
 function scr_colorThemeControl() {
 	// Change the Rezonator color theme to lightmode/darkmode
 
-	if (keyboard_check(vk_control) and keyboard_check_pressed(ord("B"))) {
+	if (global.ctrlHold and keyboard_check_pressed(ord("B"))) {
 
 		global.colorTheme++;
 		if (global.colorTheme >= ds_grid_height(global.colorThemeGrid)) {

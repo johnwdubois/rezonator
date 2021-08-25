@@ -140,10 +140,10 @@ function scr_panelPane_drawUnits1toMany() {
 		}
 	
 		// CTRL+UP and CTRL+DOWN
-		if (keyboard_check(vk_control) && keyboard_check_pressed(vk_up)) {
+		if (global.ctrlHold && keyboard_check_pressed(vk_up)) {
 			scrollPlusYDest = 100;
 		}
-		if (keyboard_check(vk_control) && keyboard_check_pressed(vk_down)) {
+		if (global.ctrlHold && keyboard_check_pressed(vk_down)) {
 			scrollPlusYDest = -999999999999;
 		}
 	

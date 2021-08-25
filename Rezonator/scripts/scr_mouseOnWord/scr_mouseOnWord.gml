@@ -39,7 +39,7 @@ function scr_mouseOnWord(currentWordID, wordRectX1, wordRectY1, wordRectX2, word
 					}
 				}
 				// Check for Merge Chains click
-				if (obj_control.ctrlHold) {
+				if (global.ctrlHold) {
 					// if we are going to combine chains, we need to get the inChainsList for this word
 					var hoverWordInChainsList = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colInChainList, obj_control.hoverTokenID - 1);
 					scr_combineChainsDrawLine(hoverWordInChainsList);

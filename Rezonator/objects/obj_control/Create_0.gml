@@ -663,7 +663,7 @@ readModeHints = 0;
 
 mouseOverUI = false;
 
-ctrlHold = false;
+global.ctrlHold = false;
 
 wordWrap = false;
 

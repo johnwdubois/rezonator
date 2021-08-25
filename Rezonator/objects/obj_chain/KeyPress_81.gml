@@ -1,6 +1,6 @@
 ///@description End Chain Use
 // End chain adding/use
-if(keyboard_check(vk_control)) {
+if(global.ctrlHold) {
 	if(obj_chain.showTrackArrows and obj_chain.showRezArrows){
 				obj_chain.showTrackArrows = false;
 				obj_chain.showRezArrows = false;

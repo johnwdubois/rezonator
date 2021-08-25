@@ -12,7 +12,7 @@ function scr_objControlKeyDelete(){
 	show_debug_message("scr_objControlKeyDelete");
 
 
-	if (keyboard_check(vk_control)) {
+	if (global.ctrlHold) {
 		// Delete the entire chain if one is focused
 		if (ds_map_exists(global.nodeMap,obj_chain.currentFocusedChainID)) {
 			scr_deleteChain(obj_chain.currentFocusedChainID);

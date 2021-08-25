@@ -1,5 +1,7 @@
 // Controls the speed of scolling in grid view
 
+scr_ctrlHold();
+
 if (keyboard_check(vk_down)) {
 	holdDown++;	
 }

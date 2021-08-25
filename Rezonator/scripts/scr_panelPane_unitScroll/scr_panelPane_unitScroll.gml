@@ -57,12 +57,12 @@ function scr_panelPane_unitScroll(focusedElementY, strHeight) {
 		}
 	
 		// CTRL+UP and CTRL+DOWN
-		if (keyboard_check(vk_control) && keyboard_check_pressed(vk_up)) {
+		if (global.ctrlHold && keyboard_check_pressed(vk_up)) {
 			with (instToScroll) {
 				scrollPlusYDest = 100;
 			}
 		}
-		if (keyboard_check(vk_control) && keyboard_check_pressed(vk_down)) {
+		if (global.ctrlHold && keyboard_check_pressed(vk_down)) {
 			with (instToScroll) {
 				scrollPlusYDest = -999999999999;
 			}
