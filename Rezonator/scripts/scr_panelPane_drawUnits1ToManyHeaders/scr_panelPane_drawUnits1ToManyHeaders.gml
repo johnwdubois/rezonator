@@ -93,7 +93,8 @@ function scr_panelPane_drawUnits1ToManyHeaders(){
 			draw_circle(displayTokenButtonX, displayTokenButtonY, displayTokenButtonSize * 0.75, false);
 			
 			if (mouse_check_button_released(mb_left)) {
-				global.displayTokenField = currentField;		
+				global.displayTokenField = currentField;
+				scr_updateDisplayTokenList(currentField);
 			}
 		}
 

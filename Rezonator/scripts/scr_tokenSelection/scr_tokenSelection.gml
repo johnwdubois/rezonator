@@ -21,6 +21,7 @@ function scr_tokenSelection(optionSelected) {
 	// update display token if need be
 	if (updateDisplayToken && navFieldList == obj_control.navTokenFieldList) {
 		global.displayTokenField = optionSelected
+		scr_updateDisplayTokenList(global.displayTokenField);
 	}
 
 }

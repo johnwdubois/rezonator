@@ -769,4 +769,11 @@ deleteEntryPressed = false;
 clipStackDir = "";
 clipStackName = "";
 
+
 unitClosestToMouse = "";
+
+displayTokenList = ds_list_create();
+ds_list_add(displayTokenList, "text");
+//Look for where global.displayTokenField changes in order to interact with this list
+displayTokenListIndex = 0;
+
