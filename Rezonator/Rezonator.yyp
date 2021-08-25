@@ -361,6 +361,7 @@
     {"id":{"name":"scr_nodeMapSetChainValues","path":"scripts/scr_nodeMapSetChainValues/scr_nodeMapSetChainValues.yy",},"order":1,},
     {"id":{"name":"scr_panelPane_mouseOnLine","path":"scripts/scr_panelPane_mouseOnLine/scr_panelPane_mouseOnLine.yy",},"order":16,},
     {"id":{"name":"scr_drawDialogueBox","path":"scripts/scr_drawDialogueBox/scr_drawDialogueBox.yy",},"order":0,},
+    {"id":{"name":"scr_updateDisplayTokenList","path":"scripts/scr_updateDisplayTokenList/scr_updateDisplayTokenList.yy",},"order":44,},
     {"id":{"name":"scr_dropDownSelect","path":"scripts/scr_dropDownSelect/scr_dropDownSelect.yy",},"order":55,},
     {"id":{"name":"scr_refreshCliques","path":"scripts/scr_refreshCliques/scr_refreshCliques.yy",},"order":4,},
     {"id":{"name":"scr_drawQuestionBox","path":"scripts/scr_drawQuestionBox/scr_drawQuestionBox.yy",},"order":2,},
