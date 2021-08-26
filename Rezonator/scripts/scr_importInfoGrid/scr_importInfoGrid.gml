@@ -148,16 +148,16 @@ function scr_importInfoGrid() {
 	scr_loadSchema(true);
 	
 	// check if there are any Token level fields
-	var anyTokenFields = ds_grid_value_exists(global.tagInfoGrid, global.tagInfoGrid_colLevel, 0, global.tagInfoGrid_colLevel, ds_grid_height(global.tagInfoGrid), "token");
-	var anyWordFields = ds_grid_value_exists(global.tagInfoGrid, global.tagInfoGrid_colLevel, 0, global.tagInfoGrid_colLevel, ds_grid_height(global.tagInfoGrid), "token");
+	var anyTokenFields = ds_grid_value_exists(global.tagInfoGrid, global.tagInfoGrid_colLevel, 0, global.tagInfoGrid_colLevel, ds_grid_height(global.tagInfoGrid), "option_token");
+	var anyWordFields = ds_grid_value_exists(global.tagInfoGrid, global.tagInfoGrid_colLevel, 0, global.tagInfoGrid_colLevel, ds_grid_height(global.tagInfoGrid), "option_token");
 	show_debug_message("scr_importInfoGrid ... anyTokenFields: " + string(anyTokenFields) + ", anyWordFields: " + string(anyWordFields));
 	
 	// if there are no Token level fields but there are Word level fields, let's change the Word fields to Tokens fields
 	if (!anyTokenFields && anyWordFields) {
-		var wordLevelRow = ds_grid_value_y(global.tagInfoGrid, global.tagInfoGrid_colLevel, 0, global.tagInfoGrid_colLevel, ds_grid_height(global.tagInfoGrid), "token");
+		var wordLevelRow = ds_grid_value_y(global.tagInfoGrid, global.tagInfoGrid_colLevel, 0, global.tagInfoGrid_colLevel, ds_grid_height(global.tagInfoGrid), "option_token");
 		while (wordLevelRow > -1) {
-			ds_grid_set(global.tagInfoGrid, global.tagInfoGrid_colLevel, wordLevelRow, "token");
-			wordLevelRow = ds_grid_value_y(global.tagInfoGrid, global.tagInfoGrid_colLevel, 0, global.tagInfoGrid_colLevel, ds_grid_height(global.tagInfoGrid), "token");
+			ds_grid_set(global.tagInfoGrid, global.tagInfoGrid_colLevel, wordLevelRow, "option_token");
+			wordLevelRow = ds_grid_value_y(global.tagInfoGrid, global.tagInfoGrid_colLevel, 0, global.tagInfoGrid_colLevel, ds_grid_height(global.tagInfoGrid), "option_token");
 		}
 	}
 

@@ -6,16 +6,16 @@ function scr_mappingTagOptions(optionSelected) {
 		case "option_token":
 			levelToSet = global.levelToken;
 			break;
-		case "Word":
+		case "label_word":
 			levelToSet = global.levelWord;
 			break;
-		case "Unit":
+		case "tab_name_unit":
 			levelToSet = global.levelUnit;
 			break;
 		case "option_doc":	
 			levelToSet = global.levelDiscourse;
 			break;
-		case "EXCEPTION":
+		case "tag_unknown":
 			levelToSet = global.levelUnknown;
 			break;
 		default:

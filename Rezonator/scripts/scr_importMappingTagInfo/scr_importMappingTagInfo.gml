@@ -192,10 +192,10 @@ function scr_importMappingTagInfo() {
 					
 						var dropDownOptionList = ds_list_create();
 						if (global.importType == global.importType_IGT) {
-							ds_list_add(dropDownOptionList, "option_token", "Word", "Unit", "option_doc", "EXCEPTION");
+							ds_list_add(dropDownOptionList, "option_token", "label_word", "tab_name_unit", "option_doc", "tag_unknown");
 						}
 						else {
-							ds_list_add(dropDownOptionList, "option_token", "Unit", "option_doc", "EXCEPTION");
+							ds_list_add(dropDownOptionList, "option_token", "tab_name_unit", "option_doc", "tag_unknown");
 						}
 						if (ds_list_size(dropDownOptionList) > 0) {
 							scr_createDropDown(colX, floor(plusY + rowHeight  + scrollPlusY), dropDownOptionList, global.optionListTypeMappingTag);

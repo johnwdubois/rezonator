@@ -51,22 +51,22 @@ function scr_setDialogueText(){
 			}
 		}
 		if (removeTagToken || removeTagUnit || removeTagEntry || removeTagChain || removeTagChunk || removeTagLink) {
-			titleText = scr_get_translation("Remove Tag");
+			titleText = scr_get_translation("msg_remove") + " " + scr_get_translation("tab_name_tag");
 			descriptionText = scr_get_translation("msg_remove-mark-tag") + string(stringToBeRemoved);
 		}
 		if (removeFieldToken || removeFieldUnit || removeFieldEntry || removeFieldChain || removeFieldChunk || removeFieldLink) {
-			titleText = scr_get_translation("Remove Field");
+			titleText = scr_get_translation("msg_remove") + " " + scr_get_translation("option_field");
 			descriptionText =  scr_get_translation("msg_remove-field-tag") + string(stringToBeRemoved);
 		}
 		if (removeSearch) {
 			var searchSubMap = global.searchMap[?searchToBeRemoved];
 			var searchTermList = searchSubMap[?"searchTermList"];
-			titleText = scr_get_translation("Remove Search");
+			titleText = scr_get_translation("msg_remove") + " " + scr_get_translation("menu_search");
 			descriptionText = scr_get_translation("msg_remove-search") + ": " + scr_getStringOfList(searchTermList);
 		}
 		if (removeTree) {
 			var searchSubMap = global.treeMap[?stringToBeRemoved];
-			titleText = scr_get_translation("Remove Tree");
+			titleText = scr_get_translation("msg_remove") + " " + scr_get_translation("tab_name_tree");
 			descriptionText =  "This will permanently delete the tree:  " + string(searchSubMap[? "name"]);
 		}
 		if (instance_exists(obj_stacker)) {
@@ -93,7 +93,7 @@ function scr_setDialogueText(){
 			descriptionText = scr_get_translation("msg_input_new-string");
 		}
 		if (obj_control.swapLine) {
-			titleText = scr_get_translation("Input Line Number");
+			titleText = scr_get_translation("msg_specify_line");
 			descriptionText = scr_get_translation("msg_input_line_number");
 		}
 		if (obj_control.replace) {
@@ -102,35 +102,35 @@ function scr_setDialogueText(){
 				descriptionText = scr_get_translation("msg_input_split_words");
 			}
 			else{
-				titleText = scr_get_translation("New Word");
+				titleText = scr_get_translation("option_new-token");
 				descriptionText = scr_get_translation("msg_input_new-word");
 			}
 		}
 		if (obj_control.newWordCreated) {
-			titleText = scr_get_translation("New Word");
+			titleText = scr_get_translation("option_new-token");
 			descriptionText = scr_get_translation("msg_input_add_new-word");
 		}
 		
 		if(obj_control.caption){
-			titleText = scr_get_translation("Input Caption");
+			titleText = scr_get_translation("msg_input_caption");
 			descriptionText = scr_get_translation("msg_input_caption");
 		}	
 		if (obj_control.rename) {
-			titleText = scr_get_translation("Rename Chain");
+			titleText = scr_get_translation("help_description_rename");
 			descriptionText = scr_get_translation("msg_input_chain-name");
 		}
 		if (obj_control.recolor) {
-			titleText = scr_get_translation("Recolor Chain");
+			titleText = scr_get_translation("option_recolor");
 			descriptionText = scr_get_translation("msg_input_chain-color");
 		}
 		
 		if (obj_control.gPressed) {
 			if(obj_control.goToTime){
-				titleText = scr_get_translation("Input Time");
+				titleText = scr_get_translation("msg_time_search");
 				descriptionText = scr_get_translation("msg_input_time-jump");
 			}
 			else{
-				titleText = scr_get_translation("Input Line");
+				titleText = scr_get_translation("msg_specify_line");
 				descriptionText = scr_get_translation("msg_input_line-jump");
 			}
 		}
@@ -139,7 +139,7 @@ function scr_setDialogueText(){
 		var drawNewTagText = (obj_control.newCustomTagToken || obj_control.newCustomTagUnit || obj_control.newCustomTagEntry || obj_control.newCustomTagChain || obj_control.newCustomTagChunk || obj_control.newCustomTagLink);
 		
 		if (drawNewFieldText) {
-			titleText = scr_get_translation("Input Description");
+			titleText = scr_get_translation("option_new-field");
 			descriptionText = scr_get_translation("search_custom-field");
 		}
 		else if (drawNewTagText) {
@@ -154,17 +154,17 @@ function scr_setDialogueText(){
 		if(obj_control.fPressed) {
 			// draw background text
 			if(obj_control.regExCheck){
-				titleText = scr_get_translation("Search Doc");
+				titleText = scr_get_translation("search_dialogue_regEx");
 				descriptionText = scr_get_translation("msg_input_regex");
 			}
 			else{
-				titleText = scr_get_translation("Search Doc");
+				titleText = scr_get_translation("search_dialogue_word");
 				descriptionText = scr_get_translation("search_dialogue_word");
 			}
 		}
 		
 		if (obj_control.newTagCategory) {
-			titleText = scr_get_translation("Input New Field");
+			titleText = scr_get_translation("option_new-field");
 			descriptionText = scr_get_translation("msg_new-category");
 		}
 

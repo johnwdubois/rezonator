@@ -38,11 +38,11 @@ function scr_importMappingGridsInit() {
 	global.customLabelGrid = ds_grid_create(global.customLabelGridWidth, 0);
 
 	// initiate global variables for levels
-	global.levelToken = "token";
-	global.levelWord = "word";
-	global.levelUnit = "unit";
-	global.levelDiscourse = "discourse";
-	global.levelUnknown = "EXCEPTION";
+	global.levelToken = "option_token";
+	global.levelWord = "label_word";
+	global.levelUnit = "tab_name_unit";
+	global.levelDiscourse = "option_doc";
+	global.levelUnknown = "tag_unknown";
 
 
 

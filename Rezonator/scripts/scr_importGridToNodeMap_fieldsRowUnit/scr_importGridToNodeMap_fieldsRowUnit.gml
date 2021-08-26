@@ -50,7 +50,7 @@ function scr_importGridToNodeMap_fieldsRowUnit(row){
 		//add all fields to appropriate field lists
 		for(var i = 0 ; i < ds_list_size(global.importGridColNameList); i++){
 			var fieldName = global.importGridColNameList[| i];
-			if(global.fieldLevelMap[? fieldName] == "unit"){
+			if(global.fieldLevelMap[? fieldName] == "tab_name_unit"){
 				if(fieldName == "~blockID"){continue;}
 				ds_list_add(global.unitFieldList, fieldName);
 				
@@ -58,7 +58,7 @@ function scr_importGridToNodeMap_fieldsRowUnit(row){
 				ds_map_add_map(unitFieldMap,fieldName, newUnitFieldMap);
 				ds_map_add_list(newUnitFieldMap, "tagSet", ds_list_create());
 			}
-			else if(global.fieldLevelMap[? fieldName] == "token" || global.fieldLevelMap[? fieldName] == "word"){
+			else if(global.fieldLevelMap[? fieldName] == "option_token" || global.fieldLevelMap[? fieldName] == "label_word"){
 				ds_list_add(global.tokenFieldList, fieldName);
 				
 				var newTokenFieldMap = ds_map_create();
@@ -67,7 +67,7 @@ function scr_importGridToNodeMap_fieldsRowUnit(row){
 				var targetSet = ds_list_create();
 				ds_map_add_list(newTokenFieldMap, "targetList", targetSet);
 				
-				if (global.fieldLevelMap[? fieldName] == "word") {
+				if (global.fieldLevelMap[? fieldName] == "label_word") {
 					ds_list_add(targetSet, "chunk");
 				}
 				else {
@@ -230,7 +230,7 @@ function scr_importGridToNodeMap_fieldsRowUnit(row){
 		var currentLevel = global.fieldLevelMap[? currentField];
 
 	
-		if(currentLevel == "token"){			
+		if(currentLevel == "option_token"){			
 			if (scr_isNumericAndExists(splitList, ds_type_list)) {
 				
 				var splitListSize = ds_list_size(splitList);
@@ -269,14 +269,14 @@ function scr_importGridToNodeMap_fieldsRowUnit(row){
 				}
 			}		
 		}
-		else if(currentLevel == "unit"){
+		else if(currentLevel == "tab_name_unit"){
 			if(currentField == "~blockID" || currentField == global.speakerField){continue;}
 			if(currentField == global.unitImportUnitStartColName){unitSubMap[?"unitStart"] = unitStr}
 			if(currentField == global.unitImportUnitEndColName){unitSubMap[?"unitEnd"] = unitStr}
 			ds_map_add(unitTagMap, currentField, unitStr);
 			scr_addAutoTag(currentField, unitStr, unitFieldMap);
 		}
-		else if(currentLevel == "word"){
+		else if(currentLevel == "label_word"){
 			
 			var splitListSize = ds_list_size(splitList);
 			for (var j = 0; j < splitListSize; j++) {				

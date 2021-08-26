@@ -61,7 +61,7 @@ function scr_importGridToNodeMap_fieldsRowToken(row){
 		//add all fields to appropriate field lists
 		for(var i = 0 ; i < ds_list_size(global.importGridColNameList); i++){
 			var fieldName = global.importGridColNameList[| i];
-			if(global.fieldLevelMap[? fieldName] == "unit"){
+			if(global.fieldLevelMap[? fieldName] == "tab_name_unit"){
 				
 				if(fieldName == "~blockID"){continue;}
 				ds_list_add(global.unitFieldList, fieldName);
@@ -70,7 +70,7 @@ function scr_importGridToNodeMap_fieldsRowToken(row){
 				ds_map_add_map(unitFieldMap,fieldName, newUnitFieldMap);
 				ds_map_add_list(newUnitFieldMap, "tagSet", ds_list_create());
 			}
-			else if(global.fieldLevelMap[? fieldName] == "token"){
+			else if(global.fieldLevelMap[? fieldName] == "option_token"){
 				ds_list_add(global.tokenFieldList, fieldName);
 				
 				var newTokenFieldMap = ds_map_create();
@@ -120,7 +120,7 @@ function scr_importGridToNodeMap_fieldsRowToken(row){
 		var currentField = global.importGridColNameList[| i];
 		var currentLevel = global.fieldLevelMap[? currentField];
 		
-		if (currentLevel == "token") {
+		if (currentLevel == "option_token") {
 			if (scr_isNumericAndExists(currentTokenTagMap, ds_type_map)) {
 				ds_map_add(currentTokenTagMap, currentField, currentCell);
 				//check if token is rtl
@@ -130,7 +130,7 @@ function scr_importGridToNodeMap_fieldsRowToken(row){
 				scr_addAutoTag(currentField, currentCell, tokenFieldMap);
 			}
 		}
-		else if (currentLevel == "unit" && newUnitMade) {
+		else if (currentLevel == "tab_name_unit" && newUnitMade) {
 			if(currentField == global.unitImportUnitStartColName){unitSubMap[?"unitStart"] = currentCell;}
 			if(currentField == global.unitImportUnitEndColName){unitSubMap[?"unitEnd"] = currentCell;}
 			
