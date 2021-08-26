@@ -3,6 +3,9 @@ if (global.openProject) {
 	scr_loadREZ();
 }
 
+
+
+
 discourseProcessing = 0;
 fileLineRipListElement = 0;
 

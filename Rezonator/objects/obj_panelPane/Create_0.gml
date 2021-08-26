@@ -98,8 +98,7 @@ functionChainContents_chainID = "";
 functionChainContents_showID = "";
 
 alarm[8] = 5;
-
-
+alarm[9] = 2;
 
 
 functionHelp_collapsed = true;
