@@ -16,7 +16,7 @@ descriptionText = "";
 
 inputWindowActive = false;
 questionWindowActive = false;
-promptWindowActive = false;
+alertWindowActive = false;
 
 mouseoverCancel = false;
 mouseoverOk = false;

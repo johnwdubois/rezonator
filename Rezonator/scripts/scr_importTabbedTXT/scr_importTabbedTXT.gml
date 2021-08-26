@@ -53,7 +53,4 @@ function scr_importTabbedTXT(delimiter) {
 	//global.plainText = true;
 	global.tabDeliniatedText = true;
 
-	//show_message(scr_getStringOfList(global.importGridColNameList));
-
-
 }

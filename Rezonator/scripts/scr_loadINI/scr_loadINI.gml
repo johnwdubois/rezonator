@@ -8,7 +8,6 @@ function scr_loadINI() {
 		var fileName = global.rezonatorDirString + "\\~usersettings.ini";
 	}
 	
-	//show_message(fileName);
 
 	// Check if the name is valid, or if the user exited the window
 	if (fileName == "" or fileName == "undefined") {
@@ -18,7 +17,6 @@ function scr_loadINI() {
 
 
 	if (fileName == "" or not file_exists(fileName)) {
-		//show_message("leaving cuz file not found");
 		exit;
 	}
 
@@ -42,8 +40,7 @@ function scr_loadINI() {
 			exit;
 		}
 	
-		//show_message("global.tokenImportGridWidth: " + string(ds_grid_width(global.tokenImportGrid)) + ", global.tokenImportGridHeight: " + string(ds_grid_height(global.tokenImportGrid)));
-	
+		
 		var listSize = ds_list_size(list);
 		for (var i = 0; i < listSize; i++) {
 		
@@ -119,28 +116,6 @@ function scr_loadINI() {
 				global.fontSize = ds_map_find_value(map, "fontSize"); 
 
 			
-			/*
-				if (instance_exists(obj_gridViewer)) {
-					if (is_numeric(obj_gridViewer.gridViewColXListMap)) {
-						if (ds_exists(obj_gridViewer.gridViewColXListMap, ds_type_map)) {
-							var tempMap = ds_map_find_value(map, "gridViewColXListMap");
-							
-							
-							if (is_numeric(tempMap)) {
-								if (ds_exists(tempMap, ds_type_map)) {	
-									if (ds_map_size(tempMap) == ds_map_size(obj_gridViewer.gridViewColXListMap)) {
-										//show_message("map sizes equal");
-										ds_map_clear(obj_gridViewer.gridViewColXListMap);
-										ds_map_copy(obj_gridViewer.gridViewColXListMap, tempMap);
-									}
-								}
-							}
-							//show_message("scr_loadINI()... Unit: " + scr_getStringOfList(ds_map_find_value(obj_gridViewer.gridViewColXListMap, "Unit")));
-						}
-					}
-				
-				}
-			*/
 		
 
 			}

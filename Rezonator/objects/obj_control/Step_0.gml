@@ -307,14 +307,6 @@ if (!clickedInChainList and !clickedInChainContents and not mouseoverHelpPane an
 
 
 	if (not instance_exists(obj_dialogueBox)) {
-		// Scroll a full page up or down
-		//if (keyboard_check_pressed(vk_pagedown)) {
-		//	scrollPlusYDest -= (camera_get_view_height(camera_get_active()) * 0.8);
-		//	//show_message(string(camera_get_view_height(camera_get_active())));
-		//}
-		//if (keyboard_check_pressed(vk_pageup)) {
-		//	scrollPlusYDest += (camera_get_view_height(camera_get_active())* 0.8);
-		//}
 	
 		// Sends user to the bottom of the main screen
 		if ((global.ctrlHold and (keyboard_check_pressed(vk_down) or keyboard_check_pressed(vk_end))) or (keyboard_check(vk_alt) and (keyboard_check_pressed(vk_down) or keyboard_check_pressed(vk_end)))) {

@@ -8,6 +8,12 @@ function scr_dialogueConfirm(){
 		instance_destroy();
 		exit;
 	}
+	
+	// if this is an alert window, we just need to close out of the dialogue box
+	if (alertWindowActive) {
+		instance_destroy();
+		exit;	
+	}
 
 	if(inputWindowActive){
 		

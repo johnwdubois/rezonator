@@ -109,10 +109,9 @@ function scr_importConlluTXT(filename) {
 						}
 					
 						var col = ds_map_find_value(global.importGridColMap, colName);
-						//show_message("col: " +string(col));
+						
 						if (is_undefined(col)) {
 							ds_list_add(global.importGridColNameList, colName);
-							//show_message("colName: " +string(colName) + " i: " +string(i));
 							ds_map_add(global.importGridColMap, colName, i);
 						}
 						i++;
@@ -173,9 +172,9 @@ function scr_importConlluTXT(filename) {
 		
 
 			var col = ds_map_find_value(global.importGridColMap, colName);
-			//show_message("col: " +string(col))
+
 			if (is_undefined(col)) {
-				//show_message("colName: " +string(colName))
+
 				widthOfImportGrid++;
 				global.importGridWidth = widthOfImportGrid;
 				ds_grid_resize(global.importGrid, global.importGridWidth, ds_grid_height(global.importGrid));
@@ -192,10 +191,8 @@ function scr_importConlluTXT(filename) {
 
 	ds_grid_resize(global.importGrid, global.importGridWidth, rowCounter);
 			
-	//global.plainText = true;
+
 	global.tabDeliniatedText = true;
-	//show_message("import grid width: "+ string(ds_grid_width(global.importGrid)) + "variable says: " + string(global.importGridWidth));
-	//show_message(scr_getStringOfList(global.importGridColNameList));
 
 
 }

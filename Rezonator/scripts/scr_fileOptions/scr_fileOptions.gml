@@ -2,19 +2,6 @@ function scr_fileOptions(optionSelected) {
 
 	switch (optionSelected)
 	{
-		case "Open":
-		//room_instance_clear(rm_mainScreen);
-		
-		// destroy grid
-		
-		// get file name + extension
-		
-		// distinguish between rez or xml
-		
-		//room_restart();
-		
-			show_message("Coming Soon");
-			break;
 				
 		case "menu_save":
 			var instLoading = instance_create_layer(0, 0, "InstanceLoading", obj_loadingScreen);
@@ -87,7 +74,7 @@ function scr_fileOptions(optionSelected) {
 				instance_create_layer(x, y, "InstancesDialogue", obj_dialogueBox);
 			}
 			obj_dialogueBox.inputWindowActive = true;
-			//show_message("BUH 3");
+
 			break;
 		case "menu_media":
 
@@ -103,7 +90,6 @@ function scr_fileOptions(optionSelected) {
 			
 			}
 
-			//show_message("Coming Soon");
 			break;	
 		case "menu_exit":
 		
@@ -136,7 +122,7 @@ function scr_fileOptions(optionSelected) {
 			keyboard_string = "";
 			room_goto(rm_openingScreen);
 			scr_loadINI();
-			//show_message("BUH 5");
+
 			break;
 		default:
 			break;

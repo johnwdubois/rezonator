@@ -11,8 +11,7 @@ function scr_deleteOptions(optionSelected) {
 				obj_dialogueBox.questionWindowActive = true;
 			}
 		
-			
-		//	show_message("Coming Soon");
+
 			break;
 		case "menu_rez_chains_pl":
 		
@@ -33,9 +32,7 @@ function scr_deleteOptions(optionSelected) {
 				obj_dialogueBox.clearAllTracks = true;
 				obj_dialogueBox.questionWindowActive = true;
 			}
-		
-		
-			//show_message("Coming Soon");
+
 			break;
 		case "menu_chains_pl":
 		
@@ -45,9 +42,7 @@ function scr_deleteOptions(optionSelected) {
 				obj_dialogueBox.clearAllLinks = true;
 				obj_dialogueBox.questionWindowActive = true;
 			}
-		
-			
-			//show_message("Coming Soon");
+
 			break;
 		
 			default:

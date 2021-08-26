@@ -41,14 +41,19 @@ if(!inputWindowActive) {
 	draw_text_ext(titleTextX, descriptionTextY, descriptionText, string_height(descriptionText), boxWidth * 0.8);
 }
 draw_set_valign(fa_middle);
-var buttonXBuffer = noButtonActive ? boxWidth * 0.2 : boxWidth * 0.07;
-var buttonYBuffer = boxHeight * 0.07;
+
+// determine button sizes
 var buttonWidth = noButtonActive ? boxWidth * 0.25 : boxWidth * 0.3;
 var buttonHeight = boxHeight * 0.15;
+var buttonXBuffer = 0;
+if (alertWindowActive) buttonXBuffer = -(buttonWidth / 2);
+else if (noButtonActive) buttonXBuffer = boxWidth * 0.2
+else buttonXBuffer = boxWidth * 0.07;
+var buttonYBuffer = boxHeight * 0.07;
 var buttonY2 = boxRectY2 - buttonYBuffer;
 var buttonY1 = buttonY2 - buttonHeight;
 
-if(!promptWindowActive) {	
+if (!alertWindowActive) {
 	// cancel button
 	var cancelRectX2 = camMidX - buttonXBuffer;
 	var cancelRectX1 = cancelRectX2 - buttonWidth;
@@ -63,6 +68,7 @@ if(!promptWindowActive) {
 	scr_adaptFont(cancelText, "M", false);
 	draw_text(floor(mean(cancelRectX1, cancelRectX2)), floor(mean(buttonY1, buttonY2)), cancelText);
 }
+
 // ok button
 var okRectX1 = camMidX + buttonXBuffer;
 var okRectX2 = okRectX1 + buttonWidth;
@@ -77,7 +83,6 @@ okText = scr_get_translation(okText);
 draw_text(floor(mean(okRectX1, okRectX2)), floor(mean(buttonY1, buttonY2)), okText);
 
 if (noButtonActive) {
-	
 	var noRectX1 = camMidX - (buttonWidth * 0.5);
 	var noRectX2 = noRectX1 + buttonWidth;
 	mouseoverNo = point_in_rectangle(mouse_x, mouse_y, noRectX1, buttonY1, noRectX2, buttonY2) && !instance_exists(obj_dropDown);
@@ -91,7 +96,6 @@ if (noButtonActive) {
 	noText = scr_get_translation(noText);
 	scr_adaptFont(noText, "M", false);
 	draw_text(floor(mean(noRectX1, noRectX2)), floor(mean(buttonY1, buttonY2)), noText);
-	
 }
 
 
@@ -106,12 +110,8 @@ if (noButtonActive) {
 if (inputWindowActive) {
 	scr_drawDialogueBox_input();
 }
-else if(questionWindowActive) {
-	scr_drawDialogueBox_question();
-}
-else if(promptWindowActive) {
-	scr_drawDialogueBox_question();
-}
+
+
 
 //selection paths
 var clickOk = mouseoverOk && mouse_check_button_released(mb_left);

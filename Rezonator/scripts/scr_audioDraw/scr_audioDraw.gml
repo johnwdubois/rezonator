@@ -106,7 +106,6 @@ function scr_audioDraw() {
 				audioPaused = !audioPaused;
 			}
 			else {
-				//show_message(stackStartUnit);
 				audio_sound_set_track_position(audioSound, bookmarkStartTime);
 				stackUnitListPosition = 0;	
 				audioPaused = !audioPaused;
@@ -164,7 +163,6 @@ function scr_audioDraw() {
 	draw_set_color(progressColor);
 	draw_set_circle_precision(64);
 	if (abs(audioPos - audioPosTemp) > 5 and not playheadHolding) {
-		//show_message("here")
 		draw_set_alpha(0);
 	}
 	draw_circle(playheadX, playheadY, playheadRad, false);

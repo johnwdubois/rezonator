@@ -41,7 +41,6 @@ if (global.canScroll) {
 scr_mouseRect();
 
 if (!hideAll) {
-	//scr_drawLine();
 	scr_drawLine2ElectricBoogaloo();
 }
 

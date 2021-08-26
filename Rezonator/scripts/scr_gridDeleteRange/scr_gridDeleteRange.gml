@@ -17,14 +17,7 @@ function scr_gridDeleteRange(grid, col, gridRangeBegining, gridRangeEnd) {
 			for(var j = 0; j < gridCopyWidth; j++){
 				var currentCellCopy = ds_grid_get(gridCopy,j,i);
 			
-				/*
-				if (scr_isItemAList(gridCopy,j,i)) {
-					currentCellCopy = ds_list_create();
-					ds_list_copy(currentCellCopy, ds_grid_get(gridCopy,j,i));
-						//show_message(scr_getStringOfList(currentCellCopy));
-				}
-				*/
-			
+
 			ds_grid_set(grid, j, ds_grid_height(grid) - 1, currentCellCopy);
 			
 			}

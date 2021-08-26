@@ -55,8 +55,7 @@ function scr_jumpToTime(timeStr) {
 	}
 
 	show_debug_message("scr_jumpToTime() ... foundRow: " + string(foundRow));
-		//show_message(ds_grid_get(obj_control.lineGrid, obj_control.lineGrid_colLineNumberLabel, foundRow));
-
+	
 	var lineNum = real(ds_grid_get(obj_control.lineGrid, obj_control.lineGrid_colLineNumberLabel, foundRow));
 
 	var lineNumMin = ds_grid_get_min(obj_control.lineGrid, obj_control.lineGrid_colLineNumberLabel, 0, obj_control.lineGrid_colLineNumberLabel, ds_grid_height(obj_control.lineGrid));

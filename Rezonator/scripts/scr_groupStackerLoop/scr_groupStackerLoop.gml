@@ -29,8 +29,7 @@ function scr_groupStackerLoop(){
 		exit;	
 	}
 	
-	//show_message("Import grid height: "  + string(importGridHeight)+ "groupCol: " + string(groupCol) );
-
+	
 	//Set variables for loop
 	var currentGroupOrder = ds_grid_get(global.importGrid, groupCol, 0);
 	var previousGroupOrder = ds_grid_get(global.importGrid, groupCol, 0);
@@ -49,7 +48,7 @@ function scr_groupStackerLoop(){
 			ds_list_add(currentUnitList, currentUnit);
 			importLoop++;
 			currentGroupOrder = ds_grid_get(global.importGrid, groupCol, importLoop);
-			//show_message(currentGroupOrder);
+
 		}
 		importLoop--;
 	

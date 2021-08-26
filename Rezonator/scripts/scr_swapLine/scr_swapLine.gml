@@ -23,13 +23,11 @@ function scr_swapLine() {
 	
 		if(i != 0){
 			var Line1CurrentSwap  = ds_grid_get(obj_control.lineGrid, i , rowSwapLine2);
-			//show_message(string(Line1CurrentSwap));
 			ds_grid_set(swappedLineGrid, i, rowSwapLine1,  Line1CurrentSwap);
 	
 	
 	
 			var Line2CurrentSwap  = ds_grid_get(obj_control.lineGrid, i , rowSwapLine1);
-			//show_message(string(Line2CurrentSwap));
 			ds_grid_set(swappedLineGrid, i, rowSwapLine2,  Line2CurrentSwap);
 		}
 	}

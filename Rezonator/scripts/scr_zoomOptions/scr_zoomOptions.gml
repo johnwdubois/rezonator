@@ -8,8 +8,7 @@ function scr_zoomOptions(optionSelected) {
 				global.fontSize++;
 				scr_setSpeakerLabelColWidth();
 			}
-		
-			//show_message("BUH 2");
+
 			break;
 		case "Decrease Text Size":
 		
@@ -18,7 +17,7 @@ function scr_zoomOptions(optionSelected) {
 				scr_setSpeakerLabelColWidth();
 			}
 			
-			//show_message("BUH 3");
+
 			break;
 		case "menu_wide":
 		
@@ -68,7 +67,7 @@ function scr_zoomOptions(optionSelected) {
 					obj_control.arrowSpeed++;	
 				}
 			}
-			//show_message("BUH 4");
+
 			break;
 		case "help_label_short":
 		
@@ -101,7 +100,7 @@ function scr_zoomOptions(optionSelected) {
 				}
 			
 			}
-			//show_message("BUH 5");
+
 			break;
 		case "help_label_zoom-in":
 		

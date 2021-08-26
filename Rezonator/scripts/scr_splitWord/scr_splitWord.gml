@@ -8,7 +8,7 @@ function scr_splitWord(stringList) {
 		show_message(scr_get_translation("msg_not-enough-words"));
 		exit;
 	}
-	//show_message(string(obj_control.newWordHoverWordSeq));
+
 	if(obj_control.fromDropDown){
 		var firstWord = ds_list_find_value(listOfWords, 0);
 		if (firstWord == "") {

@@ -68,7 +68,6 @@ function scr_fillHelpMenuGrid(){
 
 
 
-	//show_message(string(ds_grid_height(functionHelp_menuGrid));
 
 	var helpGridHeightLink = 12;
 	ds_grid_resize(functionHelp_helpGridLink, functionHelp_helpGridWidth, helpGridHeightLink);

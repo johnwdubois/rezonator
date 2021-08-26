@@ -3,18 +3,7 @@ function scr_advancedOptions(optionSelected) {
 	switch (optionSelected)
 	{
 	
-		/*case "Add Tag Category":
-		
 
-			if (!instance_exists(obj_dialogueBox)) {
-				instance_create_layer(x, y, "InstancesDialogue", obj_dialogueBox);
-				obj_dialogueBox.clearAllLinks = true;
-				obj_dialogueBox.questionWindowActive = true;
-			}
-		
-			
-			//show_message("Coming Soon");
-			break;*/
 		case "menu_developer":
 			obj_control.showDevVars = !obj_control.showDevVars;
 			obj_control.showFPS = !obj_control.showFPS;

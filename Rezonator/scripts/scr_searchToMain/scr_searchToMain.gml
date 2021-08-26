@@ -4,7 +4,7 @@ function scr_searchToMain(){
 	obj_control.searchGridActive = false;
 	
 	var currentFocusLineSearch = scr_currentTopLine() - 2;
-	//show_message(currentFocusLineSearch);
+
 	var currentFocusUnitID = ds_grid_get(obj_control.currentActiveLineGrid, obj_control.lineGrid_colUnitID, currentFocusLineSearch);
 	var currentFocusLine = ds_grid_value_y(obj_control.lineGrid, obj_control.lineGrid_colUnitID, 0, obj_control.lineGrid_colUnitID, ds_grid_height(obj_control.lineGrid), currentFocusUnitID) + 1;
 						

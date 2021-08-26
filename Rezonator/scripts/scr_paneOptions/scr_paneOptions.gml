@@ -73,7 +73,7 @@ function scr_paneOptions(optionSelected) {
 				}
 			}
 			instance_destroy();
-			//show_message("BUH 2");
+
 		break;
 		case "menu_nav": // Show/hide Nav Window
 		
