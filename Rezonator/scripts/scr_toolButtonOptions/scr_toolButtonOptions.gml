@@ -6,7 +6,7 @@ function scr_toolButtonOptions(optionSelected){
 	if (optionSelected == "menu_read") {
 		newMode = obj_toolPane.modeRead;
 	}
-	else if (optionSelected == "menu_rez") {
+	else if (optionSelected == "menu_resonance") {
 		newMode = obj_toolPane.modeRez;
 	}
 	else if (optionSelected == "menu_track") {

@@ -241,7 +241,7 @@ function scr_panelPane_drawShow1toMany(){
 		draw_text(floor(numColX + textBuffer) - clipX, floor(mean(headerRectY1, headerRectY2)) - clipY, "#");
 		
 		// header text: name column
-		draw_text(floor(nameColX + textBuffer) - clipX, floor(mean(headerRectY1, headerRectY2)) - clipY, "Stack");
+		draw_text(floor(nameColX + textBuffer) - clipX, floor(mean(headerRectY1, headerRectY2)) - clipY, scr_get_translation("help_label_stack"));
 		
 		// header text: seq column
 		draw_text(floor(seqColX + textBuffer) - clipX, floor(mean(headerRectY1, headerRectY2)) - clipY, "Seq");

@@ -43,14 +43,14 @@ function scr_specialFieldsOptions(optionSelected) {
 			}
 			ds_grid_set(global.tagInfoGrid, obj_importMapping.colToChange, obj_importMapping.rowToChange, "option_translation");
 			break;
-		case "Transcript":
+		case "msg_transcript":
 		global.tokenImportTranscriptColName = "";
 			for (var i = 0; i < tagInfoGridHeight; i++) {
-				if (ds_grid_get(global.tagInfoGrid, obj_importMapping.colToChange, i) == "Transcript") {
+				if (ds_grid_get(global.tagInfoGrid, obj_importMapping.colToChange, i) == "msg_transcript") {
 					ds_grid_set(global.tagInfoGrid, obj_importMapping.colToChange, i, 0);
 				}
 			}
-			ds_grid_set(global.tagInfoGrid, obj_importMapping.colToChange, obj_importMapping.rowToChange, "Transcript");
+			ds_grid_set(global.tagInfoGrid, obj_importMapping.colToChange, obj_importMapping.rowToChange, "msg_transcript");
 			global.tokenImportTranscriptColName = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colMarker, obj_importMapping.rowToChange);
 			break;
 

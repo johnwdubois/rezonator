@@ -43,7 +43,7 @@ function scr_filterOptions(optionSelected) {
 		
 			scr_destroyAllDropDownsOtherThanSelf();
 			var dropDownOptionList = ds_list_create();
-			ds_list_add(dropDownOptionList, "menu_rez", "menu_track", "menu_stack");
+			ds_list_add(dropDownOptionList, "menu_resonance", "menu_track", "menu_stack");
 						
 			if (ds_list_size(dropDownOptionList) > 0) {
 				scr_createDropDown(obj_dropDown.x + obj_dropDown.windowWidth, obj_dropDown.y + (obj_dropDown.optionSpacing), dropDownOptionList, global.optionListTypeAddToFilter);

@@ -37,7 +37,7 @@ function scr_wordOptions(optionSelected) {
 				}
 			}
 		break;
-		case "Transcript":// show word transcript
+		case "msg_transcript":// show word transcript
 			if(obj_control.wordTokenView) {
 				obj_control.wordTokenView = !obj_control.wordTokenView;
 			

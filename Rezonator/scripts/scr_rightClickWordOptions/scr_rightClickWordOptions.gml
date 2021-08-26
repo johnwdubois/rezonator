@@ -26,7 +26,7 @@ function scr_rightClickWordOptions(optionSelected) {
 
 			break;
 			
-		case "Split Word":
+		case "help_label_split-word":
 			scr_destroyAllDropDownsOtherThanSelf();
 			if (obj_control.rightClickID != "") {
 
@@ -50,11 +50,11 @@ function scr_rightClickWordOptions(optionSelected) {
 
 			break;
 			
-		case "New Token":
+		case "option_new-token":
 		
 			scr_destroyAllDropDownsOtherThanSelf();
 			var dropDownOptionList = ds_list_create();
-			ds_list_add(dropDownOptionList, "<0>", "<ZERO>", "<PRO>", "Custom");
+			ds_list_add(dropDownOptionList, "option_zero-0", "option_zero", "option_pronoun", "option_custom");
 						
 
 			if (ds_list_size(dropDownOptionList) > 0) {
@@ -77,13 +77,13 @@ function scr_rightClickWordOptions(optionSelected) {
 	
 			break;
 			
-		case "Delete Link":
+		case "help_label_delete-link":
 		
 			scr_deleteFromChain(true);
 
 			instance_destroy();
 			break;
-		case "Set Chain Name":
+		case "option_set-chain-name":
 		
 			scr_setChainName();
 
@@ -194,7 +194,7 @@ function scr_rightClickWordOptions(optionSelected) {
 			instance_destroy(obj_dropDown);
 			break;
 			
-		case "Delete Chunk":
+		case "option_delete-chunk":
 
 			
 			obj_control.deleteChunkWord = true;
@@ -208,7 +208,7 @@ function scr_rightClickWordOptions(optionSelected) {
 			obj_control.deleteChunkWord = false;
 			instance_destroy();
 			break;
-		case "Delete Token":
+		case "option_delete-token":
 
 
 			var tokenSubMap = global.nodeMap[?obj_control.rightClickID];

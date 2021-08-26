@@ -255,12 +255,15 @@ function scr_audioDraw() {
 	draw_set_valign(fa_middle);
 	var jumpUnitStartTextX = x + windowWidth - string_width("A");
 	var jumpUnitStartTextY = y + (windowHeight * 0.25);
-	draw_text(jumpUnitStartTextX, jumpUnitStartTextY, scr_get_translation("msg_jump-audio"));
+	var jumpUnitText = scr_get_translation("msg_audio-update");
 
-	var jumpUnitStartRectX1 = jumpUnitStartTextX - string_width("Click word to jump audio  ");
+	var jumpUnitStartRectX1 = jumpUnitStartTextX - string_width(jumpUnitText);
 	var jumpUnitStartRectY1 = max(y, jumpUnitStartTextY - strHeight * 0.55);
 	var jumpUnitStartRectX2 = jumpUnitStartRectX1 - strHeight;
 	var jumpUnitStartRectY2 = jumpUnitStartTextY + strHeight * 0.55;
+	
+	
+	draw_text(jumpUnitStartTextX, jumpUnitStartTextY, jumpUnitText);
 
 	if (point_in_rectangle(mouse_x, mouse_y, jumpUnitStartRectX2, jumpUnitStartRectY1, jumpUnitStartRectX1, jumpUnitStartRectY2)
 	and mouse_check_button_released(mb_left)) {

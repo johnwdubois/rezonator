@@ -22,7 +22,7 @@ if (!global.ctrlHold and not ableToHotkey) {
 if(drawAutosaveText){
 	var camWidth = camera_get_view_width(view_camera[0]);
 	var camHeight = camera_get_view_height(view_camera[0]);
-	var savingText = "  Rezonator is autosaving ...  ";
+	var savingText = scr_get_translation("msg_warning_saving");
 	scr_adaptFont(savingText, "L");
 	var textWidth = string_width(savingText);
 	var textHeight = string_height(savingText);

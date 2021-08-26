@@ -44,16 +44,16 @@ for (var i = 0; i < imageNum; i++) {
 		currentOptionSelected = obj_panelPane.functionFilter_peek[i];
 	}
 	else if (optionListType == global.optionListTypeJustifyProse) {
-		if (optionStr == "Left Prose") currentOptionSelected = (obj_control.justify == obj_control.justifyLeft && obj_control.shape == obj_control.shapeText);
-		else if (optionStr == "Left Grid") currentOptionSelected = (obj_control.justify == obj_control.justifyLeft && obj_control.shape == obj_control.shapeBlock);
+		if (optionStr == "flyout_left-prose") currentOptionSelected = (obj_control.justify == obj_control.justifyLeft && obj_control.shape == obj_control.shapeText);
+		else if (optionStr == "flyout_left-grid") currentOptionSelected = (obj_control.justify == obj_control.justifyLeft && obj_control.shape == obj_control.shapeBlock);
 		else if (optionStr == "Center Prose") currentOptionSelected = (obj_control.justify == obj_control.justifyCenter && obj_control.shape == obj_control.shapeText);
 		else if (optionStr == "Center Grid") currentOptionSelected = (obj_control.justify == obj_control.justifyCenter && obj_control.shape == obj_control.shapeBlock);
-		else if (optionStr == "Right Prose") currentOptionSelected = (obj_control.justify == obj_control.justifyRight && obj_control.shape == obj_control.shapeText);
-		else if (optionStr == "Right Grid") currentOptionSelected = (obj_control.justify == obj_control.justifyRight && obj_control.shape == obj_control.shapeBlock);
+		else if (optionStr == "flyout_right-prose") currentOptionSelected = (obj_control.justify == obj_control.justifyRight && obj_control.shape == obj_control.shapeText);
+		else if (optionStr == "flyout_right-grid") currentOptionSelected = (obj_control.justify == obj_control.justifyRight && obj_control.shape == obj_control.shapeBlock);
 	}
 	else if (optionListType == global.optionListTypeToolButton) {
 		if (optionStr == "help_label_tag") currentOptionSelected = (obj_toolPane.currentMode == obj_toolPane.modeRead);
-		else if (optionStr == "menu_rez") currentOptionSelected = (obj_toolPane.currentMode == obj_toolPane.modeRez);
+		else if (optionStr == "menu_resonance") currentOptionSelected = (obj_toolPane.currentMode == obj_toolPane.modeRez);
 		else if (optionStr == "menu_track") currentOptionSelected = (obj_toolPane.currentMode == obj_toolPane.modeTrack);
 	}
 	else if (optionListType == global.optionListType1to1) {

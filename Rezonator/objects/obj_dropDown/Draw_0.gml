@@ -248,7 +248,7 @@ for (var i = 0; i < optionListSize; i++) {
 	if(optionText == "menu_search" and optionListType != global.optionListTypePane){
 		shortcutStr = "";
 	}
-	if((optionText == "menu_rez" or optionText == "menu_track") and optionListType != global.optionListTypeTools){
+	if((optionText == "menu_resonance" or optionText == "menu_track") and optionListType != global.optionListTypeTools){
 		shortcutStr = "";	
 	}
 	if(optionText == "menu_prose" and optionListType != global.optionListTypeView){

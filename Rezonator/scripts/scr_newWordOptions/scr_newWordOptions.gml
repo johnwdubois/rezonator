@@ -2,34 +2,34 @@ function scr_newTokenOptions(optionSelected) {
 
 	switch (optionSelected)
 	{
-		case "<0>":
+		case "option_zero-0":
 			//obj_control.newWordPre1 = true;
 			obj_control.currentNewWordPre = 1;
 			
 				
-			scr_newToken("<0>", obj_control.rightClickID);
+			scr_newToken(scr_get_translation("option_zero-0"), obj_control.rightClickID);
 			obj_control.alarm[11] = 60;
 
 		
 			obj_control.rightClicked = false;
 			instance_destroy();
 			break;
-		case "<ZERO>":
+		case "option_zero":
 
 			obj_control.currentNewWordPre = 2;
-			scr_newToken("<ZERO>", obj_control.rightClickID);
+			scr_newToken(scr_get_translation("option_zero"), obj_control.rightClickID);
 			obj_control.alarm[11] = 60;
 			obj_control.rightClicked = false;
 
 			break;
-		case "<PRO>":	
+		case "option_pronoun":	
 			obj_control.currentNewWordPre = 3;
-			scr_newToken("<Pro>", obj_control.rightClickID);
+			scr_newToken(scr_get_translation("option_pronoun"), obj_control.rightClickID);
 			obj_control.alarm[11] = 60;
 			obj_control.rightClicked = false;
 
 			break;
-		case "Custom":
+		case "option_custom":
 			obj_control.currentNewWordPre = 4;
 			if (device_mouse_check_button_released(0, mb_left) and not obj_control.dialogueBoxActive) {				
 				if (!obj_control.dialogueBoxActive) {

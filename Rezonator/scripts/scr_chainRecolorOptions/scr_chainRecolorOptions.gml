@@ -13,16 +13,16 @@ function scr_chainRecolorOptions(optionSelected) {
 			}
 			
 			
-			if (optionSelected == "Red" || optionSelected == "Blue" || optionSelected == "Green" || optionSelected == "Gold") {
+			if (optionSelected == "option_red" || optionSelected == "option_blue" || optionSelected == "option_green" || optionSelected == "option_gold") {
 				var colorToSet = 0;
-				if (optionSelected == "Red") colorToSet = 255;
-				else if (optionSelected == "Blue") colorToSet = 16711680;
-				else if (optionSelected == "Green") colorToSet = 65280;
-				else if (optionSelected == "Gold") colorToSet = 4235000;
+				if (optionSelected == "option_red") colorToSet = 255;
+				else if (optionSelected == "option_blue") colorToSet = 16711680;
+				else if (optionSelected == "option_green") colorToSet = 65280;
+				else if (optionSelected == "option_gold") colorToSet = 4235000;
 				chainSubMap[? "chainColor"] = colorToSet;
 
 			}
-			else if (optionSelected == "Custom") {
+			else if (optionSelected == "option_custom") {
 				if (!obj_control.dialogueBoxActive) {
 					keyboard_string = "";
 					obj_control.recolor = true;

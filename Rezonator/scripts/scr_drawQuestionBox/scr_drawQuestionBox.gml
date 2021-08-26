@@ -90,15 +90,15 @@ function scr_drawQuestionBox() {
 		}
 	}
 	if (removeTagToken || removeTagUnit || removeTagEntry || removeTagChain) {
-		draw_text(camera_get_view_width(camera_get_active())/2 - horizontalBuffer + 25, camera_get_view_height(camera_get_active())/2 - verticleBuffer + 75, "This will permanently remove the option to mark tag " + string(stringToBeRemoved));
+		draw_text(camera_get_view_width(camera_get_active())/2 - horizontalBuffer + 25, camera_get_view_height(camera_get_active())/2 - verticleBuffer + 75, scr_get_translation("msg_remove-mark-tag") + " :  " + string(stringToBeRemoved));
 	}
 	if (removeFieldToken || removeFieldUnit || removeFieldEntry || removeFieldChain || removeFieldChunk || removeFieldLink) {
-		draw_text(camera_get_view_width(camera_get_active())/2 - horizontalBuffer + 25, camera_get_view_height(camera_get_active())/2 - verticleBuffer + 75, "This will permanently remove the tag set for Field:  " + string(stringToBeRemoved));
+		draw_text(camera_get_view_width(camera_get_active())/2 - horizontalBuffer + 25, camera_get_view_height(camera_get_active())/2 - verticleBuffer + 75, scr_get_translation("msg_remove-field-tag") + " :  " + string(stringToBeRemoved));
 	}
 	if (removeSearch) {
 		var searchSubMap = global.searchMap[?searchToBeRemoved];
 		var searchTermList = searchSubMap[?"searchTermList"];
-		draw_text(camera_get_view_width(camera_get_active())/2 - horizontalBuffer + 25, camera_get_view_height(camera_get_active())/2 - verticleBuffer + 75, "This will permanently remove the Search :  " + scr_getStringOfList(searchTermList));
+		draw_text(camera_get_view_width(camera_get_active())/2 - horizontalBuffer + 25, camera_get_view_height(camera_get_active())/2 - verticleBuffer + 75, scr_get_translation("msg_remove-search") + " :  " + scr_getStringOfList(searchTermList));
 	}
 
 

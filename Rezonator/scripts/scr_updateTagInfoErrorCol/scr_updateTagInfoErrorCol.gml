@@ -93,7 +93,7 @@ function scr_updateTagInfoErrorCol(){
 		   || (currentSpecialFields == "Turn Delimiter" && currentLevel != global.levelUnit)
 		   || (currentSpecialFields == "option_translation" && currentLevel != global.levelUnit)
 		   || (currentSpecialFields == "option_display-token" && currentLevel != global.levelToken)
-		   || (currentSpecialFields == "Transcript" && currentLevel != global.levelToken)
+		   || (currentSpecialFields == "msg_transcript" && currentLevel != global.levelToken)
 		   || (currentSpecialFields == "option_word-delimiter" && currentLevel != global.levelWord)
 		   ) {
 			   specialFieldsError = true;

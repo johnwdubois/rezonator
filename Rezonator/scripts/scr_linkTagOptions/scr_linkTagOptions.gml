@@ -2,7 +2,7 @@
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
 function scr_linkTagOptions(optionSelected){
 
-	if(optionSelected == "Add new tag"){
+	if(optionSelected == "msg_create_tag"){
 		obj_control.newCustomTagLink = true;
 		obj_control.dialogueBoxActive = true;
 		obj_control.tokenFieldToChange = obj_control.linkFieldSelected;

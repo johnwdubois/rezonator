@@ -251,10 +251,10 @@ function scr_panelPane_drawChainsList() {
 						
 						var dropDownOptionList = ds_list_create();
 						if (functionChainList_currentTab == functionChainList_tabStackBrush) {
-							ds_list_add(dropDownOptionList, "Rename", "option_recolor", "Delete", "Caption", "option_clip", "option_create-tree");
+							ds_list_add(dropDownOptionList, "help_label_rename", "option_recolor", "help_label_delete_plain", "help_label_caption", "option_clip", "option_create-tree");
 						}
 						else {
-							ds_list_add(dropDownOptionList, "Rename", "option_recolor", "Delete");
+							ds_list_add(dropDownOptionList, "help_label_rename", "option_recolor", "help_label_delete_plain");
 						}
 						if (ds_list_size(dropDownOptionList) > 0 and obj_control.ableToCreateDropDown) {
 							scr_createDropDown(mouse_x, mouse_y, dropDownOptionList, global.optionListTypeChainList);
@@ -532,7 +532,7 @@ function scr_panelPane_drawChainsList() {
 		else if (i == 4) {
 			headerRectX1 = textColX;
 			colWidth = windowWidth - headerRectX1;
-			colText = "Text";
+			colText = scr_get_translation("tag_text");
 		}
 		
 		// get header coordinates

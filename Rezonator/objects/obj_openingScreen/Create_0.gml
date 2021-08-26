@@ -326,7 +326,7 @@ ds_map_add(global.expandableDropDownMap, "Arrowheads", true);
 
 global.openingScreenDropDownMap = ds_map_create();
 ds_map_add(global.openingScreenDropDownMap, "menu_import", true);
-ds_map_add(global.openingScreenDropDownMap, "menu_docs", true);
+ds_map_add(global.openingScreenDropDownMap, "menu_guide", true);
 ds_map_add(global.openingScreenDropDownMap, "menu_about", true);
 ds_map_add(global.openingScreenDropDownMap, "menu_language-en", true);
 ds_map_add(global.openingScreenDropDownMap, "menu_language-es", true);
@@ -368,7 +368,7 @@ ds_map_add(global.keyboardShortcutMap, "menu_exit", ctrlStr + "+Q");
 ds_map_add(global.keyboardShortcutMap, "menu_search", "V");
 ds_map_add(global.keyboardShortcutMap, "menu_filter", ctrlStr + "+P");
 ds_map_add(global.keyboardShortcutMap, "menu_track", "T");
-ds_map_add(global.keyboardShortcutMap, "menu_rez", "R");
+ds_map_add(global.keyboardShortcutMap, "menu_resonance", "R");
 ds_map_add(global.keyboardShortcutMap, "menu_developer", "ALT+SHIFT+D");
 
 

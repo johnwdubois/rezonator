@@ -84,7 +84,7 @@ function scr_panelPane_drawShowList(){
 				obj_control.selectedChainID = functionChainContents_showID;
 				var dropDownOptionList = ds_list_create();
 
-				ds_list_add(dropDownOptionList, "Rename", "Delete");
+				ds_list_add(dropDownOptionList, "help_label_rename", "help_label_delete_plain");
 
 				if (ds_list_size(dropDownOptionList) > 0 and obj_control.ableToCreateDropDown) {
 					scr_createDropDown(mouse_x, mouse_y, dropDownOptionList, global.optionListTypeShowList);

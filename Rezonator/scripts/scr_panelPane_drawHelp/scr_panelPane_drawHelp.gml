@@ -204,7 +204,7 @@ function scr_panelPane_drawHelp() {
 							var currentStrDesc = ds_grid_get(currentHelpGrid, functionHelp_helpGrid_colDesc, j);
 							scr_adaptFont(scr_get_translation(currentStrKey), "S");
 							draw_text(floor(cellRectX1 + textBuffer - clipX), floor(mean(cellRectY1, cellRectY2) - clipY), scr_get_translation(currentStrKey));
-							if(currentStrFunc == "Download" || currentStrFunc == "About Us") {
+							if(currentStrFunc == "help_label_download" || currentStrFunc == "help_label_about") {
 								draw_set_color(c_blue);
 							}
 							draw_text(floor(mean(cellRectX1, cellRectX2) + textBuffer - clipX), floor(mean(cellRectY1, cellRectY2) - clipY), scr_get_translation(currentStrFunc));
@@ -227,10 +227,10 @@ function scr_panelPane_drawHelp() {
 								cellPlusY += (2 * cellHeight);
 							
 								if(device_mouse_check_button_released(0, mb_left)) { // Clicking the About sections will open the user's browser to one of these two URL's
-									if(currentStrFunc == "Download") {
+									if(currentStrFunc == "help_label_download") {
 										scr_openURL("https://rezonator.com/download/");
 									}
-									else if (currentStrFunc == "About Us"){
+									else if (currentStrFunc == "help_label_about"){
 										scr_openURL("https://rezonator.com/");
 									}
 								}

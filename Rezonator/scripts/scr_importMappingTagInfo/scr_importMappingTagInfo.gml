@@ -152,7 +152,7 @@ function scr_importMappingTagInfo() {
 				currentCell = string(max(round(currentCell), 1)) + "%";
 			}
 			else if (i == global.tagInfoGrid_colSingleTokenMarker) {
-				currentCell = (currentCell) ? "Yes" : "";
+				currentCell = (currentCell) ? "msg_yes" : "";
 			}
 			else if (i == global.tagInfoGrid_colLevel) {
 				
@@ -347,7 +347,7 @@ function scr_importMappingTagInfo() {
 								}
 							}
 							if (currentLevel == global.levelToken) {
-								ds_list_add(dropDownOptionList, "Transcript");
+								ds_list_add(dropDownOptionList, "msg_transcript");
 							}
 							if (currentLevel == global.levelWord) {
 								ds_list_add(dropDownOptionList, "option_word-delimiter");

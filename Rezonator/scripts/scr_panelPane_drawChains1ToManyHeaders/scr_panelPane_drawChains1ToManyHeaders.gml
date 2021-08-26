@@ -80,7 +80,7 @@ function scr_panelPane_drawChains1ToManyHeaders(){
 						colName = "utterance"; // stacks
 					}
 					else {
-						colName = "text"; // rez & track
+						colName = scr_get_translation("tag_text"); // rez & track
 					}
 					break;
 				default:

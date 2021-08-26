@@ -1,7 +1,7 @@
 function scr_showListOptions(optionSelected){
 	
 	switch (optionSelected) {
-	case "Rename":
+	case "help_label_rename":
 
 		if (!obj_control.dialogueBoxActive) {
 			keyboard_string = "";
@@ -17,7 +17,7 @@ function scr_showListOptions(optionSelected){
 		instance_destroy(obj_dropDown);
 					
 		break;
-	case "Delete":
+	case "help_label_delete_plain":
 
 						
 		if (!instance_exists(obj_dialogueBox)) {

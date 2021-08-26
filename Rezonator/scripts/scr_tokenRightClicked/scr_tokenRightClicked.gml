@@ -31,7 +31,7 @@ function scr_tokenRightClicked(){
 		// Options for a word in a Chain
 		if(tokenInChainsListSize > 0){
 
-			ds_list_add(dropDownOptionList,  "Delete Link", "Set Chain Name");
+			ds_list_add(dropDownOptionList,  "help_label_delete-link", "option_set-chain-name");
 			
 			
 			for(var i = 0; i < ds_list_size(tokenInChainsList); i++){
@@ -40,7 +40,6 @@ function scr_tokenRightClicked(){
 				if(scr_isNumericAndExists(chainSubMap, ds_type_map)){
 					var chainType = chainSubMap[?"type"];
 					
-					//ds_list_add(dropDownOptionList, "Delete New Word", "Replace Word", "Restore Word");
 					if((chainType == "trackChain" && obj_toolPane.currentMode == obj_toolPane.modeTrack or obj_toolPane.currentMode == obj_toolPane.modeRead)
 						or (chainType == "rezChain" && obj_toolPane.currentMode == obj_toolPane.modeRez or obj_toolPane.currentMode == obj_toolPane.modeRead)){
 							if (obj_panelPane.functionField_chainFieldSelected != "" && obj_panelPane.functionField_chainTagSelected != ""
@@ -77,7 +76,7 @@ function scr_tokenRightClicked(){
 				scr_addToListOnce(dropDownOptionList , "Tag Token");
 		}
 		
-		ds_list_add(dropDownOptionList, "New Token", "Delete Token");
+		ds_list_add(dropDownOptionList, "option_new-token", "option_delete-token");
 		if (!firstWordInLine && obj_control.showDevVars) {
 			//ds_list_add(dropDownOptionList, "Split Line");
 		}

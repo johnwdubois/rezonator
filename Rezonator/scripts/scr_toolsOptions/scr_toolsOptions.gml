@@ -12,7 +12,7 @@ function scr_toolsOptions(optionSelected) {
 				scr_createDropDown(obj_dropDown.x + obj_dropDown.windowWidth, obj_dropDown.y, dropDownOptionList, global.optionListTypeSearch);
 			}
 			break;
-		case "menu_rez":
+		case "menu_resonance":
 			with (obj_panelPane) {
 				if (currentFunction == functionChainList) {
 					functionChainList_currentTab = functionChainList_tabRezBrush;
@@ -50,7 +50,7 @@ function scr_toolsOptions(optionSelected) {
 				instance_destroy();
 			}
 			break;
-		case "Tag":
+		case "help_label_tag":
 			with(obj_panelPane){
 				
 			}

@@ -203,7 +203,7 @@ function scr_panelPane_drawTreeList(){
 		}
 		else if (i == 2) {
 			colWidth = windowWidth - nameColX;
-			colText = "Text";
+			colText = scr_get_translation("tag_text");
 		}
 
 		

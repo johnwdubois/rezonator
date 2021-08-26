@@ -181,7 +181,7 @@ function scr_panelPane_drawChunkList(){
 		}
 		else if (i == 1) {
 			colWidth = unitColWidth;
-			colText = "Unit";
+			colText = "tab_name_unit";
 		}
 		else if (i == 2) {
 			colWidth = nameColWidth;
@@ -189,7 +189,7 @@ function scr_panelPane_drawChunkList(){
 		}
 		else if (i == 3) {
 			colWidth = textColWidth;
-			colText = "Word";
+			colText = "label_word";
 		}
 		else if (i == 4) {
 			colWidth = windowWidth - nestColX;
@@ -215,7 +215,7 @@ function scr_panelPane_drawChunkList(){
 		draw_set_halign(fa_left);
 		draw_set_valign(fa_middle);
 		draw_set_color(global.colorThemeText);
-		draw_text(headerTextX, headerTextY, colText);
+		draw_text(headerTextX, headerTextY, scr_get_translation(colText));
 		
 		// dividing lines
 		if (i > 0) {

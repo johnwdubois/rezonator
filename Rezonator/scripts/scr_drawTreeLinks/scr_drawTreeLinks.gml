@@ -65,7 +65,7 @@ function scr_drawTreeLinks(){
 				with (obj_panelPane) functionTree_treeLinkSelected = currentLink;
 				var dropDownOptionList = ds_list_create();
 				ds_list_copy(dropDownOptionList, global.linkFieldList);
-				ds_list_insert(dropDownOptionList, 0, "Delete Link");
+				ds_list_insert(dropDownOptionList, 0, "help_label_delete-link");
 				ds_list_insert(dropDownOptionList, 0, "option_create-new-field");
 				scr_createDropDown(mouse_x, mouse_y, dropDownOptionList, global.optionListTypeLinkFields);
 			}

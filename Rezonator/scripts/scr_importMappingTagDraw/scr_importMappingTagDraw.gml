@@ -156,7 +156,7 @@ function scr_importMappingTagDraw() {
 	draw_set_halign(fa_center);
 	draw_set_valign(fa_middle);
 	scr_adaptFont(scr_get_translation("msg_continue"), "M");
-	draw_text(floor(mean(backButtonRectX1, backButtonRectX2)), floor(mean(backButtonRectY1, backButtonRectY2)), "Back");
+	draw_text(floor(mean(backButtonRectX1, backButtonRectX2)), floor(mean(backButtonRectY1, backButtonRectY2)), scr_get_translation("label_back"));
 	
 	// click on continue button
 	if (mouseOverBack && mouse_check_button_released(mb_left)) {		

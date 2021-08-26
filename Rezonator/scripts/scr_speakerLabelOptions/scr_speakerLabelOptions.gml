@@ -5,7 +5,7 @@ function scr_speakerLabelOptions(optionSelected) {
 			
 			switch (optionSelected) {
 				//"Red", "Blue", "Green", "Gold", "Custom"
-				case "Swap":
+				case "help_label_swap-lines":
 					if (!obj_control.dialogueBoxActive) {
 						keyboard_string = "";
 						obj_control.swapLine = true;
@@ -41,7 +41,7 @@ function scr_speakerLabelOptions(optionSelected) {
 						scr_createTree(tokenList);
 					}
 						
-				case "Shuffle":	
+				case "help_label_shuffle":	
 				
 					scr_shuffleDisplayRows();
 					instance_destroy(obj_dropDown);
@@ -52,51 +52,8 @@ function scr_speakerLabelOptions(optionSelected) {
 					obj_control.showLineNumber = !obj_control.showLineNumber;
 					//return false;
 					break;
-						
-				case "Reset Order":
 
-					//ds_grid_copy(obj_control.unitGrid, obj_control.unitGridBackup);
-					
-					ds_grid_copy(obj_control.lineGrid, obj_control.lineGridBackup);
-					instance_destroy(obj_dropDown);
-					//return true;
-					break;
-				
-				case "Check Order":
-					
-					
-					var tempLineGrid = ds_grid_create(ds_grid_width(obj_control.currentActiveLineGrid), ds_grid_height(obj_control.currentActiveLineGrid));
-					ds_grid_copy(tempLineGrid, obj_control.currentActiveLineGrid);
-					
-					scr_gridMultiColSort(tempLineGrid, obj_control.lineGrid_colDiscoID, true, obj_control.lineGrid_colUnitStart, true, obj_control.lineGrid_colUnitEnd, true, obj_control.lineGrid_colUnitID, true);
-					
-					var checkList1 = ds_list_create();
-					var currentActiveLineGridHeight = ds_grid_height(obj_control.currentActiveLineGrid);
-					for (var i = 0; i < currentActiveLineGridHeight; i++) {
-						ds_list_add(checkList1, ds_grid_get(obj_control.currentActiveLineGrid, obj_control.lineGrid_colUnitID, i));
-					}
-					var checkList2 = ds_list_create();
-					var tempLineGridHeight = ds_grid_height(tempLineGrid)
-					for (var i = 0; i < tempLineGridHeight; i++) {
-						ds_list_add(checkList2, ds_grid_get(tempLineGrid, obj_control.lineGrid_colUnitID, i));
-					}
-					
-					if(scr_compareLists(checkList1, checkList2)){
-						show_message(scr_get_translation("msg_congrats"));
-					}
-					else{
-						show_message(scr_get_translation("msg_lines-notordered"));
-					}
-					
-					
-					ds_list_destroy(checkList1);
-					ds_list_destroy(checkList2);
-					ds_grid_destroy(tempLineGrid);
-					
-					instance_destroy(obj_dropDown);
-					//return true;
-					break;
-				case "Delete Link":
+				case "help_label_delete-link":
 			
 					scr_deleteFromChain(true);
 			
@@ -105,7 +62,7 @@ function scr_speakerLabelOptions(optionSelected) {
 
 					instance_destroy(obj_dropDown);
 					break;
-				case "Set Chain Name":
+				case "option_set-chain-name":
 		
 					scr_setChainName();
 

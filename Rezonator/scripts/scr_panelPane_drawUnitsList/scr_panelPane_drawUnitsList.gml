@@ -210,7 +210,7 @@ function scr_panelPane_drawUnitsList() {
 		}
 		else if (i == 2) {
 			colWidth = windowWidth - unitSeqRectWidth - speakerRectWidth;
-			colText = "Text";
+			colText = scr_get_translation("tag_text");
 		}
 		
 		// get header coordinates

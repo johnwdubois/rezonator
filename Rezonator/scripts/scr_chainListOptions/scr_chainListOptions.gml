@@ -12,9 +12,9 @@ function scr_chainListOptions(optionSelected) {
 			}
 
 
-			//"Rename", "Recolor", "Delete"
+			//"help_label_rename", "Recolor", "help_label_delete_plain"
 			switch (optionSelected) {
-				case "Rename":
+				case "help_label_rename":
 
 					if (!obj_control.dialogueBoxActive) {
 						keyboard_string = "";
@@ -34,14 +34,14 @@ function scr_chainListOptions(optionSelected) {
 					//might be a special case
 
 					var dropDownOptionList = ds_list_create();
-					ds_list_add(dropDownOptionList, "Red", "Blue", "Green", "Gold", "Custom");
+					ds_list_add(dropDownOptionList, "option_red", "option_blue", "option_green", "option_gold", "option_custom");
 						
 					if (ds_list_size(dropDownOptionList) > 0) {
 						scr_createDropDown(obj_dropDown.x + obj_dropDown.windowWidth, obj_dropDown.y + obj_dropDown.optionSpacing, dropDownOptionList, global.optionListTypeChainRecolor);
 					}
 	
 					break;
-				case "Delete":
+				case "help_label_delete_plain":
 
 						
 					if (!instance_exists(obj_dialogueBox)) {
@@ -53,7 +53,7 @@ function scr_chainListOptions(optionSelected) {
 					instance_destroy(obj_dropDown);
 
 					break;
-				case "Caption":
+				case "help_label_caption":
 		
 					if (!obj_control.dialogueBoxActive) {
 						keyboard_string = "";

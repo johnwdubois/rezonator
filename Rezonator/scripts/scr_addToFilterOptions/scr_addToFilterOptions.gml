@@ -1,7 +1,7 @@
 function scr_addToFilterOptions(optionSelected) {
 
 	switch (optionSelected) {
-		case "menu_rez":
+		case "menu_resonance":
 			scr_toggleFilterForAllChains("rezChain");
 			break;
 		case "menu_track":

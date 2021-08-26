@@ -99,10 +99,10 @@ function scr_importPlainTextInfo() {
 		var headerStr = "";
 		switch (i) {
 			case 0:
-				headerStr = "Text";
+				headerStr = scr_get_translation("tag_text");
 				break;
 			case 1:
-				headerStr = "Group";
+				headerStr = scr_get_translation("tag_group");
 				break;
 			default:
 				break;

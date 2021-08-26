@@ -19,7 +19,7 @@ function scr_chunkRightClicked(){
 		// Options for a word in a Chain
 		if(ds_list_size(tokenInChainsList) > 0){
 					
-			ds_list_add(dropDownOptionList,  "Delete Link", "Set Chain Name");
+			ds_list_add(dropDownOptionList,  "help_label_delete-link", "option_set-chain-name");
 
 			for(var i = 0; i < ds_list_size(tokenInChainsList); i++){
 				var chainID = tokenInChainsList[|i];
@@ -28,7 +28,6 @@ function scr_chunkRightClicked(){
 				if(scr_isNumericAndExists(chainSubMap, ds_type_map)){
 					var chainType = chainSubMap[?"type"];
 					
-					//ds_list_add(dropDownOptionList, "Delete New Word", "Replace Word", "Restore Word");
 					if((chainType == "trackChain" && obj_toolPane.currentMode == obj_toolPane.modeTrack or obj_toolPane.currentMode == obj_toolPane.modeRead)
 						or (chainType == "rezChain" && obj_toolPane.currentMode == obj_toolPane.modeRez or obj_toolPane.currentMode == obj_toolPane.modeRead)){
 							if (obj_panelPane.functionField_chainFieldSelected != "" && obj_panelPane.functionField_chainTagSelected != ""
@@ -56,7 +55,7 @@ function scr_chunkRightClicked(){
 					
 		}
 
-		ds_list_add(dropDownOptionList, "Delete Chunk");
+		ds_list_add(dropDownOptionList, "option_delete-chunk");
 
 				
 		// Create the dropdown

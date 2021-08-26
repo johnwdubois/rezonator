@@ -43,7 +43,7 @@ function scr_createStackOptions(optionSelected) {
 			obj_stacker.createStacksTurn = true;
 			instance_destroy(obj_dropDown);
 			break;
-		case "Group":
+		case "tag_group":
 			if (doStacksExist) {
 				confirmStack = true;
 			}

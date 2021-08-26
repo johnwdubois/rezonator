@@ -52,7 +52,7 @@ function scr_drawToolPane(toolSprScale) {
 		
 		if (mouse_check_button_released(mb_left)) {
 			var toolOptionList = ds_list_create();
-			ds_list_add(toolOptionList, "help_label_tag", "menu_track", "menu_rez");
+			ds_list_add(toolOptionList, "help_label_tag", "menu_track", "menu_resonance");
 			scr_createFlyout(toolButtonRectX1 - flyoutXBuffer, toolButtonY, toolOptionList, global.optionListTypeToolButton, spr_toolsNew, false);
 		}
 	}
@@ -165,11 +165,11 @@ function scr_drawToolPane(toolSprScale) {
 	}
 	
 	if (mouseoverJustify) {
-		scr_createTooltip(justifyButtonRectX1, justifyButtonY, "Justify", obj_tooltip.arrowFaceRight);
+		scr_createTooltip(justifyButtonRectX1, justifyButtonY, scr_get_translation("menu_justify"), obj_tooltip.arrowFaceRight);
 		
 		if (mouse_check_button_released(mb_left)) {
 			var justifyOptionList = ds_list_create();
-			ds_list_add(justifyOptionList, "Left Prose", "Left Grid", "Right Prose", "Right Grid");
+			ds_list_add(justifyOptionList, "flyout_left-prose", "flyout_left-grid", "flyout_right-prose", "flyout_right-grid");
 			scr_createFlyout(justifyButtonRectX1 - flyoutXBuffer, justifyButtonY, justifyOptionList, global.optionListTypeJustifyProse, spr_justifyOptions, false);
 		}
 	}
@@ -267,7 +267,7 @@ function scr_drawToolPane(toolSprScale) {
 	}
 	
 	if (mouseoverHelp) {
-		scr_createTooltip(helpButtonRectX1, helpButtonY, scr_get_translation("Help"), obj_tooltip.arrowFaceRight);
+		scr_createTooltip(helpButtonRectX1, helpButtonY, scr_get_translation("menu_help"), obj_tooltip.arrowFaceRight);
 		
 		if (mouse_check_button_released(mb_left)) {
 			var helpCollapsed = obj_panelPane.functionHelp_collapsed;

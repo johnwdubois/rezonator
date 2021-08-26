@@ -588,7 +588,7 @@ function scr_panelPane_drawFieldTags(){
 	
 	// toggle Doc / Chains / Chunk / LINK Button
 	
-	var switchPaneLinkButtonSizeX = string_width("Link")+ spaceWidth*4;
+	var switchPaneLinkButtonSizeX = string_width(scr_get_translation("help_label_link"))+ spaceWidth*4;
 	var switchPaneLinkButtonSizeY = switchPaneDocButtonSizeY;
 	var switchPaneLinkRectX2 = switchPaneChunkRectX1-2;
 	var switchPaneLinkRectX1 = switchPaneLinkRectX2 - switchPaneLinkButtonSizeX;
@@ -611,7 +611,7 @@ function scr_panelPane_drawFieldTags(){
 	
 	draw_set_halign(fa_center);
 	draw_set_color((fieldPaneSwitchButton == fieldPaneLinkMode) ? global.colorThemeBG : global.colorThemeText);
-	draw_text(switchPaneLinkTextX,switchPaneLinkTextY,"Link");
+	draw_text(switchPaneLinkTextX,switchPaneLinkTextY,scr_get_translation("help_label_link"));
 	
 	
 	

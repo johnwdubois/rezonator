@@ -14,7 +14,7 @@ function scr_linkClickOptions(optionSelected){
 		obj_dialogueBox.inputWindowActive = true;
 		instance_destroy();
 	}
-	else if (optionSelected == "Delete Link") {
+	else if (optionSelected == "help_label_delete-link") {
 		scr_deleteTreeLink();
 		instance_destroy();
 	}
@@ -32,7 +32,7 @@ function scr_linkClickOptions(optionSelected){
 				var dropDownOptionList = ds_list_create();
 				
 				ds_list_copy(dropDownOptionList, linkTagSet);
-				ds_list_insert(dropDownOptionList, 0, "Add new tag");
+				ds_list_insert(dropDownOptionList, 0, "msg_create_tag");
 				
 				scr_createDropDown(obj_dropDown.x + obj_dropDown.windowWidth, obj_dropDown.y + (obj_dropDown.optionSpacing * (indexOfList + 2)), dropDownOptionList, global.optionListTypeLinkTag);
 			}

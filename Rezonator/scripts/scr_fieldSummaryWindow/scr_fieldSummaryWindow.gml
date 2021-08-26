@@ -25,8 +25,8 @@ function scr_fieldSummaryWindow(tokenCountX, markerPercentX, soloX, splitX, rowH
 		draw_set_color(global.colorThemeText);
 		draw_text(tokenCountX - clipX, floor(textY - clipY), string(currentTokenCount));
 		draw_text(markerPercentX - clipX, floor(textY - clipY), string(currentMarkerPercent) + "%");
-		if (currentSolo) draw_text(soloX - clipX, floor(textY - clipY), "Yes");
-		draw_text(splitX - clipX, floor(textY - clipY), (string(currentKey) != "0" || currentLevel == "token") ? "Yes" : "No");
+		if (currentSolo) draw_text(soloX - clipX, floor(textY - clipY), scr_get_translation("msg_yes"));
+		draw_text(splitX - clipX, floor(textY - clipY), (string(currentKey) != "0" || currentLevel == "token") ? scr_get_translation("msg_yes") : scr_get_translation("msg_no"));
 	
 		// draw line dividing each row
 		if (i < tagInfoGridHeight - 1) {

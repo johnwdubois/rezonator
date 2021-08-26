@@ -69,8 +69,8 @@ ds_list_add(filterOptionList, "menu_filter",
 toolsOptionList = ds_list_create();
 ds_list_add(toolsOptionList,"menu_search", 
 							"menu_track",
-							"menu_rez",
-							"Tag",
+							"menu_resonance",
+							"help_label_tag",
 							"menu_stack");
 
 settingsOptionList = ds_list_create();
@@ -85,13 +85,10 @@ ds_list_add(settingsOptionList, "menu_user",
 
 helpOptionList = ds_list_create();
 ds_list_add(helpOptionList, "menu_help",
-							"menu_docs",
+							"menu_guide",
 							"menu_about");
 
 
-
-
-//"File", "Link", "Edit", "View", "Search", "Tools", "Advanced", "Setting", "Help"
 ds_grid_set(menuBarGrid, menuBarGrid_colString, menuBarGrid_rowFile, "menu_file");
 ds_grid_set(menuBarGrid, menuBarGrid_colMouseOver, menuBarGrid_rowFile, false);
 ds_grid_set(menuBarGrid, menuBarGrid_colOptionList, menuBarGrid_rowFile, fileOptionList);

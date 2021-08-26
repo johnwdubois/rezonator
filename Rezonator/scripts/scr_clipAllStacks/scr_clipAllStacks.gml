@@ -27,7 +27,7 @@ function scr_clipAllStacks(){
 			if (string_count("|", obj_control.clipStackName) > 0) obj_control.clipStackName = string_replace_all(obj_control.clipStackName, "|", "");
 			
 			if(string_length(obj_control.clipStackName) < 1){
-				obj_control.clipStackName = "Stack" + string(i);
+				obj_control.clipStackName = scr_get_translation("help_label_stack") + string(i);
 			}
 		
 			scr_clipFromStack(currentStack);

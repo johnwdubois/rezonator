@@ -76,7 +76,7 @@ mouseoverOk = point_in_rectangle(mouse_x, mouse_y, okRectX1, buttonY1, okRectX2,
 draw_set_color(merge_color(global.colorThemeRezPink, global.colorThemeBG, mouseoverOk ? 0.2 : 0));
 draw_roundrect(okRectX1, buttonY1, okRectX2, buttonY2, false);
 draw_set_color(global.colorThemeBG);
-var okText = "OK";
+var okText = scr_get_translation("msg_okay");
 if (room == rm_openingScreen) okText = "help_label_download";
 else if (noButtonActive) okText = "msg_yes";
 okText = scr_get_translation(okText);

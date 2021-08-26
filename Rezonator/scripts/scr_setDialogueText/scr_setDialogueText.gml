@@ -37,7 +37,7 @@ function scr_setDialogueText(){
 			descriptionText =  scr_get_translation("You are about to delete this show");
 		}
 		if(layerLink) {
-			titleText = scr_get_translation("Link");
+			titleText = scr_get_translation("help_label_link");
 			descriptionText = scr_get_translation("masg_warning_layer_link");
 		}
 		if(combineChains) {
@@ -98,7 +98,7 @@ function scr_setDialogueText(){
 		}
 		if (obj_control.replace) {
 			if(obj_control.splitWord){
-				titleText = scr_get_translation("Split Word");
+				titleText = scr_get_translation("help_label_split-word");
 				descriptionText = scr_get_translation("msg_input_split_words");
 			}
 			else{
@@ -143,7 +143,7 @@ function scr_setDialogueText(){
 			descriptionText = scr_get_translation("search_custom-field");
 		}
 		else if (drawNewTagText) {
-			titleText = scr_get_translation("Input New Tag");
+			titleText = scr_get_translation("msg_create_tag");
 			descriptionText = scr_get_translation("search_custom-tag");
 		}
 		if (obj_control.ePressed) {

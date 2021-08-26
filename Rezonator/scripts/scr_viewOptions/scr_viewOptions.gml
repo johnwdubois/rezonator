@@ -36,14 +36,14 @@ function scr_viewOptions(optionSelected) {
 		case "menu_hide":
 			scr_destroyAllDropDownsOtherThanSelf();
 			var dropDownOptionList = ds_list_create();
-			ds_list_add(dropDownOptionList, "menu_track", "menu_rez", "menu_stack");
+			ds_list_add(dropDownOptionList, "menu_track", "menu_resonance", "menu_stack");
 						
 			if (ds_list_size(dropDownOptionList) > 0) {
 				scr_createDropDown(obj_dropDown.x + obj_dropDown.windowWidth, obj_dropDown.y + (obj_dropDown.optionSpacing * 3), dropDownOptionList, global.optionListTypeHide);
 			}
 		break;
 
-		case "Filter":
+		case "menu_filter":
 		
 			if (obj_control.filterGridActive) {
 				if (obj_control.currentCenterDisplayRow >= 0 and obj_control.currentCenterDisplayRow < ds_grid_height(obj_control.filterGrid)) {
@@ -68,7 +68,7 @@ function scr_viewOptions(optionSelected) {
 			instance_destroy(obj_dropDown);
 		break;
 	
-		case "Context":
+		case "menu_filter-context":
 			var dropDownOptionList = ds_list_create();
 			ds_list_add(dropDownOptionList, "menu_above", "menu_between", "menu_below");
 						
@@ -99,7 +99,7 @@ function scr_viewOptions(optionSelected) {
 		
 			instance_destroy(obj_dropDown);
 		break;
-		case "Zoom":
+		case "menu_zoom":
 	
 			var dropDownOptionList = ds_list_create();
 			ds_list_add(dropDownOptionList, "help_label_zoom-in", "help_label_zoom-out", "menu_wide", "menu_narrow", "help_label_tall-rows", "help_label_short");

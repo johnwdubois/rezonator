@@ -2,6 +2,19 @@ function scr_fileOptions(optionSelected) {
 
 	switch (optionSelected)
 	{
+		case "help_label_open":
+		//room_instance_clear(rm_mainScreen);
+		
+		// destroy grid
+		
+		// get file name + extension
+		
+		// distinguish between rez or xml
+		
+		//room_restart();
+		
+			//show_message("Coming Soon");
+			break;
 				
 		case "menu_save":
 			var instLoading = instance_create_layer(0, 0, "InstanceLoading", obj_loadingScreen);
