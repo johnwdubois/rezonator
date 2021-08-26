@@ -73,7 +73,7 @@ function scr_panelPane_drawHelp() {
 		var titleTextAllX = helpWindowX1 + textBufferAll;
 		var titleTextAllY = helpWindowY1 + (textBufferAll * 2) + functionHelp_plusY + scrollPlusY;
 		draw_set_color(global.colorThemeText);
-		var titleTextAllStr = "All";
+		var titleTextAllStr = scr_get_translation("menu_all");
 		scr_adaptFont(titleTextAllStr, "M");
 		draw_text(titleTextAllX - clipX, titleTextAllY - clipY, titleTextAllStr);
 		var gridCollapseButtonAllX = titleTextAllX + string_width(titleTextAllStr) + (textBufferAll * 3);

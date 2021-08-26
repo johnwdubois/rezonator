@@ -4,13 +4,13 @@ function scr_importGridOptions(optionSelected){
 	switch(optionSelected){
 		
 		case "import_field-info":
-			obj_importMapping.currentGridName = "Field Summary";
+			obj_importMapping.currentGridName = "import_field-info";
 			obj_importMappingTagInfo.gridViewing = global.tagInfoGrid;
 
 		break;
 		
 		case "import_source":
-			obj_importMapping.currentGridName = "Import Source";	
+			obj_importMapping.currentGridName = "import_source";	
 			obj_importMappingTagInfo.gridViewing = global.importTXTLineGrid;
 
 		break;	
