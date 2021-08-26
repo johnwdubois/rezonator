@@ -9,13 +9,50 @@ function scr_verifyRez(rezFileVerison){
 		obj_dialogueBox.descriptionText = scr_get_translation("msg_error-previous-version");
 	
 	}
-	var nodeMapSize = ds_map_size(global.nodeMap);
+
+	
+	var docSubMap = global.nodeMap[? global.discourseNode];
+	
 	//if only thing in node map is node list then we need to return to opening screen
-	if(!ds_map_exists(global.nodeMap, global.discourseNode)){
-		show_debug_message("scr_loadREZ() ... global.nodeMap is undefined- jumping to opening screen");
+	if (!scr_isNumericAndExists(docSubMap, ds_type_map)) {
+		show_debug_message("scr_verifyREZ ... docSubMap is undefined- jumping to opening screen");
 		room_goto(rm_openingScreen);
 	}
 	else{
+
+		// make sure this rez file at least has a unit list
+		var unitList = docSubMap[? "unitList"];
+		if (!scr_isNumericAndExists(unitList, ds_type_list)) {
+			show_debug_message("scr_verifyREZ ... unitList is undefined- jumping to opening screen");
+			room_goto(rm_openingScreen);
+		}
+		
+		// make sure unitList has at least 1 thing in it
+		if (ds_list_size(unitList) < 1) {
+			show_debug_message("scr_verifyREZ ... unitList is empty- jumping to opening screen");
+			room_goto(rm_openingScreen);
+		}
+		
+		// if this rez file doesn't have a valid displayUnitList, replace displayUnitList with the unitList
+		var displayUnitList = docSubMap[? "displayUnitList"];
+		if (!scr_isNumericAndExists(displayUnitList, ds_type_list)) {
+			displayUnitList = unitList;
+			ds_map_delete(docSubMap, "displayUnitList");
+			ds_map_add_list(docSubMap, "displayUnitList", displayUnitList);
+		}
+		else {
+			// if this rez file has a valid displayUnitList but its empty, replace it with unitList
+			if (ds_list_size(displayUnitList < 1)) {
+				displayUnitList = unitList;
+				ds_map_delete(docSubMap, "displayUnitList");
+				ds_map_add_list(docSubMap, "displayUnitList", displayUnitList);
+			}
+		}
+		
+		
+		
+		
+		
 
 
 		//all lists from load rez

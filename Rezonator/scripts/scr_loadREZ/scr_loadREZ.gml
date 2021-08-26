@@ -236,10 +236,7 @@ show_debug_message("global.previousRezDirectory:  "+string(global.previousRezDir
 	scr_refreshPrevToken();
 	
 	
-	// set focused unit in panelPane
-	with (obj_panelPane) {
-		alarm[9] = 2;
-	}
+
 	
 
 
