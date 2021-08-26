@@ -103,6 +103,11 @@ function scr_zoomOptions(optionSelected) {
 			break;
 		case "help_label_zoom-in":
 		
+			if(room == rm_openingScreen){
+				if(global.fontSize != 5) global.fontSize++;
+				exit;
+			}
+			
 			//vertical
 			var searchGridPopulated = ds_grid_height(obj_control.searchGrid);
 			var filterGridPopulated = ds_grid_height(obj_control.filterGrid);
@@ -145,6 +150,12 @@ function scr_zoomOptions(optionSelected) {
 			
 			break;
 		case "help_label_zoom-out":
+			
+			if(room == rm_openingScreen){
+				if(global.fontSize != 0) global.fontSize--;
+				exit;
+			}
+			
 			
 			//Vertical				
 			var searchGridPopulated = ds_grid_height(obj_control.searchGrid);

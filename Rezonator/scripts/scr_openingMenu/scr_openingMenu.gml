@@ -21,7 +21,7 @@ function scr_openingMenu() {
 	var buttonWidth = (camWidth*.8) /3;
 	var buttonHeight = (camHeight*.3);
 	
-	var mouseoverCancel = instance_exists(obj_dialogueBox);
+	var mouseoverCancel = instance_exists(obj_dialogueBox) or instance_exists(obj_dropDown);
 	
 	
 	
