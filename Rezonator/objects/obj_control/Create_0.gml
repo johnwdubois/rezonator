@@ -756,7 +756,7 @@ if(global.speakerField != "" && is_string(global.speakerField) ){
 
 selectFieldChunk = false;
 searchField = global.displayTokenField;
-searchRange = "Doc";
+searchRange = "option_doc";
 
 if(global.RTLFound){
 

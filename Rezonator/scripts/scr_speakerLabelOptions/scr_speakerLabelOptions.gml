@@ -24,7 +24,7 @@ function scr_speakerLabelOptions(optionSelected) {
 					//return true;
 					break;
 					
-				case "Create Tree":
+				case "option_create-tree":
 					var unitSubMap = global.nodeMap[? obj_control.rightClickID];
 					if (scr_isNumericAndExists(unitSubMap, ds_type_map)) {
 						var tokenList = ds_list_create();

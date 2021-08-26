@@ -146,7 +146,7 @@ function scr_importDebugGridDraw() {
 				headerStr ="block category";
 			}
 			else if (i == global.blockTypeGrid_colBlockType) {
-				headerStr ="block type";
+				headerStr = "import_block-type";
 			}
 			else if (i == global.blockTypeGrid_colBlockCount) {
 				headerStr ="block count";
@@ -163,7 +163,7 @@ function scr_importDebugGridDraw() {
 				headerStr ="blockID";
 			}
 			else if (i == global.blockGrid_colBlockType) {
-				headerStr ="block type";
+				headerStr = "import_block-type";
 			}
 			else if (i == global.blockGrid_colLineList) {
 				headerStr ="line list";
@@ -174,7 +174,7 @@ function scr_importDebugGridDraw() {
 		}
 		else if (grid == global.fieldRelationGrid) {
 			if (i == global.fieldRelationGrid_colField) {
-				headerStr ="field";
+				headerStr = scr_get_translation("option_field");
 			}
 			else if (i == global.fieldRelationGrid_colEncounteredFields) {
 				headerStr ="encountered fields";
@@ -190,7 +190,7 @@ function scr_importDebugGridDraw() {
 
 		draw_set_color(global.colorThemeText);
 		scr_adaptFont(headerStr, "L");
-		draw_text(floor(colX + 5 - clipX), floor(tagInfoWindowRectY1 + (rowHeight / 2) - clipY), headerStr);
+		draw_text(floor(colX + 5 - clipX), floor(tagInfoWindowRectY1 + (rowHeight / 2) - clipY), scr_get_translation(headerStr));
 	
 		// draw column lines
 		draw_set_color(global.colorThemeBorders);

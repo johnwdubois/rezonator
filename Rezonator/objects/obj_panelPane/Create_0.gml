@@ -240,9 +240,9 @@ hoverTime[3] = 0;
 errorText = "";
 
 
-fieldPaneDocMode = "Doc";
-fieldPaneChainMode = "Chain";
-fieldPaneChunkMode = "Chunk";
+fieldPaneDocMode = "option_doc";
+fieldPaneChainMode = "option_chain";
+fieldPaneChunkMode = "option_chunk";
 fieldPaneLinkMode = "Link";
 fieldPaneSwitchButton = fieldPaneDocMode;
 fieldChains1ToManyChainType = "";

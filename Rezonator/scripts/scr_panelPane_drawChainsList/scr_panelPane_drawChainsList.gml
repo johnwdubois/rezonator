@@ -251,10 +251,10 @@ function scr_panelPane_drawChainsList() {
 						
 						var dropDownOptionList = ds_list_create();
 						if (functionChainList_currentTab == functionChainList_tabStackBrush) {
-							ds_list_add(dropDownOptionList, "Rename", "Recolor", "Delete", "Caption", "Clip", "Create Tree");
+							ds_list_add(dropDownOptionList, "Rename", "option_recolor", "Delete", "Caption", "option_clip", "option_create-tree");
 						}
 						else {
-							ds_list_add(dropDownOptionList, "Rename", "Recolor", "Delete");
+							ds_list_add(dropDownOptionList, "Rename", "option_recolor", "Delete");
 						}
 						if (ds_list_size(dropDownOptionList) > 0 and obj_control.ableToCreateDropDown) {
 							scr_createDropDown(mouse_x, mouse_y, dropDownOptionList, global.optionListTypeChainList);
@@ -275,7 +275,7 @@ function scr_panelPane_drawChainsList() {
 					// draw checkbox
 					/*
 					if (mouseoverCheckbox) {
-						scr_createTooltip(mean(checkboxRectX1, checkboxRectX2), checkboxRectY2, "Select", obj_tooltip.arrowFaceUp);
+						scr_createTooltip(mean(checkboxRectX1, checkboxRectX2), checkboxRectY2, scr_get_translation("option_select"), obj_tooltip.arrowFaceUp);
 					}
 					if (currentChainSelected) {
 						draw_set_color(merge_color(currentChainColor, global.colorThemeBG, 0.9));
@@ -337,7 +337,7 @@ function scr_panelPane_drawChainsList() {
 							if (!currentChainVisible && ds_list_find_index(hiddenList, currentChainID) == -1) ds_list_add(hiddenList, currentChainID);
 							else if (currentChainVisible) scr_deleteFromList(hiddenList, currentChainID);
 						}
-						scr_createTooltip(visibleChainX, optionsChainY + optionsIconRad, "Visible", obj_tooltip.arrowFaceUp);
+						scr_createTooltip(visibleChainX, optionsChainY + optionsIconRad, scr_get_translation("option_visible"), obj_tooltip.arrowFaceUp);
 					}
 					// mouseover & click on align
 					if (mouseoverAlignChain) {
@@ -591,7 +591,7 @@ function scr_panelPane_drawChainsList() {
 			if (mouseoverFilterAll) {
 				draw_set_color(global.colorThemeSelected1);
 				draw_circle(filterAllX, filterAllY, optionsIconRad, false);
-				scr_createTooltip(filterAllX, filterAllY + optionsIconRad, "Filter all", obj_tooltip.arrowFaceUp);
+				scr_createTooltip(filterAllX, filterAllY + optionsIconRad, scr_get_translation("option_filter-all"), obj_tooltip.arrowFaceUp);
 				
 				if (mouse_check_button_pressed(mb_left)) {
 					scr_setValueForAllChains(tabChainType, "filter", (allChainsFiltered) ? false : true);
@@ -613,7 +613,7 @@ function scr_panelPane_drawChainsList() {
 			if (mouseoverHideAll) {
 				draw_set_color(global.colorThemeSelected1);
 				draw_circle(hideAllX, hideAllY, optionsIconRad, false);
-				scr_createTooltip(hideAllX, hideAllY + optionsIconRad, "Hide all", obj_tooltip.arrowFaceUp);
+				scr_createTooltip(hideAllX, hideAllY + optionsIconRad, scr_get_translation("option_hide-all"), obj_tooltip.arrowFaceUp);
 				
 				if (mouse_check_button_pressed(mb_left)) {
 					scr_setValueForAllChains(tabChainType, "visible", (allChainsHidden) ? true : false);

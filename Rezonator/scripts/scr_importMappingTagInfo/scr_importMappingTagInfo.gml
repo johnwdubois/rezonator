@@ -103,7 +103,7 @@ function scr_importMappingTagInfo() {
 			if (i == 0 && currentLevel == global.levelWord) {
 				wordFieldCount++;
 			}
-			if (currentKey == "Word Delimiter") {
+			if (currentKey == "option_word-delimiter") {
 				wordDelimiterEncountered = true;
 			}
 		
@@ -180,7 +180,7 @@ function scr_importMappingTagInfo() {
 					
 				
 				if (!instance_exists(obj_dropDown) && mouseoverDropDown) {
-					scr_createTooltip(mean(dropDownButtonX1, dropDownButtonX2), dropDownButtonY2, "Change Level", obj_tooltip.arrowFaceUp);
+					scr_createTooltip(mean(dropDownButtonX1, dropDownButtonX2), dropDownButtonY2, scr_get_translation("option_change-level"), obj_tooltip.arrowFaceUp);
 
 					mouseOverLevel = true;
 					if (mouse_check_button_pressed(mb_left)) {
@@ -192,10 +192,10 @@ function scr_importMappingTagInfo() {
 					
 						var dropDownOptionList = ds_list_create();
 						if (global.importType == global.importType_IGT) {
-							ds_list_add(dropDownOptionList, "Token", "Word", "Unit", "doc", "EXCEPTION");
+							ds_list_add(dropDownOptionList, "option_token", "Word", "Unit", "option_doc", "EXCEPTION");
 						}
 						else {
-							ds_list_add(dropDownOptionList, "Token", "Unit", "doc", "EXCEPTION");
+							ds_list_add(dropDownOptionList, "option_token", "Unit", "option_doc", "EXCEPTION");
 						}
 						if (ds_list_size(dropDownOptionList) > 0) {
 							scr_createDropDown(colX, floor(plusY + rowHeight  + scrollPlusY), dropDownOptionList, global.optionListTypeMappingTag);
@@ -265,7 +265,7 @@ function scr_importMappingTagInfo() {
 					}
 					
 					if (!instance_exists(obj_dropDown) && mouseoverDropDown) {
-						scr_createTooltip(mean(dropDownButtonX1, dropDownButtonX2), dropDownButtonY2, "Change Key", obj_tooltip.arrowFaceUp);
+						scr_createTooltip(mean(dropDownButtonX1, dropDownButtonX2), dropDownButtonY2, scr_get_translation("option_change-key"), obj_tooltip.arrowFaceUp);
 				
 						if (mouse_check_button_pressed(mb_left)) {
 							obj_importMapping.inDropDown = true;
@@ -285,10 +285,10 @@ function scr_importMappingTagInfo() {
 								}
 							}
 							else if (currentLevel == global.levelToken) {
-								ds_list_add(dropDownOptionList, "Display Token");
+								ds_list_add(dropDownOptionList, "option_display-token");
 							}
 							else if (currentLevel == global.levelWord) {
-								ds_list_add(dropDownOptionList, "Word Delimiter");
+								ds_list_add(dropDownOptionList, "option_word-delimiter");
 							}
 							if (ds_list_size(dropDownOptionList) > 0) {
 								scr_createDropDown(colX, floor(plusY + rowHeight  + scrollPlusY), dropDownOptionList, global.optionListTypeSpecialFields);
@@ -328,7 +328,7 @@ function scr_importMappingTagInfo() {
 					var dropDownButtonY2 = floor(dropDownButtonY1 + buttonRectSize);
 				
 					if (!instance_exists(obj_dropDown) && mouseoverDropDown) {
-						scr_createTooltip(mean(dropDownButtonX1, dropDownButtonX2), dropDownButtonY2, "Change Special Field", obj_tooltip.arrowFaceUp);
+						scr_createTooltip(mean(dropDownButtonX1, dropDownButtonX2), dropDownButtonY2, scr_get_translation("option_change-special-field"), obj_tooltip.arrowFaceUp);
 							
 				
 						if (mouse_check_button_pressed(mb_left)) {
@@ -341,7 +341,7 @@ function scr_importMappingTagInfo() {
 							var dropDownOptionList = ds_list_create();
 						
 							if (currentLevel == global.levelUnit) {
-								ds_list_add(dropDownOptionList, "Speaker", "Turn Delimiter", "Translation");
+								ds_list_add(dropDownOptionList, "Speaker", "Turn Delimiter", "option_translation");
 								if (global.importType != global.importType_TabDelimited) {
 									ds_list_add(dropDownOptionList, "Unit Start", "Unit End");
 								}
@@ -350,7 +350,7 @@ function scr_importMappingTagInfo() {
 								ds_list_add(dropDownOptionList, "Transcript");
 							}
 							if (currentLevel == global.levelWord) {
-								ds_list_add(dropDownOptionList, "Word Delimiter");
+								ds_list_add(dropDownOptionList, "option_word-delimiter");
 							}
 							if (ds_list_size(dropDownOptionList) > 0) {
 								scr_createDropDown(colX, floor(plusY + rowHeight  + scrollPlusY), dropDownOptionList, global.optionListTypeSpecialFields);
@@ -405,7 +405,7 @@ function scr_importMappingTagInfo() {
 			// draw text for this cell
 			if (i != global.tagInfoGrid_colError) {
 				draw_set_color(global.colorThemeText);
-				draw_text(textX - clipX, floor(textY - clipY), currentCellStr);
+				draw_text(textX - clipX, floor(textY - clipY), scr_get_translation(currentCellStr));
 			}
 			else {
 				if (currentError) {

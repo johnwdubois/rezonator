@@ -17,11 +17,11 @@ function scr_arrowOptions(optionSelected){
 				obj_chain.showRezArrows = false;
 			}
 		
-		case "Track Arrows":
+		case "menu_track-arrows":
 			obj_chain.showTrackArrows = !obj_chain.showTrackArrows;
 			instance_destroy(obj_dropDown);
 			break;
-		case "Rez Arrows":
+		case "menu_rez-arrows":
 			obj_chain.showRezArrows = !obj_chain.showRezArrows;
 			instance_destroy(obj_dropDown);
 			break;

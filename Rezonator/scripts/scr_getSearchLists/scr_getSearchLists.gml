@@ -40,10 +40,10 @@ function scr_getSearchLists(searchTermList){
 	var stackChainTokenIDList = ds_list_create();
 	var chainTokenIDList = ds_list_create();
 	
-	if(obj_control.searchRange == "Current Chain"){
+	if(obj_control.searchRange == "option_current-chain"){
 		focusedChainTokenIDList = scr_getTokensOfChain(obj_chain.currentFocusedChainID);
 	}
-	else if(obj_control.searchRange != "Current Chain" && obj_control.searchRange != "Doc") {
+	else if(obj_control.searchRange != "option_current-chain" && obj_control.searchRange != "option_doc") {
 		
 		var listOfChains = "";
 		if(obj_control.searchRange == "Stacks"){
@@ -54,7 +54,7 @@ function scr_getSearchLists(searchTermList){
 			listOfChains = global.nodeMap[?"rezChainList"];
 			var listToAddTo = rezChainTokenIDList;
 		}
-		else if(obj_control.searchRange == "Trails"){
+		else if(obj_control.searchRange == "option_trails"){
 			listOfChains = global.nodeMap[?"trackChainList"];
 			var listToAddTo = trackChainTokenIDList;
 		}
@@ -111,7 +111,7 @@ function scr_getSearchLists(searchTermList){
 
 
 				// check for current chain range
-				if (obj_control.searchRange != "Doc") {
+				if (obj_control.searchRange != "option_doc") {
 					
 					if(obj_control.searchRange == "Stacks"){
 						ds_list_copy(chainTokenIDList, stackChainTokenIDList);
@@ -119,10 +119,10 @@ function scr_getSearchLists(searchTermList){
 					else if(obj_control.searchRange == "Rez Chains"){
 						ds_list_copy(chainTokenIDList, rezChainTokenIDList);
 					}
-					else if(obj_control.searchRange == "Trails"){
+					else if(obj_control.searchRange == "option_trails"){
 						ds_list_copy(chainTokenIDList, trackChainTokenIDList);
 					}
-					else if(obj_control.searchRange == "Current Chain"){
+					else if(obj_control.searchRange == "option_current-chain"){
 						ds_list_copy(chainTokenIDList, focusedChainTokenIDList);
 					}
 					

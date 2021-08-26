@@ -10,7 +10,7 @@ draw_rectangle(0, 0, camWidth, camHeight, false);
 
 // this is all for debugging, this text does not need to be localized
 draw_set_color(global.colorThemeText);
-draw_text(30, 60, "File Diagnostics - press ESC to exit");
+draw_text(30, 60, scr_get_translation("msg_file-diagnostics"));
 
 
 var userName = (os_type == os_macosx) ? "USER" : "USERNAME";

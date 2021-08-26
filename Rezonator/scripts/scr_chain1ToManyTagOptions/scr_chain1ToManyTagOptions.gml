@@ -3,7 +3,7 @@
 function scr_chain1ToManyTagOptions(optionSelected){
 	
 	// check to see if the user is trying to create a new tag
-	if (optionSelected == "Add to tag set") {
+	if (optionSelected == "option_add-to-tag-set") {
 		obj_control.newCustomTagEntry = true;
 		obj_control.dialogueBoxActive = true;
 
@@ -27,7 +27,7 @@ function scr_chain1ToManyTagOptions(optionSelected){
 	if (!is_numeric(entryTagMap)) exit;
 	if (!ds_exists(entryTagMap, ds_type_map)) exit;
 	
-	if (optionSelected == "Remove from tag set") {
+	if (optionSelected == "option-remove-tag-set") {
 		// if user selected "Remove from tag set" then we delete the tag from this entry's tagmap
 		ds_map_delete(entryTagMap, fieldToChange);
 	}

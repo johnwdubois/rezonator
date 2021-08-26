@@ -4,7 +4,7 @@ function scr_linkClickOptions(optionSelected){
 	
 	show_debug_message("scr_linkClickOptions, optionSelected: " + string(optionSelected));
 	
-	if (optionSelected == "Create new field") {
+	if (optionSelected == "option_create-new-field") {
 		obj_control.newCustomFieldLink = true;
 		obj_control.dialogueBoxActive = true;
 

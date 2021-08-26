@@ -87,13 +87,13 @@ wordDelimMarker = "";
 levelEstimateColumnSelected = global.tagInfoGrid_colLevelSchema;
 
 gridList = ds_list_create();
-ds_list_add(gridList, "Field Info", "Import Source");
+ds_list_add(gridList, "import_field-info", "import_source");
 
 if(global.importType == global.importType_IGT){
-ds_list_add(gridList,"Block Type", "Blocks", "Field Relations");
+ds_list_add(gridList,"import_block-type", "import_blocks", "import_field-relations");
 
 }
-currentGridName = "Field Info";
+currentGridName = "import_field-info";
 
 alarm[5] = 2;
 

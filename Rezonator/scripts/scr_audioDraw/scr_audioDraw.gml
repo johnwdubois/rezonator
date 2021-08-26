@@ -79,7 +79,7 @@ function scr_audioDraw() {
 	
 	if (mouseOverPlayPause) {
 		//draw_rectangle(pauseLineLeftX - (strHeight * 0.5), playPauseMouseY1, pauseLineRightX + (strHeight * 0.5), playPauseMouseY2, true);
-		scr_createTooltip(mean(pauseLineLeftX, pauseLineRightX), pauseLineY1 - (strHeight * 0.25), (audioPaused) ? "Play" : "Pause", obj_tooltip.arrowFaceDown);
+		scr_createTooltip(mean(pauseLineLeftX, pauseLineRightX), pauseLineY1 - (strHeight * 0.25), (audioPaused) ? scr_get_translation("help_label_play") : scr_get_translation("option_pause"), obj_tooltip.arrowFaceDown);
 	}
 
 	
@@ -294,7 +294,7 @@ function scr_audioDraw() {
 	draw_set_color(global.colorThemeText);
 	draw_set_halign(fa_center);
 	draw_set_valign(fa_middle);
-	draw_text(floor(mean(loadAudioButtonX1, loadAudioButtonX2)), floor(mean(loadAudioButtonY1, loadAudioButtonY2)), "Import Audio");
+	draw_text(floor(mean(loadAudioButtonX1, loadAudioButtonX2)), floor(mean(loadAudioButtonY1, loadAudioButtonY2)), scr_get_translation("option_import-audio"));
 	
 	if (mouseoverLoadAudio) {
 		if (mouse_check_button_released(mb_left)) {

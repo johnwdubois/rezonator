@@ -60,7 +60,7 @@ function scr_drawDialogueBox_input(){
 		draw_set_halign(fa_left);
 		draw_text(floor(fieldRectX1 + dropDownXBuffer), floor(mean(fieldRectY1, fieldRectY2)), obj_control.searchField);
 		draw_set_halign(fa_right);
-		draw_text(floor(fieldRectX1 - dropDownXBuffer), floor(mean(fieldRectY1, fieldRectY2)), "Field: ");
+		draw_text(floor(fieldRectX1 - dropDownXBuffer), floor(mean(fieldRectY1, fieldRectY2)), scr_get_translation("option_field")+": ");
 		
 		// range rect
 		var rangeRectX1 = boxRectX1 + (boxWidth * 0.25);
@@ -76,7 +76,7 @@ function scr_drawDialogueBox_input(){
 		// click range dropdown
 		if (mouseoverRangeRect && mouse_check_button_released(mb_left)) {
 			var availableRanges = ds_list_create();
-			ds_list_add(availableRanges, "Doc", "Current Chain", "Trails", "Rez Chains", "Stacks");
+			ds_list_add(availableRanges, "option_doc", "option_current-chain", "option_trails", "Rez Chains", "Stacks");
 			scr_createDropDown(rangeRectX1, rangeRectY2, availableRanges, global.optionListTypeSearchRange);
 		}
 		
@@ -86,7 +86,7 @@ function scr_drawDialogueBox_input(){
 		draw_set_halign(fa_left);
 		draw_text(floor(rangeRectX1 + dropDownXBuffer), floor(mean(rangeRectY1, rangeRectY2)), obj_control.searchRange);
 		draw_set_halign(fa_right);
-		draw_text(floor(rangeRectX1 - dropDownXBuffer), floor(mean(rangeRectY1, rangeRectY2)), "Range: ");
+		draw_text(floor(rangeRectX1 - dropDownXBuffer), floor(mean(rangeRectY1, rangeRectY2)), scr_get_translation("option_range")+": ");
 		
 		
 		// regex checkbox

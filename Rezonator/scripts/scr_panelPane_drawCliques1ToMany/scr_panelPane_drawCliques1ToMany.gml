@@ -131,11 +131,11 @@ function scr_panelPane_drawCliques1ToMany(){
 		}
 		else if (i == 1) {
 			colWidth = textColWidth;
-			colName = (cliquePaneSwitchButton == "Chains") ? "Chain" : "Text";
+			colName = (cliquePaneSwitchButton == "option_chain") ? "option_chain" : "tag_text";
 		}
 		else if (i == 2) {
 			colWidth = x + windowWidth - chainOrderColX;
-			colName = (cliquePaneSwitchButton == "Chains") ? "Chain Order" : "";
+			colName = (cliquePaneSwitchButton == "option_chain") ? "Chain Order" : "";
 		}
 		
 		var headerRectX1 = x + headerPlusX;
@@ -160,7 +160,7 @@ function scr_panelPane_drawCliques1ToMany(){
 
 
 		scr_adaptFont(colName, "M");
-		draw_text(headerTextX, headerTextY, colName);
+		draw_text(headerTextX, headerTextY, scr_get_translation(colName));
 
 		draw_set_color(global.colorThemeBorders);
 		draw_line_width(headerRectX1, y, headerRectX1, y + windowHeight, 1);

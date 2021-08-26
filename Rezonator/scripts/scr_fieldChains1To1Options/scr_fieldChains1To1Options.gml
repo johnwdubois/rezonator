@@ -4,7 +4,7 @@ function scr_fieldChains1To1Options(optionSelected){
 	
 	show_debug_message("scr_fieldChains1To1Options ... optionSelected: " + string(optionSelected));
 	
-	if (optionSelected == "Select field") {
+	if (optionSelected == "option_select-field") {
 		
 		// check if this field has a finite tagSet, to adjust where the 2nd dropdown should come out
 		var tagSubMap = global.chainFieldMap[? obj_control.chain1to1FieldToChange];
@@ -20,11 +20,11 @@ function scr_fieldChains1To1Options(optionSelected){
 		scr_createDropDown(obj_dropDown.x + obj_dropDown.windowWidth, obj_dropDown.y + (obj_dropDown.optionSpacing * optionSpaceMultiply), dropDownOptionList, global.optionListTypeChain1To1Field);
 	
 	}
-	else if (optionSelected == "Create new field") {
+	else if (optionSelected == "option_create-new-field") {
 		
 		scr_chain1To1HeaderRightClickOptions(optionSelected);
 	}
-	else if (optionSelected == "Add to tag set") {
+	else if (optionSelected == "option_add-to-tag-set") {
 		obj_control.newCustomTagChain = true;
 		obj_control.dialogueBoxActive = true;
 		if (!instance_exists(obj_dialogueBox)) {
@@ -32,7 +32,7 @@ function scr_fieldChains1To1Options(optionSelected){
 		}
 		obj_dialogueBox.inputWindowActive = true;
 	}
-	else if (optionSelected == "Remove from tag set") {
+	else if (optionSelected == "option-remove-tag-set") {
 		
 		// get tagSet for selected field
 		var entryTagMap = global.chainFieldMap;

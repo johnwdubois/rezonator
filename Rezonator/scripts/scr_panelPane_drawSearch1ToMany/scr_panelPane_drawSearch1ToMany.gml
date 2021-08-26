@@ -381,7 +381,7 @@ function scr_panelPane_drawSearch1ToMany(){
 	draw_set_valign(fa_middle);
 	draw_text(floor(mean(showPrevButtonX1, showPrevButtonX2)), floor(mean(showPrevButtonY1, showPrevButtonY2)), showPrevButtonText);
 		
-	if (mouseoverShowPrevButton) {scr_createTooltip(mean(showPrevButtonX1, showPrevButtonX2), showPrevButtonY2, "find previous", obj_tooltip.arrowFaceUp);}
+	if (mouseoverShowPrevButton) {scr_createTooltip(mean(showPrevButtonX1, showPrevButtonX2), showPrevButtonY2, scr_get_translation("msg_find_previous"), obj_tooltip.arrowFaceUp);}
 		
 
 	if (mouse_check_button_released(mb_left) && mouseoverShowPrevButton) {
@@ -416,7 +416,7 @@ function scr_panelPane_drawSearch1ToMany(){
 	draw_set_valign(fa_middle);
 	draw_text(floor(mean(showNextButtonX1, showNextButtonX2)), floor(mean(showNextButtonY1, showNextButtonY2)), showNextButtonText);
 	
-	if(mouseoverShowNextButton){scr_createTooltip(mean(showNextButtonX1, showNextButtonX2),showNextButtonY2, "find next",obj_tooltip.arrowFaceUp);}
+	if(mouseoverShowNextButton){scr_createTooltip(mean(showNextButtonX1, showNextButtonX2),showNextButtonY2, scr_get_translation("find_next"),obj_tooltip.arrowFaceUp);}
 	
 
 	if (mouse_check_button_released(mb_left) && mouseoverShowNextButton) {

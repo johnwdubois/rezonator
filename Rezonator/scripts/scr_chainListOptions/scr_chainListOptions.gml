@@ -30,7 +30,7 @@ function scr_chainListOptions(optionSelected) {
 					instance_destroy(obj_dropDown);
 					
 					break;
-				case "Recolor":
+				case "option_recolor":
 					//might be a special case
 
 					var dropDownOptionList = ds_list_create();
@@ -70,7 +70,7 @@ function scr_chainListOptions(optionSelected) {
 						instance_destroy(obj_dropDown);
 
 					break;
-				case "Clip":
+				case "option_clip":
 					
 					// Create a clip file based on that Stack
 					scr_clipFromStack(obj_control.selectedChainID);
@@ -79,7 +79,7 @@ function scr_chainListOptions(optionSelected) {
 					instance_destroy(obj_dropDown);
 					break;
 				default:
-				case "Create Tree":
+				case "option_create-tree":
 					
 					var chainSubMap = global.nodeMap[? obj_control.selectedChainID];
 					if (scr_isNumericAndExists(chainSubMap, ds_type_map)) {

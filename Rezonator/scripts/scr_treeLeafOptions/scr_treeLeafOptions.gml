@@ -2,7 +2,7 @@
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
 function scr_treeLeafOptions(optionSelected){
 	
-	if(optionSelected == "Separate Chunk"){
+	if(optionSelected == "option_separate-chunk"){
 		scr_separateChunk();
 	}
 	

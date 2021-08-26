@@ -57,7 +57,7 @@ function scr_panelPane_drawUnits1ToManyHeaders(){
 
 		// user interaction for header click
 		if (mouseoverHeader) {
-			scr_createTooltip(mean(headerRectX1, headerRectX2), headerRectY2, "Change field", obj_tooltip.arrowFaceUp);
+			scr_createTooltip(mean(headerRectX1, headerRectX2), headerRectY2, scr_get_translation("msg_change_field"), obj_tooltip.arrowFaceUp);
 			
 			// draw underline
 			var underlineX1 = headerTextX;
@@ -80,7 +80,7 @@ function scr_panelPane_drawUnits1ToManyHeaders(){
 				obj_control.selectFieldChunk = false;
 
 				var dropDownOptionList = ds_list_create();
-				ds_list_add(dropDownOptionList, "Add to tag set", "Remove from tag set", "Show in main screen", "Select field", "Create new field");
+				ds_list_add(dropDownOptionList, "option_add-to-tag-set", "option-remove-tag-set", "Show in main screen", "option_select-field", "option_create-new-field");
 				scr_createDropDown(headerRectX1, headerRectY2, dropDownOptionList, global.optionListTypeFieldUnits1ToMany);
 			}
 		}
@@ -88,7 +88,7 @@ function scr_panelPane_drawUnits1ToManyHeaders(){
 		// change display token
 		if (mouseoverDisplayToken) {
 				
-			scr_createTooltip(displayTokenButtonX, displayTokenButtonY + displayTokenButtonSize, "Display token", obj_tooltip.arrowFaceUp);
+			scr_createTooltip(displayTokenButtonX, displayTokenButtonY + displayTokenButtonSize, scr_get_translation("option_display-token"), obj_tooltip.arrowFaceUp);
 			draw_set_color(global.colorThemeSelected1);
 			draw_circle(displayTokenButtonX, displayTokenButtonY, displayTokenButtonSize * 0.75, false);
 			

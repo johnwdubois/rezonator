@@ -72,7 +72,7 @@ function scr_panelPane_drawUnits1To1Headers(){
 			var underlineY = headerTextY + (headerHeight * 0.25);
 			draw_set_color(global.colorThemeBorders);
 			draw_line_width(underlineX1, underlineY, underlineX2, underlineY, 2);
-			scr_createTooltip(mean(headerRectX1, headerRectX2), headerRectY2, "Change field", obj_tooltip.arrowFaceUp);
+			scr_createTooltip(mean(headerRectX1, headerRectX2), headerRectY2, scr_get_translation("msg_change_field"), obj_tooltip.arrowFaceUp);
 			
 			if (mouse_check_button_released(mb_left)) {
 				obj_control.unitFieldToChange = currentField;
@@ -81,7 +81,7 @@ function scr_panelPane_drawUnits1To1Headers(){
 				}
 				
 				var dropDownOptionList = ds_list_create();
-				ds_list_add(dropDownOptionList, "Add to tag set", "Remove from tag set", "Show in main screen", "Show in translation tab", "Select field", "Create new field");
+				ds_list_add(dropDownOptionList, "option_add-to-tag-set", "option-remove-tag-set", "Show in main screen", "Show in translation tab", "option_select-field", "option_create-new-field");
 				scr_createDropDown(headerRectX1, headerRectY2, dropDownOptionList, global.optionListTypeFieldUnits1To1);
 			}
 		}
@@ -92,7 +92,7 @@ function scr_panelPane_drawUnits1To1Headers(){
 		// change display unit (speaker)
 		if (mouseoverDisplayUnit && !instance_exists(obj_dropDown)) {
 				
-			scr_createTooltip(displayUnitButtonX, displayUnitButtonY + displayUnitButtonSize, "Display Unit", obj_tooltip.arrowFaceUp);
+			scr_createTooltip(displayUnitButtonX, displayUnitButtonY + displayUnitButtonSize, scr_get_translation("msg_display_unit"), obj_tooltip.arrowFaceUp);
 			draw_set_color(global.colorThemeSelected1);
 			draw_circle(displayUnitButtonX, displayUnitButtonY, displayUnitButtonSize * 0.75, false);
 			

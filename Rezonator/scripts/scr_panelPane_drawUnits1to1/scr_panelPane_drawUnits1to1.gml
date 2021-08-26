@@ -137,7 +137,7 @@ function scr_panelPane_drawUnits1to1() {
 					
 				draw_sprite_ext(spr_dropDown, 0, mean(dropDownButtonX1, dropDownButtonX2) - clipX, mean(dropDownButtonY1, dropDownButtonY2) - clipY, 1, 1, 0, global.colorThemeText, 1);
 				if (mouseoverDropDownButton) {
-					scr_createTooltip(mean(dropDownButtonX1, dropDownButtonX2), dropDownButtonY2, "Change tag", obj_tooltip.arrowFaceUp);
+					scr_createTooltip(mean(dropDownButtonX1, dropDownButtonX2), dropDownButtonY2, scr_get_translation("option-tag"), obj_tooltip.arrowFaceUp);
 					draw_set_alpha(1);
 					draw_set_color(global.colorThemeBorders);
 					draw_rectangle(dropDownButtonX1 - clipX, dropDownButtonY1 - clipY, dropDownButtonX2 - clipX, dropDownButtonY2 - clipY, true);
@@ -155,7 +155,7 @@ function scr_panelPane_drawUnits1to1() {
 							// create dropdown
 							var dropDownOptionList = ds_list_create();
 							ds_list_copy(dropDownOptionList, tagSet);
-							ds_list_insert(dropDownOptionList, 0, "Add to tag set");
+							ds_list_insert(dropDownOptionList, 0, "option_add-to-tag-set");
 
 							obj_control.unitToChange = currentUnitID;
 							obj_control.unitFieldToChange = currentField;

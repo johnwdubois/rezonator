@@ -75,7 +75,7 @@ function scr_fileOptions(optionSelected) {
 			}
 			
 			break;
-		case "Clip":
+		case "option_clip":
 			if (!obj_control.dialogueBoxActive) {
 				keyboard_string = "";
 				obj_control.ePressed = true;

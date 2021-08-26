@@ -2,7 +2,7 @@
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
 function scr_fieldChains1ToManyOptions(optionSelected){
 	
-	if (optionSelected == "Select field") {
+	if (optionSelected == "option_select-field") {
 		
 		// check if this field has a finite tagSet, to adjust where the 2nd dropdown should come out
 		var tagSubMap = global.entryFieldMap[? obj_control.chain1toManyFieldToChange];
@@ -18,11 +18,11 @@ function scr_fieldChains1ToManyOptions(optionSelected){
 		scr_createDropDown(obj_dropDown.x + obj_dropDown.windowWidth, obj_dropDown.y + (obj_dropDown.optionSpacing * optionSpaceMultiply), dropDownOptionList, global.optionListTypeChain1ToManyField);
 		
 	}
-	else if (optionSelected == "Create new field") {
+	else if (optionSelected == "option_create-new-field") {
 		
 		scr_chain1ToManyHeaderRightClickOptions(optionSelected);
 	}
-	else if (optionSelected == "Add to tag set") {
+	else if (optionSelected == "option_add-to-tag-set") {
 		obj_control.newCustomTagEntry = true;
 		obj_control.dialogueBoxActive = true;
 		if (!instance_exists(obj_dialogueBox)) {
@@ -30,7 +30,7 @@ function scr_fieldChains1ToManyOptions(optionSelected){
 		}
 		obj_dialogueBox.inputWindowActive = true;
 	}
-	else if (optionSelected == "Remove from tag set") {
+	else if (optionSelected == "option-remove-tag-set") {
 		
 		// get tagSet for selected field
 		var entryTagMap = global.entryFieldMap;

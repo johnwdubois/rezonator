@@ -164,7 +164,7 @@ function scr_panelPane_drawSearchList(){
 					
 				}
 				
-				scr_createTooltip(delButtonX, searchRectY2, "Remove", obj_tooltip.arrowFaceUp);
+				scr_createTooltip(delButtonX, searchRectY2, scr_get_translation("msg_remove"), obj_tooltip.arrowFaceUp);
 			}
 			
 
@@ -193,7 +193,7 @@ function scr_panelPane_drawSearchList(){
 	draw_set_halign(fa_center);
 	draw_text(floor(mean(x, nameColX)) - clipX, floor(mean(createsearchRectY1, createsearchRectY2)) - clipY, "+");
 	draw_set_halign(fa_left);
-	draw_text(floor(nameColX + textBuffer) - clipX, floor(mean(createsearchRectY1, createsearchRectY2)) - clipY, "Create search");
+	draw_text(floor(nameColX + textBuffer) - clipX, floor(mean(createsearchRectY1, createsearchRectY2)) - clipY, scr_get_translation("option_create-search"));
 	
 	// click on "create search"
 	if (mouseoverCreatesearchRect && mouse_check_button_released(mb_left)) {

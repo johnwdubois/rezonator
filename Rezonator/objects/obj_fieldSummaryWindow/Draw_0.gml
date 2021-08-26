@@ -134,9 +134,9 @@ if (gridViewing == global.tagInfoGrid) {
 	
 	// headers for field summary window
 	draw_text(tokenCountX, headerY, "Token Count");
-	draw_text(markerPercentX, headerY, "Mark %");
-	draw_text(soloX, headerY, "Solo");
-	draw_text(splitX, headerY, "Split");
+	draw_text(markerPercentX, headerY, scr_get_translation("option_mark-percent"));
+	draw_text(soloX, headerY, scr_get_translation("option_solo"));
+	draw_text(splitX, headerY, scr_get_translation("option_split"));
 }
 else {
 	
@@ -165,7 +165,7 @@ else {
 				headerStr ="block category";
 			}
 			else if (i == global.blockTypeGrid_colBlockType) {
-				headerStr ="block type";
+				headerStr ="import_block-type";
 			}
 			else if (i == global.blockTypeGrid_colBlockCount) {
 				headerStr ="block count";
@@ -182,7 +182,7 @@ else {
 				headerStr ="blockID";
 			}
 			else if (i == global.blockGrid_colBlockType) {
-				headerStr ="block type";
+				headerStr ="import_block-type";
 			}
 			else if (i == global.blockGrid_colLineList) {
 				headerStr ="line list";
@@ -193,7 +193,7 @@ else {
 		}
 		else if (gridViewing == global.fieldRelationGrid) {
 			if (i == global.fieldRelationGrid_colField) {
-				headerStr ="field";
+				headerStr = scr_get_translation("option_field");
 			}
 			else if (i == global.fieldRelationGrid_colEncounteredFields) {
 				headerStr ="encountered fields";

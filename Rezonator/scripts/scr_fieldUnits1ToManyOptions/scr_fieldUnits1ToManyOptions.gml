@@ -2,7 +2,7 @@
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
 function scr_fieldUnits1ToManyOptions(optionSelected){
 	
-	if (optionSelected == "Select field") {
+	if (optionSelected == "option_select-field") {
 		
 		scr_destroyAllDropDownsOtherThanSelf();
 		var dropDownOptionList = ds_list_create();
@@ -23,12 +23,12 @@ function scr_fieldUnits1ToManyOptions(optionSelected){
 		scr_createDropDown(obj_dropDown.x + obj_dropDown.windowWidth, obj_dropDown.y + (obj_dropDown.optionSpacing * optionSpacingMulti), dropDownOptionList, global.optionListTypeTokenSelection);
 		
 	}
-	else if (optionSelected == "Create new field"
-	|| optionSelected == "Add to tag set"
+	else if (optionSelected == "option_create-new-field"
+	|| optionSelected == "option_add-to-tag-set"
 	|| optionSelected == "Set as Transcription") {
 		scr_tokenMarkerOptions(optionSelected);
 	}
-	else if (optionSelected == "Remove from tag set") {
+	else if (optionSelected == "option-remove-tag-set") {
 		
 		// get tagSet for selected field
 		var tokenTagMap = global.nodeMap[? "tokenTagMap"];

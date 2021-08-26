@@ -1,6 +1,8 @@
 function scr_specialFieldsOptions(optionSelected) {
 	var tagInfoGridHeight = ds_grid_height(global.tagInfoGrid);
 
+
+
 	switch (optionSelected)
 	{
 		case "Unit Start":
@@ -33,13 +35,13 @@ function scr_specialFieldsOptions(optionSelected) {
 			ds_grid_set(global.tagInfoGrid, obj_importMapping.colToChange, obj_importMapping.rowToChange, "Unit End");
 			global.unitImportUnitEndColName = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colMarker, obj_importMapping.rowToChange);
 			break;
-		case "Translation":
+		case "option_translation":
 			for (var i = 0; i < tagInfoGridHeight; i++) {
-				if (ds_grid_get(global.tagInfoGrid, obj_importMapping.colToChange, i) == "Translation") {
+				if (ds_grid_get(global.tagInfoGrid, obj_importMapping.colToChange, i) == "option_translation") {
 					ds_grid_set(global.tagInfoGrid, obj_importMapping.colToChange, i, 0);
 				}
 			}
-			ds_grid_set(global.tagInfoGrid, obj_importMapping.colToChange, obj_importMapping.rowToChange, "Translation");
+			ds_grid_set(global.tagInfoGrid, obj_importMapping.colToChange, obj_importMapping.rowToChange, "option_translation");
 			break;
 		case "Transcript":
 		global.tokenImportTranscriptColName = "";
@@ -73,14 +75,14 @@ function scr_specialFieldsOptions(optionSelected) {
 			ds_grid_set(global.tagInfoGrid, obj_importMapping.colToChange, obj_importMapping.rowToChange, "Turn Delimiter");
 			global.unitImportTurnDelimColName = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colMarker, obj_importMapping.rowToChange);
 			break;
-		case "Word Delimiter":
+		case "option_word-delimiter":
 		global.wordDelimField = "";
 			for (var i = 0; i < tagInfoGridHeight; i++) {
-				if (ds_grid_get(global.tagInfoGrid, obj_importMapping.colToChange, i) == "Word Delimiter") {
+				if (ds_grid_get(global.tagInfoGrid, obj_importMapping.colToChange, i) == "option_word-delimiter") {
 					ds_grid_set(global.tagInfoGrid, obj_importMapping.colToChange, i, 0);
 				}
 			}
-			ds_grid_set(global.tagInfoGrid, obj_importMapping.colToChange, obj_importMapping.rowToChange, "Word Delimiter");
+			ds_grid_set(global.tagInfoGrid, obj_importMapping.colToChange, obj_importMapping.rowToChange, "option_word-delimiter");
 			if (global.importType == global.importType_IGT) {
 				obj_importMapping.wordDelimMarker = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colMarker, obj_importMapping.rowToChange);
 				var indexForHelper = ds_list_find_index(global.importGridColNameList, obj_importMapping.wordDelimMarker)-2;
@@ -90,15 +92,15 @@ function scr_specialFieldsOptions(optionSelected) {
 			global.wordDelimField = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colMarker, obj_importMapping.rowToChange);
 			break;
 			
-		case "Display Token":
+		case "option_display-token":
 			global.tokenImportDisplayTokenColName = "";
 			for (var i = 0; i < tagInfoGridHeight; i++) {
-				if (ds_grid_get(global.tagInfoGrid, obj_importMapping.colToChange, i) == "Display Token") {
+				if (ds_grid_get(global.tagInfoGrid, obj_importMapping.colToChange, i) == "option_display-token") {
 					ds_grid_set(global.tagInfoGrid, obj_importMapping.colToChange, i, 0);
 				}
 			}
 			
-			ds_grid_set(global.tagInfoGrid, obj_importMapping.colToChange, obj_importMapping.rowToChange, "Display Token");
+			ds_grid_set(global.tagInfoGrid, obj_importMapping.colToChange, obj_importMapping.rowToChange, "option_display-token");
 			global.tokenImportDisplayTokenColName  = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colMarker, obj_importMapping.rowToChange);
 			
 			if (global.importType == global.importType_IGT) {

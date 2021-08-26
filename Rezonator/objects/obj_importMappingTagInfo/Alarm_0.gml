@@ -4,7 +4,7 @@
 // if we have not set either DisplayToken or Speaker yet, we will try to...
 // after we have sorted, we will set displayToken to be the first token level marker
 // and set Speaker to be the first unit level marker
-var setDisplayToken = ds_grid_value_exists(global.tagInfoGrid, global.tagInfoGrid_colKey, 0, global.tagInfoGrid_colKey, ds_grid_height(global.tagInfoGrid), "Display Token");
+var setDisplayToken = ds_grid_value_exists(global.tagInfoGrid, global.tagInfoGrid_colKey, 0, global.tagInfoGrid_colKey, ds_grid_height(global.tagInfoGrid), "option_display-token");
 var setSpeaker = ds_grid_value_exists(global.tagInfoGrid, global.tagInfoGrid_colKey, 0, global.tagInfoGrid_colKey, ds_grid_height(global.tagInfoGrid), "Speaker");
 var tagInfoGridHeight = ds_grid_height(global.tagInfoGrid);
 
@@ -13,7 +13,7 @@ for (var i = 0; i < tagInfoGridHeight; i++) {
 	var currentField = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colMarker, i);
 	// if this field is Token level and we have not yet set Display Token, let's set this field to Display Token
 	if (!setDisplayToken && currentLevel == global.levelToken) {
-		ds_grid_set(global.tagInfoGrid, global.tagInfoGrid_colKey, i, "Display Token");
+		ds_grid_set(global.tagInfoGrid, global.tagInfoGrid_colKey, i, "option_display-token");
 		obj_importMapping.displayMarker = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colMarker, i);
 		setDisplayToken = true;
 	}
@@ -41,7 +41,7 @@ if (global.importType == global.importType_IGT) {
 		var currentField = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colMarker, i);
 		var currentKey = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colKey, i);
 	
-		if (currentLevel == global.levelToken && currentKey != "Display Token") {
+		if (currentLevel == global.levelToken && currentKey != "option_display-token") {
 			
 			//calculate current tokenThreshold
 			var indexForSpecialFieldHelper = ds_list_find_index(global.importGridColNameList, currentField) - 2;

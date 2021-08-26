@@ -3,32 +3,32 @@
 function scr_importGridOptions(optionSelected){
 	switch(optionSelected){
 		
-		case "Field Info":
+		case "import_field-info":
 			obj_importMapping.currentGridName = "Field Summary";
 			obj_importMappingTagInfo.gridViewing = global.tagInfoGrid;
 
 		break;
 		
-		case "Import Source":
+		case "import_source":
 			obj_importMapping.currentGridName = "Import Source";	
 			obj_importMappingTagInfo.gridViewing = global.importTXTLineGrid;
 
 		break;	
 		
-		case "Block Type":
-			obj_importMapping.currentGridName = "Block Type";
+		case "import_block-type":
+			obj_importMapping.currentGridName = "import_block-type";
 			obj_importMappingTagInfo.gridViewing = global.blockTypeGrid;
 
 		break;	
 		
-		case "Blocks":
-			obj_importMapping.currentGridName = "Blocks";
+		case "import_blocks":
+			obj_importMapping.currentGridName = "import_blocks";
 			obj_importMappingTagInfo.gridViewing = global.blockGrid;
 
 		break;
 		
-		case "Field Relations":
-			obj_importMapping.currentGridName = "Field Relations";	
+		case "import_field-relations":
+			obj_importMapping.currentGridName = "import_field-relations";	
 			obj_importMappingTagInfo.gridViewing = global.fieldRelationHelperGrid;
 		break;		
 

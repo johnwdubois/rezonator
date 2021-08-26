@@ -262,7 +262,7 @@ function scr_drawGridViewerClipped() {
 	draw_rectangle(spreadX1, spreadY1, spreadX2, spreadY2, true);
 	draw_set_color(global.colorThemeText);
 	draw_set_halign(fa_center);
-	draw_text(mean(spreadX1, spreadX2), mean(spreadY1, spreadY2), "Spread");
+	draw_text(mean(spreadX1, spreadX2), mean(spreadY1, spreadY2), scr_get_translation("option_spread"));
 	var spreadHotkey = keyboard_check(vk_alt) && keyboard_check(vk_shift) && keyboard_check_released(ord("Z"));
 	
 	// spread the columns to be evenly spaced across the window width

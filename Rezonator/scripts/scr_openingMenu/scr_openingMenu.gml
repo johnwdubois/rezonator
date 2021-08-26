@@ -379,7 +379,7 @@ function scr_openingMenu() {
 	draw_set_valign(fa_middle);
 	scr_adaptFont(scr_get_translation("menu_import"),"L", true);
 	draw_set_color(global.colorThemeText);
-	draw_text(openProjectButtonX1, openProjectButtonY1 - string_height("0"),  "Get Started");
+	draw_text(openProjectButtonX1, openProjectButtonY1 - string_height("0"),  scr_get_translation("option_get-started"));
 	
 	
 	

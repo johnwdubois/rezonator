@@ -318,10 +318,10 @@ ds_map_add(global.expandableDropDownMap, "menu_zoom", true);
 ds_map_add(global.expandableDropDownMap, "menu_autosave", true);
 ds_map_add(global.expandableDropDownMap, "menu_advanced", true);
 ds_map_add(global.expandableDropDownMap, "menu_language", true);
-ds_map_add(global.expandableDropDownMap, "Recolor", true);
+ds_map_add(global.expandableDropDownMap, "option_recolor", true);
 ds_map_add(global.expandableDropDownMap, "Text Direction", true);
-ds_map_add(global.expandableDropDownMap, "Select field", true);
-ds_map_add(global.expandableDropDownMap, "Remove from tag set", true);
+ds_map_add(global.expandableDropDownMap, "option_select-field", true);
+ds_map_add(global.expandableDropDownMap, "option-remove-tag-set", true);
 ds_map_add(global.expandableDropDownMap, "Arrowheads", true);
 
 global.openingScreenDropDownMap = ds_map_create();
@@ -392,4 +392,3 @@ hoverColorMergeImport = 0;
 hoverColorMergeHelp = 0;
 
 global.dirCopyDebugList = ds_list_create();
-

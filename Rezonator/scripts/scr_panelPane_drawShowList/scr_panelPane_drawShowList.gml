@@ -185,7 +185,7 @@ function scr_panelPane_drawShowList(){
 	draw_set_halign(fa_center);
 	draw_text(floor(mean(x, nameColX)) - clipX, floor(mean(createShowRectY1, createShowRectY2)) - clipY, "+");
 	draw_set_halign(fa_left);
-	draw_text(floor(nameColX + textBuffer) - clipX, floor(mean(createShowRectY1, createShowRectY2)) - clipY, "Create Show");
+	draw_text(floor(nameColX + textBuffer) - clipX, floor(mean(createShowRectY1, createShowRectY2)) - clipY, scr_get_translation("option_create-show"));
 	
 	// click on "create show"
 	if (mouseoverCreateShowRect && mouse_check_button_released(mb_left)) {

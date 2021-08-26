@@ -3,7 +3,7 @@ function scr_mappingTagOptions(optionSelected) {
 	var levelToSet = global.levelToken;
 	switch (optionSelected)
 	{
-		case "Token":
+		case "option_token":
 			levelToSet = global.levelToken;
 			break;
 		case "Word":
@@ -12,7 +12,7 @@ function scr_mappingTagOptions(optionSelected) {
 		case "Unit":
 			levelToSet = global.levelUnit;
 			break;
-		case "doc":	
+		case "option_doc":	
 			levelToSet = global.levelDiscourse;
 			break;
 		case "EXCEPTION":

@@ -1,6 +1,6 @@
 function scr_unitMarkerOptions(optionSelected) {
 
-	if (optionSelected == "Create new field") {
+	if (optionSelected == "option_create-new-field") {
 
 		// prompt user for name of new unit field/marker
 
@@ -13,8 +13,8 @@ function scr_unitMarkerOptions(optionSelected) {
 		obj_dialogueBox.inputWindowActive = true;
 	
 	}
-	else if (optionSelected == "Add to tag set") {
-		scr_unitTagMapOptions("Add to tag set");
+	else if (optionSelected == "option_add-to-tag-set") {
+		scr_unitTagMapOptions("option_add-to-tag-set");
 	}
 	else if(optionSelected == "Show in translation tab"){
 		scr_addToListOnce(global.translationList, obj_control.unitFieldToChange);

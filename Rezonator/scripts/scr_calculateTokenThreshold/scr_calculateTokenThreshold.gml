@@ -3,8 +3,8 @@
 function scr_calculateTokenThreshold(){
 	
 	if (global.importType == global.importType_IGT) {
-		var displayTokenRow = ds_grid_value_y(global.tagInfoGrid,global.tagInfoGrid_colKey, 0, global.tagInfoGrid_colKey, ds_grid_height(global.tagInfoGrid), "Display Token");
-		var wordDelimRow = ds_grid_value_y(global.tagInfoGrid,global.tagInfoGrid_colKey, 0, global.tagInfoGrid_colKey, ds_grid_height(global.tagInfoGrid), "Word Delimiter");
+		var displayTokenRow = ds_grid_value_y(global.tagInfoGrid,global.tagInfoGrid_colKey, 0, global.tagInfoGrid_colKey, ds_grid_height(global.tagInfoGrid), "option_display-token");
+		var wordDelimRow = ds_grid_value_y(global.tagInfoGrid,global.tagInfoGrid_colKey, 0, global.tagInfoGrid_colKey, ds_grid_height(global.tagInfoGrid), "option_word-delimiter");
 			
 		if (wordDelimRow != -1) {
 			obj_importMapping.wordDelimMarker = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colMarker, wordDelimRow);

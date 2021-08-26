@@ -2,10 +2,10 @@
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
 function scr_treeEntryOptions(optionSelected){
 	
-	if(optionSelected == "Delete Branch"){
+	if(optionSelected == "option_delete-branch"){
 		scr_deleteTreeBranch()
 	}
-	if(optionSelected == "Delete Entry"){
+	if(optionSelected == "option_delete-entry"){
 		scr_deleteTreeEntry()
 	}
 	

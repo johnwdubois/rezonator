@@ -48,7 +48,7 @@ function scr_drawToolPane(toolSprScale) {
 	}
 	
 	if (mouseoverTool) {
-		scr_createTooltip(toolButtonRectX1, toolButtonY, "Tool", obj_tooltip.arrowFaceRight);
+		scr_createTooltip(toolButtonRectX1, toolButtonY, scr_get_translation("option_tool"), obj_tooltip.arrowFaceRight);
 		
 		if (mouse_check_button_released(mb_left)) {
 			var toolOptionList = ds_list_create();
@@ -196,11 +196,11 @@ function scr_drawToolPane(toolSprScale) {
 	}
 	
 	if (mouseoverOneToOne) {
-		scr_createTooltip(oneToOneButtonRectX1, oneToOneButtonY, !obj_panelPane.chainViewOneToMany ? "One to one" : "One to many", obj_tooltip.arrowFaceRight);
+		scr_createTooltip(oneToOneButtonRectX1, oneToOneButtonY, !obj_panelPane.chainViewOneToMany ? scr_get_translation("option_one-to-one") : scr_get_translation("option_one-to-many"), obj_tooltip.arrowFaceRight);
 		
 		if (mouse_check_button_released(mb_left)) {
 			var oneToOneOptionList = ds_list_create();
-			ds_list_add(oneToOneOptionList, "One to one", "One to many");
+			ds_list_add(oneToOneOptionList, scr_get_translation("option_one-to-one"), scr_get_translation("option_one-to-many"));
 			scr_createFlyout(oneToOneButtonRectX1 - flyoutXBuffer, oneToOneButtonY, oneToOneOptionList, global.optionListType1to1, spr_oneToOneTool, false);
 		}
 	}

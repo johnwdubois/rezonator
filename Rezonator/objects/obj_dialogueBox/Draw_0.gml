@@ -33,14 +33,14 @@ var descriptionTextY = floor(boxRectY1 + (boxHeight * ((!inputWindowActive) ? 0.
 draw_set_color(global.colorThemeText);
 draw_set_alpha(1);
 draw_set_halign(fa_center);
-draw_set_valign(fa_middle);
+draw_set_valign(fa_top);
 scr_adaptFont(titleText, "L",false);
 draw_text(titleTextX, titleTextY, titleText);
 if(!inputWindowActive) {	
-	scr_adaptFont(titleText, "M", );
+	scr_adaptFont(descriptionText, "M");
 	draw_text_ext(titleTextX, descriptionTextY, descriptionText, string_height(descriptionText), boxWidth * 0.8);
 }
-
+draw_set_valign(fa_middle);
 var buttonXBuffer = noButtonActive ? boxWidth * 0.2 : boxWidth * 0.07;
 var buttonYBuffer = boxHeight * 0.07;
 var buttonWidth = noButtonActive ? boxWidth * 0.25 : boxWidth * 0.3;

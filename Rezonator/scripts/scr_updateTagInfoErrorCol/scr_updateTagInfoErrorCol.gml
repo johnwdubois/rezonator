@@ -91,10 +91,10 @@ function scr_updateTagInfoErrorCol(){
 		   || (currentSpecialFields == "Speaker" && currentLevel != global.levelUnit)
 		   || (currentSpecialFields == "Unit Delimiter" && currentLevel != global.levelUnit)
 		   || (currentSpecialFields == "Turn Delimiter" && currentLevel != global.levelUnit)
-		   || (currentSpecialFields == "Translation" && currentLevel != global.levelUnit)
-		   || (currentSpecialFields == "Display Token" && currentLevel != global.levelToken)
+		   || (currentSpecialFields == "option_translation" && currentLevel != global.levelUnit)
+		   || (currentSpecialFields == "option_display-token" && currentLevel != global.levelToken)
 		   || (currentSpecialFields == "Transcript" && currentLevel != global.levelToken)
-		   || (currentSpecialFields == "Word Delimiter" && currentLevel != global.levelWord)
+		   || (currentSpecialFields == "option_word-delimiter" && currentLevel != global.levelWord)
 		   ) {
 			   specialFieldsError = true;
 		   }

@@ -246,7 +246,7 @@ function scr_panelPane_drawFieldList(){
 					
 					}
 				
-					scr_createTooltip(delButtonX, currentRowY2, "Remove", obj_tooltip.arrowFaceUp);
+					scr_createTooltip(delButtonX, currentRowY2, scr_get_translation("msg_remove"), obj_tooltip.arrowFaceUp);
 				}
 			
 
@@ -314,7 +314,7 @@ function scr_panelPane_drawFieldList(){
 				draw_text(floor(numColX + textBuffer) - clipX, floor(mean(currentRowY1, currentRowY2)) - clipY, "+");
 		
 				// draw field name
-				draw_text(floor(fieldNameColX + textBuffer) - clipX, floor(mean(currentRowY1, currentRowY2)) - clipY, "New Field");
+				draw_text(floor(fieldNameColX + textBuffer) - clipX, floor(mean(currentRowY1, currentRowY2)) - clipY, scr_get_translation("option_new-field"));
 		
 			}
 	
@@ -356,7 +356,7 @@ function scr_panelPane_drawFieldList(){
 	draw_set_color(global.colorThemeBorders);
 	draw_rectangle(fieldNameColX, y, x + windowWidth, y + headerHeight, true);
 	draw_set_color(global.colorThemeText);
-	draw_text(floor(fieldNameColX + textBuffer), headerTextY, "Field name");
+	draw_text(floor(fieldNameColX + textBuffer), headerTextY, scr_get_translation("option_field-name"));
 	
 	
 	

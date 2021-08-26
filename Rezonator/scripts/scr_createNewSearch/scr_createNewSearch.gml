@@ -59,7 +59,7 @@ function scr_createNewSearch(searchTermList){
 				}
 			}
 			else{
-				show_message("No Results found");
+				show_message(scr_get_translation("msg_no-results-found"));
 			}
 		}
 	}

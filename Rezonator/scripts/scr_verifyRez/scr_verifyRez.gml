@@ -2,7 +2,7 @@
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
 function scr_verifyRez(rezFileVerison){
 if(rezFileVerison != global.versionString){
-	show_message("This Rez File is from a previous version of Rezonator.")
+	show_message(scr_get_translation("msg_error-previous-version"))
 }
 var nodeMapSize = ds_map_size(global.nodeMap);
 //if only thing in node map is node list then we need to return to opening screen

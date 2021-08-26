@@ -3,12 +3,12 @@
 function scr_textDirectionOptions(optionSelected){
 
 	switch(optionSelected){
-		case "Right To Left":
+		case "menu_right-to-left":
 			obj_control.justify = obj_control.justifyRight;
 			obj_control.drawLineState = obj_control.lineState_rtl;
 			instance_destroy(obj_dropDown);
 		break;
-		case "Left To Right":
+		case "menu_left-to-right":
 			obj_control.justify = obj_control.justifyLeft;
 			obj_control.drawLineState = obj_control.lineState_ltr;
 			instance_destroy(obj_dropDown);

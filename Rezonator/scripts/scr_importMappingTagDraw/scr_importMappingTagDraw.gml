@@ -27,7 +27,7 @@ function scr_importMappingTagDraw() {
 		for (var i = 0 ; i < tagGridHeight; i++ ){
 			if( j == 0 ){	
 				var cutTest = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colKey, i);
-				if(cutTest == "Display Token"){
+				if(cutTest == "option_display-token"){
 					obj_importMapping.canContinueDisplayToken = true;
 					i = tagGridHeight;
 				}

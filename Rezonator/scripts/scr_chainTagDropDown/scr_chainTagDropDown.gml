@@ -53,7 +53,7 @@ function scr_chainTagDropDown(fieldMap, field, IDtoChange, cellRectX1, cellRectY
 							
 							var dropDownOptionList = ds_list_create();
 							ds_list_copy(dropDownOptionList, fieldTagSet);
-							ds_list_insert(dropDownOptionList, 0, "Add to tag set");
+							ds_list_insert(dropDownOptionList, 0, "option_add-to-tag-set");
 							
 							scr_createDropDown(cellRectX1, cellRectY2, dropDownOptionList, optionListType);
 						}

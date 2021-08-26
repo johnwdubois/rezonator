@@ -257,7 +257,7 @@ function scr_panelPane_drawFieldTags(){
 								}
 
 							}
-							scr_createTooltip(delButtonX, currentRowY2, "Remove", obj_tooltip.arrowFaceUp);
+							scr_createTooltip(delButtonX, currentRowY2, scr_get_translation("msg_remove"), obj_tooltip.arrowFaceUp);
 						}
 									
 						trashAlpha = 1;
@@ -359,7 +359,7 @@ function scr_panelPane_drawFieldTags(){
 						draw_set_color(global.colorThemeText);
 						draw_text(floor(numColX + textBuffer) - clipX, floor(mean(currentRowY1, currentRowY2)) - clipY,"+");
 					
-						draw_text(floor(tagNameColX + textBuffer) - clipX, floor(mean(currentRowY1, currentRowY2)) - clipY, "New Tag");
+						draw_text(floor(tagNameColX + textBuffer) - clipX, floor(mean(currentRowY1, currentRowY2)) - clipY, scr_get_translation("option_new-tag"));
 					}
 	
 					plusY += strHeight;
@@ -403,7 +403,7 @@ function scr_panelPane_drawFieldTags(){
 	draw_set_color(global.colorThemeBorders);
 	draw_rectangle(tagNameColX, y, x + windowWidth, y + headerHeight, true);
 	draw_set_color(global.colorThemeText);
-	draw_text(floor(tagNameColX + textBuffer), headerTextY, "Tag name");
+	draw_text(floor(tagNameColX + textBuffer), headerTextY, scr_get_translation("option_tag-name"));
 	
 	//json tag saving button
 	var spriteScale = 0.4;
@@ -424,36 +424,36 @@ function scr_panelPane_drawFieldTags(){
 		draw_rectangle(oneToOneRectX1,oneToOneRectY1,oneToOneRectX2,oneToOneRectY2, true);
 		if(device_mouse_check_button_released(0,mb_left)){
 			if(obj_panelPane.chainViewOneToMany == true){
-				scr_1to1Options("One to one");
+				scr_1to1Options(scr_get_translation("option_one-to-one"));
 			}
 			else{
-				scr_1to1Options("One to many");
+				scr_1to1Options(scr_get_translation("option_one-to-many"));
 			}
 
 		}
 		if(fieldPaneSwitchButton == fieldPaneDocMode){
 			if(obj_panelPane.chainViewOneToMany == true){
-				scr_createTooltip(oneToOneSpriteX, oneToOneRectY2,"Token Fields", obj_tooltip.arrowFaceUp);
+				scr_createTooltip(oneToOneSpriteX, oneToOneRectY2,scr_get_translation("option_token-fields"), obj_tooltip.arrowFaceUp);
 			}
 			else{
-				scr_createTooltip(oneToOneSpriteX, oneToOneRectY2,"Unit Fields", obj_tooltip.arrowFaceUp);
+				scr_createTooltip(oneToOneSpriteX, oneToOneRectY2,scr_get_translation("option_unit-fields"), obj_tooltip.arrowFaceUp);
 			}
 		}
 		else if(fieldPaneSwitchButton == fieldPaneChainMode){
 			if(obj_panelPane.chainViewOneToMany == true){
 				
-				scr_createTooltip(oneToOneSpriteX, oneToOneRectY2,"Entry Fields", obj_tooltip.arrowFaceUp);
+				scr_createTooltip(oneToOneSpriteX, oneToOneRectY2,scr_get_translation("option_entry-fields"), obj_tooltip.arrowFaceUp);
 			}
 			else{
 				
-				scr_createTooltip(oneToOneSpriteX, oneToOneRectY2,"Chain Fields", obj_tooltip.arrowFaceUp);
+				scr_createTooltip(oneToOneSpriteX, oneToOneRectY2,scr_get_translation("option_chain-fields"), obj_tooltip.arrowFaceUp);
 			}
 		}
 		else if(fieldPaneSwitchButton == fieldPaneChunkMode){
-			scr_createTooltip(oneToOneSpriteX, oneToOneRectY2,"Chunk Fields", obj_tooltip.arrowFaceUp);
+			scr_createTooltip(oneToOneSpriteX, oneToOneRectY2,scr_get_translation("option_chunk-fields"), obj_tooltip.arrowFaceUp);
 		}
 		else if(fieldPaneSwitchButton == fieldPaneLinkMode){
-			scr_createTooltip(oneToOneSpriteX, oneToOneRectY2,"Link Fields", obj_tooltip.arrowFaceUp);
+			scr_createTooltip(oneToOneSpriteX, oneToOneRectY2,scr_get_translation("option_link-fields"), obj_tooltip.arrowFaceUp);
 		}
 		
 	}
@@ -476,7 +476,7 @@ function scr_panelPane_drawFieldTags(){
 		if(device_mouse_check_button_released(0,mb_left)){
 			scr_saveTagJson();
 		}
-		scr_createTooltip(saveSpriteX, saveRectY2,"Save Tag JSON", obj_tooltip.arrowFaceUp);
+		scr_createTooltip(saveSpriteX, saveRectY2,scr_get_translation("option_save-tag-json"), obj_tooltip.arrowFaceUp);
 	}
 	draw_sprite_ext(spr_saveIcon,0,saveSpriteX,saveSpriteY,1,1,0,global.colorThemeText, 1);
 	
@@ -497,15 +497,15 @@ function scr_panelPane_drawFieldTags(){
 		if(device_mouse_check_button_released(0,mb_left)){
 			scr_loadTagJson();
 		}
-		scr_createTooltip(loadSpriteX, loadRectY2,"Load Tag JSON", obj_tooltip.arrowFaceUp);
+		scr_createTooltip(loadSpriteX, loadRectY2,scr_get_translation("option_load-tag-json"), obj_tooltip.arrowFaceUp);
 	}
 	draw_sprite_ext(spr_loadingIcon,0,loadSpriteX,loadSpriteY,1,1,0,global.colorThemeText, 1);
 	
 	
 	// toggle DOC / Chains / chunk / link Button
 	
-	var switchPaneDocButtonSizeX = string_width("Doc") + spaceWidth*4;
-	var switchPaneDocButtonSizeY = string_height("Doc");
+	var switchPaneDocButtonSizeX = string_width(scr_get_translation("option_doc")) + spaceWidth*4;
+	var switchPaneDocButtonSizeY = string_height(scr_get_translation("option_doc"));
 	var switchPaneDocRectX2 = loadRectX1 - spaceWidth*3;
 	var switchPaneDocRectX1 = switchPaneDocRectX2 - switchPaneDocButtonSizeX;
 	var switchPaneDocRectY1 =  mean(y ,y + headerHeight) - switchPaneDocButtonSizeY/2;
@@ -527,13 +527,13 @@ function scr_panelPane_drawFieldTags(){
 	
 	draw_set_halign(fa_center);
 	draw_set_color((fieldPaneSwitchButton == fieldPaneDocMode) ? global.colorThemeBG : global.colorThemeText);
-	draw_text(switchPaneDocTextX,switchPaneDocTextY,"Doc");
+	draw_text(switchPaneDocTextX,switchPaneDocTextY,scr_get_translation("option_doc"));
 	
 	
 	// toggle Doc / CHAINS / chunk / link Button
 	
-	var switchPaneChainButtonSizeX = string_width("Chain")+ spaceWidth*4;
-	var switchPaneChainButtonSizeY = string_height("Doc");
+	var switchPaneChainButtonSizeX = string_width(scr_get_translation("option_chain"))+ spaceWidth*4;
+	var switchPaneChainButtonSizeY = switchPaneDocButtonSizeY;
 	var switchPaneChainRectX2 = switchPaneDocRectX1-2;
 	var switchPaneChainRectX1 = switchPaneChainRectX2 - switchPaneChainButtonSizeX;
 	var switchPaneChainRectY1 =  mean(y ,y + headerHeight) - switchPaneChainButtonSizeY/2;
@@ -555,13 +555,13 @@ function scr_panelPane_drawFieldTags(){
 	
 	draw_set_halign(fa_center);
 	draw_set_color((fieldPaneSwitchButton == fieldPaneChainMode) ? global.colorThemeBG : global.colorThemeText);
-	draw_text(switchPaneChainTextX,switchPaneChainTextY,"Chain");
+	draw_text(switchPaneChainTextX,switchPaneChainTextY,scr_get_translation("option_chain"));
 	
 	
 	// toggle Doc / Chains / CHUNK / link Button
 	
-	var switchPaneChunkButtonSizeX = string_width("Chunk")+ spaceWidth*4;
-	var switchPaneChunkButtonSizeY = string_height("Doc");
+	var switchPaneChunkButtonSizeX = string_width(scr_get_translation("option_chunk"))+ spaceWidth*4;
+	var switchPaneChunkButtonSizeY = switchPaneDocButtonSizeY;
 	var switchPaneChunkRectX2 = switchPaneChainRectX1-2;
 	var switchPaneChunkRectX1 = switchPaneChunkRectX2 - switchPaneChunkButtonSizeX;
 	var switchPaneChunkRectY1 =  mean(y ,y + headerHeight) - switchPaneChunkButtonSizeY/2;
@@ -583,13 +583,13 @@ function scr_panelPane_drawFieldTags(){
 	
 	draw_set_halign(fa_center);
 	draw_set_color((fieldPaneSwitchButton == fieldPaneChunkMode) ? global.colorThemeBG : global.colorThemeText);
-	draw_text(switchPaneChunkTextX,switchPaneChunkTextY,"Chunk");
+	draw_text(switchPaneChunkTextX,switchPaneChunkTextY,scr_get_translation("option_chunk"));
 	
 	
 	// toggle Doc / Chains / Chunk / LINK Button
 	
 	var switchPaneLinkButtonSizeX = string_width("Link")+ spaceWidth*4;
-	var switchPaneLinkButtonSizeY = string_height("Doc");
+	var switchPaneLinkButtonSizeY = switchPaneDocButtonSizeY;
 	var switchPaneLinkRectX2 = switchPaneChunkRectX1-2;
 	var switchPaneLinkRectX1 = switchPaneLinkRectX2 - switchPaneLinkButtonSizeX;
 	var switchPaneLinkRectY1 =  mean(y ,y + headerHeight) - switchPaneLinkButtonSizeY/2;

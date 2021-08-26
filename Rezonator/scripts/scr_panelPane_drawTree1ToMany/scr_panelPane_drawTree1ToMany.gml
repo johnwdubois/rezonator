@@ -187,7 +187,7 @@ function scr_panelPane_drawTree1ToMany(){
 				obj_control.rightClickID = currentEntry;
 				
 				var dropDownOptionList = ds_list_create();
-				ds_list_add(dropDownOptionList, "Delete Entry", "Delete Branch");
+				ds_list_add(dropDownOptionList, "option_delete-entry", "option_delete-branch");
 						
 				if (ds_list_size(dropDownOptionList) > 0) {
 					scr_createDropDown(tokenX1, tokenY2, dropDownOptionList, global.optionListTypeTreeEntry);
@@ -355,7 +355,7 @@ function scr_panelPane_drawTree1ToMany(){
 				if(tokenListSize > 1){
 					obj_control.rightClickID = currentEntry;
 					var dropDownOptionList = ds_list_create();
-					ds_list_add(dropDownOptionList, "Separate Chunk");
+					ds_list_add(dropDownOptionList, "option_separate-chunk");
 						
 					if (ds_list_size(dropDownOptionList) > 0) {
 						scr_createDropDown(tokenX1, tokenY2, dropDownOptionList, global.optionListTypeTreeLeaf);

@@ -21,11 +21,11 @@ function scr_stackOptions(optionSelected) {
 			}
 			instance_destroy();
 			break;
-		case "Clip All":
+		case "menu_clip-all":
 			scr_clipAllStacks();
 			instance_destroy(obj_dropDown);
 			break;
-		case "Tree All":
+		case "menu_tree-all":
 			scr_treeAllStacks();
 			instance_destroy(obj_dropDown);
 			break;

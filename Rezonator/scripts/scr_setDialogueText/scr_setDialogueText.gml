@@ -52,17 +52,17 @@ function scr_setDialogueText(){
 		}
 		if (removeTagToken || removeTagUnit || removeTagEntry || removeTagChain || removeTagChunk || removeTagLink) {
 			titleText = scr_get_translation("Remove Tag");
-			descriptionText = "This will permanently remove the option to mark tag " + string(stringToBeRemoved);
+			descriptionText = scr_get_translation("msg_remove-mark-tag") + string(stringToBeRemoved);
 		}
 		if (removeFieldToken || removeFieldUnit || removeFieldEntry || removeFieldChain || removeFieldChunk || removeFieldLink) {
 			titleText = scr_get_translation("Remove Field");
-			descriptionText =  "This will permanently remove the tag set for Field:  " + string(stringToBeRemoved);
+			descriptionText =  scr_get_translation("msg_remove-field-tag") + string(stringToBeRemoved);
 		}
 		if (removeSearch) {
 			var searchSubMap = global.searchMap[?searchToBeRemoved];
 			var searchTermList = searchSubMap[?"searchTermList"];
 			titleText = scr_get_translation("Remove Search");
-			descriptionText = scr_getStringOfList(searchTermList);
+			descriptionText = scr_get_translation("msg_remove-search") + ": " + scr_getStringOfList(searchTermList);
 		}
 		if (removeTree) {
 			var searchSubMap = global.treeMap[?stringToBeRemoved];

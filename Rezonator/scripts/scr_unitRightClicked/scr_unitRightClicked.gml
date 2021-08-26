@@ -55,7 +55,7 @@ function scr_unitRightClicked(){
 				scr_addToListOnce(dropDownOptionList , "Tag Unit");
 		}
 		
-		ds_list_add(dropDownOptionList, "Create Tree");
+		ds_list_add(dropDownOptionList, "option_create-tree");
 				
 		// Create the dropdown
 		if (ds_list_size(dropDownOptionList) > 0 and obj_control.ableToCreateDropDown) {

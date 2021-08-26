@@ -1,6 +1,6 @@
 function scr_tokenTagMapOptions(optionSelected) {
 
-	if (optionSelected == "Add to tag set"){
+	if (optionSelected == "option_add-to-tag-set"){
 
 		obj_control.newCustomTagToken = true;
 		obj_control.dialogueBoxActive = true;

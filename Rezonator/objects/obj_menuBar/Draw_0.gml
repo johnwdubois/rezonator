@@ -129,7 +129,7 @@ if(instance_exists(obj_control)){
 	if(mouseOverMax){
 		draw_circle(floor(mean(maximizeX1, maximizeX2)),floor(mean(maximizeY1, maximizeY2)), sizeOfButtons/2 , false);
 		draw_set_color(global.colorThemeText);
-		scr_createTooltip(floor(mean(maximizeX1, maximizeX2)), maximizeY2, scr_get_translation("Maximize"), obj_tooltip.arrowFaceUp);
+		scr_createTooltip(floor(mean(maximizeX1, maximizeX2)), maximizeY2, scr_get_translation("option_maximize"), obj_tooltip.arrowFaceUp);
 	
 		if (mouse_check_button_released(mb_left)) {
 			with (obj_panelPane) {
@@ -163,7 +163,7 @@ if(instance_exists(obj_control)){
 	if(mouseOverMin){
 		draw_circle(floor(mean(minimizeX1, minimizeX2)),floor(mean(minimizeY1, minimizeY2)), sizeOfButtons/2 , false);
 		draw_set_color(global.colorThemeText);
-		scr_createTooltip(floor(mean(minimizeX1, minimizeX2)), minimizeY2, scr_get_translation("Minimize"), obj_tooltip.arrowFaceUp);
+		scr_createTooltip(floor(mean(minimizeX1, minimizeX2)), minimizeY2, scr_get_translation("option_minimize"), obj_tooltip.arrowFaceUp);
 		if(mouse_check_button_released(mb_left)){
 			with (obj_panelPane) {
 				showNav = false;

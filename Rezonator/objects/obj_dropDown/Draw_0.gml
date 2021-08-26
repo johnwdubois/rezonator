@@ -169,10 +169,10 @@ for (var i = 0; i < optionListSize; i++) {
 	
 	// draw BG rectangle for each option
 	var optionBGColor = global.colorThemeBG;
-	if (optionText == "Add to tag set") {
+	if (optionText == "option_add-to-tag-set") {
 		optionBGColor = merge_color(global.colorThemeBG, make_color_rgb(60, 230, 65), 0.5);
 	}
-	else if (optionText == "Remove from tag set") {
+	else if (optionText == "option-remove-tag-set") {
 		optionBGColor = merge_color(global.colorThemeBG, make_color_rgb(247, 129, 148), 0.5);
 	}
 	if (mouseoverCurrentOption or (optionCurrent == i && !mouseOverDropDown)) {
@@ -300,10 +300,10 @@ for (var i = 0; i < optionListSize; i++) {
 	if(optionListType == global.optionListTypeTextDirection){
 		var checkX = (global.lang_codes[| global.lang_index] == "he") ? floor(optionRectX1 + textBuffer) : floor(optionRectX2 - textBuffer);
 		var checkY = floor(mean(optionRectY1, optionRectY2));
-		if(optionText == "Right To Left" and obj_control.drawLineState == obj_control.lineState_rtl){
+		if(optionText == "menu_right-to-left" and obj_control.drawLineState == obj_control.lineState_rtl){
 			draw_sprite_ext(spr_checkmark, 0, checkX - clipX, checkY - clipY, 0.8, 0.8, 0, c_black, 1);
 		}
-		if(optionText == "Left To Right" and obj_control.drawLineState == obj_control.lineState_ltr){
+		if(optionText == "menu_left-to-right" and obj_control.drawLineState == obj_control.lineState_ltr){
 			draw_sprite_ext(spr_checkmark, 0, checkX - clipX, checkY - clipY, 0.8, 0.8, 0, c_black, 1);
 		}
 	}
