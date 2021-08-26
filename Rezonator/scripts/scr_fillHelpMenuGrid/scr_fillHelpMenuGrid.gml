@@ -164,7 +164,7 @@ function scr_fillHelpMenuGrid(){
 	ds_grid_set(functionHelp_helpGridSearch, functionHelp_helpGrid_colDesc, 1, "help_description_go-to-line");
 	ds_grid_set(functionHelp_helpGridSearch, functionHelp_helpGrid_colHide, 1, false);
 
-	var helpGridHeightView = 9;
+	var helpGridHeightView = 8;
 	ds_grid_resize(functionHelp_helpGridView, functionHelp_helpGridWidth, helpGridHeightView);
 
 	ds_grid_set(functionHelp_helpGridView, functionHelp_helpGrid_colKey, 0, "key_change-view");
@@ -207,13 +207,8 @@ function scr_fillHelpMenuGrid(){
 	ds_grid_set(functionHelp_helpGridView, functionHelp_helpGrid_colDesc, 7, "help_label_theme");
 	ds_grid_set(functionHelp_helpGridView, functionHelp_helpGrid_colHide, 7, false);
 
-	ds_grid_set(functionHelp_helpGridView, functionHelp_helpGrid_colKey, 8, "key_navigation");
-	ds_grid_set(functionHelp_helpGridView, functionHelp_helpGrid_colFunc, 8, "help_description_nav-hide");
-	ds_grid_set(functionHelp_helpGridView, functionHelp_helpGrid_colDesc, 8, "help_label_navigation");
-	ds_grid_set(functionHelp_helpGridView, functionHelp_helpGrid_colHide, 8, false);
 
-
-	var helpGridHeightFile = 3;
+	var helpGridHeightFile = 2;
 	ds_grid_resize(functionHelp_helpGridFile, functionHelp_helpGridWidth, helpGridHeightFile);
 
 	ds_grid_set(functionHelp_helpGridFile, functionHelp_helpGrid_colKey, 0, controlStr + "key_open");
@@ -225,11 +220,6 @@ function scr_fillHelpMenuGrid(){
 	ds_grid_set(functionHelp_helpGridFile, functionHelp_helpGrid_colFunc, 1, "help_label_save");
 	ds_grid_set(functionHelp_helpGridFile, functionHelp_helpGrid_colDesc, 1, "help_description_save");
 	ds_grid_set(functionHelp_helpGridFile, functionHelp_helpGrid_colHide, 1, false);
-
-	ds_grid_set(functionHelp_helpGridFile, functionHelp_helpGrid_colKey, 2, "key_clip");
-	ds_grid_set(functionHelp_helpGridFile, functionHelp_helpGrid_colFunc, 2, "help_label_clip");
-	ds_grid_set(functionHelp_helpGridFile, functionHelp_helpGrid_colDesc, 2, "help_description_clip");
-	ds_grid_set(functionHelp_helpGridFile, functionHelp_helpGrid_colHide, 2, false);
 
 	var helpGridHeightMove = 14;
 	ds_grid_resize(functionHelp_helpGridMove, functionHelp_helpGridWidth, helpGridHeightMove);
@@ -331,7 +321,7 @@ function scr_fillHelpMenuGrid(){
 	ds_grid_set(functionHelp_helpGridPlay, functionHelp_helpGrid_colDesc, 2, "help_description_mute");
 	ds_grid_set(functionHelp_helpGridPlay, functionHelp_helpGrid_colHide, 2, false);
 
-	var helpGridHeightAdvanced = 3;
+	var helpGridHeightAdvanced = 2;
 	ds_grid_resize(functionHelp_helpGridAdvanced, functionHelp_helpGridWidth, helpGridHeightAdvanced);
 	var altOption = "";
 	if( os_type = os_macosx){
@@ -341,27 +331,18 @@ function scr_fillHelpMenuGrid(){
 		altOption = "Alt";
 	}
 
-	//hardcoded need translation 
-	ds_grid_set(functionHelp_helpGridAdvanced, functionHelp_helpGrid_colKey, 0, "["+ correctKey + "] R");
-	ds_grid_set(functionHelp_helpGridAdvanced, functionHelp_helpGrid_colFunc, 0, "help_label_shuffle");
-	ds_grid_set(functionHelp_helpGridAdvanced, functionHelp_helpGrid_colDesc, 0, "help_description_shuffle");
+
+	ds_grid_set(functionHelp_helpGridAdvanced, functionHelp_helpGrid_colKey, 0, "["+ correctKey + "] G");
+	ds_grid_set(functionHelp_helpGridAdvanced, functionHelp_helpGrid_colFunc, 0, "Grid View");
+	ds_grid_set(functionHelp_helpGridAdvanced, functionHelp_helpGrid_colDesc, 0, "Toggle Grid Viewer");
 	ds_grid_set(functionHelp_helpGridAdvanced, functionHelp_helpGrid_colHide, 0, false);
 
-	ds_grid_set(functionHelp_helpGridAdvanced, functionHelp_helpGrid_colKey, 1, "["+ correctKey + "] G");
-	ds_grid_set(functionHelp_helpGridAdvanced, functionHelp_helpGrid_colFunc, 1, "Grid View");
-	ds_grid_set(functionHelp_helpGridAdvanced, functionHelp_helpGrid_colDesc, 1, "Toggle Grid Viewer");
+	ds_grid_set(functionHelp_helpGridAdvanced, functionHelp_helpGrid_colKey, 1, "["+ altOption + "]" + " [Shift] D");
+	ds_grid_set(functionHelp_helpGridAdvanced, functionHelp_helpGrid_colFunc, 1, "help_label_developer");
+	ds_grid_set(functionHelp_helpGridAdvanced, functionHelp_helpGrid_colDesc, 1, "help_description_developer-view");
 	ds_grid_set(functionHelp_helpGridAdvanced, functionHelp_helpGrid_colHide, 1, false);
 
-	ds_grid_set(functionHelp_helpGridAdvanced, functionHelp_helpGrid_colKey, 2, "["+ altOption + "]" + " [Shift] D");
-	ds_grid_set(functionHelp_helpGridAdvanced, functionHelp_helpGrid_colFunc, 2, "help_label_developer");
-	ds_grid_set(functionHelp_helpGridAdvanced, functionHelp_helpGrid_colDesc, 2, "help_description_developer-view");
-	ds_grid_set(functionHelp_helpGridAdvanced, functionHelp_helpGrid_colHide, 2, false);
-	/*
-	ds_grid_set(functionHelp_helpGridAdvanced, functionHelp_helpGrid_colKey, 2, "["+ altOption + "] [SHIFT] u");
-	ds_grid_set(functionHelp_helpGridAdvanced, functionHelp_helpGrid_colFunc, 2, "help_label_insert-word");
-	ds_grid_set(functionHelp_helpGridAdvanced, functionHelp_helpGrid_colDesc, 2, "help_description_insert-word");
-	ds_grid_set(functionHelp_helpGridAdvanced, functionHelp_helpGrid_colHide, 2, false);
-	*/
+
 	var helpGridHeightAbout = 2;
 	ds_grid_resize(functionHelp_helpGridAbout, functionHelp_helpGridWidth, helpGridHeightAbout);
 
@@ -377,78 +358,37 @@ function scr_fillHelpMenuGrid(){
 
 
 
-	var helpGridHeightRightClick = 10;
+	var helpGridHeightRightClick = 5;
 	ds_grid_resize(functionHelp_helpGridRightClick, functionHelp_helpGridWidth, helpGridHeightRightClick);
 
-	//ds_grid_set(functionHelp_helpGridRightClick, functionHelp_helpGrid_colKey, 0, "[Right Click] on word");
-	//ds_grid_set(functionHelp_helpGridRightClick, functionHelp_helpGrid_colFunc, 0, "Replace Word");
-	//ds_grid_set(functionHelp_helpGridRightClick, functionHelp_helpGrid_colDesc, 0, "Change the display string of a word");
-	//ds_grid_set(functionHelp_helpGridRightClick, functionHelp_helpGrid_colHide, 0, false);
 
-	//ds_grid_set(functionHelp_helpGridRightClick, functionHelp_helpGrid_colKey, 1, "[Right Click] on word");
-	//ds_grid_set(functionHelp_helpGridRightClick, functionHelp_helpGrid_colFunc, 1, "Restore Word");
-	//ds_grid_set(functionHelp_helpGridRightClick, functionHelp_helpGrid_colDesc, 1, "Revert word back to its original string");
-	//ds_grid_set(functionHelp_helpGridRightClick, functionHelp_helpGrid_colHide, 1, false);
 
 	ds_grid_set(functionHelp_helpGridRightClick, functionHelp_helpGrid_colKey, 0, "key_replace");
-	ds_grid_set(functionHelp_helpGridRightClick, functionHelp_helpGrid_colFunc, 0, "help_label_split-word");
-	ds_grid_set(functionHelp_helpGridRightClick, functionHelp_helpGrid_colDesc, 0, "help_description_split");
+	ds_grid_set(functionHelp_helpGridRightClick, functionHelp_helpGrid_colFunc, 0, "help_label_new_word");
+	ds_grid_set(functionHelp_helpGridRightClick, functionHelp_helpGrid_colDesc, 0, "help_description_insert-word");
 	ds_grid_set(functionHelp_helpGridRightClick, functionHelp_helpGrid_colHide, 0, false);
 
 	ds_grid_set(functionHelp_helpGridRightClick, functionHelp_helpGrid_colKey, 1, "key_replace");
-	ds_grid_set(functionHelp_helpGridRightClick, functionHelp_helpGrid_colFunc, 1, "help_label_new_word");
-	ds_grid_set(functionHelp_helpGridRightClick, functionHelp_helpGrid_colDesc, 1, "help_description_insert-word");
+	ds_grid_set(functionHelp_helpGridRightClick, functionHelp_helpGrid_colFunc, 1, "help_label_delete-inserted-word");
+	ds_grid_set(functionHelp_helpGridRightClick, functionHelp_helpGrid_colDesc, 1, "help_description_delete-new-word");
 	ds_grid_set(functionHelp_helpGridRightClick, functionHelp_helpGrid_colHide, 1, false);
 
-	ds_grid_set(functionHelp_helpGridRightClick, functionHelp_helpGrid_colKey, 2, "key_replace");
-	ds_grid_set(functionHelp_helpGridRightClick, functionHelp_helpGrid_colFunc, 2, "help_label_delete-inserted-word");
-	ds_grid_set(functionHelp_helpGridRightClick, functionHelp_helpGrid_colDesc, 2, "help_description_delete-new-word");
+
+	ds_grid_set(functionHelp_helpGridRightClick, functionHelp_helpGrid_colKey, 2, "key_chain_context-menu");
+	ds_grid_set(functionHelp_helpGridRightClick, functionHelp_helpGrid_colFunc, 2, "help_label_rename");
+	ds_grid_set(functionHelp_helpGridRightClick, functionHelp_helpGrid_colDesc, 2, "help_description_rename");
 	ds_grid_set(functionHelp_helpGridRightClick, functionHelp_helpGrid_colHide, 2, false);
 
-	//ds_grid_set(functionHelp_helpGridRightClick, functionHelp_helpGrid_colKey, 5, "[Right Click] on word");
-	//ds_grid_set(functionHelp_helpGridRightClick, functionHelp_helpGrid_colFunc, 5, "Delete Link");
-	//ds_grid_set(functionHelp_helpGridRightClick, functionHelp_helpGrid_colDesc, 5, "remove the selected word from it's chain");
-	//ds_grid_set(functionHelp_helpGridRightClick, functionHelp_helpGrid_colHide, 5, false);
 
-	ds_grid_set(functionHelp_helpGridRightClick, functionHelp_helpGrid_colKey, 3, "key_rightclick_speaker");
-	ds_grid_set(functionHelp_helpGridRightClick, functionHelp_helpGrid_colFunc, 3, "help_label_swap-lines");
-	ds_grid_set(functionHelp_helpGridRightClick, functionHelp_helpGrid_colDesc, 3, "help_description_swap-lines");
-	ds_grid_set(functionHelp_helpGridRightClick, functionHelp_helpGrid_colHide, 3, false);
+	ds_grid_set(functionHelp_helpGridRightClick, functionHelp_helpGrid_colKey, 3, "key_chain_context-menu");
+	ds_grid_set(functionHelp_helpGridRightClick, functionHelp_helpGrid_colFunc, 3, "help_label_delete_plain");
+	ds_grid_set(functionHelp_helpGridRightClick, functionHelp_helpGrid_colDesc, 3, "help_description_delete-plain");
+	ds_grid_set(functionHelp_helpGridRightClick, functionHelp_helpGrid_colHide, 3, true);
 
-	ds_grid_set(functionHelp_helpGridRightClick, functionHelp_helpGrid_colKey, 4, "key_rightclick_speaker");
-	ds_grid_set(functionHelp_helpGridRightClick, functionHelp_helpGrid_colFunc, 4, "help_label_shuffle");
-	ds_grid_set(functionHelp_helpGridRightClick, functionHelp_helpGrid_colDesc, 4, "help_description_shuffle");
-	ds_grid_set(functionHelp_helpGridRightClick, functionHelp_helpGrid_colHide, 4, false);
-
-	ds_grid_set(functionHelp_helpGridRightClick, functionHelp_helpGrid_colKey, 5, "key_rightclick_speaker");
-	ds_grid_set(functionHelp_helpGridRightClick, functionHelp_helpGrid_colFunc, 5, "help_label_restore-sequence");
-	ds_grid_set(functionHelp_helpGridRightClick, functionHelp_helpGrid_colDesc, 5, "help_description_restore-sequence");
-	ds_grid_set(functionHelp_helpGridRightClick, functionHelp_helpGrid_colHide, 5, false);
-
-	//ds_grid_set(functionHelp_helpGridRightClick, functionHelp_helpGrid_colKey, 9, "[Right Click] on speaker");
-	//ds_grid_set(functionHelp_helpGridRightClick, functionHelp_helpGrid_colFunc, 9, "Tag");
-	//ds_grid_set(functionHelp_helpGridRightClick, functionHelp_helpGrid_colDesc, 9, "Add a tag of emotion to the unit");
-	//ds_grid_set(functionHelp_helpGridRightClick, functionHelp_helpGrid_colHide, 9, false);
-
-	ds_grid_set(functionHelp_helpGridRightClick, functionHelp_helpGrid_colKey, 6, "key_chain_context-menu");
-	ds_grid_set(functionHelp_helpGridRightClick, functionHelp_helpGrid_colFunc, 6, "help_label_rename");
-	ds_grid_set(functionHelp_helpGridRightClick, functionHelp_helpGrid_colDesc, 6, "help_description_rename");
-	ds_grid_set(functionHelp_helpGridRightClick, functionHelp_helpGrid_colHide, 6, false);
-
-	ds_grid_set(functionHelp_helpGridRightClick, functionHelp_helpGrid_colKey, 7, "key_chain_context-menu");
-	ds_grid_set(functionHelp_helpGridRightClick, functionHelp_helpGrid_colFunc, 7, "help_label_color");
-	ds_grid_set(functionHelp_helpGridRightClick, functionHelp_helpGrid_colDesc, 7, "help_description_color");
-	ds_grid_set(functionHelp_helpGridRightClick, functionHelp_helpGrid_colHide, 7, false);
-
-	ds_grid_set(functionHelp_helpGridRightClick, functionHelp_helpGrid_colKey, 8, "key_chain_context-menu");
-	ds_grid_set(functionHelp_helpGridRightClick, functionHelp_helpGrid_colFunc, 8, "help_label_delete_plain");
-	ds_grid_set(functionHelp_helpGridRightClick, functionHelp_helpGrid_colDesc, 8, "help_description_delete-plain");
-	ds_grid_set(functionHelp_helpGridRightClick, functionHelp_helpGrid_colHide, 8, true);
-
-	ds_grid_set(functionHelp_helpGridRightClick, functionHelp_helpGrid_colKey, 9, "key_chain_context-menu");
-	ds_grid_set(functionHelp_helpGridRightClick, functionHelp_helpGrid_colFunc, 9, "help_label_caption");
-	ds_grid_set(functionHelp_helpGridRightClick, functionHelp_helpGrid_colDesc, 9, "help_description_caption");
-	ds_grid_set(functionHelp_helpGridRightClick, functionHelp_helpGrid_colHide, 9, true);
+	ds_grid_set(functionHelp_helpGridRightClick, functionHelp_helpGrid_colKey, 4, "key_chain_context-menu");
+	ds_grid_set(functionHelp_helpGridRightClick, functionHelp_helpGrid_colFunc, 4, "help_label_caption");
+	ds_grid_set(functionHelp_helpGridRightClick, functionHelp_helpGrid_colDesc, 4, "help_description_caption");
+	ds_grid_set(functionHelp_helpGridRightClick, functionHelp_helpGrid_colHide, 4, true);
 
 
 

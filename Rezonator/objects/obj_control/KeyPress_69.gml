@@ -1,8 +1,8 @@
 /// @description Export portion
 // You can write your code in this editor
-if (!shortcutsEnabled || dialogueBoxActive || obj_panelPane.discoSelectionActive) {
+//if (!shortcutsEnabled || dialogueBoxActive || obj_panelPane.discoSelectionActive) {
 	exit;
-}
+//}
 
 if(not keyboard_check(vk_alt) and not keyboard_check(vk_shift) and global.ctrlHold){
 
