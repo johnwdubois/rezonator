@@ -360,6 +360,11 @@ global.openingScreenDropDownMap = ds_map_create();
 ds_map_add(global.openingScreenDropDownMap, "menu_import", true);
 ds_map_add(global.openingScreenDropDownMap, "menu_docs", true);
 ds_map_add(global.openingScreenDropDownMap, "menu_about", true);
+ds_map_add(global.openingScreenDropDownMap, "menu_theme", true);
+ds_map_add(global.openingScreenDropDownMap, "menu_zoom", true);
+ds_map_add(global.openingScreenDropDownMap, "help_label_zoom-in", true);
+ds_map_add(global.openingScreenDropDownMap, "help_label_zoom-out", true);
+ds_map_add(global.openingScreenDropDownMap, "menu_language", true);
 ds_map_add(global.openingScreenDropDownMap, "menu_language-en", true);
 ds_map_add(global.openingScreenDropDownMap, "menu_language-es", true);
 ds_map_add(global.openingScreenDropDownMap, "menu_language-he", true);
@@ -401,6 +406,7 @@ ds_map_add(global.keyboardShortcutMap, "menu_filter", "CTRL+P");
 ds_map_add(global.keyboardShortcutMap, "menu_track", "T");
 ds_map_add(global.keyboardShortcutMap, "menu_rez", "R");
 ds_map_add(global.keyboardShortcutMap, "menu_developer", "ALT+SHIFT+D");
+ds_map_add(global.keyboardShortcutMap, "Arrowheads", "CTRL+Q");
 
 
 //to abstract dropdown options with checks later on. I've been doing them case by case so far
