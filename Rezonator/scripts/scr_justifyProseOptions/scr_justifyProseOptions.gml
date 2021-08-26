@@ -2,11 +2,11 @@ function scr_justifyProseOptions(optionSelected) {
 	
 	// justify options
 	switch (optionSelected) {
-		case "Left Prose":
+		case "flyout_left-prose":
 			scr_justifyOptions("menu_left");
 			scr_proseOptions("menu_prose");
 			break;
-		case "Left Grid":
+		case "flyout_left-grid":
 			scr_justifyOptions("menu_left");
 			scr_proseOptions("menu_grid");
 			break;
@@ -18,11 +18,11 @@ function scr_justifyProseOptions(optionSelected) {
 			scr_justifyOptions("menu_center");
 			scr_proseOptions("menu_grid");
 			break;
-		case "Right Prose":
+		case "flyout_right-prose":
 			scr_justifyOptions("menu_right");
 			scr_proseOptions("menu_prose");
 			break;
-		case "Right Grid":
+		case "flyout_right-grid":
 			scr_justifyOptions("menu_right");
 			scr_proseOptions("menu_grid");
 			break;
