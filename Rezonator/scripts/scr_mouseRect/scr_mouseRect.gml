@@ -31,6 +31,7 @@ function scr_mouseRect() {
 		mouseHoldRectY1 = -1;
 		makingRect = false;
 		obj_chain.dragStartOriginalChain = "";
+		obj_chain.dragStartOriginalUnit = "";
 	}
 	
 	// if user clicks, save the position of their mouse
@@ -55,6 +56,8 @@ function scr_mouseRect() {
 				}
 			}
 		}
+		
+		obj_chain.dragStartOriginalUnit = unitClosestToMouse;
 	}
 	
 	// if user is making a mouse rect, let's draw it

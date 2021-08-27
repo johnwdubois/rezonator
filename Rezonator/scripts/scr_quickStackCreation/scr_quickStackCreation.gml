@@ -2,6 +2,10 @@
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
 function scr_quickStackCreation(){
 	
+	// make sure the first unit clicked on is the first unit in the list
+	scr_deleteFromList(inRectUnitIDList, obj_chain.dragStartOriginalUnit);
+	ds_list_insert(inRectUnitIDList, 0, obj_chain.dragStartOriginalUnit);
+	
 	show_debug_message("scr_quickStackCreation ... inRectUnitIDList: " + scr_getStringOfList(inRectUnitIDList));
 
 	var inRectUnitIDListSize = ds_list_size(inRectUnitIDList);
