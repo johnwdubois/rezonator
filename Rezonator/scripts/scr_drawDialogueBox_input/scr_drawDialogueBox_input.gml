@@ -76,7 +76,7 @@ function scr_drawDialogueBox_input(){
 		// click range dropdown
 		if (mouseoverRangeRect && mouse_check_button_released(mb_left)) {
 			var availableRanges = ds_list_create();
-			ds_list_add(availableRanges, "option_doc", "option_current-chain", "option_trails", "Rez Chains", "Stacks");
+			ds_list_add(availableRanges, "option_doc", "option_current-chain", "option_trails", "menu_rez_chains_pl", "menu_stacks_pl");
 			scr_createDropDown(rangeRectX1, rangeRectY2, availableRanges, global.optionListTypeSearchRange);
 		}
 		
@@ -84,7 +84,7 @@ function scr_drawDialogueBox_input(){
 		draw_set_color(global.colorThemeText);
 		scr_adaptFont(obj_control.searchRange, "S", false);
 		draw_set_halign(fa_left);
-		draw_text(floor(rangeRectX1 + dropDownXBuffer), floor(mean(rangeRectY1, rangeRectY2)), obj_control.searchRange);
+		draw_text(floor(rangeRectX1 + dropDownXBuffer), floor(mean(rangeRectY1, rangeRectY2)), scr_get_translation(obj_control.searchRange));
 		draw_set_halign(fa_right);
 		draw_text(floor(rangeRectX1 - dropDownXBuffer), floor(mean(rangeRectY1, rangeRectY2)), scr_get_translation("option_range")+": ");
 		
