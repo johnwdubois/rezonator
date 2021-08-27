@@ -70,7 +70,7 @@ function scr_panelPane_drawChunks1To1Headers(fieldList){
 				obj_control.selectFieldChunk = true;
 				
 				var dropDownOptionList = ds_list_create();
-				ds_list_add(dropDownOptionList, "option_add-to-tag-set", "option-remove-tag-set", "option_select-field", "option_create-new-field");
+				ds_list_add(dropDownOptionList, "option_select-field", "option_create-new-field", "option_add-to-tag-set", "option-remove-tag-set",);
 				scr_createDropDown(headerRectX1, headerRectY2, dropDownOptionList, global.optionListTypeFieldUnits1ToMany);
 			}
 		}

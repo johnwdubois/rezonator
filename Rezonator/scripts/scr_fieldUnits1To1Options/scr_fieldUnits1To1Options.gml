@@ -2,12 +2,14 @@
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
 function scr_fieldUnits1To1Options(optionSelected){
 	
+	var optionSpacingMulti = ds_list_find_index(optionList, optionSelected);
+	
 	if (optionSelected == "option_select-field") {
 		
 		scr_destroyAllDropDownsOtherThanSelf();
 		var dropDownOptionList = ds_list_create();
 		ds_list_copy(dropDownOptionList, obj_control.unitFieldList);
-		scr_createDropDown(obj_dropDown.x + obj_dropDown.windowWidth, obj_dropDown.y + (obj_dropDown.optionSpacing * 4), dropDownOptionList, global.optionListTypeUnitSelection);
+		scr_createDropDown(obj_dropDown.x + obj_dropDown.windowWidth, obj_dropDown.y + (obj_dropDown.optionSpacing * optionSpacingMulti), dropDownOptionList, global.optionListTypeUnitSelection);
 		
 	}
 	else if (optionSelected == "option_create-new-field"
@@ -28,7 +30,7 @@ function scr_fieldUnits1To1Options(optionSelected){
 		scr_destroyAllDropDownsOtherThanSelf();
 		var dropDownOptionList = ds_list_create();
 		ds_list_copy(dropDownOptionList, tagSet);
-		scr_createDropDown(obj_dropDown.x + obj_dropDown.windowWidth, obj_dropDown.y + (obj_dropDown.optionSpacing), dropDownOptionList, global.optionListTypeRemoveFromTagSetUnits1To1);
+		scr_createDropDown(obj_dropDown.x + obj_dropDown.windowWidth, obj_dropDown.y + (obj_dropDown.optionSpacing * optionSpacingMulti), dropDownOptionList, global.optionListTypeRemoveFromTagSetUnits1To1);
 		
 	}
 	else if (optionSelected == "Show in main screen") {
