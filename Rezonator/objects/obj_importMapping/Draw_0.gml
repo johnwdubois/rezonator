@@ -3,6 +3,7 @@ scr_windowCameraAdjust();
 	
 if (keyboard_check(vk_alt) and keyboard_check(vk_shift)
 and keyboard_check_pressed(ord("Q"))) {
+	show_debug_message("Going to openingScreen, obj_importMapping Draw");
 	room_goto(rm_openingScreen);
 }
 if (keyboard_check(vk_alt) and keyboard_check(vk_shift)

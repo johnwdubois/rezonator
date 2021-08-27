@@ -55,6 +55,7 @@ function scr_importTXT(filename) {
 	// otherwise we continue to the importScreen
 	if (global.exitOut) {
 		global.skipToImportScreen = true;
+		show_debug_message("Going to openingScreen, scr_importTXT");
 		room_goto(rm_openingScreen);
 	}
 	else {

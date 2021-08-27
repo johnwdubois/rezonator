@@ -163,7 +163,7 @@ function scr_importMappingTagDraw() {
 		global.newProject = false;
 		global.openProject = false;
 		global.neworOpen = true;
-
+		show_debug_message("Going to openingScreen, scr_importMappingTagDraw");
 		room_goto(rm_openingScreen)
 
 	}

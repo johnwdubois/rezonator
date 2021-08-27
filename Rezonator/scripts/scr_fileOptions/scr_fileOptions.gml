@@ -62,6 +62,7 @@ function scr_fileOptions(optionSelected) {
 			}
 
 			global.skipToImportScreen = true;
+			show_debug_message("Going to openingScreen, scr_fileOptions 1");
 			room_goto(rm_openingScreen);
 			scr_loadINI();
 			break;
@@ -133,6 +134,7 @@ function scr_fileOptions(optionSelected) {
 			}
 
 			keyboard_string = "";
+			show_debug_message("Going to openingScreen, scr_fileOptions 2");
 			room_goto(rm_openingScreen);
 			scr_loadINI();
 

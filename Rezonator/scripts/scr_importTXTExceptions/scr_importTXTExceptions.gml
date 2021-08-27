@@ -86,6 +86,7 @@ function scr_importTXTExceptions() {
 
 	if (ds_grid_width(global.importGrid) == 0) {
 		show_message(scr_get_translation("msg_no_tags_found"));
+		show_debug_message("Going to openingScreen, scr_importTXTExceptions");
 		room_goto(rm_openingScreen);
 	}
 
