@@ -3,7 +3,7 @@
 function scr_drawLine2ElectricBoogaloo(){
 	
 	
-	
+	scr_adaptFont("0", "M");
 	
 	var camHeight = camera_get_view_height(camera_get_active());
 	var camWidth = camera_get_view_width(camera_get_active());
