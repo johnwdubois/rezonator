@@ -602,17 +602,18 @@ if (keyboard_check(vk_alt) and keyboard_check(vk_shift) and keyboard_check_press
 if (keyboard_check_pressed(ord("P")) and !keyboard_check(vk_lshift) and !keyboard_check(vk_rshift)
 and shortcutsEnabled and mouseoverTagShortcut == "" and currentActiveLineGrid != searchGrid and !instance_exists(obj_dropDown) and !instance_exists(obj_dialogueBox)) {
 	
-	if (!global.ctrlHold) {
+	if (global.ctrlHold) {
+		scr_toggleFilter();
+	}
+	else {
+		
 		// If filter is active, deactivate it
 		if (obj_control.quickFilterGridActive) {
 			
 			// Switch to active grid
 			obj_control.quickFilterGridActive = false;
 			if (obj_control.filterGridActive) {
-				obj_control.currentActiveLineGrid = obj_control.filterGrid;
-			}
-			else if (obj_control.searchGridActive) {
-				obj_control.currentActiveLineGrid = obj_control.searchGrid;
+				scr_toggleFilter();
 			}
 			else {
 				scr_disableFilter();
@@ -628,9 +629,7 @@ and shortcutsEnabled and mouseoverTagShortcut == "" and currentActiveLineGrid !=
 			scr_renderFilter2();
 		}
 	}
-	else {
-		scr_toggleFilter();
-	}
+
 }
 
 

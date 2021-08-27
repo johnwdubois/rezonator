@@ -7,6 +7,7 @@ function scr_createTreeLink(clickedEntry){
 	var focusedEntrySubMap = global.treeMap[? obj_chain.currentFocusedEntryID];
 	var treeSubMap = global.treeMap[? obj_panelPane.functionTree_treeSelected];
 	
+
 	//create Link node for Tree
 	var linkID = scr_generateRandomHex();
 	var linkMap = ds_map_create();
@@ -23,7 +24,8 @@ function scr_createTreeLink(clickedEntry){
 	ds_map_add_map(global.treeMap, linkID,linkMap);
 	
 	//add clicked entry to focused entry goal list
-	ds_list_add(focusedEntrySubMap[?"goalLinkList"], linkID);
+	var goalLinkList = focusedEntrySubMap[?"goalLinkList"];
+	ds_list_add(goalLinkList, linkID);
 	
 	//update clicked entry sub map
 	clickedEntrySubMap[? "sourceLink"] = linkID;

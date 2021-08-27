@@ -96,10 +96,10 @@ function scr_panelPane_drawTree1ToMany(){
 		
 		//get entry box dimensions, check if this entry is in draw range
 		var boxWidth = string_width(currentDisplayToken) + (spaceWidth * 8);
-		var tokenX1 = x + plusX + scrollPlusX;
-		var tokenY1 = currentEntryY - realStrheight/1.8 + currentScrollPlusY;
-		var tokenX2 = tokenX1 + boxWidth;
-		var tokenY2 = currentEntryY + realStrheight/1.8 + currentScrollPlusY;
+		var tokenX1 = floor(x + plusX + scrollPlusX);
+		var tokenY1 = floor(currentEntryY - realStrheight/1.8 + currentScrollPlusY);
+		var tokenX2 = floor(tokenX1 + boxWidth);
+		var tokenY2 = floor(currentEntryY + realStrheight/1.8 + currentScrollPlusY);
 		
 		// save pixel values to map for drawing links
 		currentEntrySubMap[?"entryX1"] = tokenX1;
