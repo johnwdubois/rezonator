@@ -38,6 +38,7 @@ function scr_drawBackArrow() {
 		}
 		
 		if (room == rm_importScreen) {
+			show_debug_message("Going to openingScreen, scr_drawBackArrow");
 			room_goto(rm_openingScreen)
 		}
 	}

@@ -205,6 +205,7 @@ function scr_saveREZ(autosave) {
 	if (autosave && directory_exists(global.importGroupOutputDir) && global.importGroupOutputDir != "") {
 		ds_map_clear(global.nodeMap);
 		ds_grid_destroy(global.importGrid);
+		show_debug_message("Going to openingScreen, scr_saveREZ");
 		room_goto(rm_openingScreen);
 	}
 

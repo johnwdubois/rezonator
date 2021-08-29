@@ -88,7 +88,7 @@ function scr_fillHelpMenuGrid(){
 	ds_grid_set(functionHelp_helpGridLink, functionHelp_helpGrid_colHide, 2, false);
 
 	ds_grid_set(functionHelp_helpGridLink, functionHelp_helpGrid_colKey, 3, "key_rez");
-	ds_grid_set(functionHelp_helpGridLink, functionHelp_helpGrid_colFunc, 3, "help_label_rez");
+	ds_grid_set(functionHelp_helpGridLink, functionHelp_helpGrid_colFunc, 3, "help_label_resonance");
 	ds_grid_set(functionHelp_helpGridLink, functionHelp_helpGrid_colDesc, 3, "help_description_rez");
 	ds_grid_set(functionHelp_helpGridLink, functionHelp_helpGrid_colHide, 3, false);
 
@@ -407,7 +407,7 @@ function scr_fillHelpMenuGrid(){
 	ds_grid_set(functionHelp_helpGridRez, functionHelp_helpGrid_colDesc, 2, "help_description_zap");
 
 	ds_grid_set(functionHelp_helpGridRez, functionHelp_helpGrid_colKey, 3, "key_rez");
-	ds_grid_set(functionHelp_helpGridRez, functionHelp_helpGrid_colFunc, 3, "help_label_rez");
+	ds_grid_set(functionHelp_helpGridRez, functionHelp_helpGrid_colFunc, 3, "help_label_resonance");
 	ds_grid_set(functionHelp_helpGridRez, functionHelp_helpGrid_colDesc, 3, "help_description_rez");
 
 	ds_grid_set(functionHelp_helpGridRez, functionHelp_helpGrid_colKey, 4, "key_track");

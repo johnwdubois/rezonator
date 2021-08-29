@@ -53,7 +53,7 @@ function scr_createTree(tokenList){
 		ds_map_add(currentEntrySubMap, "entryX2", -1);
 		ds_map_add(currentEntrySubMap, "entryY2", -1);
 		ds_map_add(currentEntrySubMap, "sourceLink", "");
-		ds_map_add(currentEntrySubMap, "goalLinkList", ds_list_create());
+		ds_map_add_list(currentEntrySubMap, "goalLinkList", ds_list_create());
 		
 		// throw this new entry into the tree's setList
 		ds_list_add(treeSetIDList, currentEntry);

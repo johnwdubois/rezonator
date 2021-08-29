@@ -46,11 +46,11 @@ function scr_getSearchLists(searchTermList){
 	else if(obj_control.searchRange != "option_current-chain" && obj_control.searchRange != "option_doc") {
 		
 		var listOfChains = "";
-		if(obj_control.searchRange == "Stacks"){
+		if(obj_control.searchRange == "menu_stacks_pl"){
 			listOfChains = global.nodeMap[?"stackChainList"];
 			var listToAddTo = stackChainTokenIDList;
 		}
-		else if(obj_control.searchRange == "Rez Chains"){
+		else if(obj_control.searchRange == "menu_rez_chains_pl"){
 			listOfChains = global.nodeMap[?"rezChainList"];
 			var listToAddTo = rezChainTokenIDList;
 		}
@@ -113,10 +113,10 @@ function scr_getSearchLists(searchTermList){
 				// check for current chain range
 				if (obj_control.searchRange != "option_doc") {
 					
-					if(obj_control.searchRange == "Stacks"){
+					if(obj_control.searchRange == "menu_stacks_pl"){
 						ds_list_copy(chainTokenIDList, stackChainTokenIDList);
 					}
-					else if(obj_control.searchRange == "Rez Chains"){
+					else if(obj_control.searchRange == "menu_rez_chains_pl"){
 						ds_list_copy(chainTokenIDList, rezChainTokenIDList);
 					}
 					else if(obj_control.searchRange == "option_trails"){

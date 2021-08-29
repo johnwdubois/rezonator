@@ -81,7 +81,7 @@ function scr_panelPane_drawUnits1To1Headers(){
 				}
 				
 				var dropDownOptionList = ds_list_create();
-				ds_list_add(dropDownOptionList, "option_add-to-tag-set", "option-remove-tag-set", "Show in main screen", "Show in translation tab", "option_select-field", "option_create-new-field");
+				ds_list_add(dropDownOptionList, "option_select-field", "Show in main screen", "option_create-new-field", "option_add-to-tag-set", "option-remove-tag-set", "Show in translation tab");
 				scr_createDropDown(headerRectX1, headerRectY2, dropDownOptionList, global.optionListTypeFieldUnits1To1);
 			}
 		}

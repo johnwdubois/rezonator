@@ -20,20 +20,9 @@ function scr_createRezDirectory() {
 	ds_list_clear(global.dirCopyDebugList);
 	if (directory_exists(global.documentsDirString)) {
 		var includedFilesDir = working_directory + delimiter + "IncludedFiles";
-		if (os_type == os_macosx) {
-			if (directory_exists(global.documentsDirString)) {
-				if (!directory_exists(global.documentsDirString + "/Rezonator")) {
-					directory_create(global.documentsDirString + "/Rezonator");
-				}
-			}
-			directory_create(global.rezonatorDirString);
-			scr_directoryCopy(includedFilesDir, global.rezonatorDirString, "");
-		}
-		else {
-			if (directory_exists(includedFilesDir)) {
-				if (!directory_exists(global.rezonatorDirString)) {
-					scr_directoryCopy(includedFilesDir, global.rezonatorDirString, "");
-				}
+		if (directory_exists(includedFilesDir)) {
+			if (!directory_exists(global.rezonatorDirString)) {
+				scr_directoryCopy(includedFilesDir, global.rezonatorDirString, "");
 			}
 		}
 	}

@@ -11,6 +11,9 @@ showDevVars = false;
 
 tagInfoGridSelectedRow = -1;
 
+canGoBack = false;
+alarm[6] = 5;
+
 tagColorList = ds_list_create();
 ds_list_add(tagColorList, c_red, c_blue, c_green, c_yellow, c_purple, c_olive, c_orange);
 ds_list_add(tagColorList, c_teal, c_fuchsia, c_lime);

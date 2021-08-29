@@ -90,6 +90,9 @@ function scr_panelPane_drawFieldList(){
 				}
 			}
 			
+			// make sure user doesnt delete last available token field
+			if (fieldList == obj_control.tokenFieldList && ds_list_size(fieldList) <= 1) removable = false;
+			
 
 		
 		
@@ -222,6 +225,7 @@ function scr_panelPane_drawFieldList(){
 				var delButtonY = currentRowY1 + (strHeight * 0.5);
 				var mouseOverDel = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, deleteColX, currentRowY1, deleteColX + deleteColWidth, currentRowY2) && mouseoverRow && removable;
 				var trashAlpha = (removable) ? 1 : 0.5;
+				
 
 								
 				// mouseover & click on sequence arrows
@@ -250,17 +254,15 @@ function scr_panelPane_drawFieldList(){
 				}
 			
 
-				if(mouseoverRow || fieldSelected){				
+				if(mouseoverRow || fieldSelected){
 					draw_sprite_ext(spr_trash, 0, delButtonX - clipX, delButtonY - clipY, .7, .7, 0, global.colorThemeText, trashAlpha);
 				}
 		
 				// draw #
-
 				draw_set_color(textColor);
 				draw_text(floor(numColX + textBuffer) - clipX, floor(mean(currentRowY1, currentRowY2)) - clipY, string(i + 1));
 		
 				// draw field name
-
 				draw_text(floor(fieldNameColX + textBuffer) - clipX, floor(mean(currentRowY1, currentRowY2)) - clipY, string(currentField));
 		
 			}

@@ -2,23 +2,13 @@
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
 function scr_fieldUnits1ToManyOptions(optionSelected){
 	
+	var optionSpacingMulti = ds_list_find_index(optionList, optionSelected);
+	
 	if (optionSelected == "option_select-field") {
 		
 		scr_destroyAllDropDownsOtherThanSelf();
 		var dropDownOptionList = ds_list_create();
 		ds_list_copy(dropDownOptionList, obj_control.selectFieldChunk ? obj_control.chunkFieldList : obj_control.tokenFieldList);
-		
-		
-		// check if the Unit tab or Chunk tab is selected, so we know where to draw the secondary dropDown out of
-		var optionSpacingMulti = 3;
-		with (obj_panelPane) {
-			if (currentFunction == functionChainList) {
-				if (functionChainList_currentTab == functionChainList_tabChunk) {
-					var optionSpacingMulti = 2;
-				}
-			}
-		}
-		
 		
 		scr_createDropDown(obj_dropDown.x + obj_dropDown.windowWidth, obj_dropDown.y + (obj_dropDown.optionSpacing * optionSpacingMulti), dropDownOptionList, global.optionListTypeTokenSelection);
 		
@@ -41,7 +31,7 @@ function scr_fieldUnits1ToManyOptions(optionSelected){
 		scr_destroyAllDropDownsOtherThanSelf();
 		var dropDownOptionList = ds_list_create();
 		ds_list_copy(dropDownOptionList, tagSet);
-		scr_createDropDown(obj_dropDown.x + obj_dropDown.windowWidth, obj_dropDown.y + (obj_dropDown.optionSpacing), dropDownOptionList, global.optionListTypeRemoveFromTagSetUnits1ToMany);
+		scr_createDropDown(obj_dropDown.x + obj_dropDown.windowWidth, obj_dropDown.y + (obj_dropDown.optionSpacing * optionSpacingMulti), dropDownOptionList, global.optionListTypeRemoveFromTagSetUnits1ToMany);
 		
 	}
 	else if (optionSelected == "Show in main screen") {

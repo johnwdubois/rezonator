@@ -84,6 +84,9 @@ function scr_panelPane_drawChains1To1Headers(chain1to1ColFieldList, chainType){
 				obj_control.chain1to1FieldToChange = currentField;
 				var dropDownOptionList = ds_list_create();
 				
+				// add some of the dropDown options
+				ds_list_add(dropDownOptionList, "option_select-field", "option_create-new-field"); 
+				
 				// check if this field has a finite tagSet, and therefore we should put in "Add to tag set" and "Remove from tag set"
 				var tagSubMap = global.chainFieldMap[? currentField];
 				if (scr_isNumericAndExists(tagSubMap, ds_type_map)) {
@@ -93,8 +96,6 @@ function scr_panelPane_drawChains1To1Headers(chain1to1ColFieldList, chainType){
 					}
 				}
 				
-				// add the rest of the dropDown options
-				ds_list_add(dropDownOptionList, "option_select-field", "option_create-new-field"); 
 				
 				scr_createDropDown(headerRectX1, headerRectY2, dropDownOptionList, global.optionListTypeFieldChains1To1);
 			}
