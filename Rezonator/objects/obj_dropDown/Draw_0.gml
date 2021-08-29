@@ -294,7 +294,7 @@ for (var i = 0; i < optionListSize; i++) {
 		scr_updateCheckMap(optionText);
 		hasCheck = ds_map_find_value(global.checkDropdownMap, optionText);
 		if (optionListType == global.optionListTypeNav) hasCheck = false;
-		
+
 		var checkX = (global.lang_codes[| global.lang_index] == "he") ? 
 				floor(optionRectX1 + (sprite_get_width(spr_checkmark) / 2)) : floor(optionRectX2 - (sprite_get_width(spr_checkmark) / 2));
 		var checkY = floor(mean(optionRectY1, optionRectY2));

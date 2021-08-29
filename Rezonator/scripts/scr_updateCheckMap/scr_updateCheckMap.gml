@@ -3,12 +3,15 @@
 function scr_updateCheckMap(optionText){
 	with(obj_dropDown){
 		if(instance_exists(obj_wordTip)){
+
 			if(optionText == "word_tip"){
 				global.checkDropdownMap[?optionText] = obj_wordTip.wordTipDisplay;
+
 			}
 		}	
 		if(instance_exists(obj_control)){
 			if(optionListType == global.optionListTypeTextDirection){
+
 				if(optionText == "menu_right-to-left" and obj_control.drawLineState == obj_control.lineState_rtl){
 					ds_map_replace(global.checkDropdownMap, "menu_right-to-left", true);
 					ds_map_replace(global.checkDropdownMap, "menu_left-to-right", false);
@@ -16,6 +19,7 @@ function scr_updateCheckMap(optionText){
 				if(optionText == "menu_left-to-right" and obj_control.drawLineState == obj_control.lineState_ltr){
 					ds_map_replace(global.checkDropdownMap, "menu_right-to-left", false);
 					ds_map_replace(global.checkDropdownMap, "menu_left-to-right", true);
+
 				}
 			}
 			if(obj_control.justify == obj_control.justifyRight){
@@ -46,6 +50,7 @@ function scr_updateCheckMap(optionText){
 			
 		}
 		if(optionListType == global.optionListTypeTools and instance_exists(obj_toolPane)){
+
 			if(obj_toolPane.currentMode == obj_toolPane.modeRead){
 				ds_map_replace(global.checkDropdownMap, "menu_track", false);
 				ds_map_replace(global.checkDropdownMap, "menu_resonance", false);
