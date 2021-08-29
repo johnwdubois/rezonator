@@ -385,6 +385,7 @@ ds_map_add(global.checkDropdownMap, "menu_left", false);
 ds_map_add(global.checkDropdownMap, "menu_right", false);
 ds_map_add(global.checkDropdownMap, "menu_prose", false);
 ds_map_add(global.checkDropdownMap, "menu_grid", false);
+
 ds_map_add(global.checkDropdownMap, "menu_left-to-right", false);
 ds_map_add(global.checkDropdownMap, "menu_right-to-left", false);
 ds_map_add(global.checkDropdownMap, "menu_track-arrows", false);
