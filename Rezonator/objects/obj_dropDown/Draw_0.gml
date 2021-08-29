@@ -286,21 +286,31 @@ for (var i = 0; i < optionListSize; i++) {
 			draw_text(shortcutTextX - clipX, optionTextY - clipY, shortcutStr);
 		}
 	}
-	if(instance_exists(obj_wordTip)){
-		if(optionText == "Word Tip" and obj_wordTip.wordTipDisplay == true){
-			var checkX = (global.lang_codes[| global.lang_index] == "he") ? floor(optionRectX1 + (sprite_get_width(spr_ascend) / 2)) : floor(optionRectX2 - (sprite_get_width(spr_ascend) / 2));
-			var checkY = floor(mean(optionRectY1, optionRectY2));
-			draw_sprite_ext(spr_checkmark, 0, checkX - clipX, checkY - clipY, 0.8, 0.8, 0, c_black, 1);
-		}
+	
+	var hasCheck = false;
+	if(ds_map_exists(global.checkDropdownMap, optionText)){
+		scr_updateCheckMap(optionText);
+		hasCheck = ds_map_find_value(global.checkDropdownMap, optionText);
+		var checkX = (global.lang_codes[| global.lang_index] == "he") ? 
+				floor(optionRectX1 + (sprite_get_width(spr_checkmark) / 2)) : floor(optionRectX2 - (sprite_get_width(spr_checkmark) / 2));
+		var checkY = floor(mean(optionRectY1, optionRectY2));
 	}
 	
-	if(optionListType == global.optionListTypeTextDirection){
-		var checkX = (global.lang_codes[| global.lang_index] == "he") ? floor(optionRectX1 + textBuffer) : floor(optionRectX2 - textBuffer);
-		var checkY = floor(mean(optionRectY1, optionRectY2));
-		if(optionText == "menu_right-to-left" and obj_control.drawLineState == obj_control.lineState_rtl){
-			draw_sprite_ext(spr_checkmark, 0, checkX - clipX, checkY - clipY, 0.8, 0.8, 0, c_black, 1);
+	//some checks for duplicate optionText that shouldnt have checkmarks
+	if(optionListType == global.optionListTypeTools and optionText == "menu_stack") hasCheck = false;
+	if(optionListType == global.optionListTypeView and optionText == "menu_prose") hasCheck = false;
+	
+	
+	if(hasCheck){
+		if(shortcutStr != ""){
+			if(global.lang_codes[| global.lang_index] == "he"){
+				draw_sprite_ext(spr_checkmark, 0, checkX - clipX + string_width(shortcutStr) + textBuffer, checkY - clipY, 0.8, 0.8, 0, c_black, 1);
+			}
+			else{
+				draw_sprite_ext(spr_checkmark, 0, checkX - clipX - string_width(shortcutStr) - textBuffer, checkY - clipY, 0.8, 0.8, 0, c_black, 1);
+			}
 		}
-		if(optionText == "menu_left-to-right" and obj_control.drawLineState == obj_control.lineState_ltr){
+		else{
 			draw_sprite_ext(spr_checkmark, 0, checkX - clipX, checkY - clipY, 0.8, 0.8, 0, c_black, 1);
 		}
 	}

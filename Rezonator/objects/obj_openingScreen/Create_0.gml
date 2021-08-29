@@ -327,6 +327,11 @@ global.openingScreenDropDownMap = ds_map_create();
 ds_map_add(global.openingScreenDropDownMap, "menu_import", true);
 ds_map_add(global.openingScreenDropDownMap, "menu_guide", true);
 ds_map_add(global.openingScreenDropDownMap, "menu_about", true);
+ds_map_add(global.openingScreenDropDownMap, "menu_theme", true);
+ds_map_add(global.openingScreenDropDownMap, "menu_zoom", true);
+ds_map_add(global.openingScreenDropDownMap, "help_label_zoom-in", true);
+ds_map_add(global.openingScreenDropDownMap, "help_label_zoom-out", true);
+ds_map_add(global.openingScreenDropDownMap, "menu_language", true);
 ds_map_add(global.openingScreenDropDownMap, "menu_language-en", true);
 ds_map_add(global.openingScreenDropDownMap, "menu_language-es", true);
 ds_map_add(global.openingScreenDropDownMap, "menu_language-he", true);
@@ -363,7 +368,7 @@ ds_map_add(global.keyboardShortcutMap, "menu_wide", ctrlStr + " +");
 ds_map_add(global.keyboardShortcutMap, "menu_narrow", ctrlStr + " -");
 ds_map_add(global.keyboardShortcutMap, "menu_justify", "J");
 ds_map_add(global.keyboardShortcutMap, "menu_prose", "K");
-ds_map_add(global.keyboardShortcutMap, "menu_exit", ctrlStr + "+Q");
+ds_map_add(global.keyboardShortcutMap, "menu_exit", "ALT+SHIFT" + "+Q");
 ds_map_add(global.keyboardShortcutMap, "menu_search", "V");
 ds_map_add(global.keyboardShortcutMap, "menu_filter", ctrlStr + "+P");
 ds_map_add(global.keyboardShortcutMap, "menu_track", "T");
@@ -373,7 +378,44 @@ ds_map_add(global.keyboardShortcutMap, "menu_developer", "ALT+SHIFT+D");
 
 //to abstract dropdown options with checks later on. I've been doing them case by case so far
 global.checkDropdownMap = ds_map_create();
+ds_map_add(global.checkDropdownMap, "menu_resonance", false);
+ds_map_add(global.checkDropdownMap, "menu_track", false);
+ds_map_add(global.checkDropdownMap, "menu_read", false);
+ds_map_add(global.checkDropdownMap, "menu_left", false);
+ds_map_add(global.checkDropdownMap, "menu_right", false);
+ds_map_add(global.checkDropdownMap, "menu_prose", false);
+ds_map_add(global.checkDropdownMap, "menu_grid", false);
+ds_map_add(global.checkDropdownMap, "Left To Right", false);
+ds_map_add(global.checkDropdownMap, "Right To Left", false);
+ds_map_add(global.checkDropdownMap, "All", false);
+ds_map_add(global.checkDropdownMap, "Track Arrows", false);
+ds_map_add(global.checkDropdownMap, "Rez Arrows", false);
+ds_map_add(global.checkDropdownMap, "Track", false);
+ds_map_add(global.checkDropdownMap, "menu_stack", false);
+ds_map_add(global.checkDropdownMap, "menu_language-en", false);
+ds_map_add(global.checkDropdownMap, "menu_language-es", false);
+ds_map_add(global.checkDropdownMap, "menu_language-he", false);
+ds_map_add(global.checkDropdownMap, "menu_language-it", false);
+ds_map_add(global.checkDropdownMap, "menu_language-ja", false);
+ds_map_add(global.checkDropdownMap, "menu_language-vi", false);
+ds_map_add(global.checkDropdownMap, "menu_language-zh", false);
+ds_map_add(global.checkDropdownMap, "menu_language-hy", false);
+ds_map_add(global.checkDropdownMap, "menu_language-gu", false);
+ds_map_add(global.checkDropdownMap, "menu_language-kk", false);
+ds_map_add(global.checkDropdownMap, "menu_language-ru", false);
+ds_map_add(global.checkDropdownMap, "menu_5-min", false);
+ds_map_add(global.checkDropdownMap, "menu_10-min", false);
+ds_map_add(global.checkDropdownMap, "menu_20-min", false);
+ds_map_add(global.checkDropdownMap, "menu_30-min", false);
+ds_map_add(global.checkDropdownMap, "menu_off", false);
+ds_map_add(global.checkDropdownMap, "Word Tip", false);
+ds_map_add(global.checkDropdownMap, "help_label_tag", false);
 
+//checkmarkKeys = [];
+//ds_map_keys_to_array(global.checkDropdownMap, checkmarkKeys);
+//for(var i = 0; i < array_length(checkmarkKeys); i++){
+//	show_debug_message(checkmarkKeys[i]);
+//}
 
 
 showPreImportScreen = false;
