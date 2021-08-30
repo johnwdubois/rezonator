@@ -40,9 +40,7 @@ function scr_dialogueConfirm(){
 			scr_renderFilter2();
 			//scr_searchForWord(obj_control.inputText);
 		}
-		if (obj_control.ePressed) {
-			scr_exportClip(obj_control.inputText);
-		}
+
 		if (obj_control.gPressed) {
 							
 			if (obj_panelPane.discoIDSelected) {
@@ -164,11 +162,7 @@ function scr_dialogueConfirm(){
 			scr_dialogueBoxReplace();
 		}
 		
-		if (obj_control.swapLine) {
-			obj_control.swapLinePos2 = real(string_digits(obj_control.inputText)); 
 
-			scr_swapLine();
-		}
 		
 		if (obj_control.changeAuthor) {
 			global.userName = obj_control.inputText;

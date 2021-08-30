@@ -56,11 +56,6 @@ function scr_dropDownSelect(optionSelected) {
 	{
 	    scr_rightClickWordOptions(optionSelected);
 	}
-	//wordTags
-	else if (optionListType == global.optionListTypeWordTags) //9
-	{
-	    scr_wordTagsOptions(optionSelected);
-	}
 	//newWordOptions
 	else if (optionListType == global.optionListTypeNewWord) //11
 	{

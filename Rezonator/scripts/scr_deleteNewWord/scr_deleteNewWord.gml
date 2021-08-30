@@ -28,7 +28,7 @@ function scr_deleteNewWord(){
 			obj_chain.currentFocusedChainID = chainToSelect;
 			scr_refocusChainEntry(currentWordID)
 			scr_deleteFromChain(true);
-			scr_unFocusAllChains();
+			scr_chainDeselect();
 		}
 
 	}

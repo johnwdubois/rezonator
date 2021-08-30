@@ -78,7 +78,7 @@
   "nineSlice": null,
   "parent": {
     "name": "toolbar",
-    "path": "folders/Sprites/UI/toolbar.yy",
+    "path": "folders/Sprites/toolbar.yy",
   },
   "resourceVersion": "1.0",
   "name": "spr_toolsNew",

@@ -164,7 +164,7 @@ function scr_searchForWord(strToFind) {
 		// If matches were found, switch the user over to the search view 
 		obj_control.searchGridActive = true;
 		obj_control.clearSearch = false;
-		scr_unFocusAllChains();
+		scr_chainDeselect();
 		obj_control.currentActiveLineGrid = obj_control.searchGrid;
 		ds_grid_set_region(obj_control.searchGrid, obj_control.lineGrid_colLineState, 0, obj_control.lineGrid_colLineState, ds_grid_height(obj_control.searchGrid), 0);
 		ds_grid_set(obj_control.searchGrid, obj_control.lineGrid_colLineState, 0, 1);

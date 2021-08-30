@@ -68,7 +68,7 @@ function scr_turnStackerLoop(){
 				prevUnitID = currentUnitID;
 			}
 			// Unfocus all links and chains
-			scr_unFocusAllChains();
+			scr_chainDeselect();
 
 
 		}

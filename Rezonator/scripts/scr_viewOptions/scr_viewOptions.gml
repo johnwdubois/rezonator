@@ -43,30 +43,7 @@ function scr_viewOptions(optionSelected) {
 			}
 		break;
 
-		case "menu_filter":
 		
-			if (obj_control.filterGridActive) {
-				if (obj_control.currentCenterDisplayRow >= 0 and obj_control.currentCenterDisplayRow < ds_grid_height(obj_control.filterGrid)) {
-					obj_control.scrollPlusYDest = obj_control.prevCenterYDest;
-				}
-			
-				// Switch to active grid
-				obj_control.filterGridActive = false;
-				obj_control.currentActiveLineGrid = obj_control.lineGrid;
-			}
-			else {
-			
-				obj_control.prevCenterYDest = obj_control.scrollPlusYDest;
-				// If filter is unactive. activate it
-				with (obj_control) {
-					scr_renderFilter();
-				}
-			}
-			// Add to moveCounter
-			obj_control.moveCounter ++;
-		
-			instance_destroy(obj_dropDown);
-		break;
 	
 		case "menu_filter-context":
 			var dropDownOptionList = ds_list_create();

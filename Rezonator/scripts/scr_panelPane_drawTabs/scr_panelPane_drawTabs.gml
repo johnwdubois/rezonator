@@ -51,7 +51,6 @@ function scr_panelPane_drawTabs() {
 		var tabRectX2 = tabRectX1 + (windowWidth / (tabAmount+0.5));
 		var mouseoverTab = point_in_rectangle(mouse_x, mouse_y, tabRectX1, tabRectY1, tabRectX2, tabRectY2) && !instance_exists(obj_dropDown) && !instance_exists(obj_dialogueBox);
 
-		var buttonSize = sprite_get_width(spr_oneToOne) * buttonScale;
 	
 		if (currentTab != functionChainList_currentTab) {
 			edgeBufferY = functionTabs_tabHeight * 0.3;
@@ -219,7 +218,7 @@ function scr_panelPane_drawTabs() {
 				}
 			
 				// unfocus chains of all type
-				scr_unFocusAllChains();
+				scr_chainDeselect();
 			
 
 			}

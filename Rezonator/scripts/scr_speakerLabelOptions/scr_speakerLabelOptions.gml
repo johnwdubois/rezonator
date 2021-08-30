@@ -5,24 +5,6 @@ function scr_speakerLabelOptions(optionSelected) {
 			
 			switch (optionSelected) {
 				//"Red", "Blue", "Green", "Gold", "Custom"
-				case "help_label_swap-lines":
-					if (!obj_control.dialogueBoxActive) {
-						keyboard_string = "";
-						obj_control.swapLine = true;
-					}
-
-
-					obj_control.dialogueBoxActive = true;
-
-					if (!instance_exists(obj_dialogueBox)) {
-						instance_create_layer(x, y, "InstancesDialogue", obj_dialogueBox);
-					}
-					obj_dialogueBox.inputWindowActive = true;
-				
-				
-					instance_destroy(obj_dropDown);
-					//return true;
-					break;
 					
 				case "option_create-tree":
 					var unitSubMap = global.nodeMap[? obj_control.rightClickID];
@@ -41,12 +23,7 @@ function scr_speakerLabelOptions(optionSelected) {
 						scr_createTree(tokenList);
 					}
 						
-				case "help_label_shuffle":	
-				
-					scr_shuffleDisplayRows();
-					instance_destroy(obj_dropDown);
-					//return true;
-					break;
+
 				case "Toggle Line #":
 					
 					obj_control.showLineNumber = !obj_control.showLineNumber;

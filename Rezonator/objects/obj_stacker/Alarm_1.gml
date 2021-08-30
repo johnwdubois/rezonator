@@ -13,7 +13,7 @@ with (obj_panelPane) {
 	functionChainList_currentTab = functionChainList_tabStackBrush;
 }
 			
-scr_unFocusAllChains();
+scr_chainDeselect();
 			
 //refocus chains related to currently selected tab
 /*

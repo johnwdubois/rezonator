@@ -16,7 +16,7 @@ if (obj_toolPane.currentMode == obj_toolPane.modeRead) {
 obj_panelPane.functionChainList_currentTab = obj_panelPane.functionChainList_tabStackBrush;
 			
 // unfocus chains of all type
-scr_unFocusAllChains();
+scr_chainDeselect();
 			
 //refocus chains related to currently selected tab
 /*
