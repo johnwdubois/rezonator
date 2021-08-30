@@ -9,13 +9,13 @@ function scr_updateCheckMap(optionText){
 		}	
 		if(instance_exists(obj_control)){
 			if(optionListType == global.optionListTypeTextDirection){
-				if(optionText == "Right To Left" and obj_control.drawLineState == obj_control.lineState_rtl){
-					ds_map_replace(global.checkDropdownMap, "Right To Left", true);
-					ds_map_replace(global.checkDropdownMap, "Left To Right", false);
+				if(optionText == "menu_right-to-left" and obj_control.drawLineState == obj_control.lineState_rtl){
+					ds_map_replace(global.checkDropdownMap, "menu_right-to-left", true);
+					ds_map_replace(global.checkDropdownMap, "menu_left-to-right", false);
 				}
-				if(optionText == "Left To Right" and obj_control.drawLineState == obj_control.lineState_ltr){
-					ds_map_replace(global.checkDropdownMap, "Right To Left", false);
-					ds_map_replace(global.checkDropdownMap, "Left To Right", true);
+				if(optionText == "menu_left-to-right" and obj_control.drawLineState == obj_control.lineState_ltr){
+					ds_map_replace(global.checkDropdownMap, "menu_right-to-left", false);
+					ds_map_replace(global.checkDropdownMap, "menu_left-to-right", true);
 				}
 			}
 			if(obj_control.justify == obj_control.justifyRight){
