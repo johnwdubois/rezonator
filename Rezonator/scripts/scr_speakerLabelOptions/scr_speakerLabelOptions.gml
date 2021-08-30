@@ -22,6 +22,7 @@ function scr_speakerLabelOptions(optionSelected) {
 						
 						scr_createTree(tokenList);
 					}
+					instance_destroy(obj_dropDown);
 						
 
 				case "Toggle Line #":

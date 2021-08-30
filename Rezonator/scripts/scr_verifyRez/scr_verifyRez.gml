@@ -2,6 +2,7 @@
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
 function scr_verifyRez(rezFileVerison){
 	
+	
 	if(rezFileVerison != global.versionString){
 	
 		var inst = instance_create_layer(0, 0, "InstancesDialogue", obj_dialogueBox);
@@ -16,7 +17,7 @@ function scr_verifyRez(rezFileVerison){
 	//if only thing in node map is node list then we need to return to opening screen
 	if (!scr_isNumericAndExists(docSubMap, ds_type_map)) {
 		show_debug_message("scr_verifyREZ ... docSubMap is undefined- jumping to opening screen");
-		room_goto(rm_openingScreen);
+		return true;
 	}
 	else{
 
@@ -24,13 +25,13 @@ function scr_verifyRez(rezFileVerison){
 		var unitList = docSubMap[? "unitList"];
 		if (!scr_isNumericAndExists(unitList, ds_type_list)) {
 			show_debug_message("scr_verifyREZ ... unitList is undefined- jumping to opening screen");
-			room_goto(rm_openingScreen);
+			return true;
 		}
 		
 		// make sure unitList has at least 1 thing in it
 		if (ds_list_size(unitList) < 1) {
 			show_debug_message("scr_verifyREZ ... unitList is empty- jumping to opening screen");
-			room_goto(rm_openingScreen);
+			return true;
 		}
 		
 		// if this rez file doesn't have a valid displayUnitList, replace displayUnitList with the unitList

@@ -178,6 +178,14 @@ function scr_newLink(ID) {
 		ds_map_add(linkSubMap, "source", linkSourceID);
 		ds_map_add(linkSubMap, "goal", linkGoalID);
 		
+		// determine subtype of this link
+		var linkSubType = "";
+		if (nodeType == "rez") linkSubType = "rez";
+		else if (nodeType == "track") linkSubType = "track";
+		else if (nodeType == "card") linkSubType = "stack";
+		ds_map_add(linkSubMap, "subtype", linkSubType);
+		
+		
 		// add this link to the chain's linkIDList
 		var chainLinkIDList = ds_map_find_value(chainSubMap, "linkIDList");
 		ds_list_add(chainLinkIDList, linkID);

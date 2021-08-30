@@ -13,7 +13,8 @@ function scr_createTreeLink(clickedEntry){
 	var linkMap = ds_map_create();
 	
 	//set source and goal
-	ds_map_add(linkMap, "type", "link");
+	ds_map_add(linkMap, "type", "treeLink");
+	ds_map_add(linkMap, "subtype", "tree");
 	ds_map_add(linkMap, "source", obj_chain.currentFocusedEntryID);
 	ds_map_add(linkMap, "goal", clickedEntry);
 	

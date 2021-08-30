@@ -12,7 +12,7 @@ function scr_nodeMapSetChainValues(nodeID, chainName, chainColor, chainSeq) {
 		ds_map_add(subMap, "focused", "");
 		ds_map_add(subMap, "filter", false);
 		ds_map_add(subMap, "author", global.userName);
-		ds_map_add(subMap, "chainSeq", chainSeq);
+		ds_map_add(subMap, "chainCreateSeq", chainSeq);
 		ds_map_add(subMap, "visible", true);
 		ds_map_add(subMap, "selected", false);
 		
