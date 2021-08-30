@@ -1,19 +1,0 @@
-Converting GML script: ${project_dir}\scripts\regular_expression_create\regular_expression_create.gml
-Converted description /// @description  regular_expression_create(regular expression)/// @param regular expression
-Converted string - line 62: '"^"' -> "\"^\""
-Converted string - line 95: "\" -> "\\"
-Converted string - line 99: "\" -> "\\"
-Converted string - line 170: "\" -> "\\"
-Converted string - line 229: "\0" -> "\\0"
-Converted string - line 229: "\1" -> "\\1"
-Converted string - line 236: "\2" -> "\\2"
-
-Converting GML script: ${project_dir}\scripts\regular_expression_destroy\regular_expression_destroy.gml
-Converted description /// @description  regular_expression_destroy(compiled regular expression)/// @param compiled regular expression
-
-Converting GML script: ${project_dir}\scripts\regular_expression_match\regular_expression_match.gml
-Converted description /// @description  regular_expression_match(compiled regular expression, input string)/// @param compiled regular expression
-/// @param  input string
-Converted string - line 27: "\" -> "\\"
-
-Updated compatibility script '__global_object_depths.gml'

@@ -35,8 +35,8 @@
   "properties": [],
   "overriddenProperties": [],
   "parent": {
-    "name": "Objects",
-    "path": "folders/Objects.yy",
+    "name": "Misc",
+    "path": "folders/Objects/Misc.yy",
   },
   "resourceVersion": "1.0",
   "name": "obj_stacker",
