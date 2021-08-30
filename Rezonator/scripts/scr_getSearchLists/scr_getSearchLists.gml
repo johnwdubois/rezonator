@@ -47,20 +47,20 @@ function scr_getSearchLists(searchTermList){
 		
 		var listOfChains = "";
 		if(obj_control.searchRange == "menu_stacks_pl"){
-			listOfChains = global.nodeMap[?"stackChainList"];
+			listOfChains = global.nodeMap[?"stackList"];
 			var listToAddTo = stackChainTokenIDList;
 		}
 		else if(obj_control.searchRange == "menu_rez_chains_pl"){
-			listOfChains = global.nodeMap[?"rezChainList"];
+			listOfChains = global.nodeMap[?"resonanceList"];
 			var listToAddTo = rezChainTokenIDList;
 		}
 		else if(obj_control.searchRange == "option_trails"){
-			listOfChains = global.nodeMap[?"trackChainList"];
+			listOfChains = global.nodeMap[?"trailList"];
 			var listToAddTo = trackChainTokenIDList;
 		}
 		else{
 			show_debug_message("NO RANGE GIVEN")
-			listOfChains = global.nodeMap[?"rezChainList"];
+			listOfChains = global.nodeMap[?"resonanceList"];
 			var listToAddTo = rezChainTokenIDList;
 		}
 		

@@ -35,7 +35,7 @@ function scr_getChainTempList(chainID, sorted){
 		var currentEntry = ds_list_find_value(currentSetIDList, j);
 		var currentEntrySubMap = ds_map_find_value(global.nodeMap, currentEntry);
 		
-		var currentWord = ds_map_find_value(currentEntrySubMap, (currentType == "stackChain") ? "unit" : "token");
+		var currentWord = ds_map_find_value(currentEntrySubMap, (currentType == "stack") ? "unit" : "token");
 		if (ds_list_find_index(tempWordList, currentWord) == -1 && !is_undefined(currentWord)) {
 			ds_list_add(tempWordList, currentWord);
 		}

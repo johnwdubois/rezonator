@@ -129,7 +129,7 @@ function scr_drawChunks(){
 
 		
 		var colorOfRect = global.colorThemeSelected2;	
-		var typeOfChain = "rezChain";
+		var typeOfChain = "resonance";
 
 		if (ds_list_size(currentChunkInChainsList) > 0) {
 			var chunksChain = currentChunkInChainsList[| 0];
@@ -146,7 +146,7 @@ function scr_drawChunks(){
 		// draw border of chunk
 		draw_set_color(colorOfRect);
 		draw_set_alpha(1);
-		scr_drawRectWidth(chunkRectX1, chunkRectY1, chunkRectX2, chunkRectY2, 3, (typeOfChain == "trackChain"));
+		scr_drawRectWidth(chunkRectX1, chunkRectY1, chunkRectX2, chunkRectY2, 3, (typeOfChain == "trail"));
 		
 		// if this chunk is focused, fill it in and draw the focused sqaures
 		if (obj_chain.currentFocusedChunkID == currentChunkID || chunkInFocusedChain) {

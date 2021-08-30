@@ -2,9 +2,9 @@
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
 function scr_nodeMapDefaultData(){
 	// add chainLists to nodeMap
-	ds_map_add_list(global.nodeMap, "rezChainList", ds_list_create());
-	ds_map_add_list(global.nodeMap, "trackChainList", ds_list_create());
-	ds_map_add_list(global.nodeMap, "stackChainList", ds_list_create());
+	ds_map_add_list(global.nodeMap, "resonanceList", ds_list_create());
+	ds_map_add_list(global.nodeMap, "trailList", ds_list_create());
+	ds_map_add_list(global.nodeMap, "stackList", ds_list_create());
 
 	// add showList to nodeMap
 	ds_map_add_list(global.nodeMap, "showList", ds_list_create());

@@ -18,11 +18,11 @@ function scr_nodeMapSetChainValues(nodeID, chainName, chainColor, chainSeq) {
 		
 		// set alignment
 		var type = ds_map_find_value(subMap, "type");
-		if (type == "rezChain" || type == "trackChain") {
-			ds_map_add(subMap, "alignChain", (type == "rezChain"));
+		if (type == "resonance" || type == "trail") {
+			ds_map_add(subMap, "alignChain", (type == "resonance"));
 		}
 		
-		if (type == "stackChain") {
+		if (type == "stack") {
 			ds_map_add(subMap, "caption", "");
 		}
 		

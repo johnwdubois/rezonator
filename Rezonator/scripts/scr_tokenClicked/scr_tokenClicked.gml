@@ -58,8 +58,8 @@ function scr_tokenClicked(tokenID){
 			var currentChainType = currentChainSubMap[? "type"];
 			
 			// check whether we should refocus this word's entry or not
-			var refocusEntry = (currentChainType == "rezChain" && obj_toolPane.currentMode == obj_toolPane.modeRez)
-			or (currentChainType == "trackChain" && obj_toolPane.currentMode == obj_toolPane.modeTrack)
+			var refocusEntry = (currentChainType == "resonance" && obj_toolPane.currentMode == obj_toolPane.modeRez)
+			or (currentChainType == "trail" && obj_toolPane.currentMode == obj_toolPane.modeTrack)
 			or (obj_toolPane.currentMode == obj_toolPane.modeRead);
 	
 			if (refocusEntry) {

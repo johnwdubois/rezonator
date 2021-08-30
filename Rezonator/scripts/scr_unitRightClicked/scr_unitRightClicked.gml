@@ -40,7 +40,7 @@ function scr_unitRightClicked(){
 				}
 			
 				// check whether we should refocus this word's entry or not
-				var refocusEntry = (chainType == "stackChain") or (obj_toolPane.currentMode == obj_toolPane.modeRead);
+				var refocusEntry = (chainType == "stack") or (obj_toolPane.currentMode == obj_toolPane.modeRead);
 				
 				if(refocusEntry){
 					obj_chain.currentFocusedChainID = chainID;

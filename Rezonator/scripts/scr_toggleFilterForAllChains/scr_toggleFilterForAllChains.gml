@@ -5,16 +5,16 @@ function scr_toggleFilterForAllChains(chainType){
 	// get list of chains & list of filtered chains for this specific chain type
 	var listOfChains = -1;
 	var listOfFilteredChains = -1;
-	if (chainType == "rezChain") {
-		listOfChains = ds_map_find_value(global.nodeMap, "rezChainList");
+	if (chainType == "resonance") {
+		listOfChains = ds_map_find_value(global.nodeMap, "resonanceList");
 		listOfFilteredChains = obj_chain.filteredRezChainList;
 	}
-	else if (chainType == "trackChain") {
-		listOfChains = ds_map_find_value(global.nodeMap, "trackChainList");
+	else if (chainType == "trail") {
+		listOfChains = ds_map_find_value(global.nodeMap, "trailList");
 		listOfFilteredChains = obj_chain.filteredTrackChainList;
 	}
-	else if (chainType == "stackChain") {
-		listOfChains = ds_map_find_value(global.nodeMap, "stackChainList");
+	else if (chainType == "stack") {
+		listOfChains = ds_map_find_value(global.nodeMap, "stackList");
 		listOfFilteredChains = obj_chain.filteredStackChainList;
 	}
 	else {

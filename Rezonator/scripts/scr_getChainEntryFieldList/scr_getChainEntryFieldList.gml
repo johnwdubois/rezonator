@@ -14,9 +14,9 @@ function scr_getChainEntryFieldList(chainType){
 				
 				var rez = ds_map_find_value(currentFieldSubMap, "rez");
 				var track = ds_map_find_value(currentFieldSubMap, "track");
-				var stack = ds_map_find_value(currentFieldSubMap, "stack");
+				var stack = ds_map_find_value(currentFieldSubMap, "card");
 				
-				if ((chainType == "rezChain" && rez) || (chainType == "trackChain" && track) || (chainType == "stackChain" && stack)) {
+				if ((chainType == "resonance" && rez) || (chainType == "trail" && track) || (chainType == "stack" && stack)) {
 					ds_list_add(list, currentField);
 				}
 			}

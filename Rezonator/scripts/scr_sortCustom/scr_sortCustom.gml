@@ -44,16 +44,16 @@ function scr_sortCustom(chainID){
 		var currentEntry = setIDList[| i];
 		var currentEntrySubMap = global.nodeMap[? currentEntry];
 		var currentEntryTagMap = currentEntrySubMap[? "tagMap"];
-		var currentEntryToken = (chainType == "stackChain") ? currentEntrySubMap[? "unit"] : currentEntrySubMap[? "token"];
+		var currentEntryToken = (chainType == "stack") ? currentEntrySubMap[? "unit"] : currentEntrySubMap[? "token"];
 		var currentChunk = false;
-		if (chainType != "stackChain") {
+		if (chainType != "stack") {
 			currentChunk = (scr_isChunk(currentEntryToken)) ? currentEntryToken : "";
 			if (currentChunk != "") {currentEntryToken = scr_getFirstWordOfChunk(currentEntryToken)}
 		}
 		var currentEntryTokenSubMap = global.nodeMap[? currentEntryToken];
 		if(!scr_isNumericAndExists(currentEntryTokenSubMap, ds_type_map)){continue;}
-		var currentEntryTokenSeq = currentEntryTokenSubMap[? "tokenSeq"];
-		var currentEntryUnit = (chainType == "stackChain") ? currentEntryToken : currentEntryTokenSubMap[? "unit"];
+		var currentEntryTokenSeq = currentEntryTokenSubMap[? "tokenOrder"];
+		var currentEntryUnit = (chainType == "stack") ? currentEntryToken : currentEntryTokenSubMap[? "unit"];
 		var currentEntryUnitSubMap = global.nodeMap[? currentEntryUnit];
 		var currentEntryUnitTagMap = currentEntryUnitSubMap[? "tagMap"];
 		var currentEntryUnitSeq = currentEntryUnitSubMap[? "unitSeq"];
@@ -66,10 +66,10 @@ function scr_sortCustom(chainID){
 			currentVal = currentEntryUnitSeq;
 		}
 		else if (fieldIndex == 1) {
-			currentVal = (chainType == "stackChain") ? currentEntryUnitTagMap[? global.speakerField] : currentEntryTokenSeq;
+			currentVal = (chainType == "stack") ? currentEntryUnitTagMap[? global.speakerField] : currentEntryTokenSeq;
 		}
 		else if (fieldIndex == 2) {
-			if (chainType == "stackChain") {
+			if (chainType == "stack") {
 				currentVal = scr_getUnitText(currentEntryUnitSubMap);
 			}
 			else {

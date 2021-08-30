@@ -58,9 +58,9 @@ function scr_verifyRez(rezFileVerison){
 		//all lists from load rez
 		
 		// get chain lists from nodeMap, and if they aren't provided in the nodeMap then we'll make them!
-		var rezChainList = global.nodeMap[? "rezChainList"];
-		var trackChainList = global.nodeMap[? "trackChainList"];
-		var stackChainList = global.nodeMap[? "stackChainList"];
+		var rezChainList = global.nodeMap[? "resonanceList"];
+		var trackChainList = global.nodeMap[? "trailList"];
+		var stackChainList = global.nodeMap[? "stackList"];
 		var showList = global.nodeMap[? "showList"];
 		var chunkList = global.nodeMap[? "chunkList"];
 		var nodeList = global.nodeMap[? "nodeList"];
@@ -89,15 +89,15 @@ function scr_verifyRez(rezFileVerison){
 	
 		if (!is_numeric(rezChainList)) {
 			rezChainList = ds_list_create();
-			ds_map_add_list(global.nodeMap, "rezChainList", rezChainList);
+			ds_map_add_list(global.nodeMap, "resonanceList", rezChainList);
 		}
 		if (!is_numeric(trackChainList)) {
 			trackChainList = ds_list_create();
-			ds_map_add_list(global.nodeMap, "trackChainList", trackChainList);
+			ds_map_add_list(global.nodeMap, "trailList", trackChainList);
 		}
 		if (!is_numeric(stackChainList)) {
 			stackChainList = ds_list_create();
-			ds_map_add_list(global.nodeMap, "stackChainList", stackChainList);
+			ds_map_add_list(global.nodeMap, "stackList", stackChainList);
 		}
 		if (!is_numeric(showList)) {
 			ds_map_add_list(global.nodeMap, "showList", ds_list_create());

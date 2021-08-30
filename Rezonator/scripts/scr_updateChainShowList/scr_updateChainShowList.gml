@@ -29,8 +29,8 @@ function scr_updateChainShowList(inChainsList, chainShowList, inBoxList, chunkSh
 			if (obj_chain.mouseLineWordID == tokenID && obj_chain.currentFocusedChainID == currentChain) {
 				draw_set_alpha(0.25);
 				draw_set_color(chainColor);
-				if (chainType == "rezChain") draw_rectangle(rectX1, rectY1, rectX2, rectY2, false);
-				else if (chainType == "trackChain") draw_roundrect(rectX1, rectY1, rectX2, rectY2, false);
+				if (chainType == "resonance") draw_rectangle(rectX1, rectY1, rectX2, rectY2, false);
+				else if (chainType == "trail") draw_roundrect(rectX1, rectY1, rectX2, rectY2, false);
 				draw_set_alpha(1);
 			}
 				
@@ -38,7 +38,7 @@ function scr_updateChainShowList(inChainsList, chainShowList, inBoxList, chunkSh
 			if (chainVisible) {
 				draw_set_color(chainColor);
 				draw_set_alpha(1);
-				scr_drawRectWidth(rectX1, rectY1, rectX2, rectY2, 2, chainType == "trackChain");
+				scr_drawRectWidth(rectX1, rectY1, rectX2, rectY2, 2, chainType == "trail");
 			}
 			
 			

@@ -11,8 +11,8 @@ function scr_newToken(newTokenStr, refTokenID) {
 	// get the tokenSeq & displayCol for our new token
 	show_debug_message("insert Before:   "+ string(obj_control.before));
 	var newTokenSeqIncr = (obj_control.before) ? 0 : 1;
-	var newDiscourseTokenSeq = refTokenSubMap[? "discourseTokenSeq"] + newTokenSeqIncr;
-	var newTokenSeq = refTokenSubMap[? "tokenSeq"] + newTokenSeqIncr;
+	var newDiscourseTokenSeq = refTokenSubMap[? "docTokenSeq"] + newTokenSeqIncr;
+	var newTokenSeq = refTokenSubMap[? "tokenOrder"] + newTokenSeqIncr;
 	var newDisplayCol = refTokenSubMap[? "displayCol"] + newTokenSeqIncr;
 
 	
@@ -70,17 +70,17 @@ function scr_newToken(newTokenStr, refTokenID) {
 		
 		// if this token is in the same unit as our new token, we need to increment its tokenSeq
 		if (unitID == currentUnitID) {
-			currentTokenSubMap[? "tokenSeq"]++;
+			currentTokenSubMap[? "tokenOrder"]++;
 		}
 		
 		// increment discourseTokenSeq
-		currentTokenSubMap[? "discourseTokenSeq"]++;
+		currentTokenSubMap[? "docTokenSeq"]++;
 	}
 	
 	if(obj_chain.currentFocusedChainID != ""){
 		var chainSubMap = global.nodeMap[?obj_chain.currentFocusedChainID];
 		if(scr_isNumericAndExists(chainSubMap, ds_type_map)){
-			if(chainSubMap[?"type"] != "stackChain"){
+			if(chainSubMap[?"type"] != "stack"){
 				scr_newLink(newTokenID);
 			}
 		}

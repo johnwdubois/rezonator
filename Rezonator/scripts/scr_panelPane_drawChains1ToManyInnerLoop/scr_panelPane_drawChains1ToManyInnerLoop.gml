@@ -81,7 +81,7 @@ function scr_panelPane_drawChains1ToManyInnerLoop(chain1toManyColFieldList, entr
 					cellText = string(tagMap[?global.speakerField]);
 				}
 				else {
-					cellText = string(tokenSubMap[?"tokenSeq"]);
+					cellText = string(tokenSubMap[?"tokenOrder"]);
 				}
 				break;
 			// text

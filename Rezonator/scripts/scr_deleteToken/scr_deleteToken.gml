@@ -24,7 +24,7 @@ function scr_deleteToken(tokenID){
 	}
 	
 	// update tokenSeq values
-	var tokenSeq = tokenSubMap[? "tokenSeq"];
+	var tokenSeq = tokenSubMap[? "tokenOrder"];
 	var discourseSubMap = global.nodeMap[? global.discourseNode];
 	var discourseTokenList = discourseSubMap[? "tokenList"];
 	var discourseTokenListSize = ds_list_size(discourseTokenList);
@@ -36,11 +36,11 @@ function scr_deleteToken(tokenID){
 		
 		// if this token is in the same unit as our deleted token, let's decrement its tokenSeq
 		if (currentUnit == unitID) {
-			currentTokenSubMap[? "tokenSeq"]--;
+			currentTokenSubMap[? "tokenOrder"]--;
 		}
 		
 		// always decrement discourseTokenSeq
-		currentTokenSubMap[? "discourseTokenSeq"]--;
+		currentTokenSubMap[? "docTokenSeq"]--;
 	}
 	
 	// remove this token from all chains that it is in

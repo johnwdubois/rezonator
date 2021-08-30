@@ -19,7 +19,7 @@ function scr_alignChain2ElectricBoogaloo(chainID){
 	var chainSubMap = ds_map_find_value(global.nodeMap, chainID);
 	if (!scr_isNumericAndExists(chainSubMap, ds_type_map)) exit;
 	var chainType = chainSubMap[? "type"];
-	if (chainType != "rezChain") exit;
+	if (chainType != "resonance") exit;
 	
 	
 	var unitList = ds_list_create();

@@ -2,9 +2,9 @@
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
 function scr_updateFilteredChainLists(){
 	
-	var rezChainList = ds_map_find_value(global.nodeMap, "rezChainList");
-	var trackChainList = ds_map_find_value(global.nodeMap, "trackChainList");
-	var stackChainList = ds_map_find_value(global.nodeMap, "stackChainList");
+	var rezChainList = ds_map_find_value(global.nodeMap, "resonanceList");
+	var trackChainList = ds_map_find_value(global.nodeMap, "trailList");
+	var stackChainList = ds_map_find_value(global.nodeMap, "stackList");
 	
 	// reset filter lists
 	ds_list_clear(obj_chain.filteredRezChainList);

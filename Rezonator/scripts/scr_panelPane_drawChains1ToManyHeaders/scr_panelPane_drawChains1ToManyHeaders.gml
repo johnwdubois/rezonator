@@ -16,15 +16,15 @@ function scr_panelPane_drawChains1ToManyHeaders(){
 		if (currentFunction == functionChainList) {
 			if (functionChainList_currentTab == functionChainList_tabRezBrush) {
 				chain1toManyColFieldList = obj_control.chain1toManyColFieldListRez;
-				chainType ="rezChain";
+				chainType ="resonance";
 			}
 			else if (functionChainList_currentTab == functionChainList_tabTrackBrush) {
 				chain1toManyColFieldList = obj_control.chain1toManyColFieldListTrack;
-				chainType ="trackChain";
+				chainType ="trail";
 			}
 			else if (functionChainList_currentTab == functionChainList_tabStackBrush) {
 				chain1toManyColFieldList = obj_control.chain1toManyColFieldListStack;
-				chainType ="stackChain";
+				chainType ="stack";
 			}
 		}
 	}

@@ -28,7 +28,7 @@ function scr_panelPane_drawShow1toMany(){
 	draw_set_halign(fa_left);
 	draw_set_valign(fa_middle);
 	
-	var stackChainList = global.nodeMap[? "stackChainList"];
+	var stackChainList = global.nodeMap[? "stackList"];
 	
 	
 	// get showID and look it up in nodeMap
@@ -334,7 +334,7 @@ function scr_panelPane_drawShow1toMany(){
 			if (mouse_check_button_released(mb_left) && mouseoverShowPrevButton) {
 			
 				if(currentChainIndex > 0){				
-					scr_setValueForAllChains("stackChain","filter", false);
+					scr_setValueForAllChains("stack","filter", false);
 									
 					// Filter the first current stack
 					var currentStackID = setList[| currentChainIndex - 1];
@@ -352,7 +352,7 @@ function scr_panelPane_drawShow1toMany(){
 					}
 				}
 				else{
-					scr_setValueForAllChains("stackChain", "filter", false);
+					scr_setValueForAllChains("stack", "filter", false);
 					with(obj_panelPane){
 						functionChainList_playShowID = "";
 					}				
@@ -386,7 +386,7 @@ function scr_panelPane_drawShow1toMany(){
 			
 			if(isPlaying){
 				// stop show!
-				scr_setValueForAllChains("stackChain","filter", false);
+				scr_setValueForAllChains("stack","filter", false);
 				with(obj_panelPane){
 					functionChainList_playShowID = "";
 				}
@@ -414,7 +414,7 @@ function scr_panelPane_drawShow1toMany(){
 						functionChainList_playShowID = functionChainContents_showID;
 					}
 							
-					scr_setValueForAllChains("stackChain","filter", false);
+					scr_setValueForAllChains("stack","filter", false);
 									
 					// Filter the first current stack
 					var currentStackID = setList[| 0];
@@ -456,7 +456,7 @@ function scr_panelPane_drawShow1toMany(){
 
 				if(currentChainIndex < setListSize-1 && currentChainIndex != -1){
 									
-					scr_setValueForAllChains("stackChain","filter", false);
+					scr_setValueForAllChains("stack","filter", false);
 									
 					// Filter the first current stack
 					var currentStackID = setList[| currentChainIndex + 1];
@@ -476,7 +476,7 @@ function scr_panelPane_drawShow1toMany(){
 
 				}
 				else{
-					scr_setValueForAllChains("stackChain","filter", false);
+					scr_setValueForAllChains("stack","filter", false);
 					with(obj_panelPane){
 						functionChainList_playShowID = "";
 					}

@@ -33,14 +33,14 @@ function scr_exportChainTempGrid(chainList){
 		ds_grid_set(grid, grid_colFilter, ds_grid_height(grid) - 1, currentChainFilter);
 		
 		// put in stuff that is rez/track 
-		if (currentChainType == "rezChain" || currentChainType == "trackChain") {
+		if (currentChainType == "resonance" || currentChainType == "trail") {
 			// alignment
 			var currentChainAlign = ds_map_find_value(currentChainSubMap, "alignChain");
 			ds_grid_set(grid, grid_colAlign, ds_grid_height(grid) - 1, currentChainAlign);
 		}
 		
 		// get rid of align column if this is stack grid
-		if (currentChainType == "stackChain" && ds_grid_width(grid) > 4) {
+		if (currentChainType == "stack" && ds_grid_width(grid) > 4) {
 			ds_grid_resize(grid, 4, ds_grid_height(grid));
 		}
 	}

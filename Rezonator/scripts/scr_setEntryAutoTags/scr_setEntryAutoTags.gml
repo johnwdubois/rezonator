@@ -20,7 +20,7 @@ function scr_setEntryAutoTags(grid, gridCol, vizSetIDList, chainType){
 			var currentUnitSeq = -1;
 			var currentToken = "";
 			var currentTokenCount = "N/A";
-			if (chainType == "rezChain" || chainType == "trackChain") {
+			if (chainType == "resonance" || chainType == "trail") {
 				currentToken = currentEntrySubMap[? "token"];
 				
 				isChunk = scr_isChunk(currentToken);
@@ -33,7 +33,7 @@ function scr_setEntryAutoTags(grid, gridCol, vizSetIDList, chainType){
 				var tokenSubMap = global.nodeMap[? currentToken];
 				
 				if (scr_isNumericAndExists(tokenSubMap, ds_type_map)) {
-					discourseTokenSeq = tokenSubMap[? "discourseTokenSeq"];
+					discourseTokenSeq = tokenSubMap[? "docTokenSeq"];
 					var tokenUnitID = tokenSubMap[? "unit"];
 					var unitSubMap = global.nodeMap[? tokenUnitID];
 					if (scr_isNumericAndExists(unitSubMap, ds_type_map)) {
@@ -41,7 +41,7 @@ function scr_setEntryAutoTags(grid, gridCol, vizSetIDList, chainType){
 					}
 				}
 			}
-			else if (chainType == "stackChain") {
+			else if (chainType == "stack") {
 				var unitID = currentEntrySubMap[? "unit"];
 				var unitSubMap = global.nodeMap[? unitID];
 				currentUnitSeq = unitSubMap[? "unitSeq"];
@@ -56,7 +56,7 @@ function scr_setEntryAutoTags(grid, gridCol, vizSetIDList, chainType){
 			// calculate auto-tags for rez & track
 			var currentGapWords = "N/A";
 			var currentCharCount = "N/A";
-			if (chainType == "rezChain" || chainType == "trackChain") {
+			if (chainType == "resonance" || chainType == "trail") {
 				if (prevTokenSeq >= 0) {
 					currentGapWords = discourseTokenSeq - prevTokenSeq;
 				}

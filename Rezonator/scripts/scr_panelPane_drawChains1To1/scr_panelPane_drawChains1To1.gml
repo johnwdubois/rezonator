@@ -33,18 +33,18 @@ function scr_panelPane_drawChains1To1(){
 	var chain1to1ColFieldList = -1;
 	with (chainListPanelPaneInst) {
 		if (functionChainList_currentTab == functionChainList_tabRezBrush) {
-			listOfChainsKey = "rezChainList";
-			chainType = "rezChain";
+			listOfChainsKey = "resonanceList";
+			chainType = "resonance";
 			chain1to1ColFieldList = obj_control.chain1to1ColFieldListRez;
 		}
 		else if (functionChainList_currentTab == functionChainList_tabTrackBrush) {
-			listOfChainsKey = "trackChainList";
-			chainType = "trackChain";
+			listOfChainsKey = "trailList";
+			chainType = "trail";
 			chain1to1ColFieldList = obj_control.chain1to1ColFieldListTrack;
 		}
 		else if (functionChainList_currentTab == functionChainList_tabStackBrush) {
-			listOfChainsKey = "stackChainList";
-			chainType = "stackChain";
+			listOfChainsKey = "stackList";
+			chainType = "stack";
 			chain1to1ColFieldList = obj_control.chain1to1ColFieldListStack;
 		}
 	}

@@ -64,9 +64,9 @@ stackTier = 3;
 
 
 
-rezChainNameCounter = ds_list_size(global.nodeMap[? "rezChainList"]);
-trackChainNameCounter = ds_list_size(global.nodeMap[? "trackChainList"]);
-stackChainNameCounter = ds_list_size(global.nodeMap[? "stackChainList"]);
+rezChainNameCounter = ds_list_size(global.nodeMap[? "resonanceList"]);
+trackChainNameCounter = ds_list_size(global.nodeMap[? "trailList"]);
+stackChainNameCounter = ds_list_size(global.nodeMap[? "stackList"]);
 
 
 currentFocusedChainID = "";

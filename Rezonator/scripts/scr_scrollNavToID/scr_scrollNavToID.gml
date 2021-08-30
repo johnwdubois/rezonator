@@ -19,9 +19,9 @@ function scr_scrollNavToID(tab, ID){
 	// find the idList that goes with this tab, make sure that list exists
 	var idList = -1;
 	if (tab == obj_panelPane.functionChainList_tabChunk) idList = global.nodeMap[? "chunkList"];
-	else if (tab == obj_panelPane.functionChainList_tabRezBrush) idList = global.nodeMap[? "rezChainList"];
-	else if (tab == obj_panelPane.functionChainList_tabTrackBrush) idList = global.nodeMap[? "trackChainList"];
-	else if (tab == obj_panelPane.functionChainList_tabStackBrush) idList = global.nodeMap[? "stackChainList"];
+	else if (tab == obj_panelPane.functionChainList_tabRezBrush) idList = global.nodeMap[? "resonanceList"];
+	else if (tab == obj_panelPane.functionChainList_tabTrackBrush) idList = global.nodeMap[? "trailList"];
+	else if (tab == obj_panelPane.functionChainList_tabStackBrush) idList = global.nodeMap[? "stackList"];
 	if (!scr_isNumericAndExists(idList, ds_type_list)) {
 		show_debug_message("idList does not exist, exiting..."); exit;
 	}

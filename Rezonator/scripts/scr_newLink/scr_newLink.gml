@@ -68,11 +68,11 @@ function scr_newLink(ID) {
 	
 	// determine the tier/type of this link
 	var nodeType = "rez";
-	if (focusedChainType == "trackChain") {
+	if (focusedChainType == "trail") {
 		nodeType = "track";
 	}
-	else if (focusedChainType == "stackChain") {
-		nodeType = "stack";
+	else if (focusedChainType == "stack") {
+		nodeType = "card";
 	}
 	
 	var linkSourceID = ""; 
@@ -99,7 +99,7 @@ function scr_newLink(ID) {
 			if (scr_isNumericAndExists(setSubMap, ds_type_map)) {
 
 				ds_map_add(setSubMap, "chain", obj_chain.currentFocusedChainID);
-				ds_map_add(setSubMap, (focusedChainType == "stackChain") ? "unit" : "token", idSet);
+				ds_map_add(setSubMap, (focusedChainType == "stack") ? "unit" : "token", idSet);
 				ds_map_add(setSubMap, "sourceLink", "");
 				ds_map_add(setSubMap, "clickTime", scr_getCurrentSessionTime() / 1000);
 				ds_map_add_list(setSubMap, "goalLinkList", ds_list_create());
@@ -146,7 +146,7 @@ function scr_newLink(ID) {
 		
 		
 	// if this is a rez or track, we will make sure we are adding to the word's inChainsList
-	if (nodeType == "rez" || nodeType == "track" || nodeType == "stack") {
+	if (nodeType == "rez" || nodeType == "track" || nodeType == "card") {
 		var entryWordInChainsList = -1;
 		if (isChunk) {
 			var chunkSubMap = global.nodeMap[?ID];
@@ -206,7 +206,7 @@ function scr_newLink(ID) {
 		}
 	}
 	
-	if (focusedChainType == "rezChain") {
+	if (focusedChainType == "resonance") {
 		show_debug_message("obj_chain.quickLinkCreated:  "+ string(obj_chain.quickLinkCreated))
 		if(obj_chain.quickLinkCreated == false){
 			scr_refreshCliques();

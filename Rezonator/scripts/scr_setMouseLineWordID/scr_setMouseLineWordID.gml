@@ -9,7 +9,7 @@ function scr_setMouseLineWordID(){
 		var chainSubMap = global.nodeMap[? currentFocusedChainID];
 		if (ds_exists(chainSubMap, ds_type_map)) {
 			var chainType = chainSubMap[? "type"];
-			if (chainType == "rezChain" || chainType == "trackChain") {
+			if (chainType == "resonance" || chainType == "trail") {
 				var focusedEntry = chainSubMap[? "focused"];
 				var focusedEntrySubMap = global.nodeMap[? focusedEntry];
 				if (scr_isNumericAndExists(focusedEntrySubMap, ds_type_map)) {

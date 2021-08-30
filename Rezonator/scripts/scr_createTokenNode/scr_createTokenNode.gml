@@ -4,8 +4,8 @@ function scr_createTokenNode(discourseTokenSeq , textToDisplay,newTokenSeq,newDi
 	// make token node
 	var currentTokenNode = scr_addToNodeMap("token");
 	var currentTokenSubMap = global.nodeMap[? currentTokenNode];
-	ds_map_add(currentTokenSubMap, "discourseTokenSeq", discourseTokenSeq);
-	ds_map_add(currentTokenSubMap, "tokenSeq", newTokenSeq);
+	ds_map_add(currentTokenSubMap, "docTokenSeq", discourseTokenSeq);
+	ds_map_add(currentTokenSubMap, "tokenOrder", newTokenSeq);
 	ds_map_add(currentTokenSubMap, "displayCol", newDisplayCol);
 	ds_map_add(currentTokenSubMap, "void", 1);
 	ds_map_add(currentTokenSubMap, "pixelX", 0);

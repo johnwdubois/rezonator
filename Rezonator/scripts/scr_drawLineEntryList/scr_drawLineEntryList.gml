@@ -143,7 +143,7 @@ function scr_drawLineEntryList(unitID, unitSubMap, entryList, pixelY){
 				// if focused chain is a stack, deselect it
 				if (scr_isNumericAndExists(focusedchainIDSubMap, ds_type_map)){
 					var focusedChainType = focusedchainIDSubMap[? "type"];
-					if (focusedChainType == "stackChain") {
+					if (focusedChainType == "stack") {
 						scr_chainDeselect();
 					}
 				}

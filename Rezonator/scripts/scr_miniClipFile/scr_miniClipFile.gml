@@ -29,9 +29,9 @@ function scr_miniClipFile(chosenUnitList){
 	var miniShowList = ds_list_create();
 	var miniChunkList = ds_list_create();
 	ds_map_add_list(miniMap, "nodeList", miniNodeList);
-	ds_map_add_list(miniMap, "rezChainList", miniRezChainList);
-	ds_map_add_list(miniMap, "trackChainList", miniTrackChainList);
-	ds_map_add_list(miniMap, "stackChainList", miniStackChainList);
+	ds_map_add_list(miniMap, "resonanceList", miniRezChainList);
+	ds_map_add_list(miniMap, "trailList", miniTrackChainList);
+	ds_map_add_list(miniMap, "stackList", miniStackChainList);
 	ds_map_add_list(miniMap, "showList", miniShowList);
 	ds_map_add_list(miniMap, "chunkList", miniChunkList);
 	
@@ -112,7 +112,7 @@ function scr_miniClipFile(chosenUnitList){
 			}
 			
 			// change discourse token seq of current token
-			currentTokenSubMap[? "discourseTokenSeq"] = discourseTokenSeq;
+			currentTokenSubMap[? "docTokenSeq"] = discourseTokenSeq;
 			
 			// add current token's submap to our minimap
 			ds_map_add_map(miniMap, currentToken, currentTokenSubMap);
@@ -140,9 +140,9 @@ function scr_miniClipFile(chosenUnitList){
 		
 		// check to see if type is something we want to copy
 		var currentNodeType = currentNodeSubMap[? "type"];
-		if (currentNodeType == "rezChain" || currentNodeType == "rez"
-		|| currentNodeType == "trackChain" || currentNodeType == "track"
-		|| currentNodeType == "stackChain" || currentNodeType == "stack"
+		if (currentNodeType == "resonance" || currentNodeType == "rez"
+		|| currentNodeType == "trail" || currentNodeType == "track"
+		|| currentNodeType == "stack" || currentNodeType == "card"
 		|| currentNodeType == "link" || currentNodeType == "chunk"
 		|| currentNodeType == "map") {
 			
@@ -151,9 +151,9 @@ function scr_miniClipFile(chosenUnitList){
 			ds_map_add_map(miniMap, currentNode, currentNodeSubMapCopy);
 			ds_list_add(miniNodeList, currentNode);
 			
-			if (currentNodeType == "rezChain") ds_list_add(miniRezChainList, currentNode);
-			if (currentNodeType == "trackChain") ds_list_add(miniTrackChainList, currentNode);
-			if (currentNodeType == "stackChain") ds_list_add(miniStackChainList, currentNode);
+			if (currentNodeType == "resonance") ds_list_add(miniRezChainList, currentNode);
+			if (currentNodeType == "trail") ds_list_add(miniTrackChainList, currentNode);
+			if (currentNodeType == "stack") ds_list_add(miniStackChainList, currentNode);
 			
 		}
 	}
@@ -208,7 +208,7 @@ function scr_miniClipFile(chosenUnitList){
 		var currentToken = fullTokenList[| i];
 		var currentTokenSubMap = global.nodeMap[? currentToken];
 		if (scr_isNumericAndExists(currentTokenSubMap, ds_type_map)) {
-			currentTokenSubMap[? "discourseTokenSeq"] = i + 1;
+			currentTokenSubMap[? "docTokenSeq"] = i + 1;
 		}
 	}
 	

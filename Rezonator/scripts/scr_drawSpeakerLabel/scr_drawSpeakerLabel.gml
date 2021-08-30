@@ -114,7 +114,7 @@ function scr_drawSpeakerLabel(unitID, unitSubMap, pixelY) {
 			var focusedChainIDSubMap = global.nodeMap[? obj_chain.currentFocusedChainID];
 			if (scr_isNumericAndExists(focusedChainIDSubMap, ds_type_map)) {
 				var focusedChainType = focusedChainIDSubMap[? "type"];
-				if (focusedChainType != "stackChain") {
+				if (focusedChainType != "stack") {
 					scr_chainDeselect();
 				}
 			}

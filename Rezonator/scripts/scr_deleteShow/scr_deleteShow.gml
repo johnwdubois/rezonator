@@ -42,7 +42,7 @@ function scr_deleteShow(showID){
 		
 		var currentChainSubMap = ds_map_find_value(global.nodeMap, currentFilteredChain);
 		
-		scr_setValueForAllChains("stackChain", "filter", false);
+		scr_setValueForAllChains("stack", "filter", false);
 
 		//delete show from filtered list
 		scr_deleteFromList(obj_chain.filteredStackChainList, currentFilteredChain);

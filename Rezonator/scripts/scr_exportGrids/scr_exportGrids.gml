@@ -62,14 +62,14 @@ function scr_exportGrids() {
 	var tempUnitGrid = scr_exportDiscourseTempGrid(tempUnitGridHeaderList, obj_control.unitFieldList);
 	
 	// make temp entry grids for track & rez
-	var tempTrackGrid = scr_exportChainEntryGrid(global.nodeMap[? "trackChainList"], tempEntryGridHeaderList);
-	var tempRezGrid = scr_exportChainEntryGrid(global.nodeMap[? "rezChainList"], tempEntryGridHeaderList);
+	var tempTrackGrid = scr_exportChainEntryGrid(global.nodeMap[? "trailList"], tempEntryGridHeaderList);
+	var tempRezGrid = scr_exportChainEntryGrid(global.nodeMap[? "resonanceList"], tempEntryGridHeaderList);
 
 
 	// make temporary export grids
-	var tempRezChainGrid = scr_exportChainTempGrid(ds_map_find_value(global.nodeMap, "rezChainList"));
-	var tempTrackChainGrid = scr_exportChainTempGrid(ds_map_find_value(global.nodeMap, "trackChainList"));
-	var tempStackChainGrid = scr_exportChainTempGrid(ds_map_find_value(global.nodeMap, "stackChainList"));
+	var tempRezChainGrid = scr_exportChainTempGrid(ds_map_find_value(global.nodeMap, "resonanceList"));
+	var tempTrackChainGrid = scr_exportChainTempGrid(ds_map_find_value(global.nodeMap, "trailList"));
+	var tempStackChainGrid = scr_exportChainTempGrid(ds_map_find_value(global.nodeMap, "stackList"));
 	var tempChunkGrid = scr_exportChunkTempGrid();
 	var tempSearchGrid = scr_exportSearchTempGrid();
 	var tempLinkGrid = scr_exportLinkTempGrid();

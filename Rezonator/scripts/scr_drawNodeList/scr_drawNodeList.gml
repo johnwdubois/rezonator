@@ -14,9 +14,9 @@ function scr_drawNodeList(){
 	
 	draw_set_color(c_black);
 	draw_text(100, 150, "nodeListSize: " + string(nodeListSize));
-	draw_text(100, 150 + strHeight, "rezChainList: " + scr_getStringOfList(global.nodeMap[? "rezChainList"]));
-	draw_text(100, 150 + (strHeight * 2), "trackChainList: " + scr_getStringOfList(global.nodeMap[? "trackChainList"]));
-	draw_text(100, 150 + (strHeight * 3), "stackChainList: " + scr_getStringOfList(global.nodeMap[? "stackChainList"]));
+	draw_text(100, 150 + strHeight, "rezChainList: " + scr_getStringOfList(global.nodeMap[? "resonanceList"]));
+	draw_text(100, 150 + (strHeight * 2), "trackChainList: " + scr_getStringOfList(global.nodeMap[? "trailList"]));
+	draw_text(100, 150 + (strHeight * 3), "stackChainList: " + scr_getStringOfList(global.nodeMap[? "stackList"]));
 	draw_text(100, 150 + (strHeight * 4), "showList: " + scr_getStringOfList(global.nodeMap[? "showList"]));
 	
 	

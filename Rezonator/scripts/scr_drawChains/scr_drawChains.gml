@@ -19,7 +19,7 @@ function scr_drawChains() {
 	var currentWordStringHeight2 = currentWordStringHeight1;
 
 	var wordTopMargin = obj_control.wordTopMargin;
-	var rezChainList = ds_map_find_value(global.nodeMap, "rezChainList");
+	var rezChainList = ds_map_find_value(global.nodeMap, "resonanceList");
 	var rezChainListSize = ds_list_size(rezChainList);
 	var activeLineGridHeight = ds_grid_height(obj_control.currentActiveLineGrid);
 	var arrowSize = 0.3 + (0.1 * global.fontSize / 5);
@@ -49,12 +49,12 @@ function scr_drawChains() {
 		var currentChainAlign = ds_map_find_value(currentChainSubMap, "alignChain");
 		
 		// make sure this is a rezChain or trackChain and that we should be drawing it
-		if (chainType != "rezChain" && chainType != "trackChain") continue;
+		if (chainType != "resonance" && chainType != "trail") continue;
 		var showRezBorder = false;
 		var showTrackBorder = false;
 		if (currentChainVisible) {
-			if (chainType == "rezChain") showRezBorder = true;
-			else if (chainType == "trackChain") showTrackBorder = true;
+			if (chainType == "resonance") showRezBorder = true;
+			else if (chainType == "trail") showTrackBorder = true;
 		}
 
 	
@@ -182,7 +182,7 @@ function scr_drawChains() {
 				var arrowX = -1;
 				var arrowY = -1;
 				
-				if (chainType == "rezChain") {
+				if (chainType == "resonance") {
 					lineLen = point_distance(rezChainLineX1, rezChainLineY1, rezChainLineX2, rezChainLineY2);
 					arrowDir = point_direction(rezChainLineX1, rezChainLineY1, rezChainLineX2, rezChainLineY2);
 					arrowX = rezChainLineX1 + lengthdir_x(lineLen - (currentWordStringHeight2 * 1.5), arrowDir);
@@ -222,7 +222,7 @@ function scr_drawChains() {
 					draw_set_color(currentChainColor);
 					draw_set_alpha(1);
 
-					if (chainType == "rezChain") {
+					if (chainType == "resonance") {
 
 						if(obj_control.drawLineState == obj_control.lineState_rtl){
 							draw_line_width(lineX1 + linePlusX, lineY1 + (currentWordStringHeight1 / 2), lineX2 + linePlusX, lineY2 + (currentWordStringHeight2 / 2), 2)
@@ -247,7 +247,7 @@ function scr_drawChains() {
 						}
 
 					}
-					else if (chainType == "trackChain") {
+					else if (chainType == "trail") {
 						/*
 						if(obj_control.justify == obj_control.justifyLeft){
 							scr_drawCurvedLine(lineX1 + (currentWordStringWidth1 / 2), lineY1, lineX2 + (currentWordStringWidth2 / 2), lineY2, currentChainColor);
@@ -261,7 +261,7 @@ function scr_drawChains() {
 						scr_drawCurvedLine(trackChainLineX1, lineY1 + (currentWordStringHeight1 / 2), trackChainLineX2, lineY2 - (currentWordStringHeight2 / 2), currentChainColor);
 
 					}
-					if((obj_chain.showRezArrows and chainType = "rezChain") or (obj_chain.showTrackArrows and chainType = "trackChain")){
+					if((obj_chain.showRezArrows and chainType = "resonance") or (obj_chain.showTrackArrows and chainType = "trail")){
 						draw_sprite_ext(spr_linkArrow, 0, arrowX, arrowY, arrowScale, arrowScale, arrowDir, currentChainColor, 1);
 					}
 				}
@@ -314,15 +314,15 @@ function scr_drawChains() {
 			
 				if (currentChainVisible) {
 					if (not mouseLineHide) {
-						if (chainType == "rezChain") {
+						if (chainType == "resonance") {
 							draw_line_width(mouseLineX, mouseLineY, mouse_x, mouse_y, 2);
 						}
-						else if (chainType == "trackChain") {
+						else if (chainType == "trail") {
 							scr_drawCurvedLine(mouseLineX, mouseLineY, mouse_x, mouse_y, currentChainColor);
 						}
-						if ((obj_chain.showRezArrows and chainType = "rezChain") or (obj_chain.showTrackArrows and chainType = "trackChain")) {
+						if ((obj_chain.showRezArrows and chainType = "resonance") or (obj_chain.showTrackArrows and chainType = "trail")) {
 							var arrowAngle = point_direction(mouseLineX, mouseLineY, mouse_x, mouse_y);
-							if (chainType = "trackChain") arrowAngle = (mouseLineY < mouse_y) ? 270 : 90;
+							if (chainType = "trail") arrowAngle = (mouseLineY < mouse_y) ? 270 : 90;
 							draw_sprite_ext(spr_linkArrow, 1, mouse_x, mouse_y, arrowSize, arrowSize, arrowAngle, currentChainColor, 1);
 						}
 					}

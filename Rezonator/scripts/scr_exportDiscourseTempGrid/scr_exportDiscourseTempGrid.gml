@@ -45,7 +45,7 @@ function scr_exportDiscourseTempGrid(headerList, fieldList){
 				if (fieldList == obj_control.tokenFieldList) {
 					// default export data for tokens
 					if (currentHeader == "tokenID") cellValue = string(currentNode);
-					else if (currentHeader == "tokenOrder") cellValue = string(currentNodeSubMap[? "tokenSeq"]);
+					else if (currentHeader == "tokenOrder") cellValue = string(currentNodeSubMap[? "tokenOrder"]);
 					else if (currentHeader == "unitID") cellValue = string(currentUnit);
 					else if (currentHeader == "unitSeq") cellValue = string(currentUnitSubMap[? "unitSeq"]);
 				}

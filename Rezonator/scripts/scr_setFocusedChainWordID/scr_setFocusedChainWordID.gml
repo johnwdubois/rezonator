@@ -8,8 +8,8 @@ function scr_setFocusedChainWordID(){
 			
 			// check to see if the tool corresponds to the focused chain
 			var focusedChainType = chainMap[? "type"];
-			focusedChainWrongTool = ((focusedChainType == "rezChain" && obj_toolPane.currentMode != obj_toolPane.modeRez)
-									or (focusedChainType == "trackChain" && obj_toolPane.currentMode != obj_toolPane.modeTrack)) 
+			focusedChainWrongTool = ((focusedChainType == "resonance" && obj_toolPane.currentMode != obj_toolPane.modeRez)
+									or (focusedChainType == "trail" && obj_toolPane.currentMode != obj_toolPane.modeTrack)) 
 									and obj_toolPane.currentMode != obj_toolPane.modeRead;
 
 			
@@ -17,7 +17,7 @@ function scr_setFocusedChainWordID(){
 			var focusedChainFocused = chainMap[? "focused"];
 			var focusedEntrySubMap = global.nodeMap[? focusedChainFocused];
 			if (scr_isNumericAndExists(focusedEntrySubMap, ds_type_map)) {			
-				var focusedEntryKey = (focusedChainType == "stackChain") ? "unit" : "token";
+				var focusedEntryKey = (focusedChainType == "stack") ? "unit" : "token";
 				focusedChainWordID = focusedEntrySubMap[? focusedEntryKey];
 			}
 		}

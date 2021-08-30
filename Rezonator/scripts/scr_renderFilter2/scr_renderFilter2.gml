@@ -71,7 +71,7 @@ function scr_renderFilter2(){
 			scr_addToListOnce(filterUnitList, currentNodeID);
 			currentNodeSubMap[? "active"] = true;
 		}
-		else if (currentNodeType == "stackChain") {
+		else if (currentNodeType == "stack") {
 			// if this node is a stackChain, we can loop through its entry list and add each unit
 			var setIDList = currentNodeSubMap[? "setIDList"];
 			if (scr_isNumericAndExists(setIDList, ds_type_list)) {
@@ -90,7 +90,7 @@ function scr_renderFilter2(){
 				}
 			}
 		}
-		else if (currentNodeType == "rezChain" ||currentNodeType == "trackChain") {
+		else if (currentNodeType == "resonance" ||currentNodeType == "trail") {
 			// if this node is a stackChain, we can loop through its entry list and add each unit
 			var setIDList = currentNodeSubMap[? "setIDList"];
 			if (scr_isNumericAndExists(setIDList, ds_type_list)) {

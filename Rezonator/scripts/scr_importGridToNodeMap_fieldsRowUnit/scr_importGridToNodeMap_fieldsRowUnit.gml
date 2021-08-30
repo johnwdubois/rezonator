@@ -157,8 +157,8 @@ function scr_importGridToNodeMap_fieldsRowUnit(row){
 					// make token node
 					var currentTokenNode = scr_addToNodeMap("token");
 					var currentTokenSubMap = global.nodeMap[? currentTokenNode];
-					ds_map_add(currentTokenSubMap, "discourseTokenSeq", ds_list_size(tokenList) + 1);
-					ds_map_add(currentTokenSubMap, "tokenSeq", tokenCount);
+					ds_map_add(currentTokenSubMap, "docTokenSeq", ds_list_size(tokenList) + 1);
+					ds_map_add(currentTokenSubMap, "tokenOrder", tokenCount);
 					ds_map_add(currentTokenSubMap, "displayCol", tokenCount - 1);
 					ds_map_add(currentTokenSubMap, "void", 1);
 					ds_map_add(currentTokenSubMap, "pixelX", 0);

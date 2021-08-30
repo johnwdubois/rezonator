@@ -28,8 +28,8 @@ function scr_newChain(ID) {
 			aligned = true;
 			obj_chain.rezChainNameCounter++;
 			chainSeq = obj_chain.rezChainNameCounter;
-			chainName = "Rez " + string(ds_list_size(global.nodeMap[?"rezChainList"]) + 1);
-			chainType = "rezChain";
+			chainName = "Rez " + string(ds_list_size(global.nodeMap[?"resonanceList"]) + 1);
+			chainType = "resonance";
 			if(obj_control.shapeStartText == true) {
 				obj_control.shapeStartText = false;
 				obj_control.shape = obj_control.shapeBlock;
@@ -38,15 +38,15 @@ function scr_newChain(ID) {
 		else if (obj_toolPane.currentMode == obj_toolPane.modeTrack) {
 			obj_chain.trackChainNameCounter++;
 			chainSeq = obj_chain.trackChainNameCounter;
-			chainName = "Trail " + string(ds_list_size(global.nodeMap[?"trackChainList"]) + 1);
-			chainType = "trackChain";
+			chainName = "Trail " + string(ds_list_size(global.nodeMap[?"trailList"]) + 1);
+			chainType = "trail";
 		}
 	}
 	else if (idType == "unit") {
 		obj_chain.stackChainNameCounter++;
 		chainSeq = obj_chain.stackChainNameCounter;
-		chainName = "Stack " + string(ds_list_size(global.nodeMap[?"stackChainList"]) + 1);
-		chainType = "stackChain";	
+		chainName = "Stack " + string(ds_list_size(global.nodeMap[?"stackList"]) + 1);
+		chainType = "stack";	
 	}
 
 	
@@ -59,16 +59,16 @@ function scr_newChain(ID) {
 	
 	// if user is doing a quickstack, and they are starting the quickstack on a unit that is not in a chain, and this is the first chain being made, let's save this chain
 	show_debug_message("dragStartOriginalChain: " + string(obj_chain.dragStartOriginalChain));
-	if (chainType == "stackChain" && obj_chain.dragStartOriginalChain == "") {
+	if (chainType == "stack" && obj_chain.dragStartOriginalChain == "") {
 		obj_chain.dragStartOriginalChain = obj_chain.currentChainID;
 		show_debug_message("...dragStartOriginalChain: " + string(obj_chain.dragStartOriginalChain));
 	}
 	
 	// get list of chains from nodeMap and add to it
-	var listOfChainsKey = "rezChainList";
-	if (chainType == "rezChain") listOfChainsKey = "rezChainList";
-	else if (chainType == "trackChain") listOfChainsKey = "trackChainList";
-	else if (chainType == "stackChain") listOfChainsKey = "stackChainList";
+	var listOfChainsKey = "resonanceList";
+	if (chainType == "resonance") listOfChainsKey = "resonanceList";
+	else if (chainType == "trail") listOfChainsKey = "trailList";
+	else if (chainType == "stack") listOfChainsKey = "stackList";
 	var listOfChains = global.nodeMap[? listOfChainsKey];
 	ds_list_add(listOfChains, obj_chain.currentChainID);
 
@@ -84,7 +84,7 @@ function scr_newChain(ID) {
 	scr_nodeMapSetChainValues(obj_chain.currentChainID, chainName, chainColor, chainSeq);
 	
 	// add stack-specific fields
-	if (chainType == "stackChain") {
+	if (chainType == "stack") {
 		ds_map_add(newChainSubMap, "caption", "");
 		ds_map_add(newChainSubMap, "stackType", obj_control.activeStackType);
 	}

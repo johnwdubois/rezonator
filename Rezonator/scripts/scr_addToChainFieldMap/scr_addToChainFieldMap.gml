@@ -89,7 +89,7 @@ function scr_addToChainFieldMap(map, key, tagSet, shortcutSet, rezTag, trackTag,
 		// rezTag, trackTag, and stackTag should all be boolean values
 		ds_map_add(subMap, "rez", rezTag);
 		ds_map_add(subMap, "track", trackTag);
-		ds_map_add(subMap, "stack", stackTag);
+		ds_map_add(subMap, "card", stackTag);
 	
 	}
 

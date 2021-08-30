@@ -53,7 +53,7 @@ function scr_quickLinkCreation(){
 				var currentChain = ds_list_find_value(currentWordInChainsList, j);
 				var currentChainSubMap = ds_map_find_value(global.nodeMap, currentChain);
 				var currentChainType = ds_map_find_value(currentChainSubMap, "type");
-				if (currentChainType == "trackChain") {
+				if (currentChainType == "trail") {
 					wordIsInTrackChain = true;
 				}
 			}
@@ -110,7 +110,7 @@ function scr_quickLinkCreation(){
 			if (scr_isNumericAndExists(focusedChainSubMap, ds_type_map)) {
 				
 				var focusedChainType = focusedChainSubMap[? "type"];
-				if (focusedChainType == "rezChain") {
+				if (focusedChainType == "resonance") {
 					var setIDList = focusedChainSubMap[? "setIDList"];
 					var setIDListSize = ds_list_size(setIDList);
 					

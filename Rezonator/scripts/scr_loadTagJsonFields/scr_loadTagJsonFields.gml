@@ -165,10 +165,10 @@ function scr_loadTagJsonFields(originalTagMap, originalFieldList, tagMapJson, no
 		}
 		var currentNodeType = currentSubMap[? "type"];
 		
-		if (chainField && (currentNodeType != "rezChain" && currentNodeType != "trackChain" && currentNodeType != "stackChain")) {
+		if (chainField && (currentNodeType != "resonance" && currentNodeType != "trail" && currentNodeType != "stack")) {
 			continue;
 		}
-		if (entryField && (currentNodeType != "rez" && currentNodeType != "track" && currentNodeType != "stack")) {
+		if (entryField && (currentNodeType != "rez" && currentNodeType != "track" && currentNodeType != "card")) {
 			continue;
 		}
 		if (linkField && (currentNodeType != "link")) {

@@ -24,7 +24,7 @@ function scr_renderQuickFilter() {
 
 	
 	
-			if (chainType == "stackChain") {
+			if (chainType == "stack") {
 		
 				// get unitIDs for this stack and put them in a temporary list
 				var unitIDList = ds_list_create();
@@ -65,7 +65,7 @@ function scr_renderQuickFilter() {
 				}
 				ds_list_destroy(unitIDList);
 			}
-			else if (chainType == "rezChain" || chainType == "trackChain") {
+			else if (chainType == "resonance" || chainType == "trail") {
 		
 				// set information in quickFilterGrid for words in this chain
 				for (var i = 0; i < setIDListSize; i++) {

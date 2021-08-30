@@ -36,7 +36,7 @@ function scr_sortVizSetIDList(chainID){
 		var currentWordOrder = -1;
 		
 		// if this is a rez/track, get each entry's UnitSeq and WordOrder ... if this is a stack, we just get each entry's UnitSeq
-		if (chainType == "rezChain" || chainType == "trackChain") {
+		if (chainType == "resonance" || chainType == "trail") {
 			currentWordID = currentEntrySubMap[? "token"];
 			
 			// check if this is a chunk, and if so, just use the chunk's first word to sort on
@@ -55,11 +55,11 @@ function scr_sortVizSetIDList(chainID){
 					currentUnitSeq = currentUnitSubMap[?"unitSeq"];//= ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colUnitID, currentWordID - 1);
 				}
 
-				currentWordOrder = currentTokenIDSubMap[? "discourseTokenSeq"];//= ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colWordSeq, currentWordID - 1);
+				currentWordOrder = currentTokenIDSubMap[? "docTokenSeq"];//= ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colWordSeq, currentWordID - 1);
 
 			}
 		}
-		else if (chainType == "stackChain") {
+		else if (chainType == "stack") {
 			var unitID = currentEntrySubMap[? "unit"];
 			var unitSubMap = global.nodeMap[?unitID];
 			currentUnitSeq = unitSubMap[?"unitSeq"];

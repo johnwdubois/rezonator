@@ -34,20 +34,20 @@ function scr_panelPane_drawChainsList() {
 	var selectedList = -1;
 	var hiddenList = -1;
 	if (functionChainList_currentTab == functionChainList_tabRezBrush) {
-		listOfChainsKey = "rezChainList";
-		tabChainType = "rezChain";
+		listOfChainsKey = "resonanceList";
+		tabChainType = "resonance";
 		selectedList = obj_control.selectedRezChainList;
 		hiddenList = obj_control.hiddenRezChainList;
 	}
 	else if (functionChainList_currentTab == functionChainList_tabTrackBrush) {
-		listOfChainsKey = "trackChainList";
-		tabChainType = "trackChain";
+		listOfChainsKey = "trailList";
+		tabChainType = "trail";
 		selectedList = obj_control.selectedTrackChainList;
 		hiddenList = obj_control.hiddenTrackChainList;
 	}
 	else if (functionChainList_currentTab == functionChainList_tabStackBrush) {
-		listOfChainsKey = "stackChainList";
-		tabChainType = "stackChain";
+		listOfChainsKey = "stackList";
+		tabChainType = "stack";
 		selectedList = obj_control.selectedStackChainList;
 		hiddenList = obj_control.hiddenStackChainList;
 	}
@@ -151,7 +151,7 @@ function scr_panelPane_drawChainsList() {
 						for (var j = 0; j < setIDListSize; j++) {
 							var currentEntry = ds_list_find_value(vizSetIDList, j);
 							var currentEntrySubMap = ds_map_find_value(global.nodeMap, currentEntry);
-							if (currentChainType == "stackChain") {
+							if (currentChainType == "stack") {
 								var currentUnitID = ds_map_find_value(currentEntrySubMap, "unit");
 								var currentUnitSubMap = global.nodeMap[?currentUnitID];
 								if(scr_isNumericAndExists(currentUnitSubMap,ds_type_map)) {

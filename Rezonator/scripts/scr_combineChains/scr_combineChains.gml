@@ -30,7 +30,7 @@ function scr_combineChains(focusedChain, clickedChain){
 	for (var i = 0; i < clickedChainSetIDListSize; i++) {
 		var currentEntry = ds_list_find_value(clickedChainSetIDList, i);
 		var currentEntrySubMap = ds_map_find_value(global.nodeMap, currentEntry);
-		var currentWordOrUnit = ds_map_find_value(currentEntrySubMap, (focusedChainType == "stackChain") ? "unit" : "token");
+		var currentWordOrUnit = ds_map_find_value(currentEntrySubMap, (focusedChainType == "stack") ? "unit" : "token");
 		if (ds_list_find_index(tempList, currentWordOrUnit) == -1) {
 			ds_list_add(tempList, currentWordOrUnit);
 		}

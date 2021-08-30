@@ -48,7 +48,7 @@ function scr_exportChainEntryGrid(chainList, headerList){
 		// so we can put that data into our tempGrid so that we can sort on it after
 		var earliestTokenSubMap = global.nodeMap[? earliestTokenID];
 		var earliestUnitSeq = earliestTokenSubMap[? "unit"];
-		var earliestTokenSeq = earliestTokenSubMap[? "tokenSeq"];
+		var earliestTokenSeq = earliestTokenSubMap[? "tokenOrder"];
 		ds_grid_set(tempGrid, tempGrid_colChainID, i, currentChain);
 		ds_grid_set(tempGrid, tempGrid_colUnitSeq, i, earliestUnitSeq);
 		ds_grid_set(tempGrid, tempGrid_colTokenSeq, i, earliestTokenSeq);
