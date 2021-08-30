@@ -463,7 +463,6 @@ replace = false;
 splitWord = false;
 changeAuthor = false;
 changeZero = false;
-newTagCategory = false;
 newCustomTagToken = false;
 newCustomFieldToken = false;
 newCustomTagUnit = false;

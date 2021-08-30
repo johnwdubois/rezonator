@@ -1,18 +1,5 @@
 function scr_splitString() {
-	/*
-		scr_splitString();
-	
-		Last Updated: 2019-06-23
-	
-		Called from: obj_control
-	
-		Purpose: return ds_list full of split strings from one main string
-	
-		Mechanism: Take in string from search word to split up according to delimiter
-					returns ds_list with individual strings.
-				
-		Author: Brady Moore
-	*/
+
 
 
 	// scr_splitString(:string, delimiter:string, ?list<string>):list<string>

@@ -5,14 +5,9 @@ function scr_dropDownSelect(optionSelected) {
 
 	//optionListType == 0 --> switch sorting columns for sort pane
 
-	// Sort
-	if (optionListType == global.optionListTypeSort)// 0
-	{
-	    scr_sortOptions(optionSelected);
-	    instance_destroy();
-	}
+
 	//chainListEdit
-	else if (optionListType == global.optionListTypeChainList) //1
+	if (optionListType == global.optionListTypeChainList) //1
 	{
 	    scr_chainListOptions(optionSelected);
 	}

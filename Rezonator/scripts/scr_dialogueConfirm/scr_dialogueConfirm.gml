@@ -4,7 +4,7 @@ function scr_dialogueConfirm(){
 	
 	// check if they are trying to download newest version of rezonator
 	if (room == rm_openingScreen) {
-		scr_openURL("https://rezonator.com/download/");
+		url_open("https://rezonator.com/download/");
 		instance_destroy();
 		exit;
 	}
@@ -38,7 +38,6 @@ function scr_dialogueConfirm(){
 			scr_createNewSearch(listOfWordsInput);
 			obj_control.searchGridActive = true;
 			scr_renderFilter2();
-			//scr_searchForWord(obj_control.inputText);
 		}
 
 		if (obj_control.gPressed) {
@@ -168,9 +167,6 @@ function scr_dialogueConfirm(){
 			global.userName = obj_control.inputText;
 		}
 			
-		if (obj_control.newTagCategory) {
-			scr_dialogueBoxNewTagCategory();
-		}
 		
 		with (obj_panelPane) {
 			obj_control.discoIDSelected = false;
@@ -188,13 +184,13 @@ function scr_dialogueConfirm(){
 		if (clearAllStacks || clearAllLinks) {
 				
 			// delete all stack chains!
-			show_debug_message("scr_drawQuestionBox() ... clearAllStacks");
+			show_debug_message("scr_dialogueConfirm() ... clearAllStacks");
 			scr_deleteAllChains(global.nodeMap[? "stackChainList"]);
 		}
 		if (clearAllRez || clearAllLinks) {
 				
 			// delete all rez chains!!
-			show_debug_message("scr_drawQuestionBox() ... clearAllRez");
+			show_debug_message("scr_dialogueConfirm() ... clearAllRez");
 			scr_deleteAllChains(global.nodeMap[? "rezChainList"]);
 		}
 		if (clearAllTracks || clearAllLinks) {

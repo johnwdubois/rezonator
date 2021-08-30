@@ -216,14 +216,7 @@ function scr_rightClickWordOptions(optionSelected) {
 			
 			instance_destroy();
 			break;
-		case "Split Line":
-			
-			if (instance_exists(obj_control)) {
-				scr_splitLine(obj_control.rightClickWordID);
-			}
 
-			instance_destroy();
-			break;	
 			
 			
 		default:

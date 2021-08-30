@@ -159,10 +159,6 @@ function scr_setDialogueText(){
 			}
 		}
 		
-		if (obj_control.newTagCategory) {
-			titleText = scr_get_translation("option_new-field");
-			descriptionText = scr_get_translation("msg_new-category");
-		}
 
 	}
 }
