@@ -89,6 +89,9 @@ function scr_drawNodeList(){
 		
 	// scroll with arrow keys
 	if (nodeListSize > 0) {
+		if((keyboard_check(vk_down) or keyboard_check(vk_up)) and alarm_get(0) == -1){
+			alarm[0] = 5;
+		}
 		if (keyboard_check_pressed(vk_up)) {
 			selectedNodeIndex--;
 		}
