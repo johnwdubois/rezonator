@@ -461,10 +461,8 @@ recolor = false;
 caption = false;
 replace = false;
 splitWord = false;
-swapLine = false;
 changeAuthor = false;
 changeZero = false;
-newTagCategory = false;
 newCustomTagToken = false;
 newCustomFieldToken = false;
 newCustomTagUnit = false;
@@ -550,8 +548,6 @@ mouseoverScrollBar = false;
 
 //toolTipText = 0;
 
-swapLinePos1 =  0;
-swapLinePos2 =  0;
 
 showLineNumber = true;
 showSpeakerName = false;

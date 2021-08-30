@@ -1,16 +1,3 @@
-/*
-	scr_findInGridTwoParameters(grid, row);
-	
-	Last Updated: 2018-09-11
-	
-	Called from: any object
-	
-	Purpose: delete row from a grid
-	
-	Mechanism: use GML grid functions to resize and reset grid cells to necessary values
-	
-	Author: Terry DuBois
-*/
 function scr_gridDeleteRow(grid, row) {
 
 	var gridWidth = ds_grid_width(grid);

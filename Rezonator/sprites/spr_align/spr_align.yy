@@ -48,7 +48,7 @@
             {"id":"2b5f5767-676c-4f79-a0a7-fd4dd5326a60","Key":1.0,"Length":1.0,"Stretch":false,"Disabled":false,"IsCreationKey":false,"Channels":{"0":{"Id":{"name":"449cf6b3-b088-4dba-93b9-5ca701b64840","path":"sprites/spr_align/spr_align.yy",},"resourceVersion":"1.0","resourceType":"SpriteFrameKeyframe",},},"resourceVersion":"1.0","resourceType":"Keyframe<SpriteFrameKeyframe>",},
           ],"resourceVersion":"1.0","resourceType":"KeyframeStore<SpriteFrameKeyframe>",},"trackColour":0,"inheritsTrackColour":true,"builtinName":0,"traits":0,"interpolation":1,"tracks":[],"events":[],"modifiers":[],"isCreationTrack":false,"resourceVersion":"1.0","tags":[],"resourceType":"GMSpriteFramesTrack",},
     ],
-    "visibleRange": {"x":0.0,"y":0.0,},
+    "visibleRange": null,
     "lockOrigin": false,
     "showBackdrop": true,
     "showBackdropImage": false,
@@ -74,7 +74,7 @@
   "nineSlice": null,
   "parent": {
     "name": "panelPane",
-    "path": "folders/Sprites/UI/panelPane.yy",
+    "path": "folders/Sprites/panelPane.yy",
   },
   "resourceVersion": "1.0",
   "name": "spr_align",

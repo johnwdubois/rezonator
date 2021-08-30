@@ -1,17 +1,3 @@
-/*
-	scr_currentTopLine();
-	
-	Last Updated: 2020-10-26
-	
-	Called from: obj_control
-	
-	Purpose: Return the Line in the Discourse estimated to be in the Top of the screen
-	
-	Mechanism: Get the position of the top of the discourse against the Nav Window, then loop through the Lines within 
-	the drawRange to find the Line with the closest Y position
-	
-	Author: Terry DuBois, Georgio Klironomos
-*/
 function scr_currentTopLine() {
 	
 	// Get the destination position

@@ -1,16 +1,4 @@
 function scr_gridMultiColSortPart() {
-	/*
-		scr_gridMultiColSortPart(grid, args[,], 0)
-	
-		Last Updated: 2019-12-27
-	
-		Called from: scr_gridMultiColSort
-	
-		Purpose: Sorts passed grid based on multiple columns
-	
-		Mechanism: Creates temporary grids based on existing grid, sorts those, and uses those
-		to overwrite some of the original grid
-	*/
 
 
 	var grid, args, argsSize, i, gridHeight, gridWidth;

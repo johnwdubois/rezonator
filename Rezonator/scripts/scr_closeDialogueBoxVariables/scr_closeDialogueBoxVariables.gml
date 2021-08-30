@@ -17,10 +17,8 @@ function scr_closeDialogueBoxVariables(){
 			caption = false;
 			replace = false;
 			splitWord = false;
-			swapLine = false;
 			changeAuthor = false;
 			changeZero = false;
-			newTagCategory = false;
 			newCustomTagToken = false;
 			newCustomFieldToken = false;
 			newCustomTagUnit = false;

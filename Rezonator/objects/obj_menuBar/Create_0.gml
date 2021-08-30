@@ -25,15 +25,6 @@ menuBarGrid_rowHelp = 6;
 
 
 
-fileDropDownOptionListType = 4; // optionListTypeFile = 4;
-editDropDownOptionListType = 42; // optionListTypeEdit = 42;
-viewDropDownOptionListType = 6; // optionListTypeView = 6;
-toolsDropDownOptionListType = 22; //optionListTypeTools = 22;
-settingsDropDownOptionListType = 21; // optionListTypeSettings = 21;
-filterDropDownOptionListType = 33; // optionListTypeFilter = 33;
-helpDropDownOptionListType = 23; // optionListTypeHelp = 23;
-
-
 
 fileOptionList = ds_list_create();
 ds_list_add(fileOptionList, "menu_save", 
@@ -92,37 +83,37 @@ ds_list_add(helpOptionList, "menu_help",
 ds_grid_set(menuBarGrid, menuBarGrid_colString, menuBarGrid_rowFile, "menu_file");
 ds_grid_set(menuBarGrid, menuBarGrid_colMouseOver, menuBarGrid_rowFile, false);
 ds_grid_set(menuBarGrid, menuBarGrid_colOptionList, menuBarGrid_rowFile, fileOptionList);
-ds_grid_set(menuBarGrid, menuBarGrid_colOptionListType, menuBarGrid_rowFile, fileDropDownOptionListType);
+ds_grid_set(menuBarGrid, menuBarGrid_colOptionListType, menuBarGrid_rowFile, global.optionListTypeFile);
 
 ds_grid_set(menuBarGrid, menuBarGrid_colString, menuBarGrid_rowEdit, "menu_edit");
 ds_grid_set(menuBarGrid, menuBarGrid_colMouseOver, menuBarGrid_rowEdit, false);
 ds_grid_set(menuBarGrid, menuBarGrid_colOptionList, menuBarGrid_rowEdit, editOptionList);
-ds_grid_set(menuBarGrid, menuBarGrid_colOptionListType, menuBarGrid_rowEdit, editDropDownOptionListType);
+ds_grid_set(menuBarGrid, menuBarGrid_colOptionListType, menuBarGrid_rowEdit, global.optionListTypeEdit);
 
 ds_grid_set(menuBarGrid, menuBarGrid_colString, menuBarGrid_rowView, "menu_view");
 ds_grid_set(menuBarGrid, menuBarGrid_colMouseOver, menuBarGrid_rowView, false);
 ds_grid_set(menuBarGrid, menuBarGrid_colOptionList, menuBarGrid_rowView, viewOptionList);
-ds_grid_set(menuBarGrid, menuBarGrid_colOptionListType, menuBarGrid_rowView, viewDropDownOptionListType);
+ds_grid_set(menuBarGrid, menuBarGrid_colOptionListType, menuBarGrid_rowView, global.optionListTypeView);
 
 ds_grid_set(menuBarGrid, menuBarGrid_colString, menuBarGrid_rowFilter, "menu_filter");
 ds_grid_set(menuBarGrid, menuBarGrid_colMouseOver, menuBarGrid_rowFilter, false);
 ds_grid_set(menuBarGrid, menuBarGrid_colOptionList, menuBarGrid_rowFilter, filterOptionList);
-ds_grid_set(menuBarGrid, menuBarGrid_colOptionListType, menuBarGrid_rowFilter, filterDropDownOptionListType);
+ds_grid_set(menuBarGrid, menuBarGrid_colOptionListType, menuBarGrid_rowFilter, global.optionListTypeFilter);
 
 ds_grid_set(menuBarGrid, menuBarGrid_colString, menuBarGrid_rowTools, "menu_tools");
 ds_grid_set(menuBarGrid, menuBarGrid_colMouseOver, menuBarGrid_rowTools, false);
 ds_grid_set(menuBarGrid, menuBarGrid_colOptionList, menuBarGrid_rowTools, toolsOptionList);
-ds_grid_set(menuBarGrid, menuBarGrid_colOptionListType, menuBarGrid_rowTools, toolsDropDownOptionListType);
+ds_grid_set(menuBarGrid, menuBarGrid_colOptionListType, menuBarGrid_rowTools, global.optionListTypeTools);
 
 ds_grid_set(menuBarGrid, menuBarGrid_colString, menuBarGrid_rowSettings, "menu_settings");
 ds_grid_set(menuBarGrid, menuBarGrid_colMouseOver, menuBarGrid_rowSettings, false);
 ds_grid_set(menuBarGrid, menuBarGrid_colOptionList, menuBarGrid_rowSettings, settingsOptionList);
-ds_grid_set(menuBarGrid, menuBarGrid_colOptionListType, menuBarGrid_rowSettings, settingsDropDownOptionListType);
+ds_grid_set(menuBarGrid, menuBarGrid_colOptionListType, menuBarGrid_rowSettings, global.optionListTypeSettings);
 
 ds_grid_set(menuBarGrid, menuBarGrid_colString, menuBarGrid_rowHelp, "menu_help");
 ds_grid_set(menuBarGrid, menuBarGrid_colMouseOver, menuBarGrid_rowHelp, false);
 ds_grid_set(menuBarGrid, menuBarGrid_colOptionList, menuBarGrid_rowHelp, helpOptionList);
-ds_grid_set(menuBarGrid, menuBarGrid_colOptionListType, menuBarGrid_rowHelp, helpDropDownOptionListType);
+ds_grid_set(menuBarGrid, menuBarGrid_colOptionListType, menuBarGrid_rowHelp, global.optionListTypeHelp);
 
 
 

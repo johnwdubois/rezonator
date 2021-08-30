@@ -1,17 +1,3 @@
-/*
-	scr_drawGridViewerGetItemString(grid, col, row);
-	
-	Last Updated: 2018-09-11
-	
-	Called from: obj_gridViewer
-	
-	Purpose: return the string version of the specified cell in the specified grid
-	
-	Mechanism: test the grid and the column specified in the arguments and take the necessary
-				action to convert the cell value to a human-readable string
-	
-	Author: Terry DuBois
-*/
 function scr_drawGridViewerGetItemString(grid, col, row) {
 	
 

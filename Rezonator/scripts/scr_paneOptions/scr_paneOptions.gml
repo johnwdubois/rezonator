@@ -56,7 +56,7 @@ function scr_paneOptions(optionSelected) {
 			if (ds_grid_height(obj_control.searchGrid) > 0 and !obj_control.gridView) {
 				// Main/filter to search
 				if(obj_control.currentActiveLineGrid == obj_control.lineGrid) {// or currentActiveLineGrid == filterGrid) {
-					scr_unFocusAllChains();
+					scr_chainDeselect();
 					
 					// Which grid are we switching from?
 					obj_control.preSwitchLineGrid = obj_control.currentActiveLineGrid; 

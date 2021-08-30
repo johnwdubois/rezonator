@@ -21,8 +21,7 @@ function scr_renderQuickFilter() {
 			var setIDList = ds_map_find_value(chainSubMap, "vizSetIDList");
 			var setIDListSize = ds_list_size(setIDList);
 	
-			scr_updateDisplayRow();
-	
+
 	
 	
 			if (chainType == "stackChain") {

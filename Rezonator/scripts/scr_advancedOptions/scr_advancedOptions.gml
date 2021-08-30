@@ -12,13 +12,7 @@ function scr_advancedOptions(optionSelected) {
 		
 
 		
-		case "help_label_shuffle":
 
-				scr_shuffleDisplayRows();
-				instance_destroy(obj_dropDown);
-		
-		break;
-		
 		case "help_label_restore-sequence":
 		
 				ds_grid_copy(obj_control.lineGrid, obj_control.lineGridBackup);
