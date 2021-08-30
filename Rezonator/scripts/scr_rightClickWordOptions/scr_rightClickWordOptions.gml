@@ -63,20 +63,6 @@ function scr_rightClickWordOptions(optionSelected) {
 	
 			break;
 			
-		case "Delete Word":
-			scr_destroyAllDropDownsOtherThanSelf();
-			
-			/* bring back with deleteing new words
-			obj_control.newWordHoverWordID = obj_control.rightClickWordID;
-			obj_control.deleteNewWord = true;
-			scr_deleteNewWord();
-			*/
-			
-			obj_control.deleteNewWord = false;
-			instance_destroy();
-	
-			break;
-			
 		case "help_label_delete-link":
 		
 			scr_deleteFromChain(true);

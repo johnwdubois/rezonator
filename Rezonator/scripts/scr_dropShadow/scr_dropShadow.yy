@@ -2,8 +2,8 @@
   "isDnD": false,
   "isCompatibility": false,
   "parent": {
-    "name": "Scripts",
-    "path": "folders/Scripts.yy",
+    "name": "UI",
+    "path": "folders/Scripts/UI.yy",
   },
   "resourceVersion": "1.0",
   "name": "scr_dropShadow",
