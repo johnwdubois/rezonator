@@ -7,7 +7,6 @@ function scr_saveFileBuffer(fileNameWD, fileNameUser, stringToSave) {
 	buffer_save(buffer, fileNameUser);
 	buffer_delete(buffer);
 
-	//show_debug_message(filename_path(fileNameWD));
 
 
 }

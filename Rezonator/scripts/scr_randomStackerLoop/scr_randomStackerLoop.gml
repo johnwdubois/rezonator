@@ -1,16 +1,3 @@
-/*
-	scr_randomStackerLoop();
-	
-	Last Updated: 2020-10-26
-	
-	Called from: obj_Stacker
-	
-	Purpose: Loop through random set of lines to create an assortment of stacks spanning the whole discourse
-	
-	Mechanism: with random start and endlines set, loop through the set of lines, and call wordClicked() with the tool set to the Stack Tool
-	
-	Author: Terry DuBois, Georgio Klironomos, Brady Moore
-*/
 function scr_randomStackerLoop() {
 	
 	// Set script variables
@@ -66,7 +53,7 @@ function scr_randomStackerLoop() {
 				prevUnitID = currentUnitID;
 			}
 			// Unfocus all links and chains
-			scr_unFocusAllChains();
+			scr_chainDeselect();
 
 
 		}
@@ -74,7 +61,7 @@ function scr_randomStackerLoop() {
 		ds_list_clear(currentUnitList);
 	}
 	// Unfocus all links and chains
-	scr_unFocusAllChains();
+	scr_chainDeselect();
 
 
 	//reset the ransom numbers

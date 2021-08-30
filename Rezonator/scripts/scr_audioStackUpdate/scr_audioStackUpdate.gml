@@ -1,5 +1,4 @@
 /*
-	scr_audioStackUpdate();
 	
 	Last Updated: 2020-10-26
 	

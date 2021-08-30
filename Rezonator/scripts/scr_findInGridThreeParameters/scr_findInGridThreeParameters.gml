@@ -1,18 +1,3 @@
-/*
-	scr_findInGridTwoParameters(grid, col1, valueInCol1, col2, valueInCol2, col3, valueInCol3);
-	
-	Last Updated: 2018-09-11
-	
-	Called from: any object
-	
-	Purpose: get the row of a grid that has three specific values of three specific columns
-	
-	Mechanism: create a temporary clone grid and loop through that once to find rows with the
-				first parameter, and then loop again to find the rows with the second parameter,
-				and once more to find the rows with the third parameter
-	
-	Author: Terry DuBois
-*/
 function scr_findInGridThreeParameters(grid, col1, valueInCol1, col2, valueInCol2, col3, valueInCol3) {
 	
 

@@ -5,14 +5,9 @@ function scr_dropDownSelect(optionSelected) {
 
 	//optionListType == 0 --> switch sorting columns for sort pane
 
-	// Sort
-	if (optionListType == global.optionListTypeSort)// 0
-	{
-	    scr_sortOptions(optionSelected);
-	    instance_destroy();
-	}
+
 	//chainListEdit
-	else if (optionListType == global.optionListTypeChainList) //1
+	if (optionListType == global.optionListTypeChainList) //1
 	{
 	    scr_chainListOptions(optionSelected);
 	}
@@ -56,11 +51,6 @@ function scr_dropDownSelect(optionSelected) {
 	{
 	    scr_rightClickWordOptions(optionSelected);
 	}
-	//wordTags
-	else if (optionListType == global.optionListTypeWordTags) //9
-	{
-	    scr_wordTagsOptions(optionSelected);
-	}
 	//newWordOptions
 	else if (optionListType == global.optionListTypeNewWord) //11
 	{
@@ -86,12 +76,6 @@ function scr_dropDownSelect(optionSelected) {
 	    scr_paneOptions(optionSelected);
 	}
 
-	//wordOptions
-	else if (optionListType == global.optionListTypeWord) //15
-	{
-	    scr_wordOptions(optionSelected);
-	    instance_destroy();
-	}
 
 	//justifyOptions
 	else if (optionListType == global.optionListTypeJustify) //16
@@ -147,12 +131,7 @@ function scr_dropDownSelect(optionSelected) {
 	    instance_destroy();
 	}
 
-	//toolSortOptions
-	else if (optionListType == global.optionListTypeToolsSort) //24
-	{
-	    scr_toolsSortOptions(optionSelected);
-	    instance_destroy();
-	}
+
 
 	//deleteOptions
 	else if (optionListType == global.optionListTypeDelete) //26
@@ -177,12 +156,6 @@ function scr_dropDownSelect(optionSelected) {
 	else if (optionListType == global.optionListTypeCreateStack) //29
 	{
 	    scr_createStackOptions(optionSelected);
-	    instance_destroy();
-	}
-	//showStack selection
-	else if (optionListType == global.optionListTypeShowStack) //30
-	{
-	    scr_showStackOptions(optionSelected);
 	    instance_destroy();
 	}
 	//token selection
@@ -213,28 +186,11 @@ function scr_dropDownSelect(optionSelected) {
 	    scr_tokenTagMapOptions(optionSelected);
 	    instance_destroy();
 	}
-	//Token Marker options
-	else if (optionListType == global.optionListTypeTokenMarker) //36
-	{
-	    scr_tokenMarkerOptions(optionSelected);
-	    instance_destroy();
-	}
-	//Unit Marker options
-	else if (optionListType == global.optionListTypeUnitMarker) //37
-	{
-	    scr_unitMarkerOptions(optionSelected);
-	    instance_destroy();
-	}
+
 	//adding to Unit Tag Map options
 	else if (optionListType == global.optionListTypeUnitTagMap) //38
 	{
 	    scr_unitTagMapOptions(optionSelected);
-	    instance_destroy();
-	}
-
-	else if (optionListType == global.optionListTypeGridViewerSelectGrid) //39
-	{
-	    scr_gridViewerSelectGridOptions(optionSelected);
 	    instance_destroy();
 	}
 
@@ -243,20 +199,11 @@ function scr_dropDownSelect(optionSelected) {
 	    scr_autosaveOptions(optionSelected);
 	    instance_destroy();
 	}
-
-	else if (optionListType == global.optionListTypeStackTag) //41
-	{
-	    scr_stackTagOptions(optionSelected);
-	    instance_destroy();
-	}
 	else if (optionListType == global.optionListTypeEdit) //42
 	{
 	    scr_editOptions(optionSelected);
 	}
-	else if (optionListType == global.optionListTypePlayAndLearn) //43
-	{
-	    scr_playandLearnOptions(optionSelected);
-	}
+
 	else if (optionListType == global.optionListTypeNav) //44
 	{
 	    scr_navOptions(optionSelected);
@@ -288,11 +235,7 @@ function scr_dropDownSelect(optionSelected) {
 	    scr_textDirectionOptions(optionSelected);
 		instance_destroy();
 	}
-	else if (optionListType == global.optionListTypeChain1ToManyHeaderRightClick) //50
-	{
-	    scr_chain1ToManyHeaderRightClickOptions(optionSelected);
-		instance_destroy();
-	}
+
 	else if (optionListType == global.optionListTypeChain1To1Field) //51
 	{
 	    scr_chain1To1FieldOptions(optionSelected);
@@ -303,11 +246,7 @@ function scr_dropDownSelect(optionSelected) {
 	    scr_chain1To1TagOptions(optionSelected);
 		instance_destroy();
 	}
-	else if (optionListType == global.optionListTypeChain1To1HeaderRightClick) //53
-	{
-	    scr_chain1To1HeaderRightClickOptions(optionSelected);
-		instance_destroy();
-	}
+
 	else if (optionListType == global.optionListTypeAddToShow) //54
 	{
 	    scr_addToShowOptions(optionSelected);

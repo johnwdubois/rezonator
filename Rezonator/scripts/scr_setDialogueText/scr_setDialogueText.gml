@@ -92,10 +92,6 @@ function scr_setDialogueText(){
 			titleText = scr_get_translation("Input New Zero");
 			descriptionText = scr_get_translation("msg_input_new-string");
 		}
-		if (obj_control.swapLine) {
-			titleText = scr_get_translation("msg_specify_line");
-			descriptionText = scr_get_translation("msg_input_line_number");
-		}
 		if (obj_control.replace) {
 			if(obj_control.splitWord){
 				titleText = scr_get_translation("help_label_split-word");
@@ -163,10 +159,6 @@ function scr_setDialogueText(){
 			}
 		}
 		
-		if (obj_control.newTagCategory) {
-			titleText = scr_get_translation("option_new-field");
-			descriptionText = scr_get_translation("msg_new-category");
-		}
 
 	}
 }

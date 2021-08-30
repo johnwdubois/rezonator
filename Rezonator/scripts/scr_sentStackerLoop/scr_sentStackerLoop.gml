@@ -1,17 +1,3 @@
-/*
-	scr_sentStackerLoop();
-	
-	Last Updated: 2020-10-26
-
-	
-	Called from: obj_stacker
-	
-	Purpose: Create stacks throughout the whole discourse, from sets of lines delimited by Turn Order and End Notes selected by the user
-	
-	Mechanism: Loop through all lines in the discourse, create sets of lines delimited by turn order and end notes, then once line sets are created generate stacks from those line sets.
-	
-	Author: Terry DuBois, Georgio Klironomos
-*/
 function scr_sentStackerLoop(){
 
 	// Set script variables
@@ -82,7 +68,7 @@ function scr_sentStackerLoop(){
 				prevUnitID = currentUnitID;
 			}
 			// Unfocus all links and chains
-			scr_unFocusAllChains();
+			scr_chainDeselect();
 
 
 		}

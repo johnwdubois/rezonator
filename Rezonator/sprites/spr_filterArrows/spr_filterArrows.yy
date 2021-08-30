@@ -78,7 +78,7 @@
   "nineSlice": null,
   "parent": {
     "name": "panelPane",
-    "path": "folders/Sprites/UI/panelPane.yy",
+    "path": "folders/Sprites/panelPane.yy",
   },
   "resourceVersion": "1.0",
   "name": "spr_filterArrows",

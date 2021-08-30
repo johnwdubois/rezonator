@@ -1,60 +1,0 @@
-Converting GML script: nsfs.gml
-Converted description /// @description  ()
-
-Converting GML script: nsfs.gml
-Converted description /// @description  (nspath, kind = buffer_grow):/// @param nspath
-/// @param  kind = buffer_grow
-
-Converting GML script: nsfs.gml
-Converted description /// @description  (buffer):/// @param buffer
-
-Converting GML script: nsfs.gml
-Converted description /// @description  (buffer, path, offset, size):/// @param buffer
-/// @param  path
-/// @param  offset
-/// @param  size
-
-Converting GML script: nsfs.gml
-Converted description /// @description  (path):/// @param path
-
-Converting GML script: nsfs.gml
-Converted description /// @description  ():
-
-Converting GML script: nsfs.gml
-Converted description /// @description  (ind, nspath, imgnumb, removeback, smooth, xorig, yorig):/// @param ind
-/// @param  nspath
-/// @param  imgnumb
-/// @param  removeback
-/// @param  smooth
-/// @param  xorig
-/// @param  yorig
-
-Converting GML script: nsfs.gml
-Converted description /// @description  (nspath, imgnumb, removeback, smooth, xorig, yorig):/// @param nspath
-/// @param  imgnumb
-/// @param  removeback
-/// @param  smooth
-/// @param  xorig
-/// @param  yorig
-
-Converting GML script: nsfs.gml
-Converted description /// @description  (surface, nspath):/// @param surface
-/// @param  nspath
-
-Converting GML script: nsfs.gml
-Converted description /// @description  surface_save_part_ns(surface, nspath, rx, ry, rw, rh):/// @param surface
-/// @param  nspath
-/// @param  rx
-/// @param  ry
-/// @param  rw
-/// @param  rh
-
-Converting GML script: nsfs.gml
-Converted description /// @description  (nspath):/// @param nspath
-
-Converting GML script: nsfs.gml
-Converted description /// @description  screen_save_part_ns(nspath, rx, ry, rw, rh):/// @param nspath
-/// @param  rx
-/// @param  ry
-/// @param  rw
-/// @param  rh

@@ -100,13 +100,6 @@ if (noButtonActive) {
 
 
 
-
-
-
-
-
-
-
 if (inputWindowActive) {
 	scr_drawDialogueBox_input();
 }

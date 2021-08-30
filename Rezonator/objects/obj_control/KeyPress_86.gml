@@ -21,7 +21,7 @@ else {
 if (ds_grid_height(searchGrid) > 0 and !gridView) {
 	// Main/filter to search
 	if(currentActiveLineGrid == lineGrid) {
-		scr_unFocusAllChains();
+		scr_chainDeselect();
 		
 		// Which grid are we switching from?
 		preSwitchLineGrid = currentActiveLineGrid; 

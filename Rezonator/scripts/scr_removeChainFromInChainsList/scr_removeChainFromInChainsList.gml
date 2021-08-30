@@ -19,28 +19,6 @@ function scr_removeChainFromInChainsList(chainID, tokenID) {
 	}
 	scr_deleteFromList(inChainsList, chainID);
 	
-	
-	/*
-	if(!isChunk){
-		var wordDrawCol = entryType == "rez" ? obj_control.wordDrawGrid_colBorder : obj_control.wordDrawGrid_colBorderRounded;
-		ds_grid_set(obj_control.wordDrawGrid, wordDrawCol, tokenID - 1, false);
-		
-		var effectColor = 0;
-		
-		if(ds_list_size(inChainsList) == 1){
-			var otherChain = inChainsList[|0]
-			var otherChainsSubMap = global.nodeMap[?otherChain];
-			effectColor = otherChainsSubMap[?"chainColor"];
-			var otherChainType = otherChainsSubMap[?"type"];
-			if(otherChainType == "trackChain"){
-				ds_grid_set(obj_control.wordDrawGrid, obj_control.wordDrawGrid_colBorderRounded, tokenID - 1, true);
-			}
-			else{
-				ds_grid_set(obj_control.wordDrawGrid, obj_control.wordDrawGrid_colBorder, tokenID - 1, true);
-			}
-		}
-		ds_grid_set(obj_control.wordDrawGrid, obj_control.wordDrawGrid_colEffectColor, tokenID - 1, effectColor);
-	}
-	*/
+
 	
 }

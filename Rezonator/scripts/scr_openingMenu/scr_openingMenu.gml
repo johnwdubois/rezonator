@@ -117,7 +117,7 @@ function scr_openingMenu() {
 
 	if (mouseoverDocumenation && documentationButtonActive) {
 		if(mouse_check_button_released(mb_left)){
-			scr_openURL("https://rezonator.com/documentation/");
+			url_open("https://rezonator.com/documentation/");
 		}
 	}
 

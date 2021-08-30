@@ -14,12 +14,7 @@ function scr_deleteFromChainVoidCheck(chainID, deletedTokenID, deletedTokenPushB
 	var chainSetListSize = ds_list_size(chainSetList);
 	var deletedTokenSubMap = global.nodeMap[? deletedTokenID];
 	
-	/*
-	var deletedWordIDChunkFirstWord = scr_getFirstWordOfChunk(deletedTokenID);
-	if (deletedWordIDChunkFirstWord > 0) {
-		deletedTokenID = deletedWordIDChunkFirstWord ;
-	}
-	*/
+
 
 	
 	if (deletedTokenPushBack and scr_isNumericAndExists(deletedTokenSubMap, ds_type_map)) {
@@ -37,19 +32,7 @@ function scr_deleteFromChainVoidCheck(chainID, deletedTokenID, deletedTokenPushB
 		deletedTokenSubMap[? "displayCol"] = deleteDisplayColDest;
 
 		
-		/*
-		var deleteDisplayRow = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayRow, deletedTokenID - 1);
-		var deleteDisplayRowWordIDList = ds_grid_get(obj_control.lineGrid, obj_control.lineGrid_colWordIDList, deleteDisplayRow);
-		var deleteDisplayRowWordIDListSize = ds_list_size(deleteDisplayRowWordIDList);
-		var posInWordIDList = ds_list_find_index(deleteDisplayRowWordIDList, deletedTokenID);
-		if (posInWordIDList >= 0) {
-			for (var i = posInWordIDList + 1; i < deleteDisplayRowWordIDListSize; i++) {
-				var nextWordID = deleteDisplayRowWordIDList[| i];
-				scr_tokenCalculateVoid(nextWordID);
-			}
-		}
-		*/
-			
+
 			
 			
 		//var currentChunkFirstWord = -1;	
@@ -60,10 +43,7 @@ function scr_deleteFromChainVoidCheck(chainID, deletedTokenID, deletedTokenPushB
 			var currentTokenID = currentEntrySubMap[? "token"];
 			var currentTokenSubMap = global.nodeMap[? currentTokenID];
 			
-			//currentChunkFirstWord = scr_getFirstWordOfChunk(currentTokenID);
-			//if(currentChunkFirstWord > 0){
-			//	currentTokenID = currentChunkFirstWord;
-			//}
+
 			if (!scr_isNumericAndExists(currentTokenSubMap, ds_type_map)) continue;
 			var currentTokenSeq = currentTokenSubMap[? "tokenSeq"];
 			var currentDisplayColDest = 0;
@@ -77,18 +57,6 @@ function scr_deleteFromChainVoidCheck(chainID, deletedTokenID, deletedTokenPushB
 			
 			currentTokenSubMap[? "displayCol"] = currentDisplayColDest;			
 			
-			/*
-			var deleteDisplayRow = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayRow, currentTokenID - 1);
-			var deleteDisplayRowWordIDList = ds_grid_get(obj_control.lineGrid, obj_control.lineGrid_colWordIDList, deleteDisplayRow);
-			var deleteDisplayRowWordIDListSize = ds_list_size(deleteDisplayRowWordIDList);
-			var posInWordIDList = ds_list_find_index(deleteDisplayRowWordIDList, currentTokenID);
-			if (posInWordIDList >= 0) {
-				for (var i = posInWordIDList + 1; i < deleteDisplayRowWordIDListSize; i++) {
-					var nextWordID = deleteDisplayRowWordIDList[| i];
-					scr_tokenCalculateVoid(nextWordID);
-				}
-			}
-			*/
 
 		}
 		

@@ -1,15 +1,4 @@
 function scr_gridMultiColSort() {
-	/*
-		scr_gridMultiColSort(grid, col1, col2, col3, col4);
-	
-		Last Updated: 2019-12-27
-	
-		Called from: any instance
-	
-		Purpose: Initiates the sorting of the passed grid based on multiple columns
-	
-		Mechanism: for loop, uses scr_gridMulticolSortPart
-	*/
 
 
 	if (argument_count < 3) {

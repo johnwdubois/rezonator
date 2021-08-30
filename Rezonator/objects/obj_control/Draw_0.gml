@@ -52,8 +52,6 @@ if (!hideAll) {
 
 // Shows variables used for in game bugtesting
 if (showDevVars) {
-
-	scr_drawCompassRose();
 	
 	// draw line in center of screen
 	draw_set_color(c_ltgray);
