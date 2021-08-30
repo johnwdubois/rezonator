@@ -11,7 +11,6 @@ function scr_updateCheckMap(optionText){
 		}	
 		if(instance_exists(obj_control)){
 			if(optionListType == global.optionListTypeTextDirection){
-
 				if(optionText == "menu_right-to-left" and obj_control.drawLineState == obj_control.lineState_rtl){
 					ds_map_replace(global.checkDropdownMap, "menu_right-to-left", true);
 					ds_map_replace(global.checkDropdownMap, "menu_left-to-right", false);
