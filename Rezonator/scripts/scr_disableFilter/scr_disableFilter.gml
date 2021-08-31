@@ -28,6 +28,8 @@ function scr_disableFilter(){
 	}
 	var unitList = discourseSubMap[? "unitList"];
 	
+	show_debug_message("scr_disableFilter ... drawRangeUnit: " + string(drawRangeUnit));
+	
 	
 	discourseSubMap[? "displayUnitList"] = unitList;
 	scr_jumpToUnit(drawRangeUnit);

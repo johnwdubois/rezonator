@@ -392,4 +392,3 @@ hoverColorMergeImport = 0;
 hoverColorMergeHelp = 0;
 
 global.dirCopyDebugList = ds_list_create();
-global.participantMap = ds_map_create();
