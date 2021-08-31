@@ -73,7 +73,8 @@ if (!alertWindowActive) {
 var okRectX1 = camMidX + buttonXBuffer;
 var okRectX2 = okRectX1 + buttonWidth;
 mouseoverOk = point_in_rectangle(mouse_x, mouse_y, okRectX1, buttonY1, okRectX2, buttonY2) && !instance_exists(obj_dropDown);
-draw_set_color(merge_color(global.colorThemeRezPink, global.colorThemeBG, mouseoverOk ? 0.2 : 0));
+
+draw_set_color(mouseoverOk ? merge_color(global.colorThemeSelected1, global.colorThemeRezPink, 50)  : global.colorThemeRezPink);
 draw_roundrect(okRectX1, buttonY1, okRectX2, buttonY2, false);
 draw_set_color(global.colorThemeBG);
 var okText = scr_get_translation("msg_okay");
