@@ -57,16 +57,17 @@ function scr_drawLineEntryList(unitID, unitSubMap, entryList, pixelY){
 		var currentDisplayCol = currentTokenSubMap[? "displayCol"];
 		var currentPixelX = scr_setTokenX(currentTokenSubMap, currentDisplayCol, entryListSize, j, unitWidth, shapeTextX, camWidth,currentDisplayStr);
 		scr_adaptFont(currentDisplayStr,"M");
-		var wordDistance = string_width(currentDisplayStr) + (spaceWidth * (gridSpaceHorizontal/10));
+		var wordDistanceDiv = 12;
+		var wordDistance = string_width(currentDisplayStr) + (spaceWidth * (gridSpaceHorizontal / wordDistanceDiv));
 		if (justify == justifyRight && drawLineState == lineState_rtl && shape == shapeText && i >= 1) {
 			
-			var nextEntry = entryList[| i - 1]
+			var nextEntry = entryList[| i - 1];
 			var nextEntrySubMap = global.nodeMap[? nextEntry];
 			var nextToken = nextEntrySubMap[? "token"];
 			var nextTokenSubMap = global.nodeMap[? nextToken];
 			var nextTagMap = nextTokenSubMap[? "tagMap"];
 			var nextDisplayStr = nextTagMap[? global.displayTokenField];
-			var nextWordDistance = string_width(nextDisplayStr) + (spaceWidth * (gridSpaceHorizontal/10));
+			var nextWordDistance = string_width(nextDisplayStr) + (spaceWidth * (gridSpaceHorizontal / wordDistanceDiv));
 			
 			shapeTextX += nextWordDistance;
 			
@@ -74,7 +75,7 @@ function scr_drawLineEntryList(unitID, unitSubMap, entryList, pixelY){
 		else {
 			shapeTextX += wordDistance;
 		}
-		//unitWidth -= wordDistance;
+
 		
 		
 		
