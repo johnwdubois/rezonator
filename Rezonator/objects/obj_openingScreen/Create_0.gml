@@ -313,7 +313,6 @@ ds_map_add(global.expandableDropDownMap, "menu_filter-context", true);
 ds_map_add(global.expandableDropDownMap, "menu_search", true);
 ds_map_add(global.expandableDropDownMap, "menu_stack", true);
 ds_map_add(global.expandableDropDownMap, "menu_stacker", true);
-ds_map_add(global.expandableDropDownMap, "menu_play-learn", true);
 ds_map_add(global.expandableDropDownMap, "menu_zoom", true);
 ds_map_add(global.expandableDropDownMap, "menu_autosave", true);
 ds_map_add(global.expandableDropDownMap, "menu_advanced", true);

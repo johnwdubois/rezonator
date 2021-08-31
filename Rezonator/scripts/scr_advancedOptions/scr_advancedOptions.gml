@@ -10,16 +10,6 @@ function scr_advancedOptions(optionSelected) {
 			instance_destroy(obj_dropDown);
 		break;
 		
-
-		
-
-		case "help_label_restore-sequence":
-		
-				ds_grid_copy(obj_control.lineGrid, obj_control.lineGridBackup);
-
-		
-				instance_destroy(obj_dropDown);
-		break;
 	
 
 		case "Media"://needs filling out

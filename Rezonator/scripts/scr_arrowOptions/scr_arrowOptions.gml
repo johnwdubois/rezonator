@@ -3,7 +3,7 @@
 function scr_arrowOptions(optionSelected){
 	switch(optionSelected)
 	{
-		case "All":
+		case "menu_all":
 			if(obj_chain.showTrackArrows and obj_chain.showRezArrows){
 				obj_chain.showTrackArrows = false;
 				obj_chain.showRezArrows = false;

@@ -33,7 +33,7 @@ var exampleCount = min(50, ds_grid_height(global.importGrid));
 
 // tab at the top of the window
 var spaceWidth = string_width("  ");
-var tabStr = "Example: " + fieldSelected;
+var tabStr = scr_get_translation("import_col_example") +": " + fieldSelected;
 var tabX1 = x;
 var tabY1 = y - tabHeight;
 var tabX2 = tabX1 + string_width(tabStr) + (spaceWidth * 2);

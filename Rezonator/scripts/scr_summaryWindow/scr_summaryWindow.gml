@@ -43,7 +43,7 @@ function scr_summaryWindow() {
 		}
 		else if (i == 4) {
 			if (blockTypes < 1) continue;
-			currentStr = "Block types: " + string(blockTypes);
+			currentStr = scr_get_translation("import_block-type") + ": " + string(blockTypes);
 		}
 		
 		var textX = floor(fileInfoWindowRectX1 + 20);
