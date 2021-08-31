@@ -40,11 +40,13 @@ ds_map_add_list(corpusSubMap, "docList", discourseList);
 
 // create discourse node
 global.discourseNode = scr_addToNodeMap("doc");
-var discourseSubMap = global.nodeMap[? global.discourseNode];
-ds_map_add_list(discourseSubMap, "tokenList", tokenList);
-ds_map_add_list(discourseSubMap, "unitList", unitList);
-ds_map_add_list(discourseSubMap, "displayUnitList", displayUnitList);
+var docSubMap = global.nodeMap[? global.discourseNode];
+ds_map_add_list(docSubMap, "tokenList", tokenList);
+ds_map_add_list(docSubMap, "unitList", unitList);
+ds_map_add_list(docSubMap, "displayUnitList", displayUnitList);
 ds_list_add(discourseList, global.discourseNode);
+var docTagMap = ds_map_create();
+ds_map_add_map(docSubMap, "tagMap", docTagMap);
 
 
 
