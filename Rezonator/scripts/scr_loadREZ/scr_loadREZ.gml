@@ -211,11 +211,11 @@ show_debug_message("global.previousRezDirectory:  "+string(global.previousRezDir
 					
 	
 					
-					// get displayTokenField & speakerField
+					// get displayTokenField & participantField
 					var getDisplayTokenField = ds_map_find_value(map, "displayTokenField");
-					var getSpeakerField = ds_map_find_value(map, "participantField");
+					var getParticipantField = ds_map_find_value(map, "participantField");
 					if (is_string(getDisplayTokenField)) global.displayTokenField = getDisplayTokenField;
-					if (is_string(getSpeakerField)) global.speakerField = getSpeakerField;
+					if (is_string(getParticipantField)) global.participantField = getParticipantField;
 					
 					// get discourse node
 					global.discourseNode = map[? "docNode"];

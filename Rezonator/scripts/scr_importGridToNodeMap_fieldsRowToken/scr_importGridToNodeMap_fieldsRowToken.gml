@@ -138,6 +138,9 @@ function scr_importGridToNodeMap_fieldsRowToken(row){
 			scr_addAutoTag(currentField, currentCell, unitFieldMap);
 		}
 	}
+	
+	
+	if (newUnitMade) scr_setParticipantID(currentUnitID);
 
 
 	importGridRow++;

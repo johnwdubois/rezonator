@@ -80,7 +80,7 @@ function scr_mapViewerDrawNodeData(){
 					
 					// check whether this field should be in a special color
 					var specialField = ((subMapKey == "tagMap" && global.displayTokenField == subsubMapKey)
-										|| (subMapKey == "tagMap" && global.speakerField == subsubMapKey));
+										|| (subMapKey == "tagMap" && global.participantField == subsubMapKey));
 					
 					var isList = (subsubMapKey == "tagSet" || subsubMapKey == "searchTermList" || subsubMapKey == "displayUnitList" 
 									|| subsubMapKey == "displayTokenList"|| subsubMapKey == "targetList"|| subsubMapKey == "unitList"|| subsubMapKey == "chainList"

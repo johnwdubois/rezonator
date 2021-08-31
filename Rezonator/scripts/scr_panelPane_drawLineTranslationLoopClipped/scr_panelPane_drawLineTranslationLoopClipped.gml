@@ -48,7 +48,7 @@ function scr_panelPane_drawLineTranslationLoopClipped() {
 		var unitSubMap = global.nodeMap[?currentUnitID];
 		if(!scr_isNumericAndExists(unitSubMap, ds_type_map)){ continue;}
 			var unitTagMap = unitSubMap[?"tagMap"];
-			var lineSpeaker = unitTagMap[?global.speakerField];
+			var lineSpeaker = unitTagMap[?global.participantField];
 
 		var currentLineWordString = "";
 

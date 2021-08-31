@@ -746,7 +746,7 @@ with (obj_alarm2) alarm[1] = 2;
 displayUnitList = -1
 
 
-if(global.speakerField != "" && is_string(global.speakerField) ){
+if(global.participantField != "" && is_string(global.participantField) ){
 	scr_showSpeakerName(true);
 }
 

@@ -6,13 +6,13 @@ function scr_sentStackerLoop(){
 
 
 	// Exit script if no turnOrder column was found
-	if (global.speakerField == "" or is_undefined(global.speakerField)) {
+	if (global.participantField == "" or is_undefined(global.participantField)) {
 		show_message(scr_get_translation("msg_order-notfound"));
 		splitSave = false;
 
 		exit;	
 	}
-	show_debug_message(global.speakerField)
+	show_debug_message(global.participantField)
 	//Set variables for loop
 	var currentTurnOrder = 0;
 	var previousTurnOrder = 0;
@@ -25,7 +25,7 @@ function scr_sentStackerLoop(){
 		var currentUnit = unitList[|importLoop];
 		var currentUnitSubMap = global.nodeMap[?currentUnit];
 		var unitTagMap = currentUnitSubMap[?"tagMap"];
-		currentTurnOrder = unitTagMap[?global.speakerField];
+		currentTurnOrder = unitTagMap[?global.participantField];
 		show_debug_message(currentTurnOrder);
 		previousTurnOrder = currentTurnOrder;
 		
@@ -35,7 +35,7 @@ function scr_sentStackerLoop(){
 
 			currentUnitSubMap = global.nodeMap[?currentUnit];
 			unitTagMap = currentUnitSubMap[?"tagMap"];
-			currentTurnOrder = unitTagMap[?global.speakerField];
+			currentTurnOrder = unitTagMap[?global.participantField];
 			if((currentTurnOrder == previousTurnOrder)){
 				ds_list_add(currentUnitList, currentUnit);
 				importLoop++;

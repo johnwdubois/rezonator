@@ -31,7 +31,7 @@ function scr_drawSpeakerLabel(unitID, unitSubMap, pixelY) {
 		// get section text
 		var sectionText = "";
 		if (i == 0) sectionText = string(unitSubMap[? "unitSeq"]);
-		else if (i == 1) sectionText = string(tagMap[? global.speakerField]);
+		else if (i == 1) sectionText = string(tagMap[? global.participantField]);
 		
 		// get rectangle color
 		var sectionColor = global.colorThemeSelected1;
@@ -93,7 +93,7 @@ function scr_drawSpeakerLabel(unitID, unitSubMap, pixelY) {
 		obj_control.mouseoverSpeakerLabel = true;
 		obj_control.hoverUnitID = unitID;
 		var unitTagMap = unitSubMap[?"tagMap"];
-		obj_control.hoverTextCopy = unitTagMap[? global.speakerField];
+		obj_control.hoverTextCopy = unitTagMap[? global.participantField];
 		
 	}
 

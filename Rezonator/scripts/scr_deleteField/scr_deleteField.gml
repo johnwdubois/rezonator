@@ -77,9 +77,9 @@ function scr_deleteField(fieldName){
 		}
 	}
 	
-	// if we're deleting the speakerField, and there still is another unit field left, let's switch to that one
-	if (deletingUnitField && global.speakerField == fieldName && ds_list_size(fieldList) >= 1) {
-		global.speakerField = fieldList[| 0];
+	// if we're deleting the participantField, and there still is another unit field left, let's switch to that one
+	if (deletingUnitField && global.participantField == fieldName && ds_list_size(fieldList) >= 1) {
+		global.participantField = fieldList[| 0];
 	}
 
 }

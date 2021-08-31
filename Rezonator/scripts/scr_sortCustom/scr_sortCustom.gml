@@ -66,7 +66,7 @@ function scr_sortCustom(chainID){
 			currentVal = currentEntryUnitSeq;
 		}
 		else if (fieldIndex == 1) {
-			currentVal = (chainType == "stack") ? currentEntryUnitTagMap[? global.speakerField] : currentEntryTokenSeq;
+			currentVal = (chainType == "stack") ? currentEntryUnitTagMap[? global.participantField] : currentEntryTokenSeq;
 		}
 		else if (fieldIndex == 2) {
 			if (chainType == "stack") {

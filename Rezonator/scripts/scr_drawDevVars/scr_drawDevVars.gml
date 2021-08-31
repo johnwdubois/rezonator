@@ -76,7 +76,7 @@ function scr_drawDevVars(){
 	draw_text(devVarX - 580, wordTopMargin + (strHeight * 3), "showNavRight: " + string(obj_panelPane.showNavRight));
 	draw_text(devVarX - 580, wordTopMargin + (strHeight * 4), "showTool: " + string(obj_toolPane.showTool));
 	draw_text(devVarX - 580, wordTopMargin + (strHeight * 5), "displayTokenField: " + string(global.displayTokenField));
-	draw_text(devVarX - 580, wordTopMargin + (strHeight * 6), "speakerField: " + string(global.speakerField));
+	draw_text(devVarX - 580, wordTopMargin + (strHeight * 6), "participantField: " + string(global.participantField));
 	draw_text(devVarX - 580, wordTopMargin + (strHeight * 7), "currentTool: " + string(obj_toolPane.currentTool));
 	draw_text(devVarX - 580, wordTopMargin + (strHeight * 8), "chainShowList: " + string(scr_getStringOfList(obj_chain.chainShowList)));
 	draw_text(devVarX - 580, wordTopMargin + (strHeight * 9), "rightClickID: " + string(obj_control.rightClickID));

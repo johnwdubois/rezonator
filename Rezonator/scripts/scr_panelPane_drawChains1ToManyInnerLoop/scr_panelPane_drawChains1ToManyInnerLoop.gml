@@ -78,7 +78,7 @@ function scr_panelPane_drawChains1ToManyInnerLoop(chain1toManyColFieldList, entr
 			// tokenSeq / speaker
 			case 1:
 				if (functionChainList_currentTab == functionChainList_tabStackBrush) {
-					cellText = string(tagMap[?global.speakerField]);
+					cellText = string(tagMap[?global.participantField]);
 				}
 				else {
 					cellText = string(tokenSubMap[?"tokenOrder"]);

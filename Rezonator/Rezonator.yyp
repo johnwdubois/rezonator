@@ -72,6 +72,7 @@
     {"id":{"name":"spr_justifyCenter","path":"sprites/spr_justifyCenter/spr_justifyCenter.yy",},"order":13,},
     {"id":{"name":"scr_verifyRez","path":"scripts/scr_verifyRez/scr_verifyRez.yy",},"order":9,},
     {"id":{"name":"scr_createDropDown","path":"scripts/scr_createDropDown/scr_createDropDown.yy",},"order":6,},
+    {"id":{"name":"scr_setParticipantID","path":"scripts/scr_setParticipantID/scr_setParticipantID.yy",},"order":31,},
     {"id":{"name":"spr_openingMenuOpen","path":"sprites/spr_openingMenuOpen/spr_openingMenuOpen.yy",},"order":25,},
     {"id":{"name":"obj_summaryWindow","path":"objects/obj_summaryWindow/obj_summaryWindow.yy",},"order":10,},
     {"id":{"name":"scr_checkTokenCount","path":"scripts/scr_checkTokenCount/scr_checkTokenCount.yy",},"order":15,},
