@@ -44,12 +44,17 @@ function scr_deleteToken(tokenID){
 	}
 	
 	// remove this token from all chains that it is in
-	var inChainsList = tokenSubMap[?"inChainsList"];
-	if (scr_isNumericAndExists(inChainsList, ds_type_list)) {
-		while (ds_list_size(inChainsList) > 0) {
-			scr_deleteFromChain(true);
-		}
-	}
+    var inChainsList = tokenSubMap[?"inChainsList"];
+    if (scr_isNumericAndExists(inChainsList, ds_type_list)) {
+        while (ds_list_size(inChainsList) > 0) {
+            obj_chain.currentFocusedChainID = inChainsList[| 0];
+
+            var chainSubMap = global.nodeMap[? obj_chain.currentFocusedChainID];
+            if (scr_isNumericAndExists(chainSubMap, ds_type_map)) {
+                scr_deleteFromChain(true);
+            }
+        }
+    }
 	
 	entryListSize = ds_list_size(entryList);
 	if (entryListSize <= 1) {
@@ -160,7 +165,7 @@ function scr_deleteToken(tokenID){
 	scr_deleteFromList(discourseTokenList, tokenID);
 	
 	// remove this token from the nodeMap :o
-	ds_map_delete(global.nodeMap, tokenID);
+	scr_deleteFromNodeMap(tokenID);
 	
 	// collect & destroy all of this token's sub-data structures
 	var tagMap = tokenSubMap[? "tagMap"];
