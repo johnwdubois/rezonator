@@ -57,7 +57,7 @@ function scr_drawLineEntryList(unitID, unitSubMap, entryList, pixelY){
 		var currentDisplayCol = currentTokenSubMap[? "displayCol"];
 		var currentPixelX = scr_setTokenX(currentTokenSubMap, currentDisplayCol, entryListSize, j, unitWidth, shapeTextX, camWidth,currentDisplayStr);
 		scr_adaptFont(currentDisplayStr,"M");
-		var wordDistanceDiv = 12;
+		var wordDistanceDiv = 23;
 		var wordDistance = string_width(currentDisplayStr) + (spaceWidth * (gridSpaceHorizontal / wordDistanceDiv));
 		if (justify == justifyRight && drawLineState == lineState_rtl && shape == shapeText && i >= 1) {
 			

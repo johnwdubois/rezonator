@@ -160,7 +160,8 @@ function scr_renderFilter2(){
 	scr_sortFilterList(filterUnitList);
 	
 	// set the displayUnitList to be the filterUnitList
-	discourseSubMap[? "displayUnitList"] = filterUnitList;
+	ds_map_delete(discourseSubMap, "displayUnitList");
+	ds_map_add_list(discourseSubMap, "displayUnitList", filterUnitList);
 	
 	var displayUnitList = discourseSubMap[? "displayUnitList"];
 	var drawRangeUnit = displayUnitList[|0];
