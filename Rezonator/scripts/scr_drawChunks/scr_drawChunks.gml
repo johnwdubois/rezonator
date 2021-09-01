@@ -135,18 +135,18 @@ function scr_drawChunks(){
 			var chunksChain = currentChunkInChainsList[| 0];
 			var chunksChainsSubMap = global.nodeMap[? chunksChain];
 					
-			if (is_numeric(chunksChainsSubMap)) {
-				if (ds_exists(chunksChainsSubMap, ds_type_map)) {
-					typeOfChain = chunksChainsSubMap[? "type"];
-					colorOfRect = chunksChainsSubMap[? "chainColor"];
-				}
+			if (scr_isNumericAndExists(chunksChainsSubMap, ds_type_map)) {
+				typeOfChain = chunksChainsSubMap[? "type"];
+				colorOfRect = chunksChainsSubMap[? "chainColor"];
 			}
 		}
 		
 		// draw border of chunk
-		draw_set_color(colorOfRect);
-		draw_set_alpha(1);
-		scr_drawRectWidth(chunkRectX1, chunkRectY1, chunkRectX2, chunkRectY2, 3, (typeOfChain == "trail"));
+		if (!obj_control.hideChunks || ds_list_size(currentChunkInChainsList) >= 1) {
+			draw_set_color(colorOfRect);
+			draw_set_alpha(1);
+			scr_drawRectWidth(chunkRectX1, chunkRectY1, chunkRectX2, chunkRectY2, 3, (typeOfChain == "trail"));
+		}
 		
 		// if this chunk is focused, fill it in and draw the focused sqaures
 		if (obj_chain.currentFocusedChunkID == currentChunkID || chunkInFocusedChain) {

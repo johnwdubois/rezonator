@@ -7,29 +7,24 @@ function scr_arrowOptions(optionSelected){
 			if(obj_chain.showTrackArrows and obj_chain.showRezArrows){
 				obj_chain.showTrackArrows = false;
 				obj_chain.showRezArrows = false;
-				instance_destroy(obj_dropDown);
 				break;
 			}
 			else if(!obj_chain.showTrackArrows and !obj_chain.showRezArrows){
 				obj_chain.showTrackArrows = true;
 				obj_chain.showRezArrows = true;	
-				instance_destroy(obj_dropDown);
 				break;
 			}
 			else{
 				obj_chain.showTrackArrows = false;
 				obj_chain.showRezArrows = false;
-				instance_destroy(obj_dropDown);
 				break;
 			}
 		
 		case "menu_track-arrows":
 			obj_chain.showTrackArrows = !obj_chain.showTrackArrows;
-			instance_destroy(obj_dropDown);
 			break;
 		case "menu_rez-arrows":
 			obj_chain.showRezArrows = !obj_chain.showRezArrows;
-			instance_destroy(obj_dropDown);
 			break;
 	}
 }

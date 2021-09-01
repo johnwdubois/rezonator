@@ -769,4 +769,4 @@ clipStackName = "";
 unitClosestToMouse = "";
 
 
-
+hideChunks = false;

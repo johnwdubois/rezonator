@@ -17,7 +17,6 @@ function scr_zoomOptions(optionSelected) {
 				scr_setSpeakerLabelColWidth();
 			}
 			
-
 			break;
 		case "menu_wide":
 		
@@ -148,8 +147,9 @@ function scr_zoomOptions(optionSelected) {
 				global.fontSize++;
 				scr_setSpeakerLabelColWidth();
 			}
-			
+			with (obj_dropDown) instance_destroy();
 			break;
+			
 		case "help_label_zoom-out":
 			
 			if(room == rm_openingScreen){
@@ -199,6 +199,7 @@ function scr_zoomOptions(optionSelected) {
 				scr_setSpeakerLabelColWidth();
 			}
 			
+			with (obj_dropDown) instance_destroy();
 			break;
 	}
 
