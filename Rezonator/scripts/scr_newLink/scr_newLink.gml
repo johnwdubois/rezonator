@@ -148,22 +148,26 @@ function scr_newLink(ID) {
 	// if this is a rez or track, we will make sure we are adding to the word's inChainsList
 	if (nodeType == "rez" || nodeType == "track" || nodeType == "card") {
 		var entryWordInChainsList = -1;
+		var entryWordInEntryList = -1;
 		if (isChunk) {
 			var chunkSubMap = global.nodeMap[?ID];
 			if(scr_isNumericAndExists(chunkSubMap, ds_type_map)){
 				entryWordInChainsList = chunkSubMap[? "inChainsList"];
+				entryWordInEntryList = chunkSubMap[? "inEntryList"];
 			}
 		}
 		else {
 			var tokenSubMap = global.nodeMap[?idSet];
 			if(scr_isNumericAndExists(tokenSubMap, ds_type_map)){
 				entryWordInChainsList = tokenSubMap[? "inChainsList"];
+				entryWordInEntryList = tokenSubMap[? "inEntryList"];
 			}
 		}
-		if(scr_isNumericAndExists(entryWordInChainsList, ds_type_list)){
-			if (ds_list_find_index(entryWordInChainsList, obj_chain.currentFocusedChainID) == -1) {
-				ds_list_add(entryWordInChainsList, obj_chain.currentFocusedChainID);
-			}
+		if (scr_isNumericAndExists(entryWordInChainsList, ds_type_list)) {
+			scr_addToListOnce(entryWordInChainsList, obj_chain.currentFocusedChainID);
+		}
+		if (scr_isNumericAndExists(entryWordInEntryList, ds_type_list)) {
+			scr_addToListOnce(entryWordInEntryList, nodeID);
 		}
 	}
 	

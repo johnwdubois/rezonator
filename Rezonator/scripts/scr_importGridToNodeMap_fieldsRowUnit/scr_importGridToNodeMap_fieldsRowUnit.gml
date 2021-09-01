@@ -100,6 +100,7 @@ function scr_importGridToNodeMap_fieldsRowUnit(row){
 				ds_map_add(currentChunkSubMap, "name", "Chunk " + string(ds_list_size(global.nodeMap[? "chunkList"]) + 1));
 				ds_map_add(currentChunkSubMap, "nest", 1);
 				ds_map_add_list(currentChunkSubMap, "inChainsList", ds_list_create());
+				ds_map_add_list(currentChunkSubMap, "inEntryList", ds_list_create());
 				ds_map_add_list(currentChunkSubMap, "tokenList", ds_list_create());
 			
 				// make tag map for chunk
@@ -166,6 +167,7 @@ function scr_importGridToNodeMap_fieldsRowUnit(row){
 					ds_map_add(currentTokenSubMap, "unit", unitNode);
 					ds_map_add_list(currentTokenSubMap, "inChainsList", ds_list_create());
 					ds_map_add_list(currentTokenSubMap, "inChunkList", ds_list_create());
+					ds_map_add_list(currentTokenSubMap, "inEntryList", ds_list_create());
 			
 					// make tag map for token
 					var currentTokenTagMap = ds_map_create();

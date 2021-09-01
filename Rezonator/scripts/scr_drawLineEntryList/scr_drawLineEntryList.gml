@@ -119,7 +119,8 @@ function scr_drawLineEntryList(unitID, unitSubMap, entryList, pixelY){
 	
 		// get this token's inChainsList, and update the chainShowList accordingly
 		var inChainsList = currentTokenSubMap[?"inChainsList"];
-		scr_updateChainShowList(inChainsList, obj_chain.chainShowList, currentTokenSubMap[?"inChunkList"], obj_chain.chunkShowList, currentToken, tokenRectX1, tokenRectY1, tokenRectX2, tokenRectY2);	
+		var inEntryList = currentTokenSubMap[?"inEntryList"];
+		scr_updateChainShowList(inChainsList, inEntryList, obj_chain.chainShowList, currentTokenSubMap[?"inChunkList"], obj_chain.chunkShowList, currentToken, tokenRectX1, tokenRectY1, tokenRectX2, tokenRectY2);	
 		
 		// mouseover token
 		if(mouseOverToken){

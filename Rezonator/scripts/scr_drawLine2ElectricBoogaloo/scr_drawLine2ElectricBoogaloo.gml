@@ -36,9 +36,19 @@ function scr_drawLine2ElectricBoogaloo(){
 
 	mouseoverSpeakerLabel = false;
 	
+	
+	// destroy the lists in the chainShowMap
+	var chainShowListSize = ds_list_size(obj_chain.chainShowList);
+	for (var i = 0; i < chainShowListSize; i++) {
+		var currentChainShow = obj_chain.chainShowList[| i];
+		var currentChainShowList = obj_chain.chainShowMap[? currentChainShow];
+		ds_list_destroy(currentChainShowList);
+	}
+	
 	// clear lists that are meant to be refreshed each frame
 	ds_list_clear(obj_chain.chainShowList);
-	ds_list_clear(obj_chain.chunkShowList)
+	ds_map_clear(obj_chain.chainShowMap);
+	ds_list_clear(obj_chain.chunkShowList);
 	ds_list_clear(inRectWordIDList);
 	ds_list_clear(chainVoidCheckList);
 	ds_list_clear(inRectTokenIDList);

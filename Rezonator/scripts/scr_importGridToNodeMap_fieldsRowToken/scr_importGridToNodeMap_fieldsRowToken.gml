@@ -98,6 +98,7 @@ function scr_importGridToNodeMap_fieldsRowToken(row){
 	ds_map_add(currentTokenSubMap, "unit", currentUnitID);
 	ds_map_add_list(currentTokenSubMap, "inChainsList", ds_list_create());
 	ds_map_add_list(currentTokenSubMap, "inChunkList", ds_list_create());
+	ds_map_add_list(currentTokenSubMap, "inEntryList", ds_list_create());
 	
 	// make entry node
 	var currentEntryNode = scr_addToNodeMap("entry");

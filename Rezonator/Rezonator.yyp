@@ -246,6 +246,7 @@
     {"id":{"name":"scr_dialogueBoxNewCustomTagEntry","path":"scripts/scr_dialogueBoxNewCustomTagEntry/scr_dialogueBoxNewCustomTagEntry.yy",},"order":14,},
     {"id":{"name":"obj_fileDiagnostics","path":"objects/obj_fileDiagnostics/obj_fileDiagnostics.yy",},"order":10,},
     {"id":{"name":"scr_drawLine2ElectricBoogaloo","path":"scripts/scr_drawLine2ElectricBoogaloo/scr_drawLine2ElectricBoogaloo.yy",},"order":25,},
+    {"id":{"name":"scr_updateChainShowMap","path":"scripts/scr_updateChainShowMap/scr_updateChainShowMap.yy",},"order":53,},
     {"id":{"name":"scr_deleteTreeEntry","path":"scripts/scr_deleteTreeEntry/scr_deleteTreeEntry.yy",},"order":3,},
     {"id":{"name":"scr_mouseRect","path":"scripts/scr_mouseRect/scr_mouseRect.yy",},"order":8,},
     {"id":{"name":"scr_addToShowOptions","path":"scripts/scr_addToShowOptions/scr_addToShowOptions.yy",},"order":54,},

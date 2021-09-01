@@ -67,7 +67,7 @@ function scr_deleteFromChain(sortVizSetList) {
 			// remove the focusedEntry from this word's inChainsList (if it is a rez or track)
 			if (focusedEntryType == "rez" || focusedEntryType == "track") {
 				var focusedEntryToken = focusedEntrySubMap[? "token"];
-				scr_removeChainFromInChainsList(obj_chain.currentFocusedChainID, focusedEntryToken);
+				scr_removeChainFromInChainsList(obj_chain.currentFocusedChainID, focusedEntry, focusedEntryToken);
 				
 				if(focusedEntryType == "rez"){
 					if(obj_chain.quickLinkDeleted == false){
@@ -77,7 +77,7 @@ function scr_deleteFromChain(sortVizSetList) {
 			}
 			else if (focusedEntryType == "card"){
 				var focusedEntryUnit = focusedEntrySubMap[? "unit"];
-				scr_removeChainFromInChainsList(obj_chain.currentFocusedChainID, focusedEntryUnit);
+				scr_removeChainFromInChainsList(obj_chain.currentFocusedChainID, focusedEntry, focusedEntryUnit);
 			}
 			show_debug_message("scr_deleteFromChain() , CHECK 2");
 			
@@ -125,7 +125,7 @@ function scr_deleteFromChain(sortVizSetList) {
 			
 			// remove the focusedEntry from this token's inChainsList (if it is a rez or track)
 			if (focusedEntryType == "rez" || focusedEntryType == "track") {
-				scr_removeChainFromInChainsList(obj_chain.currentFocusedChainID, focusedEntryToken);
+				scr_removeChainFromInChainsList(obj_chain.currentFocusedChainID, focusedEntry, focusedEntryToken);
 				if(focusedEntryType == "rez" ){
 					if(obj_chain.quickLinkDeleted == false){
 						scr_refreshCliques();
@@ -134,7 +134,7 @@ function scr_deleteFromChain(sortVizSetList) {
 			}
 			else if (focusedEntryType == "card"){
 				var focusedEntryUnit = focusedEntrySubMap[? "unit"];
-				scr_removeChainFromInChainsList(obj_chain.currentFocusedChainID, focusedEntryUnit);
+				scr_removeChainFromInChainsList(obj_chain.currentFocusedChainID, focusedEntry, focusedEntryUnit);
 			}
 			show_debug_message("scr_deleteFromChain() , CHECK 5");
 			
@@ -224,7 +224,7 @@ function scr_deleteFromChain(sortVizSetList) {
 	
 	// removed chain from focusedEntry's word's inChainsList (if it is a rez or track)
 	if (focusedEntryType == "rez" || focusedEntryType == "track") {
-		scr_removeChainFromInChainsList(obj_chain.currentFocusedChainID, focusedEntryToken);
+		scr_removeChainFromInChainsList(obj_chain.currentFocusedChainID, focusedEntry, focusedEntryToken);
 		if(focusedEntryType == "rez" ){
 			if(obj_chain.quickLinkDeleted == false){
 				scr_refreshCliques();
@@ -233,7 +233,7 @@ function scr_deleteFromChain(sortVizSetList) {
 	}
 	else if (focusedEntryType == "card"){
 		var focusedEntryUnit = ds_map_find_value(focusedEntrySubMap, "unit");
-		scr_removeChainFromInChainsList(obj_chain.currentFocusedChainID, focusedEntryUnit);
+		scr_removeChainFromInChainsList(obj_chain.currentFocusedChainID, focusedEntry, focusedEntryUnit);
 	}
 	
 	// remove focusedEntry from nodeMap and destroy focusedEntry

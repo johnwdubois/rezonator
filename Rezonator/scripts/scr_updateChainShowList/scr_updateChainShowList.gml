@@ -1,6 +1,6 @@
 // Script assets have changed for v2.3.0 see
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
-function scr_updateChainShowList(inChainsList, chainShowList, inBoxList, chunkShowList, tokenID,rectX1,rectY1,rectX2,rectY2){
+function scr_updateChainShowList(inChainsList, inEntryList, chainShowList, inBoxList, chunkShowList, tokenID,rectX1,rectY1,rectX2,rectY2){
 	
 	// get size of inChainsList
 	var inChainsListSize = 0;
@@ -10,13 +10,17 @@ function scr_updateChainShowList(inChainsList, chainShowList, inBoxList, chunkSh
 	for (var i = 0; i < inChainsListSize; i++) {
 		var currentChain = inChainsList[| i];
 		if (ds_map_exists(global.nodeMap,currentChain)) {
+			
+			// if there is a chain in the inChainsList that is not a string, let's remove it
 			if (!is_string(currentChain)) { 
 				scr_deleteFromList(inChainsList, currentChain);
 				continue;
 			}
-			if (ds_list_find_index(chainShowList, currentChain) == -1) {
-				ds_list_add(chainShowList, currentChain);
-			}
+			
+			// add this chain to chainShowList and chainShowMap
+			scr_addToListOnce(chainShowList, currentChain);
+			scr_updateChainShowMap(currentChain, inEntryList);
+			
 			
 			
 			// get cool chain vars
@@ -65,13 +69,15 @@ function scr_updateChainShowList(inChainsList, chainShowList, inBoxList, chunkSh
 		var currentChunkSubMap = global.nodeMap[? currentChunk];
 		if (scr_isNumericAndExists(currentChunkSubMap, ds_type_map)) {
 			var currentChunkInChainsList = currentChunkSubMap[? "inChainsList"];
-			if (scr_isNumericAndExists(currentChunkInChainsList, ds_type_list)) {
+			var currentChunkInEntryList = currentChunkSubMap[? "inEntryList"];
+			if (scr_isNumericAndExists(currentChunkInChainsList, ds_type_list) && scr_isNumericAndExists(currentChunkInEntryList, ds_type_list)) {
 				var currentChunkInChainsListSize = ds_list_size(currentChunkInChainsList);
 				for (var j = 0; j < currentChunkInChainsListSize; j++) {
 					var currentChain = currentChunkInChainsList[| j];
 					if (ds_list_find_index(chainShowList, currentChain) == -1) {
 						ds_list_add(chainShowList, currentChain);
 					}
+					scr_updateChainShowMap(currentChain, currentChunkInEntryList);
 				}
 			}
 		}
