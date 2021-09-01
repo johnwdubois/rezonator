@@ -1,7 +1,7 @@
 // Script assets have changed for v2.3.0 see
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
 function scr_clipAllStacks(){
-	var stackChainList = global.nodeMap[?"stackChainList"];
+	var stackChainList = global.nodeMap[?"stackList"];
 	var stackChainListSize = ds_list_size(stackChainList);
 	if(stackChainListSize > 0){
 	

@@ -53,7 +53,7 @@ function scr_unitClicked(unitID){
 		var currentChainType = currentChainSubMap[? "type"];
 			
 		// check whether we should refocus this word's entry or not
-		var refocusEntry = (currentChainType == "stackChain");
+		var refocusEntry = (currentChainType == "stack");
 		if (refocusEntry) {
 			obj_chain.currentFocusedChainID = currentChainID;
 			scr_refocusChainEntry(unitID);

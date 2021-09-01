@@ -154,7 +154,7 @@ else {
 				headerStr = "line";
 			}
 			else if (i == global.importTXTLineGrid_colException) {
-				headerStr = "EXCEPTION";
+				headerStr = "label_exceptions";
 			}
 		}
 		else if (gridViewing == global.blockTypeGrid) {

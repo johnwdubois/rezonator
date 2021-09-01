@@ -21,7 +21,7 @@ function scr_tokenCalculateVoid(tokenID){
 	}
 	
 	// get seq & displayCol for this token
-	var tokenSeq = tokenSubMap[? "tokenSeq"];
+	var tokenSeq = tokenSubMap[? "tokenOrder"];
 	var tokenDisplayCol = tokenSubMap[? "displayCol"];
 
 	// get displayCol of previous token

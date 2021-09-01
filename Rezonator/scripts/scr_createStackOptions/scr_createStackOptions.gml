@@ -2,7 +2,7 @@ function scr_createStackOptions(optionSelected) {
 
 	
 	var confirmStack = false;
-	var stackChainList = global.nodeMap[? "stackChainList"];
+	var stackChainList = global.nodeMap[? "stackList"];
 	var doStacksExist = (ds_list_size(stackChainList) > 0);
 	
 	obj_stacker.createStacksRandom = false;

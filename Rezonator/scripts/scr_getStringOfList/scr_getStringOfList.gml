@@ -5,10 +5,11 @@ function scr_getStringOfList(list) {
 	
 	var str = "{";
 
-	if !ds_list_empty(list){
+	if (!ds_list_empty(list)) {
 		var listSize = ds_list_size(list);
+		var listSizeMax = 90;
 	
-		for (var i = 0; i < listSize; i++) {
+		for (var i = 0; i < min(listSizeMax, listSize); i++) {
 			str += string(ds_list_find_value(list, i));
 	
 			if (i < listSize - 1) {

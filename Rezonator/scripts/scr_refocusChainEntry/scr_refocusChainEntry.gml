@@ -51,7 +51,7 @@ function scr_refocusChainEntry(ID){
 		for (var i = 0; i < chainSetListSize; i++) {
 			var currentChainEntry = ds_list_find_value(chainSetList, i);
 			var currentChainEntrySubMap = ds_map_find_value(global.nodeMap, currentChainEntry);
-			var currentChainEntryID = ds_map_find_value(currentChainEntrySubMap, (chainType == "stackChain") ? "unit" : "token");
+			var currentChainEntryID = ds_map_find_value(currentChainEntrySubMap, (chainType == "stack") ? "unit" : "token");
 			var currentChainEntryType = currentChainEntrySubMap[?"type"];
 			
 			
@@ -61,7 +61,7 @@ function scr_refocusChainEntry(ID){
 			
 			/*
 			drawing of rez/tracks chains come back later
-			if(chainType == "rezChain" or chainType == "trackChain"){
+			if(chainType == "resonance" or chainType == "trail"){
 				if(!scr_isChunk(currentChainEntryTokenID)){
 					
 					var wordDrawCol = currentChainEntryType == "rez" ? obj_control.wordDrawGrid_colBorder : obj_control.wordDrawGrid_colBorderRounded;
@@ -93,15 +93,15 @@ function scr_refocusChainEntry(ID){
 		// determine which chainList tab and mode we should be on
 		var chainListTab = obj_panelPane.functionChainList_tabRezBrush;
 		var chainMode = obj_toolPane.modeRez;
-		if (chainType == "rezChain") {
+		if (chainType == "resonance") {
 			chainListTab = obj_panelPane.functionChainList_tabRezBrush;
 			chainMode = obj_toolPane.modeRez;
 		}
-		else if (chainType == "trackChain") {
+		else if (chainType == "trail") {
 			chainListTab = obj_panelPane.functionChainList_tabTrackBrush;
 			chainMode = obj_toolPane.modeTrack;
 		}
-		else if (chainType == "stackChain") {
+		else if (chainType == "stack") {
 			chainListTab = obj_panelPane.functionChainList_tabStackBrush;
 			chainMode = obj_toolPane.modeRez;
 		}

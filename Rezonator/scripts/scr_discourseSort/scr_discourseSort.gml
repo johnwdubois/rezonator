@@ -29,7 +29,7 @@ function scr_discourseSort(tokenList){
 			currentUnitSeq = currentUnitSubMap[?"unitSeq"];//= ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colUnitID, currentWordID - 1);
 		}
 
-		currentWordOrder = currentTokenSubMap[? "discourseTokenSeq"];//= ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colWordSeq, currentWordID - 1);
+		currentWordOrder = currentTokenSubMap[? "docTokenSeq"];//= ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colWordSeq, currentWordID - 1);
 
 	
 		

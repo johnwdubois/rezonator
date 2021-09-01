@@ -92,23 +92,23 @@ function scr_saveREZ(autosave) {
 			ds_map_add(map, "tokenImportDisplayTokenColName", global.tokenImportDisplayTokenColName);
 		
 			// mainscreen display information
-			ds_map_add(map, "showSpeakerName", obj_control.showSpeakerName);
+			ds_map_add(map, "showParticipantName", obj_control.showSpeakerName);
 			ds_map_add(map, "justify", obj_control.justify);
 			
 			ds_map_add(map, "functionChainList_focusedUnit", obj_panelPane.functionChainList_focusedUnit);
-			ds_map_add(map, "functionChainList_focusedUnitIndex", obj_panelPane.functionChainList_focusedUnitIndex);
+			ds_map_add(map, "functionChainList_focusedUnitSeq", obj_panelPane.functionChainList_focusedUnitIndex);
 			
 			
 			// deep-copy nodeMap
 			nodeMapCopy = json_decode(json_encode(global.nodeMap));
 			ds_map_add_map(map, "nodeMap", nodeMapCopy);
 		 	
-			// save the displayTokenField & speakerField
+			// save the displayTokenField & participantField
 			ds_map_add(map, "displayTokenField", global.displayTokenField);
-			ds_map_add(map, "speakerField", global.speakerField);
+			ds_map_add(map, "participantField", global.participantField);
 			
 			// save discourse node
-			ds_map_add(map, "discourseNode", global.discourseNode);
+			ds_map_add(map, "docNode", global.discourseNode);
 			
 			
 			// save import type

@@ -28,7 +28,7 @@ function scr_cliqueGeneration(){
 			
 				for(var j = 0; j < inChainsListSize; j ++){
 					var currentChainID = inChainsList[|j];
-					if(ds_list_find_index(global.nodeMap[? "rezChainList"], currentChainID) >= 0){
+					if(ds_list_find_index(global.nodeMap[? "resonanceList"], currentChainID) >= 0){
 						if(ds_list_find_index(obj_chain.encounteredUnitList, unitID) == -1){
 							scr_addToListOnce(obj_chain.encounteredChainList, currentChainID);
 						}
@@ -46,7 +46,7 @@ function scr_cliqueGeneration(){
 						var chunkInChainsListSize = ds_list_size(chunkInChainsList);
 						for(var k = 0; k < chunkInChainsListSize; k ++){
 							var currentChainID = chunkInChainsList[|k];
-							if(ds_list_find_index(global.nodeMap[? "rezChainList"], currentChainID) >= 0){
+							if(ds_list_find_index(global.nodeMap[? "resonanceList"], currentChainID) >= 0){
 								if(ds_list_find_index(obj_chain.encounteredUnitList, unitID) == -1){
 									scr_addToListOnce(obj_chain.encounteredChainList, currentChainID);
 								}

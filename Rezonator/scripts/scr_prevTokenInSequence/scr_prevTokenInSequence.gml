@@ -11,7 +11,7 @@ function scr_prevTokenInSequence(tokenID) {
 	var unitID = tokenSubMap[? "unit"];
 	
 	// get discourseTokenSeq and discourse tokenList
-	var discourseTokenSeq = tokenSubMap[? "discourseTokenSeq"];
+	var discourseTokenSeq = tokenSubMap[? "docTokenSeq"];
 	var discourseSubMap = global.nodeMap[? global.discourseNode];
 	var discourseTokenList = discourseSubMap[? "tokenList"];
 	

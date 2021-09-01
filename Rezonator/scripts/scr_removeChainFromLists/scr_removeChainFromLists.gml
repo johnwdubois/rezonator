@@ -7,20 +7,20 @@ function scr_removeChainFromLists(chainID, chainType){
 	var filteredChainList = -1;
 	var selectedChainList = -1;
 	var hiddenChainList = -1;
-	if (chainType == "rezChain") {
-		listOfChains = ds_map_find_value(global.nodeMap, "rezChainList");
+	if (chainType == "resonance") {
+		listOfChains = ds_map_find_value(global.nodeMap, "resonanceList");
 		filteredChainList = obj_chain.filteredRezChainList;
 		selectedChainList = obj_control.selectedRezChainList;
 		hiddenChainList = obj_control.hiddenRezChainList;
 	}
-	else if (chainType == "trackChain") {
-		listOfChains = ds_map_find_value(global.nodeMap, "trackChainList");
+	else if (chainType == "trail") {
+		listOfChains = ds_map_find_value(global.nodeMap, "trailList");
 		filteredChainList = obj_chain.filteredTrackChainList;
 		selectedChainList = obj_control.selectedTrackChainList;
 		hiddenChainList = obj_control.hiddenTrackChainList;
 	}
-	else if (chainType == "stackChain") {
-		listOfChains = ds_map_find_value(global.nodeMap, "stackChainList");
+	else if (chainType == "stack") {
+		listOfChains = ds_map_find_value(global.nodeMap, "stackList");
 		filteredChainList = obj_chain.filteredStackChainList;
 		selectedChainList = obj_control.selectedStackChainList;
 		hiddenChainList = obj_control.hiddenStackChainList;

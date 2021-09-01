@@ -37,7 +37,7 @@ function scr_setSpecialFieldsVariables() {
 	
 	var speakerRow = ds_grid_value_y(global.tagInfoGrid, global.tagInfoGrid_colSpecialFields, 0, global.tagInfoGrid_colSpecialFields, ds_grid_height(global.tagInfoGrid), "Speaker");
 	global.unitImportSpeakerColName = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colMarker, speakerRow);
-	global.speakerField = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colMarker, speakerRow);
+	global.participantField = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colMarker, speakerRow);
 
 	var transcriptionRow = ds_grid_value_y(global.tagInfoGrid, global.tagInfoGrid_colSpecialFields, 0, global.tagInfoGrid_colSpecialFields, ds_grid_height(global.tagInfoGrid), "msg_transcript");
 	global.tokenImportTranscriptColName = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colMarker, transcriptionRow);
@@ -47,7 +47,7 @@ function scr_setSpecialFieldsVariables() {
 	global.displayTokenField = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colMarker, displayTokenRow);
 	
 	show_debug_message("scr_setSpecialFieldsVariables ... displayTokenField: " + string(global.displayTokenField));
-	show_debug_message("scr_setSpecialFieldsVariables ... speakerField: " + string(global.speakerField));
+	show_debug_message("scr_setSpecialFieldsVariables ... participantField: " + string(global.participantField));
 
 
 }

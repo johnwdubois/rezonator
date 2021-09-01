@@ -71,7 +71,7 @@ function scr_renderFilter2(){
 			scr_addToListOnce(filterUnitList, currentNodeID);
 			currentNodeSubMap[? "active"] = true;
 		}
-		else if (currentNodeType == "stackChain") {
+		else if (currentNodeType == "stack") {
 			// if this node is a stackChain, we can loop through its entry list and add each unit
 			var setIDList = currentNodeSubMap[? "setIDList"];
 			if (scr_isNumericAndExists(setIDList, ds_type_list)) {
@@ -90,7 +90,7 @@ function scr_renderFilter2(){
 				}
 			}
 		}
-		else if (currentNodeType == "rezChain" ||currentNodeType == "trackChain") {
+		else if (currentNodeType == "resonance" ||currentNodeType == "trail") {
 			// if this node is a stackChain, we can loop through its entry list and add each unit
 			var setIDList = currentNodeSubMap[? "setIDList"];
 			if (scr_isNumericAndExists(setIDList, ds_type_list)) {
@@ -160,7 +160,8 @@ function scr_renderFilter2(){
 	scr_sortFilterList(filterUnitList);
 	
 	// set the displayUnitList to be the filterUnitList
-	discourseSubMap[? "displayUnitList"] = filterUnitList;
+	ds_map_delete(discourseSubMap, "displayUnitList");
+	ds_map_add_list(discourseSubMap, "displayUnitList", filterUnitList);
 	
 	var displayUnitList = discourseSubMap[? "displayUnitList"];
 	var drawRangeUnit = displayUnitList[|0];
@@ -186,5 +187,8 @@ function scr_renderFilter2(){
 	if (quickpick) {
 		ds_list_destroy(list);
 	}
+	
+	// if there is a focused chain, let's jump back to the first thing in that chain
+	if (obj_chain.currentFocusedChainID != "") scr_jumpToUnit(scr_getFirstUnitOfChain(obj_chain.currentFocusedChainID));
 
 }

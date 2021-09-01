@@ -19,6 +19,9 @@ function scr_importTXT(filename) {
 	// fill up the importTXTLineGrid with all the text from lineList
 	for (var i = 0; i < fileLineListSize; i++) {
 		var lineInFile = string(ds_list_find_value(fileLineList, i));
+		lineInFile = string_replace_all(lineInFile, "\n", "");
+		lineInFile = string_replace_all(lineInFile, "\r", "");
+		
 		ds_grid_set(global.importTXTLineGrid, global.importTXTLineGrid_colLine, i, lineInFile);
 		ds_grid_set(global.importTXTLineGrid, global.importTXTLineGrid_colException, i, false);
 	}

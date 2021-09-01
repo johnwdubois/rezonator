@@ -65,7 +65,7 @@ function scr_deleteFromChain(sortVizSetList) {
 					}
 				}
 			}
-			else if (focusedEntryType == "stack"){
+			else if (focusedEntryType == "card"){
 				var focusedEntryUnit = focusedEntrySubMap[? "unit"];
 				scr_removeChainFromInChainsList(obj_chain.currentFocusedChainID, focusedEntryUnit);
 			}
@@ -119,7 +119,7 @@ function scr_deleteFromChain(sortVizSetList) {
 					}
 				}
 			}
-			else if (focusedEntryType == "stack"){
+			else if (focusedEntryType == "card"){
 				var focusedEntryUnit = focusedEntrySubMap[? "unit"];
 				scr_removeChainFromInChainsList(obj_chain.currentFocusedChainID, focusedEntryUnit);
 			}
@@ -215,7 +215,7 @@ function scr_deleteFromChain(sortVizSetList) {
 			}
 		}
 	}
-	else if (focusedEntryType == "stack"){
+	else if (focusedEntryType == "card"){
 		var focusedEntryUnit = ds_map_find_value(focusedEntrySubMap, "unit");
 		scr_removeChainFromInChainsList(obj_chain.currentFocusedChainID, focusedEntryUnit);
 	}

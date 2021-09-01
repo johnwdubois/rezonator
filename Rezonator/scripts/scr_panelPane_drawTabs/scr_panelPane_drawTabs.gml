@@ -91,15 +91,15 @@ function scr_panelPane_drawTabs() {
 		var filterList = scr_getFilterList();
 		var tabFilterActive = false;
 		if (functionChainList_currentTab == functionChainList_tabRezBrush) {
-			tabChainType = "rezChain";
+			tabChainType = "resonance";
 			tabFilterActive = obj_control.filterActiveRez;
 		}
 		else if (functionChainList_currentTab == functionChainList_tabTrackBrush) {
-			tabChainType = "trackChain";
+			tabChainType = "trail";
 			tabFilterActive = obj_control.filterActiveTrack;
 		}
 		else if (functionChainList_currentTab == functionChainList_tabStackBrush) {
-			tabChainType = "stackChain";
+			tabChainType = "stack";
 			tabFilterActive = obj_control.filterActiveStack;
 		}
 		
@@ -172,15 +172,15 @@ function scr_panelPane_drawTabs() {
 				
 				// re-determine tab data (now that we've switched tabs)
 				if (functionChainList_currentTab == functionChainList_tabRezBrush) {
-					tabChainType = "rezChain";
+					tabChainType = "resonance";
 					tabFilterActive = obj_control.filterActiveRez;
 				}
 				else if (functionChainList_currentTab == functionChainList_tabTrackBrush) {
-					tabChainType = "trackChain";
+					tabChainType = "trail";
 					tabFilterActive = obj_control.filterActiveTrack;
 				}
 				else if (functionChainList_currentTab == functionChainList_tabStackBrush) {
-					tabChainType = "stackChain";
+					tabChainType = "stack";
 					tabFilterActive = obj_control.filterActiveStack;
 				}
 
@@ -188,7 +188,7 @@ function scr_panelPane_drawTabs() {
 				
 				if (functionChainList_currentTab != functionChainList_tabShow) {
 					if(functionChainList_playShowID != ""){
-						scr_setValueForAllChains("stackChain", "filter", false);
+						scr_setValueForAllChains("stack", "filter", false);
 						with(obj_panelPane){
 							functionChainList_playShowID = "";
 						}

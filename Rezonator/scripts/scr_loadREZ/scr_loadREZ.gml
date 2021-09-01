@@ -97,7 +97,7 @@ show_debug_message("global.previousRezDirectory:  "+string(global.previousRezDir
 					global.tokenImportDisplayTokenColName = ds_map_find_value(map, "tokenImportDisplayTokenColName");
 					with(obj_panelPane){
 						functionChainList_focusedUnit = ds_map_find_value(map, "functionChainList_focusedUnit");
-						functionChainList_focusedUnitIndex = ds_map_find_value(map, "functionChainList_focusedUnitIndex");
+						functionChainList_focusedUnitIndex = ds_map_find_value(map, "functionChainList_focusedUnitSeq");
 					}
 					
 					if(global.tokenImportDisplayTokenColName == undefined ){
@@ -113,9 +113,9 @@ show_debug_message("global.previousRezDirectory:  "+string(global.previousRezDir
 				
 					global.importGridColNameList = ds_map_find_value(map, "importGridColNameList");
 				
-					if (ds_map_find_value(map, "showSpeakerName") != undefined) {
-						obj_control.showSpeakerName = ds_map_find_value(map, "showSpeakerName");
-						show_debug_message("scr_loadREZ, showSpeakerName: " + string(obj_control.showSpeakerName));
+					if (ds_map_find_value(map, "showParticipantName") != undefined) {
+						obj_control.showSpeakerName = ds_map_find_value(map, "showParticipantName");
+						show_debug_message("scr_loadREZ, showParticipantName: " + string(obj_control.showSpeakerName));
 					}
 					if (ds_map_find_value(map, "justify") != undefined) {
 						obj_control.justify = ds_map_find_value(map, "justify");
@@ -211,17 +211,19 @@ show_debug_message("global.previousRezDirectory:  "+string(global.previousRezDir
 					
 	
 					
-					// get displayTokenField & speakerField
+					// get displayTokenField & participantField
 					var getDisplayTokenField = ds_map_find_value(map, "displayTokenField");
-					var getSpeakerField = ds_map_find_value(map, "speakerField");
+					var getParticipantField = ds_map_find_value(map, "participantField");
 					if (is_string(getDisplayTokenField)) global.displayTokenField = getDisplayTokenField;
-					if (is_string(getSpeakerField)) global.speakerField = getSpeakerField;
+					if (is_string(getParticipantField)) global.participantField = getParticipantField;
 					
 					// get discourse node
-					global.discourseNode = map[? "discourseNode"];
-					if (!ds_map_exists(global.nodeMap, global.discourseNode)) {
+					global.discourseNode = map[? "docNode"];
+					if (is_undefined(global.discourseNode)) {
+						global.discourseNode = map[? "discourseNode"];
 					}
-					
+
+
 					
 					if (ds_map_exists(map, "sessionLength")) {
 						var sessionLength = map[? "sessionLength"];
@@ -234,9 +236,15 @@ show_debug_message("global.previousRezDirectory:  "+string(global.previousRezDir
 
 	ds_list_destroy(newInstList);
 	
-	scr_verifyRez(rezFileVerison);
-	
-	scr_refreshPrevToken();
+	var exitToOpeningScreen = scr_verifyRez(rezFileVerison);
+	if (exitToOpeningScreen) {
+		show_debug_message("scr_loadREZ ... verifyREZ has failed, exiting to opening screen");
+		room_goto(rm_openingScreen);
+		exit;
+	}
+	else {
+		scr_refreshPrevToken();
+	}
 	
 	
 

@@ -12,17 +12,17 @@ function scr_nodeMapSetChainValues(nodeID, chainName, chainColor, chainSeq) {
 		ds_map_add(subMap, "focused", "");
 		ds_map_add(subMap, "filter", false);
 		ds_map_add(subMap, "author", global.userName);
-		ds_map_add(subMap, "chainSeq", chainSeq);
+		ds_map_add(subMap, "chainCreateSeq", chainSeq);
 		ds_map_add(subMap, "visible", true);
 		ds_map_add(subMap, "selected", false);
 		
 		// set alignment
 		var type = ds_map_find_value(subMap, "type");
-		if (type == "rezChain" || type == "trackChain") {
-			ds_map_add(subMap, "alignChain", (type == "rezChain"));
+		if (type == "resonance" || type == "trail") {
+			ds_map_add(subMap, "alignChain", (type == "resonance"));
 		}
 		
-		if (type == "stackChain") {
+		if (type == "stack") {
 			ds_map_add(subMap, "caption", "");
 		}
 		

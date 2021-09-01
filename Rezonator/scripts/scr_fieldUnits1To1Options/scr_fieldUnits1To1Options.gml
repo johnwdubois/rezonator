@@ -34,7 +34,7 @@ function scr_fieldUnits1To1Options(optionSelected){
 		
 	}
 	else if (optionSelected == "Show in main screen") {
-		global.speakerField = obj_control.unitFieldToChange;
+		global.participantField = obj_control.unitFieldToChange;
 		instance_destroy();
 	}
 	

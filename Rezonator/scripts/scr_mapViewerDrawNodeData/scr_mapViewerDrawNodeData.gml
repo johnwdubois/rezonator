@@ -56,7 +56,7 @@ function scr_mapViewerDrawNodeData(){
 			
 			// check if this value is a map
 			var isMap = (subMapKey == "tagMap" or nodeShow == "tokenTagMap" or nodeShow == "unitTagMap" or nodeShow == "searchMap" or nodeShow == "cliqueMap"
-				or nodeShow == "treeMap" or nodeShow == "chainTagMap" or nodeShow == "entryTagMap" or nodeShow == "linkTagMap");
+				or nodeShow == "treeMap" or nodeShow == "chainTagMap" or nodeShow == "entryTagMap" or nodeShow == "linkTagMap" or nodeShow == "participantMap");
 			if (isMap && scr_isNumericAndExists(subMapVal, ds_type_map)) {
 				subMapValStr = "";
 				plusY += strHeight;
@@ -80,7 +80,7 @@ function scr_mapViewerDrawNodeData(){
 					
 					// check whether this field should be in a special color
 					var specialField = ((subMapKey == "tagMap" && global.displayTokenField == subsubMapKey)
-										|| (subMapKey == "tagMap" && global.speakerField == subsubMapKey));
+										|| (subMapKey == "tagMap" && global.participantField == subsubMapKey));
 					
 					var isList = (subsubMapKey == "tagSet" || subsubMapKey == "searchTermList" || subsubMapKey == "displayUnitList" 
 									|| subsubMapKey == "displayTokenList"|| subsubMapKey == "targetList"|| subsubMapKey == "unitList"|| subsubMapKey == "chainList"

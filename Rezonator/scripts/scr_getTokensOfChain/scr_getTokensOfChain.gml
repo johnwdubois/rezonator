@@ -7,7 +7,7 @@ function scr_getTokensOfChain(chainID){
 		var currentFocusedChainMap = global.nodeMap[? chainID];
 		var currentChainType = currentFocusedChainMap[? "type"];
 		
-		if(currentChainType == "stackChain"){
+		if(currentChainType == "stack"){
 			var currentChainStackList = currentFocusedChainMap[? "setIDList"];
 			for(var i = 0; i < ds_list_size(currentChainStackList); i ++){
 				var stackSubMap  = global.nodeMap[? currentChainStackList[| i]];

@@ -23,10 +23,10 @@ function scr_importGridToNodeMap_fieldsRowUnit(row){
 	// get current unit delimiter cell value
 	if(indexOfSpeaker >= 0){
 		speakerValue = global.importGrid[# indexOfSpeaker, row];
-		if (speakerValue == "" || speakerValue == "0") speakerValue = prevFieldMap[? global.speakerField];
-		else prevFieldMap[? global.speakerField] = speakerValue;
+		if (speakerValue == "" || speakerValue == "0") speakerValue = prevFieldMap[? global.participantField];
+		else prevFieldMap[? global.participantField] = speakerValue;
 		
-		ds_map_add(unitTagMap,global.speakerField, speakerValue);
+		ds_map_add(unitTagMap,global.participantField, speakerValue);
 	}
 	
 	
@@ -157,8 +157,8 @@ function scr_importGridToNodeMap_fieldsRowUnit(row){
 					// make token node
 					var currentTokenNode = scr_addToNodeMap("token");
 					var currentTokenSubMap = global.nodeMap[? currentTokenNode];
-					ds_map_add(currentTokenSubMap, "discourseTokenSeq", ds_list_size(tokenList) + 1);
-					ds_map_add(currentTokenSubMap, "tokenSeq", tokenCount);
+					ds_map_add(currentTokenSubMap, "docTokenSeq", ds_list_size(tokenList) + 1);
+					ds_map_add(currentTokenSubMap, "tokenOrder", tokenCount);
 					ds_map_add(currentTokenSubMap, "displayCol", tokenCount - 1);
 					ds_map_add(currentTokenSubMap, "void", 1);
 					ds_map_add(currentTokenSubMap, "pixelX", 0);
@@ -270,7 +270,7 @@ function scr_importGridToNodeMap_fieldsRowUnit(row){
 			}		
 		}
 		else if(currentLevel == "tab_name_unit"){
-			if(currentField == "~blockID" || currentField == global.speakerField){continue;}
+			if(currentField == "~blockID" || currentField == global.participantField){continue;}
 			if(currentField == global.unitImportUnitStartColName){unitSubMap[?"unitStart"] = unitStr}
 			if(currentField == global.unitImportUnitEndColName){unitSubMap[?"unitEnd"] = unitStr}
 			ds_map_add(unitTagMap, currentField, unitStr);
@@ -303,6 +303,8 @@ function scr_importGridToNodeMap_fieldsRowUnit(row){
 	ds_list_destroy(chunkIDList);
 	
 	importGridRow++;
+	
+	scr_setParticipantID(unitNode);
 	
 
 }

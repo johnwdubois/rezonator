@@ -132,7 +132,7 @@ function scr_dialogueConfirm(){
 				show_message(scr_get_translation("msg_numbers_only"));
 			}
 			else {
-				if (chainType == "rezChain" || chainType == "trackChain") {
+				if (chainType == "resonance" || chainType == "trail") {
 					var listOfWordIDSize = ds_list_size(listOfWordID);
 					for (var i = 0; i < listOfWordIDSize; i++) {
 						var currentWordID = ds_list_find_value(listOfWordID, i);
@@ -185,18 +185,18 @@ function scr_dialogueConfirm(){
 				
 			// delete all stack chains!
 			show_debug_message("scr_dialogueConfirm() ... clearAllStacks");
-			scr_deleteAllChains(global.nodeMap[? "stackChainList"]);
+			scr_deleteAllChains(global.nodeMap[? "stackList"]);
 		}
 		if (clearAllRez || clearAllLinks) {
 				
 			// delete all rez chains!!
 			show_debug_message("scr_dialogueConfirm() ... clearAllRez");
-			scr_deleteAllChains(global.nodeMap[? "rezChainList"]);
+			scr_deleteAllChains(global.nodeMap[? "resonanceList"]);
 		}
 		if (clearAllTracks || clearAllLinks) {
 				
 			// delete all track chains!!
-			scr_deleteAllChains(global.nodeMap[? "trackChainList"]);
+			scr_deleteAllChains(global.nodeMap[? "trailList"]);
 		}
 		
 		
@@ -253,7 +253,7 @@ function scr_dialogueConfirm(){
 		
 		if (instance_exists(obj_stacker)) {
 			if (obj_stacker.confirmStackCreate) {
-				scr_deleteAllChains(global.nodeMap[? "stackChainList"]);
+				scr_deleteAllChains(global.nodeMap[? "stackList"]);
 				scr_stackerBranch();
 			}
 		}

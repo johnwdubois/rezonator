@@ -46,6 +46,7 @@ ds_list_add(viewOptionList, "menu_window",
 							"menu_prose",
 							"menu_hide",
 							"Word Tip",
+							"tab_name_chunk",
 							"Arrowheads",
 							"Text Direction");
 

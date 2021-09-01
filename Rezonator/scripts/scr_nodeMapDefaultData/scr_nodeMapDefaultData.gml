@@ -2,9 +2,9 @@
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
 function scr_nodeMapDefaultData(){
 	// add chainLists to nodeMap
-	ds_map_add_list(global.nodeMap, "rezChainList", ds_list_create());
-	ds_map_add_list(global.nodeMap, "trackChainList", ds_list_create());
-	ds_map_add_list(global.nodeMap, "stackChainList", ds_list_create());
+	ds_map_add_list(global.nodeMap, "resonanceList", ds_list_create());
+	ds_map_add_list(global.nodeMap, "trailList", ds_list_create());
+	ds_map_add_list(global.nodeMap, "stackList", ds_list_create());
 
 	// add showList to nodeMap
 	ds_map_add_list(global.nodeMap, "showList", ds_list_create());
@@ -46,6 +46,10 @@ function scr_nodeMapDefaultData(){
 	// create the color MAP
 	global.treeMap = ds_map_create();
 	ds_map_add(global.treeMap, "type", "map");
+	
+	// create the participant map
+	global.participantMap = ds_map_create();
+	ds_map_add(global.participantMap, "type", "map");
 
 
 	// create lists of nodes for these panes
@@ -57,10 +61,12 @@ function scr_nodeMapDefaultData(){
 	ds_map_add_map(global.nodeMap, "cliqueMap", global.cliqueMap);
 	ds_map_add_map(global.nodeMap, "colorMap", global.colorMap);
 	ds_map_add_map(global.nodeMap, "treeMap", global.treeMap);
+	ds_map_add_map(global.nodeMap, "participantMap", global.participantMap);
 	
 	// add map to nodeList, so they're viewable in nodeMapViewer
 	ds_list_add(global.nodeMap[? "nodeList"], "searchMap");
 	ds_list_add(global.nodeMap[? "nodeList"], "cliqueMap");
 	ds_list_add(global.nodeMap[? "nodeList"], "treeMap");
 	ds_list_add(global.nodeMap[? "nodeList"], "colorMap");
+	ds_list_add(global.nodeMap[? "nodeList"], "participantMap");
 }

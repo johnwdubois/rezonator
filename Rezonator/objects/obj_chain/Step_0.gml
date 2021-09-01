@@ -12,7 +12,7 @@ if (ds_map_exists(global.nodeMap, currentFocusedChainID)) {
 	var currentFocusedChainSubMap = ds_map_find_value(global.nodeMap, currentFocusedChainID);
 	var currentFocusedChainType = ds_map_find_value(currentFocusedChainSubMap, "type");
 	
-	if (currentFocusedChainType == "rezChain" or currentFocusedChainType == "trackChain") {
+	if (currentFocusedChainType == "resonance" or currentFocusedChainType == "trail") {
 		var setIDList = ds_map_find_value(currentFocusedChainSubMap, "setIDList");
 		if (is_numeric(setIDList)) {
 			if (ds_exists(setIDList, ds_type_list)) {

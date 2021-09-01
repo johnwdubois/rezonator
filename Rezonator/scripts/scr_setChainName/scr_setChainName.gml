@@ -30,9 +30,9 @@ function scr_setChainName(){
 				var chainSubMap = global.nodeMap[? currentChainID];						
 				if(scr_isNumericAndExists(chainSubMap, ds_type_map)){
 					var chainType = chainSubMap[? "type"];							
-					if((chainType == "trackChain" && obj_toolPane.currentMode == obj_toolPane.modeTrack or obj_toolPane.currentMode == obj_toolPane.modeRead)
-					or (chainType == "rezChain" && obj_toolPane.currentMode == obj_toolPane.modeRez or obj_toolPane.currentMode == obj_toolPane.modeRead)
-					or (chainType == "stackChain")){
+					if((chainType == "trail" && obj_toolPane.currentMode == obj_toolPane.modeTrack or obj_toolPane.currentMode == obj_toolPane.modeRead)
+					or (chainType == "resonance" && obj_toolPane.currentMode == obj_toolPane.modeRez or obj_toolPane.currentMode == obj_toolPane.modeRead)
+					or (chainType == "stack")){
 						
 						chainSubMap[? "name"] = stringToSet;
 						

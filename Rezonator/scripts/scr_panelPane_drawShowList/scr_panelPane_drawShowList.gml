@@ -137,7 +137,7 @@ function scr_panelPane_drawShowList(){
 							functionChainList_playShowID = currentShow;
 						}
 									
-						scr_setValueForAllChains("stackChain","filter", false);
+						scr_setValueForAllChains("stack","filter", false);
 						// Filter the first current stack
 						var currentStackID = ds_list_find_value(setList, 0);
 						if (ds_list_find_index(obj_chain.filteredStackChainList,currentStackID) == -1) {
@@ -155,7 +155,7 @@ function scr_panelPane_drawShowList(){
 				}
 				else{
 					
-					scr_setValueForAllChains("stackChain","filter", false);
+					scr_setValueForAllChains("stack","filter", false);
 					with(obj_panelPane){
 						functionChainList_playShowID = "";
 					}				

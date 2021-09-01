@@ -4,9 +4,9 @@ function scr_setValueForAllChains(chainType, key, value) {
 	
 	// find the list of chains to iterate over
 	var listOfChains = -1;
-	if (chainType == "rezChain") listOfChains = ds_map_find_value(global.nodeMap, "rezChainList");
-	else if (chainType == "trackChain") listOfChains = ds_map_find_value(global.nodeMap, "trackChainList");
-	else if (chainType == "stackChain") listOfChains = ds_map_find_value(global.nodeMap, "stackChainList");
+	if (chainType == "resonance") listOfChains = ds_map_find_value(global.nodeMap, "resonanceList");
+	else if (chainType == "trail") listOfChains = ds_map_find_value(global.nodeMap, "trailList");
+	else if (chainType == "stack") listOfChains = ds_map_find_value(global.nodeMap, "stackList");
 	else {
 		show_debug_message("scr_setValueForAllChains() ... chainType: " + string(chainType) + " is invalid. Exiting...");
 		exit;
@@ -29,9 +29,9 @@ function scr_setValueForAllChains(chainType, key, value) {
 		if (key == "filter") {
 			// determine which filter list to look at
 			var listOfFilteredChains = -1;
-			if (chainType == "rezChain") listOfFilteredChains = obj_chain.filteredRezChainList;
-			else if (chainType == "trackChain") listOfFilteredChains = obj_chain.filteredTrackChainList;
-			else if (chainType == "stackChain") listOfFilteredChains = obj_chain.filteredStackChainList;
+			if (chainType == "resonance") listOfFilteredChains = obj_chain.filteredRezChainList;
+			else if (chainType == "trail") listOfFilteredChains = obj_chain.filteredTrackChainList;
+			else if (chainType == "stack") listOfFilteredChains = obj_chain.filteredStackChainList;
 			
 			// either add or remove this chain from the corresponding filter list
 			if (value && ds_list_find_index(listOfFilteredChains, currentChain) == -1) {
@@ -46,9 +46,9 @@ function scr_setValueForAllChains(chainType, key, value) {
 		else if (key == "selected") {
 			// determine which selected list to look at
 			var listOfSelectedChains = -1;
-			if (chainType == "rezChain") listOfSelectedChains = obj_control.selectedRezChainList;
-			else if (chainType == "trackChain") listOfSelectedChains = obj_control.selectedTrackChainList;
-			else if (chainType == "stackChain") listOfSelectedChains = obj_control.selectedStackChainList;
+			if (chainType == "resonance") listOfSelectedChains = obj_control.selectedRezChainList;
+			else if (chainType == "trail") listOfSelectedChains = obj_control.selectedTrackChainList;
+			else if (chainType == "stack") listOfSelectedChains = obj_control.selectedStackChainList;
 			
 			// either add or remove this chain from the corresponding selected list
 			if (value && ds_list_find_index(listOfSelectedChains, currentChain) == -1) {
@@ -63,9 +63,9 @@ function scr_setValueForAllChains(chainType, key, value) {
 		else if (key == "visible") {
 			// determine which hidden list to look at
 			var listOfHiddenChains = -1;
-			if (chainType == "rezChain") listOfHiddenChains = obj_control.hiddenRezChainList;
-			else if (chainType == "trackChain") listOfHiddenChains = obj_control.hiddenTrackChainList;
-			else if (chainType == "stackChain") listOfHiddenChains = obj_control.hiddenStackChainList;
+			if (chainType == "resonance") listOfHiddenChains = obj_control.hiddenRezChainList;
+			else if (chainType == "trail") listOfHiddenChains = obj_control.hiddenTrackChainList;
+			else if (chainType == "stack") listOfHiddenChains = obj_control.hiddenStackChainList;
 			
 			// either add or remove this chain from the corresponding hidden list
 			if (!value && ds_list_find_index(listOfHiddenChains, currentChain) == -1) {

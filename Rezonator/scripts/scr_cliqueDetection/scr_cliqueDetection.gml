@@ -26,7 +26,7 @@ function scr_cliqueDetection(){
 			
 				for(var k = 0; k < inChainsListSize; k ++){
 					var currentChainID = inChainsList[|k];
-					if(ds_list_find_index(global.nodeMap[? "rezChainList"], currentChainID) >= 0){
+					if(ds_list_find_index(global.nodeMap[? "resonanceList"], currentChainID) >= 0){
 						// found rez in unit lets create a clique based off this token
 						ds_list_add(obj_chain.encounteredTokenList, tokenID);
 					}
@@ -43,7 +43,7 @@ function scr_cliqueDetection(){
 						var chunkInChainsListSize = ds_list_size(chunkInChainsList);
 						for(var l = 0; l < chunkInChainsListSize; l++){
 							var currentChainID = chunkInChainsList[|l];
-							if(ds_list_find_index(global.nodeMap[? "rezChainList"], currentChainID) >= 0){
+							if(ds_list_find_index(global.nodeMap[? "resonanceList"], currentChainID) >= 0){
 								// found rez in unit lets create a clique based off this token
 								ds_list_add(obj_chain.encounteredTokenList, tokenID);
 							}

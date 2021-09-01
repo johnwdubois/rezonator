@@ -45,7 +45,7 @@ function scr_chainOrderMap(){
 						var currentUnitSubMap = global.nodeMap[? currentUnit];
 						var currentUnitEntryList = currentUnitSubMap[? "entryList"];
 						var currentUnitEntryListSize = ds_list_size(currentUnitEntryList);
-						var currentTokenSeq = currentTokenSubMap[? "tokenSeq"];
+						var currentTokenSeq = currentTokenSubMap[? "tokenOrder"];
 						
 						if (currentEntrySubMap[? "stretch"]) continue;
 						
@@ -82,7 +82,7 @@ function scr_chainOrderMap(){
 								// make sure our original chain is not finding itself (side-links)
 								if (!scr_checkSideLink(_currentChain, _currentToken)) {
 									var _currentChainSubMap = global.nodeMap[? _currentChain];
-									if (_currentChainSubMap[? "type"] == "rezChain") {
+									if (_currentChainSubMap[? "type"] == "resonance") {
 										if (!_currentEntrySubMap[? "stretch"]) {
 											scr_addToListOnce(currentChainOrderList, _currentChain);
 											breakLoop = true;
@@ -105,7 +105,7 @@ function scr_chainOrderMap(){
 										var chunksCurrentChain = currentChunkInChainsList[| n];
 										var chunksCurrentChainSubMap = global.nodeMap[? chunksCurrentChain];
 										if (!scr_checkSideLink(chunksCurrentChain, _currentToken)) {
-											if (chunksCurrentChainSubMap[? "type"] == "rezChain") {
+											if (chunksCurrentChainSubMap[? "type"] == "resonance") {
 												if (!_currentEntrySubMap[? "stretch"]) {
 													scr_addToListOnce(currentChainOrderList, chunksCurrentChain);
 													breakLoop = true;

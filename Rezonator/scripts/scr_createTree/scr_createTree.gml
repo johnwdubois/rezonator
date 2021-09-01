@@ -47,7 +47,7 @@ function scr_createTree(tokenList){
 		ds_map_add_list(currentEntrySubMap, "tokenList", currentTokenList);
 		ds_map_add(currentEntrySubMap, "order", i);
 		ds_map_add(currentEntrySubMap, "level", -1);
-		ds_map_add(currentEntrySubMap, "type", "entry");
+		ds_map_add(currentEntrySubMap, "type", "treeEntry");
 		ds_map_add(currentEntrySubMap, "entryX1", -1);
 		ds_map_add(currentEntrySubMap, "entryY1", -1);
 		ds_map_add(currentEntrySubMap, "entryX2", -1);

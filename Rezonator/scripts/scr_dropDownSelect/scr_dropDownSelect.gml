@@ -67,7 +67,6 @@ function scr_dropDownSelect(optionSelected) {
 	else if (optionListType == global.optionListTypeZoom) //13
 	{
 	    scr_zoomOptions(optionSelected);
-	    instance_destroy();
 	}
 
 	//paneOptions
@@ -81,28 +80,24 @@ function scr_dropDownSelect(optionSelected) {
 	else if (optionListType == global.optionListTypeJustify) //16
 	{
 	    scr_justifyOptions(optionSelected);
-	    if (object_index == obj_dropDown) instance_destroy();
 	}
 
 	//proseOptions
 	else if (optionListType == global.optionListTypeProse) //17
 	{
 	    scr_proseOptions(optionSelected);
-	    if (object_index == obj_dropDown) instance_destroy();
 	}
 
 	//hideOptions
 	else if (optionListType == global.optionListTypeHide) //18
 	{
 	    scr_hideOptions(optionSelected);
-	    instance_destroy();
 	}
 
 	//contextOptions
 	else if (optionListType == global.optionListTypeContext) //19
 	{
 	    scr_contextOptions(optionSelected);
-	    if (object_index == obj_dropDown) instance_destroy();
 	}
 
 	//clearOptions
@@ -233,7 +228,6 @@ function scr_dropDownSelect(optionSelected) {
 	else if (optionListType == global.optionListTypeTextDirection) //49
 	{
 	    scr_textDirectionOptions(optionSelected);
-		instance_destroy();
 	}
 
 	else if (optionListType == global.optionListTypeChain1To1Field) //51

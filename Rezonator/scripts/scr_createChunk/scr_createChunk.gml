@@ -50,8 +50,8 @@ function scr_createChunk(){
 		var lastToken = tokenIDList[| ds_list_size(tokenIDList)-1];
 		var lastTokenSubMap = global.nodeMap[? lastToken];
 		
-		var startDocOrder = firstTokenSubMap[? "discourseTokenSeq"];
-		var endDocOrder = lastTokenSubMap[? "discourseTokenSeq"];
+		var startDocOrder = firstTokenSubMap[? "docTokenSeq"];
+		var endDocOrder = lastTokenSubMap[? "docTokenSeq"];
 		
 		var highestNest = 0;
 		var lowestEncapsulatingNest = 999999999999999;
@@ -91,8 +91,8 @@ function scr_createChunk(){
 							
 						
 						//get token seq of current chunk for comaparison
-						var currentChunkStartDocOrder = currentChunkFirstTokenSubMap[? "discourseTokenSeq"];
-						var currentChunkEndDocOrder = currentChunkLastTokenSubMap[? "discourseTokenSeq"];
+						var currentChunkStartDocOrder = currentChunkFirstTokenSubMap[? "docTokenSeq"];
+						var currentChunkEndDocOrder = currentChunkLastTokenSubMap[? "docTokenSeq"];
 						
 						//the chunk is encapsulating the new chunk
 						if(currentChunkStartDocOrder <= startDocOrder && currentChunkEndDocOrder >= endDocOrder){
@@ -184,7 +184,7 @@ function scr_createChunk(){
 			if(obj_chain.currentFocusedChainID != ""){
 				var focusedChainSubMap = global.nodeMap[?obj_chain.currentFocusedChainID];
 				
-				if(focusedChainSubMap[?"type"] != "stackChain"){
+				if(focusedChainSubMap[?"type"] != "stack"){
 					scr_newLink(chunkID);
 				}
 				else{

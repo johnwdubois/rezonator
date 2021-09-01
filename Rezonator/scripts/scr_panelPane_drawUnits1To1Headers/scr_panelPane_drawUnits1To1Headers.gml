@@ -97,7 +97,7 @@ function scr_panelPane_drawUnits1To1Headers(){
 			draw_circle(displayUnitButtonX, displayUnitButtonY, displayUnitButtonSize * 0.75, false);
 			
 			if (mouse_check_button_released(mb_left)) {
-				global.speakerField = currentField;		
+				global.participantField = currentField;		
 			}
 		}
 	
@@ -105,7 +105,7 @@ function scr_panelPane_drawUnits1To1Headers(){
 		// draw circle for display unit selection
 		draw_set_color(global.colorThemeBorders);
 		draw_circle(displayUnitButtonX, displayUnitButtonY, displayUnitButtonSize, true);
-		if (global.speakerField == currentField) {
+		if (global.participantField == currentField) {
 			draw_set_color(merge_color(global.colorThemeBorders, global.colorThemeBG, 0.1));
 			draw_circle(displayUnitButtonX, displayUnitButtonY, displayUnitButtonSize * 0.75, false);
 			draw_set_color(global.colorThemeBorders);

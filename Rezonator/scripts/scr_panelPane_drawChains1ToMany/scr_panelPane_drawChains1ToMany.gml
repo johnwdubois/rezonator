@@ -75,16 +75,16 @@ function scr_panelPane_drawChains1ToMany() {
 	var chainFocusedEntry = chainSubMap[? "focused"];
 	
 	// make sure that we have a valid chain type
-	if (chainType != "rezChain" && chainType != "trackChain" && chainType != "stackChain") {
+	if (chainType != "resonance" && chainType != "trail" && chainType != "stack") {
 		functionChainContents_chainID = "";
 		scr_surfaceEnd();
 		exit;
 	}
 	
 	// make sure that the chain type that we are trying to view matches the tab we are on
-	if ((chainType == "rezChain" && functionChainList_currentTab != functionChainList_tabRezBrush)
-	|| (chainType == "trackChain" && functionChainList_currentTab != functionChainList_tabTrackBrush)
-	|| (chainType == "stackChain" && functionChainList_currentTab != functionChainList_tabStackBrush)) {
+	if ((chainType == "resonance" && functionChainList_currentTab != functionChainList_tabRezBrush)
+	|| (chainType == "trail" && functionChainList_currentTab != functionChainList_tabTrackBrush)
+	|| (chainType == "stack" && functionChainList_currentTab != functionChainList_tabStackBrush)) {
 		functionChainContents_chainID = "";
 		scr_surfaceEnd();
 		exit;
@@ -125,15 +125,15 @@ function scr_panelPane_drawChains1ToMany() {
 			if (!scr_isNumericAndExists(currentEntrySubMap, ds_type_map)) continue;
 				
 			// get the tokenID (or unitID is this is a stackChain)
-			var currentID = currentEntrySubMap[? (chainType == "stackChain") ? "unit" : "token"];
+			var currentID = currentEntrySubMap[? (chainType == "stack") ? "unit" : "token"];
 			if (!is_string(currentID)) continue;
 			var IDSubMap = global.nodeMap[?currentID];
 			
 			// make sure IDSubMap exists
 			if (!scr_isNumericAndExists(IDSubMap, ds_type_map)) continue;
 			
-			var unitID = (chainType == "stackChain") ? currentID : IDSubMap[? "unit"];
-			if (chainType != "stackChain") {
+			var unitID = (chainType == "stack") ? currentID : IDSubMap[? "unit"];
+			if (chainType != "stack") {
 				if (scr_isChunk(currentID)) {
 					var chunkFirstToken = scr_getFirstWordOfChunk(currentID);
 					var chunkFirstTokenSubMap = global.nodeMap[? chunkFirstToken];

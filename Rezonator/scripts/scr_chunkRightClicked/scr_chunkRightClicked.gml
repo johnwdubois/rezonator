@@ -28,8 +28,8 @@ function scr_chunkRightClicked(){
 				if(scr_isNumericAndExists(chainSubMap, ds_type_map)){
 					var chainType = chainSubMap[?"type"];
 					
-					if((chainType == "trackChain" && obj_toolPane.currentMode == obj_toolPane.modeTrack or obj_toolPane.currentMode == obj_toolPane.modeRead)
-						or (chainType == "rezChain" && obj_toolPane.currentMode == obj_toolPane.modeRez or obj_toolPane.currentMode == obj_toolPane.modeRead)){
+					if((chainType == "trail" && obj_toolPane.currentMode == obj_toolPane.modeTrack or obj_toolPane.currentMode == obj_toolPane.modeRead)
+						or (chainType == "resonance" && obj_toolPane.currentMode == obj_toolPane.modeRez or obj_toolPane.currentMode == obj_toolPane.modeRead)){
 							if (obj_panelPane.functionField_chainFieldSelected != "" && obj_panelPane.functionField_chainTagSelected != ""
 								&& is_string(obj_panelPane.functionField_chainFieldSelected) && is_string(obj_panelPane.functionField_chainTagSelected)) {
 									scr_addToListOnce(dropDownOptionList , "Tag Chain");
@@ -43,8 +43,8 @@ function scr_chunkRightClicked(){
 				}
 			
 				// check whether we should refocus this word's entry or not
-				var refocusEntry = (chainType == "rezChain" && obj_toolPane.currentMode == obj_toolPane.modeRez)
-					or (chainType == "trackChain" && obj_toolPane.currentMode == obj_toolPane.modeTrack)
+				var refocusEntry = (chainType == "resonance" && obj_toolPane.currentMode == obj_toolPane.modeRez)
+					or (chainType == "trail" && obj_toolPane.currentMode == obj_toolPane.modeTrack)
 					or (obj_toolPane.currentMode == obj_toolPane.modeRead);
 				
 				if(refocusEntry){

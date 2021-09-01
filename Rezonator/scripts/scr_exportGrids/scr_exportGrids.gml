@@ -26,7 +26,7 @@ function scr_exportGrids() {
 	
 	// create header list for entryGrid
 	var tempEntryGridHeaderList = ds_list_create();
-	ds_list_add(tempEntryGridHeaderList, "chainID", "chainName", "chainSeq", "trackSeq", "tokenID", "isChunk", "chunkID", "text", "transcript", "unitText");
+	ds_list_add(tempEntryGridHeaderList, "chainID", "chainName", "chainCreateSeq", "trackSeq", "tokenID", "isChunk", "chunkID", "text", "transcript", "unitText");
 	var tempTokenGridHeaderList = ds_list_create();
 	ds_list_add(tempTokenGridHeaderList, "tokenID", "tokenOrder", "unitID", "unitSeq");
 	
@@ -62,14 +62,14 @@ function scr_exportGrids() {
 	var tempUnitGrid = scr_exportDiscourseTempGrid(tempUnitGridHeaderList, obj_control.unitFieldList);
 	
 	// make temp entry grids for track & rez
-	var tempTrackGrid = scr_exportChainEntryGrid(global.nodeMap[? "trackChainList"], tempEntryGridHeaderList);
-	var tempRezGrid = scr_exportChainEntryGrid(global.nodeMap[? "rezChainList"], tempEntryGridHeaderList);
+	var tempTrackGrid = scr_exportChainEntryGrid(global.nodeMap[? "trailList"], tempEntryGridHeaderList);
+	var tempRezGrid = scr_exportChainEntryGrid(global.nodeMap[? "resonanceList"], tempEntryGridHeaderList);
 
 
 	// make temporary export grids
-	var tempRezChainGrid = scr_exportChainTempGrid(ds_map_find_value(global.nodeMap, "rezChainList"));
-	var tempTrackChainGrid = scr_exportChainTempGrid(ds_map_find_value(global.nodeMap, "trackChainList"));
-	var tempStackChainGrid = scr_exportChainTempGrid(ds_map_find_value(global.nodeMap, "stackChainList"));
+	var tempRezChainGrid = scr_exportChainTempGrid(ds_map_find_value(global.nodeMap, "resonanceList"));
+	var tempTrackChainGrid = scr_exportChainTempGrid(ds_map_find_value(global.nodeMap, "trailList"));
+	var tempStackChainGrid = scr_exportChainTempGrid(ds_map_find_value(global.nodeMap, "stackList"));
 	var tempChunkGrid = scr_exportChunkTempGrid();
 	var tempSearchGrid = scr_exportSearchTempGrid();
 	var tempLinkGrid = scr_exportLinkTempGrid();
@@ -95,9 +95,9 @@ function scr_exportGrids() {
 	scr_gridToCSV(tempUnitGrid, exportDir + "\\unit.csv", tempUnitGridHeaderList);
 	scr_gridToCSV(tempTrackGrid, exportDir + "\\track.csv", tempEntryGridHeaderList);
 	scr_gridToCSV(tempRezGrid, exportDir + "\\rez.csv", tempEntryGridHeaderList);
-	scr_gridToCSV(tempRezChainGrid, exportDir + "\\rezChain.csv", tempChainGridHeaderList);
-	scr_gridToCSV(tempTrackChainGrid, exportDir + "\\trackChain.csv", tempChainGridHeaderList);
-	scr_gridToCSV(tempStackChainGrid, exportDir + "\\stackChain.csv", tempChainGridHeaderList);
+	scr_gridToCSV(tempRezChainGrid, exportDir + "\\resonance.csv", tempChainGridHeaderList);
+	scr_gridToCSV(tempTrackChainGrid, exportDir + "\\trail.csv", tempChainGridHeaderList);
+	scr_gridToCSV(tempStackChainGrid, exportDir + "\\stack.csv", tempChainGridHeaderList);
 	scr_gridToCSV(tempChunkGrid, exportDir + "\\chunk.csv", tempChunkGridHeaderList);
 	scr_gridToCSV(tempLinkGrid, exportDir + "\\link.csv", tempLinkGridHeaderList);
 

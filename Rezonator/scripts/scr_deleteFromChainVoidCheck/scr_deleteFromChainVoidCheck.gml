@@ -8,7 +8,7 @@ function scr_deleteFromChainVoidCheck(chainID, deletedTokenID, deletedTokenPushB
 	var chainSubMap = global.nodeMap[? chainID];
 	if (!scr_isNumericAndExists(chainSubMap, ds_type_map)) exit;
 	var chainType = chainSubMap[? "type"];
-	if (chainType != "rezChain") exit;
+	if (chainType != "resonance") exit;
 	var chainSetList = chainSubMap[? "vizSetIDList"];
 	if (!scr_isNumericAndExists(chainSetList, ds_type_list)) exit;
 	var chainSetListSize = ds_list_size(chainSetList);
@@ -20,7 +20,7 @@ function scr_deleteFromChainVoidCheck(chainID, deletedTokenID, deletedTokenPushB
 	if (deletedTokenPushBack and scr_isNumericAndExists(deletedTokenSubMap, ds_type_map)) {
 		
 		
-		var deletedTokenSeq = deletedTokenSubMap[? "tokenSeq"];
+		var deletedTokenSeq = deletedTokenSubMap[? "tokenOrder"];
 		var deleteDisplayColDest = 0;
 		if (deletedTokenSeq > 1) {
 			deleteDisplayColDest = scr_getPrevDisplayCol(deletedTokenID);
@@ -45,7 +45,7 @@ function scr_deleteFromChainVoidCheck(chainID, deletedTokenID, deletedTokenPushB
 			
 
 			if (!scr_isNumericAndExists(currentTokenSubMap, ds_type_map)) continue;
-			var currentTokenSeq = currentTokenSubMap[? "tokenSeq"];
+			var currentTokenSeq = currentTokenSubMap[? "tokenOrder"];
 			var currentDisplayColDest = 0;
 			if (deletedTokenSeq > 1) {
 				var prevDisplayCol = scr_getPrevDisplayCol(currentTokenID);
@@ -72,7 +72,7 @@ function scr_deleteFromChainVoidCheck(chainID, deletedTokenID, deletedTokenPushB
 
 	
 	// check chain for voids (if this is a rezChain)
-	if (chainType == "rezChain") {
+	if (chainType == "resonance") {
 		
 		var smallVoidExists = false;
 
@@ -88,7 +88,7 @@ function scr_deleteFromChainVoidCheck(chainID, deletedTokenID, deletedTokenPushB
 			var currentTokenSubMap = global.nodeMap[? currentTokenID];
 			
 			if (!scr_isNumericAndExists(currentTokenSubMap, ds_type_map)) continue;
-			var currentTokenSeq = currentTokenSubMap[? "tokenSeq"];
+			var currentTokenSeq = currentTokenSubMap[? "tokenOrder"];
 			var currentDisplayCol = currentTokenSubMap[? "displayCol"];
 			
 			if (currentTokenSeq > 1) {
@@ -123,7 +123,7 @@ function scr_deleteFromChainVoidCheck(chainID, deletedTokenID, deletedTokenPushB
 				}
 				var currentTokenSubMap = global.nodeMap[? currentTokenID];
 				if (!scr_isNumericAndExists(currentTokenSubMap, ds_type_map)) continue;
-				var currentTokenSeq = currentTokenSubMap[? "tokenSeq"];
+				var currentTokenSeq = currentTokenSubMap[? "tokenOrder"];
 				var currentDisplayCol = currentTokenSubMap[? "displayCol"];
 			
 				if (currentTokenSeq > 1) {

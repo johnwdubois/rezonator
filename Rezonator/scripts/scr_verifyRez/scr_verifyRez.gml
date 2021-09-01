@@ -2,6 +2,7 @@
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
 function scr_verifyRez(rezFileVerison){
 	
+	
 	if(rezFileVerison != global.versionString){
 	
 		var inst = instance_create_layer(0, 0, "InstancesDialogue", obj_dialogueBox);
@@ -16,7 +17,7 @@ function scr_verifyRez(rezFileVerison){
 	//if only thing in node map is node list then we need to return to opening screen
 	if (!scr_isNumericAndExists(docSubMap, ds_type_map)) {
 		show_debug_message("scr_verifyREZ ... docSubMap is undefined- jumping to opening screen");
-		room_goto(rm_openingScreen);
+		return true;
 	}
 	else{
 
@@ -24,13 +25,13 @@ function scr_verifyRez(rezFileVerison){
 		var unitList = docSubMap[? "unitList"];
 		if (!scr_isNumericAndExists(unitList, ds_type_list)) {
 			show_debug_message("scr_verifyREZ ... unitList is undefined- jumping to opening screen");
-			room_goto(rm_openingScreen);
+			return true;
 		}
 		
 		// make sure unitList has at least 1 thing in it
 		if (ds_list_size(unitList) < 1) {
 			show_debug_message("scr_verifyREZ ... unitList is empty- jumping to opening screen");
-			room_goto(rm_openingScreen);
+			return true;
 		}
 		
 		// if this rez file doesn't have a valid displayUnitList, replace displayUnitList with the unitList
@@ -58,9 +59,9 @@ function scr_verifyRez(rezFileVerison){
 		//all lists from load rez
 		
 		// get chain lists from nodeMap, and if they aren't provided in the nodeMap then we'll make them!
-		var rezChainList = global.nodeMap[? "rezChainList"];
-		var trackChainList = global.nodeMap[? "trackChainList"];
-		var stackChainList = global.nodeMap[? "stackChainList"];
+		var rezChainList = global.nodeMap[? "resonanceList"];
+		var trackChainList = global.nodeMap[? "trailList"];
+		var stackChainList = global.nodeMap[? "stackList"];
 		var showList = global.nodeMap[? "showList"];
 		var chunkList = global.nodeMap[? "chunkList"];
 		var nodeList = global.nodeMap[? "nodeList"];
@@ -89,15 +90,15 @@ function scr_verifyRez(rezFileVerison){
 	
 		if (!is_numeric(rezChainList)) {
 			rezChainList = ds_list_create();
-			ds_map_add_list(global.nodeMap, "rezChainList", rezChainList);
+			ds_map_add_list(global.nodeMap, "resonanceList", rezChainList);
 		}
 		if (!is_numeric(trackChainList)) {
 			trackChainList = ds_list_create();
-			ds_map_add_list(global.nodeMap, "trackChainList", trackChainList);
+			ds_map_add_list(global.nodeMap, "trailList", trackChainList);
 		}
 		if (!is_numeric(stackChainList)) {
 			stackChainList = ds_list_create();
-			ds_map_add_list(global.nodeMap, "stackChainList", stackChainList);
+			ds_map_add_list(global.nodeMap, "stackList", stackChainList);
 		}
 		if (!is_numeric(showList)) {
 			ds_map_add_list(global.nodeMap, "showList", ds_list_create());
