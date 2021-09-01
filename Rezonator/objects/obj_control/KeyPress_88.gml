@@ -3,6 +3,7 @@
 if(!obj_control.dialogueBoxActive){
 	if(obj_control.hoverTokenID != ""){
 		var fillWord = "";
+		/*
 		if(obj_control.currentNewWordPre == 1){
 			fillWord = scr_get_translation("option_zero-0");
 		}
@@ -16,8 +17,9 @@ if(!obj_control.dialogueBoxActive){
 			fillWord = obj_control.lastAddedWord;
 		}
 		else{
+		*/
 			fillWord = scr_get_translation("option_zero-0");
-		}
+		//}
 		obj_control.before = false;
 		scr_newToken(fillWord,obj_control.hoverTokenID);
 	}
