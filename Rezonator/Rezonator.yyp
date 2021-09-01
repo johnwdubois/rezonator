@@ -270,6 +270,7 @@
     {"id":{"name":"scr_newLink","path":"scripts/scr_newLink/scr_newLink.yy",},"order":1,},
     {"id":{"name":"scr_showListOptions","path":"scripts/scr_showListOptions/scr_showListOptions.yy",},"order":56,},
     {"id":{"name":"scr_deleteFromList","path":"scripts/scr_deleteFromList/scr_deleteFromList.yy",},"order":5,},
+    {"id":{"name":"scr_getFirstUnitOfChain","path":"scripts/scr_getFirstUnitOfChain/scr_getFirstUnitOfChain.yy",},"order":7,},
     {"id":{"name":"scr_deleteFromChain","path":"scripts/scr_deleteFromChain/scr_deleteFromChain.yy",},"order":16,},
     {"id":{"name":"scr_getCurrentSessionTime","path":"scripts/scr_getCurrentSessionTime/scr_getCurrentSessionTime.yy",},"order":23,},
     {"id":{"name":"scr_drawChains","path":"scripts/scr_drawChains/scr_drawChains.yy",},"order":0,},

@@ -20,7 +20,12 @@ function scr_disableFilter(){
 	// set the displayUnitList to be the filterUnitList
 	var discourseSubMap = global.nodeMap[? global.discourseNode];
 	var displayUnitList = discourseSubMap[? "displayUnitList"];
-	var drawRangeUnit = displayUnitList[|0];
+	var drawRangeUnit = "";
+	
+	// if there is a focused chain, let's jump back to the first thing in that chain
+	if (obj_chain.currentFocusedChainID != "") drawRangeUnit = scr_getFirstUnitOfChain(obj_chain.currentFocusedChainID);
+	
+	if (drawRangeUnit == "") drawRangeUnit = displayUnitList[|0];
 	var drawRangeUnitSubMap = global.nodeMap[?drawRangeUnit];
 	var drawRangeUnitSeq = 0;
 	if(scr_isNumericAndExists(drawRangeUnitSubMap,ds_type_map)){
