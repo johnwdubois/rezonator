@@ -38,8 +38,7 @@ function scr_jumpToUnit(unitOrSeq) {
 	var scrollPos = -((unitIndex * obj_control.gridSpaceVertical) - obj_control.wordTopMargin);
 	show_debug_message("scr_jumpToUnit ... setting scroll from " + string(obj_control.scrollPlusYDest) + " to " + string(scrollPos));
 	obj_control.scrollPlusYDest = scrollPos;
-
-	
+	obj_control.updateChainShowMap = true;
 	
 
 }

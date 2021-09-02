@@ -116,6 +116,18 @@ function scr_panelPane_drawChains1ToMany() {
 		scrollBarListHeight = entryIDListSize;
 	
 		for (var i = 0; i < entryIDListSize; i++) {
+			
+			if (y + textMarginTop + scrollPlusY + textPlusY < y - strHeight
+			or y + textMarginTop + scrollPlusY + textPlusY > y + windowHeight + strHeight) {
+				textPlusY += strHeight;
+				continue;
+			}
+			else if (y + textMarginTop + scrollPlusY + textPlusY > y + windowHeight + strHeight) {
+				textPlusY += strHeight;
+				break;
+			}
+			
+//y + textMarginTop + textPlusY - (strHeight / 2) + scrollPlusY;
 						
 			// Get map of current entry
 			var currentEntry = functionChainContents_IDList[| i];

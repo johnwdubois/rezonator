@@ -17,9 +17,11 @@ function scr_updateChainShowList(inChainsList, inEntryList, chainShowList, inBox
 				continue;
 			}
 			
-			// add this chain to chainShowList and chainShowMap
-			scr_addToListOnce(chainShowList, currentChain);
-			scr_updateChainShowMap(currentChain, inEntryList);
+			if (updateChainShowMap) {
+				// add this chain to chainShowList and chainShowMap
+				scr_addToListOnce(chainShowList, currentChain);
+				scr_updateChainShowMap(currentChain, inEntryList);
+			}
 			
 			
 			
@@ -68,16 +70,16 @@ function scr_updateChainShowList(inChainsList, inEntryList, chainShowList, inBox
 		// check if this chunk is in any chains that should be added to chainShowList
 		var currentChunkSubMap = global.nodeMap[? currentChunk];
 		if (scr_isNumericAndExists(currentChunkSubMap, ds_type_map)) {
-			var currentChunkInChainsList = currentChunkSubMap[? "inChainsList"];
-			var currentChunkInEntryList = currentChunkSubMap[? "inEntryList"];
-			if (scr_isNumericAndExists(currentChunkInChainsList, ds_type_list) && scr_isNumericAndExists(currentChunkInEntryList, ds_type_list)) {
-				var currentChunkInChainsListSize = ds_list_size(currentChunkInChainsList);
-				for (var j = 0; j < currentChunkInChainsListSize; j++) {
-					var currentChain = currentChunkInChainsList[| j];
-					if (ds_list_find_index(chainShowList, currentChain) == -1) {
-						ds_list_add(chainShowList, currentChain);
+			if (updateChainShowMap) {
+				var currentChunkInChainsList = currentChunkSubMap[? "inChainsList"];
+				var currentChunkInEntryList = currentChunkSubMap[? "inEntryList"];
+				if (scr_isNumericAndExists(currentChunkInChainsList, ds_type_list) && scr_isNumericAndExists(currentChunkInEntryList, ds_type_list)) {
+					var currentChunkInChainsListSize = ds_list_size(currentChunkInChainsList);
+					for (var j = 0; j < currentChunkInChainsListSize; j++) {
+						var currentChain = currentChunkInChainsList[| j];
+						scr_addToListOnce(chainShowList, currentChain);
+						scr_updateChainShowMap(currentChain, currentChunkInEntryList);
 					}
-					scr_updateChainShowMap(currentChain, currentChunkInEntryList);
 				}
 			}
 		}

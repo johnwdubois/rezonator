@@ -80,7 +80,6 @@ function scr_drawLineEntryList(unitID, unitSubMap, entryList, pixelY){
 		
 		
 		//mouseover Token check
-		currentDisplayStr = scr_adaptFont(currentDisplayStr,"M");
 		var currentTokenStringWidth = string_width(currentDisplayStr);
 		var currentTokenStringHeight = string_height(currentDisplayStr);		
 		var tokenRectBuffer = 3;
@@ -120,9 +119,7 @@ function scr_drawLineEntryList(unitID, unitSubMap, entryList, pixelY){
 		// get this token's inChainsList, and update the chainShowList accordingly
 		var inChainsList = currentTokenSubMap[?"inChainsList"];
 		var inEntryList = currentTokenSubMap[?"inEntryList"];
-		//if (scrollBarHolding) {
-			scr_updateChainShowList(inChainsList, inEntryList, obj_chain.chainShowList, currentTokenSubMap[?"inChunkList"], obj_chain.chunkShowList, currentToken, tokenRectX1, tokenRectY1, tokenRectX2, tokenRectY2);	
-		//}
+		scr_updateChainShowList(inChainsList, inEntryList, obj_chain.chainShowList, currentTokenSubMap[?"inChunkList"], obj_chain.chunkShowList, currentToken, tokenRectX1, tokenRectY1, tokenRectX2, tokenRectY2);	
 		
 		// mouseover token
 		if(mouseOverToken){

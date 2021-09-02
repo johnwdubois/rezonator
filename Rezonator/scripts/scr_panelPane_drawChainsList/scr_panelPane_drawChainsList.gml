@@ -118,8 +118,7 @@ function scr_panelPane_drawChainsList() {
 			var currentChainSubMap = ds_map_find_value(global.nodeMap, currentChainID);
 			
 			// make sure that the chain's submap exists
-			if (!is_numeric(currentChainSubMap)) continue;
-			if (!ds_exists(currentChainSubMap, ds_type_map)) continue;
+			if (!scr_isNumericAndExists(currentChainSubMap, ds_type_map)) continue;
 			
 			// get info of current chain
 			var currentChainType = ds_map_find_value(currentChainSubMap, "type");
@@ -141,26 +140,24 @@ function scr_panelPane_drawChainsList() {
 					
 					// chain captions!
 					// first, we will check if the stack has a caption specified in its submap
-					currentChainCaption = ds_map_find_value(currentChainSubMap, "caption");
+					currentChainCaption = (currentChainType == "stack") ? ds_map_find_value(currentChainSubMap, "caption") : "";
 					
 					
 					
 					// if it does not have a caption specified, we will show its contents in the chainList window
-					if (string_length(string(currentChainCaption)) < 1 || !is_string(currentChainCaption)) {
-						currentChainCaption = "";
-						for (var j = 0; j < setIDListSize; j++) {
-							var currentEntry = ds_list_find_value(vizSetIDList, j);
-							var currentEntrySubMap = ds_map_find_value(global.nodeMap, currentEntry);
-							if (currentChainType == "stack") {
+					if (currentChainType == "stack") {
+						if (string_length(string(currentChainCaption)) < 1 || !is_string(currentChainCaption)) {
+							currentChainCaption = "";
+							for (var j = 0; j < setIDListSize; j++) {
+								var currentEntry = ds_list_find_value(vizSetIDList, j);
+								var currentEntrySubMap = ds_map_find_value(global.nodeMap, currentEntry);
+
 								var currentUnitID = ds_map_find_value(currentEntrySubMap, "unit");
 								var currentUnitSubMap = global.nodeMap[?currentUnitID];
 								if(scr_isNumericAndExists(currentUnitSubMap,ds_type_map)) {
 									currentChainCaption += scr_getUnitText(currentUnitSubMap) + " ";
 								}
 								if (string_width(currentChainCaption) > windowWidth) break;
-							}
-							else {
-								currentChainCaption = "";
 							}
 						}
 					}

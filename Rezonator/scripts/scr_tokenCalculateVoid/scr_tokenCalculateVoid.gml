@@ -44,18 +44,21 @@ function scr_tokenCalculateVoid(tokenID){
 
 	// set the void for this token
 	var tokenVoid = 0;
-	if (scr_checkNativeJustification()) tokenVoid = tokenDisplayCol - prevTokenDisplayCol;
+	if (startJustify) tokenVoid = tokenDisplayCol - prevTokenDisplayCol;
 	else tokenVoid = prevTokenDisplayCol - tokenDisplayCol;
 	tokenSubMap[? "void"] = tokenVoid;
 	
 	
 	// check if this word is the first word in an aligned chunk
-	var alignedChunkChainID = scr_firstWordInAlignedChunk(tokenID);
+	var alignedChunkChainID = "";
+	if (scr_isChunk(tokenID)) {
+		alignedChunkChainID = scr_firstWordInAlignedChunk(tokenID);
+	}
 	
 	
 	
 	if (tokenVoid < 1 && prevTokenID != "") {
-		if (scr_checkNativeJustification()) tokenDisplayCol++;
+		if (startJustify) tokenDisplayCol++;
 		else tokenDisplayCol--;
 		tokenSubMap[? "displayCol"] = tokenDisplayCol;
 			
@@ -78,7 +81,7 @@ function scr_tokenCalculateVoid(tokenID){
 		if (alignedChainID == "" && alignedChunkChainID == "") {
 			
 			// if this token is not in an aligned chain and not in an aligned chunk, then it's displayCol should be the previous displayCol + 1
-			if (scr_checkNativeJustification()) tokenDisplayCol = (tokenSeq == 0) ? 0 : prevTokenDisplayCol + 1;
+			if (startJustify) tokenDisplayCol = (tokenSeq == 0) ? 0 : prevTokenDisplayCol + 1;
 			else tokenDisplayCol = (tokenSeq == 0) ? 0 : prevTokenDisplayCol - 1;
 			tokenSubMap[? "displayCol"] = tokenDisplayCol;
 			

@@ -774,4 +774,5 @@ unitClosestToMouse = "";
 
 
 hideChunks = false;
-scrollPlusYPrev = 0;
+updateChainShowMap = true;
+startJustify = true;

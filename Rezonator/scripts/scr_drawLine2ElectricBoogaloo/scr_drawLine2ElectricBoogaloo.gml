@@ -10,6 +10,10 @@ function scr_drawLine2ElectricBoogaloo(){
 	
 	scr_setWordTopMargin();
 	
+	startJustify = scr_checkNativeJustification();
+	//if (scrollBarHolding || keyboard_check(vk_up) || keyboard_check(vk_down) || keyboard_check(vk_pageup) || keyboard_check(vk_pagedown) || mouse_wheel_up() || mouse_wheel_down() || mouse_check_button(mb_left) || mouse_check_button_released(mb_left)) updateChainShowMap = true;
+	updateChainShowMap = true;
+
 	// get displayUnitList
 	var discourseSubMap = global.nodeMap[? global.discourseNode];
 	if (!scr_isNumericAndExists(discourseSubMap, ds_type_map)) exit;
@@ -38,7 +42,7 @@ function scr_drawLine2ElectricBoogaloo(){
 	
 	
 	// destroy the lists in the chainShowMap
-	//if (scrollBarHolding) {
+	if (updateChainShowMap) {
 		var chainShowListSize = ds_list_size(obj_chain.chainShowList);
 		for (var i = 0; i < chainShowListSize; i++) {
 			var currentChainShow = obj_chain.chainShowList[| i];
@@ -49,7 +53,7 @@ function scr_drawLine2ElectricBoogaloo(){
 		// clear lists that are meant to be refreshed each frame
 		ds_map_clear(obj_chain.chainShowMap);
 		ds_list_clear(obj_chain.chainShowList);
-	//}
+	}
 	
 	
 	
@@ -166,6 +170,6 @@ function scr_drawLine2ElectricBoogaloo(){
 	}
 	*/
 	
-	
+	updateChainShowMap = false;
 	
 }
