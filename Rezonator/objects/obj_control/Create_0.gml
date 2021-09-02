@@ -32,6 +32,10 @@ gridSpaceVertical = 60;
 prevGridSpaceVertical = gridSpaceVertical;
 gridSpaceRatio = 1;
 
+proseSpaceHorizontal = 100;
+proseSpaceHorizontalMin = 60;
+proseSpaceHorizontalMax = 400;
+
 // Set the speed of scrolling
 arrowSpeedMin = 17;
 arrowSpeedMax = 90;

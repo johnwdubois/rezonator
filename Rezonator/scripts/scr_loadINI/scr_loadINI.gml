@@ -90,7 +90,9 @@ function scr_loadINI() {
 			
 
 				obj_control.gridSpaceVertical = ds_map_find_value(map, "lineHeight"); 
-				obj_control.gridSpaceHorizontal = ds_map_find_value(map, "columnWidth"); 
+				obj_control.gridSpaceHorizontal = ds_map_find_value(map, "columnWidth");
+				obj_control.proseSpaceHorizontal = ds_map_find_value(map, "proseWidth");
+				if (!is_numeric(obj_control.proseSpaceHorizontal)) obj_control.proseSpaceHorizontal = 100;
 				
 				obj_control.gridSpaceRatio = (obj_control.gridSpaceVertical/obj_control.prevGridSpaceVertical);
 			
