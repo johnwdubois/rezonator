@@ -3,8 +3,8 @@
 function scr_updateCheckMap(optionText){
 	with(obj_dropDown){
 		if(instance_exists(obj_wordTip)){
-			if(optionText == "Word Tip" and obj_wordTip.wordTipDisplay == true){
-				global.checkDropdownMap[?optionText] = true;
+			if(optionText == "Word Tip"){
+				global.checkDropdownMap[?optionText] = obj_wordTip.wordTipDisplay;
 			}
 		}	
 		if(instance_exists(obj_control)){
@@ -35,19 +35,15 @@ function scr_updateCheckMap(optionText){
 				ds_map_replace(global.checkDropdownMap, "menu_prose", true);
 			}
 			
-			
+			if(optionText == "tab_name_chunk"){
+				global.checkDropdownMap[?optionText] = !obj_control.hideChunks;
+			}
 		}
 		if(instance_exists(obj_chain)){
-			if(obj_chain.showTrackArrows and obj_chain.showRezArrows){
-				ds_map_replace(global.checkDropdownMap, "All", true);
-				ds_map_replace(global.checkDropdownMap, "menu_track-arrows", false);
-				ds_map_replace(global.checkDropdownMap, "menu_rez-arrows", false);
-			}
-			else{
-				ds_map_replace(global.checkDropdownMap, "All", false);
-				ds_map_replace(global.checkDropdownMap, "menu_track-arrows", obj_chain.showTrackArrows);
-				ds_map_replace(global.checkDropdownMap, "menu_rez-arrows", obj_chain.showRezArrows);
-			}
+
+			ds_map_replace(global.checkDropdownMap, "menu_track-arrows", obj_chain.showTrackArrows);
+			ds_map_replace(global.checkDropdownMap, "menu_rez-arrows", obj_chain.showRezArrows);
+			
 		}
 		if(optionListType == global.optionListTypeHide and instance_exists(obj_chain)){
 			ds_map_replace(global.checkDropdownMap, "menu_track", obj_chain.toggleDrawTrack);
