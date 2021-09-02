@@ -3,7 +3,6 @@
 function scr_panelPane_drawSearch1ToMany(){
 
 
-	
 	var lineStateLTR = (obj_control.drawLineState == obj_control.lineState_ltr);
 	var textMarginLeft = 8;
 	var dropDownButtonSize = sprite_get_width(spr_dropDown);
@@ -354,12 +353,46 @@ function scr_panelPane_drawSearch1ToMany(){
 
 	var instToScroll = self.id;
 
-		
-	// show buttons (next) 
+	// activate search button
 	var showNextButtonText = "  >  ";
 	var buttonWidth = string_width(showNextButtonText)
 	scr_adaptFont(showNextButtonText, "M");
-	var showNextButtonX2 = windowX + windowWidth - 20;
+	var activateButtonX2 = windowX + windowWidth - 20;
+	var activateButtonY1 = y + (functionTabs_tabHeight * 0.5) - (strHeight * 0.25);
+	var activateButtonX1 = activateButtonX2 - buttonWidth;
+	var activateButtonY2 = activateButtonY1 + strHeight/2;
+	var searchEnabled = (obj_control.searchGridActive && functionSearchList_searchSelected != "");
+	var mouseoverActivateButton = point_in_rectangle(mouse_x, mouse_y, activateButtonX1, activateButtonY1, activateButtonX2, activateButtonY2);
+	if (searchEnabled) {
+		draw_set_color(merge_color(global.colorThemeRezPink, global.colorThemeBG, mouseoverActivateButton ? 0.4 : 0.1));
+	}
+	else {
+		draw_set_color(merge_color(global.colorThemeSelected2, global.colorThemeBG, mouseoverActivateButton ? 0.4 : 0));
+	}
+	draw_roundrect(activateButtonX1, activateButtonY1, activateButtonX2, activateButtonY2, false);
+	draw_sprite_ext(spr_search, 0, floor(mean(activateButtonX1, activateButtonX2)), floor(mean(activateButtonY1, activateButtonY2)), 1, 1, 0, global.colorThemeBG, 1);
+	if (mouseoverActivateButton) {
+		
+		scr_createTooltip(floor(mean(activateButtonX1, activateButtonX2)), activateButtonY2, searchEnabled ? scr_get_translation("search_enabled") : scr_get_translation("search_disabled"), obj_tooltip.arrowFaceUp);
+		
+		if (mouse_check_button_released(mb_left)) {
+			if (!obj_control.searchGridActive && functionSearchList_searchSelected != "") {
+				obj_control.selectedSearchID = functionSearchList_searchSelected;
+				obj_control.searchGridActive = true;
+				scr_renderFilter2();
+			}
+			else if (obj_control.searchGridActive) {
+				obj_control.searchGridActive = false;
+				scr_disableFilter();
+			}
+		}
+	}
+	
+	
+	
+		
+	// show buttons (next) 
+	var showNextButtonX2 = activateButtonX1 - (buttonWidth / 2);
 	var showNextButtonY1 = y + (functionTabs_tabHeight * 0.5) - (strHeight * 0.25);
 	var showNextButtonX1 = showNextButtonX2 - buttonWidth;
 	var showNextButtonY2 = showNextButtonY1 + strHeight/2;			
