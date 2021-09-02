@@ -139,6 +139,7 @@ show_debug_message("global.previousRezDirectory:  "+string(global.previousRezDir
 					global.searchMap = global.nodeMap[? "searchMap"];		
 					global.treeMap = global.nodeMap[? "treeMap"];
 					global.colorMap = global.nodeMap[? "colorMap"];
+					obj_chain.chainShowMap = global.nodeMap[? "chainShowMap"];
 				
 				
 					if (is_undefined(global.importGridColNameList)) {
@@ -245,6 +246,8 @@ show_debug_message("global.previousRezDirectory:  "+string(global.previousRezDir
 	else {
 		scr_refreshPrevToken();
 	}
+	
+	
 	
 	
 

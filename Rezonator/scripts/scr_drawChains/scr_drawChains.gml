@@ -45,12 +45,13 @@ function scr_drawChains() {
 		
 		// get chain's setIDList and make sure it exists
 		var chainType = ds_map_find_value(currentChainSubMap, "type");
-		var currentSetIDList = ds_map_find_value(currentChainSubMap, "vizSetIDList");
+		//var currentSetIDList = ds_map_find_value(currentChainSubMap, "vizSetIDList");
+		var currentSetIDList = obj_chain.chainShowMap[? currentChainID];
+		
 		if (!scr_isNumericAndExists(currentSetIDList, ds_type_list)) continue;
 		var currentSetIDListSize = ds_list_size(currentSetIDList);
 		var currentChainColor = ds_map_find_value(currentChainSubMap, "chainColor");
 		var currentChainVisible = ds_map_find_value(currentChainSubMap, "visible");
-		var currentChainAlign = ds_map_find_value(currentChainSubMap, "alignChain");
 		
 		// make sure this is a rezChain or trackChain and that we should be drawing it
 		if (chainType != "resonance" && chainType != "trail") continue;

@@ -774,3 +774,4 @@ unitClosestToMouse = "";
 
 
 hideChunks = false;
+scrollPlusYPrev = 0;
