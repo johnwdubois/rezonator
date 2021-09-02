@@ -45,12 +45,7 @@ function scr_updateCheckMap(optionText){
 			ds_map_replace(global.checkDropdownMap, "menu_rez-arrows", obj_chain.showRezArrows);
 			
 		}
-		if(optionListType == global.optionListTypeHide and instance_exists(obj_chain)){
-			ds_map_replace(global.checkDropdownMap, "menu_track", obj_chain.toggleDrawTrack);
-			ds_map_replace(global.checkDropdownMap, "menu_resonance", obj_chain.toggleDrawRez);
-			ds_map_replace(global.checkDropdownMap, "menu_stack", obj_chain.toggleDrawStack);
-		}
-		else if(optionListType == global.optionListTypeTools and instance_exists(obj_toolPane)){
+		if(optionListType == global.optionListTypeTools and instance_exists(obj_toolPane)){
 			if(obj_toolPane.currentMode == obj_toolPane.modeRead){
 				ds_map_replace(global.checkDropdownMap, "menu_track", false);
 				ds_map_replace(global.checkDropdownMap, "menu_resonance", false);

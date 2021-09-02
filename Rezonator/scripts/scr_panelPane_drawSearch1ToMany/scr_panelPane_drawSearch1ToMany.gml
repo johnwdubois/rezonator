@@ -357,10 +357,10 @@ function scr_panelPane_drawSearch1ToMany(){
 	var showNextButtonText = "  >  ";
 	var buttonWidth = string_width(showNextButtonText)
 	scr_adaptFont(showNextButtonText, "M");
-	var activateButtonX2 = windowX + windowWidth - 20;
-	var activateButtonY1 = y + (functionTabs_tabHeight * 0.5) - (strHeight * 0.25);
+	var activateButtonX2 = x + windowWidth - 20;
+	var activateButtonY1 = y + (functionTabs_tabHeight * 0.5) - (strHeight * 0.4);
 	var activateButtonX1 = activateButtonX2 - buttonWidth;
-	var activateButtonY2 = activateButtonY1 + strHeight/2;
+	var activateButtonY2 = y + (functionTabs_tabHeight * 0.5) + strHeight * 0.4;
 	var searchEnabled = (obj_control.searchGridActive && functionSearchList_searchSelected != "");
 	var mouseoverActivateButton = point_in_rectangle(mouse_x, mouse_y, activateButtonX1, activateButtonY1, activateButtonX2, activateButtonY2);
 	if (searchEnabled) {
@@ -370,7 +370,8 @@ function scr_panelPane_drawSearch1ToMany(){
 		draw_set_color(merge_color(global.colorThemeSelected2, global.colorThemeBG, mouseoverActivateButton ? 0.4 : 0));
 	}
 	draw_roundrect(activateButtonX1, activateButtonY1, activateButtonX2, activateButtonY2, false);
-	draw_sprite_ext(spr_search, 0, floor(mean(activateButtonX1, activateButtonX2)), floor(mean(activateButtonY1, activateButtonY2)), 1, 1, 0, global.colorThemeBG, 1);
+	
+	draw_sprite_ext(spr_search, 0, floor(mean(activateButtonX1, activateButtonX2)), floor(mean(activateButtonY1, activateButtonY2)), obj_toolPane.toolSpriteScale, obj_toolPane.toolSpriteScale, -90, global.colorThemeBG, 1);
 	if (mouseoverActivateButton) {
 		
 		scr_createTooltip(floor(mean(activateButtonX1, activateButtonX2)), activateButtonY2, searchEnabled ? scr_get_translation("search_enabled") : scr_get_translation("search_disabled"), obj_tooltip.arrowFaceUp);
@@ -393,9 +394,9 @@ function scr_panelPane_drawSearch1ToMany(){
 		
 	// show buttons (next) 
 	var showNextButtonX2 = activateButtonX1 - (buttonWidth / 2);
-	var showNextButtonY1 = y + (functionTabs_tabHeight * 0.5) - (strHeight * 0.25);
+	var showNextButtonY1 = activateButtonY1;
 	var showNextButtonX1 = showNextButtonX2 - buttonWidth;
-	var showNextButtonY2 = showNextButtonY1 + strHeight/2;			
+	var showNextButtonY2 = activateButtonY2;			
 		
 	// show buttons (prev)
 	var showPrevButtonText = "  <  ";
