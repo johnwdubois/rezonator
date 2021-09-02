@@ -76,8 +76,11 @@ function scr_panelPane_drawUnits1ToManyHeaders(){
 				with (obj_panelPane) {
 					chosenCol = i;
 				}
+				
+				obj_control.tokenToChange = "";
 				obj_control.tokenFieldToChange = currentField;
 				obj_control.selectFieldChunk = false;
+				
 
 				var dropDownOptionList = ds_list_create();
 				ds_list_add(dropDownOptionList, "option_select-field", "Show in main screen", "option_create-new-field", "option_add-to-tag-set", "option-remove-tag-set");

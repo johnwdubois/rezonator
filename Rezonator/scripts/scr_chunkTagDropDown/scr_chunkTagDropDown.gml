@@ -42,8 +42,13 @@ function scr_chunkTagDropDown(fieldMap, field, IDtoChange, cellRectX1, cellRectY
 
 							obj_control.chunk1to1ChunkToChange = IDtoChange;
 							obj_control.chunk1to1FieldToChange = field;
+							
+							// create dropdown
+							var dropDownOptionList = ds_list_create();
+							ds_list_copy(dropDownOptionList, fieldTagSet);
+							ds_list_insert(dropDownOptionList, 0, "option_add-to-tag-set");
 
-							scr_createDropDown(cellRectX1, cellRectY2, fieldTagSet, global.optionListTypeChunk1To1Tag);
+							scr_createDropDown(cellRectX1, cellRectY2, dropDownOptionList, global.optionListTypeChunk1To1Tag);
 						}
 					}
 				}

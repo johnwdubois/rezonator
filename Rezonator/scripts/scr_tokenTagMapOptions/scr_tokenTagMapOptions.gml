@@ -19,6 +19,7 @@ function scr_tokenTagMapOptions(optionSelected) {
 		
 		// set the new value in this token's tagmap
 		tokenTagMap[? obj_control.tokenFieldToChange] = optionSelected;
+		obj_control.tokenToChange = "";
 		
 	}
 

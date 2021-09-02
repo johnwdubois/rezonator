@@ -80,6 +80,7 @@ function scr_panelPane_drawChains1To1Headers(chain1to1ColFieldList, chainType){
 
 			if (mouse_check_button_released(mb_left)) {
 				with (obj_panelPane) fieldChains1To1ChainType = chainType;
+				obj_control.chain1to1ChainToChange = "";
 				obj_control.chain1To1ColFieldToChange = i;
 				obj_control.chain1to1FieldToChange = currentField;
 				var dropDownOptionList = ds_list_create();

@@ -17,5 +17,15 @@ function scr_dialogueBoxNewCustomTagEntry(){
 	// add the new tag to the tagSet
 	scr_addToListOnce(tagSet, newTag);
 	
-	
+		//add this to selected entry if not in tag pane
+	if(obj_panelPane.functionChainList_currentTab != obj_panelPane.functionChainList_tabField){
+		// get the entryToChange's submap, and that entry's tagmap
+		var entrySubMap = global.nodeMap[? obj_control.chain1toManyEntryToChange];
+		if(scr_isNumericAndExists(entrySubMap, ds_type_map)){
+			var entryTagMap = entrySubMap[? "tagMap"];
+			// set the new value in this entry's tagmap
+			entryTagMap[? obj_control.chain1toManyFieldToChange] = obj_control.inputText;
+		}
+		obj_control.chain1toManyEntryToChange = "";
+	}
 }

@@ -66,7 +66,8 @@ function scr_panelPane_drawChunks1To1Headers(fieldList){
 				with (obj_panelPane) {
 					chosenCol = i;
 				}
-				obj_control.tokenFieldToChange = currentField;
+				obj_control.chunk1to1ChunkToChange = "";
+				obj_control.chunk1to1FieldToChange = currentField;
 				obj_control.selectFieldChunk = true;
 				
 				var dropDownOptionList = ds_list_create();
