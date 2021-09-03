@@ -206,7 +206,7 @@ function scr_panelPane_drawUnitsList() {
 		}
 		else if (i == 1) {
 			colWidth = speakerRectWidth;
-			colText = "participant";
+			colText = scr_get_translation("participant");
 		}
 		else if (i == 2) {
 			colWidth = windowWidth - unitSeqRectWidth - speakerRectWidth;

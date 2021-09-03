@@ -502,6 +502,9 @@ function scr_panelPane_drawChainsList() {
 		// skip checkbox header
 		if (i == 0) continue;
 		
+		// skip text column unless this is a stack
+		if (i == 4 && functionChainList_currentTab != functionChainList_tabStackBrush) continue;
+		
 		// get column data
 		var headerRectX1 = 0;
 		var colWidth = 0;
@@ -524,6 +527,7 @@ function scr_panelPane_drawChainsList() {
 		else if (i == 3) {
 			headerRectX1 = nameColX;
 			colWidth = nameColWidth;
+			if (functionChainList_currentTab != functionChainList_tabStackBrush) colWidth = windowWidth - headerRectX1;
 			colText = "name";
 		}
 		else if (i == 4) {
