@@ -36,8 +36,15 @@ function scr_createNewSearch(searchTermList){
 					// add name to subMap
 					ds_map_add(subMap, "name", searchName);
 	
+					// add range settings to subMap
+					ds_map_add(subMap, "field", obj_control.searchField);
+					ds_map_add(subMap, "range", obj_control.searchRange);
+					ds_map_add(subMap, "regex", obj_control.regExCheck);
+					ds_map_add(subMap, "caseSensitive", obj_control.caseSensitive);
+					
+					
+	
 					// add searchTermListCopy to subMap
-
 					ds_map_add_list(subMap, "searchTermList", searchTermListCopy);
 	
 					// add displayUnitList to subMap

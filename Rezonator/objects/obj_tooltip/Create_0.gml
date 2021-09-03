@@ -16,5 +16,5 @@ arrowFaceLeft = 3;
 show = false;
 showCount = 0;
 
-showDelayFull = 20;
+showDelayFull = 1;
 showDelay = showDelayFull;

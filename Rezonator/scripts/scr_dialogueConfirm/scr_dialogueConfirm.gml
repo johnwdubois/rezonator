@@ -32,12 +32,18 @@ function scr_dialogueConfirm(){
 		obj_control.alarm[11] = 60;
 			
 		if (obj_control.fPressed) {
+
+			var searchSelectedBefore = obj_panelPane.functionSearchList_searchSelected;
 			
 			// creating list of words if user inputed multiple words
 			var listOfWordsInput = scr_splitString(obj_control.inputText, "&");
 			scr_createNewSearch(listOfWordsInput);
-			obj_control.searchGridActive = true;
-			scr_renderFilter2();
+			if (searchSelectedBefore != obj_panelPane.functionSearchList_searchSelected) {
+				obj_control.searchGridActive = true;
+				scr_renderFilter2();
+			}
+			
+			
 		}
 
 		if (obj_control.gPressed) {

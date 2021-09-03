@@ -64,6 +64,8 @@ canPressRightHoldingCounter = 0;
 holdingLimit = 6;
 loopItterations = 0;
 
+largestPixelY = 0;
+
 
 
 with (obj_dropDown) {
@@ -75,10 +77,12 @@ camWidth = camera_get_view_width(camera_get_active());
 camHeight = camera_get_view_height(camera_get_active());
 camMidX = camWidth / 2;
 camMidY = camHeight / 2;
-boxHeight = max(270, camWidth / 4); 
+boxHeight = max((inputWindowActive) ? 400 : 270, camHeight / 4);
 boxWidth = max(640, camHeight / 3);
 boxRectX1 = camMidX - boxWidth/2;
 boxRectY1 = camMidY - boxHeight/2;
 boxRectX2 = camMidX + boxWidth/2;
 boxRectY2 = camMidY + boxHeight/2;
 
+buttonY1 = 0;
+buttonY2 = 0;
