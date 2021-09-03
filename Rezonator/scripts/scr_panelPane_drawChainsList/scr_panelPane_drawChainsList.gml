@@ -524,12 +524,12 @@ function scr_panelPane_drawChainsList() {
 		else if (i == 3) {
 			headerRectX1 = nameColX;
 			colWidth = nameColWidth;
-			colText = "Name";
+			colText = "name";
 		}
 		else if (i == 4) {
 			headerRectX1 = textColX;
 			colWidth = windowWidth - headerRectX1;
-			colText = scr_get_translation("tag_text");
+			colText = "tag_text";
 		}
 		
 		// get header coordinates
@@ -629,7 +629,7 @@ function scr_panelPane_drawChainsList() {
 		draw_set_valign(fa_middle);
 		draw_set_color(global.colorThemeText);
 		scr_adaptFont(colText, "M");
-		draw_text(headerTextX, headerTextY, colText);
+		draw_text(headerTextX, headerTextY, scr_get_translation(colText));
 		
 		// dividing lines
 		if (i > 0) {

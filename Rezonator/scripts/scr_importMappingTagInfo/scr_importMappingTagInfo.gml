@@ -278,10 +278,10 @@ function scr_importMappingTagInfo() {
 						
 							if (currentLevel == global.levelUnit) {
 								if(global.importType == global.importType_TabDelimited){
-									ds_list_add(dropDownOptionList, "Unit Start", "Unit End");
+									ds_list_add(dropDownOptionList, "unit_start", "unit_end");
 								}
 								else{
-									ds_list_add(dropDownOptionList, "Unit Delimiter");
+									ds_list_add(dropDownOptionList, "unit_delim");
 								}
 							}
 							else if (currentLevel == global.levelToken) {
@@ -341,9 +341,9 @@ function scr_importMappingTagInfo() {
 							var dropDownOptionList = ds_list_create();
 						
 							if (currentLevel == global.levelUnit) {
-								ds_list_add(dropDownOptionList, "Speaker", "Turn Delimiter", "option_translation");
+								ds_list_add(dropDownOptionList, "participant", "turn_delim", "option_translation");
 								if (global.importType != global.importType_TabDelimited) {
-									ds_list_add(dropDownOptionList, "Unit Start", "Unit End");
+									ds_list_add(dropDownOptionList, "unit_start", "unit_end");
 								}
 							}
 							if (currentLevel == global.levelToken) {
@@ -444,10 +444,10 @@ function scr_importMappingTagInfo() {
 		
 		
 		if (i == global.tagInfoGrid_colMarker) {
-			headerStr = "Mark";
+			headerStr = "mark";
 		}
 		else if (i == global.tagInfoGrid_colLevel) {
-			headerStr = "Level";
+			headerStr = "level";
 		}
 		else if (i == global.tagInfoGrid_colLevelSchema) {
 			headerStr = "Level (Schema)";
@@ -462,20 +462,20 @@ function scr_importMappingTagInfo() {
 			headerStr = "Single Token";
 		}
 		else if (i == global.tagInfoGrid_colTokenCount) {
-			headerStr = "Token Count";
+			headerStr = "tok_count";
 		}
 		else if (i == global.tagInfoGrid_colSpecialFields) {
-			headerStr = "Special";
+			headerStr = "special";
 		}
 		else if (i == global.tagInfoGrid_colKey) {
-			headerStr = "Key";
+			headerStr = "key";
 		}
 		
 		// draw header text
 		draw_set_color(global.colorThemeText);
 		draw_set_halign(fa_center);
 		scr_adaptFont(headerStr, "L");
-		draw_text(floor(mean(colX1, colX2)) - clipX, floor(tagInfoWindowRectY1 + (rowHeight / 2) - clipY), headerStr);
+		draw_text(floor(mean(colX1, colX2)) - clipX, floor(tagInfoWindowRectY1 + (rowHeight / 2) - clipY), scr_get_translation(headerStr));
 	
 	
 	

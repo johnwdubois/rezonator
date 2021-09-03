@@ -89,7 +89,7 @@ function scr_viewOptions(optionSelected) {
 	
 		break;
 		
-		case "Word Tip":
+		case "word_tip":
 			obj_wordTip.wordTipDisplay = !obj_wordTip.wordTipDisplay;			
 		break;
 		
@@ -97,7 +97,7 @@ function scr_viewOptions(optionSelected) {
 			obj_control.hideChunks = !obj_control.hideChunks;
 		break;
 		
-		case "Arrowheads":
+		case "arrheads":
 			scr_destroyAllDropDownsOtherThanSelf();
 			var dropDownOptionList = ds_list_create();
 			
@@ -107,7 +107,7 @@ function scr_viewOptions(optionSelected) {
 			}
 			break;
 		
-		case "Text Direction":
+		case "text_dir":
 			scr_destroyAllDropDownsOtherThanSelf();
 			var dropDownOptionList = ds_list_create();
 			

@@ -185,7 +185,7 @@ function scr_panelPane_drawChunkList(){
 		}
 		else if (i == 2) {
 			colWidth = nameColWidth;
-			colText = "Name";
+			colText = "name";
 		}
 		else if (i == 3) {
 			colWidth = textColWidth;
@@ -193,7 +193,7 @@ function scr_panelPane_drawChunkList(){
 		}
 		else if (i == 4) {
 			colWidth = windowWidth - nestColX;
-			colText = "Nest";
+			colText = "nest";
 		}
 
 		

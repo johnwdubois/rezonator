@@ -683,7 +683,6 @@
     {"CopyToMask":-1,"filePath":"datafiles/IncludedFiles","resourceVersion":"1.0","name":".DS_Store","resourceType":"GMIncludedFile",},
     {"CopyToMask":-1,"filePath":"datafiles/IncludedFiles/Data","resourceVersion":"1.0","name":".DS_Store","resourceType":"GMIncludedFile",},
     {"CopyToMask":-1,"filePath":"datafiles/IncludedFiles/Data/SBCorpus","resourceVersion":"1.0","name":".DS_Store","resourceType":"GMIncludedFile",},
-    {"CopyToMask":-1,"filePath":"datafiles/IncludedFiles/Localization","resourceVersion":"1.0","name":"locale_en.json","resourceType":"GMIncludedFile",},
     {"CopyToMask":-1,"filePath":"datafiles/IncludedFiles/Schemas","resourceVersion":"1.0","name":"CSV Schema.json","resourceType":"GMIncludedFile",},
     {"CopyToMask":-1,"filePath":"datafiles/IncludedFiles/Schemas","resourceVersion":"1.0","name":"CoNLL-U Schema.json","resourceType":"GMIncludedFile",},
     {"CopyToMask":-1,"filePath":"datafiles/IncludedFiles/Data/SBCorpus/REZ","resourceVersion":"1.0","name":"sbc015_rez_v2.02.rez","resourceType":"GMIncludedFile",},
@@ -747,6 +746,7 @@
     {"CopyToMask":-1,"filePath":"datafiles/IncludedFiles/Data/SBCorpus/REZ","resourceVersion":"1.0","name":"sbc058_rez_v2.02.rez","resourceType":"GMIncludedFile",},
     {"CopyToMask":-1,"filePath":"datafiles/IncludedFiles/Data/SBCorpus/REZ","resourceVersion":"1.0","name":"sbc059_rez_v2.02.rez","resourceType":"GMIncludedFile",},
     {"CopyToMask":-1,"filePath":"datafiles/IncludedFiles/Data/SBCorpus/REZ","resourceVersion":"1.0","name":"sbc060_rez_v2.02.rez","resourceType":"GMIncludedFile",},
+    {"CopyToMask":-1,"filePath":"datafiles/IncludedFiles/Localization","resourceVersion":"1.0","name":"locale_en.json","resourceType":"GMIncludedFile",},
   ],
   "MetaData": {
     "IDEVersion": "2.3.3.574",

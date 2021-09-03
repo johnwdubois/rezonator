@@ -7,7 +7,7 @@ function scr_getGridNameString(gridName) {
 			gridName = "Unit"; // Unit Grid
 			break;
 		case obj_control.lineGrid:
-			gridName = "Line"; // Line Grid
+			gridName = "line"; // Line Grid
 			break;
 		case obj_control.wordGrid:
 			gridName = "Word"; // Word Grid

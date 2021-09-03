@@ -14,7 +14,7 @@ function scr_updateTagInfoErrorCol(){
 	// check if unit delimiter is needed but not specified
 	var unitDelimNeeded = false;
 	if (global.importType == global.importType_CoNLLU || global.importType == global.importType_CSV) {
-		var unitDelimRow = ds_grid_value_y(global.tagInfoGrid, global.tagInfoGrid_colKey, 0, global.tagInfoGrid_colKey, ds_grid_height(global.tagInfoGrid), "Unit Delimiter");
+		var unitDelimRow = ds_grid_value_y(global.tagInfoGrid, global.tagInfoGrid_colKey, 0, global.tagInfoGrid_colKey, ds_grid_height(global.tagInfoGrid), "unit_delim");
 		if (unitDelimRow < 0) {
 			unitDelimNeeded = true;
 		}
@@ -86,11 +86,11 @@ function scr_updateTagInfoErrorCol(){
 		// check if there is an error with the special fields
 		var specialFieldsError = false;
 		var currentSpecialFields = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colSpecialFields, i);
-		if (  (currentSpecialFields == "Unit Start" && currentLevel != global.levelUnit)
-		   || (currentSpecialFields == "Unit End" && currentLevel != global.levelUnit)
-		   || (currentSpecialFields == "Speaker" && currentLevel != global.levelUnit)
-		   || (currentSpecialFields == "Unit Delimiter" && currentLevel != global.levelUnit)
-		   || (currentSpecialFields == "Turn Delimiter" && currentLevel != global.levelUnit)
+		if (  (currentSpecialFields == "unit_start" && currentLevel != global.levelUnit)
+		   || (currentSpecialFields == "unit_end" && currentLevel != global.levelUnit)
+		   || (currentSpecialFields == "participant" && currentLevel != global.levelUnit)
+		   || (currentSpecialFields == "unit_delim" && currentLevel != global.levelUnit)
+		   || (currentSpecialFields == "turn_delim" && currentLevel != global.levelUnit)
 		   || (currentSpecialFields == "option_translation" && currentLevel != global.levelUnit)
 		   || (currentSpecialFields == "option_display-token" && currentLevel != global.levelToken)
 		   || (currentSpecialFields == "msg_transcript" && currentLevel != global.levelToken)

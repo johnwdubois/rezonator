@@ -3,7 +3,7 @@
 function scr_updateCheckMap(optionText){
 	with(obj_dropDown){
 		if(instance_exists(obj_wordTip)){
-			if(optionText == "Word Tip"){
+			if(optionText == "word_tip"){
 				global.checkDropdownMap[?optionText] = obj_wordTip.wordTipDisplay;
 			}
 		}	

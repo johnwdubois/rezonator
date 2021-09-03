@@ -69,7 +69,7 @@ function scr_panelPane_drawChains1ToManyHeaders(){
 					break;
 				case 1:
 					if (functionChainList_currentTab == functionChainList_tabStackBrush) {
-						colName = "speaker"; // stacks
+						colName = "participant"; // stacks
 					}
 					else {
 						colName = "tokenOrder"; // rez & track

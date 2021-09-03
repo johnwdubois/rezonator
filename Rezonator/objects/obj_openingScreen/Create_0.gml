@@ -318,10 +318,10 @@ ds_map_add(global.expandableDropDownMap, "menu_autosave", true);
 ds_map_add(global.expandableDropDownMap, "menu_advanced", true);
 ds_map_add(global.expandableDropDownMap, "menu_language", true);
 ds_map_add(global.expandableDropDownMap, "option_recolor", true);
-ds_map_add(global.expandableDropDownMap, "Text Direction", true);
+ds_map_add(global.expandableDropDownMap, "text_dir", true);
 ds_map_add(global.expandableDropDownMap, "option_select-field", true);
 ds_map_add(global.expandableDropDownMap, "option-remove-tag-set", true);
-ds_map_add(global.expandableDropDownMap, "Arrowheads", true);
+ds_map_add(global.expandableDropDownMap, "arrheads", true);
 
 global.openingScreenDropDownMap = ds_map_create();
 ds_map_add(global.openingScreenDropDownMap, "menu_import", true);
@@ -407,7 +407,7 @@ ds_map_add(global.checkDropdownMap, "menu_10-min", false);
 ds_map_add(global.checkDropdownMap, "menu_20-min", false);
 ds_map_add(global.checkDropdownMap, "menu_30-min", false);
 ds_map_add(global.checkDropdownMap, "menu_off", false);
-ds_map_add(global.checkDropdownMap, "Word Tip", false);
+ds_map_add(global.checkDropdownMap, "word_tip", false);
 ds_map_add(global.checkDropdownMap, "help_label_tag", false);
 ds_map_add(global.checkDropdownMap, "tab_name_chunk", false);
 

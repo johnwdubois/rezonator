@@ -256,7 +256,7 @@ function scr_fillHelpMenuGrid(){
 		correctKey = controlStr;
 	}
 
-	ds_grid_set(functionHelp_helpGridMove, functionHelp_helpGrid_colKey, 5, "["+ correctKey + "key_home_alt");
+	ds_grid_set(functionHelp_helpGridMove, functionHelp_helpGrid_colKey, 5, "["+ correctKey +"] " + scr_get_translation("key_home_alt"));
 	ds_grid_set(functionHelp_helpGridMove, functionHelp_helpGrid_colFunc, 5, "help_label_home");
 	ds_grid_set(functionHelp_helpGridMove, functionHelp_helpGrid_colDesc, 5, "help_description_home");
 	ds_grid_set(functionHelp_helpGridMove, functionHelp_helpGrid_colHide, 5, false);
@@ -266,7 +266,7 @@ function scr_fillHelpMenuGrid(){
 	ds_grid_set(functionHelp_helpGridMove, functionHelp_helpGrid_colDesc, 6,"help_description_end-of-line");
 	ds_grid_set(functionHelp_helpGridMove, functionHelp_helpGrid_colHide, 6, false);
 
-	ds_grid_set(functionHelp_helpGridMove, functionHelp_helpGrid_colKey, 7, "["+ correctKey + "key_end-of-line_alt");
+	ds_grid_set(functionHelp_helpGridMove, functionHelp_helpGrid_colKey, 7, "["+ correctKey +"] " + scr_get_translation("key_end-of-line_alt"));
 	ds_grid_set(functionHelp_helpGridMove, functionHelp_helpGrid_colFunc, 7, "help_label_end");
 	ds_grid_set(functionHelp_helpGridMove, functionHelp_helpGrid_colDesc, 7, "help_description_end-of-line");
 	ds_grid_set(functionHelp_helpGridMove, functionHelp_helpGrid_colHide, 7, false);
@@ -281,12 +281,12 @@ function scr_fillHelpMenuGrid(){
 	ds_grid_set(functionHelp_helpGridMove, functionHelp_helpGrid_colDesc, 9, "help_description_pagedown");
 	ds_grid_set(functionHelp_helpGridMove, functionHelp_helpGrid_colHide, 9, false);
 
-	ds_grid_set(functionHelp_helpGridMove, functionHelp_helpGrid_colKey, 10, "["+ correctKey + "key_start-of-file");
+	ds_grid_set(functionHelp_helpGridMove, functionHelp_helpGrid_colKey, 10, "["+ correctKey +"] " + scr_get_translation("key_start-of-file"));
 	ds_grid_set(functionHelp_helpGridMove, functionHelp_helpGrid_colFunc,10, "help_label_first-line");
 	ds_grid_set(functionHelp_helpGridMove, functionHelp_helpGrid_colDesc, 10, "help_description_go-first-line");
 	ds_grid_set(functionHelp_helpGridMove, functionHelp_helpGrid_colHide, 10, false);
 
-	ds_grid_set(functionHelp_helpGridMove, functionHelp_helpGrid_colKey, 11, "["+ correctKey + "key_end-of-file");
+	ds_grid_set(functionHelp_helpGridMove, functionHelp_helpGrid_colKey, 11, "["+ correctKey +"] " + scr_get_translation("key_end-of-file"));
 	ds_grid_set(functionHelp_helpGridMove, functionHelp_helpGrid_colFunc, 11, "help_label_end-of-file");
 	ds_grid_set(functionHelp_helpGridMove, functionHelp_helpGrid_colDesc, 11, "help_description_end-of-file");
 	ds_grid_set(functionHelp_helpGridMove, functionHelp_helpGrid_colHide, 11, false);

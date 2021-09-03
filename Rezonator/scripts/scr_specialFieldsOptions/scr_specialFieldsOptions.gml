@@ -5,34 +5,34 @@ function scr_specialFieldsOptions(optionSelected) {
 
 	switch (optionSelected)
 	{
-		case "Unit Start":
+		case "unit_start":
 			global.unitImportUnitStartColName = "";
 			for (var i = 0; i < tagInfoGridHeight; i++) {
-				if (ds_grid_get(global.tagInfoGrid, obj_importMapping.colToChange, i) == "Unit Start") {
+				if (ds_grid_get(global.tagInfoGrid, obj_importMapping.colToChange, i) == "unit_start") {
 					ds_grid_set(global.tagInfoGrid, obj_importMapping.colToChange, i, 0);
 				}
 			}
-			ds_grid_set(global.tagInfoGrid, obj_importMapping.colToChange, obj_importMapping.rowToChange, "Unit Start");
+			ds_grid_set(global.tagInfoGrid, obj_importMapping.colToChange, obj_importMapping.rowToChange, "unit_start");
 			global.unitImportUnitStartColName = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colMarker, obj_importMapping.rowToChange);
 			break;
-		case "Speaker":
+		case "participant":
 			global.unitImportSpeakerColName = "";
 			for (var i = 0; i < tagInfoGridHeight; i++) {
-				if (ds_grid_get(global.tagInfoGrid, obj_importMapping.colToChange, i) == "Speaker") {
+				if (ds_grid_get(global.tagInfoGrid, obj_importMapping.colToChange, i) == "participant") {
 					ds_grid_set(global.tagInfoGrid, obj_importMapping.colToChange, i, 0);
 				}
 			}
-			ds_grid_set(global.tagInfoGrid, obj_importMapping.colToChange, obj_importMapping.rowToChange, "Speaker");
+			ds_grid_set(global.tagInfoGrid, obj_importMapping.colToChange, obj_importMapping.rowToChange, "participant");
 			global.unitImportSpeakerColName = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colMarker, obj_importMapping.rowToChange);
 		break;
-		case "Unit End":
+		case "unit_end":
 		global.unitImportUnitEndColName = "";
 			for (var i = 0; i < tagInfoGridHeight; i++) {
-				if (ds_grid_get(global.tagInfoGrid, obj_importMapping.colToChange, i) == "Unit End") {
+				if (ds_grid_get(global.tagInfoGrid, obj_importMapping.colToChange, i) == "unit_end") {
 					ds_grid_set(global.tagInfoGrid, obj_importMapping.colToChange, i, 0);
 				}
 			}
-			ds_grid_set(global.tagInfoGrid, obj_importMapping.colToChange, obj_importMapping.rowToChange, "Unit End");
+			ds_grid_set(global.tagInfoGrid, obj_importMapping.colToChange, obj_importMapping.rowToChange, "unit_end");
 			global.unitImportUnitEndColName = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colMarker, obj_importMapping.rowToChange);
 			break;
 		case "option_translation":
@@ -55,24 +55,24 @@ function scr_specialFieldsOptions(optionSelected) {
 			break;
 
 		
-		case "Unit Delimiter":
+		case "unit_delim":
 		global.unitDelimField = "";
 			for (var i = 0; i < tagInfoGridHeight; i++) {
-				if (ds_grid_get(global.tagInfoGrid, obj_importMapping.colToChange, i) == "Unit Delimiter") {
+				if (ds_grid_get(global.tagInfoGrid, obj_importMapping.colToChange, i) == "unit_delim") {
 					ds_grid_set(global.tagInfoGrid, obj_importMapping.colToChange, i, 0);
 				}
 			}
-			ds_grid_set(global.tagInfoGrid, obj_importMapping.colToChange, obj_importMapping.rowToChange, "Unit Delimiter");
+			ds_grid_set(global.tagInfoGrid, obj_importMapping.colToChange, obj_importMapping.rowToChange, "unit_delim");
 			global.unitDelimField = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colMarker, obj_importMapping.rowToChange);
 			break;
-		case "Turn Delimiter":
+		case "turn_delim":
 		global.unitImportTurnDelimColName = "";
 			for (var i = 0; i < tagInfoGridHeight; i++) {
-				if (ds_grid_get(global.tagInfoGrid, obj_importMapping.colToChange, i) == "Turn Delimiter") {
+				if (ds_grid_get(global.tagInfoGrid, obj_importMapping.colToChange, i) == "turn_delim") {
 					ds_grid_set(global.tagInfoGrid, obj_importMapping.colToChange, i, 0);
 				}
 			}
-			ds_grid_set(global.tagInfoGrid, obj_importMapping.colToChange, obj_importMapping.rowToChange, "Turn Delimiter");
+			ds_grid_set(global.tagInfoGrid, obj_importMapping.colToChange, obj_importMapping.rowToChange, "turn_delim");
 			global.unitImportTurnDelimColName = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colMarker, obj_importMapping.rowToChange);
 			break;
 		case "option_word-delimiter":

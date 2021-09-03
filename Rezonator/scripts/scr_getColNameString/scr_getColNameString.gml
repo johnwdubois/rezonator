@@ -24,10 +24,10 @@ function scr_getColNameString(grid, col) {
 				colName = "participantName";
 				break;
 			case obj_control.unitGrid_colUnitStart:
-				colName = "Unit Start";
+				colName = "unit_start";
 				break;
 			case obj_control.unitGrid_colUnitEnd:
-				colName = "Unit End";
+				colName = "unit_end";
 				break;
 			case obj_control.unitGrid_colParticipantColor:
 				colName = "participantColor";
@@ -74,10 +74,10 @@ function scr_getColNameString(grid, col) {
 				colName = "alignedWordID";
 				break;
 			case obj_control.lineGrid_colUnitStart:
-				colName = "Unit Start";
+				colName = "unit_start";
 				break;
 			case obj_control.lineGrid_colUnitEnd:
-				colName = "Unit End";
+				colName = "unit_end";
 				break;
 			case obj_control.lineGrid_colVoidMax:
 				colName = "voidMax";
@@ -319,10 +319,10 @@ function scr_getColNameString(grid, col) {
 				colName = "affix";
 				break;
 			case obj_control.morphGrid_colUnitStart:
-				colName = "Unit Start";
+				colName = "unit_start";
 				break;
 			case obj_control.morphGrid_colUnitEnd:
-				colName = "Unit End";
+				colName = "unit_end";
 				break;
 			case obj_control.morphGrid_colGloss:
 				colName = "gloss";

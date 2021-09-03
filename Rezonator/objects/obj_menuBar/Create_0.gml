@@ -45,10 +45,10 @@ ds_list_add(viewOptionList, "menu_window",
 							"menu_justify",
 							"menu_prose",
 							"menu_hide",
-							"Word Tip",
+							"word_tip",
 							"tab_name_chunk",
-							"Arrowheads",
-							"Text Direction");
+							"arrheads",
+							"text_dir");
 
 filterOptionList = ds_list_create();
 ds_list_add(filterOptionList, "menu_filter",

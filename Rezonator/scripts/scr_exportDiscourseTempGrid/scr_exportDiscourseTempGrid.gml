@@ -53,7 +53,7 @@ function scr_exportDiscourseTempGrid(headerList, fieldList){
 					// default export data for units
 					if (currentHeader == "unitID") cellValue = string(currentNode);
 					else if (currentHeader == "unitSeq") cellValue = string(currentUnitSubMap[? "unitSeq"]);
-					else if (currentHeader == "speaker") cellValue = string(currentTagMap[? global.participantField]);
+					else if (currentHeader == "participant") cellValue = string(currentTagMap[? global.participantField]);
 					else if (currentHeader == "unitStart") cellValue = string(currentTagMap[? "unitStart"]);
 					else if (currentHeader == "unitEnd") cellValue = string(currentTagMap[? "unitEnd"]);
 				}
