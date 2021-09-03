@@ -360,7 +360,7 @@ ds_map_add(global.keyboardShortcutMap, "menu_go-to-time", "G");
 ds_map_add(global.keyboardShortcutMap, "menu_save", ctrlStr + "+S");
 ds_map_add(global.keyboardShortcutMap, "menu_grid", ctrlStr + "+G");
 ds_map_add(global.keyboardShortcutMap, "menu_theme", ctrlStr + "+B");
-ds_map_add(global.keyboardShortcutMap, "help_label_zoom-in", ctrlStr + "  +");
+ds_map_add(global.keyboardShortcutMap, "help_label_zoom-in", ctrlStr + " SHIFT +");
 ds_map_add(global.keyboardShortcutMap, "help_label_zoom-out", ctrlStr + " SHIFT -");
 ds_map_add(global.keyboardShortcutMap, "help_label_tall-rows", "SHIFT +");
 ds_map_add(global.keyboardShortcutMap, "help_label_short", "SHIFT -");
@@ -433,3 +433,5 @@ hoverColorMergeImport = 0;
 hoverColorMergeHelp = 0;
 
 global.dirCopyDebugList = ds_list_create();
+
+downloadDialogue = false;

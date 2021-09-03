@@ -80,7 +80,11 @@ draw_set_color(mouseoverOk ? merge_color(global.colorThemeSelected1, global.colo
 draw_roundrect(okRectX1, buttonY1, okRectX2, buttonY2, false);
 draw_set_color(global.colorThemeBG);
 var okText = scr_get_translation("msg_okay");
-if (room == rm_openingScreen) okText = "help_label_download";
+if (instance_exists(obj_openingScreen)) {
+	if (obj_openingScreen.downloadDialogue) {
+		okText = "help_label_download";
+	}
+}
 else if (noButtonActive) okText = "msg_yes";
 okText = scr_get_translation(okText);
 draw_text(floor(mean(okRectX1, okRectX2)), floor(mean(buttonY1, buttonY2)), okText);

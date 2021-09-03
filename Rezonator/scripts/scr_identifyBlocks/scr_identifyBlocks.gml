@@ -190,7 +190,11 @@ function scr_identifyBlocks(){
 								else {
 									global.exitOut = true;
 									lineExitedOn = i;
-									show_message(scr_get_translation("msg_invalid-IGT-file-scription") + string(lineExitedOn));
+									if (!instance_exists(obj_dialogueBox)) {
+										instance_create_layer(x, y, "InstancesDialogue", obj_dialogueBox);
+										obj_dialogueBox.descriptionText = scr_get_translation("msg_invalid-IGT-file-scription") + string(lineExitedOn);
+										obj_dialogueBox.alertWindowActive = true;
+									}
 								}
 							}
 						}
@@ -220,7 +224,12 @@ function scr_identifyBlocks(){
 							if (!global.exitOut) {
 								global.exitOut = true;	
 								lineExitedOn = i;
-								show_message(scr_get_translation("msg_error-block-type") + string(blockType)+  scr_get_translation("msg_error-found-line") + string(lineExitedOn));
+								if (!instance_exists(obj_dialogueBox)) {
+									instance_create_layer(x, y, "InstancesDialogue", obj_dialogueBox);
+									obj_dialogueBox.descriptionText = scr_get_translation(scr_get_translation("msg_error-block-type") + string(blockType)+  scr_get_translation("msg_error-found-line") + string(lineExitedOn));
+									obj_dialogueBox.alertWindowActive = true;
+								}
+								
 							}
 						}
 					}
@@ -228,7 +237,11 @@ function scr_identifyBlocks(){
 						if (!global.exitOut) {
 							global.exitOut = true;	
 							lineExitedOn = i;
-							show_message(scr_get_translation("msg_invalid-IGT-inconsistent") +  scr_get_translation("msg_error-found-line") + string(lineExitedOn)); // future dev: change to custom dialogue box, show incorrect Block to user
+							if (!instance_exists(obj_dialogueBox)) {
+								instance_create_layer(x, y, "InstancesDialogue", obj_dialogueBox);
+								obj_dialogueBox.descriptionText = scr_get_translation("msg_invalid-IGT-inconsistent") +  scr_get_translation("msg_error-found-line") + string(lineExitedOn);
+								obj_dialogueBox.alertWindowActive = true;
+							}
 						}
 					}
 				}

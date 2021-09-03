@@ -4,6 +4,7 @@ function scr_importIGT(){
 	
 	// Fill up BlockGrid & BlockTypeGrid
 	scr_identifyBlocks();
+	if (global.exitOut) exit;
 	
 	// The first 2 columns of importGrid will be BlockID and BlockSeq
 	global.importGridWidth = 2;

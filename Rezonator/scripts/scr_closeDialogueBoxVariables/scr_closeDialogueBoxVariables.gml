@@ -76,4 +76,9 @@ function scr_closeDialogueBoxVariables(){
 			noResultsFound = false;
 		}
 	}
+	if (instance_exists(obj_openingScreen)) {
+		with (obj_openingScreen) {
+			downloadDialogue = false;
+		}
+	}
 }

@@ -3,8 +3,11 @@
 function scr_dialogueConfirm(){
 	
 	// check if they are trying to download newest version of rezonator
-	if (room == rm_openingScreen) {
-		url_open("https://rezonator.com/download/");
+	if (instance_exists(obj_openingScreen)) {
+		if (obj_openingScreen.downloadDialogue) {
+			url_open("https://rezonator.com/download/");
+		}
+		scr_closeDialogueBoxVariables();
 		instance_destroy();
 		exit;
 	}
