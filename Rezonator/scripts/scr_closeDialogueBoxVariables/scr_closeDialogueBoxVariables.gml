@@ -63,10 +63,17 @@ function scr_closeDialogueBoxVariables(){
 		removeSearch = false;
 		searchToBeRemoved = "";
 	
-		obj_control.stackMerged = false;
-		obj_control.combineChainsFocused = "";
-		obj_control.combineChainsSelected = "";
+		with (obj_control) {
+			stackMerged = false;
+			combineChainsFocused = "";
+			combineChainsSelected = "";
+		}
 		
 		with (obj_stacker) confirmStackCreate = false;
+	}
+	if (alertWindowActive) {
+		with (obj_control) {
+			noResultsFound = false;
+		}
 	}
 }

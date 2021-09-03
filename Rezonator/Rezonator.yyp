@@ -440,6 +440,7 @@
     {"id":{"name":"obj_menuBar","path":"objects/obj_menuBar/obj_menuBar.yy",},"order":3,},
     {"id":{"name":"obj_audioUI","path":"objects/obj_audioUI/obj_audioUI.yy",},"order":4,},
     {"id":{"name":"obj_openingScreen","path":"objects/obj_openingScreen/obj_openingScreen.yy",},"order":5,},
+    {"id":{"name":"scr_triggerSearch","path":"scripts/scr_triggerSearch/scr_triggerSearch.yy",},"order":8,},
     {"id":{"name":"scr_panelPane_drawChains1To1Headers","path":"scripts/scr_panelPane_drawChains1To1Headers/scr_panelPane_drawChains1To1Headers.yy",},"order":24,},
     {"id":{"name":"obj_loadingScreen","path":"objects/obj_loadingScreen/obj_loadingScreen.yy",},"order":6,},
     {"id":{"name":"scr_createTree","path":"scripts/scr_createTree/scr_createTree.yy",},"order":0,},

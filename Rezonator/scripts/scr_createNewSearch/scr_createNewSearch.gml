@@ -66,7 +66,14 @@ function scr_createNewSearch(searchTermList){
 				}
 			}
 			else{
-				show_message(scr_get_translation("msg_no-results-found"));
+				with (obj_dialogueBox) instance_destroy();
+				with (obj_inputBox) instance_destroy();
+				scr_closeDialogueBoxVariables();
+				
+				instance_create_layer(x, y, "InstancesDialogue", obj_dialogueBox);
+				obj_dialogueBox.alertWindowActive = true;
+				obj_dialogueBox.descriptionText = scr_get_translation("msg_no-results-found");
+				obj_control.noResultsFound = true;
 			}
 		}
 	}

@@ -487,6 +487,7 @@ cursorPos = 1 ;
 cursorViz = false;
 inputText = "";
 cursorTimer = 20;
+noResultsFound = false;
 
 newWordPre1 = false
 newWordPre2 = false
