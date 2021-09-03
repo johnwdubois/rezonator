@@ -50,10 +50,8 @@ function scr_tokenCalculateVoid(tokenID){
 	
 	
 	// check if this word is the first word in an aligned chunk
-	var alignedChunkChainID = "";
-	if (scr_isChunk(tokenID)) {
-		alignedChunkChainID = scr_firstWordInAlignedChunk(tokenID);
-	}
+	var alignedChunkChainID = scr_firstWordInAlignedChunk(tokenID);
+
 	
 	
 	
