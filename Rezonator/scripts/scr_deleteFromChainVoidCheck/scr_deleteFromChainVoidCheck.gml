@@ -22,12 +22,30 @@ function scr_deleteFromChainVoidCheck(chainID, deletedTokenID, deletedTokenPushB
 		
 		var deletedTokenSeq = deletedTokenSubMap[? "tokenOrder"];
 		var deleteDisplayColDest = 0;
-		if (deletedTokenSeq > 1) {
-			deleteDisplayColDest = scr_getPrevDisplayCol(deletedTokenID);
+		
+		if (scr_checkNativeJustification()) {
+			if (deletedTokenSeq > 1) {
+				deleteDisplayColDest = scr_getPrevDisplayCol(deletedTokenID);
+			}
+			else deleteDisplayColDest = 0;
 		}
 		else {
-			deleteDisplayColDest = 0;
+			var deletedTokenUnit = deletedTokenSubMap[? "unit"];
+			var deletedTokenUnitSubMap = global.nodeMap[? deletedTokenUnit];
+			var deletedTokenUnitEntryList = deletedTokenUnitSubMap[? "entryList"];
+			var deletedTokenUnitEntryListSize = ds_list_size(deletedTokenUnitEntryList);
+			
+			show_debug_message("deletedTokenSeq: " + string(deletedTokenSeq) + ", deletedTokenUnitEntryListSize: " + string(deletedTokenUnitEntryListSize));
+			
+			if (deletedTokenSeq < deletedTokenUnitEntryListSize - 1) {
+				deleteDisplayColDest = scr_getPrevDisplayCol(deletedTokenID);
+			}
+			else {
+				
+				deleteDisplayColDest = scr_getMaxColsOnScreen() - deletedTokenUnitEntryListSize + deletedTokenSeq - 1;
+			}
 		}
+
 		
 		deletedTokenSubMap[? "displayCol"] = deleteDisplayColDest;
 
