@@ -67,6 +67,8 @@ function scr_closeDialogueBoxVariables(){
 			stackMerged = false;
 			combineChainsFocused = "";
 			combineChainsSelected = "";
+			saveBeforeImporting = false;
+			saveBeforeExiting = false;
 		}
 		
 		with (obj_stacker) confirmStackCreate = false;

@@ -489,6 +489,8 @@ inputText = "";
 cursorTimer = 20;
 noResultsFound = false;
 noTurnFound = false;
+saveBeforeExiting = false;
+saveBeforeImporting = false;
 
 newWordPre1 = false
 newWordPre2 = false

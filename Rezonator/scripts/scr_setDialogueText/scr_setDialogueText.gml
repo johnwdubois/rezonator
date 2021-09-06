@@ -79,6 +79,17 @@ function scr_setDialogueText(){
 				}
 			}
 		}
+		
+		if (instance_exists(obj_control)) {
+			if (obj_control.saveBeforeExiting) {
+				if (is_string(global.fileSaveName) && global.fileSaveName != "undefined") titleText = filename_name(global.fileSaveName);
+				descriptionText = scr_get_translation("question_save_before_exit");
+			}
+			if (obj_control.saveBeforeImporting) {
+				if (is_string(global.fileSaveName) && global.fileSaveName != "undefined") titleText = filename_name(global.fileSaveName);
+				descriptionText = scr_get_translation("question_save_before_import");
+			}
+		}
 	}
 		
 	if(obj_dialogueBox.inputWindowActive){

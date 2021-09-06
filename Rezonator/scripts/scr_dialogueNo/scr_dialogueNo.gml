@@ -13,6 +13,15 @@ function scr_dialogueNo(){
 			}
 		}
 		
+		if (instance_exists(obj_control)) {
+			if (obj_control.saveBeforeExiting || obj_control.saveBeforeImporting) {
+				global.skipToImportScreen = obj_control.saveBeforeImporting;
+				show_debug_message("Going to openingScreen, scr_dialogueNo");
+				room_goto(rm_openingScreen);
+				scr_loadINI();
+			}
+		}
+		
 		scr_closeQuestionBoxVariables();
 		instance_destroy();
 	}

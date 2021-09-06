@@ -272,6 +272,16 @@ function scr_dialogueConfirm(){
 			}
 		}
 		
+		if (instance_exists(obj_control)) {
+			if (obj_control.saveBeforeExiting || obj_control.saveBeforeImporting) {
+				with(obj_fileLoader) scr_saveREZ(false);
+				global.skipToImportScreen = obj_control.saveBeforeImporting;
+				show_debug_message("Going to openingScreen, scr_dialogueConfirm");
+				room_goto(rm_openingScreen);
+				scr_loadINI();
+			}
+		}
+		
 		scr_closeQuestionBoxVariables();
 		instance_destroy();
 	}

@@ -38,9 +38,7 @@ function scr_fileOptions(optionSelected) {
 		case "menu_import":
 			
 			if(room == rm_mainScreen){
-				audio_stop_all();
-				scr_saveINI();
-	
+				/*
 				if (!obj_control.allSaved) {
 		
 					if (os_type == os_macosx) {
@@ -59,13 +57,25 @@ function scr_fileOptions(optionSelected) {
 						}
 					}
 				}
+				*/
+				if (!instance_exists(obj_dialogueBox)) {
+					var inst = instance_create_layer(x, y, "InstancesDialogue", obj_dialogueBox);
+					inst.questionWindowActive = true;
+					inst.noButtonActive = true;
+					obj_control.saveBeforeImporting = true;
+				
+					// if everything is saved already we can just pretend they clicked "no"
+					if (obj_control.allSaved) scr_dialogueNo();
+				}
 			}
-
-			global.skipToImportScreen = true;
-			show_debug_message("Going to openingScreen, scr_fileOptions 1");
-			room_goto(rm_openingScreen);
-			scr_loadINI();
+			else {
+				global.skipToImportScreen = true;
+				show_debug_message("Going to openingScreen, scr_fileOptions 1");
+				room_goto(rm_openingScreen);
+				scr_loadINI();
+			}
 			break;
+			
 		case "menu_export":
 			
 		
@@ -108,11 +118,8 @@ function scr_fileOptions(optionSelected) {
 		case "menu_exit":
 		
 		
-			audio_stop_all();
 	
-			scr_saveINI();
-	
-	
+			/*
 			if (!obj_control.allSaved) {
 		
 				if (os_type == os_macosx) {
@@ -132,11 +139,18 @@ function scr_fileOptions(optionSelected) {
 					}
 				}
 			}
+			*/
 
 			keyboard_string = "";
-			show_debug_message("Going to openingScreen, scr_fileOptions 2");
-			room_goto(rm_openingScreen);
-			scr_loadINI();
+			if (!instance_exists(obj_dialogueBox)) {
+				var inst = instance_create_layer(x, y, "InstancesDialogue", obj_dialogueBox);
+				inst.questionWindowActive = true;
+				inst.noButtonActive = true;
+				obj_control.saveBeforeExiting = true;
+				
+				// if everything is saved already we can just pretend they clicked "no"
+				if (obj_control.allSaved) scr_dialogueNo();
+			}
 
 			break;
 		default:
