@@ -40,12 +40,12 @@ function scr_fileWindow() {
 	var mouseoverLoadSchema = point_in_rectangle(mouse_x, mouse_y, loadSchemaButtonRectX1, loadSchemaButtonRectY1, loadSchemaButtonRectX2, loadSchemaButtonRectY2);
 
 	draw_sprite_ext(spr_dropDown, 0, floor(mean(loadSchemaButtonRectX1, loadSchemaButtonRectX2)) - clipX, floor(mean(loadSchemaButtonRectY1, loadSchemaButtonRectY2)) - clipY, 1, 1, 0, global.colorThemeText, 1);
-	
+
 	// Load from File
 	if (mouseoverLoadSchema) {
 		draw_set_color(global.colorThemeSelected1);
 		draw_rectangle(loadSchemaButtonRectX1 - clipX, loadSchemaButtonRectY1 - clipY, loadSchemaButtonRectX2 - clipX, loadSchemaButtonRectY2 - clipY, true);
-	
+		scr_createTooltip( floor(mean(loadSchemaButtonRectX1, loadSchemaButtonRectX2)), loadSchemaButtonRectY2,scr_get_translation("msg_load-schema"), obj_tooltip.arrowFaceUp);
 		if (mouse_check_button_pressed(mb_left)) {
 			
 			scr_loadSchema(false);
@@ -73,7 +73,7 @@ function scr_fileWindow() {
 		if (mouseoverSaveSchema) {
 			draw_set_color(global.colorThemeSelected1);
 			draw_rectangle(saveSchemaButtonRectX1 - clipX, saveSchemaButtonRectY1 - clipY, saveSchemaButtonRectX2 - clipX, saveSchemaButtonRectY2 - clipY, true);
-	
+			scr_createTooltip( floor(mean(saveSchemaButtonRectX1, saveSchemaButtonRectX2)), saveSchemaButtonRectY2,scr_get_translation("msg_save-schema"), obj_tooltip.arrowFaceUp);
 			if (mouse_check_button_pressed(mb_left)) {
 		
 				//populates lists with current display

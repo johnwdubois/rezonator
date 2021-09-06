@@ -374,7 +374,7 @@ function scr_panelPane_drawSearch1ToMany(){
 	draw_sprite_ext(spr_search, 0, floor(mean(activateButtonX1, activateButtonX2)), floor(mean(activateButtonY1, activateButtonY2)), obj_toolPane.toolSpriteScale, obj_toolPane.toolSpriteScale, -90, global.colorThemeBG, 1);
 	if (mouseoverActivateButton) {
 		
-		scr_createTooltip(floor(mean(activateButtonX1, activateButtonX2)), activateButtonY2, searchEnabled ? scr_get_translation("search_enabled") : scr_get_translation("search_disabled"), obj_tooltip.arrowFaceUp);
+		scr_createTooltip(floor(mean(activateButtonX1, activateButtonX2)), activateButtonY2, searchEnabled ? scr_get_translation("msg_enabled") : scr_get_translation("msg_disabled"), obj_tooltip.arrowFaceUp);
 		
 		if (mouse_check_button_released(mb_left)) {
 			if (!obj_control.searchGridActive && functionSearchList_searchSelected != "") {
