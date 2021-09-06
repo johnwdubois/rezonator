@@ -131,7 +131,7 @@ function scr_preImportFileTypeWindow(){
 		draw_line_width(tableX1,boxY2,tableX2,boxY2, 2);
 		
 		draw_set_color(global.colorThemeText);
-		draw_text(tableX1 +textBuffer,floor(mean(boxY1,boxY2)), string(currentImportType) );
+		draw_text(tableX1 +textBuffer,floor(mean(boxY1,boxY2)), string(scr_get_translation(currentImportType)) );
 		plusY += heightOfBox;
 		// set choose column value
 		ds_grid_set(preImportInfoGrid, global.preImportInfoGrid_colChoose, i, currentImportTypeSelected);

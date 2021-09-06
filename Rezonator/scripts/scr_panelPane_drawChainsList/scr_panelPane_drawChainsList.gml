@@ -322,7 +322,7 @@ function scr_panelPane_drawChainsList() {
 								else scr_disableFilter();
 							}
 						}
-						scr_createTooltip(filterChainX, optionsChainY + optionsIconRad, "Filter", obj_tooltip.arrowFaceUp);
+						scr_createTooltip(filterChainX, optionsChainY + optionsIconRad, scr_get_translation("menu_filter"), obj_tooltip.arrowFaceUp);
 					}
 					// mouseover & click on visible
 					if (mouseoverVisibleChain) {
@@ -344,7 +344,7 @@ function scr_panelPane_drawChainsList() {
 							currentChainAlign = !currentChainAlign;
 							scr_setMap(currentChainSubMap, "alignChain", currentChainAlign);
 						}
-						scr_createTooltip(alignChainX, optionsChainY + optionsIconRad, "Align", obj_tooltip.arrowFaceUp);
+						scr_createTooltip(alignChainX, optionsChainY + optionsIconRad, scr_get_translation("help_label_align"), obj_tooltip.arrowFaceUp);
 					}
 					
 					// draw filter/align/visible buttons

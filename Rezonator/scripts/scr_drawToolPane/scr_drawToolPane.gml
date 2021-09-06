@@ -86,7 +86,7 @@ function scr_drawToolPane(toolSprScale) {
 	if (mouseoverFilter) {
 		draw_set_color(c_white);
 		scr_drawRectWidth(filterButtonRectX1, filterButtonRectY1, filterButtonRectX2, filterButtonRectY2, mouseoverRectWidth , false);
-		scr_createTooltip(filterButtonRectX1, filterButtonY, "Filter", obj_tooltip.arrowFaceRight);
+		scr_createTooltip(filterButtonRectX1, filterButtonY, scr_get_translation("menu_filter"), obj_tooltip.arrowFaceRight);
 		
 		
 		if (mouse_check_button_released(mb_left)) {
@@ -120,7 +120,7 @@ function scr_drawToolPane(toolSprScale) {
 	}
 	
 	if (mouseoverContext) {
-		scr_createTooltip(contextButtonRectX1, contextButtonY, "Context", obj_tooltip.arrowFaceRight);
+		scr_createTooltip(contextButtonRectX1, contextButtonY, scr_get_translation("menu_filter-context"), obj_tooltip.arrowFaceRight);
 		
 		if (mouse_check_button_released(mb_left)) {
 			var contextOptionList = ds_list_create();
