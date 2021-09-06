@@ -74,6 +74,7 @@ function scr_closeDialogueBoxVariables(){
 	if (alertWindowActive) {
 		with (obj_control) {
 			noResultsFound = false;
+			noTurnFound = false;
 		}
 	}
 	if (instance_exists(obj_openingScreen)) {

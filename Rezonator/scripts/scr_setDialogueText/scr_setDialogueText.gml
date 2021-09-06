@@ -158,7 +158,13 @@ function scr_setDialogueText(){
 				descriptionText = scr_get_translation("search_dialogue_word");
 			}
 		}
-		
-
+	}
+	
+	if (alertWindowActive) {
+		if (instance_exists(obj_control)) {
+			if (obj_control.noTurnFound) {
+				descriptionText = scr_get_translation("msg_order-notfound");
+			}
+		}
 	}
 }

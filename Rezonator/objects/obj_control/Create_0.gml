@@ -488,6 +488,7 @@ cursorViz = false;
 inputText = "";
 cursorTimer = 20;
 noResultsFound = false;
+noTurnFound = false;
 
 newWordPre1 = false
 newWordPre2 = false

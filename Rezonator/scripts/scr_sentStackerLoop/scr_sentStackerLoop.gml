@@ -7,7 +7,9 @@ function scr_sentStackerLoop(){
 
 	// Exit script if no turnOrder column was found
 	if (global.participantField == "" or is_undefined(global.participantField)) {
-		show_message(scr_get_translation("msg_order-notfound"));
+		var inst = instance_create_layer(0, 0, "InstancesDialogue", obj_dialogueBox);
+		inst.alertWindowActive = true;
+		obj_control.noTurnFound = true;
 		splitSave = false;
 
 		exit;	
