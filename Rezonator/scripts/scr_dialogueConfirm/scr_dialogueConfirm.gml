@@ -280,6 +280,13 @@ function scr_dialogueConfirm(){
 				room_goto(rm_openingScreen);
 				scr_loadINI();
 			}
+			
+			if (obj_control.saveBeforeGameEnd) {
+				with (obj_fileLoader) {
+					scr_saveREZ(false);
+				}
+				game_end();
+			}
 		}
 		
 		scr_closeQuestionBoxVariables();

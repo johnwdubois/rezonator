@@ -69,6 +69,7 @@ function scr_closeDialogueBoxVariables(){
 			combineChainsSelected = "";
 			saveBeforeImporting = false;
 			saveBeforeExiting = false;
+			saveBeforeGameEnd = false;
 		}
 		
 		with (obj_stacker) confirmStackCreate = false;

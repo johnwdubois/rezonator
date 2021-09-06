@@ -1,3 +1,5 @@
+scr_windowExit();
+
 
 if (keyboard_check_released(vk_escape)) {
 	show_debug_message("Going to openingScreen, obj_loadingControl step");

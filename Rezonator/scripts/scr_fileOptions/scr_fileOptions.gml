@@ -38,26 +38,7 @@ function scr_fileOptions(optionSelected) {
 		case "menu_import":
 			
 			if(room == rm_mainScreen){
-				/*
-				if (!obj_control.allSaved) {
-		
-					if (os_type == os_macosx) {
 
-						with (obj_fileLoader) {
-							scr_saveREZ(false);
-						}
-		
-					}
-					else {
-						scr_adaptFont(scr_get_translation("question_save_before_import"), "M");
-						if (show_question(scr_get_translation("question_save_before_import"))) {
-							with (obj_fileLoader) {
-								scr_saveREZ(false);
-							}
-						}
-					}
-				}
-				*/
 				if (!instance_exists(obj_dialogueBox)) {
 					var inst = instance_create_layer(x, y, "InstancesDialogue", obj_dialogueBox);
 					inst.questionWindowActive = true;
@@ -116,30 +97,6 @@ function scr_fileOptions(optionSelected) {
 
 			break;	
 		case "menu_exit":
-		
-		
-	
-			/*
-			if (!obj_control.allSaved) {
-		
-				if (os_type == os_macosx) {
-
-				
-					with(obj_fileLoader){
-						scr_saveREZ(false);
-					}
-		
-				}
-				else {
-					scr_adaptFont(scr_get_translation("question_save_before_exit"), "M");
-					if (show_question(scr_get_translation("question_save_before_exit"))) {
-						with(obj_fileLoader){
-							scr_saveREZ(false);
-						}
-					}
-				}
-			}
-			*/
 
 			keyboard_string = "";
 			if (!instance_exists(obj_dialogueBox)) {

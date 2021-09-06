@@ -20,6 +20,9 @@ function scr_dialogueNo(){
 				room_goto(rm_openingScreen);
 				scr_loadINI();
 			}
+			if (obj_control.saveBeforeGameEnd) {
+				game_end();
+			}
 		}
 		
 		scr_closeQuestionBoxVariables();
