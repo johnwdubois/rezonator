@@ -104,9 +104,17 @@ function scr_setDrawRange(camHeight, displayUnitList, displayUnitListSize) {
 		}
 	}
 
+
 	if(drawRangeStartMax != -1 && drawRangeEndMin != -1){
 		drawRangeStart = min(drawRangeStartMax,drawRangeStart);
 		drawRangeEnd = max(drawRangeEndMin,drawRangeEnd);
+	}
+	
+	if (global.ctrlHold && keyboard_check(vk_down)) {
+		drawRangeStart = displayUnitListSize - drawRange;
+		drawRangeCenter = displayUnitListSize - floor(drawRangeStart / 2);
+		drawRangeEnd = drawRangeStart + drawRange;
+		show_debug_message("here!!");
 	}
 	
 }

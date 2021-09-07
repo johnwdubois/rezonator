@@ -42,10 +42,5 @@ function scr_dialogueBoxNewCustomFieldUnit() {
 		}
 	}
 	
-	
-	
-	if(sizeOfNavUnitList == 6){
-		scr_unitSelection(newField);
-	}
-	
+
 }

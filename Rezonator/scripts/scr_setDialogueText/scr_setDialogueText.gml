@@ -52,11 +52,11 @@ function scr_setDialogueText(){
 		}
 		if (removeTagToken || removeTagUnit || removeTagEntry || removeTagChain || removeTagChunk || removeTagLink) {
 			titleText = scr_get_translation("msg_remove") + " " + scr_get_translation("tab_name_tag");
-			descriptionText = scr_get_translation("msg_remove-mark-tag") + string(stringToBeRemoved);
+			descriptionText = scr_get_translation("msg_remove-mark-tag") + " " + string(stringToBeRemoved);
 		}
 		if (removeFieldToken || removeFieldUnit || removeFieldEntry || removeFieldChain || removeFieldChunk || removeFieldLink) {
 			titleText = scr_get_translation("msg_remove") + " " + scr_get_translation("option_field");
-			descriptionText =  scr_get_translation("msg_remove-field-tag") + string(stringToBeRemoved);
+			descriptionText =  scr_get_translation("msg_remove-field-tag") + " " + string(stringToBeRemoved);
 		}
 		if (removeSearch) {
 			var searchSubMap = global.searchMap[?searchToBeRemoved];
@@ -74,7 +74,7 @@ function scr_setDialogueText(){
 				var stackChainList = global.nodeMap[? "stackList"];
 				if (scr_isNumericAndExists(stackChainList, ds_type_list)) {
 					var stackChainListSize = ds_list_size(stackChainList);
-					descriptionText =  scr_get_translation("msg_stacks_created-1") + string(stackChainListSize) + scr_get_translation("msg_stacks_created-2");
+					descriptionText =  scr_get_translation("msg_stacks_created-1") + " " + string(stackChainListSize) + " " + scr_get_translation("msg_stacks_created-2");
 					noButtonActive = true;
 				}
 			}
