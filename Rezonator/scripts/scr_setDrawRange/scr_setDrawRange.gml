@@ -114,7 +114,6 @@ function scr_setDrawRange(camHeight, displayUnitList, displayUnitListSize) {
 		drawRangeStart = displayUnitListSize - drawRange;
 		drawRangeCenter = displayUnitListSize - floor(drawRangeStart / 2);
 		drawRangeEnd = drawRangeStart + drawRange;
-		show_debug_message("here!!");
 	}
 	
 }

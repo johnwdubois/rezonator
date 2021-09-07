@@ -14,6 +14,8 @@ function scr_deleteFromChainVoidCheck(chainID, deletedTokenID, deletedTokenPushB
 	var chainSetListSize = ds_list_size(chainSetList);
 	var deletedTokenSubMap = global.nodeMap[? deletedTokenID];
 	
+	var deletedTokenIsChunk = scr_isChunk(deletedTokenID);
+	
 
 
 	
@@ -30,19 +32,33 @@ function scr_deleteFromChainVoidCheck(chainID, deletedTokenID, deletedTokenPushB
 			else deleteDisplayColDest = 0;
 		}
 		else {
-			var deletedTokenUnit = deletedTokenSubMap[? "unit"];
-			var deletedTokenUnitSubMap = global.nodeMap[? deletedTokenUnit];
-			var deletedTokenUnitEntryList = deletedTokenUnitSubMap[? "entryList"];
-			var deletedTokenUnitEntryListSize = ds_list_size(deletedTokenUnitEntryList);
 			
-			show_debug_message("deletedTokenSeq: " + string(deletedTokenSeq) + ", deletedTokenUnitEntryListSize: " + string(deletedTokenUnitEntryListSize));
-			
-			if (deletedTokenSeq < deletedTokenUnitEntryListSize - 1) {
-				deleteDisplayColDest = scr_getPrevDisplayCol(deletedTokenID);
+			var deletedTokenUnit = "";
+			if (deletedTokenIsChunk) {
+				var chunkFirstToken = scr_getFirstWordOfChunk(deletedTokenID);
+				var chunkFirstTokenSubMap = global.nodeMap[? chunkFirstToken];
+				if (scr_isNumericAndExists(chunkFirstTokenSubMap, ds_type_map)) {
+					deletedTokenUnit = chunkFirstTokenSubMap[? "unit"];
+					deletedTokenSeq = chunkFirstTokenSubMap[? "tokenOrder"];
+				}
 			}
 			else {
-				
-				deleteDisplayColDest = scr_getMaxColsOnScreen() - deletedTokenUnitEntryListSize + deletedTokenSeq - 1;
+				deletedTokenUnit = deletedTokenSubMap[? "unit"];
+			}
+			
+			var deletedTokenUnitSubMap = global.nodeMap[? deletedTokenUnit];
+			if (scr_isNumericAndExists(deletedTokenUnitSubMap, ds_type_map)) {
+				var deletedTokenUnitEntryList = deletedTokenUnitSubMap[? "entryList"];
+				var deletedTokenUnitEntryListSize = ds_list_size(deletedTokenUnitEntryList);
+			
+				show_debug_message("deletedTokenSeq: " + string(deletedTokenSeq) + ", deletedTokenUnitEntryListSize: " + string(deletedTokenUnitEntryListSize));
+			
+				if (deletedTokenSeq < deletedTokenUnitEntryListSize - 1) {
+					deleteDisplayColDest = scr_getPrevDisplayCol(deletedTokenID);
+				}
+				else {
+					deleteDisplayColDest = scr_getMaxColsOnScreen() - deletedTokenUnitEntryListSize + deletedTokenSeq - 1;
+				}
 			}
 		}
 
