@@ -29,11 +29,11 @@ function scr_setDialogueText(){
 			descriptionText = scr_get_translation("msg_warning_clear_chains");
 		}
 		if (clearChain) {
-			titleText = scr_get_translation("Clear Current Chains");
+			titleText = scr_get_translation("Clear Current Chain");
 			descriptionText = scr_get_translation("msg_warning_clear_focused_chain");
 		}
 		if (clearShow) {
-			titleText = scr_get_translation("Delete Show");
+			titleText = scr_get_translation("help_label_delete_plain")+ " "+ scr_get_translation("menu_show");
 			descriptionText =  scr_get_translation("You are about to delete this show");
 		}
 		if(layerLink) {
@@ -127,7 +127,7 @@ function scr_setDialogueText(){
 			descriptionText = scr_get_translation("msg_input_caption");
 		}	
 		if (obj_control.rename) {
-			titleText = scr_get_translation("help_description_rename");
+			titleText = scr_get_translation("help_label_rename");
 			descriptionText = scr_get_translation("msg_input_chain-name");
 		}
 		if (obj_control.recolor) {

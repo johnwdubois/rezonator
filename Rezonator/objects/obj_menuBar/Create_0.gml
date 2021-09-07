@@ -68,7 +68,6 @@ ds_list_add(toolsOptionList,"menu_search",
 settingsOptionList = ds_list_create();
 ds_list_add(settingsOptionList, "menu_user", 
 								"menu_zoom",
-								"menu_zero", 
 								"menu_theme", 
 								"menu_restore-hints", 
 								"menu_language", 
