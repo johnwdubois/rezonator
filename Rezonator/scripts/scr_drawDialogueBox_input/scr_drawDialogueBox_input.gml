@@ -27,7 +27,8 @@ function scr_drawDialogueBox_input(){
 		
 		// description text
 		if (instance_exists(obj_inputBox)) {
-			if (string_length(obj_inputBox.str) < 1) {
+			var strLen = string_length(obj_inputBox.str);
+			if (strLen < 1) {
 				var descTextX = obj_inputBox.x + (dropDownXBuffer * 2);
 				var descTextY = floor(mean(obj_inputBox.y, obj_inputBox.y + obj_inputBox.windowHeight));
 				var descText = scr_get_translation("search_dialogue_word");

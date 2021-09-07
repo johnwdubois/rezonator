@@ -4,6 +4,7 @@ function scr_inputBoxStep(){
 	
 	if(!instance_exists(obj_dialogueBox) && room != rm_openingScreen) instance_destroy();
 	
+	
 	var controlHold = global.ctrlHold;
 	
 	// click in and out of box
