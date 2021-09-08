@@ -174,11 +174,11 @@ function scr_drawLine2ElectricBoogaloo(){
 	
 	scr_setSpeakerLabelColWidth();
 	
-	/*
+	
 	if (scrollBarHolding) {
-		scrollPlusYPrev = scrollPlusY;
+		global.delayInput = 5;
 	}
-	*/
+	
 	
 	updateChainShowMap = false;
 	
