@@ -107,12 +107,22 @@ function scr_drawLine2ElectricBoogaloo(){
 			continue;
 		}
 		
+		
 		// get current unit's submap and make sure it exists
 		var currentUnit = displayUnitList[| i];
 		var currentUnitSubMap = global.nodeMap[? currentUnit];
 		if (!scr_isNumericAndExists(currentUnitSubMap, ds_type_map)) continue;
 		var currentPixelY = floor(unitPlusY + scrollPlusY);
 		currentUnitSubMap[? "pixelY"] = currentPixelY;
+		
+		
+		// speed up drawRange adjustment
+		if (i == drawRangeStart && currentPixelY < 0) {
+			drawRangeStart += 2;
+			drawRangeEnd += 2;
+		}
+		
+		
 		
 		// check if this unit should be added to unitRectList
 		if (makingRect && mouse_check_button(mb_left)) {
