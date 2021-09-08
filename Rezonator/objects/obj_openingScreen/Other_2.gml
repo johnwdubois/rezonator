@@ -8,7 +8,6 @@ global.autosaveTimerFull = 600;
 global.autosaveTimer = global.autosaveTimerFull;
 global.previousRezDirectory = "";
 global.previousImportDirectory = "";
-global.fileExtentionOrder = "TXT file|*.txt|XML file|*.xml|CSV file|*.csv|JSON file|*.json";
 global.previousLevelEstimates = ds_list_create();
 global.previousSpecialFields = ds_list_create();
 ds_list_clear(global.previousLevelEstimates);

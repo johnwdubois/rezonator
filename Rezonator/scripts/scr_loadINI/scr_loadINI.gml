@@ -60,8 +60,9 @@ function scr_loadINI() {
 					global.readHintHide = ds_map_find_value(map, "readHintHide");
 				}
 			
-				if(ds_map_find_value(map, "autosaveTimer") != undefined){
-					global.autosaveTimer = ds_map_find_value(map, "autosaveTimer");
+				if(ds_map_find_value(map, "autosaveTimerFull") != undefined){
+					global.autosaveTimerFull = ds_map_find_value(map, "autosaveTimerFull");
+					global.autosaveTimer = global.autosaveTimerFull;
 				}
 
 
@@ -75,9 +76,6 @@ function scr_loadINI() {
 
 				global.previousImportDirectory = ds_map_find_value(map, "previousImportDirectory"); 
 		
-				if(ds_map_find_value(map, "fileExtentionOrder") != undefined){
-					global.fileExtentionOrder = ds_map_find_value(map, "fileExtentionOrder"); 
-				}
 
 				global.previousSpecialFields = ds_map_find_value(map, "previousSpecialFields");
 				global.previousLevelEstimates = ds_map_find_value(map, "previousLevelEstimates");
@@ -118,7 +116,12 @@ function scr_loadINI() {
 				global.fontSize = ds_map_find_value(map, "fontSize"); 
 
 			
-		
+				obj_panelPane.showNav = map[? "showNav"];
+				obj_panelPane.showNavLeft = map[? "showNavLeft"];
+				obj_panelPane.showNavRight = map[? "showNavRight"];
+				if (is_undefined(obj_panelPane.showNav)) obj_panelPane.showNav = true;
+				if (is_undefined(obj_panelPane.showNavLeft)) obj_panelPane.showNavLeft = true;
+				if (is_undefined(obj_panelPane.showNavRight)) obj_panelPane.showNavRight = true;
 
 			}
 				

@@ -30,11 +30,17 @@ function scr_saveINI() {
 	ds_map_add(map,"importType",global.importType);
 	ds_map_add(map,"readHintHide",global.readHintHide)
 	ds_map_add(map,"userName", global.userName);
-	ds_map_add(map,"autosaveTimer", global.autosaveTimer);
+	ds_map_add(map,"autosaveTimerFull", global.autosaveTimerFull);
 	ds_map_add(map,"lineHeight", obj_control.gridSpaceVertical);
 	ds_map_add(map,"fontSize", global.fontSize);
 	ds_map_add(map,"columnWidth", obj_control.gridSpaceHorizontal);
 	ds_map_add(map,"proseWidth", obj_control.proseSpaceHorizontal);
+	ds_map_add(map,"showNav", obj_panelPane.showNav);
+	ds_map_add(map,"showNavLeft", obj_panelPane.showNavLeft);
+	ds_map_add(map,"showNavRight", obj_panelPane.showNavRight);
+	
+	
+
 
 	
 	
@@ -52,7 +58,6 @@ function scr_saveINI() {
 	ds_map_add_list(map, "previousSpecialFields", tempList2);
 	ds_map_add(map, "previousRezDirectory", global.previousRezDirectory);
 	ds_map_add(map, "previousImportDirectory", global.previousImportDirectory);
-	ds_map_add(map, "fileExtentionOrder", global.fileExtentionOrder);
 		
 	
 	if (instance_exists(obj_gridViewer)) {
