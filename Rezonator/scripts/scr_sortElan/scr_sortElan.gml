@@ -16,13 +16,13 @@ function scr_sortElan(){
 		for (var i = 0; i < ds_grid_height(global.importGrid); i++) {
 			if (unitStartColFound) {
 				var currentUnitStart = ds_grid_get(global.importGrid, unitStartCol, i);
-				if(is_string(currentUnitStart) && string_letters(currentUnitStart) == ""){
+				if (scr_isStrNumeric(currentUnitStart)) {
 					ds_grid_set(global.importGrid, unitStartCol, i, real(currentUnitStart));
 				}
 			}
 			if (unitEndColFound) {
 				var currentUnitEnd = ds_grid_get(global.importGrid, unitEndCol, i);
-				if(is_string(currentUnitEnd) && string_letters(currentUnitEnd) == ""){
+				if (scr_isStrNumeric(currentUnitEnd)) {
 					ds_grid_set(global.importGrid, unitEndCol, i, real(currentUnitEnd));
 				}
 			}

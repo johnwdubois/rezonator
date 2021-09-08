@@ -163,6 +163,7 @@
     {"id":{"name":"scr_saveSchema","path":"scripts/scr_saveSchema/scr_saveSchema.yy",},"order":7,},
     {"id":{"name":"scr_setFocusedChainWordID","path":"scripts/scr_setFocusedChainWordID/scr_setFocusedChainWordID.yy",},"order":45,},
     {"id":{"name":"scr_firstWordInAlignedChunk","path":"scripts/scr_firstWordInAlignedChunk/scr_firstWordInAlignedChunk.yy",},"order":6,},
+    {"id":{"name":"scr_isStrNumeric","path":"scripts/scr_isStrNumeric/scr_isStrNumeric.yy",},"order":10,},
     {"id":{"name":"scr_saveINI","path":"scripts/scr_saveINI/scr_saveINI.yy",},"order":5,},
     {"id":{"name":"scr_checkSideLink","path":"scripts/scr_checkSideLink/scr_checkSideLink.yy",},"order":46,},
     {"id":{"name":"scr_exportChainTempGrid","path":"scripts/scr_exportChainTempGrid/scr_exportChainTempGrid.yy",},"order":8,},
