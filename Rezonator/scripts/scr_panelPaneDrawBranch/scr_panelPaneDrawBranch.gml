@@ -73,7 +73,7 @@ function scr_panelPaneDrawBranch(){
 				draw_rectangle(x, y, x + windowWidth, y + windowHeight, false);
 				if (is_numeric(functionChainContents_BGColor)) {
 					// if we are on the line tab, set the BG color to be regular
-					if (functionChainList_currentTab == functionChainList_tabLine || functionChainList_currentTab == functionChainList_tabChunk || functionChainList_currentTab == functionChainList_tabSearch) {
+					if (functionChainList_currentTab == functionChainList_tabLine || functionChainList_currentTab == functionChainList_tabChunk || functionChainList_currentTab == functionChainList_tabSearch || functionChainList_currentTab == functionChainList_tabTree) {
 						functionChainContents_BGColor = global.colorThemeBG;
 					}
 					// if the BG color is not regular, draw a rectangle with the color of the corresponding chain

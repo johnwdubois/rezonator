@@ -39,6 +39,8 @@ function scr_importInfoGrid() {
 			var currentTag = ds_list_find_value(global.importGridColNameList, i);
 			ds_grid_resize(global.tagInfoGrid, global.tagInfoGridWidth, ds_grid_height(global.tagInfoGrid) + 1);
 			ds_grid_set(global.tagInfoGrid, global.tagInfoGrid_colMarker, i, currentTag);
+			ds_grid_set(global.tagInfoGrid, global.tagInfoGrid_colLevel, i, "tag_unknown");
+			ds_grid_set(global.tagInfoGrid, global.tagInfoGrid_colLevelPredict, i, "tag_unknown");
 			ds_grid_set(global.tagInfoGrid, global.tagInfoGrid_colMarkerPercent, i, 100);
 			ds_grid_set(global.tagInfoGrid, global.tagInfoGrid_colSingleTokenMarker, i, false);
 			ds_grid_set(global.tagInfoGrid, global.tagInfoGrid_colSpecialFields, i, "");
