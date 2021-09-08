@@ -35,5 +35,7 @@ function scr_chain1To1TagOptions(optionSelected){
 		// set the selected tag in this chain's tagmap
 		scr_setMap(chainTagMap, fieldToChange, optionSelected);
 	}
+	
+	if (obj_control.chain1toManyCustomSortColIndex != -1) obj_control.refreshCustomSort = true;
 
 }

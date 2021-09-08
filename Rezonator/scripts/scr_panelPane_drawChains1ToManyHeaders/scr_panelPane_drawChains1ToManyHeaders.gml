@@ -116,6 +116,8 @@ function scr_panelPane_drawChains1ToManyHeaders(){
 								obj_control.chain1toManyCustomSortColIndex = i;
 							}
 						}
+						
+						if (obj_control.chain1toManyCustomSortColIndex != -1) obj_control.refreshCustomSort = true;
 					}
 				}
 				var sortArrowAngle = 0;

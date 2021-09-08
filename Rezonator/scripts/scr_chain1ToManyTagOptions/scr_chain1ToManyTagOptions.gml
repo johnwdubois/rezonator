@@ -36,4 +36,6 @@ function scr_chain1ToManyTagOptions(optionSelected){
 		scr_setMap(entryTagMap, fieldToChange, optionSelected);
 	}
 	
+	if (obj_control.chain1toManyCustomSortColIndex != -1) obj_control.refreshCustomSort = true;
+	
 }

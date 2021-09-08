@@ -713,7 +713,7 @@ ds_list_add(chain1toManyColFieldListStack, "gapUnits");
 
 chain1toManyCustomSortColIndex = -1;
 chain1toManyCustomSortAsc = true;
-
+refreshCustomSort = true;
 
 
 

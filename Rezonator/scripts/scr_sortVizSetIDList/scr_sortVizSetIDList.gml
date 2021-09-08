@@ -85,5 +85,7 @@ function scr_sortVizSetIDList(chainID){
 	
 	// we dont need tempGrid anymore
 	ds_grid_destroy(tempGrid);
+	
+	if (obj_control.chain1toManyCustomSortColIndex != -1) obj_control.refreshCustomSort = true;
 
 }

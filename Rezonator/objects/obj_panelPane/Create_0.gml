@@ -81,7 +81,7 @@ functionChainList_lineGridDisplayYList = ds_list_create();
 functionChainList_focusedChainIndex = -1;
 functionChainList_playShowID = "";
 
-
+functionChainContents_chainIDPrev = "";
 	
 	
 
