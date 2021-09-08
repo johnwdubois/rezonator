@@ -210,8 +210,9 @@ function scr_drawChains() {
 				}
 				
 				var trackChainLineX1 = centerX1;
-				var trackChainLineY1 = lineY1 + currentWordStringHeight1;
+				var trackChainLineY1 = lineY1 + (currentWordStringHeight1 * 0.25);
 				var trackChainLineX2 = centerX2;
+				var trackChainLineY2 = lineY2 + (currentWordStringHeight2 * 0.25);
 				
 				var lineLen = -1;
 				var arrowDir = -1;
@@ -232,11 +233,11 @@ function scr_drawChains() {
 					arrowDir = mean(point_direction(trackChainLineX1, lineY1, trackChainLineX2, lineY2), 270, 270, 270);
 					arrowX = trackChainLineX2;
 					arrowY = lineY2 - currentWordStringHeight2;
-					
+						
 					if (sideLink) {
 						arrowDir = 0;
 						arrowX = trackChainLineX2 - sprite_get_width(spr_linkArrow);
-						arrowY = mean(lineY1, lineY2);
+						arrowY = trackChainLineY2;
 					}
 				}
 
@@ -268,8 +269,12 @@ function scr_drawChains() {
 					}
 					else if (chainType == "trail") {
 						
-
-						scr_drawCurvedLine(trackChainLineX1, lineY1 + (currentWordStringHeight1 / 2), trackChainLineX2, lineY2 - (currentWordStringHeight2 / 2), currentChainColor);
+						if (sideLink) {
+							draw_line_width(trackChainLineX1, trackChainLineY1, trackChainLineX2, trackChainLineY2, 2);
+						}
+						else {
+							scr_drawCurvedLine(trackChainLineX1, lineY1 + (currentWordStringHeight1 / 2), trackChainLineX2, lineY2 - (currentWordStringHeight2 / 2), currentChainColor);
+						}
 
 					}
 					if((obj_chain.showRezArrows and chainType = "resonance") or (obj_chain.showTrackArrows and chainType = "trail")){
