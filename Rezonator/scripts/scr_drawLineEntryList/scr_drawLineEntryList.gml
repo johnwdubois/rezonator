@@ -35,7 +35,6 @@ function scr_drawLineEntryList(unitID, unitSubMap, entryList, pixelY){
 	var j = 0;
 
 	repeat(entryListSize) {
-		
 		// get current entry submap and make sure it exists
 		var currentEntry = entryList[| i];
 		var currentEntrySubMap = global.nodeMap[? currentEntry];
@@ -46,6 +45,7 @@ function scr_drawLineEntryList(unitID, unitSubMap, entryList, pixelY){
 		var currentTokenSubMap = global.nodeMap[? currentToken];
 		if (!scr_isNumericAndExists(currentTokenSubMap, ds_type_map)) continue;
 		
+
 		// get tag map for this token
 		var currentTagMap = currentTokenSubMap[? "tagMap"];
 		if (!scr_isNumericAndExists(currentTagMap, ds_type_map)) continue;
@@ -99,13 +99,11 @@ function scr_drawLineEntryList(unitID, unitSubMap, entryList, pixelY){
 				tokenRectX1 -= currentTokenStringWidth;
 				tokenRectX2 -= currentTokenStringWidth;
 			}
+			
 			var mouseOverToken = point_in_rectangle(mouse_x,mouse_y, tokenRectX1, tokenRectY1, tokenRectX2, tokenRectY2) && hoverTokenID == "" && !mouseoverPanelPane && !instance_exists(obj_dropDown) && !instance_exists(obj_dialogueBox);
 		
 		
-			// draw background tokenRect
-			draw_set_color(global.colorThemeBG);
-			draw_set_alpha(1);
-			draw_rectangle(tokenRectX1, tokenRectY1, tokenRectX2, tokenRectY2, false);
+
 		
 			// check if this token is in mouse rect
 			var mouseRectExists = makingRect;
@@ -129,8 +127,43 @@ function scr_drawLineEntryList(unitID, unitSubMap, entryList, pixelY){
 			// get this token's inChainsList, and update the chainShowList accordingly
 			var inChainsList = currentTokenSubMap[?"inChainsList"];
 			var inEntryList = currentTokenSubMap[?"inEntryList"];
-			scr_updateChainShowList(inChainsList, inEntryList, obj_chain.chainShowList, currentTokenSubMap[?"inChunkList"], obj_chain.chunkShowList, currentToken, tokenRectX1, tokenRectY1, tokenRectX2, tokenRectY2);	
+			
+			if(!startJustify){
+				
+				//get forwards loop for chain drawing in Right justified
+				var currentJEntry = entryList[| j];
+				var currentJEntrySubMap = global.nodeMap[? currentJEntry];
+				if (!scr_isNumericAndExists(currentJEntrySubMap, ds_type_map)) continue;
 		
+				// get token for this entry and make sure that exists
+				var currentJToken = currentJEntrySubMap[? "token"];
+				var currentJTokenSubMap = global.nodeMap[? currentJToken];
+				if (!scr_isNumericAndExists(currentJTokenSubMap, ds_type_map)) continue;
+				
+				// get tag map for this token
+				var currentJTagMap = currentJTokenSubMap[? "tagMap"];
+				if (!scr_isNumericAndExists(currentJTagMap, ds_type_map)) continue;
+				var currentJDisplayStr = string(currentJTagMap[? global.displayTokenField]);
+				
+				var currentJTokenStringWidth = string_width(currentJDisplayStr);
+				var currentJTokenStringHeight = string_height(currentJDisplayStr);		
+				var JtokenRectX1 = currentJTokenSubMap[? "pixelX"] - tokenRectBuffer;
+				var JtokenRectY1 = pixelY - (currentTokenStringHeight / 2) - tokenRectBuffer;
+				var JtokenRectX2 = JtokenRectX1 + currentJTokenStringWidth + (tokenRectBuffer * 2);
+				var JtokenRectY2 = JtokenRectY1 + currentJTokenStringHeight + (tokenRectBuffer * 2);
+				if (halign == fa_right) {
+					JtokenRectX1 -= currentJTokenStringWidth;
+					JtokenRectX2 -= currentJTokenStringWidth;
+				}
+				
+				var JinChainsList = currentJTokenSubMap[?"inChainsList"];
+				var JinEntryList = currentJTokenSubMap[?"inEntryList"];
+				
+				scr_updateChainShowList(JinChainsList, JinEntryList, obj_chain.chainShowList, currentJTokenSubMap[?"inChunkList"], obj_chain.chunkShowList, currentJToken, JtokenRectX1, JtokenRectY1, JtokenRectX2, JtokenRectY2, currentJDisplayStr);	
+			}
+			else{
+				scr_updateChainShowList(inChainsList, inEntryList, obj_chain.chainShowList, currentTokenSubMap[?"inChunkList"], obj_chain.chunkShowList, currentToken, tokenRectX1, tokenRectY1, tokenRectX2, tokenRectY2, currentDisplayStr);	
+			}
 		
 		
 			// mouseover token
@@ -179,34 +212,11 @@ function scr_drawLineEntryList(unitID, unitSubMap, entryList, pixelY){
 					}
 
 				}
-			
-				//if (keyboard_check_released(ord("N"))) {
-				//	if (ds_list_size(inChainsList) > 0) {
-				//		scr_alignChain2ElectricBoogaloo(inChainsList[| 0]);
-				//	}
-				//}
+
 			}
 		
 		
-		
-			// draw the token's text
-			var wordFound = false;
-			if(scr_isNumericAndExists(global.searchMap, ds_type_map)){
-				var searchSubMap  = global.searchMap[?obj_panelPane.functionSearchList_searchSelected];
-				if(scr_isNumericAndExists(searchSubMap, ds_type_map)){
-			
-					var searchedTokenList = searchSubMap[?"displayTokenList"];
-			
-					wordFound = (ds_list_find_index(searchedTokenList,currentToken) != -1);
-			
-				}
-			}
-		
 
-			draw_set_color((wordFound) ? make_color_rgb(20, 146, 181) : global.colorThemeText );
-
-			draw_set_alpha(1);
-			draw_text(currentPixelX, pixelY, currentDisplayStr);
 		}
 		
 		// run through the loop forward or backward depending on if LTR or RTL

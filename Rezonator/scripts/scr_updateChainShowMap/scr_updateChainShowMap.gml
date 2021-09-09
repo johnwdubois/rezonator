@@ -12,4 +12,5 @@ function scr_updateChainShowMap(chainID, inEntryList){
 		scr_addToListOnce(chainShowMapList, inEntryList[| i]);
 	}
 	
+	
 }

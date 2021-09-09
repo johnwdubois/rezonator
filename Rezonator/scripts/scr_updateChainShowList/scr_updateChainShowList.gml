@@ -1,10 +1,15 @@
 // Script assets have changed for v2.3.0 see
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
-function scr_updateChainShowList(inChainsList, inEntryList, chainShowList, inBoxList, chunkShowList, tokenID,rectX1,rectY1,rectX2,rectY2){
-	
+function scr_updateChainShowList(inChainsList, inEntryList, chainShowList, inBoxList, chunkShowList, tokenID,rectX1,rectY1,rectX2,rectY2, displayStr){
+	var tokenRectBuffer = 3;
 	// get size of inChainsList
 	var inChainsListSize = 0;
 	if (scr_isNumericAndExists(inChainsList, ds_type_list)) inChainsListSize = ds_list_size(inChainsList);
+		
+	// draw background tokenRect
+	draw_set_color(global.colorThemeBG);
+	draw_set_alpha(1);
+	draw_rectangle(rectX1, rectY1, rectX2, rectY2, false);
 		
 	// if this word has any chains that are not yet in the chainShowList, add them!
 	for (var i = 0; i < inChainsListSize; i++) {
@@ -30,6 +35,8 @@ function scr_updateChainShowList(inChainsList, inEntryList, chainShowList, inBox
 			var chainColor = chainSubMap[?"chainColor"];
 			var chainType = chainSubMap[?"type"];
 			var chainVisible = chainSubMap[? "visible"];
+			
+
 				
 			// draw filled in rect if this is the focused entry of the focused chain
 			if (obj_chain.mouseLineWordID == tokenID && obj_chain.currentFocusedChainID == currentChain) {
@@ -47,6 +54,8 @@ function scr_updateChainShowList(inChainsList, inEntryList, chainShowList, inBox
 				scr_drawRectWidth(rectX1, rectY1, rectX2, rectY2, 2, chainType == "trail");
 			}
 			
+					
+
 			
 		}
 		else {
@@ -88,5 +97,26 @@ function scr_updateChainShowList(inChainsList, inEntryList, chainShowList, inBox
 			scr_deleteFromList(inBoxList, currentChunk);
 		}
 	}
+
+	// draw the token's text
+	var wordFound = false;
+	if(scr_isNumericAndExists(global.searchMap, ds_type_map)){
+		var searchSubMap  = global.searchMap[?obj_panelPane.functionSearchList_searchSelected];
+		if(scr_isNumericAndExists(searchSubMap, ds_type_map)){
+			
+			var searchedTokenList = searchSubMap[?"displayTokenList"];
+			
+			wordFound = (ds_list_find_index(searchedTokenList,tokenID) != -1);
+			
+		}
+	}
+		
+
+	draw_set_color((wordFound) ? make_color_rgb(20, 146, 181) : global.colorThemeText );
+
+	draw_set_alpha(1);
+	// + string(currentTokenSubMap[? "void"])
+	var textX = (!startJustify)? rectX2 - tokenRectBuffer: rectX1 + tokenRectBuffer;
+	draw_text(textX, mean(rectY1,rectY2), displayStr);
 
 }
