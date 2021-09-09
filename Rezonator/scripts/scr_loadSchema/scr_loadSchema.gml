@@ -105,10 +105,14 @@ function scr_loadSchema(autoload) {
 			if (!is_undefined(keyFromMap)) {
 				ds_grid_set(global.tagInfoGrid, global.tagInfoGrid_colKey, i, keyFromMap);
 			}
-			
-			
 		}
 	}
+	
+	// get nav field lists from schema
+	var navTokenFieldList = map[? "navTokenFieldList"];
+	if (scr_isNumericAndExists(navTokenFieldList, ds_type_list)) global.schemaNavTokenFieldList = navTokenFieldList;
+	var navUnitFieldList = map[? "navUnitFieldList"];
+	if (scr_isNumericAndExists(navUnitFieldList, ds_type_list)) global.schemaNavUnitFieldList = navUnitFieldList;
 	
 	
 	var rowOfDisplayToken = ds_grid_value_y(global.tagInfoGrid, global.tagInfoGrid_colKey, 0, global.tagInfoGrid_colKey, ds_grid_height(global.tagInfoGrid), "option_display-token");

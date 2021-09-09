@@ -46,13 +46,13 @@ function scr_fontSizeControl() {
 				//Horizontal			
 				if (!obj_control.gridView) {
 					scr_adjustTokenSpacing(-20);
-					if (!scr_checkNativeJustification() && obj_control.shape == obj_control.shapeBlock) scr_refreshDisplayCol();
+					if (!scr_checkNativeJustification() && obj_control.shape == obj_control.shapeBlock) scr_refreshDisplayColAndPrevToken();
 				}
 			}
 			else {
 				if (!gridView) {
 					scr_adjustTokenSpacing(-20);
-					if (!scr_checkNativeJustification() && obj_control.shape == obj_control.shapeBlock) scr_refreshDisplayCol();
+					if (!scr_checkNativeJustification() && obj_control.shape == obj_control.shapeBlock) scr_refreshDisplayColAndPrevToken();
 				}
 			}
 			canPressPlus = false;
@@ -100,13 +100,13 @@ function scr_fontSizeControl() {
 				//horizontal
 				if (!obj_control.gridView) {
 					scr_adjustTokenSpacing(20)
-					if (!scr_checkNativeJustification() && obj_control.shape == obj_control.shapeBlock) scr_refreshDisplayCol();
+					if (!scr_checkNativeJustification() && obj_control.shape == obj_control.shapeBlock) scr_refreshDisplayColAndPrevToken();
 				}
 			}
 			else {
 				if (!gridView) {
 					scr_adjustTokenSpacing(20);
-					if (!scr_checkNativeJustification() && obj_control.shape == obj_control.shapeBlock) scr_refreshDisplayCol();
+					if (!scr_checkNativeJustification() && obj_control.shape == obj_control.shapeBlock) scr_refreshDisplayColAndPrevToken();
 				}
 			}
 			canPressMinus = false;
@@ -116,7 +116,7 @@ function scr_fontSizeControl() {
 		or global.ctrlHold and keyboard_check_pressed(ord("0"))) {
 			if (!gridView) {
 				gridSpaceHorizontal = 100;
-				if (!scr_checkNativeJustification() && obj_control.shape == obj_control.shapeBlock) scr_refreshDisplayCol();
+				if (!scr_checkNativeJustification() && obj_control.shape == obj_control.shapeBlock) scr_refreshDisplayColAndPrevToken();
 			}
 		}
 	
@@ -165,13 +165,13 @@ function scr_fontSizeControl() {
 				//Horizontal			
 				if (!obj_control.gridView) {
 					scr_adjustTokenSpacing(-20);
-					if (!scr_checkNativeJustification() && obj_control.shape == obj_control.shapeBlock) scr_refreshDisplayCol();
+					if (!scr_checkNativeJustification() && obj_control.shape == obj_control.shapeBlock) scr_refreshDisplayColAndPrevToken();
 				}
 			}
 			else {
 				if (!gridView) {
 					scr_adjustTokenSpacing(-20);
-					if (!scr_checkNativeJustification() && obj_control.shape == obj_control.shapeBlock) scr_refreshDisplayCol();
+					if (!scr_checkNativeJustification() && obj_control.shape == obj_control.shapeBlock) scr_refreshDisplayColAndPrevToken();
 				}
 			}
 			canPressPlus = false;
@@ -219,13 +219,13 @@ function scr_fontSizeControl() {
 				//horizontal
 				if (!obj_control.gridView) {
 					scr_adjustTokenSpacing(20);
-					if (!scr_checkNativeJustification() && obj_control.shape == obj_control.shapeBlock) scr_refreshDisplayCol();
+					if (!scr_checkNativeJustification() && obj_control.shape == obj_control.shapeBlock) scr_refreshDisplayColAndPrevToken();
 				}
 			}
 			else {
 				if (!gridView) {
 					scr_adjustTokenSpacing(20);
-					if (!scr_checkNativeJustification() && obj_control.shape == obj_control.shapeBlock) scr_refreshDisplayCol();
+					if (!scr_checkNativeJustification() && obj_control.shape == obj_control.shapeBlock) scr_refreshDisplayColAndPrevToken();
 				}
 			}
 			canPressMinus = false;
@@ -235,7 +235,7 @@ function scr_fontSizeControl() {
 		or global.ctrlHold and keyboard_check_pressed(ord("0"))) {
 			if (!gridView) {
 				gridSpaceHorizontal = 100;
-				if (!scr_checkNativeJustification() && obj_control.shape == obj_control.shapeBlock) scr_refreshDisplayCol();
+				if (!scr_checkNativeJustification() && obj_control.shape == obj_control.shapeBlock) scr_refreshDisplayColAndPrevToken();
 			}
 		}
 	

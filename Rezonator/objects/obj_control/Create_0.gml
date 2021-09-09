@@ -782,3 +782,6 @@ unitClosestToMouse = "";
 hideChunks = false;
 updateChainShowMap = true;
 startJustify = true;
+refreshDisplayColUnit = "";
+
+scr_setNavFieldListsFromSchema();
