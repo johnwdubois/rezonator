@@ -33,6 +33,7 @@ function scr_drawLineEntryList(unitID, unitSubMap, entryList, pixelY){
 	var isBAD = (obj_control.justify == obj_control.justifyLeft && obj_control.drawLineState == obj_control.lineState_rtl && obj_control.shape == obj_control.shapeText);
 	if (isBAD) i = entryListSize-1;
 	var j = 0;
+	var k = (drawLineState == lineState_ltr) ? 0 : entryListSize-1;
 
 	repeat(entryListSize) {
 		
@@ -45,6 +46,7 @@ function scr_drawLineEntryList(unitID, unitSubMap, entryList, pixelY){
 		var currentToken = currentEntrySubMap[? "token"];
 		var currentTokenSubMap = global.nodeMap[? currentToken];
 		if (!scr_isNumericAndExists(currentTokenSubMap, ds_type_map)) continue;
+		currentTokenSubMap[? "relativeOrder"] = k;
 		
 		// get tag map for this token
 		var currentTagMap = currentTokenSubMap[? "tagMap"];
@@ -216,6 +218,8 @@ function scr_drawLineEntryList(unitID, unitSubMap, entryList, pixelY){
 		
 		if(isBAD) i -= 2;
 		j++;
+		
+		k += (drawLineState == lineState_ltr) ? 1 : -1;
 		
 	}
 	

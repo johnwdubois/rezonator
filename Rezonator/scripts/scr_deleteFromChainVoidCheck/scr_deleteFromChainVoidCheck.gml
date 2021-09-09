@@ -22,7 +22,7 @@ function scr_deleteFromChainVoidCheck(chainID, deletedTokenID, deletedTokenPushB
 	if (deletedTokenPushBack and scr_isNumericAndExists(deletedTokenSubMap, ds_type_map)) {
 		
 		
-		var deletedTokenSeq = deletedTokenSubMap[? "tokenOrder"];
+		var deletedTokenSeq = deletedTokenSubMap[? "relativeOrder"];
 		var deleteDisplayColDest = 0;
 		
 		if (scr_checkNativeJustification()) {
@@ -39,7 +39,7 @@ function scr_deleteFromChainVoidCheck(chainID, deletedTokenID, deletedTokenPushB
 				var chunkFirstTokenSubMap = global.nodeMap[? chunkFirstToken];
 				if (scr_isNumericAndExists(chunkFirstTokenSubMap, ds_type_map)) {
 					deletedTokenUnit = chunkFirstTokenSubMap[? "unit"];
-					deletedTokenSeq = chunkFirstTokenSubMap[? "tokenOrder"];
+					deletedTokenSeq = chunkFirstTokenSubMap[? "relativeOrder"];
 				}
 			}
 			else {
@@ -79,7 +79,7 @@ function scr_deleteFromChainVoidCheck(chainID, deletedTokenID, deletedTokenPushB
 			
 
 			if (!scr_isNumericAndExists(currentTokenSubMap, ds_type_map)) continue;
-			var currentTokenSeq = currentTokenSubMap[? "tokenOrder"];
+			var currentTokenSeq = currentTokenSubMap[? "relativeOrder"];
 			var currentDisplayColDest = 0;
 			if (deletedTokenSeq > 1) {
 				var prevDisplayCol = scr_getPrevDisplayCol(currentTokenID);
@@ -122,11 +122,12 @@ function scr_deleteFromChainVoidCheck(chainID, deletedTokenID, deletedTokenPushB
 			var currentTokenSubMap = global.nodeMap[? currentTokenID];
 			
 			if (!scr_isNumericAndExists(currentTokenSubMap, ds_type_map)) continue;
-			var currentTokenSeq = currentTokenSubMap[? "tokenOrder"];
+			var currentTokenSeq = currentTokenSubMap[? "relativeOrder"];
 			var currentDisplayCol = currentTokenSubMap[? "displayCol"];
 			
 			if (currentTokenSeq > 1) {
 				var prevDisplayCol = scr_getPrevDisplayCol(currentTokenID);
+				show_debug_message("prevDisplayCol: " + string(prevDisplayCol));
 				if (is_numeric(prevDisplayCol)) {
 					var currentVoid = currentDisplayCol - prevDisplayCol;
 					show_debug_message("currentVoid: " + string(currentVoid));
@@ -136,13 +137,18 @@ function scr_deleteFromChainVoidCheck(chainID, deletedTokenID, deletedTokenPushB
 				}
 			}
 			else if (currentDisplayCol == 0) {
+				show_debug_message("currentDisplayCol == 0");
 				smallVoidExists = true;
+			}
+			
+			if (currentTokenSeq == 0) {
+				currentTokenSubMap[? "void"] = 1;
 			}
 		}
 		
-	
-
 		
+
+		show_debug_message("smallVoidExists: " + string(smallVoidExists));
 		
 		if (!smallVoidExists) {
 			// bring all the words back so that they have a void of 1
@@ -157,7 +163,7 @@ function scr_deleteFromChainVoidCheck(chainID, deletedTokenID, deletedTokenPushB
 				}
 				var currentTokenSubMap = global.nodeMap[? currentTokenID];
 				if (!scr_isNumericAndExists(currentTokenSubMap, ds_type_map)) continue;
-				var currentTokenSeq = currentTokenSubMap[? "tokenOrder"];
+				var currentTokenSeq = currentTokenSubMap[? "relativeOrder"];
 				var currentDisplayCol = currentTokenSubMap[? "displayCol"];
 			
 				if (currentTokenSeq > 1) {
@@ -165,6 +171,7 @@ function scr_deleteFromChainVoidCheck(chainID, deletedTokenID, deletedTokenPushB
 					currentDisplayCol = prevDisplayCol + 1;
 				}
 				else {
+					currentTokenSubMap[? "void"] = 1;
 					currentDisplayCol = 0;
 				}
 				
