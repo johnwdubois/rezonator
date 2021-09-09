@@ -96,6 +96,7 @@ function scr_importGridToNodeMap_fieldsRowToken(row){
 	ds_map_add(currentTokenSubMap, "pixelX", 0);
 	ds_map_add(currentTokenSubMap, "searched", false);
 	ds_map_add(currentTokenSubMap, "unit", currentUnitID);
+	ds_map_add(currentTokenSubMap, "doc", global.discourseNode);
 	ds_map_add_list(currentTokenSubMap, "inChainsList", ds_list_create());
 	ds_map_add_list(currentTokenSubMap, "inChunkList", ds_list_create());
 	ds_map_add_list(currentTokenSubMap, "inEntryList", ds_list_create());

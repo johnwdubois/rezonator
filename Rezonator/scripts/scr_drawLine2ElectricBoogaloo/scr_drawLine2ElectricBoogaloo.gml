@@ -52,6 +52,7 @@ function scr_drawLine2ElectricBoogaloo(){
 	
 	// clear lists that are meant to be refreshed each frame
 	ds_map_clear(obj_chain.chainShowMap);
+	ds_map_add(obj_chain.chainShowMap, "type", "map");
 	ds_list_clear(obj_chain.chainShowList);
 
 	
