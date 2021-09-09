@@ -11,8 +11,7 @@ function scr_drawLine2ElectricBoogaloo(){
 	scr_setWordTopMargin();
 	
 	startJustify = scr_checkNativeJustification();
-	//if (scrollBarHolding || keyboard_check(vk_up) || keyboard_check(vk_down) || keyboard_check(vk_pageup) || keyboard_check(vk_pagedown) || mouse_wheel_up() || mouse_wheel_down() || mouse_check_button(mb_left) || mouse_check_button_released(mb_left)) updateChainShowMap = true;
-	updateChainShowMap = true;
+
 
 	// get displayUnitList
 	var discourseSubMap = global.nodeMap[? global.discourseNode];
@@ -42,18 +41,19 @@ function scr_drawLine2ElectricBoogaloo(){
 	
 	
 	// destroy the lists in the chainShowMap
-	if (updateChainShowMap) {
-		var chainShowListSize = ds_list_size(obj_chain.chainShowList);
-		for (var i = 0; i < chainShowListSize; i++) {
-			var currentChainShow = obj_chain.chainShowList[| i];
-			var currentChainShowList = obj_chain.chainShowMap[? currentChainShow];
-			ds_list_destroy(currentChainShowList);
-		}
-	
-		// clear lists that are meant to be refreshed each frame
-		ds_map_clear(obj_chain.chainShowMap);
-		ds_list_clear(obj_chain.chainShowList);
+	var chainShowListSize = ds_list_size(obj_chain.chainShowList);
+	for (var i = 0; i < chainShowListSize; i++) {
+		var currentChainShow = obj_chain.chainShowList[| i];
+		var currentChainShowSubMap = obj_chain.chainShowMap[? currentChainShow];
+		var currentChainShowList = currentChainShowSubMap[? "entryList"];
+		ds_list_destroy(currentChainShowList);
+		ds_map_destroy(currentChainShowSubMap);
 	}
+	
+	// clear lists that are meant to be refreshed each frame
+	ds_map_clear(obj_chain.chainShowMap);
+	ds_list_clear(obj_chain.chainShowList);
+
 	
 	
 	

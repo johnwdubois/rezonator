@@ -110,7 +110,7 @@ function scr_drawChunks(){
 		// draw BG rect
 		draw_set_color(global.colorThemeBG);
 		draw_set_alpha(1);
-		//draw_rectangle(chunkRectX1, chunkRectY1, chunkRectX2, chunkRectY2, false);
+		draw_rectangle(chunkRectX1, chunkRectY1, chunkRectX2, chunkRectY2, false);
 		
 		// check whether this chunk is in a focused chain
 		var chunkInFocusedChain = false;

@@ -415,6 +415,7 @@
     {"id":{"name":"g_UTF8","path":"scripts/g_UTF8/g_UTF8.yy",},"order":3,},
     {"id":{"name":"scr_setDialogueText","path":"scripts/scr_setDialogueText/scr_setDialogueText.yy",},"order":23,},
     {"id":{"name":"scr_directoryCopy","path":"scripts/scr_directoryCopy/scr_directoryCopy.yy",},"order":10,},
+    {"id":{"name":"scr_drawChainPickwhip","path":"scripts/scr_drawChainPickwhip/scr_drawChainPickwhip.yy",},"order":8,},
     {"id":{"name":"scr_quickLinkCreation","path":"scripts/scr_quickLinkCreation/scr_quickLinkCreation.yy",},"order":34,},
     {"id":{"name":"spr_saveWarning","path":"sprites/spr_saveWarning/spr_saveWarning.yy",},"order":30,},
     {"id":{"name":"scr_languageOptions","path":"scripts/scr_languageOptions/scr_languageOptions.yy",},"order":44,},

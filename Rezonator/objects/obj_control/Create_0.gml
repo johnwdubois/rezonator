@@ -785,3 +785,4 @@ startJustify = true;
 refreshDisplayColUnit = "";
 
 scr_setNavFieldListsFromSchema();
+minimumChunkDist = 15;

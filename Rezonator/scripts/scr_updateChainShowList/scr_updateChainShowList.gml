@@ -17,16 +17,26 @@ function scr_updateChainShowList(inChainsList, inEntryList, chainShowList, inBox
 				continue;
 			}
 			
-			if (updateChainShowMap) {
-				// add this chain to chainShowList and chainShowMap
-				scr_addToListOnce(chainShowList, currentChain);
-				scr_updateChainShowMap(currentChain, inEntryList);
+			var chainSubMap = global.nodeMap[?currentChain];
+			var chainSetList = chainSubMap[? "setIDList"];
+
+			// add this chain to chainShowList and chainShowMap
+			scr_addToListOnce(chainShowList, currentChain);
+			
+			var inEntryListSize = ds_list_size(inEntryList);
+			for (var j = 0; j < inEntryListSize; j++) {
+				var currentEntry = inEntryList[| j];
+				if (ds_list_find_index(chainSetList, currentEntry) >= 0) {
+					scr_updateChainShowMap(currentChain, currentEntry, tokenID);
+				}
 			}
+		
+			
+
 			
 			
 			
 			// get cool chain vars
-			var chainSubMap = global.nodeMap[?currentChain];
 			var chainColor = chainSubMap[?"chainColor"];
 			var chainType = chainSubMap[?"type"];
 			var chainVisible = chainSubMap[? "visible"];
@@ -70,18 +80,27 @@ function scr_updateChainShowList(inChainsList, inEntryList, chainShowList, inBox
 		// check if this chunk is in any chains that should be added to chainShowList
 		var currentChunkSubMap = global.nodeMap[? currentChunk];
 		if (scr_isNumericAndExists(currentChunkSubMap, ds_type_map)) {
-			if (updateChainShowMap) {
-				var currentChunkInChainsList = currentChunkSubMap[? "inChainsList"];
-				var currentChunkInEntryList = currentChunkSubMap[? "inEntryList"];
-				if (scr_isNumericAndExists(currentChunkInChainsList, ds_type_list) && scr_isNumericAndExists(currentChunkInEntryList, ds_type_list)) {
-					var currentChunkInChainsListSize = ds_list_size(currentChunkInChainsList);
-					for (var j = 0; j < currentChunkInChainsListSize; j++) {
-						var currentChain = currentChunkInChainsList[| j];
-						scr_addToListOnce(chainShowList, currentChain);
-						scr_updateChainShowMap(currentChain, currentChunkInEntryList);
+
+			var currentChunkInChainsList = currentChunkSubMap[? "inChainsList"];
+			var currentChunkInEntryList = currentChunkSubMap[? "inEntryList"];
+			if (scr_isNumericAndExists(currentChunkInChainsList, ds_type_list) && scr_isNumericAndExists(currentChunkInEntryList, ds_type_list)) {
+				var currentChunkInChainsListSize = ds_list_size(currentChunkInChainsList);
+				for (var j = 0; j < currentChunkInChainsListSize; j++) {
+					var currentChain = currentChunkInChainsList[| j];
+					scr_addToListOnce(chainShowList, currentChain);
+					var currentChainSubMap = global.nodeMap[? currentChain];
+					var currentChainSetList = currentChainSubMap[? "setIDList"];
+					
+					var currentChunkInEntryListSize = ds_list_size(currentChunkInEntryList);
+					for (var k = 0; k < currentChunkInEntryListSize; k++) {
+						var currentChunkEntry = currentChunkInEntryList[| k];
+						if (ds_list_find_index(currentChainSetList, currentChunkEntry) >= 0) {
+							scr_updateChainShowMap(currentChain, currentChunkEntry, scr_getFirstWordOfChunk(currentChunk));
+						}
 					}
 				}
 			}
+
 		}
 		else {
 			// if this chunk can't be found in the nodeMap, we should remove it from the inBoxList!

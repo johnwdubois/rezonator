@@ -10,8 +10,7 @@ function scr_drawChains() {
 	var lineY1 = undefined;
 	var lineX2 = undefined;
 	var lineY2 = undefined;
-	var mouseLineX = undefined;
-	var mouseLineY = undefined;
+
 
 	var minWordWidth = 9999999;
 	var linePlusX = 0;
@@ -19,11 +18,11 @@ function scr_drawChains() {
 	var currentWordStringHeight1 = string_height("0");
 	var currentWordStringHeight2 = currentWordStringHeight1;
 
+
 	var wordTopMargin = obj_control.wordTopMargin;
 	var rezChainList = ds_map_find_value(global.nodeMap, "resonanceList");
 	var rezChainListSize = ds_list_size(rezChainList);
 	var activeLineGridHeight = ds_grid_height(obj_control.currentActiveLineGrid);
-	var arrowSize = 0.3 + (0.1 * global.fontSize / 5);
 	var camHeight = camera_get_view_height(camera_get_active());
 	
 	var justifyLeft = (obj_control.justify == obj_control.justifyLeft);
@@ -46,7 +45,8 @@ function scr_drawChains() {
 		// get chain's setIDList and make sure it exists
 		var chainType = ds_map_find_value(currentChainSubMap, "type");
 		//var currentSetIDList = ds_map_find_value(currentChainSubMap, "vizSetIDList");
-		var currentSetIDList = obj_chain.chainShowMap[? currentChainID];
+		var currentChainShowSubMap = obj_chain.chainShowMap[? currentChainID];
+		var currentSetIDList = currentChainShowSubMap[? "entryList"];
 		var currentVizSetIDList = ds_map_find_value(currentChainSubMap, "vizSetIDList");
 		
 		if (!scr_isNumericAndExists(currentSetIDList, ds_type_list)) continue;
@@ -285,68 +285,7 @@ function scr_drawChains() {
 		}
 	}
 	
-	if (obj_chain.currentFocusedChainID != "") {	
-		if (mouseLineWordID != "") {
-				
-			var mouseLineTokenSubMap = global.nodeMap[?mouseLineWordID];
-			var mouseLineTokenTagSubMap = mouseLineTokenSubMap[?"tagMap"];
-			var mouseLineUnitId = mouseLineTokenSubMap[?"unit"];
-			var mouseLineUnitSubMap = global.nodeMap[?mouseLineUnitId];
-				
-				
-			var mouseLineWordStringWidth = string_width(string(mouseLineTokenTagSubMap[?global.displayTokenField]));
-			var mouseLineWordStringHeight = string_height(string(mouseLineTokenTagSubMap[?global.displayTokenField]));
-				
-				
-			var wordPixelX = mouseLineTokenSubMap[?"pixelX"];
-			var wordPixelY = mouseLineUnitSubMap[?"pixelY"];
-		
-					
-			if (is_numeric(wordPixelX) and is_numeric(wordPixelY)) {
-				mouseLineX = wordPixelX + (mouseLineWordStringWidth / 2);
-				mouseLineY = wordPixelY + (mouseLineWordStringHeight / 2);
-				if (!justifyLeft) {
-					mouseLineX -= mouseLineWordStringWidth;
-				}
-			}
-		}
-	}
 	
-	
-	draw_set_alpha(1);
-
-
-	// draw pickwhip line to mouse from chain
-	var drawPickwhip = (is_numeric(mouseLineX) && is_numeric(mouseLineY) && !instance_exists(obj_dialogueBox) && !instance_exists(obj_dropDown)
-						&& obj_toolPane.currentMode != obj_toolPane.modeRead && !obj_chain.focusedChainWrongTool);
-	
-	if (drawPickwhip) {
-		if (ds_map_exists(global.nodeMap, obj_chain.currentFocusedChainID)) {
-			var chainSubMap = global.nodeMap[? obj_chain.currentFocusedChainID];
-			if (scr_isNumericAndExists(chainSubMap, ds_type_map)) {
-				var chainType = chainSubMap[? "type"];
-				currentChainColor = chainSubMap[? "chainColor"];
-				currentChainVisible = chainSubMap[? "visible"];
-				draw_set_color(currentChainColor);
-			
-				if (currentChainVisible) {
-					if (not mouseLineHide) {
-						if (chainType == "resonance") {
-							draw_line_width(mouseLineX, mouseLineY, mouse_x, mouse_y, 2);
-						}
-						else if (chainType == "trail") {
-							scr_drawCurvedLine(mouseLineX, mouseLineY, mouse_x, mouse_y, currentChainColor);
-						}
-						if ((obj_chain.showRezArrows and chainType = "resonance") or (obj_chain.showTrackArrows and chainType = "trail")) {
-							var arrowAngle = point_direction(mouseLineX, mouseLineY, mouse_x, mouse_y);
-							if (chainType = "trail") arrowAngle = (mouseLineY < mouse_y) ? 270 : 90;
-							draw_sprite_ext(spr_linkArrow, 1, mouse_x, mouse_y, arrowSize, arrowSize, arrowAngle, currentChainColor, 1);
-						}
-					}
-				}
-			}
-		}
-	}
 	
 
 }
