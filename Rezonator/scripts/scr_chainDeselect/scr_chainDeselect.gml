@@ -8,7 +8,7 @@ function scr_chainDeselect() {
 	
 	// if there is a chain being shown in chainContents, we will make sure it does not have a focused entry
 	with (obj_panelPane) {
-		//functionChainContents_showID = "";
+		functionChainContents_showID = "";
 	}
 	
 	

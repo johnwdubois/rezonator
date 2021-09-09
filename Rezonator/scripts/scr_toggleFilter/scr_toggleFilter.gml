@@ -1,6 +1,7 @@
 // Script assets have changed for v2.3.0 see
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
 function scr_toggleFilter(){
+	
 	var filterList = scr_getFilterList();
 	if (!scr_isNumericAndExists(filterList, ds_type_list)) exit;
 	var filterListSize = ds_list_size(filterList);
@@ -22,9 +23,6 @@ function scr_toggleFilter(){
 			scr_renderFilter2();
 		}
 		else {
-			with(obj_panelPane){
-				functionChainList_playShowID = "";
-			}
 			scr_disableFilter();
 		}
 	}
