@@ -783,6 +783,7 @@ hideChunks = false;
 updateChainShowMap = true;
 startJustify = true;
 refreshDisplayColUnit = "";
+refreshYValuesUnit = "";
 
 scr_setNavFieldListsFromSchema();
 minimumChunkDist = 15;

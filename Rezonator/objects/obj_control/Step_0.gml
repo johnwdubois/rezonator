@@ -317,10 +317,20 @@ if (!clickedInChainList and !clickedInChainContents and not mouseoverHelpPane an
 		// Sends user to the bottom of the main screen
 		if ((global.ctrlHold and (keyboard_check_pressed(vk_down) or keyboard_check_pressed(vk_end))) or (keyboard_check(vk_alt) and (keyboard_check_pressed(vk_down) or keyboard_check_pressed(vk_end)))) {
 			scrollPlusYDest = -999999999999;
+			var docSubMap = global.nodeMap[? global.discourseNode];
+			var docDisplayUnitList = docSubMap[? "displayUnitList"];
+			if (ds_list_size(docDisplayUnitList) > 0)
+			refreshYValuesUnit = docDisplayUnitList[| ds_list_size(docDisplayUnitList) - 1];
+			with (obj_alarm2) alarm[9] = 2;
 		}
 		// Sends user to the top of the main screen
 		else if ((global.ctrlHold and (keyboard_check_pressed(vk_up) or keyboard_check_pressed(vk_home))) or (keyboard_check(vk_alt) and (keyboard_check_pressed(vk_up)  or keyboard_check_pressed(vk_home)))) {
 			scrollPlusYDest = 100;
+			var docSubMap = global.nodeMap[? global.discourseNode];
+			var docDisplayUnitList = docSubMap[? "displayUnitList"];
+			if (ds_list_size(docDisplayUnitList) > 0)
+			refreshYValuesUnit = docDisplayUnitList[| 0];
+			with (obj_alarm2) alarm[9] = 2;
 		}
 		
 		if (keyboard_check_pressed(vk_right) and !global.ctrlHold and not dialogueBoxActive) {
