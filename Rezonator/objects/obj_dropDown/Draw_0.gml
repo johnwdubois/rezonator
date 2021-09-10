@@ -164,6 +164,7 @@ for (var i = 0; i < optionListSize; i++) {
 			}
 		}
 	}
+	if (multiDropDownCancel) mouseoverCurrentOption = false;
 	
 	
 	
@@ -175,6 +176,7 @@ for (var i = 0; i < optionListSize; i++) {
 	if (mouseoverCurrentOption or (optionCurrent == i && !mouseOverDropDown)) {
 		optionBGColor = c_ltblue;
 	}
+	if (mouseoverCurrentOption) optionMouseover = optionText;
 	draw_set_color(optionBGColor);
 	draw_set_alpha(1);
 	draw_rectangle(optionRectX1 - clipX, optionRectY1 - clipY, optionRectX2 - clipX, optionRectY2 - clipY, false);
