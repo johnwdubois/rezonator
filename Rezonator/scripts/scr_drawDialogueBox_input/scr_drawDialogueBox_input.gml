@@ -61,8 +61,10 @@ function scr_drawDialogueBox_input(){
 		draw_set_color(global.colorThemeText);
 		scr_adaptFont(obj_control.searchField, "S", false);
 		draw_set_halign(fa_left);
+		scr_adaptFont(obj_control.searchField, "S", false);
 		draw_text(floor(fieldRectX1 + dropDownXBuffer), floor(mean(fieldRectY1, fieldRectY2)), obj_control.searchField);
 		draw_set_halign(fa_right);
+		scr_adaptFont(scr_get_translation("option_field"), "S", false);
 		draw_text(floor(fieldRectX1 - dropDownXBuffer), floor(mean(fieldRectY1, fieldRectY2)), scr_get_translation("option_field")+": ");
 		
 		// range rect
@@ -85,10 +87,11 @@ function scr_drawDialogueBox_input(){
 		
 		// range text
 		draw_set_color(global.colorThemeText);
-		scr_adaptFont(obj_control.searchRange, "S", false);
 		draw_set_halign(fa_left);
+		scr_adaptFont(scr_get_translation(obj_control.searchRange), "S", false);
 		draw_text(floor(rangeRectX1 + dropDownXBuffer), floor(mean(rangeRectY1, rangeRectY2)), scr_get_translation(obj_control.searchRange));
 		draw_set_halign(fa_right);
+		scr_adaptFont(scr_get_translation("option_range"), "S", false);
 		draw_text(floor(rangeRectX1 - dropDownXBuffer), floor(mean(rangeRectY1, rangeRectY2)), scr_get_translation("option_range")+": ");
 		
 		

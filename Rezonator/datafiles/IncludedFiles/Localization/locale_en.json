@@ -130,6 +130,7 @@
 	"import_blocks" : "Blocks",
 	"import_field-relations" : "Match fields",
 	"menu_tree-all" : "Tree all stacks",
+	"menu_clip-all" : "Clip all stacks",
 	"menu_track-arrows" : "Track arrows",
 	"menu_rez-arrows" : "Resonance arrows",
 	"menu_left-to-right" : "Left-to-right (LTR)",
