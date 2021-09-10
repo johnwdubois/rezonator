@@ -252,7 +252,7 @@ function scr_panelPane_drawSearchList(){
 		}
 		else if (i == 2) {
 			colWidth = windowWidth - termColX;
-			colText = "Searched Words";
+			colText = "searched_words";
 		}
 		
 		// get header coordinates
@@ -273,6 +273,8 @@ function scr_panelPane_drawSearchList(){
 		draw_set_halign(fa_left);
 		draw_set_valign(fa_middle);
 		draw_set_color(global.colorThemeText);
+		colText = scr_get_translation(colText);
+		scr_adaptFont(colText, "M");
 		draw_text(headerTextX, headerTextY, colText);
 		
 
