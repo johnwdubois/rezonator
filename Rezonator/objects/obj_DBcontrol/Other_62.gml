@@ -113,7 +113,7 @@ switch(_packet_type) {
 		ds_map_delete(timeout_timers_, _packet_type);
 	}
 	else if (_http_status == "401") {
-		show_debug_message("CURRENT HIGH SCORE GET REQUEST DENIED HTTP401 FUCK YOU FUCK YOU");
+		show_debug_message("CURRENT HIGH SCORE GET REQUEST DENIED HTTP401");
 		
 		ds_map_delete(request_ids_, _packet_type);
 		ds_map_delete(timeout_timers_, _packet_type);

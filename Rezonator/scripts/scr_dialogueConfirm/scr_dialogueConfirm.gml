@@ -40,6 +40,15 @@ function scr_dialogueConfirm(){
 		
 			
 		if (obj_control.fPressed) {
+			
+			show_debug_message("obj_control.inputText: " + string(obj_control.inputText));
+			if (obj_control.inputText == "buh") {
+				global.buh = true;
+				with (obj_alarm2) {
+					alarm[7] = 1;
+					alarm[8] = 60 * 4;
+				}
+			}
 
 			var searchSelectedBefore = obj_panelPane.functionSearchList_searchSelected;
 			
@@ -50,6 +59,8 @@ function scr_dialogueConfirm(){
 				obj_control.searchGridActive = true;
 				scr_renderFilter2();
 			}
+			
+
 		}
 		
 
