@@ -20,7 +20,7 @@ if (alpha < 1) {
 alpha = clamp(alpha, 0, 0.8);
 draw_set_alpha(alpha);
 
-
+scr_adaptFont(string(text) + "  ","M");
 var strWidth = string_width(text + "  ");
 var strHeight = string_height(text);
 

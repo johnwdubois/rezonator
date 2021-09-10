@@ -490,6 +490,7 @@
     "arrheads" : "Arrowheads",
     "unit_delim" : "Unit Delimiter",
     "unit_start" : "Unit Start",
+    "unit_end" : "Unit End",
     "participant" : "Participant",
     "turn_delim" : "Turn Delimiter",
     "mark" : "Mark",

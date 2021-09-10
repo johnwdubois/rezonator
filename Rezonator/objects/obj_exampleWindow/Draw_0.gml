@@ -19,7 +19,7 @@ var mouseoverWindow = point_in_rectangle(mouse_x, mouse_y, x, y, exampleWindowX2
 draw_set_halign(fa_left);
 draw_set_valign(fa_middle);
 draw_set_alpha(1);
-scr_adaptFont("", "M");
+
 var strHeight = string_height("0");
 var strHeightAdjust = strHeight * 2;
 var tabHeight = strHeight * 1.5;
@@ -42,6 +42,7 @@ draw_set_color(global.colorThemeBG);
 draw_roundrect(tabX1, tabY1, tabX2, tabY2, false);
 draw_set_color(global.colorThemeRezPurple);
 var tabTextY = floor(mean(tabY1, tabY2));
+tabStr = scr_adaptFont(tabStr, "M");
 draw_text(tabX1 + spaceWidth, tabTextY, tabStr);
 draw_line_width(tabX1 + spaceWidth, tabTextY + (strHeight * 0.6), tabX2 - spaceWidth, tabTextY + (strHeight * 0.6), 3);
 

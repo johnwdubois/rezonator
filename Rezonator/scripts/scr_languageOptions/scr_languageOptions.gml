@@ -11,6 +11,14 @@ function scr_languageOptions(optionSelected){
 		
 		break;
 		
+		case "menu_language-ca":
+
+			var indexOfLanguage = ds_list_find_index(global.lang_codes, "ca")
+			global.locale_gloss = global.locale_map[? global.lang_codes[| indexOfLanguage]];	
+			global.lang_index = indexOfLanguage;
+		
+		break;
+		
 		case "menu_language-it" :
 		
 			var indexOfLanguage = ds_list_find_index(global.lang_codes, "it")
