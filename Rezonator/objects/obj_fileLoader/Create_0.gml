@@ -4,9 +4,17 @@ if (global.openProject) {
 }
 with(obj_control){
 	displayTokenList = ds_list_create();
-	ds_list_add(displayTokenList, global.displayTokenField);
+	
 	//Look for where global.displayTokenField changes in order to interact with this list
-displayTokenListIndex = 0;	
+	ds_list_add(displayTokenList, global.displayTokenField);
+	displayTokenListIndex = 0;	
+	
+	for(var i = 0; i < 3 and i < ds_list_size(global.tokenFieldList); i++){
+		scr_addToListOnce(displayTokenList, global.tokenFieldList[| i]);
+	}
+	
+	
+
 }
 discourseProcessing = 0;
 fileLineRipListElement = 0;
