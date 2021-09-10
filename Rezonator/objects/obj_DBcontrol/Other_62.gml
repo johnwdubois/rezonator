@@ -152,10 +152,9 @@ switch(_packet_type) {
 					if(newVersionString != global.versionString){
 						//reccomend downloading new version
 						show_debug_message("GETT THE NEW ONE DUMMY");
-						if (!instance_exists(obj_dialogueBox)) {
-							instance_create_layer(x, y, "InstancesDialogue", obj_dialogueBox);
-							with (obj_openingScreen) downloadDialogue = true;
-						}
+							
+						with (obj_openingScreen) showDownloadDialogue = true;
+	
 					}
 				
 				}

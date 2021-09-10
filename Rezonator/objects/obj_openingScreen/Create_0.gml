@@ -439,6 +439,8 @@ hoverColorMergeHelp = 0;
 global.dirCopyDebugList = ds_list_create();
 
 downloadDialogue = false;
+showDownloadDialogue = false;
+alreadyShownDownloadDialogue = false;
 
 global.schemaNavTokenFieldList = -1;
 global.schemaNavUnitFieldList = -1;

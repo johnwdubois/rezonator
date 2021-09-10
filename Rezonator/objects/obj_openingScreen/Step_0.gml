@@ -3,6 +3,14 @@ scr_multiDropDownMouseover();
 
 scr_ctrlHold();
 
+if (showDownloadDialogue && !alreadyShownDownloadDialogue) {
+	if (!instance_exists(obj_dialogueBox) && !instance_exists(obj_loadingScreen)) {
+		alreadyShownDownloadDialogue = true;
+		instance_create_layer(x, y, "InstancesDialogue", obj_dialogueBox);
+		with (obj_openingScreen) downloadDialogue = true;
+	}
+}
+
 // CSV group import
 if (keyboard_check(vk_shift) && global.ctrlHold && keyboard_check_released(ord("I"))) {
 	
