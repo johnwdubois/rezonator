@@ -43,6 +43,7 @@ function scr_importGridToNodeMap_plainText(row){
 			var currentTokenSubMap = global.nodeMap[? currentTokenNode];
 			ds_map_add(currentTokenSubMap, "docTokenSeq", ds_list_size(tokenList) + 1);
 			ds_map_add(currentTokenSubMap, "tokenOrder", i + 1);
+			ds_map_add(currentTokenSubMap, "relativeOrder", i + 1);
 			ds_map_add(currentTokenSubMap, "displayCol", i);
 			ds_map_add(currentTokenSubMap, "void", 1);
 			ds_map_add(currentTokenSubMap, "pixelX", 0);

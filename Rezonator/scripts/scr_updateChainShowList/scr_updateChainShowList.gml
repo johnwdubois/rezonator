@@ -18,19 +18,22 @@ function scr_updateChainShowList(inChainsList, inEntryList, chainShowList, inBox
 			}
 			
 			var chainSubMap = global.nodeMap[?currentChain];
-			var chainSetList = chainSubMap[? "setIDList"];
+			var chainType = chainSubMap[? "type"];
+
 
 			// add this chain to chainShowList and chainShowMap
 			scr_addToListOnce(chainShowList, currentChain);
 			
 			var inEntryListSize = ds_list_size(inEntryList);
 			for (var j = 0; j < inEntryListSize; j++) {
-				var currentEntry = inEntryList[| j];
-				if (ds_list_find_index(chainSetList, currentEntry) >= 0) {
+				var currentEntry = inEntryList[| j]
+				var currentEntrySubMap = global.nodeMap[? currentEntry];
+				var currentEntryType = currentEntrySubMap[? "type"];
+				if ((chainType == "resonance" && currentEntryType == "rez") || (chainType == "trail" && currentEntryType == "track")) {
 					scr_updateChainShowMap(currentChain, currentEntry, tokenID);
 				}
 			}
-		
+
 			
 
 			
@@ -89,12 +92,14 @@ function scr_updateChainShowList(inChainsList, inEntryList, chainShowList, inBox
 					var currentChain = currentChunkInChainsList[| j];
 					scr_addToListOnce(chainShowList, currentChain);
 					var currentChainSubMap = global.nodeMap[? currentChain];
-					var currentChainSetList = currentChainSubMap[? "setIDList"];
+					var currentChainType = currentChainSubMap[? "type"];
 					
 					var currentChunkInEntryListSize = ds_list_size(currentChunkInEntryList);
 					for (var k = 0; k < currentChunkInEntryListSize; k++) {
 						var currentChunkEntry = currentChunkInEntryList[| k];
-						if (ds_list_find_index(currentChainSetList, currentChunkEntry) >= 0) {
+						var currentChunkEntrySubMap = global.nodeMap[? currentChunkEntry];
+						var currentChunkEntryType = currentChunkEntrySubMap[? "type"];
+						if ((currentChainType == "resonance" && currentChunkEntryType == "rez") || (currentChainType == "trail" && currentChunkEntryType == "track")) {
 							scr_updateChainShowMap(currentChain, currentChunkEntry, scr_getFirstWordOfChunk(currentChunk));
 						}
 					}
