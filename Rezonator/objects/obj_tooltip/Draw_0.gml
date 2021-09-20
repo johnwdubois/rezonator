@@ -139,3 +139,5 @@ draw_set_valign(fa_middle);
 draw_set_alpha(clamp(alpha + 0.2, 0, 1));
 scr_adaptFont(string(text), "M");
 draw_text(textX, textY, string(text));
+
+draw_set_alpha(1);

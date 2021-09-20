@@ -35,6 +35,7 @@ function scr_drawDialogueBox_input(){
 				draw_set_color(global.colorThemeSelected2);
 				draw_set_halign(fa_left);
 				scr_adaptFont(descText, "S", false);
+				draw_set_alpha(1);
 				draw_text(descTextX, descTextY, descText);
 			}
 		}

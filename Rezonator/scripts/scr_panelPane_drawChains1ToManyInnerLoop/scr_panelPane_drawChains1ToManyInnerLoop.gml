@@ -159,6 +159,6 @@ function scr_panelPane_drawChains1ToManyInnerLoop(chain1toManyColFieldList, entr
 		draw_set_alpha(1);
 		draw_set_valign(fa_middle);
 		drawStr = scr_adaptFont(drawStr, "S");
-		draw_text(textX - clipX + 2, textY - clipY + scrollPlusY, drawStr);
+		draw_text(textX - clipX + 2, floor(textY - clipY + scrollPlusY), drawStr);
 	}
 }
