@@ -343,7 +343,6 @@
     {"id":{"name":"scr_deleteFromChainVoidCheck","path":"scripts/scr_deleteFromChainVoidCheck/scr_deleteFromChainVoidCheck.yy",},"order":17,},
     {"id":{"name":"spr_proseText","path":"sprites/spr_proseText/spr_proseText.yy",},"order":28,},
     {"id":{"name":"scr_dialogueConfirm","path":"scripts/scr_dialogueConfirm/scr_dialogueConfirm.yy",},"order":24,},
-    {"id":{"name":"scr_clearOptions","path":"scripts/scr_clearOptions/scr_clearOptions.yy",},"order":18,},
     {"id":{"name":"scr_justifyProseOptions","path":"scripts/scr_justifyProseOptions/scr_justifyProseOptions.yy",},"order":58,},
     {"id":{"name":"scr_importGridToNodeMap_plainText","path":"scripts/scr_importGridToNodeMap_plainText/scr_importGridToNodeMap_plainText.yy",},"order":27,},
     {"id":{"name":"scr_scrollNavToID","path":"scripts/scr_scrollNavToID/scr_scrollNavToID.yy",},"order":36,},

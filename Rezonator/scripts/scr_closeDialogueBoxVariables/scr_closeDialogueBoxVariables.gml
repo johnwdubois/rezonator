@@ -78,6 +78,7 @@ function scr_closeDialogueBoxVariables(){
 		with (obj_control) {
 			noResultsFound = false;
 			noTurnFound = false;
+			insertAnyNumber = false;
 		}
 	}
 	if (instance_exists(obj_openingScreen)) {

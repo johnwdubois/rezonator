@@ -68,8 +68,7 @@ ds_list_add(toolsOptionList,"menu_search",
 settingsOptionList = ds_list_create();
 ds_list_add(settingsOptionList, "menu_user", 
 								"menu_zoom",
-								"menu_theme", 
-								"menu_restore-hints", 
+								"menu_theme",  
 								"menu_language", 
 								"menu_autosave", 
 								"menu_advanced"); // "Delete All","Autosave");

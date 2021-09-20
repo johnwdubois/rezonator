@@ -171,7 +171,7 @@ quickFilterGridActive = false;
 searchGridActive = false;
 // Initialize line grid as active
 currentActiveLineGrid = lineGrid;
-clearSearch = true;
+
 
 
 // Instantiate the Dynamic Word Grid
@@ -492,6 +492,7 @@ noTurnFound = false;
 saveBeforeExiting = false;
 saveBeforeImporting = false;
 saveBeforeGameEnd = false;
+insertAnyNumber = false;
 
 newWordPre1 = false
 newWordPre2 = false

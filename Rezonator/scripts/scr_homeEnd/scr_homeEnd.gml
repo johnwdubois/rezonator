@@ -22,12 +22,14 @@ function scr_homeEnd(home) {
 	var lastPixelX = 0;
 	
 	var discourseSubMap = global.nodeMap[? global.discourseNode];
+	if(!scr_isNumericAndExists(discourseSubMap, ds_type_map)){exit;}
 	var displayUnitList = discourseSubMap[? "displayUnitList"];
 	
 	for (var i = obj_control.drawRangeStart; i < obj_control.drawRangeEnd; i++) {
 		
 		var currentUnit = displayUnitList[| i];
 		var currentUnitSubMap = global.nodeMap[? currentUnit];
+		if(!scr_isNumericAndExists(currentUnitSubMap, ds_type_map)){continue;}
 		var currentPixelY = currentUnitSubMap[? "pixelY"];
 		
 		if (currentPixelY >= obj_control.wordTopMargin && currentPixelY < camHeight) {

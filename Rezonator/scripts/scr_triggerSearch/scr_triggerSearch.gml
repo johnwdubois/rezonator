@@ -10,9 +10,7 @@ function scr_triggerSearch(){
 		}
 
 
-		// Activates word searching using search grid
 		preSwitchDisplayRow = obj_control.scrollPlusYDest;
-		preSwitchLineGrid = currentActiveLineGrid;
 		preSwitchSearchDisplayRow = 0;
 
 		if (!obj_control.dialogueBoxActive) {

@@ -4,6 +4,9 @@ function scr_deleteTreeLink(){
 	var treeSubMap = global.treeMap[? obj_panelPane.functionTree_treeSelected];
 	var linkSubMap = global.treeMap[? obj_panelPane.functionTree_treeLinkSelected];
 
+	if(!scr_isNumericAndExists(treeSubMap, ds_type_map)){exit;}
+	if(!scr_isNumericAndExists(linkSubMap, ds_type_map)){exit;}
+	
 	var sourceEntry = linkSubMap[? "source"];
 	var goalEntry = linkSubMap[? "goal"];
 

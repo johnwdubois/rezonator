@@ -180,6 +180,9 @@ function scr_setDialogueText(){
 			if (obj_control.noTurnFound) {
 				descriptionText = scr_get_translation("msg_order-notfound");
 			}
+			if (obj_control.insertAnyNumber) {
+				descriptionText = scr_get_translation("msg_input_any_number");
+			}
 		}
 	}
 }

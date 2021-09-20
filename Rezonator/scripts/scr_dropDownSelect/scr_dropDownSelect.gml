@@ -100,12 +100,6 @@ function scr_dropDownSelect(optionSelected) {
 	    scr_contextOptions(optionSelected);
 	}
 
-	//clearOptions
-	else if (optionListType == global.optionListTypeClear) //20
-	{
-	    scr_clearOptions(optionSelected);
-	    instance_destroy();
-	}
 
 	//settingsOptions
 	else if (optionListType == global.optionListTypeSettings) //21
