@@ -244,7 +244,7 @@ function scr_panelPane_drawShow1toMany(){
 		draw_text(floor(nameColX + textBuffer) - clipX, floor(mean(headerRectY1, headerRectY2)) - clipY, scr_get_translation("help_label_stack"));
 		
 		// header text: seq column
-		draw_text(floor(seqColX + textBuffer) - clipX, floor(mean(headerRectY1, headerRectY2)) - clipY, "Seq");
+		draw_text(floor(seqColX + textBuffer) - clipX, floor(mean(headerRectY1, headerRectY2)) - clipY, scr_get_translation("option_seq"));
 		
 		// dividing lines
 		if (i > 0) {
@@ -449,7 +449,7 @@ function scr_panelPane_drawShow1toMany(){
 		draw_set_valign(fa_middle);
 		draw_text(floor(mean(showNextButtonX1, showNextButtonX2)- clipX), floor(mean(showNextButtonY1, showNextButtonY2)- clipY), showNextButtonText);
 	
-		if(mouseoverShowNextButton){scr_createTooltip(mean(showNextButtonX1, showNextButtonX2),showNextButtonY2, "Next",obj_tooltip.arrowFaceUp);}
+		if(mouseoverShowNextButton){scr_createTooltip(mean(showNextButtonX1, showNextButtonX2),showNextButtonY2, scr_get_translation("help_label_next"),obj_tooltip.arrowFaceUp);}
 	
 		if(isPlaying){
 			if (mouse_check_button_released(mb_left) && mouseoverShowNextButton) {

@@ -248,7 +248,7 @@ function scr_panelPane_drawSearchList(){
 		}
 		else if (i == 1) {
 			colWidth = nameColWidth;
-			colText = "Name";
+			colText = "name";
 		}
 		else if (i == 2) {
 			colWidth = windowWidth - termColX;

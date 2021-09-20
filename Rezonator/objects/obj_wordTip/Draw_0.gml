@@ -13,7 +13,7 @@ if ((obj_control.hoverTokenID != "" or obj_control.hoverUnitID != "" or obj_cont
 		currentID = obj_control.hoverChunkID;
 	}
 	else if(obj_panelPane.functionTree_treeLinkMouseover != ""){
-		currentID = obj_panelPane.functionTree_treeLinkMouseover;
+		currentID = obj_panelPane.functionTree_treeLinkMouseover;	
 	}
 	
 	x = floor(mouse_x + mouseCursorWidth);
@@ -28,6 +28,7 @@ if ((obj_control.hoverTokenID != "" or obj_control.hoverUnitID != "" or obj_cont
 	var IDType = IDSubMap[?"type"];
 	var tagMap = IDSubMap[?"tagMap"];
 	var plusY = 0;
+
 
 	var maxPlusX = 0;
 	var colX2Max = string_width("Attribute   ");
@@ -45,7 +46,7 @@ if ((obj_control.hoverTokenID != "" or obj_control.hoverUnitID != "" or obj_cont
 	else if(IDType == "chunk"){
 		fieldList = obj_control.chunkFieldList;
 	}
-	else if(IDType == "link"){
+	else if(IDType == "treeLink"){
 		fieldList = global.linkFieldList;
 	}
 	

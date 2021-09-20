@@ -14,6 +14,8 @@ function scr_drawDialogueBox_input(){
 	}
 	obj_control.inputText = obj_inputBox.str;
 	
+	var largestPixelY = 0;
+	
 	
 	// UI for search control
 	var dropDownHeight = string_height("0");
@@ -99,6 +101,7 @@ function scr_drawDialogueBox_input(){
 		if (obj_control.regExCheck) draw_sprite_ext(spr_checkmark, 0, mean(regexCheckboxX1, regexCheckboxX2), mean(regexCheckboxY1, regexCheckboxY2), 1, 1, 0, global.colorThemeText, 1);
 		draw_set_color(global.colorThemeBorders);
 		draw_rectangle(regexCheckboxX1, regexCheckboxY1, regexCheckboxX2, regexCheckboxY2, true);
+		largestPixelY = regexCheckboxY2;
 		
 		// regex text
 		draw_set_color(global.colorThemeText);
@@ -118,6 +121,7 @@ function scr_drawDialogueBox_input(){
 			if (obj_control.caseSensitive) draw_sprite_ext(spr_checkmark, 0, mean(caseCheckboxX1, caseCheckboxX2), mean(caseCheckboxY1, caseCheckboxY2), 1, 1, 0, global.colorThemeText, 1);
 			draw_set_color(global.colorThemeBorders);
 			draw_rectangle(caseCheckboxX1, caseCheckboxY1, caseCheckboxX2, caseCheckboxY2, true);
+			largestPixelY = caseCheckboxY2;
 		
 			// case-sensitive text
 			draw_set_color(global.colorThemeText);
@@ -126,7 +130,9 @@ function scr_drawDialogueBox_input(){
 			draw_text(floor(caseCheckboxX2 + checkboxSize), floor(mean(caseCheckboxY1, caseCheckboxY2)), scr_get_translation("search_dialogue_case"));
 		}
 		
-
+		draw_set_valign(fa_top);
+		var explanationText = "Use & to search multiple terms";
+		draw_text(floor(regexCheckboxX2 + checkboxSize), largestPixelY, explanationText);
 	}
 	
 	if (obj_control.newWordCreated) {

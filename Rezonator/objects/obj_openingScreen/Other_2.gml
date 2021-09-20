@@ -19,13 +19,13 @@ global.readHintHide = false;
 
 
 global.importType_Default = 0;
-global.importType_CSV = "One Word per Line";
-global.importType_CoNLLU = "CoNLL-U";
-global.importType_IGT = "Interlinear Glossed Text";
-global.importType_PlainText = "Song & Verse";
-global.importType_TabDelimited = "Elan (tab-delimited)";
-global.importType_Paragraph = "Prose";
-global.importType_Transcription = "Transcription";
+global.importType_CSV = "import_type_word";
+global.importType_CoNLLU = "import_type_conllu";
+global.importType_IGT = "import_type_interlinear";
+global.importType_PlainText = "import_type_song";
+global.importType_TabDelimited = "import_type_elan";
+global.importType_Paragraph = "import_type_prose";
+global.importType_Transcription = "import_type_transcription";
 
 
 
@@ -78,4 +78,4 @@ window_set_min_height(720);
 // CHANGE THIS VAR WHEN MAKING A BUILD
 // if build is true --> CJK fonts will be loaded
 // if build is false --> CJK fonts will not be loaded
-global.build = false;
+global.build = true;

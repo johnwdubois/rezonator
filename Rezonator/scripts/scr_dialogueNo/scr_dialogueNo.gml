@@ -3,18 +3,35 @@
 function scr_dialogueNo(){
 	
 	show_debug_message("scr_dialogueNo");
-	if(questionWindowActive){
+	
+	with (obj_dialogueBox) {
+	
+		
+		if(questionWindowActive){
 		
 		
 		
-		if (instance_exists(obj_stacker)) {
-			if (obj_stacker.confirmStackCreate) {
-				scr_stackerBranch();
+			if (instance_exists(obj_stacker)) {
+				if (obj_stacker.confirmStackCreate) {
+					scr_stackerBranch();
+				}
 			}
-		}
 		
-		scr_closeQuestionBoxVariables();
-		instance_destroy();
+			if (instance_exists(obj_control)) {
+				if (obj_control.saveBeforeExiting || obj_control.saveBeforeImporting) {
+					global.skipToImportScreen = obj_control.saveBeforeImporting;
+					show_debug_message("Going to openingScreen, scr_dialogueNo");
+					room_goto(rm_openingScreen);
+					scr_loadINI();
+				}
+				if (obj_control.saveBeforeGameEnd) {
+					game_end();
+				}
+			}
+		
+			scr_closeQuestionBoxVariables();
+			instance_destroy();
+		}
 	}
 
 }

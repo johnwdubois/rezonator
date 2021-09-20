@@ -127,15 +127,15 @@ function scr_panelPane_drawCliqueList(){
 		}
 		else if (i == 1) {
 			colWidth = nameColWidth;
-			colText = "Name";
+			colText = scr_get_translation("name");
 		}
 		else if (i == 2) {
 			colWidth = chainCountColWidth;
-			colText = "Chain Count";
+			colText = scr_get_translation("chain_count");
 		}
 		else if (i == 3) {
 			colWidth = windowWidth - unitCountColX;
-			colText = "Unit Count";
+			colText = scr_get_translation("unit_count");
 		}
 		
 		// get header coordinates

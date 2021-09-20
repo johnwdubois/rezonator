@@ -8,7 +8,9 @@ camMidX = camWidth / 2;
 camMidY = camHeight / 2;
 
 // box vars
-boxHeight = max((!inputWindowActive) ? 270 : 400, camHeight / 4); 
+var boxHeightMax1 = inputWindowActive ? 400 : 270
+var boxHeightMax2 = inputWindowActive ? (camHeight / 3) : (camHeight / 4);
+boxHeight = max(boxHeightMax1, boxHeightMax2); 
 boxWidth = max(640, camWidth / 3);
 boxRectX1 = camMidX - boxWidth/2;
 boxRectY1 = camMidY - boxHeight/2;
@@ -78,7 +80,11 @@ draw_set_color(mouseoverOk ? merge_color(global.colorThemeSelected1, global.colo
 draw_roundrect(okRectX1, buttonY1, okRectX2, buttonY2, false);
 draw_set_color(global.colorThemeBG);
 var okText = scr_get_translation("msg_okay");
-if (room == rm_openingScreen) okText = "help_label_download";
+if (instance_exists(obj_openingScreen)) {
+	if (obj_openingScreen.downloadDialogue) {
+		okText = "help_label_download";
+	}
+}
 else if (noButtonActive) okText = "msg_yes";
 okText = scr_get_translation(okText);
 draw_text(floor(mean(okRectX1, okRectX2)), floor(mean(buttonY1, buttonY2)), okText);

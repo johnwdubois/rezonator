@@ -13,6 +13,7 @@ function scr_createTokenNode(discourseTokenSeq , textToDisplay,newTokenSeq,newDi
 	ds_map_add(currentTokenSubMap, "unit", unitID);
 	ds_map_add_list(currentTokenSubMap, "inChainsList", ds_list_create());
 	ds_map_add_list(currentTokenSubMap, "inChunkList", ds_list_create());
+	ds_map_add_list(currentTokenSubMap, "inEntryList", ds_list_create());
 				
 	// make tag map for token & copy tags from tokenImportGrid
 	var tagMap = ds_map_create();

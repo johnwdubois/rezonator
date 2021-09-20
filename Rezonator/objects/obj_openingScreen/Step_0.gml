@@ -1,3 +1,5 @@
+scr_windowExit();
+
 scr_ctrlHold();
 
 // CSV group import

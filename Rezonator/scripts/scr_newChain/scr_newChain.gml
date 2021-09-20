@@ -73,12 +73,16 @@ function scr_newChain(ID) {
 	ds_list_add(listOfChains, obj_chain.currentChainID);
 
 
-	var chainColor = make_color_hsv(obj_chain.chainHue, random_range(220, 255), random_range(220, 255));
-	obj_chain.chainHue += random_range(50, 60);
+	
+	obj_chain.chainHue += random_range(50, 200);
 	if (obj_chain.chainHue > 255) {
 		obj_chain.chainHue -= 255;
 	}
-	
+	while( obj_chain.chainHue > 30 && obj_chain.chainHue < 70){
+		obj_chain.chainHue = random_range(0, 255);
+	}
+
+	var chainColor = make_color_hsv(obj_chain.chainHue, random_range(125, 255), random_range(200, 255));
 	
 	// set values in nodeMap
 	scr_nodeMapSetChainValues(obj_chain.currentChainID, chainName, chainColor, chainSeq);

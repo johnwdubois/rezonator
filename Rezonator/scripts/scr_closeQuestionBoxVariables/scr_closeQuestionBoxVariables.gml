@@ -30,6 +30,9 @@ function scr_closeQuestionBoxVariables(){
 	obj_control.stackMerged = false;
 	obj_control.combineChainsFocused = "";
 	obj_control.combineChainsSelected = "";
+	obj_control.saveBeforeGameEnd = false;
+	obj_control.saveBeforeExiting = false;
+	obj_control.saveBeforeImporting = false;
 		
 
 }

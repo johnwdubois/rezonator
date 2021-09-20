@@ -3,16 +3,23 @@
 function scr_dialogueConfirm(){
 	
 	// check if they are trying to download newest version of rezonator
-	if (room == rm_openingScreen) {
-		url_open("https://rezonator.com/download/");
+	if (instance_exists(obj_openingScreen)) {
+		if (obj_openingScreen.downloadDialogue) {
+			url_open("https://rezonator.com/download/");
+		}
+		scr_closeDialogueBoxVariables();
 		instance_destroy();
 		exit;
 	}
 	
 	// if this is an alert window, we just need to close out of the dialogue box
 	if (alertWindowActive) {
+		if (obj_control.noResultsFound) {
+			with (obj_alarm2) alarm[5] = 1;
+		}
+		scr_closeDialogueBoxVariables();
 		instance_destroy();
-		exit;	
+		exit;
 	}
 
 	if(inputWindowActive){
@@ -30,15 +37,22 @@ function scr_dialogueConfirm(){
 	
 				
 		obj_control.alarm[11] = 60;
+		
 			
 		if (obj_control.fPressed) {
+
+			var searchSelectedBefore = obj_panelPane.functionSearchList_searchSelected;
 			
 			// creating list of words if user inputed multiple words
 			var listOfWordsInput = scr_splitString(obj_control.inputText, "&");
 			scr_createNewSearch(listOfWordsInput);
-			obj_control.searchGridActive = true;
-			scr_renderFilter2();
+			if (searchSelectedBefore != obj_panelPane.functionSearchList_searchSelected) {
+				obj_control.searchGridActive = true;
+				scr_renderFilter2();
+			}
 		}
+		
+
 
 		if (obj_control.gPressed) {
 							
@@ -255,6 +269,23 @@ function scr_dialogueConfirm(){
 			if (obj_stacker.confirmStackCreate) {
 				scr_deleteAllChains(global.nodeMap[? "stackList"]);
 				scr_stackerBranch();
+			}
+		}
+		
+		if (instance_exists(obj_control)) {
+			if (obj_control.saveBeforeExiting || obj_control.saveBeforeImporting) {
+				with(obj_fileLoader) scr_saveREZ(false);
+				global.skipToImportScreen = obj_control.saveBeforeImporting;
+				show_debug_message("Going to openingScreen, scr_dialogueConfirm");
+				room_goto(rm_openingScreen);
+				scr_loadINI();
+			}
+			
+			if (obj_control.saveBeforeGameEnd) {
+				with (obj_fileLoader) {
+					scr_saveREZ(false);
+				}
+				game_end();
 			}
 		}
 		

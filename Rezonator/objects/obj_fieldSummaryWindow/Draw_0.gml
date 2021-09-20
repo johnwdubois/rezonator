@@ -133,7 +133,7 @@ var headerY = y + (rowHeight * 0.5);
 if (gridViewing == global.tagInfoGrid) {
 	
 	// headers for field summary window
-	draw_text(tokenCountX, headerY, "Token Count");
+	draw_text(tokenCountX, headerY, scr_get_translation("total_tok_count"));
 	draw_text(markerPercentX, headerY, scr_get_translation("option_mark-percent"));
 	draw_text(soloX, headerY, scr_get_translation("option_solo"));
 	draw_text(splitX, headerY, scr_get_translation("option_split"));
@@ -162,33 +162,33 @@ else {
 				headerStr ="default";
 			}
 			else if (i == global.blockTypeGrid_colBlockCategory) {
-				headerStr ="block category";
+				headerStr ="block_cat";
 			}
 			else if (i == global.blockTypeGrid_colBlockType) {
 				headerStr ="import_block-type";
 			}
 			else if (i == global.blockTypeGrid_colBlockCount) {
-				headerStr ="block count";
+				headerStr ="block_count";
 			}
 			else if (i == global.blockTypeGrid_colLinesPerBlock) {
-				headerStr ="lines per block";
+				headerStr ="lines_block";
 			}
 			else if (i == global.blockTypeGrid_colFieldList) {
-				headerStr ="field list";
+				headerStr ="fields_lst";
 			}
 		}
 		else if (gridViewing == global.blockGrid) {
 			if (i == global.blockGrid_colBlockID) {
-				headerStr ="blockID";
+				headerStr ="block_id";
 			}
 			else if (i == global.blockGrid_colBlockType) {
 				headerStr ="import_block-type";
 			}
 			else if (i == global.blockGrid_colLineList) {
-				headerStr ="line list";
+				headerStr ="line_lst";
 			}
 			else if (i == global.blockGrid_colTokenCountList) {
-				headerStr ="token count list";
+				headerStr ="tok_count_list";
 			}
 		}
 		else if (gridViewing == global.fieldRelationGrid) {
@@ -196,10 +196,10 @@ else {
 				headerStr = scr_get_translation("option_field");
 			}
 			else if (i == global.fieldRelationGrid_colEncounteredFields) {
-				headerStr ="encountered fields";
+				headerStr ="encountered_fields";
 			}
 			else if (i == global.fieldRelationGrid_colOneToOneFieldList) {
-				headerStr ="1-to-1 field list";
+				headerStr ="1-1field_lst";
 			}
 		}
 		else if (gridViewing == global.fieldRelationHelperGrid) {

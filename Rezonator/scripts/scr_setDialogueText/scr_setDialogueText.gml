@@ -2,7 +2,7 @@
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
 function scr_setDialogueText(){
 	
-	if (room == rm_openingScreen) {
+	if (room == rm_openingScreen && descriptionText == "") {
 		titleText = "";
 		var newVersionNum = instance_exists(obj_DBcontrol) ? obj_DBcontrol.newestVersionNum : "";
 		descriptionText = "A new version of Rezonator (version " + string(newVersionNum) + ") is available! Would you like to download it?";
@@ -77,6 +77,21 @@ function scr_setDialogueText(){
 					descriptionText =  scr_get_translation("msg_stacks_created-1") + string(stackChainListSize) + scr_get_translation("msg_stacks_created-2");
 					noButtonActive = true;
 				}
+			}
+		}
+		
+		if (instance_exists(obj_control)) {
+			if (obj_control.saveBeforeExiting) {
+				if (is_string(global.fileSaveName) && global.fileSaveName != "undefined") titleText = filename_name(global.fileSaveName);
+				descriptionText = scr_get_translation("question_save_before_exit");
+			}
+			if (obj_control.saveBeforeImporting) {
+				if (is_string(global.fileSaveName) && global.fileSaveName != "undefined") titleText = filename_name(global.fileSaveName);
+				descriptionText = scr_get_translation("question_save_before_import");
+			}
+			if (obj_control.saveBeforeGameEnd) {
+				if (is_string(global.fileSaveName) && global.fileSaveName != "undefined") titleText = filename_name(global.fileSaveName);
+				descriptionText = scr_get_translation("msg_warning_save-prompt");
 			}
 		}
 	}
@@ -158,7 +173,13 @@ function scr_setDialogueText(){
 				descriptionText = scr_get_translation("search_dialogue_word");
 			}
 		}
-		
-
+	}
+	
+	if (alertWindowActive) {
+		if (instance_exists(obj_control)) {
+			if (obj_control.noTurnFound) {
+				descriptionText = scr_get_translation("msg_order-notfound");
+			}
+		}
 	}
 }

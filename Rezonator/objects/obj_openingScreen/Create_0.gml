@@ -2,6 +2,8 @@
 	Purpose: Instantiate all variables used by the openingScreen object
 */
 
+window_command_hook(window_command_close);
+
 global.ctrlHold = false;
 
 window_set_cursor(cr_default);
@@ -318,10 +320,10 @@ ds_map_add(global.expandableDropDownMap, "menu_autosave", true);
 ds_map_add(global.expandableDropDownMap, "menu_advanced", true);
 ds_map_add(global.expandableDropDownMap, "menu_language", true);
 ds_map_add(global.expandableDropDownMap, "option_recolor", true);
-ds_map_add(global.expandableDropDownMap, "Text Direction", true);
+ds_map_add(global.expandableDropDownMap, "text_dir", true);
 ds_map_add(global.expandableDropDownMap, "option_select-field", true);
 ds_map_add(global.expandableDropDownMap, "option-remove-tag-set", true);
-ds_map_add(global.expandableDropDownMap, "Arrowheads", true);
+ds_map_add(global.expandableDropDownMap, "arrheads", true);
 
 global.openingScreenDropDownMap = ds_map_create();
 ds_map_add(global.openingScreenDropDownMap, "menu_import", true);
@@ -360,7 +362,7 @@ ds_map_add(global.keyboardShortcutMap, "menu_go-to-time", "G");
 ds_map_add(global.keyboardShortcutMap, "menu_save", ctrlStr + "+S");
 ds_map_add(global.keyboardShortcutMap, "menu_grid", ctrlStr + "+G");
 ds_map_add(global.keyboardShortcutMap, "menu_theme", ctrlStr + "+B");
-ds_map_add(global.keyboardShortcutMap, "help_label_zoom-in", ctrlStr + "  +");
+ds_map_add(global.keyboardShortcutMap, "help_label_zoom-in", ctrlStr + " SHIFT +");
 ds_map_add(global.keyboardShortcutMap, "help_label_zoom-out", ctrlStr + " SHIFT -");
 ds_map_add(global.keyboardShortcutMap, "help_label_tall-rows", "SHIFT +");
 ds_map_add(global.keyboardShortcutMap, "help_label_short", "SHIFT -");
@@ -387,9 +389,8 @@ ds_map_add(global.checkDropdownMap, "menu_prose", false);
 ds_map_add(global.checkDropdownMap, "menu_grid", false);
 ds_map_add(global.checkDropdownMap, "menu_left-to-right", false);
 ds_map_add(global.checkDropdownMap, "menu_right-to-left", false);
-ds_map_add(global.checkDropdownMap, "All", false);
-ds_map_add(global.checkDropdownMap, "Track Arrows", false);
-ds_map_add(global.checkDropdownMap, "Rez Arrows", false);
+ds_map_add(global.checkDropdownMap, "menu_track-arrows", false);
+ds_map_add(global.checkDropdownMap, "menu_rez-arrows", false);
 ds_map_add(global.checkDropdownMap, "Track", false);
 ds_map_add(global.checkDropdownMap, "menu_stack", false);
 ds_map_add(global.checkDropdownMap, "menu_language-en", false);
@@ -408,8 +409,9 @@ ds_map_add(global.checkDropdownMap, "menu_10-min", false);
 ds_map_add(global.checkDropdownMap, "menu_20-min", false);
 ds_map_add(global.checkDropdownMap, "menu_30-min", false);
 ds_map_add(global.checkDropdownMap, "menu_off", false);
-ds_map_add(global.checkDropdownMap, "Word Tip", false);
+ds_map_add(global.checkDropdownMap, "word_tip", false);
 ds_map_add(global.checkDropdownMap, "help_label_tag", false);
+ds_map_add(global.checkDropdownMap, "tab_name_chunk", false);
 
 //checkmarkKeys = [];
 //ds_map_keys_to_array(global.checkDropdownMap, checkmarkKeys);
@@ -433,3 +435,5 @@ hoverColorMergeImport = 0;
 hoverColorMergeHelp = 0;
 
 global.dirCopyDebugList = ds_list_create();
+
+downloadDialogue = false;

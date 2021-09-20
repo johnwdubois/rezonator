@@ -27,7 +27,7 @@ function scr_summaryWindow() {
 		var currentStr = "";
 		if (i == 0) {
 			if (tokenCount < 1) continue;
-			currentStr = "Total token count: " + string(tokenCount);
+			currentStr = scr_get_translation("tok_count") + ": " + string(tokenCount);
 		}
 		else if (i == 1) {
 			if (lineCount < 1) continue;
@@ -35,7 +35,7 @@ function scr_summaryWindow() {
 		}
 		else if (i == 2) {
 			if (blockCount < 1) continue;
-			currentStr = "Block count: " + string(blockCount);
+			currentStr = scr_get_translation("block_count") + ": " + string(blockCount);
 		}
 		else if (i == 3) {
 			if (fieldCount < 1) continue;

@@ -5,7 +5,7 @@
 // after we have sorted, we will set displayToken to be the first token level marker
 // and set Speaker to be the first unit level marker
 var setDisplayToken = ds_grid_value_exists(global.tagInfoGrid, global.tagInfoGrid_colKey, 0, global.tagInfoGrid_colKey, ds_grid_height(global.tagInfoGrid), "option_display-token");
-var setSpeaker = ds_grid_value_exists(global.tagInfoGrid, global.tagInfoGrid_colKey, 0, global.tagInfoGrid_colKey, ds_grid_height(global.tagInfoGrid), "Speaker");
+var setSpeaker = ds_grid_value_exists(global.tagInfoGrid, global.tagInfoGrid_colKey, 0, global.tagInfoGrid_colKey, ds_grid_height(global.tagInfoGrid), "participant");
 var tagInfoGridHeight = ds_grid_height(global.tagInfoGrid);
 
 for (var i = 0; i < tagInfoGridHeight; i++) {

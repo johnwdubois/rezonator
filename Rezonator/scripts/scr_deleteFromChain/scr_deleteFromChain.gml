@@ -1,30 +1,40 @@
 ///@description Remove Link or Chunk
 function scr_deleteFromChain(sortVizSetList) {
 	
-	ds_list_clear(obj_control.chainStretchCheckList);
 	
-	/*
-	if (obj_toolPane.currentTool == obj_toolPane.toolBoxBrush || obj_toolPane.currentTool == obj_toolPane.toolNewWord || obj_control.newWordDeleted || obj_control.deleteNewWord || obj_control.deleteChunkWord) {
-		scr_deleteChunk();
-	}
-	*/
+	ds_list_clear(obj_control.chainStretchCheckList);
 	
 	show_debug_message("scr_deleteFromChain() , sortVizSetList: " + string(sortVizSetList));
 
-	
+
+	var prevTool = obj_toolPane.currentMode;
 	// get the focused chain's submap
 	var chainSubMap = global.nodeMap[? obj_chain.currentFocusedChainID];
 	if (!scr_isNumericAndExists(chainSubMap, ds_type_map)) {
 		show_debug_message("scr_deleteFromChain() ... chainSubMap does not exist");
+		obj_toolPane.currentMode = prevTool;
 		exit;
 	}
 	var chainType = chainSubMap[? "type"];
+	
+	
+	if(chainType == "trail"){
+		obj_toolPane.currentMode = obj_toolPane.modeTrack;
+	}
+	else if(chainType == "resonance" || chainType == "stack"){
+		obj_toolPane.currentMode = obj_toolPane.modeRez;
+	}
+	else{
+		obj_toolPane.currentMode = prevTool;
+		exit;
+	}
 	
 	// get the focused entry's submap
 	var focusedEntry = chainSubMap[? "focused"];
 	var focusedEntrySubMap = global.nodeMap[? focusedEntry];
 	if (!scr_isNumericAndExists(focusedEntrySubMap, ds_type_map)) {
 		show_debug_message("scr_deleteFromChain() ... focusedEntrySubMap does not exist");
+		obj_toolPane.currentMode = prevTool;
 		exit;
 	}
 	
@@ -57,7 +67,7 @@ function scr_deleteFromChain(sortVizSetList) {
 			// remove the focusedEntry from this word's inChainsList (if it is a rez or track)
 			if (focusedEntryType == "rez" || focusedEntryType == "track") {
 				var focusedEntryToken = focusedEntrySubMap[? "token"];
-				scr_removeChainFromInChainsList(obj_chain.currentFocusedChainID, focusedEntryToken);
+				scr_removeChainFromInChainsList(obj_chain.currentFocusedChainID, focusedEntry, focusedEntryToken);
 				
 				if(focusedEntryType == "rez"){
 					if(obj_chain.quickLinkDeleted == false){
@@ -67,7 +77,7 @@ function scr_deleteFromChain(sortVizSetList) {
 			}
 			else if (focusedEntryType == "card"){
 				var focusedEntryUnit = focusedEntrySubMap[? "unit"];
-				scr_removeChainFromInChainsList(obj_chain.currentFocusedChainID, focusedEntryUnit);
+				scr_removeChainFromInChainsList(obj_chain.currentFocusedChainID, focusedEntry, focusedEntryUnit);
 			}
 			show_debug_message("scr_deleteFromChain() , CHECK 2");
 			
@@ -81,6 +91,7 @@ function scr_deleteFromChain(sortVizSetList) {
 			
 			// unfocus chain
 			obj_chain.currentFocusedChainID = "";
+			obj_toolPane.currentMode = prevTool;
 			exit;
 		}
 		// if no source but it has at least 1 goal, we will restructure the links
@@ -90,12 +101,14 @@ function scr_deleteFromChain(sortVizSetList) {
 			var firstGoalLinkSubMap = global.nodeMap[? firstGoalLink];
 			if (!scr_isNumericAndExists(firstGoalLinkSubMap, ds_type_map)) {
 				show_debug_message("scr_deleteFromChain() ... firstGoalLinkSubMap does not exist");
+				obj_toolPane.currentMode = prevTool;
 				exit;
 			}
 			var goalEntry = firstGoalLinkSubMap[? "goal"];
 			var goalEntrySubMap = global.nodeMap[? goalEntry];
 			if (!scr_isNumericAndExists(goalEntrySubMap, ds_type_map)) {
 				show_debug_message("scr_deleteFromChain() ... goalEntrySubMap does not exist");
+				obj_toolPane.currentMode = prevTool;
 				exit;
 			}
 			show_debug_message("scr_deleteFromChain() , CHECK 4");
@@ -112,7 +125,7 @@ function scr_deleteFromChain(sortVizSetList) {
 			
 			// remove the focusedEntry from this token's inChainsList (if it is a rez or track)
 			if (focusedEntryType == "rez" || focusedEntryType == "track") {
-				scr_removeChainFromInChainsList(obj_chain.currentFocusedChainID, focusedEntryToken);
+				scr_removeChainFromInChainsList(obj_chain.currentFocusedChainID, focusedEntry, focusedEntryToken);
 				if(focusedEntryType == "rez" ){
 					if(obj_chain.quickLinkDeleted == false){
 						scr_refreshCliques();
@@ -121,7 +134,7 @@ function scr_deleteFromChain(sortVizSetList) {
 			}
 			else if (focusedEntryType == "card"){
 				var focusedEntryUnit = focusedEntrySubMap[? "unit"];
-				scr_removeChainFromInChainsList(obj_chain.currentFocusedChainID, focusedEntryUnit);
+				scr_removeChainFromInChainsList(obj_chain.currentFocusedChainID, focusedEntry, focusedEntryUnit);
 			}
 			show_debug_message("scr_deleteFromChain() , CHECK 5");
 			
@@ -149,6 +162,7 @@ function scr_deleteFromChain(sortVizSetList) {
 			
 			// focus goalEntry
 			ds_map_replace(chainSubMap, "focused", goalEntry);
+			obj_toolPane.currentMode = prevTool;
 			exit;
 		}
 	}
@@ -156,6 +170,7 @@ function scr_deleteFromChain(sortVizSetList) {
 	var sourceLinkSubMap = global.nodeMap[? sourceLink];
 	if (!scr_isNumericAndExists(sourceLinkSubMap, ds_type_map)) {
 		show_debug_message("scr_deleteFromChain() ... sourceLinkSubMap does not exist");
+		obj_toolPane.currentMode = prevTool;
 		exit;
 	}
 
@@ -164,6 +179,7 @@ function scr_deleteFromChain(sortVizSetList) {
 	var sourceEntrySubMap = global.nodeMap[? sourceEntry];
 	if (!scr_isNumericAndExists(sourceEntrySubMap, ds_type_map)) {
 		show_debug_message("scr_deleteFromChain() ... sourceEntrySubMap does not exist");
+		obj_toolPane.currentMode = prevTool;
 		exit;
 	}
 	
@@ -208,7 +224,7 @@ function scr_deleteFromChain(sortVizSetList) {
 	
 	// removed chain from focusedEntry's word's inChainsList (if it is a rez or track)
 	if (focusedEntryType == "rez" || focusedEntryType == "track") {
-		scr_removeChainFromInChainsList(obj_chain.currentFocusedChainID, focusedEntryToken);
+		scr_removeChainFromInChainsList(obj_chain.currentFocusedChainID, focusedEntry, focusedEntryToken);
 		if(focusedEntryType == "rez" ){
 			if(obj_chain.quickLinkDeleted == false){
 				scr_refreshCliques();
@@ -217,7 +233,7 @@ function scr_deleteFromChain(sortVizSetList) {
 	}
 	else if (focusedEntryType == "card"){
 		var focusedEntryUnit = ds_map_find_value(focusedEntrySubMap, "unit");
-		scr_removeChainFromInChainsList(obj_chain.currentFocusedChainID, focusedEntryUnit);
+		scr_removeChainFromInChainsList(obj_chain.currentFocusedChainID, focusedEntry, focusedEntryUnit);
 	}
 	
 	// remove focusedEntry from nodeMap and destroy focusedEntry
@@ -232,5 +248,6 @@ function scr_deleteFromChain(sortVizSetList) {
 	
 	scr_deleteFromChainVoidCheck(obj_chain.currentFocusedChainID, focusedEntryToken, true);
 	show_debug_message("scr_deleteFromChain() , FINAL CHECK");
+	obj_toolPane.currentMode = prevTool;
 
 }

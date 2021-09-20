@@ -1,16 +1,6 @@
-/*
-	
-	Last Updated: 2020-10-26
-	
-	Called from: obj_audioUI
-	
-	Purpose: Update the Audio Bookmarks based on the first and last units of the currently highlighted Stack
-	
-	Mechanism: loop through unitGrid looking at every UnitStart and UnitEnd, and setting the bookmark to the earlist start time and set the endmark to the latest end time.
-	
-	Author: Terry DuBois, Georgio Klironomos
-*/
+
 function scr_audioStackUpdate(currentStackChain){
+	exit;
 	
 	selectedStackChain = currentStackChain;
 	bookmarkStartTime = -1;

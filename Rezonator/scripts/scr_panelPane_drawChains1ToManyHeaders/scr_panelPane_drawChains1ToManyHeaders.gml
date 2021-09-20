@@ -69,7 +69,7 @@ function scr_panelPane_drawChains1ToManyHeaders(){
 					break;
 				case 1:
 					if (functionChainList_currentTab == functionChainList_tabStackBrush) {
-						colName = "speaker"; // stacks
+						colName = "participant"; // stacks
 					}
 					else {
 						colName = "tokenOrder"; // rez & track
@@ -153,6 +153,7 @@ function scr_panelPane_drawChains1ToManyHeaders(){
 					
 					if (mouse_check_button_released(mb_left)) {
 						with (obj_panelPane) fieldChains1ToManyChainType = chainType;
+						obj_control.chain1toManyEntryToChange = "";
 						obj_control.chain1ToManyColFieldToChange = i - 3;
 						obj_control.chain1toManyFieldToChange = currentField;
 						var dropDownOptionList = ds_list_create();

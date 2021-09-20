@@ -75,6 +75,7 @@ function scr_panelPane_drawUnits1To1Headers(){
 			scr_createTooltip(mean(headerRectX1, headerRectX2), headerRectY2, scr_get_translation("msg_change_field"), obj_tooltip.arrowFaceUp);
 			
 			if (mouse_check_button_released(mb_left)) {
+				obj_control.unitToChange = "";
 				obj_control.unitFieldToChange = currentField;
 				with (obj_panelPane) {
 					chosenCol = i;

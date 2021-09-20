@@ -45,12 +45,14 @@ function scr_drawChains() {
 		
 		// get chain's setIDList and make sure it exists
 		var chainType = ds_map_find_value(currentChainSubMap, "type");
-		var currentSetIDList = ds_map_find_value(currentChainSubMap, "vizSetIDList");
+		//var currentSetIDList = ds_map_find_value(currentChainSubMap, "vizSetIDList");
+		var currentSetIDList = obj_chain.chainShowMap[? currentChainID];
+		var currentVizSetIDList = ds_map_find_value(currentChainSubMap, "vizSetIDList");
+		
 		if (!scr_isNumericAndExists(currentSetIDList, ds_type_list)) continue;
 		var currentSetIDListSize = ds_list_size(currentSetIDList);
 		var currentChainColor = ds_map_find_value(currentChainSubMap, "chainColor");
 		var currentChainVisible = ds_map_find_value(currentChainSubMap, "visible");
-		var currentChainAlign = ds_map_find_value(currentChainSubMap, "alignChain");
 		
 		// make sure this is a rezChain or trackChain and that we should be drawing it
 		if (chainType != "resonance" && chainType != "trail") continue;
@@ -65,15 +67,40 @@ function scr_drawChains() {
 		var tokensInSameLine = false;
 		var firstTokenInLine = "";
 		var token2IsChunk = false;
+		
 	
 		// loop through current chain's wordIDList to draw the lines of the chain
-		for (var j = 0; j < currentSetIDListSize - 1; j++) {
+		for (var j = 0; j < currentSetIDListSize + 1; j++) {
+			
+			var currentEntry1 = "";
+			var currentEntry2 = "";
 			
 			// get the wordIDs for the 2 words we want to draw a line between
-			var currentEntry1 = currentSetIDList[| j];
+			if (j == 0) {
+				currentEntry2 = currentSetIDList[| 0];
+				var vizSetIndex = ds_list_find_index(currentVizSetIDList, currentEntry2);
+				if (vizSetIndex >= 1) {
+					currentEntry1 = currentVizSetIDList[| vizSetIndex - 1];
+				}
+			}
+			else if (j >= 1 && j < currentSetIDListSize) {
+				currentEntry1 = currentSetIDList[| j - 1];
+				currentEntry2 = currentSetIDList[| j];
+			}
+			else {
+				currentEntry1 = currentSetIDList[| currentSetIDListSize - 1];
+				var vizSetIndex = ds_list_find_index(currentVizSetIDList, currentEntry1);
+				if (vizSetIndex < ds_list_size(currentVizSetIDList) - 1) {
+					currentEntry2 = currentVizSetIDList[| vizSetIndex + 1];
+				}
+			}
+			
+			
 			var currentEntry1SubMap = global.nodeMap[? currentEntry1];
-			var currentEntry2 = currentSetIDList[| j + 1];
 			var currentEntry2SubMap = global.nodeMap[? currentEntry2];
+			
+			
+			
 			
 			if (!scr_isNumericAndExists(currentEntry1SubMap, ds_type_map)) continue;
 			if (!scr_isNumericAndExists(currentEntry2SubMap, ds_type_map)) continue;
@@ -111,7 +138,7 @@ function scr_drawChains() {
 			
 			
 			lineY1 = tokenUnitID1SubMap[?"pixelY"];
-			if (lineY1 < 0 or lineY1 > camHeight) continue;
+			//if (lineY1 < 0 or lineY1 > camHeight) continue;
 			
 			lineX1 = currentToken1SubMap[?"pixelX"];
 			
@@ -251,34 +278,35 @@ function scr_drawChains() {
 				}
 			}
 		}
+	}
 	
-	
-		if (obj_chain.currentFocusedChainID == currentChainID) {	
-			if (mouseLineWordID != "") {
+	if (obj_chain.currentFocusedChainID != "") {	
+		if (mouseLineWordID != "") {
 				
-				var mouseLineTokenSubMap = global.nodeMap[?mouseLineWordID];
-				var mouseLineTokenTagSubMap = mouseLineTokenSubMap[?"tagMap"];
-				var mouseLineUnitId = mouseLineTokenSubMap[?"unit"];
-				var mouseLineUnitSubMap = global.nodeMap[?mouseLineUnitId];
-				
-				
-				var mouseLineWordStringWidth = string_width(string(mouseLineTokenTagSubMap[?global.displayTokenField]));
-				var mouseLineWordStringHeight = string_height(string(mouseLineTokenTagSubMap[?global.displayTokenField]));
+			var mouseLineTokenSubMap = global.nodeMap[?mouseLineWordID];
+			var mouseLineTokenTagSubMap = mouseLineTokenSubMap[?"tagMap"];
+			var mouseLineUnitId = mouseLineTokenSubMap[?"unit"];
+			var mouseLineUnitSubMap = global.nodeMap[?mouseLineUnitId];
 				
 				
-				var wordPixelX = mouseLineTokenSubMap[?"pixelX"];
-				var wordPixelY = mouseLineUnitSubMap[?"pixelY"];
+			var mouseLineWordStringWidth = string_width(string(mouseLineTokenTagSubMap[?global.displayTokenField]));
+			var mouseLineWordStringHeight = string_height(string(mouseLineTokenTagSubMap[?global.displayTokenField]));
+				
+				
+			var wordPixelX = mouseLineTokenSubMap[?"pixelX"];
+			var wordPixelY = mouseLineUnitSubMap[?"pixelY"];
+		
 					
-				if (is_numeric(wordPixelX) and is_numeric(wordPixelY)) {
-					mouseLineX = wordPixelX + (mouseLineWordStringWidth / 2);
-					mouseLineY = wordPixelY + (mouseLineWordStringHeight / 2);
-					if (!justifyLeft) {
-						mouseLineX -= mouseLineWordStringWidth;
-					}
+			if (is_numeric(wordPixelX) and is_numeric(wordPixelY)) {
+				mouseLineX = wordPixelX + (mouseLineWordStringWidth / 2);
+				mouseLineY = wordPixelY + (mouseLineWordStringHeight / 2);
+				if (!justifyLeft) {
+					mouseLineX -= mouseLineWordStringWidth;
 				}
 			}
 		}
 	}
+	
 	
 	draw_set_alpha(1);
 

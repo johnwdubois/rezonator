@@ -7,9 +7,10 @@ function scr_turnStackerLoop(){
 
 	// Exit script if no turnOrder column was found
 	if (global.unitImportTurnDelimColName == "" or is_undefined(global.unitImportTurnDelimColName)) {
-		show_message(scr_get_translation("msg_order-notfound"));
+		var inst = instance_create_layer(0, 0, "InstancesDialogue", obj_dialogueBox);
+		inst.alertWindowActive = true;
+		obj_control.noTurnFound = true;
 		splitSave = false;
-
 		exit;	
 	}
 	show_debug_message(global.unitImportTurnDelimColName)

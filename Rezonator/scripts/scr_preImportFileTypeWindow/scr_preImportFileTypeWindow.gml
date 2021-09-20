@@ -5,7 +5,7 @@ function scr_preImportFileTypeWindow(){
 	var camWidth = camera_get_view_width(camera_get_active());
 	var camHeight = camera_get_view_height(camera_get_active());
 	
-	
+	var mouseoverCancel = instance_exists(obj_dialogueBox);
 	
 		
 	var backgroundWindowX1 = floor(camWidth * 0.04);
@@ -31,7 +31,7 @@ function scr_preImportFileTypeWindow(){
 	var fileTypeWindowY1 = windowY;
 	var fileTypeWindowX2 = floor(backgroundWidth * 0.33);
 	var fileTypeWindowY2 = floor(camHeight * 0.8);
-	var mouseoverWindow = point_in_rectangle(mouse_x, mouse_y, fileTypeWindowX1, fileTypeWindowY1, fileTypeWindowX2, fileTypeWindowY2);
+	var mouseoverWindow = point_in_rectangle(mouse_x, mouse_y, fileTypeWindowX1, fileTypeWindowY1, fileTypeWindowX2, fileTypeWindowY2) && !mouseoverCancel;
 	
 	//draw window border
 	var rezonatorPink = make_color_rgb(193, 30, 93);
@@ -90,7 +90,7 @@ function scr_preImportFileTypeWindow(){
 		var boxY1 = tableY1 + plusY;
 		var boxY2 = boxY1 + heightOfBox;
 		
-		var mouseOverOption = point_in_rectangle(mouse_x,mouse_y, tableX1,boxY1,tableX2,boxY2);
+		var mouseOverOption = point_in_rectangle(mouse_x,mouse_y, tableX1,boxY1,tableX2,boxY2) && !mouseoverCancel;
 		
 		
 		if(ds_grid_get(preImportInfoGrid, global.preImportInfoGrid_colChoose, i) == false){
@@ -131,7 +131,7 @@ function scr_preImportFileTypeWindow(){
 		draw_line_width(tableX1,boxY2,tableX2,boxY2, 2);
 		
 		draw_set_color(global.colorThemeText);
-		draw_text(tableX1 +textBuffer,floor(mean(boxY1,boxY2)), string(currentImportType) );
+		draw_text(tableX1 +textBuffer,floor(mean(boxY1,boxY2)), string(scr_get_translation(currentImportType)) );
 		plusY += heightOfBox;
 		// set choose column value
 		ds_grid_set(preImportInfoGrid, global.preImportInfoGrid_colChoose, i, currentImportTypeSelected);

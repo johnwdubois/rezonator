@@ -31,7 +31,7 @@ function scr_exportGrids() {
 	ds_list_add(tempTokenGridHeaderList, "tokenID", "tokenOrder", "unitID", "unitSeq");
 	
 	var tempUnitGridHeaderList = ds_list_create();
-	ds_list_add(tempUnitGridHeaderList, "unitID", "unitSeq", "speaker", "unitStart", "unitEnd");
+	ds_list_add(tempUnitGridHeaderList, "unitID", "unitSeq", "participant", "unitStart", "unitEnd");
 	
 	var tempLinkGridHeaderList = ds_list_create();
 	ds_list_add(tempLinkGridHeaderList, "linkID", "chainID", "source", "sourceClickTime", "goal", "goalClickTime");

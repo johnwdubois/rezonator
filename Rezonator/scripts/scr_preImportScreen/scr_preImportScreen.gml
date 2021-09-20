@@ -4,6 +4,8 @@ function scr_preImportScreen(){
 	
 	scr_fontSizeControlOpeningScreen();
 	
+	var mouseoverCancel = instance_exists(obj_dialogueBox);
+	
 	// get camera width & height
 	var camWidth = camera_get_view_width(camera_get_active());
 	var camHeight = camera_get_view_height(camera_get_active());
@@ -262,7 +264,7 @@ function scr_preImportScreen(){
 	var buttonRectY1 = (camera_get_view_height(camera_get_active()) * 0.85);
 	var buttonRectX2 = buttonRectX1 + buttonRectWidth;
 	var buttonRectY2 = buttonRectY1 + buttonRectHeight;
-	var mouseoverContinue = point_in_rectangle(mouse_x, mouse_y, buttonRectX1, buttonRectY1, buttonRectX2, buttonRectY2);
+	var mouseoverContinue = point_in_rectangle(mouse_x, mouse_y, buttonRectX1, buttonRectY1, buttonRectX2, buttonRectY2) && !mouseoverCancel;
 	
 	draw_set_alpha(1);
 	draw_set_color(mouseoverContinue ? merge_color(global.colorThemeSelected1, rezonatorPink, 50)  : rezonatorPink);
@@ -283,6 +285,14 @@ function scr_preImportScreen(){
 		
 	}
 	
+	if (global.exitOut) {
+		if (!instance_exists(obj_dialogueBox)) {
+			global.skipToImportScreen = true;
+			show_debug_message("Going to openingScreen, scr_importTXT");
+			room_goto(rm_openingScreen);
+		}
+	}
+	
 	
 	// back button
 	var backButtonRectWidth = camera_get_view_width(camera_get_active()) / 6;
@@ -291,7 +301,7 @@ function scr_preImportScreen(){
 	var backButtonRectY1 = (camera_get_view_height(camera_get_active()) * 0.85);
 	var backButtonRectX2 = backButtonRectX1 + backButtonRectWidth;
 	var backButtonRectY2 = backButtonRectY1 + backButtonRectHeight;
-	var mouseoverBack = point_in_rectangle(mouse_x, mouse_y, backButtonRectX1, backButtonRectY1, backButtonRectX2, backButtonRectY2);
+	var mouseoverBack = point_in_rectangle(mouse_x, mouse_y, backButtonRectX1, backButtonRectY1, backButtonRectX2, backButtonRectY2) && !mouseoverCancel;
 	
 	draw_set_alpha(1);
 	draw_set_color(mouseoverBack ? global.colorThemeSelected1 : global.colorThemeBG);

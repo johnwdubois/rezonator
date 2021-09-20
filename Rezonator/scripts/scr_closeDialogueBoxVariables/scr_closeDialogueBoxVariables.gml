@@ -63,10 +63,26 @@ function scr_closeDialogueBoxVariables(){
 		removeSearch = false;
 		searchToBeRemoved = "";
 	
-		obj_control.stackMerged = false;
-		obj_control.combineChainsFocused = "";
-		obj_control.combineChainsSelected = "";
+		with (obj_control) {
+			stackMerged = false;
+			combineChainsFocused = "";
+			combineChainsSelected = "";
+			saveBeforeImporting = false;
+			saveBeforeExiting = false;
+			saveBeforeGameEnd = false;
+		}
 		
 		with (obj_stacker) confirmStackCreate = false;
+	}
+	if (alertWindowActive) {
+		with (obj_control) {
+			noResultsFound = false;
+			noTurnFound = false;
+		}
+	}
+	if (instance_exists(obj_openingScreen)) {
+		with (obj_openingScreen) {
+			downloadDialogue = false;
+		}
 	}
 }

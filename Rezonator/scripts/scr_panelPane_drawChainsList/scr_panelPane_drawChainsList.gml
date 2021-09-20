@@ -118,8 +118,7 @@ function scr_panelPane_drawChainsList() {
 			var currentChainSubMap = ds_map_find_value(global.nodeMap, currentChainID);
 			
 			// make sure that the chain's submap exists
-			if (!is_numeric(currentChainSubMap)) continue;
-			if (!ds_exists(currentChainSubMap, ds_type_map)) continue;
+			if (!scr_isNumericAndExists(currentChainSubMap, ds_type_map)) continue;
 			
 			// get info of current chain
 			var currentChainType = ds_map_find_value(currentChainSubMap, "type");
@@ -141,26 +140,24 @@ function scr_panelPane_drawChainsList() {
 					
 					// chain captions!
 					// first, we will check if the stack has a caption specified in its submap
-					currentChainCaption = ds_map_find_value(currentChainSubMap, "caption");
+					currentChainCaption = (currentChainType == "stack") ? ds_map_find_value(currentChainSubMap, "caption") : "";
 					
 					
 					
 					// if it does not have a caption specified, we will show its contents in the chainList window
-					if (string_length(string(currentChainCaption)) < 1 || !is_string(currentChainCaption)) {
-						currentChainCaption = "";
-						for (var j = 0; j < setIDListSize; j++) {
-							var currentEntry = ds_list_find_value(vizSetIDList, j);
-							var currentEntrySubMap = ds_map_find_value(global.nodeMap, currentEntry);
-							if (currentChainType == "stack") {
+					if (currentChainType == "stack") {
+						if (string_length(string(currentChainCaption)) < 1 || !is_string(currentChainCaption)) {
+							currentChainCaption = "";
+							for (var j = 0; j < setIDListSize; j++) {
+								var currentEntry = ds_list_find_value(vizSetIDList, j);
+								var currentEntrySubMap = ds_map_find_value(global.nodeMap, currentEntry);
+
 								var currentUnitID = ds_map_find_value(currentEntrySubMap, "unit");
 								var currentUnitSubMap = global.nodeMap[?currentUnitID];
 								if(scr_isNumericAndExists(currentUnitSubMap,ds_type_map)) {
 									currentChainCaption += scr_getUnitText(currentUnitSubMap) + " ";
 								}
 								if (string_width(currentChainCaption) > windowWidth) break;
-							}
-							else {
-								currentChainCaption = "";
 							}
 						}
 					}
@@ -325,7 +322,7 @@ function scr_panelPane_drawChainsList() {
 								else scr_disableFilter();
 							}
 						}
-						scr_createTooltip(filterChainX, optionsChainY + optionsIconRad, "Filter", obj_tooltip.arrowFaceUp);
+						scr_createTooltip(filterChainX, optionsChainY + optionsIconRad, scr_get_translation("menu_filter"), obj_tooltip.arrowFaceUp);
 					}
 					// mouseover & click on visible
 					if (mouseoverVisibleChain) {
@@ -347,7 +344,7 @@ function scr_panelPane_drawChainsList() {
 							currentChainAlign = !currentChainAlign;
 							scr_setMap(currentChainSubMap, "alignChain", currentChainAlign);
 						}
-						scr_createTooltip(alignChainX, optionsChainY + optionsIconRad, "Align", obj_tooltip.arrowFaceUp);
+						scr_createTooltip(alignChainX, optionsChainY + optionsIconRad, scr_get_translation("help_label_align"), obj_tooltip.arrowFaceUp);
 					}
 					
 					// draw filter/align/visible buttons
@@ -505,6 +502,9 @@ function scr_panelPane_drawChainsList() {
 		// skip checkbox header
 		if (i == 0) continue;
 		
+		// skip text column unless this is a stack
+		if (i == 4 && functionChainList_currentTab != functionChainList_tabStackBrush) continue;
+		
 		// get column data
 		var headerRectX1 = 0;
 		var colWidth = 0;
@@ -527,12 +527,13 @@ function scr_panelPane_drawChainsList() {
 		else if (i == 3) {
 			headerRectX1 = nameColX;
 			colWidth = nameColWidth;
-			colText = "Name";
+			if (functionChainList_currentTab != functionChainList_tabStackBrush) colWidth = windowWidth - headerRectX1;
+			colText = "name";
 		}
 		else if (i == 4) {
 			headerRectX1 = textColX;
 			colWidth = windowWidth - headerRectX1;
-			colText = scr_get_translation("tag_text");
+			colText = "tag_text";
 		}
 		
 		// get header coordinates
@@ -632,7 +633,7 @@ function scr_panelPane_drawChainsList() {
 		draw_set_valign(fa_middle);
 		draw_set_color(global.colorThemeText);
 		scr_adaptFont(colText, "M");
-		draw_text(headerTextX, headerTextY, colText);
+		draw_text(headerTextX, headerTextY, scr_get_translation(colText));
 		
 		// dividing lines
 		if (i > 0) {

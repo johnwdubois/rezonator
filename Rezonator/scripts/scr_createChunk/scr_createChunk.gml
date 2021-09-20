@@ -34,6 +34,7 @@ function scr_createChunk(){
 		// Retrieve references of the lists being added to
 		var tokenIDList = ds_list_create();
 		var inChainsList = ds_list_create();
+		var inEntryList = ds_list_create();
 		
 		// copy contents of inRectTokenIDList into tokenIDList
 		ds_list_copy(tokenIDList, inRectTokenIDList);
@@ -44,6 +45,7 @@ function scr_createChunk(){
 		var chunkSubMap = global.nodeMap[? chunkID];
 		ds_map_add_list(chunkSubMap, "tokenList", tokenIDList);
 		ds_map_add_list(chunkSubMap, "inChainsList", inChainsList);
+		ds_map_add_list(chunkSubMap, "inEntryList", inEntryList);
 		
 		var firstToken = tokenIDList[| 0];
 		var firstTokenSubMap = global.nodeMap[? firstToken];

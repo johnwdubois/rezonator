@@ -55,14 +55,8 @@ function scr_tokenRightClicked(){
 				}
 			
 				// check whether we should refocus this word's entry or not
-				var refocusEntry = (chainType == "resonance" && obj_toolPane.currentMode == obj_toolPane.modeRez)
-					or (chainType == "trail" && obj_toolPane.currentMode == obj_toolPane.modeTrack)
-					or (obj_toolPane.currentMode == obj_toolPane.modeRead);
-				
-				if(refocusEntry){
-					obj_chain.currentFocusedChainID = chainID;
-					scr_refocusChainEntry(obj_control.rightClickID);
-				}
+				obj_chain.currentFocusedChainID = chainID;
+				scr_refocusChainEntry(obj_control.rightClickID);
 			}
 					
 		}

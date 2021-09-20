@@ -1,7 +1,7 @@
 // Script assets have changed for v2.3.0 see
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
 function scr_preImportInitiate(){
-
+	show_debug_message("scr_preImportInitiate RAN")
 	// preImport map will have a node for every type of import
 	global.preImportMap = ds_map_create();
 	var importTypeListSize = ds_list_size(global.importTypeList);
@@ -158,6 +158,7 @@ function scr_preImportInitiate(){
 		// add example/description/links to currentImportTypeMap
 		ds_map_add_list(currentImportTypeMap, "example", exampleList);
 		ds_map_add_list(currentImportTypeMap, "description", descriptionList);
+		show_debug_message(scr_getStringOfList(currentImportTypeMap[?"description"]));
 		ds_map_add_list(currentImportTypeMap, "links", linksList);
 	
 		// add currentImportTypeMap to preImportMap
@@ -203,4 +204,6 @@ function scr_preImportInitiate(){
 		ds_grid_set(global.preImportInfoGrid, global.preImportInfoGrid_colDataType, i, currentDataType);
 
 	}
+	
+	show_debug_message(string(ds_map_size(global.preImportMap)))
 }

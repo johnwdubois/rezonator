@@ -32,6 +32,10 @@ gridSpaceVertical = 60;
 prevGridSpaceVertical = gridSpaceVertical;
 gridSpaceRatio = 1;
 
+proseSpaceHorizontal = 100;
+proseSpaceHorizontalMin = 60;
+proseSpaceHorizontalMax = 400;
+
 // Set the speed of scrolling
 arrowSpeedMin = 17;
 arrowSpeedMax = 90;
@@ -483,6 +487,11 @@ cursorPos = 1 ;
 cursorViz = false;
 inputText = "";
 cursorTimer = 20;
+noResultsFound = false;
+noTurnFound = false;
+saveBeforeExiting = false;
+saveBeforeImporting = false;
+saveBeforeGameEnd = false;
 
 newWordPre1 = false
 newWordPre2 = false
@@ -647,6 +656,7 @@ tokenFieldToChange = "";
 unitFieldToChange = "";
 tokenToChange = "";
 unitToChange = "";
+linkToChange = "";
 
 linkFieldSelected = "";
 
@@ -770,3 +780,5 @@ unitClosestToMouse = "";
 
 
 hideChunks = false;
+updateChainShowMap = true;
+startJustify = true;

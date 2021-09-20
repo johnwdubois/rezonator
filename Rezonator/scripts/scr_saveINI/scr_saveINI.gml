@@ -34,6 +34,7 @@ function scr_saveINI() {
 	ds_map_add(map,"lineHeight", obj_control.gridSpaceVertical);
 	ds_map_add(map,"fontSize", global.fontSize);
 	ds_map_add(map,"columnWidth", obj_control.gridSpaceHorizontal);
+	ds_map_add(map,"proseWidth", obj_control.proseSpaceHorizontal);
 
 	
 	

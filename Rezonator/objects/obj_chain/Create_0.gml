@@ -164,9 +164,11 @@ showRezArrows = false;
 stackChainGridRowToCaption = -1;
 
 
+
+chainShowMap = ds_map_create();
 chainShowList = ds_list_create();
 chunkShowList = ds_list_create();
-
+ds_map_add_map(global.nodeMap, "chainShowMap", chainShowMap);
 
 
 filteredRezChainList = ds_list_create();
