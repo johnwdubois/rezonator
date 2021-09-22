@@ -162,7 +162,7 @@ function scr_drawLine2ElectricBoogaloo(){
 		// get current unit's entryList and make sure it exists
 		var currentEntryList = currentUnitSubMap[? "entryList"];
 		if (!scr_isNumericAndExists(currentEntryList, ds_type_list)) continue;
-		scr_drawLineEntryList(currentUnit, currentUnitSubMap, currentEntryList, currentPixelY);
+		scr_drawLineEntryList(currentUnit, currentUnitSubMap, currentEntryList, currentPixelY, true);
 		
 		// draw speaker label for this unit
 		scr_drawSpeakerLabel(currentUnit, currentUnitSubMap, currentPixelY);

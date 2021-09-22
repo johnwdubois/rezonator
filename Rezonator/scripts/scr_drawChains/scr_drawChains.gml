@@ -136,6 +136,23 @@ function scr_drawChains() {
 			var tokenUnitID1SubMap = global.nodeMap[? tokenUnitID1];
 			var tokenUnitID2SubMap = global.nodeMap[? tokenUnitID2];
 			
+			if (j == 0) {
+				var currentEntryList = tokenUnitID1SubMap[? "entryList"];
+				if (!scr_isNumericAndExists(currentEntryList, ds_type_list)) continue;
+				with(obj_control){
+					scr_drawLineEntryList(tokenUnitID1,tokenUnitID1SubMap,currentEntryList, -200,false);
+				}
+			}
+			else if (j >= 1 && j < currentSetIDListSize) {
+			}
+			else{
+				var currentEntryList = tokenUnitID2SubMap[? "entryList"];
+				if (!scr_isNumericAndExists(currentEntryList, ds_type_list)) continue;
+				with(obj_control){
+					scr_drawLineEntryList(tokenUnitID2,tokenUnitID2SubMap,currentEntryList, camHeight+200,false);
+				}
+			}
+			
 			
 			lineY1 = tokenUnitID1SubMap[?"pixelY"];
 			//if (lineY1 < 0 or lineY1 > camHeight) continue;
