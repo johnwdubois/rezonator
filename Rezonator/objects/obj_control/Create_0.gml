@@ -726,7 +726,7 @@ with (obj_alarm) {
 
 
 
-global.delayInput = 0;
+global.delayInput = 10;
 
 
 selectedRezChainList = ds_list_create();
