@@ -49,7 +49,8 @@ function scr_mapViewerDrawNodeData(){
 							|| subMapKey == "entryList"|| subMapKey == "unitList" || subMapKey == "displayUnitList"
 							|| subMapKey == "inChunkList"|| subMapKey == "tagSet" || subMapKey == "targetList"
 							|| subMapKey == "docList" ||subMapKey == "tokenList" || subMapKey == "customSetIDList"
-							|| subMapKey == "inEntryList");
+							|| subMapKey == "inEntryList" ||  subMapKey =="1" ||  subMapKey =="2" ||  subMapKey =="3"
+							|| subMapKey =="4" ||  subMapKey =="5" ||  subMapKey =="6" ||  subMapKey =="7");
 			if (isList && scr_isNumericAndExists(subMapVal, ds_type_list)) {
 				subMapValStr = scr_getStringOfList(subMapVal);
 			}

@@ -56,9 +56,25 @@ function scr_drawLine2ElectricBoogaloo(){
 	ds_list_clear(obj_chain.chainShowList);
 
 	
+	// destroy the lists in the chainShowMap
+	var chunkShowMapSize = ds_map_size(obj_chain.chunkShowMap);
+	for (var i = 0; i < chunkShowMapSize; i++) {
+		var currentNest = string(i);
+		var currentNestList = obj_chain.chunkShowMap[? currentNest];
+		if(scr_isNumericAndExists(currentNestList, ds_type_list)){
+			ds_list_destroy(currentNestList);
+		}
+	}
 	
-	
+	// clear lists that are meant to be refreshed each frame
+	ds_map_clear(obj_chain.chunkShowMap);
+	//ds_map_add(obj_chain.chunkShowMap, "type", "map");
 	ds_list_clear(obj_chain.chunkShowList);
+	
+	
+	
+	
+	
 	ds_list_clear(inRectWordIDList);
 	ds_list_clear(chainVoidCheckList);
 	ds_list_clear(inRectTokenIDList);

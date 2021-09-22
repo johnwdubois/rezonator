@@ -1,6 +1,6 @@
 // Script assets have changed for v2.3.0 see
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
-function scr_updateChainShowList(inChainsList, inEntryList, chainShowList, inBoxList, chunkShowList, tokenID,rectX1,rectY1,rectX2,rectY2){
+function scr_updateChainShowList(inChainsList, inEntryList, chainShowList, inBoxList,tokenID,rectX1,rectY1,rectX2,rectY2){
 	
 	// get size of inChainsList
 	var inChainsListSize = 0;
@@ -77,12 +77,23 @@ function scr_updateChainShowList(inChainsList, inEntryList, chainShowList, inBox
 	// if this word has any chunks that are not yet in chunkShowList, add them!
 	for (var i = 0; i < inBoxListSize; i++) {
 		var currentChunk = inBoxList[| i];
-		if (ds_list_find_index(chunkShowList, currentChunk) == -1) {
-			ds_list_add(chunkShowList, currentChunk);
-		}
+		
+
 		// check if this chunk is in any chains that should be added to chainShowList
 		var currentChunkSubMap = global.nodeMap[? currentChunk];
 		if (scr_isNumericAndExists(currentChunkSubMap, ds_type_map)) {
+			
+			var currentChunkNest = currentChunkSubMap[? "nest"];
+			if (ds_map_exists(obj_chain.chunkShowMap, string(currentChunkNest))) {
+				var nestList = obj_chain.chunkShowMap[? string(currentChunkNest) ];
+				scr_addToListOnce(nestList, currentChunk);
+			}
+			else{
+				var nestList = ds_list_create();
+				ds_list_add(nestList, currentChunk);
+				ds_map_add_list(obj_chain.chunkShowMap, string(currentChunkNest), nestList);
+			}
+
 
 			var currentChunkInChainsList = currentChunkSubMap[? "inChainsList"];
 			var currentChunkInEntryList = currentChunkSubMap[? "inEntryList"];
