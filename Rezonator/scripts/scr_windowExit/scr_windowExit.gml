@@ -5,6 +5,12 @@ function scr_windowExit(){
 	if (window_command_check(window_command_close)) {
 		
 		if (room == rm_mainScreen) {
+			
+			with (obj_dialogueBox) {
+				scr_closeDialogueBoxVariables();
+				scr_closeQuestionBoxVariables();
+				instance_destroy();
+			}
 		
 			if (!instance_exists(obj_dialogueBox)) {
 				var inst = instance_create_layer(x, y, "InstancesDialogue", obj_dialogueBox);
