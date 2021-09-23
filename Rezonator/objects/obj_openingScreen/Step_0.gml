@@ -21,7 +21,7 @@ if (keyboard_check(vk_shift) && global.ctrlHold && keyboard_check_released(ord("
 		global.importGroupOutputDir = get_string("Type in output directory for REZ files", "");
 	}
 	
-	show_message(scr_get_translation("msg_directory-exists") + " " + string(directory_exists(global.importGroupOutputDir)));
+	show_debug_message(scr_get_translation("msg_directory-exists") + " " + string(directory_exists(global.importGroupOutputDir)));
 	
 	var filename = "";
 	filename = get_open_filename("CSV file|*.csv", "");
@@ -35,7 +35,7 @@ if (keyboard_check(vk_shift) && global.ctrlHold && keyboard_check_released(ord("
 			currentFile = file_find_next();
 		}
 		file_find_close();
-		show_message("global.importGroupFileList: " + scr_getStringOfList(global.importGroupFileList));
+		show_debug_message("global.importGroupFileList: " + scr_getStringOfList(global.importGroupFileList));
 	}
 	
 	global.importGroupSchemaFile = get_open_filename_ext("SCHEMA file|*.json", "", global.rezonatorSchemaDirString, "Open Schema");

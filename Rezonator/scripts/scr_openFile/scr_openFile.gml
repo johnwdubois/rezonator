@@ -1,5 +1,6 @@
 function scr_openFile() {
 	
+	/*
 	show_debug_message("global.importType: " + string(global.importType));
 
 	if(global.previousImportDirectory == ""){
@@ -71,5 +72,8 @@ function scr_openFile() {
 		scr_importTXT(openedFile);
 		exit;
 	}
+	*/
+	
+	scr_importTXT("");
 
 }

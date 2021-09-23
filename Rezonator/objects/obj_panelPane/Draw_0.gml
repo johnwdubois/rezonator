@@ -1,7 +1,6 @@
 /*
 	Purpose: Create the visuals of the panel pane
 
-*/
 
 if (!obj_control.mouseoverPanelPane) {
 	unitTagsHighlightRow = -1;

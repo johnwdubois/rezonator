@@ -6,7 +6,7 @@ function scr_saveTagJson(){
 	
 	// Check if the name is valid, or if the user exited the window
 	if (fileName == "" or fileName == "undefined") {
-		show_message(scr_get_translation("save_error"));
+		show_debug_message(scr_get_translation("save_error"));
 		exit;
 	}
 	

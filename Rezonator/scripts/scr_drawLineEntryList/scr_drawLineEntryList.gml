@@ -1,6 +1,9 @@
 // Script assets have changed for v2.3.0 see
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
 function scr_drawLineEntryList(unitID, unitSubMap, entryList, pixelY, OOBCheck){
+	
+	show_debug_message("scr_drawLineEntryList start");
+	
 	if(OOBCheck){
 		if (pixelY + gridSpaceVertical < wordTopMargin || pixelY - gridSpaceVertical > camera_get_view_height(view_camera[0])) exit;
 	}
@@ -132,7 +135,7 @@ function scr_drawLineEntryList(unitID, unitSubMap, entryList, pixelY, OOBCheck){
 			// get this token's inChainsList, and update the chainShowList accordingly
 			var inChainsList = currentTokenSubMap[?"inChainsList"];
 			var inEntryList = currentTokenSubMap[?"inEntryList"];
-			scr_updateChainShowList(inChainsList, inEntryList, obj_chain.chainShowList, currentTokenSubMap[?"inChunkList"], currentToken, tokenRectX1, tokenRectY1, tokenRectX2, tokenRectY2);	
+			//scr_updateChainShowList(inChainsList, inEntryList, obj_chain.chainShowList, currentTokenSubMap[?"inChunkList"], currentToken, tokenRectX1, tokenRectY1, tokenRectX2, tokenRectY2);	
 		
 		
 		
@@ -183,25 +186,24 @@ function scr_drawLineEntryList(unitID, unitSubMap, entryList, pixelY, OOBCheck){
 
 				}
 			
-				//if (keyboard_check_released(ord("N"))) {
-				//	if (ds_list_size(inChainsList) > 0) {
-				//		scr_alignChain2ElectricBoogaloo(inChainsList[| 0]);
-				//	}
-				//}
+
 			}
 		
 		
 		
 			// draw the token's text
 			var wordFound = false;
-			if(scr_isNumericAndExists(global.searchMap, ds_type_map)){
-				var searchSubMap  = global.searchMap[?obj_panelPane.functionSearchList_searchSelected];
-				if(scr_isNumericAndExists(searchSubMap, ds_type_map)){
 			
-					var searchedTokenList = searchSubMap[?"displayTokenList"];
+			if (instance_exists(obj_panelPane)) {
+				if(scr_isNumericAndExists(global.searchMap, ds_type_map)){
+					var searchSubMap  = global.searchMap[?obj_panelPane.functionSearchList_searchSelected];
+					if(scr_isNumericAndExists(searchSubMap, ds_type_map)){
 			
-					wordFound = (ds_list_find_index(searchedTokenList,currentToken) != -1);
+						var searchedTokenList = searchSubMap[?"displayTokenList"];
 			
+						wordFound = (ds_list_find_index(searchedTokenList,currentToken) != -1);
+			
+					}
 				}
 			}
 		
@@ -224,4 +226,6 @@ function scr_drawLineEntryList(unitID, unitSubMap, entryList, pixelY, OOBCheck){
 		
 	}
 	
-}
+	show_debug_message("scr_drawLineEntryList end");
+	
+} 

@@ -15,7 +15,7 @@ function scr_exportGrids() {
 	// Check if exportDir is valid, or if the user exited the window
 	if (exportDir == "" or exportDir == "undefined") {
 		exportDir = "undefined";
-		show_message(scr_get_translation("save_error"));
+		show_debug_message(scr_get_translation("save_error"));
 		exit;
 	}
 

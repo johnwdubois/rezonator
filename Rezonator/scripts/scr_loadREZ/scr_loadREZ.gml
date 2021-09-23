@@ -54,7 +54,7 @@ show_debug_message("global.previousRezDirectory:  "+string(global.previousRezDir
 	
 		if (not ds_exists(wrapper, ds_type_map)) {
 			show_debug_message("Going to openingScreen, scr_loadREZ");
-			show_message("Error loading " + fileName);
+			show_debug_message("Error loading " + fileName);
 			room_goto(rm_openingScreen);
 			exit;
 		}
@@ -63,7 +63,7 @@ show_debug_message("global.previousRezDirectory:  "+string(global.previousRezDir
 	
 		if (is_undefined(list)) {
 			show_debug_message("Going to openingScreen, scr_loadREZ");
-			show_message("Error loading " + fileName);
+			show_debug_message("Error loading " + fileName);
 			room_goto(rm_openingScreen);
 			exit;
 		}

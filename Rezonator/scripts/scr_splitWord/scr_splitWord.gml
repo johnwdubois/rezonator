@@ -5,7 +5,7 @@ function scr_splitWord(stringList) {
 	listOfWords = scr_splitString(stringList, ",");
 
 	if(ds_list_size(listOfWords) < 2){
-		show_message(scr_get_translation("msg_not-enough-words"));
+		show_debug_message(scr_get_translation("msg_not-enough-words"));
 		exit;
 	}
 

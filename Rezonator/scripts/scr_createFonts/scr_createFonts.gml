@@ -2,7 +2,7 @@
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
 function scr_createFonts(filePath, i){
 
-	show_message("scr_createFonts start");
+	show_debug_message("scr_createFonts start");
 	
 	// main fonts
 	if(i == 0 ){
@@ -53,7 +53,7 @@ function scr_createFonts(filePath, i){
 		show_debug_message("Loop 5 CLEAR");
 	}
 	
-	show_message("scr_createFonts end");
+	show_debug_message("scr_createFonts end");
 	
 	
 }

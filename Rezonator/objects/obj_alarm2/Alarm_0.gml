@@ -1,0 +1,1 @@
+show_debug_message("obj_alarm2, alarm 0");

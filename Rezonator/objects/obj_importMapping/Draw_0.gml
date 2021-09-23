@@ -1,3 +1,4 @@
+/*
 scr_windowCameraAdjust();
 
 	

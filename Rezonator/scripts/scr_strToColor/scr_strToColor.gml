@@ -7,18 +7,23 @@ function scr_strToColor(str){
 	if (ds_map_exists(global.colorMap, str)) {
         return global.colorMap[? str];
     }
-	var col = make_color_hsv(obj_chain.chainHue, random_range(125, 255), random_range(200, 255));
-	obj_chain.chainHue += random_range(50, 200);
-	if (obj_chain.chainHue > 255) {
-		obj_chain.chainHue -= 255;
-	}
-	while( obj_chain.chainHue > 30 && obj_chain.chainHue < 70){
-		obj_chain.chainHue = random_range(0, 255);
-	}
-	col = merge_color(col, c_white, 0.5);
-	ds_map_add(global.colorMap, str, col);
-	return col;
+	
+	if (instance_exists(obj_chain)) {
+		var col = make_color_hsv(obj_chain.chainHue, random_range(125, 255), random_range(200, 255));
+		obj_chain.chainHue += random_range(50, 200);
+		if (obj_chain.chainHue > 255) {
+			obj_chain.chainHue -= 255;
+		}
+		while( obj_chain.chainHue > 30 && obj_chain.chainHue < 70){
+			obj_chain.chainHue = random_range(0, 255);
+		}
+	
+		col = merge_color(col, c_white, 0.5);
+		ds_map_add(global.colorMap, str, col);
+		return col;
 
+	}
+	else return c_gray;
 }
 
 function scr_findHash(str,key){

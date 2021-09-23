@@ -81,5 +81,5 @@ if ( ds_map_exists( global.locale_map, native_locale_code ) )				// if in the gl
 	global.locale_gloss = global.locale_map[? global.lang_codes[| 0]];
 }
 
-//show_message("Locale set to " + global.lang_codes[| global.lang_index] );
-//show_message("locale_gloss size: " + string(ds_map_size(global.locale_gloss)));
+//show_debug_message("Locale set to " + global.lang_codes[| global.lang_index] );
+//show_debug_message("locale_gloss size: " + string(ds_map_size(global.locale_gloss)));

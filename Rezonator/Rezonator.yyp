@@ -32,6 +32,7 @@
     {"id":{"name":"spr_toolsNew","path":"sprites/spr_toolsNew/spr_toolsNew.yy",},"order":4,},
     {"id":{"name":"scr_deleteChain","path":"scripts/scr_deleteChain/scr_deleteChain.yy",},"order":16,},
     {"id":{"name":"obj_loadingControl","path":"objects/obj_loadingControl/obj_loadingControl.yy",},"order":14,},
+    {"id":{"name":"rm_mainScreen5","path":"rooms/rm_mainScreen5/rm_mainScreen5.yy",},"order":4,},
     {"id":{"name":"spr_gridViewToggle","path":"sprites/spr_gridViewToggle/spr_gridViewToggle.yy",},"order":11,},
     {"id":{"name":"spr_justifyToggle","path":"sprites/spr_justifyToggle/spr_justifyToggle.yy",},"order":17,},
     {"id":{"name":"scr_exportDiscourseTempGrid","path":"scripts/scr_exportDiscourseTempGrid/scr_exportDiscourseTempGrid.yy",},"order":12,},
@@ -545,6 +546,7 @@
     {"roomId":{"name":"rm_mainScreen","path":"rooms/rm_mainScreen/rm_mainScreen.yy",},},
     {"roomId":{"name":"rm_importScreen","path":"rooms/rm_importScreen/rm_importScreen.yy",},},
     {"roomId":{"name":"rm_loadingScreen","path":"rooms/rm_loadingScreen/rm_loadingScreen.yy",},},
+    {"roomId":{"name":"rm_mainScreen5","path":"rooms/rm_mainScreen5/rm_mainScreen5.yy",},},
   ],
   "Folders": [
     {"folderPath":"folders/Sprites.yy","order":0,"resourceVersion":"1.0","name":"Sprites","tags":[],"resourceType":"GMFolder",},

@@ -1,11 +1,11 @@
-/*
-	Purpose: Check for user key inputs and navigate accordingly, update the center display row based on positioning, change the font size, and check for panel pane mouse over
-*/
+
+	//Purpose: Check for user key inputs and navigate accordingly, update the center display row based on positioning, change the font size, and check for panel pane mouse over
+
+
+show_debug_message("obj_control step start");
 
 #macro vk_rcommand 91
 #macro vk_lcommand 92
-
-scr_windowExit();
 
 sessionCurrentTime = (current_time - sessionStartTime) + current_time;
 
@@ -66,19 +66,7 @@ if (keyboard_check_released(vk_rcommand) || keyboard_check_released(vk_lcommand)
 // Mechanism to update center display row
 if (!gridView) {
 	if (ds_grid_height(currentActiveLineGrid) > 0) {
-		/*var firstLinePixelY = (room_height / 2) - (currentCenterDisplayRow * gridSpaceVertical);
-		if (firstLinePixelY > 150 + gridSpaceVertical) {
-			currentCenterDisplayRow++;
-		}
-		
-		
-		var lastLinePixelY = (room_height / 2) + ((ds_grid_height(currentActiveLineGrid) - currentCenterDisplayRow) * gridSpaceVertical);
-		if (lastLinePixelY < camera_get_view_height(camera_get_active()) - 30
-		and currentCenterDisplayRow + drawRange >= ds_grid_height(currentActiveLineGrid)) {
-			currentCenterDisplayRow--;
-		}
-		currentCenterDisplayRow = min(currentCenterDisplayRow, ds_grid_height(currentActiveLineGrid) - 1);
-		currentCenterDisplayRow = max(currentCenterDisplayRow, 0);*/
+
 		currentCenterDisplayRow = scr_currentTopLine();
 	}
 	
@@ -99,6 +87,8 @@ with (obj_panelPane) {
 scrollPlusX = lerp(scrollPlusX, scrollPlusXDest, 0.4);
 
 
+
+
 // Check if user is in the NavWindow. If not, allow key control on main screen.
 if (!clickedInChainList and !clickedInChainContents and not mouseoverHelpPane and !instance_exists(obj_dropDown)) {
 
@@ -109,46 +99,18 @@ if (!clickedInChainList and !clickedInChainContents and not mouseoverHelpPane an
 		if(holdDownArrowKey == 0 and not mouse_wheel_down()) {
 
 			scrollSpeed = -gridSpaceVertical;
-			/*
-			if(obj_control.currentActiveLineGrid == obj_control.searchGrid and obj_panelPane.functionChainList_lineGridRowFocused < ds_grid_height(obj_control.searchGrid) - 1) {
-				obj_panelPane.functionChainList_lineGridRowFocused++;
-				var currentLineUnitID = ds_grid_get(obj_control.searchGrid, obj_control.lineGrid_colUnitID, obj_panelPane.functionChainList_lineGridRowFocused);
-				var lineColor = ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colParticipantColor, currentLineUnitID - 1);
-				obj_panelPane.functionChainContents_BGColor = lineColor;
-				ds_grid_set_region(obj_control.searchGrid, obj_control.lineGrid_colLineState, 0, obj_control.lineGrid_colLineState, ds_grid_height(obj_control.searchGrid), 0);
-				ds_grid_set(obj_control.searchGrid, obj_control.lineGrid_colLineState, obj_panelPane.functionChainList_lineGridRowFocused, 1);
-				obj_panelPane.functionChainContents_lineGridRowFocused = -1;	
-			}
-			*/
+
 		}
 		if (holdDownArrowKey > 15) {
 			scrollSpeed = (-min(arrowSpeed, 25)) * holdArrowMod;
 			if (mouse_wheel_down()) {
 				scrollSpeed = -(min(arrowSpeed, 25) * 2);
 			}
-			/*
-			if((holdDownArrowKey % (4 - holdArrowMod) == 0) and obj_control.currentActiveLineGrid == obj_control.searchGrid and obj_panelPane.functionChainList_lineGridRowFocused < ds_grid_height(obj_control.searchGrid) - 1) {
-				obj_panelPane.functionChainList_lineGridRowFocused++;
-				var currentLineUnitID = ds_grid_get(obj_control.searchGrid, obj_control.lineGrid_colUnitID, obj_panelPane.functionChainList_lineGridRowFocused);
-				var lineColor = ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colParticipantColor, currentLineUnitID - 1);
-				obj_panelPane.functionChainContents_BGColor = lineColor;
-				ds_grid_set_region(obj_control.searchGrid, obj_control.lineGrid_colLineState, 0, obj_control.lineGrid_colLineState, ds_grid_height(obj_control.searchGrid), 0);
-				ds_grid_set(obj_control.searchGrid, obj_control.lineGrid_colLineState, obj_panelPane.functionChainList_lineGridRowFocused, 1);
-				obj_panelPane.functionChainContents_lineGridRowFocused = -1;	
-			}
-			*/
+
 		}
 		else if(mouse_wheel_down()) {
 			scrollSpeed = -(min(arrowSpeed, 25) * 1.5);
-			/*if(obj_control.currentActiveLineGrid == obj_control.searchGrid and obj_panelPane.functionChainList_lineGridRowFocused < ds_grid_height(obj_control.searchGrid) - 1) {
-				obj_panelPane.functionChainList_lineGridRowFocused++;
-				var currentLineUnitID = ds_grid_get(obj_control.searchGrid, obj_control.lineGrid_colUnitID, obj_panelPane.functionChainList_lineGridRowFocused);
-				var lineColor = ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colParticipantColor, currentLineUnitID - 1);
-				obj_panelPane.functionChainContents_BGColor = lineColor;
-				ds_grid_set_region(obj_control.searchGrid, obj_control.lineGrid_colLineState, 0, obj_control.lineGrid_colLineState, ds_grid_height(obj_control.searchGrid), 0);
-				ds_grid_set(obj_control.searchGrid, obj_control.lineGrid_colLineState, obj_panelPane.functionChainList_lineGridRowFocused, 1);
-				obj_panelPane.functionChainContents_lineGridRowFocused = -1;	
-			}*/
+
 		}
 		if(holdDownArrowKey > 45) {
 				holdArrowMod = 2;
@@ -165,46 +127,18 @@ if (!clickedInChainList and !clickedInChainContents and not mouseoverHelpPane an
 		if(holdUpArrowKey == 0 and not mouse_wheel_up()) {
 			
 			scrollSpeed = gridSpaceVertical;
-			/*
-			if(obj_control.currentActiveLineGrid == obj_control.searchGrid and obj_panelPane.functionChainList_lineGridRowFocused > 0) {
-				obj_panelPane.functionChainList_lineGridRowFocused--;
-				var currentLineUnitID = ds_grid_get(obj_control.searchGrid, obj_control.lineGrid_colUnitID, obj_panelPane.functionChainList_lineGridRowFocused);
-				var lineColor = ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colParticipantColor, currentLineUnitID - 1);
-				obj_panelPane.functionChainContents_BGColor = lineColor;
-				ds_grid_set_region(obj_control.searchGrid, obj_control.lineGrid_colLineState, 0, obj_control.lineGrid_colLineState, ds_grid_height(obj_control.searchGrid), 0);
-				ds_grid_set(obj_control.searchGrid, obj_control.lineGrid_colLineState, obj_panelPane.functionChainList_lineGridRowFocused, 1);
-				obj_panelPane.functionChainContents_lineGridRowFocused = -1;	
-			}
-			*/
+
 		}
 		if (holdUpArrowKey > 15) {
 			scrollSpeed = min(arrowSpeed, 25) * holdArrowMod;
 			if (mouse_wheel_up()) {
 				scrollSpeed = (min(arrowSpeed, 25) * 2);
 			}
-			/*
-			if((holdUpArrowKey % (4 - holdArrowMod) == 0) and obj_control.currentActiveLineGrid == obj_control.searchGrid and obj_panelPane.functionChainList_lineGridRowFocused > 0) {
-				obj_panelPane.functionChainList_lineGridRowFocused--;
-				var currentLineUnitID = ds_grid_get(obj_control.searchGrid, obj_control.lineGrid_colUnitID, obj_panelPane.functionChainList_lineGridRowFocused);
-				var lineColor = ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colParticipantColor, currentLineUnitID - 1);
-				obj_panelPane.functionChainContents_BGColor = lineColor;
-				ds_grid_set_region(obj_control.searchGrid, obj_control.lineGrid_colLineState, 0, obj_control.lineGrid_colLineState, ds_grid_height(obj_control.searchGrid), 0);
-				ds_grid_set(obj_control.searchGrid, obj_control.lineGrid_colLineState, obj_panelPane.functionChainList_lineGridRowFocused, 1);
-				obj_panelPane.functionChainContents_lineGridRowFocused = -1;	
-			}
-			*/
+
 		}
 		else if(mouse_wheel_up()) {
 			scrollSpeed = (min(arrowSpeed, 25) *1.5);
-			/*if(obj_control.currentActiveLineGrid == obj_control.searchGrid and obj_panelPane.functionChainList_lineGridRowFocused > 0) {
-				obj_panelPane.functionChainList_lineGridRowFocused--;
-				var currentLineUnitID = ds_grid_get(obj_control.searchGrid, obj_control.lineGrid_colUnitID, obj_panelPane.functionChainList_lineGridRowFocused);
-				var lineColor = ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colParticipantColor, currentLineUnitID - 1);
-				obj_panelPane.functionChainContents_BGColor = lineColor;
-				ds_grid_set_region(obj_control.searchGrid, obj_control.lineGrid_colLineState, 0, obj_control.lineGrid_colLineState, ds_grid_height(obj_control.searchGrid), 0);
-				ds_grid_set(obj_control.searchGrid, obj_control.lineGrid_colLineState, obj_panelPane.functionChainList_lineGridRowFocused, 1);
-				obj_panelPane.functionChainContents_lineGridRowFocused = -1;	
-			}*/
+
 		}
 		if(holdUpArrowKey > 45) {
 				holdArrowMod = 2;
@@ -311,7 +245,6 @@ if (!clickedInChainList and !clickedInChainContents and not mouseoverHelpPane an
 	}
 	
 
-
 	if (not instance_exists(obj_dialogueBox)) {
 	
 		// Sends user to the bottom of the main screen
@@ -364,8 +297,6 @@ if (!clickedInChainList and !clickedInChainContents and not mouseoverHelpPane an
 			instance_create_layer(0, 0, "InstanceLoading", obj_fileDiagnostics);
 		}
 	}
-	
-	
 
 	
 	if (wordDrawGridFocusedAnimationInc) {
@@ -511,6 +442,8 @@ if (keyboard_check(vk_alt) and keyboard_check(vk_shift) and keyboard_check_press
 }
 
 
+
+
 currentCenterDisplayRow = max(currentCenterDisplayRow, 0);
 currentCenterDisplayRow = min(currentCenterDisplayRow, ds_grid_height(currentActiveLineGrid) - 1);
 
@@ -531,33 +464,36 @@ if ((window_get_cursor() != cr_size_ns) && !mouse_check_button(mb_left)) {
 	mouseoverDialogueBox = false;
 }
 
+
 // set mouseoverPanelPane
-if (obj_panelPane.showNav) {
-	for (var i = 0; i < instance_number(obj_panelPane); i++) {
+if (instance_exists(obj_panelPane)) {
+	if (obj_panelPane.showNav) {
+		for (var i = 0; i < instance_number(obj_panelPane); i++) {
 		
-		// get current pane
-		var panelPaneInst = instance_find(obj_panelPane, i);
-		var isLeft = (panelPaneInst.currentFunction == panelPaneInst.functionChainList);
-		var isRight = (panelPaneInst.currentFunction == panelPaneInst.functionChainContents);
-		var isTabs = (panelPaneInst.currentFunction == panelPaneInst.functionTabs);
+			// get current pane
+			var panelPaneInst = instance_find(obj_panelPane, i);
+			var isLeft = (panelPaneInst.currentFunction == panelPaneInst.functionChainList);
+			var isRight = (panelPaneInst.currentFunction == panelPaneInst.functionChainContents);
+			var isTabs = (panelPaneInst.currentFunction == panelPaneInst.functionTabs);
 		
-		// don't set mouseover to be true if this pane is hidden!
-		if ((isLeft && obj_panelPane.showNavLeft) || (isRight && obj_panelPane.showNavRight) || isTabs) {
-			// check if mouse is in range
-			if (point_in_rectangle(mouse_x, mouse_y, panelPaneInst.x, panelPaneInst.y, panelPaneInst.x + panelPaneInst.windowWidth, panelPaneInst.y + panelPaneInst.windowHeight)) {
-				mouseoverPanelPane = true;
-			}
-		}
-		
-		// check for mouse over search pane
-		if (obj_control.dialogueBoxActive && point_in_rectangle(mouse_x, mouse_y, camera_get_view_width(camera_get_active()) /2 - 250, camera_get_view_height(camera_get_active())/2 - 125 + 30, camera_get_view_width(camera_get_active()) /2 + 250, camera_get_view_height(camera_get_active())/2 + 125)){
-			mouseoverPanelPane = true;		
-		}
-	
-		if (panelPaneInst.currentFunction == panelPaneInst.functionHelp) {
-			if (!panelPaneInst.functionHelp_collapsed) {
-				if (point_in_rectangle(mouse_x, mouse_y, panelPaneInst.functionHelp_helpWindowRectX1, panelPaneInst.functionHelp_helpWindowRectY1, panelPaneInst.functionHelp_helpWindowRectX2, panelPaneInst.functionHelp_helpWindowRectY2)) {
+			// don't set mouseover to be true if this pane is hidden!
+			if ((isLeft && obj_panelPane.showNavLeft) || (isRight && obj_panelPane.showNavRight) || isTabs) {
+				// check if mouse is in range
+				if (point_in_rectangle(mouse_x, mouse_y, panelPaneInst.x, panelPaneInst.y, panelPaneInst.x + panelPaneInst.windowWidth, panelPaneInst.y + panelPaneInst.windowHeight)) {
 					mouseoverPanelPane = true;
+				}
+			}
+		
+			// check for mouse over search pane
+			if (obj_control.dialogueBoxActive && point_in_rectangle(mouse_x, mouse_y, camera_get_view_width(camera_get_active()) /2 - 250, camera_get_view_height(camera_get_active())/2 - 125 + 30, camera_get_view_width(camera_get_active()) /2 + 250, camera_get_view_height(camera_get_active())/2 + 125)){
+				mouseoverPanelPane = true;		
+			}
+	
+			if (panelPaneInst.currentFunction == panelPaneInst.functionHelp) {
+				if (!panelPaneInst.functionHelp_collapsed) {
+					if (point_in_rectangle(mouse_x, mouse_y, panelPaneInst.functionHelp_helpWindowRectX1, panelPaneInst.functionHelp_helpWindowRectY1, panelPaneInst.functionHelp_helpWindowRectX2, panelPaneInst.functionHelp_helpWindowRectY2)) {
+						mouseoverPanelPane = true;
+					}
 				}
 			}
 		}
@@ -588,15 +524,15 @@ if (instance_exists(obj_audioUI)) {
 			mouseoverPanelPane = true;
 		}
 	}
+	if (not obj_audioUI.mouseOverAudioUI and not mouseoverPanelPane and not instance_exists(obj_dropDown) and not instance_exists(obj_dialogueBox)) {
+		mouseOverUI = false;
+	}
+	else {
+		mouseOverUI = true;
+	}
 }
 
 
-if (not obj_audioUI.mouseOverAudioUI and not mouseoverPanelPane and not instance_exists(obj_dropDown) and not instance_exists(obj_dialogueBox)) {
-	mouseOverUI = false;
-}
-else {
-	mouseOverUI = true;
-}
 
 
 
@@ -674,4 +610,6 @@ window_set_caption(captionString);
 
 
 scr_fontSizeControl();
+
+show_debug_message("obj_control step end");
 

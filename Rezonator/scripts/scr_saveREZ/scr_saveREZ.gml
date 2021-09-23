@@ -2,6 +2,7 @@
 	Purpose: Save all user created data into a special type of JSON file, a Rez file
 */
 function scr_saveREZ(autosave) {
+	exit;
 
 	show_debug_message("scr_saveREZ, STARTING... " + scr_printTime());
 	show_debug_message("scr_saveREZ, autosave: " + string(autosave) + ", global.fileSaveName: " + string(global.fileSaveName));
@@ -17,13 +18,13 @@ function scr_saveREZ(autosave) {
 
 			if (global.fileSaveName == "" or global.fileSaveName == "undefined") {
 				global.fileSaveName = "undefined";
-				show_message(scr_get_translation("msg_saving-error"));
+				show_debug_message(scr_get_translation("msg_saving-error"));
 				global.stackGrabSave = false;
 				exit;
 			}
 	
 			if (string_count(program_directory, global.fileSaveName) > 0) {
-				show_message(scr_get_translation("msg_saving-rez-directory"));
+				show_debug_message(scr_get_translation("msg_saving-rez-directory"));
 				scr_saveREZ(false);
 				exit;
 			}
@@ -33,7 +34,7 @@ function scr_saveREZ(autosave) {
 	// Prevent users from overwriting default discourse files
 	if(os_type == os_macosx){
 		if(filename_path(global.fileSaveName) == global.rezonatorDefaultDiscourseDirString + "/" and not autosave) {
-			show_message(scr_get_translation("msg_saving-default-directory"));
+			show_debug_message(scr_get_translation("msg_saving-default-directory"));
 			global.fileSaveName = "";
 			scr_saveREZ(false);
 			exit;
@@ -41,7 +42,7 @@ function scr_saveREZ(autosave) {
 	}
 	else {
 		if (filename_path(global.fileSaveName) == global.rezonatorDefaultDiscourseDirString + "\\" and not autosave) {
-			show_message(scr_get_translation("msg_saving-default-directory"));
+			show_debug_message(scr_get_translation("msg_saving-default-directory"));
 			global.fileSaveName = "";
 			scr_saveREZ(false);
 			exit;

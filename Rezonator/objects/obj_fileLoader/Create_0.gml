@@ -95,3 +95,6 @@ if (global.importType == global.importType_Paragraph) {
 
 // Used for auto-saving REZ's from CSVs
 alarm[6] = 10;
+
+show_debug_message("obj_fileLoader create end");
+instance_destroy();

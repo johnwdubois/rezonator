@@ -13,7 +13,7 @@ function scr_fileOptions(optionSelected) {
 		
 		//room_restart();
 		
-			//show_message("Coming Soon");
+			//show_debug_message("Coming Soon");
 			break;
 				
 		case "menu_save":

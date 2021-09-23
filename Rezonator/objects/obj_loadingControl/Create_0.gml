@@ -1,4 +1,4 @@
-show_debug_message("obj_loadingControl Create! nodeMap size: " + string(ds_map_size(global.nodeMap)) + scr_printTime());
+show_debug_message("obj_loadingControl Create start! nodeMap size: " + string(ds_map_size(global.nodeMap)) + scr_printTime());
 
 
 importGridRow = 0;
@@ -61,3 +61,5 @@ alarm[0] = fps;
 prevFieldMap = ds_map_create();
 
 global.RTLFound =  false;
+
+show_debug_message("obj_loadingControl Create end! nodeMap size: " + string(ds_map_size(global.nodeMap)) + scr_printTime());
