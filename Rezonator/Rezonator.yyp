@@ -36,6 +36,7 @@
     {"id":{"name":"spr_justifyToggle","path":"sprites/spr_justifyToggle/spr_justifyToggle.yy",},"order":17,},
     {"id":{"name":"scr_exportDiscourseTempGrid","path":"scripts/scr_exportDiscourseTempGrid/scr_exportDiscourseTempGrid.yy",},"order":12,},
     {"id":{"name":"scr_fieldChains1To1Options","path":"scripts/scr_fieldChains1To1Options/scr_fieldChains1To1Options.yy",},"order":65,},
+    {"id":{"name":"fnt_main","path":"fonts/fnt_main/fnt_main.yy",},"order":0,},
     {"id":{"name":"spr_helpToggle","path":"sprites/spr_helpToggle/spr_helpToggle.yy",},"order":12,},
     {"id":{"name":"scr_removeFieldTagQuestionPrompt","path":"scripts/scr_removeFieldTagQuestionPrompt/scr_removeFieldTagQuestionPrompt.yy",},"order":19,},
     {"id":{"name":"spr_transcriptionToggle","path":"sprites/spr_transcriptionToggle/spr_transcriptionToggle.yy",},"order":35,},
@@ -765,7 +766,7 @@
     {"CopyToMask":-1,"filePath":"datafiles/IncludedFiles/Localization","resourceVersion":"1.0","name":"locale_vi.json","resourceType":"GMIncludedFile",},
   ],
   "MetaData": {
-    "IDEVersion": "2.3.4.580",
+    "IDEVersion": "2.3.4.583",
   },
   "resourceVersion": "1.4",
   "name": "Rezonator",

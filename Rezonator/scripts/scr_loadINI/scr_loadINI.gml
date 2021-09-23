@@ -1,4 +1,5 @@
 function scr_loadINI() {
+	
 
 
 	if (os_type == os_macosx) {
@@ -131,7 +132,6 @@ function scr_loadINI() {
 	}
 
 	ds_list_destroy(newInstList);
-
 
 
 

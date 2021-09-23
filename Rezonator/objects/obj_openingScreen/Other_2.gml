@@ -1,5 +1,3 @@
-scr_createRezDirectory();
-
 global.currentDirString = global.rezonatorDirString;
 global.fontSize = 0;
 
@@ -32,7 +30,7 @@ global.importType_Transcription = "import_type_transcription";
 global.importType = global.importType_PlainText;
 
 
-scr_loadINI();
+
 
 global.importGroupDir = "";
 global.importGroupFileList = ds_list_create();

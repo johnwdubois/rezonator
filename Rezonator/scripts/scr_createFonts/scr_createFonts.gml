@@ -2,8 +2,8 @@
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
 function scr_createFonts(filePath, i){
 
-
-
+	show_message("scr_createFonts start");
+	
 	// main fonts
 	if(i == 0 ){
 		global.localeCJK_S_0 = font_add(filePath,smallFontSize,false,false,32,127);
@@ -51,7 +51,9 @@ function scr_createFonts(filePath, i){
 	//Title font 	
 		global.localeCJK_Title = font_add(filePath,30,false,false,32,127);
 		show_debug_message("Loop 5 CLEAR");
-	}	
+	}
+	
+	show_message("scr_createFonts end");
 	
 	
 }

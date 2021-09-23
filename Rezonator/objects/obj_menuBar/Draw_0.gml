@@ -190,7 +190,7 @@ var langTextX1 = (global.lang_codes[| global.lang_index] == "he") ? langTextX2 +
 var langTextY1 = fpsTextY - (sizeOfSave/2);
 var langTextY2 = fpsTextY + (sizeOfSave/2);
 draw_set_color(c_white);
-var mouseOverLang = (global.lang_codes[| global.lang_index] == "he") ? point_in_rectangle(mouse_x,mouse_y,langTextX2,langTextY1,langTextX1,langTextY2) : point_in_rectangle(mouse_x,mouse_y,langTextX1,langTextY1,langTextX2,langTextY2);
+var mouseOverLang = false;//(global.lang_codes[| global.lang_index] == "he") ? point_in_rectangle(mouse_x,mouse_y,langTextX2,langTextY1,langTextX1,langTextY2) : point_in_rectangle(mouse_x,mouse_y,langTextX1,langTextY1,langTextX2,langTextY2);
 if(mouseOverLang){
 	//draw_set_color(global.colorThemeText);
 	if(global.lang_codes[| global.lang_index] == "he"){

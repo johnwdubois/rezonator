@@ -1,5 +1,7 @@
 function scr_createRezDirectory() {
 	
+
+	
 	// Create the colelction of folders and files the user will receive on downloading Rezonator
 	var userName = (os_type == os_macosx) ? "USER" : "USERNAME";
 	var userStr = environment_get_variable(userName);
@@ -56,4 +58,6 @@ function scr_createRezDirectory() {
 			directory_create(global.rezonatorSchemaDirString);
 		}
 	}
+	
+
 }
