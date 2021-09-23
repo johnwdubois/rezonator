@@ -1,5 +1,7 @@
 function scr_loadINI() {
 	
+	exit;
+	
 
 
 	if (os_type == os_macosx) {

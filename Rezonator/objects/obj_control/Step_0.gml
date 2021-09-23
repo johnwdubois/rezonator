@@ -2,7 +2,6 @@
 	//Purpose: Check for user key inputs and navigate accordingly, update the center display row based on positioning, change the font size, and check for panel pane mouse over
 
 
-show_debug_message("obj_control step start");
 
 #macro vk_rcommand 91
 #macro vk_lcommand 92
@@ -610,6 +609,3 @@ window_set_caption(captionString);
 
 
 scr_fontSizeControl();
-
-show_debug_message("obj_control step end");
-

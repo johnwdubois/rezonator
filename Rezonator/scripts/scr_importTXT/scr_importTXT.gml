@@ -12,7 +12,6 @@ function scr_importTXT(filename) {
 	// get a list of lines from the source file
 	var fileLineList = ds_list_create();
 	ds_list_add(fileLineList, "Bobby's boy");
-	ds_list_add(fileLineList, "is my pal");
 
 
 	

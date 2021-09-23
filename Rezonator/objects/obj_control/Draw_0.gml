@@ -3,8 +3,6 @@
 
 */
 
-show_debug_message("obj_control draw start");
-
 
 window_set_cursor(cr_default);
 
@@ -108,5 +106,3 @@ var discourseSubMap = global.nodeMap[? global.discourseNode];
 		}
 	}
 }
-
-show_debug_message("obj_control draw end");

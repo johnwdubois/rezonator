@@ -2,7 +2,6 @@
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
 function scr_drawLine2ElectricBoogaloo(){
 	
-	show_debug_message("scr_drawLine2ElectricBoogaloo start");
 	
 	
 	scr_adaptFont("0", "M");
@@ -37,10 +36,9 @@ function scr_drawLine2ElectricBoogaloo(){
 	}
 	var displayUnitListSize = ds_list_size(displayUnitList);
 	
-	show_debug_message("scr_drawLine2ElectricBoogaloo 1");
-	
+
 	scr_setDrawRange(camHeight, displayUnitList, displayUnitListSize);
-	show_debug_message("scr_drawLine2ElectricBoogaloo 2");
+
 	
 	hoverTokenID = "";
 	hoverUnitID = "";
@@ -82,10 +80,7 @@ function scr_drawLine2ElectricBoogaloo(){
 		ds_list_clear(obj_chain.chunkShowList);
 	
 	}
-	
-	show_debug_message("scr_drawLine2ElectricBoogaloo 3");
-	
-	
+
 	
 	ds_list_clear(inRectWordIDList);
 	ds_list_clear(chainVoidCheckList);
@@ -117,13 +112,12 @@ function scr_drawLine2ElectricBoogaloo(){
 	unitClosestToMouse = "";
 	var minUnitDistToMouse = 999999999999;
 	
-	show_debug_message("scr_drawLine2ElectricBoogaloo 4");
+
 	
 	// loop through units
 	var unitPlusY = wordTopMargin + (gridSpaceVertical * 0.5);
 	for (var i = 0; i < displayUnitListSize; i++) {
 		
-		show_debug_message("scr_drawLine2ElectricBoogaloo 4.1, i: " + string(i));
 		
 		// if unit is outside of draw range, do not draw its entries/tokens
 		if (i < drawRangeStart || i > drawRangeEnd) {
@@ -186,7 +180,6 @@ function scr_drawLine2ElectricBoogaloo(){
 		unitPlusY += gridSpaceVertical;
 	}
 	
-	show_debug_message("scr_drawLine2ElectricBoogaloo 5");
 	
 	if(!obj_control.mouseoverSpeakerLabel and obj_control.hoverTokenID == "" and obj_control.hoverChunkID == "" and !obj_control.mouseoverPanelPane and !(instance_exists(obj_dropDown) and obj_control.rightClicked) and !instance_exists(obj_dialogueBox)){
 		if(device_mouse_check_button_released(0, mb_left)){
@@ -217,6 +210,5 @@ function scr_drawLine2ElectricBoogaloo(){
 	
 	updateChainShowMap = false;
 	
-	show_debug_message("scr_drawLine2ElectricBoogaloo end");
-	
+
 }
