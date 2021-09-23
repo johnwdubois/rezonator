@@ -72,7 +72,7 @@ function scr_panelPane_drawUnits1To1Headers(){
 			var underlineY = headerTextY + (headerHeight * 0.25);
 			draw_set_color(global.colorThemeBorders);
 			draw_line_width(underlineX1, underlineY, underlineX2, underlineY, 2);
-			scr_createTooltip(mean(headerRectX1, headerRectX2), headerRectY2, scr_get_translation("msg_change_field"), obj_tooltip.arrowFaceUp);
+			scr_createTooltip(mean(headerRectX1, headerRectX2), headerRectY2, scr_get_translation("msg_change_field"), global.arrowFaceUp);
 			
 			if (mouse_check_button_released(mb_left)) {
 				obj_control.unitToChange = "";
@@ -93,7 +93,7 @@ function scr_panelPane_drawUnits1To1Headers(){
 		// change display unit (speaker)
 		if (mouseoverDisplayUnit && !instance_exists(obj_dropDown)) {
 				
-			scr_createTooltip(displayUnitButtonX, displayUnitButtonY + displayUnitButtonSize, scr_get_translation("msg_display_unit"), obj_tooltip.arrowFaceUp);
+			scr_createTooltip(displayUnitButtonX, displayUnitButtonY + displayUnitButtonSize, scr_get_translation("msg_display_unit"), global.arrowFaceUp);
 			draw_set_color(global.colorThemeSelected1);
 			draw_circle(displayUnitButtonX, displayUnitButtonY, displayUnitButtonSize * 0.75, false);
 			

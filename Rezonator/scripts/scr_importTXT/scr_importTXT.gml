@@ -11,8 +11,16 @@ function scr_importTXT(filename) {
 	
 	// get a list of lines from the source file
 	var fileLineList = ds_list_create();
-	ds_list_add(fileLineList, "Bobby's boy");
-
+	ds_list_add(fileLineList, "Bobby's Uncle John takes a chain off the gate");
+	ds_list_add(fileLineList, "Of his 44 acre farm");
+	ds_list_add(fileLineList, "Yeah we take a muddy path and bunch of six packs");
+	ds_list_add(fileLineList, "On back to the party barn");
+	ds_list_add(fileLineList, "Get the hay bails out make room for the crowd");
+	ds_list_add(fileLineList, "Put the empty's on the shelf so we can keep count");
+	ds_list_add(fileLineList, "Got 99 bottles of beer on the wall");
+	ds_list_add(fileLineList, "99 bottles of beer on the wall");
+	ds_list_add(fileLineList, "Just having some fun in the country ya'll");
+	ds_list_add(fileLineList, "Got 99 bottles of beer on the wall");
 
 	
 	var fileLineListSize = ds_list_size(fileLineList);

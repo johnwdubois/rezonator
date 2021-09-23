@@ -157,7 +157,7 @@ function scr_panelPane_drawTreeList(){
 
 				}
 				
-				scr_createTooltip(delButtonX, treeRectY2, scr_get_translation("msg_remove"), obj_tooltip.arrowFaceUp);
+				scr_createTooltip(delButtonX, treeRectY2, scr_get_translation("msg_remove"), global.arrowFaceUp);
 			}
 			else {
 				if (mouse_check_button_released(mb_left)) {

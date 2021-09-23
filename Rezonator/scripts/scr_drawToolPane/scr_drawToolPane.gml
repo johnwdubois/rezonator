@@ -48,7 +48,7 @@ function scr_drawToolPane(toolSprScale) {
 	}
 	
 	if (mouseoverTool) {
-		scr_createTooltip(toolButtonRectX1, toolButtonY, scr_get_translation("option_tool"), obj_tooltip.arrowFaceRight);
+		scr_createTooltip(toolButtonRectX1, toolButtonY, scr_get_translation("option_tool"), global.arrowFaceRight);
 		
 		if (mouse_check_button_released(mb_left)) {
 			var toolOptionList = ds_list_create();
@@ -86,7 +86,7 @@ function scr_drawToolPane(toolSprScale) {
 	if (mouseoverFilter) {
 		draw_set_color(c_white);
 		scr_drawRectWidth(filterButtonRectX1, filterButtonRectY1, filterButtonRectX2, filterButtonRectY2, mouseoverRectWidth , false);
-		scr_createTooltip(filterButtonRectX1, filterButtonY, scr_get_translation("menu_filter"), obj_tooltip.arrowFaceRight);
+		scr_createTooltip(filterButtonRectX1, filterButtonY, scr_get_translation("menu_filter"), global.arrowFaceRight);
 		
 		
 		if (mouse_check_button_released(mb_left)) {
@@ -120,7 +120,7 @@ function scr_drawToolPane(toolSprScale) {
 	}
 	
 	if (mouseoverContext) {
-		scr_createTooltip(contextButtonRectX1, contextButtonY, scr_get_translation("menu_filter-context"), obj_tooltip.arrowFaceRight);
+		scr_createTooltip(contextButtonRectX1, contextButtonY, scr_get_translation("menu_filter-context"), global.arrowFaceRight);
 		
 		if (mouse_check_button_released(mb_left)) {
 			var contextOptionList = ds_list_create();
@@ -165,7 +165,7 @@ function scr_drawToolPane(toolSprScale) {
 	}
 	
 	if (mouseoverJustify) {
-		scr_createTooltip(justifyButtonRectX1, justifyButtonY, scr_get_translation("menu_justify"), obj_tooltip.arrowFaceRight);
+		scr_createTooltip(justifyButtonRectX1, justifyButtonY, scr_get_translation("menu_justify"), global.arrowFaceRight);
 		
 		if (mouse_check_button_released(mb_left)) {
 			var justifyOptionList = ds_list_create();
@@ -196,7 +196,7 @@ function scr_drawToolPane(toolSprScale) {
 	}
 	
 	if (mouseoverOneToOne) {
-		scr_createTooltip(oneToOneButtonRectX1, oneToOneButtonY, !obj_panelPane.chainViewOneToMany ? scr_get_translation("option_one-to-one") : scr_get_translation("option_one-to-many"), obj_tooltip.arrowFaceRight);
+		scr_createTooltip(oneToOneButtonRectX1, oneToOneButtonY, !obj_panelPane.chainViewOneToMany ? scr_get_translation("option_one-to-one") : scr_get_translation("option_one-to-many"), global.arrowFaceRight);
 		
 		if (mouse_check_button_released(mb_left)) {
 			var oneToOneOptionList = ds_list_create();
@@ -229,7 +229,7 @@ function scr_drawToolPane(toolSprScale) {
 	}
 	
 	if (mouseoverAudio) {
-		scr_createTooltip(audioButtonRectX1, audioButtonY, scr_get_translation("menu_media"), obj_tooltip.arrowFaceRight);
+		scr_createTooltip(audioButtonRectX1, audioButtonY, scr_get_translation("menu_media"), global.arrowFaceRight);
 		
 		if (mouse_check_button_released(mb_left)) {
 			with (obj_audioUI) {
@@ -267,7 +267,7 @@ function scr_drawToolPane(toolSprScale) {
 	}
 	
 	if (mouseoverHelp) {
-		scr_createTooltip(helpButtonRectX1, helpButtonY, scr_get_translation("menu_help"), obj_tooltip.arrowFaceRight);
+		scr_createTooltip(helpButtonRectX1, helpButtonY, scr_get_translation("menu_help"), global.arrowFaceRight);
 		
 		if (mouse_check_button_released(mb_left)) {
 			var helpCollapsed = obj_panelPane.functionHelp_collapsed;

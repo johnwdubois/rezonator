@@ -79,7 +79,7 @@ for (var i = 0; i < imageNum; i++) {
 			//draw_rectangle(optionBGRectX1, optionBGRectY1, optionBGRectX2, optionBGRectY2, false);
 		}
 
-		scr_createTooltip(mean(currentOptionRectX1, currentOptionRectX2), currentOptionRectY2, scr_get_translation(optionStr), obj_tooltip.arrowFaceUp);
+		scr_createTooltip(mean(currentOptionRectX1, currentOptionRectX2), currentOptionRectY2, scr_get_translation(optionStr), global.arrowFaceUp);
 		
 		if (mouse_check_button_released(mb_left)) scr_dropDownSelect(optionStr);
 	}
