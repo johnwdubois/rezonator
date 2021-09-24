@@ -18,6 +18,8 @@ function scr_panelPaneDrawBranch(){
 				draw_set_alpha(1);
 				draw_set_color(global.colorThemePaneBG);
 				draw_rectangle(x, y, x + windowWidth, y + windowHeight, false);
+				draw_set_color(global.colorThemeBorders);
+				draw_rectangle(x, y, x + windowWidth, y + windowHeight, true);
 
 				// all the possible left panes
 				if (functionChainList_currentTab == functionChainList_tabLine) {
@@ -63,7 +65,7 @@ function scr_panelPaneDrawBranch(){
 		// RIGHT NAV WINDOW
 		case functionChainContents:
 		
-			x = camWidth * 0.5;
+			x = floor(camWidth * 0.5) ;
 			windowWidth = camWidth - x;
 		
 			if (showNavRight) {
@@ -71,6 +73,8 @@ function scr_panelPaneDrawBranch(){
 				draw_set_alpha(1);
 				draw_set_color(global.colorThemeBG);
 				draw_rectangle(x, y, x + windowWidth, y + windowHeight, false);
+				draw_set_color(global.colorThemeBorders);
+				draw_rectangle(x, y, x + windowWidth, y + windowHeight, true);
 				if (is_numeric(functionChainContents_BGColor)) {
 					// if we are on the line tab, set the BG color to be regular
 					if (functionChainList_currentTab == functionChainList_tabLine || functionChainList_currentTab == functionChainList_tabChunk || functionChainList_currentTab == functionChainList_tabSearch || functionChainList_currentTab == functionChainList_tabTree) {

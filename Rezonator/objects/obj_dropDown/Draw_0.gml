@@ -264,7 +264,7 @@ for (var i = 0; i < optionListSize; i++) {
 	
 
 
-	draw_text(optionTextX - clipX, optionTextY - clipY, optionTextStr);
+	draw_text(optionTextX - clipX, floor(optionTextY - clipY), optionTextStr);
 	
 	
 

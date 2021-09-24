@@ -337,7 +337,7 @@ function scr_panelPane_drawSearch1ToMany(){
 		// draw vertical line separating unit column from the others
 		if (i <= 1) {
 			draw_set_color(global.colorThemeBorders);
-			draw_line_width(headerRectX1, y, headerRectX1, y + windowHeight, 1);
+			//draw_line_width(headerRectX1, y, headerRectX1, y + windowHeight, 1);
 		}
 
 
