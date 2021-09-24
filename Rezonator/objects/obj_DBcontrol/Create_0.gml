@@ -13,7 +13,7 @@ request_ids_ = ds_map_create();
 timeout_timers_ = ds_map_create();
 database_url_ = "https://rezonator-13b47-default-rtdb.firebaseio.com/";
 api_key_ = "AIzaSyAKlxe-4nMfRprg6rRkxWQs9IcSPcWQ1T8";
-auth_location_ = "https://identitytoolkit.googleapis.com/v1/accounts:signInWithCustomToken?key=" + api_key_;
+auth_location_ = "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=" + api_key_;
 refresh_location_ = "https://securetoken.googleapis.com/v1/token?key=" + api_key_ ;
 
 
