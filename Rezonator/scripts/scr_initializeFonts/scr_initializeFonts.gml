@@ -10,34 +10,34 @@ function scr_initializeFonts(){
 			
 
 	//size_1
-		global.localeEN_S_1 = fnt_main;		
-		global.localeEN_M_1 = fnt_main;		
-		global.localeEN_L_1 = fnt_main;		
+		global.localeEN_S_1 = fnt_main2;		
+		global.localeEN_M_1 = fnt_main2;		
+		global.localeEN_L_1 = fnt_main2;		
 
 
 		
 	//size_2
-		global.localeEN_S_2 = fnt_main;		
-		global.localeEN_M_2 = fnt_main;		
-		global.localeEN_L_2 = fnt_main;		
+		global.localeEN_S_2 = fnt_main3;		
+		global.localeEN_M_2 = fnt_main3;		
+		global.localeEN_L_2 = fnt_main3;		
 
 		
 	//size_3
-		global.localeEN_S_3 = fnt_main;		
-		global.localeEN_M_3 = fnt_main;		
-		global.localeEN_L_3 = fnt_main;		
+		global.localeEN_S_3 = fnt_main4;		
+		global.localeEN_M_3 = fnt_main4;		
+		global.localeEN_L_3 = fnt_main4;		
 
 		
 	//size_4
-		global.localeEN_S_4 = fnt_main;		
-		global.localeEN_M_4 = fnt_main;		
-		global.localeEN_L_4 = fnt_main;		
+		global.localeEN_S_4 = fnt_main5;		
+		global.localeEN_M_4 = fnt_main5;		
+		global.localeEN_L_4 = fnt_main5;		
 
 		
 	//size_5
-		global.localeEN_S_5 = fnt_main;		
-		global.localeEN_M_5 = fnt_main;		
-		global.localeEN_L_5 = fnt_main;		
+		global.localeEN_S_5 = fnt_main6;		
+		global.localeEN_M_5 = fnt_main6;		
+		global.localeEN_L_5 = fnt_main6;		
 		
 	//special sizes
 		global.localeEN_Title = fnt_main;		

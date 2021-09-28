@@ -1,3 +1,4 @@
+global.rezonatorDirString = "";
 global.currentDirString = global.rezonatorDirString;
 global.fontSize = 0;
 

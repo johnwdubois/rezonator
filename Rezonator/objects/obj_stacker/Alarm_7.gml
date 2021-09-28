@@ -1,5 +1,6 @@
 /// @description Create endNoteTagList
 // You can write your code in this editor
+exit;
 var tokenImportColNameListSize = ds_list_size(global.tokenImportColNameList);
 for (var tokenColLoop = 0; tokenColLoop < tokenImportColNameListSize; tokenColLoop++) {
 

@@ -9,18 +9,32 @@ function scr_importTXT(filename) {
 	ds_grid_resize(global.importTXTLineGrid, global.importTXTLineGridWidth, 0);
 	
 	
+	var str = ""
+	
+	
 	// get a list of lines from the source file
-	var fileLineList = ds_list_create();
-	ds_list_add(fileLineList, "Bobby's Uncle John takes a chain off the gate");
-	ds_list_add(fileLineList, "Of his 44 acre farm");
-	ds_list_add(fileLineList, "Yeah we take a muddy path and bunch of six packs");
-	ds_list_add(fileLineList, "On back to the party barn");
-	ds_list_add(fileLineList, "Get the hay bails out make room for the crowd");
-	ds_list_add(fileLineList, "Put the empty's on the shelf so we can keep count");
-	ds_list_add(fileLineList, "Got 99 bottles of beer on the wall");
-	ds_list_add(fileLineList, "99 bottles of beer on the wall");
-	ds_list_add(fileLineList, "Just having some fun in the country ya'll");
-	ds_list_add(fileLineList, "Got 99 bottles of beer on the wall");
+	var fileLineList = ds_list_create();//scr_splitStringImport(str, "\n", true);
+	ds_list_add(fileLineList, "We shall overcome,");
+	ds_list_add(fileLineList, "We shall overcome, some day.");
+	ds_list_add(fileLineList, "Oh, deep in my heart,");
+	ds_list_add(fileLineList, "I do believe");
+	ds_list_add(fileLineList, "We shall overcome, some day.");
+	ds_list_add(fileLineList, "We'll walk hand in hand,");
+	ds_list_add(fileLineList, "We'll walk hand in hand,");
+	ds_list_add(fileLineList, "We'll walk hand in hand, some day.");
+	ds_list_add(fileLineList, "Oh, deep in my heart,");
+	ds_list_add(fileLineList, "We shall live in peace,");
+	ds_list_add(fileLineList, "We shall live in peace,");
+	ds_list_add(fileLineList, "We shall live in peace, some day.");
+	ds_list_add(fileLineList, "Oh, deep in my heart,");
+	ds_list_add(fileLineList, "We shall all be free,");
+	ds_list_add(fileLineList, "We shall all be free,");
+	ds_list_add(fileLineList, "We shall all be free, some day.");
+	ds_list_add(fileLineList, "Oh, deep in my heart,");
+	ds_list_add(fileLineList, "We are not afraid,");
+	ds_list_add(fileLineList, "We are not afraid,");
+	ds_list_add(fileLineList, "We are not afraid, TODAY");
+	ds_list_add(fileLineList, "Oh, deep in my heart,");
 
 	
 	var fileLineListSize = ds_list_size(fileLineList);

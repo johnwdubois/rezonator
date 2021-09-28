@@ -210,7 +210,7 @@ function scr_drawLineEntryList(unitID, unitSubMap, entryList, pixelY, OOBCheck){
 			draw_set_color((wordFound) ? make_color_rgb(20, 146, 181) : global.colorThemeText );
 
 			draw_set_alpha(1);
-			draw_text(currentPixelX, pixelY, currentDisplayStr);
+			draw_text(floor(currentPixelX), floor(pixelY), currentDisplayStr);
 		}
 		
 		// run through the loop forward or backward depending on if LTR or RTL

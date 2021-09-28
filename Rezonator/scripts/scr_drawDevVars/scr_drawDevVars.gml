@@ -36,7 +36,7 @@ function scr_drawDevVars(){
 	// draw dev vars
 	var devVarX = camWidth - global.toolPaneWidth - global.scrollBarWidth - 20;
 	draw_text(devVarX, wordTopMargin + (strHeight * 1), "autosaveTimer: " + string(global.autosaveTimer) + ", autosaveTimerFull: " + string(global.autosaveTimerFull));
-	draw_text(devVarX, wordTopMargin + (strHeight * 2), "rightClickID: " + string(rightClickID));
+	draw_text(devVarX, wordTopMargin + (strHeight * 2), "ctrlHold: " + string(global.ctrlHold));
 	draw_text(devVarX, wordTopMargin + (strHeight * 3), "mouseOverPanelPane: " + string(mouseoverPanelPane));
 	draw_text(devVarX, wordTopMargin + (strHeight * 4), "wordTopMargin: " + string(wordTopMargin));
 	draw_text(devVarX, wordTopMargin + (strHeight * 5), "wordLeftMargin: " + string(wordLeftMargin));

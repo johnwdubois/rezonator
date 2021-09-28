@@ -49,7 +49,10 @@ function scr_groupStackerLoop(){
 			var currentUnit = unitList[|importLoop];
 			ds_list_add(currentUnitList, currentUnit);
 			importLoop++;
-			currentGroupOrder = ds_grid_get(global.importGrid, groupCol, importLoop);
+			
+			if (importLoop < importGridHeight && importLoop >= 0) {
+				currentGroupOrder = ds_grid_get(global.importGrid, groupCol, importLoop);
+			}
 
 		}
 		importLoop--;

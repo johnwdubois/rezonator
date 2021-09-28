@@ -1199,7 +1199,7 @@
     "8126": {"x":578,"y":130,"w":3,"h":30,"character":8126,"shift":12,"offset":5,},
     "8171": {"x":560,"y":130,"w":16,"h":30,"character":8171,"shift":15,"offset":-1,},
     "9558": {"x":546,"y":130,"w":12,"h":30,"character":9558,"shift":15,"offset":-1,},
-    "9647": {"x":539,"y":130,"w":5,"h":30,"character":9647,"shift":13,"offset":3,},
+    "9647": {"x":539,"y":130,"w":5,"h":30,"character":9647,"shift":13,"offset":4,},
     "11377": {"x":413,"y":226,"w":11,"h":30,"character":11377,"shift":11,"offset":0,},
     "65533": {"x":58,"y":482,"w":21,"h":30,"character":65533,"shift":21,"offset":0,},
   },
@@ -2021,7 +2021,7 @@
     "path": "folders/Fonts.yy",
   },
   "resourceVersion": "1.0",
-  "name": "fnt_main",
+  "name": "fnt_main2",
   "tags": [],
   "resourceType": "GMFont",
 }

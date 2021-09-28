@@ -10,6 +10,7 @@ sessionCurrentTime = (current_time - sessionStartTime) + current_time;
 
 scr_multiDropDownMouseover();
 
+if (global.ctrlHold && keyboard_check_released(ord("V"))) show_message(string(clipboard_get_text()));
 
 
 if (!scr_isNumericAndExists(displayUnitList, ds_type_list)) {
