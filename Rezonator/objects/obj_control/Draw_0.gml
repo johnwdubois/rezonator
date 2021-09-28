@@ -62,16 +62,6 @@ if (showDevVars) {
 	scr_drawDevVars();
 }
 
-var scrollBarMarginTop = 230;
-if (instance_exists(obj_panelPane) && instance_exists(obj_toolPane)) {
-	if (!obj_panelPane.showNav) {
-		scrollBarMarginTop -= inst_panelPane_help.windowHeight;
-		if(!obj_toolPane.showTool) {
-			scrollBarMarginTop -= obj_toolPane.windowHeight;
-		}
-	}
-}
-
 
 // draw scrollbar for main screen!!
 var drawScrollBar = false;
