@@ -515,7 +515,6 @@
     {"id":{"name":"obj_stacker","path":"objects/obj_stacker/obj_stacker.yy",},"order":2,},
     {"id":{"name":"rm_openingScreen","path":"rooms/rm_openingScreen/rm_openingScreen.yy",},"order":0,},
     {"id":{"name":"scr_treeEntryOptions","path":"scripts/scr_treeEntryOptions/scr_treeEntryOptions.yy",},"order":71,},
-    {"id":{"name":"rm_mainScreen1","path":"rooms/rm_mainScreen1/rm_mainScreen1.yy",},"order":1,},
     {"id":{"name":"spr_audioTool","path":"sprites/spr_audioTool/spr_audioTool.yy",},"order":6,},
     {"id":{"name":"obj_exampleWindow","path":"objects/obj_exampleWindow/obj_exampleWindow.yy",},"order":13,},
     {"id":{"name":"rm_importScreen","path":"rooms/rm_importScreen/rm_importScreen.yy",},"order":2,},
@@ -550,7 +549,6 @@
   },
   "RoomOrderNodes": [
     {"roomId":{"name":"rm_openingScreen","path":"rooms/rm_openingScreen/rm_openingScreen.yy",},},
-    {"roomId":{"name":"rm_mainScreen1","path":"rooms/rm_mainScreen1/rm_mainScreen1.yy",},},
     {"roomId":{"name":"rm_importScreen","path":"rooms/rm_importScreen/rm_importScreen.yy",},},
     {"roomId":{"name":"rm_loadingScreen","path":"rooms/rm_loadingScreen/rm_loadingScreen.yy",},},
     {"roomId":{"name":"rm_mainScreen","path":"rooms/rm_mainScreen/rm_mainScreen.yy",},},

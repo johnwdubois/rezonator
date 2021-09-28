@@ -345,6 +345,14 @@ ds_map_add(global.openingScreenDropDownMap, "menu_language-gu", true);
 ds_map_add(global.openingScreenDropDownMap, "menu_language-kk", true);
 ds_map_add(global.openingScreenDropDownMap, "menu_language-ru", true);
 
+global.mainScreenDropDownMap = ds_map_create();
+ds_map_add(global.mainScreenDropDownMap, "menu_save", true);
+ds_map_add(global.mainScreenDropDownMap, "menu_export", true);
+ds_map_add(global.mainScreenDropDownMap, "menu_clip", true);
+ds_map_add(global.mainScreenDropDownMap, "menu_media", true);
+ds_map_add(global.mainScreenDropDownMap, "menu_save-as", true);
+ds_map_add(global.mainScreenDropDownMap, "menu_autosave", true);
+ds_map_add(global.mainScreenDropDownMap, "menu_language", true);
 
 
 

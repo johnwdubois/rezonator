@@ -38,7 +38,7 @@ var rectX2 = -1;
 var rectY2 = -1;
 
 
-if (arrowFacing == arrowFaceUp) {
+if (arrowFacing == global.arrowFaceUp) {
 	
 	arrowWidth = 20;
 	arrowHeight = 15;
@@ -55,7 +55,7 @@ if (arrowFacing == arrowFaceUp) {
 	rectX2 = rectX1 + strWidth;
 	rectY2 = rectY1 + strHeight;
 }
-else if (arrowFacing == arrowFaceLeft) {
+else if (arrowFacing == global.arrowFaceLeft) {
 	
 	arrowWidth = 15;
 	arrowHeight = 20;
@@ -72,7 +72,7 @@ else if (arrowFacing == arrowFaceLeft) {
 	rectX2 = rectX1 + strWidth;
 	rectY2 = rectY1 + strHeight;
 }
-else if (arrowFacing == arrowFaceDown) {
+else if (arrowFacing == global.arrowFaceDown) {
 	
 	arrowWidth = 20;
 	arrowHeight = 15;
@@ -89,7 +89,7 @@ else if (arrowFacing == arrowFaceDown) {
 	rectX2 = rectX1 + strWidth;
 	rectY2 = rectY1 - strHeight;
 }
-else if (arrowFacing == arrowFaceRight) {
+else if (arrowFacing == global.arrowFaceRight) {
 	
 	arrowWidth = 15;
 	arrowHeight = 20;

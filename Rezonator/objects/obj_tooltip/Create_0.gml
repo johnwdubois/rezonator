@@ -1,9 +1,10 @@
-var selfID = self;
+var selfID = self.id;
 with (obj_tooltip) {
-	if (self != selfID) {
+	if (self.id != selfID) {
 		instance_destroy();
 	}
 }
+
 
 alpha = 0;
 text = "";
