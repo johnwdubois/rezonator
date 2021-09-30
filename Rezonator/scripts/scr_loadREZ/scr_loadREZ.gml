@@ -80,7 +80,6 @@ show_debug_message("global.previousRezDirectory:  "+string(global.previousRezDir
 		
 			with (asset_get_index(objectIndex)) {
 				if (objectIndex == "obj_control") {
-					obj_control.currentCenterDisplayRow = 0;
 			
 					global.importGridWidth = ds_map_find_value(map, "importGridWidth");
 					global.importCSVGridWidth = ds_map_find_value(map, "importCSVGridWidth");
@@ -225,10 +224,26 @@ show_debug_message("global.previousRezDirectory:  "+string(global.previousRezDir
 					}
 
 
-					
+					// get session length
 					if (ds_map_exists(map, "sessionLength")) {
 						var sessionLength = map[? "sessionLength"];
 						if (is_numeric(sessionLength)) obj_control.loadSessionLength = sessionLength;
+					}
+					
+					// get resonance counter
+					if (ds_map_exists(map, "resonanceCounter")) {
+						var resonanceCounter = map[? "resonanceCounter"];
+						if (is_numeric(resonanceCounter)) obj_chain.rezChainNameCounter = resonanceCounter;
+					}
+					// get trail counter
+					if (ds_map_exists(map, "trailCounter")) {
+						var trailCounter = map[? "trailCounter"];
+						if (is_numeric(trailCounter)) obj_chain.trackChainNameCounter = trailCounter;
+					}
+					// get stack counter
+					if (ds_map_exists(map, "stackCounter")) {
+						var stackCounter = map[? "stackCounter"];
+						if (is_numeric(stackCounter)) obj_chain.stackChainNameCounter = stackCounter;
 					}
 				}
 			}		

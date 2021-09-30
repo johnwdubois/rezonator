@@ -66,19 +66,6 @@ if (keyboard_check_released(vk_rcommand) || keyboard_check_released(vk_lcommand)
 // Mechanism to update center display row
 if (!gridView) {
 	if (ds_grid_height(currentActiveLineGrid) > 0) {
-		/*var firstLinePixelY = (room_height / 2) - (currentCenterDisplayRow * gridSpaceVertical);
-		if (firstLinePixelY > 150 + gridSpaceVertical) {
-			currentCenterDisplayRow++;
-		}
-		
-		
-		var lastLinePixelY = (room_height / 2) + ((ds_grid_height(currentActiveLineGrid) - currentCenterDisplayRow) * gridSpaceVertical);
-		if (lastLinePixelY < camera_get_view_height(camera_get_active()) - 30
-		and currentCenterDisplayRow + drawRange >= ds_grid_height(currentActiveLineGrid)) {
-			currentCenterDisplayRow--;
-		}
-		currentCenterDisplayRow = min(currentCenterDisplayRow, ds_grid_height(currentActiveLineGrid) - 1);
-		currentCenterDisplayRow = max(currentCenterDisplayRow, 0);*/
 		currentCenterDisplayRow = scr_currentTopLine();
 	}
 	
@@ -410,6 +397,7 @@ if (shortcutsEnabled) {
 						arrowSpeed++;	
 					}
 				}
+				scr_jumpToUnit(scr_currentTopLine());
 				alarm[3] = 15;
 			}
 
@@ -429,6 +417,7 @@ if (shortcutsEnabled) {
 						arrowSpeed--;	
 					}
 				}
+				scr_jumpToUnit(scr_currentTopLine());
 				alarm[4] = 15;
 			}
 		}
@@ -451,6 +440,7 @@ if (shortcutsEnabled) {
 						arrowSpeed *= gridSpaceRatio;	
 					}
 				}
+				scr_jumpToUnitTop(scr_currentTopLine());
 				alarm[3] = 15;
 				
 			}
@@ -470,6 +460,7 @@ if (shortcutsEnabled) {
 						arrowSpeed *= gridSpaceRatio;	
 					}
 				}
+				scr_jumpToUnitTop(scr_currentTopLine());
 				alarm[4] = 15;
 			}
 		}

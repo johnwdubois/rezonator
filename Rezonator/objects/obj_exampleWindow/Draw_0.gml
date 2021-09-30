@@ -20,6 +20,7 @@ draw_set_halign(fa_left);
 draw_set_valign(fa_middle);
 draw_set_alpha(1);
 
+scr_adaptFont("0", "M");
 var strHeight = string_height("0");
 var strHeightAdjust = strHeight * 2;
 var tabHeight = strHeight * 1.5;

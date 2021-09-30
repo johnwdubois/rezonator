@@ -78,7 +78,6 @@ function scr_chainListOptions(optionSelected) {
 					// Destory the Dropdown
 					instance_destroy(obj_dropDown);
 					break;
-				default:
 				case "option_create-tree":
 					
 					var chainSubMap = global.nodeMap[? obj_control.selectedChainID];
