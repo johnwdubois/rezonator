@@ -37,10 +37,6 @@ function scr_panelPane_drawTree1ToMany(){
 	var originalPlusX = string_width("Leaf") + (spaceWidth * 5)
 	var plusX = originalPlusX;
 	draw_set_color(topBkgColor);
-	draw_rectangle(x, y, x + plusX, leafY, false);
-	
-	draw_set_color(global.colorThemeBorders);
-	draw_line(x, y, x, y + headerHeight);
 
 	
 

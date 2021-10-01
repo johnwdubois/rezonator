@@ -14,7 +14,7 @@ function scr_panelPaneDrawBranch(){
 				
 					x = 0;
 					windowWidth = camWidth * 0.5;
-				
+
 					scr_dropShadow(x, y, x + windowWidth, y + windowHeight);
 					draw_set_alpha(1);
 					draw_set_color(global.colorThemePaneBG);

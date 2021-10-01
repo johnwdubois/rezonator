@@ -24,12 +24,15 @@ function scr_panelPane_drawChunks1To1Headers(fieldList){
 		// BG & outline rects
 		draw_set_color(global.colorThemeBG);
 		draw_rectangle(headerRectX1, headerRectY1, headerRectX2, headerRectY1 + headerHeight, false);
-		draw_set_color(global.colorThemeBorders);
-		draw_rectangle(headerRectX1, headerRectY1, headerRectX2, headerRectY1 + headerHeight, true);
 		
-		// draw line to separate column headers from data
+		
 		draw_set_color(global.colorThemeBorders);
-		draw_rectangle(x, headerRectY1, x + windowWidth, headerRectY2, true);
+		if(i > 0 ){
+			draw_line(headerRectX1, headerRectY1, headerRectX1, headerRectY2);
+		}
+		// draw line to separate column headers from data
+
+		draw_line(x, headerRectY2, x + windowWidth, headerRectY2);
 		
 		// draw header name
 		draw_set_valign(fa_middle);

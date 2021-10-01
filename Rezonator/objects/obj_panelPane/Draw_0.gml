@@ -40,7 +40,7 @@ if(obj_panelPane.showNav){
 
 	draw_set_alpha(1);
 	draw_set_color(global.colorThemeBorders);
-	
+	/*
 	var showBorder = !((currentFunction == functionChainContents && !obj_panelPane.showNavRight)
 					|| (currentFunction == functionHelp)
 					|| ((currentFunction == functionChainList) && !obj_panelPane.showNavLeft));
@@ -56,6 +56,7 @@ if(obj_panelPane.showNav){
 			draw_line(divideLineX, y + functionTabs_tabHeight, divideLineX, y + windowHeight);
 		}
 	}
+	*/
 }
 
 

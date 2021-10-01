@@ -421,6 +421,7 @@ ds_map_add(global.checkDropdownMap, "word_tip", false);
 ds_map_add(global.checkDropdownMap, "help_label_tag", false);
 ds_map_add(global.checkDropdownMap, "tab_name_chunk", false);
 
+
 //checkmarkKeys = [];
 //ds_map_keys_to_array(global.checkDropdownMap, checkmarkKeys);
 //for(var i = 0; i < array_length(checkmarkKeys); i++){

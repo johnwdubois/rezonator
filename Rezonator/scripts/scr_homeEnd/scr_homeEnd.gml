@@ -60,6 +60,7 @@ function scr_homeEnd(home) {
 		}
 	}
 	
+	
 	var ltrEndJustityHomeCheck = ltr && !startJustify && home;
 	if (ltrEndJustityHomeCheck && firstPixelX > obj_control.wordLeftMargin) {
 		exit;
@@ -78,7 +79,7 @@ function scr_homeEnd(home) {
 	var reverseScreen = (!ltr && !home) || (ltr && home);
 	var isBad = !ltr && home && !startJustify && !gridJustify;
 	var isReallyBad = !ltr && home && !startJustify && gridJustify;
-	
+	var theWorst = !ltr && startJustify && gridJustify && !home;
 	show_debug_message("reverseScreen: " + string(reverseScreen) + ", isBad: " + string(isBad));
 	
 	
@@ -86,6 +87,7 @@ function scr_homeEnd(home) {
 	var adjustedCamWidth = camWidth - global.toolPaneWidth - global.scrollBarWidth;
 	if (reverseScreen) adjustedCamWidth = -obj_control.wordLeftMargin - obj_control.gridSpaceHorizontal;
 	if (isBad) adjustedCamWidth -= (global.toolPaneWidth + global.scrollBarWidth);
+
 	
 
 	
@@ -95,7 +97,7 @@ function scr_homeEnd(home) {
 	var distToScroll = max(abs(adjustedPixelX) - adjustedCamWidth, 0);
 	if (!reverseScreen) distToScroll = -distToScroll;
 	if (isReallyBad) distToScroll = -distToScroll;
-	
+	if (theWorst) distToScroll = -distToScroll;
 	
 	obj_control.scrollPlusXDest += distToScroll;
 	obj_control.scrollPlusX = obj_control.scrollPlusXDest;

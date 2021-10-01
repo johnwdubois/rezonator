@@ -56,8 +56,18 @@ function scr_drawChunks(){
 			var firstTokenDisplayStr = currentChunkFirstTokenTagMap[? global.displayTokenField];
 			var lastTokenDisplayStr = currentChunkLastTokenTagMap[? global.displayTokenField];
 		
-			var firstTokenStrWidth = (is_string(firstTokenDisplayStr)) ? string_width(firstTokenDisplayStr) : 0;
-			var lastTokenStrWidth = (is_string(lastTokenDisplayStr)) ? string_width(lastTokenDisplayStr) : 0;
+			var firstTokenStrWidth_ = (is_string(firstTokenDisplayStr)) ? string_width(firstTokenDisplayStr) : 0;
+			var lastTokenStrWidth_ = (is_string(lastTokenDisplayStr)) ? string_width(lastTokenDisplayStr) : 0;
+			
+			var firstTokenStrWidth = firstTokenStrWidth_;
+			var lastTokenStrWidth = lastTokenStrWidth_;
+			
+			if (obj_control.drawLineState == obj_control.lineState_rtl) {
+				firstTokenStrWidth = lastTokenStrWidth_;
+				lastTokenStrWidth = firstTokenStrWidth_;
+			}
+			
+			
 		
 			// get coordinates based on tokens and their justifications
 			if (obj_control.drawLineState == obj_control.lineState_ltr) {

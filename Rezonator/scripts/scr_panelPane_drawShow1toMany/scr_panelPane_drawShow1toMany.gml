@@ -247,18 +247,18 @@ function scr_panelPane_drawShow1toMany(){
 		draw_text(floor(seqColX + textBuffer) - clipX, floor(mean(headerRectY1, headerRectY2)) - clipY, scr_get_translation("option_seq"));
 		
 		// dividing lines
-		if (i > 0) {
+		if (i > 1) {
 			draw_set_color(global.colorThemeBorders);
-			draw_line(headerRectX1 - clipX, y - clipY, headerRectX1 - clipX, y + headerHeight - clipY);
+			//draw_line(headerRectX1 - clipX, y - clipY, headerRectX1 - clipX, y + headerHeight - clipY);
 			draw_set_color(global.colorThemeBG);
-			draw_line(headerRectX1 - clipX, y + headerHeight - clipY, headerRectX1 - clipX, y + windowHeight - clipY);
+			//draw_line(headerRectX1 - clipX, y + headerHeight - clipY, headerRectX1 - clipX, y + windowHeight - clipY);
 		}
 		
 	}
 	
 	// short line to divide left from right nav
 	draw_set_color(global.colorThemeBorders);
-	draw_line(x - clipX, y - clipY, x - clipX, y + headerHeight - clipY);
+	//draw_line(x - clipX, y - clipY, x - clipX, y + headerHeight - clipY);
 	draw_line(x - clipX, y + headerHeight - clipY, x + windowWidth - clipX, y + headerHeight - clipY);
 	
 	

@@ -341,6 +341,7 @@ if (shortcutsEnabled) {
 						arrowSpeed++;	
 					}
 				}
+				scr_jumpToUnit(scr_currentTopLine());
 				alarm[3] = 15;
 			}
 
@@ -360,6 +361,7 @@ if (shortcutsEnabled) {
 						arrowSpeed--;	
 					}
 				}
+				scr_jumpToUnit(scr_currentTopLine());
 				alarm[4] = 15;
 			}
 		}
@@ -382,6 +384,7 @@ if (shortcutsEnabled) {
 						arrowSpeed *= gridSpaceRatio;	
 					}
 				}
+				scr_jumpToUnitTop(scr_currentTopLine());
 				alarm[3] = 15;
 				
 			}
@@ -401,6 +404,7 @@ if (shortcutsEnabled) {
 						arrowSpeed *= gridSpaceRatio;	
 					}
 				}
+				scr_jumpToUnitTop(scr_currentTopLine());
 				alarm[4] = 15;
 			}
 		}
