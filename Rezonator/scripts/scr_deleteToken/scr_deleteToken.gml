@@ -107,6 +107,9 @@ function scr_deleteToken(tokenID){
 			
 			// check if the token appears in this tree, if the token is in this tree find its corresponding entry
 			if (ds_list_find_index(currentTokenList, tokenID) == -1) continue;
+			
+			with (obj_panelPane) functionTree_treeSelected = currentTree;
+			
 			var currentSetListSize = ds_list_size(currentSetList);
 			for (var j = 0; j < currentSetListSize; j++) {
 				var currentEntry = currentSetList[| j];
@@ -143,6 +146,7 @@ function scr_deleteToken(tokenID){
 			// if there is nothing else in this tree, let's delete the entire tree
 			if (ds_list_size(currentTokenList) < 1) {
 				scr_deleteTree(currentTree);
+				with (obj_panelPane) functionTree_treeSelected = "";
 			}
 			else {
 				// now we have to update all the order values from this tree

@@ -200,7 +200,7 @@ if(mouseOverLang){
 	}
 	if(mouse_check_button_released(mb_left)){
 		var dropDownOptionList = ds_list_create();
-		ds_list_add(dropDownOptionList, "menu_language-en", "menu_language-es", "menu_language-gu", "menu_language-he", "menu_language-hy", "menu_language-it", "menu_language-ja", "menu_language-kk", "menu_language-ru", "menu_language-vi", "menu_language-zh");
+		ds_list_add(dropDownOptionList, "menu_language-en", "menu_language-ca", "menu_language-es", "menu_language-gu", "menu_language-he", "menu_language-hy", "menu_language-it", "menu_language-ja", "menu_language-kk", "menu_language-ru", "menu_language-vi", "menu_language-zh");
 						
 		if (ds_list_size(dropDownOptionList) > 0) {
 			if(global.lang_codes[| global.lang_index] == "he"){

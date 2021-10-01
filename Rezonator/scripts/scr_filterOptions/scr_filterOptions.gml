@@ -55,16 +55,7 @@ function scr_filterOptions(optionSelected) {
 			scr_setValueForAllChains("stack", "filter", false);
 			scr_updateFilteredChainLists();
 			
-			if (obj_control.filterGridActive) {
-				if(obj_control.currentCenterDisplayRow >= 0) { // Make sure the current center display row is within bounds
-					// Keep the focus on previous currentCenterDisplayRow
-					with (obj_control) {
-						alarm[5] = 3;
-					}
-				}
-				obj_control.filterGridActive = false;
-				obj_control.currentActiveLineGrid = obj_control.lineGrid;
-			}
+			scr_disableFilter();
 			with (obj_dropDown) {
 				instance_destroy();
 			}

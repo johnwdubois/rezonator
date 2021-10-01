@@ -18,9 +18,6 @@ function scr_dialogueBoxNewCustomFieldToken() {
 		if(sizeOfNavTokenList < 6){
 			scr_addToListOnce(obj_control.navTokenFieldList, newField);
 		}
-		if(sizeOfNavTokenList == 6){
-			scr_tokenSelection(newField);
-		}
 	}
 	
 	var sizeOfNavChunkList = ds_list_size(obj_control.navChunkFieldList);

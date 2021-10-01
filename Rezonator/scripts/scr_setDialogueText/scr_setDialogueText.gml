@@ -29,11 +29,11 @@ function scr_setDialogueText(){
 			descriptionText = scr_get_translation("msg_warning_clear_chains");
 		}
 		if (clearChain) {
-			titleText = scr_get_translation("Clear Current Chains");
+			titleText = scr_get_translation("Clear Current Chain");
 			descriptionText = scr_get_translation("msg_warning_clear_focused_chain");
 		}
 		if (clearShow) {
-			titleText = scr_get_translation("Delete Show");
+			titleText = scr_get_translation("help_label_delete_plain")+ " "+ scr_get_translation("menu_show");
 			descriptionText =  scr_get_translation("You are about to delete this show");
 		}
 		if(layerLink) {
@@ -52,11 +52,11 @@ function scr_setDialogueText(){
 		}
 		if (removeTagToken || removeTagUnit || removeTagEntry || removeTagChain || removeTagChunk || removeTagLink) {
 			titleText = scr_get_translation("msg_remove") + " " + scr_get_translation("tab_name_tag");
-			descriptionText = scr_get_translation("msg_remove-mark-tag") + string(stringToBeRemoved);
+			descriptionText = scr_get_translation("msg_remove-mark-tag") + " " + string(stringToBeRemoved);
 		}
 		if (removeFieldToken || removeFieldUnit || removeFieldEntry || removeFieldChain || removeFieldChunk || removeFieldLink) {
 			titleText = scr_get_translation("msg_remove") + " " + scr_get_translation("option_field");
-			descriptionText =  scr_get_translation("msg_remove-field-tag") + string(stringToBeRemoved);
+			descriptionText =  scr_get_translation("msg_remove-field-tag") + " " + string(stringToBeRemoved);
 		}
 		if (removeSearch) {
 			var searchSubMap = global.searchMap[?searchToBeRemoved];
@@ -74,7 +74,7 @@ function scr_setDialogueText(){
 				var stackChainList = global.nodeMap[? "stackList"];
 				if (scr_isNumericAndExists(stackChainList, ds_type_list)) {
 					var stackChainListSize = ds_list_size(stackChainList);
-					descriptionText =  scr_get_translation("msg_stacks_created-1") + string(stackChainListSize) + scr_get_translation("msg_stacks_created-2");
+					descriptionText =  scr_get_translation("msg_stacks_created-1") + " " + string(stackChainListSize) + " " + scr_get_translation("msg_stacks_created-2");
 					noButtonActive = true;
 				}
 			}
@@ -127,7 +127,7 @@ function scr_setDialogueText(){
 			descriptionText = scr_get_translation("msg_input_caption");
 		}	
 		if (obj_control.rename) {
-			titleText = scr_get_translation("help_description_rename");
+			titleText = scr_get_translation("help_label_rename");
 			descriptionText = scr_get_translation("msg_input_chain-name");
 		}
 		if (obj_control.recolor) {
@@ -179,6 +179,9 @@ function scr_setDialogueText(){
 		if (instance_exists(obj_control)) {
 			if (obj_control.noTurnFound) {
 				descriptionText = scr_get_translation("msg_order-notfound");
+			}
+			if (obj_control.insertAnyNumber) {
+				descriptionText = scr_get_translation("msg_input_any_number");
 			}
 		}
 	}

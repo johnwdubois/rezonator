@@ -47,7 +47,7 @@ if (mouseOverChangeGrid) {
 
 draw_set_halign(fa_left);
 draw_set_color(global.colorThemeText);
-scr_adaptFont(string(obj_importMapping.currentGridName), "M");
+scr_adaptFont(scr_get_translation(string(obj_importMapping.currentGridName)), "M");
 draw_text(changeGridButtonRectX2 + textXBuffer, floor(mean(changeGridButtonRectY1, changeGridButtonRectY2)), scr_get_translation(string(obj_importMapping.currentGridName)));
 
 
@@ -59,7 +59,7 @@ draw_set_halign(fa_center);
 draw_set_valign(fa_middle);
 draw_set_alpha(1);
 draw_set_color(global.colorThemeText);
-scr_adaptFont("", "M");
+
 
 
 // calculate x & y values for text
@@ -104,6 +104,7 @@ else {
 			
 			// draw text for this cell
 			var cellStr = string(ds_grid_get(obj_importMappingTagInfo.gridViewing, j, i));
+			scr_adaptFont(scr_get_translation(cellStr), "M");
 			draw_text(textX - clipX, floor(textY - clipY), scr_get_translation(cellStr));
 		}
 		
@@ -207,6 +208,7 @@ else {
 		}
 		
 		// draw header text
+		scr_adaptFont(scr_get_translation(headerStr), "M");
 		draw_text(textX, headerY, scr_get_translation(headerStr));
 	}
 }

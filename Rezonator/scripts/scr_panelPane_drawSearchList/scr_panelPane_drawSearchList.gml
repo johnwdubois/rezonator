@@ -252,7 +252,7 @@ function scr_panelPane_drawSearchList(){
 		}
 		else if (i == 2) {
 			colWidth = windowWidth - termColX;
-			colText = "Searched Words";
+			colText = "searched_words";
 		}
 		
 		// get header coordinates
@@ -265,14 +265,20 @@ function scr_panelPane_drawSearchList(){
 		draw_set_color(global.colorThemeBG);;
 		draw_rectangle(headerRectX1, headerRectY1, headerRectX2, headerRectY2, false);
 		draw_set_color(global.colorThemeBorders);
-		draw_rectangle(headerRectX1, headerRectY1, headerRectX2, headerRectY2, true);
-		
+		if(i == 0){
+			draw_line(headerRectX2, headerRectY1, headerRectX2, headerRectY2);
+		}
+		else{
+			draw_rectangle(headerRectX1, headerRectY1, headerRectX2, headerRectY2, true);
+		}
 		// draw header text
 		var headerTextX = floor(headerRectX1 + textBuffer);
 		var headerTextY = floor(mean(headerRectY1, headerRectY2));
 		draw_set_halign(fa_left);
 		draw_set_valign(fa_middle);
 		draw_set_color(global.colorThemeText);
+		colText = scr_get_translation(colText);
+		scr_adaptFont(colText, "M");
 		draw_text(headerTextX, headerTextY, colText);
 		
 

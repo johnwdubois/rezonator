@@ -6,7 +6,7 @@ function scr_getChunkText(chunkID){
 	var chunkText = "";
 	var chunkSubMap = global.nodeMap[? chunkID];
 	
-	var nodeType = chunkSubMap[?"type"];
+	var rtl = scr_checkRTL();
 
 
 
@@ -14,15 +14,21 @@ function scr_getChunkText(chunkID){
 		if (scr_isNumericAndExists(chunkSubMap, ds_type_map)){
 			var tokenList = chunkSubMap[? "tokenList"];
 			var tokenListSize = ds_list_size(tokenList);
-			for (var i = 0; i < tokenListSize; i++) {
+			
+			var i = (rtl) ? tokenListSize - 1 : 0;
+			
+			repeat (tokenListSize) {
 				var currentTokenID = tokenList[| i];
 				var tokenSubMap = global.nodeMap[?currentTokenID];
 				if (scr_isNumericAndExists(tokenSubMap, ds_type_map)) {
 					var tokenTagMap = tokenSubMap[?"tagMap"];
 					var currentTokenStr = tokenTagMap[?global.displayTokenField];
 					chunkText += string(currentTokenStr);
-					if (i < tokenListSize - 1) chunkText += " ";
+					if (!rtl && i < tokenListSize - 1) chunkText += " ";
+					else if (rtl && i > 0) chunkText += " ";
 				}
+				
+				i += (rtl) ? -1 : 1;
 			}
 		}
 	}

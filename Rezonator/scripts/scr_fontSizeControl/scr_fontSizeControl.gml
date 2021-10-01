@@ -14,8 +14,6 @@ function scr_fontSizeControl() {
 				}
 				gridSpaceVerticalMin = gridSpaceVerticalMinOriginal + ((global.fontSize + 1) * 5);
 				//Vertical				
-				var searchGridPopulated = ds_grid_height(obj_control.searchGrid);
-				var filterGridPopulated = ds_grid_height(obj_control.filterGrid);
 				obj_control.prevCenterDisplayRow = scr_currentTopLine();
 
 				if(obj_control.gridSpaceVertical > obj_control.gridSpaceVerticalMin) {
@@ -24,17 +22,8 @@ function scr_fontSizeControl() {
 					obj_control.gridSpaceVertical = max(obj_control.gridSpaceVertical, obj_control.gridSpaceVerticalMin);
 					obj_control.lineSpacing -= 4;
 					obj_control.gridSpaceRatio = (obj_control.gridSpaceVertical/obj_control.prevGridSpaceVertical);
-					// Multiply each line's pixelY by the new ratio
-					ds_grid_multiply_region(obj_control.lineGrid, obj_control.lineGrid_colPixelYOriginal, 0, obj_control.lineGrid_colPixelYOriginal, ds_grid_height(obj_control.lineGrid), obj_control.gridSpaceRatio);
-			
-					// If the search or filter grids are populated, then set their pixelY's as well
-					if(searchGridPopulated) {
-						ds_grid_multiply_region(obj_control.searchGrid, obj_control.lineGrid_colPixelYOriginal, 0, obj_control.lineGrid_colPixelYOriginal, ds_grid_height(obj_control.searchGrid), obj_control.gridSpaceRatio);
-					}
-					if(filterGridPopulated) {
-						ds_grid_multiply_region(obj_control.filterGrid, obj_control.lineGrid_colPixelYOriginal, 0, obj_control.lineGrid_colPixelYOriginal, ds_grid_height(obj_control.filterGrid), obj_control.gridSpaceRatio);
-					}
-					scr_jumpToUnit(obj_control.prevCenterDisplayRow);
+
+					scr_jumpToUnitTop(obj_control.prevCenterDisplayRow);
 					// reset the ratio
 					obj_control.prevGridSpaceVertical = obj_control.gridSpaceVertical;
 					if(obj_control.arrowSpeed > obj_control.arrowSpeedMin) {
@@ -46,13 +35,13 @@ function scr_fontSizeControl() {
 				//Horizontal			
 				if (!obj_control.gridView) {
 					scr_adjustTokenSpacing(-20);
-					if (!scr_checkNativeJustification() && obj_control.shape == obj_control.shapeBlock) scr_refreshDisplayCol();
+					if (!scr_checkNativeJustification() && obj_control.shape == obj_control.shapeBlock) scr_refreshDisplayColAndPrevToken();
 				}
 			}
 			else {
 				if (!gridView) {
 					scr_adjustTokenSpacing(-20);
-					if (!scr_checkNativeJustification() && obj_control.shape == obj_control.shapeBlock) scr_refreshDisplayCol();
+					if (!scr_checkNativeJustification() && obj_control.shape == obj_control.shapeBlock) scr_refreshDisplayColAndPrevToken();
 				}
 			}
 			canPressPlus = false;
@@ -69,8 +58,6 @@ function scr_fontSizeControl() {
 				}
 				gridSpaceVerticalMin = gridSpaceVerticalMinOriginal + ((global.fontSize + 1) * 5);
 				//vertical
-				var searchGridPopulated = ds_grid_height(obj_control.searchGrid);
-				var filterGridPopulated = ds_grid_height(obj_control.filterGrid);
 				obj_control.prevCenterDisplayRow = scr_currentTopLine();
 		
 				if(obj_control.gridSpaceVertical < obj_control.gridSpaceVerticalMax) {
@@ -79,17 +66,8 @@ function scr_fontSizeControl() {
 					obj_control.gridSpaceVertical = min(obj_control.gridSpaceVertical, obj_control.gridSpaceVerticalMax);
 					obj_control.lineSpacing += 4;
 					obj_control.gridSpaceRatio = (obj_control.gridSpaceVertical/obj_control.prevGridSpaceVertical);
-					// Multiply each line's pixelY by the new ratio
-					ds_grid_multiply_region(obj_control.lineGrid, obj_control.lineGrid_colPixelYOriginal, 0, obj_control.lineGrid_colPixelYOriginal, ds_grid_height(obj_control.lineGrid), obj_control.gridSpaceRatio);
-			
-					// If the search or filter grids are populated, then set their pixelY's as well
-					if(searchGridPopulated) {
-						ds_grid_multiply_region(obj_control.searchGrid, obj_control.lineGrid_colPixelYOriginal, 0, obj_control.lineGrid_colPixelYOriginal, ds_grid_height(obj_control.searchGrid), obj_control.gridSpaceRatio);
-					}
-					if(filterGridPopulated) {
-						ds_grid_multiply_region(obj_control.filterGrid, obj_control.lineGrid_colPixelYOriginal, 0, obj_control.lineGrid_colPixelYOriginal, ds_grid_height(obj_control.filterGrid), obj_control.gridSpaceRatio);
-					}
-					scr_jumpToUnit(obj_control.prevCenterDisplayRow);
+
+					scr_jumpToUnitTop(obj_control.prevCenterDisplayRow);
 					// reset the ratio
 					obj_control.prevGridSpaceVertical = obj_control.gridSpaceVertical;
 					if(obj_control.arrowSpeed < obj_control.arrowSpeedMax) {
@@ -100,13 +78,13 @@ function scr_fontSizeControl() {
 				//horizontal
 				if (!obj_control.gridView) {
 					scr_adjustTokenSpacing(20)
-					if (!scr_checkNativeJustification() && obj_control.shape == obj_control.shapeBlock) scr_refreshDisplayCol();
+					if (!scr_checkNativeJustification() && obj_control.shape == obj_control.shapeBlock) scr_refreshDisplayColAndPrevToken();
 				}
 			}
 			else {
 				if (!gridView) {
 					scr_adjustTokenSpacing(20);
-					if (!scr_checkNativeJustification() && obj_control.shape == obj_control.shapeBlock) scr_refreshDisplayCol();
+					if (!scr_checkNativeJustification() && obj_control.shape == obj_control.shapeBlock) scr_refreshDisplayColAndPrevToken();
 				}
 			}
 			canPressMinus = false;
@@ -116,7 +94,7 @@ function scr_fontSizeControl() {
 		or global.ctrlHold and keyboard_check_pressed(ord("0"))) {
 			if (!gridView) {
 				gridSpaceHorizontal = 100;
-				if (!scr_checkNativeJustification() && obj_control.shape == obj_control.shapeBlock) scr_refreshDisplayCol();
+				if (!scr_checkNativeJustification() && obj_control.shape == obj_control.shapeBlock) scr_refreshDisplayColAndPrevToken();
 			}
 		}
 	
@@ -133,8 +111,6 @@ function scr_fontSizeControl() {
 				}
 				gridSpaceVerticalMin = gridSpaceVerticalMinOriginal + ((global.fontSize + 1) * 5);
 				//Vertical				
-				var searchGridPopulated = ds_grid_height(obj_control.searchGrid);
-				var filterGridPopulated = ds_grid_height(obj_control.filterGrid);
 				obj_control.prevCenterDisplayRow = scr_currentTopLine();
 
 				if(obj_control.gridSpaceVertical > obj_control.gridSpaceVerticalMin) {
@@ -143,17 +119,8 @@ function scr_fontSizeControl() {
 					obj_control.gridSpaceVertical = max(obj_control.gridSpaceVertical, obj_control.gridSpaceVerticalMin);
 					obj_control.lineSpacing -= 4;
 					obj_control.gridSpaceRatio = (obj_control.gridSpaceVertical/obj_control.prevGridSpaceVertical);
-					// Multiply each line's pixelY by the new ratio
-					ds_grid_multiply_region(obj_control.lineGrid, obj_control.lineGrid_colPixelYOriginal, 0, obj_control.lineGrid_colPixelYOriginal, ds_grid_height(obj_control.lineGrid), obj_control.gridSpaceRatio);
-			
-					// If the search or filter grids are populated, then set their pixelY's as well
-					if(searchGridPopulated) {
-						ds_grid_multiply_region(obj_control.searchGrid, obj_control.lineGrid_colPixelYOriginal, 0, obj_control.lineGrid_colPixelYOriginal, ds_grid_height(obj_control.searchGrid), obj_control.gridSpaceRatio);
-					}
-					if(filterGridPopulated) {
-						ds_grid_multiply_region(obj_control.filterGrid, obj_control.lineGrid_colPixelYOriginal, 0, obj_control.lineGrid_colPixelYOriginal, ds_grid_height(obj_control.filterGrid), obj_control.gridSpaceRatio);
-					}
-					scr_jumpToUnit(obj_control.prevCenterDisplayRow);
+
+					scr_jumpToUnitTop(obj_control.prevCenterDisplayRow);
 					// reset the ratio
 					obj_control.prevGridSpaceVertical = obj_control.gridSpaceVertical;
 					if(obj_control.arrowSpeed > obj_control.arrowSpeedMin) {
@@ -165,13 +132,13 @@ function scr_fontSizeControl() {
 				//Horizontal			
 				if (!obj_control.gridView) {
 					scr_adjustTokenSpacing(-20);
-					if (!scr_checkNativeJustification() && obj_control.shape == obj_control.shapeBlock) scr_refreshDisplayCol();
+					if (!scr_checkNativeJustification() && obj_control.shape == obj_control.shapeBlock) scr_refreshDisplayColAndPrevToken();
 				}
 			}
 			else {
 				if (!gridView) {
 					scr_adjustTokenSpacing(-20);
-					if (!scr_checkNativeJustification() && obj_control.shape == obj_control.shapeBlock) scr_refreshDisplayCol();
+					if (!scr_checkNativeJustification() && obj_control.shape == obj_control.shapeBlock) scr_refreshDisplayColAndPrevToken();
 				}
 			}
 			canPressPlus = false;
@@ -188,8 +155,6 @@ function scr_fontSizeControl() {
 				}
 				gridSpaceVerticalMin = gridSpaceVerticalMinOriginal + ((global.fontSize + 1) * 5);
 				//vertical
-				var searchGridPopulated = ds_grid_height(obj_control.searchGrid);
-				var filterGridPopulated = ds_grid_height(obj_control.filterGrid);
 				obj_control.prevCenterDisplayRow = scr_currentTopLine();
 		
 				if(obj_control.gridSpaceVertical < obj_control.gridSpaceVerticalMax) {
@@ -198,17 +163,8 @@ function scr_fontSizeControl() {
 					obj_control.gridSpaceVertical = min(obj_control.gridSpaceVertical, obj_control.gridSpaceVerticalMax);
 					obj_control.lineSpacing += 4;
 					obj_control.gridSpaceRatio = (obj_control.gridSpaceVertical/obj_control.prevGridSpaceVertical);
-					// Multiply each line's pixelY by the new ratio
-					ds_grid_multiply_region(obj_control.lineGrid, obj_control.lineGrid_colPixelYOriginal, 0, obj_control.lineGrid_colPixelYOriginal, ds_grid_height(obj_control.lineGrid), obj_control.gridSpaceRatio);
-			
-					// If the search or filter grids are populated, then set their pixelY's as well
-					if(searchGridPopulated) {
-						ds_grid_multiply_region(obj_control.searchGrid, obj_control.lineGrid_colPixelYOriginal, 0, obj_control.lineGrid_colPixelYOriginal, ds_grid_height(obj_control.searchGrid), obj_control.gridSpaceRatio);
-					}
-					if(filterGridPopulated) {
-						ds_grid_multiply_region(obj_control.filterGrid, obj_control.lineGrid_colPixelYOriginal, 0, obj_control.lineGrid_colPixelYOriginal, ds_grid_height(obj_control.filterGrid), obj_control.gridSpaceRatio);
-					}
-					scr_jumpToUnit(obj_control.prevCenterDisplayRow);
+
+					scr_jumpToUnitTop(obj_control.prevCenterDisplayRow);
 					// reset the ratio
 					obj_control.prevGridSpaceVertical = obj_control.gridSpaceVertical;
 					if(obj_control.arrowSpeed < obj_control.arrowSpeedMax) {
@@ -219,13 +175,13 @@ function scr_fontSizeControl() {
 				//horizontal
 				if (!obj_control.gridView) {
 					scr_adjustTokenSpacing(20);
-					if (!scr_checkNativeJustification() && obj_control.shape == obj_control.shapeBlock) scr_refreshDisplayCol();
+					if (!scr_checkNativeJustification() && obj_control.shape == obj_control.shapeBlock) scr_refreshDisplayColAndPrevToken();
 				}
 			}
 			else {
 				if (!gridView) {
 					scr_adjustTokenSpacing(20);
-					if (!scr_checkNativeJustification() && obj_control.shape == obj_control.shapeBlock) scr_refreshDisplayCol();
+					if (!scr_checkNativeJustification() && obj_control.shape == obj_control.shapeBlock) scr_refreshDisplayColAndPrevToken();
 				}
 			}
 			canPressMinus = false;
@@ -235,7 +191,7 @@ function scr_fontSizeControl() {
 		or global.ctrlHold and keyboard_check_pressed(ord("0"))) {
 			if (!gridView) {
 				gridSpaceHorizontal = 100;
-				if (!scr_checkNativeJustification() && obj_control.shape == obj_control.shapeBlock) scr_refreshDisplayCol();
+				if (!scr_checkNativeJustification() && obj_control.shape == obj_control.shapeBlock) scr_refreshDisplayColAndPrevToken();
 			}
 		}
 	

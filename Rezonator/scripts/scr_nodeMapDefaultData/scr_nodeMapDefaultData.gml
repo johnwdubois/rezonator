@@ -70,4 +70,5 @@ function scr_nodeMapDefaultData(){
 	ds_list_add(global.nodeMap[? "nodeList"], "colorMap");
 	ds_list_add(global.nodeMap[? "nodeList"], "participantMap");
 	ds_list_add(global.nodeMap[? "nodeList"], "chainShowMap");
+	ds_list_add(global.nodeMap[? "nodeList"], "chunkShowMap");
 }

@@ -9,6 +9,10 @@ scr_windowExit();
 
 sessionCurrentTime = (current_time - sessionStartTime) + current_time;
 
+scr_multiDropDownMouseover();
+
+
+
 if (!scr_isNumericAndExists(displayUnitList, ds_type_list)) {
 	// set display unit list if it does not exist
 	var discourseSubMap = global.nodeMap[? global.discourseNode];
@@ -62,19 +66,6 @@ if (keyboard_check_released(vk_rcommand) || keyboard_check_released(vk_lcommand)
 // Mechanism to update center display row
 if (!gridView) {
 	if (ds_grid_height(currentActiveLineGrid) > 0) {
-		/*var firstLinePixelY = (room_height / 2) - (currentCenterDisplayRow * gridSpaceVertical);
-		if (firstLinePixelY > 150 + gridSpaceVertical) {
-			currentCenterDisplayRow++;
-		}
-		
-		
-		var lastLinePixelY = (room_height / 2) + ((ds_grid_height(currentActiveLineGrid) - currentCenterDisplayRow) * gridSpaceVertical);
-		if (lastLinePixelY < camera_get_view_height(camera_get_active()) - 30
-		and currentCenterDisplayRow + drawRange >= ds_grid_height(currentActiveLineGrid)) {
-			currentCenterDisplayRow--;
-		}
-		currentCenterDisplayRow = min(currentCenterDisplayRow, ds_grid_height(currentActiveLineGrid) - 1);
-		currentCenterDisplayRow = max(currentCenterDisplayRow, 0);*/
 		currentCenterDisplayRow = scr_currentTopLine();
 	}
 	
@@ -313,10 +304,20 @@ if (!clickedInChainList and !clickedInChainContents and not mouseoverHelpPane an
 		// Sends user to the bottom of the main screen
 		if ((global.ctrlHold and (keyboard_check_pressed(vk_down) or keyboard_check_pressed(vk_end))) or (keyboard_check(vk_alt) and (keyboard_check_pressed(vk_down) or keyboard_check_pressed(vk_end)))) {
 			scrollPlusYDest = -999999999999;
+			var docSubMap = global.nodeMap[? global.discourseNode];
+			var docDisplayUnitList = docSubMap[? "displayUnitList"];
+			if (ds_list_size(docDisplayUnitList) > 0)
+			refreshYValuesUnit = docDisplayUnitList[| ds_list_size(docDisplayUnitList) - 1];
+			with (obj_alarm2) alarm[9] = 2;
 		}
 		// Sends user to the top of the main screen
 		else if ((global.ctrlHold and (keyboard_check_pressed(vk_up) or keyboard_check_pressed(vk_home))) or (keyboard_check(vk_alt) and (keyboard_check_pressed(vk_up)  or keyboard_check_pressed(vk_home)))) {
 			scrollPlusYDest = 100;
+			var docSubMap = global.nodeMap[? global.discourseNode];
+			var docDisplayUnitList = docSubMap[? "displayUnitList"];
+			if (ds_list_size(docDisplayUnitList) > 0)
+			refreshYValuesUnit = docDisplayUnitList[| 0];
+			with (obj_alarm2) alarm[9] = 2;
 		}
 		
 		if (keyboard_check_pressed(vk_right) and !global.ctrlHold and not dialogueBoxActive) {
@@ -396,6 +397,7 @@ if (shortcutsEnabled) {
 						arrowSpeed++;	
 					}
 				}
+				scr_jumpToUnit(scr_currentTopLine());
 				alarm[3] = 15;
 			}
 
@@ -415,6 +417,7 @@ if (shortcutsEnabled) {
 						arrowSpeed--;	
 					}
 				}
+				scr_jumpToUnit(scr_currentTopLine());
 				alarm[4] = 15;
 			}
 		}
@@ -437,6 +440,7 @@ if (shortcutsEnabled) {
 						arrowSpeed *= gridSpaceRatio;	
 					}
 				}
+				scr_jumpToUnitTop(scr_currentTopLine());
 				alarm[3] = 15;
 				
 			}
@@ -456,6 +460,7 @@ if (shortcutsEnabled) {
 						arrowSpeed *= gridSpaceRatio;	
 					}
 				}
+				scr_jumpToUnitTop(scr_currentTopLine());
 				alarm[4] = 15;
 			}
 		}

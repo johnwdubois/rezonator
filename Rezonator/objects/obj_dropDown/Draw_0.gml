@@ -164,6 +164,7 @@ for (var i = 0; i < optionListSize; i++) {
 			}
 		}
 	}
+	if (multiDropDownCancel) mouseoverCurrentOption = false;
 	
 	
 	
@@ -175,6 +176,7 @@ for (var i = 0; i < optionListSize; i++) {
 	if (mouseoverCurrentOption or (optionCurrent == i && !mouseOverDropDown)) {
 		optionBGColor = c_ltblue;
 	}
+	if (mouseoverCurrentOption) optionMouseover = optionText;
 	draw_set_color(optionBGColor);
 	draw_set_alpha(1);
 	draw_rectangle(optionRectX1 - clipX, optionRectY1 - clipY, optionRectX2 - clipX, optionRectY2 - clipY, false);
@@ -262,7 +264,7 @@ for (var i = 0; i < optionListSize; i++) {
 	
 
 
-	draw_text(optionTextX - clipX, optionTextY - clipY, optionTextStr);
+	draw_text(optionTextX - clipX, floor(optionTextY - clipY), optionTextStr);
 	
 	
 
@@ -292,7 +294,7 @@ for (var i = 0; i < optionListSize; i++) {
 		scr_updateCheckMap(optionText);
 		hasCheck = ds_map_find_value(global.checkDropdownMap, optionText);
 		if (optionListType == global.optionListTypeNav) hasCheck = false;
-		
+
 		var checkX = (global.lang_codes[| global.lang_index] == "he") ? 
 				floor(optionRectX1 + (sprite_get_width(spr_checkmark) / 2)) : floor(optionRectX2 - (sprite_get_width(spr_checkmark) / 2));
 		var checkY = floor(mean(optionRectY1, optionRectY2));

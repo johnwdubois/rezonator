@@ -36,3 +36,6 @@ textBuffer = 10;
 scr_scrollBarInit();
 
 scrollBarHoldingDelay = false;
+
+
+multiDropDownCancel = false;

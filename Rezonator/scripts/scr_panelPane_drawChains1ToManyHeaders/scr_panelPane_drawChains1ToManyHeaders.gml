@@ -39,7 +39,7 @@ function scr_panelPane_drawChains1ToManyHeaders(){
 			
 			// get coordinates for header rect
 			var colWidth = windowWidth / colAmount;
-			var headerRectX1 = (lineStateLTR)? x + (colWidth * i): x + windowWidth - (colWidth * (i+1));
+			var headerRectX1 = x + (colWidth * i);
 			var headerRectY1 = y;
 			var headerRectX2 = headerRectX1 + colWidth;
 			if (colAmount == 3 && i == 2) {
@@ -116,6 +116,8 @@ function scr_panelPane_drawChains1ToManyHeaders(){
 								obj_control.chain1toManyCustomSortColIndex = i;
 							}
 						}
+						
+						if (obj_control.chain1toManyCustomSortColIndex != -1) obj_control.refreshCustomSort = true;
 					}
 				}
 				var sortArrowAngle = 0;
@@ -186,18 +188,13 @@ function scr_panelPane_drawChains1ToManyHeaders(){
 			draw_text(headerTextX, headerTextY, colName);
 		
 	
-			if(lineStateLTR){	
-				if(i > 0){
-					draw_set_color(global.colorThemeBorders);
-					draw_line_width(headerRectX1, y, headerRectX1, y + windowHeight, 1);
-				}
+			
+			if(i > 0){
+				draw_set_color(global.colorThemeBorders);
+				draw_line(headerRectX1, y, headerRectX1, y + windowHeight);
 			}
-			else{
-				if(i < colAmount-1){
-					draw_set_color(global.colorThemeBorders);
-					draw_line_width(headerRectX1+1, y, headerRectX1+1, y + windowHeight, 1);
-				}
-			}
+		
+
 			
 			i++;
 		}

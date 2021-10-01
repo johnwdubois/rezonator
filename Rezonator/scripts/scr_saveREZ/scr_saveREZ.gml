@@ -126,6 +126,13 @@ function scr_saveREZ(autosave) {
 			// save session length
 			scr_getCurrentSessionTime();
 			ds_map_add(map, "sessionLength", obj_control.fullSessionLength);
+			
+			
+			ds_map_add(map, "resonanceCounter", obj_chain.rezChainNameCounter);
+			ds_map_add(map, "trailCounter", obj_chain.trackChainNameCounter);
+			ds_map_add(map, "stackCounter", obj_chain.stackChainNameCounter);
+			
+			
 		}
 	}
 

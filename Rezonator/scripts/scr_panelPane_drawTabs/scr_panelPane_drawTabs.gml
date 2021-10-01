@@ -17,7 +17,7 @@ function scr_panelPane_drawTabs() {
 	with (obj_panelPane) {
 		functionTabs_tabHeight = (strHeight * 1.5) + textMarginLeft;
 		if (currentFunction == functionChainList || currentFunction == functionChainContents) {
-			y = tabsPaneInst.y + tabsPaneInst.windowHeight;
+			y = floor(tabsPaneInst.y + tabsPaneInst.windowHeight);
 		}
 	}
 

@@ -11,8 +11,7 @@ function scr_drawLine2ElectricBoogaloo(){
 	scr_setWordTopMargin();
 	
 	startJustify = scr_checkNativeJustification();
-	//if (scrollBarHolding || keyboard_check(vk_up) || keyboard_check(vk_down) || keyboard_check(vk_pageup) || keyboard_check(vk_pagedown) || mouse_wheel_up() || mouse_wheel_down() || mouse_check_button(mb_left) || mouse_check_button_released(mb_left)) updateChainShowMap = true;
-	updateChainShowMap = true;
+
 
 	// get displayUnitList
 	var discourseSubMap = global.nodeMap[? global.discourseNode];
@@ -42,22 +41,40 @@ function scr_drawLine2ElectricBoogaloo(){
 	
 	
 	// destroy the lists in the chainShowMap
-	if (updateChainShowMap) {
-		var chainShowListSize = ds_list_size(obj_chain.chainShowList);
-		for (var i = 0; i < chainShowListSize; i++) {
-			var currentChainShow = obj_chain.chainShowList[| i];
-			var currentChainShowList = obj_chain.chainShowMap[? currentChainShow];
-			ds_list_destroy(currentChainShowList);
-		}
-	
-		// clear lists that are meant to be refreshed each frame
-		ds_map_clear(obj_chain.chainShowMap);
-		ds_list_clear(obj_chain.chainShowList);
+	var chainShowListSize = ds_list_size(obj_chain.chainShowList);
+	for (var i = 0; i < chainShowListSize; i++) {
+		var currentChainShow = obj_chain.chainShowList[| i];
+		var currentChainShowSubMap = obj_chain.chainShowMap[? currentChainShow];
+		var currentChainShowList = currentChainShowSubMap[? "entryList"];
+		ds_list_destroy(currentChainShowList);
+		ds_map_destroy(currentChainShowSubMap);
 	}
 	
+	// clear lists that are meant to be refreshed each frame
+	ds_map_clear(obj_chain.chainShowMap);
+	ds_map_add(obj_chain.chainShowMap, "type", "map");
+	ds_list_clear(obj_chain.chainShowList);
+
 	
+	// destroy the lists in the chainShowMap
+	var chunkShowMapSize = ds_map_size(obj_chain.chunkShowMap);
+	for (var i = 0; i < chunkShowMapSize; i++) {
+		var currentNest = string(i);
+		var currentNestList = obj_chain.chunkShowMap[? currentNest];
+		if(scr_isNumericAndExists(currentNestList, ds_type_list)){
+			ds_list_destroy(currentNestList);
+		}
+	}
 	
+	// clear lists that are meant to be refreshed each frame
+	ds_map_clear(obj_chain.chunkShowMap);
+	//ds_map_add(obj_chain.chunkShowMap, "type", "map");
 	ds_list_clear(obj_chain.chunkShowList);
+	
+	
+	
+	
+	
 	ds_list_clear(inRectWordIDList);
 	ds_list_clear(chainVoidCheckList);
 	ds_list_clear(inRectTokenIDList);
@@ -107,12 +124,22 @@ function scr_drawLine2ElectricBoogaloo(){
 			continue;
 		}
 		
+		
 		// get current unit's submap and make sure it exists
 		var currentUnit = displayUnitList[| i];
 		var currentUnitSubMap = global.nodeMap[? currentUnit];
 		if (!scr_isNumericAndExists(currentUnitSubMap, ds_type_map)) continue;
 		var currentPixelY = floor(unitPlusY + scrollPlusY);
 		currentUnitSubMap[? "pixelY"] = currentPixelY;
+		
+		
+		// speed up drawRange adjustment
+		if (i == drawRangeStart && currentPixelY < 0) {
+			drawRangeStart += 2;
+			drawRangeEnd += 2;
+		}
+		
+		
 		
 		// check if this unit should be added to unitRectList
 		if (makingRect && mouse_check_button(mb_left)) {
@@ -135,7 +162,7 @@ function scr_drawLine2ElectricBoogaloo(){
 		// get current unit's entryList and make sure it exists
 		var currentEntryList = currentUnitSubMap[? "entryList"];
 		if (!scr_isNumericAndExists(currentEntryList, ds_type_list)) continue;
-		scr_drawLineEntryList(currentUnit, currentUnitSubMap, currentEntryList, currentPixelY);
+		scr_drawLineEntryList(currentUnit, currentUnitSubMap, currentEntryList, currentPixelY, true);
 		
 		// draw speaker label for this unit
 		scr_drawSpeakerLabel(currentUnit, currentUnitSubMap, currentPixelY);
@@ -164,11 +191,11 @@ function scr_drawLine2ElectricBoogaloo(){
 	
 	scr_setSpeakerLabelColWidth();
 	
-	/*
+	
 	if (scrollBarHolding) {
-		scrollPlusYPrev = scrollPlusY;
+		global.delayInput = 5;
 	}
-	*/
+	
 	
 	updateChainShowMap = false;
 	

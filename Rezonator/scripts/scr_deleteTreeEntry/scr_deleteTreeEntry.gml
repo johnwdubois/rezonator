@@ -11,6 +11,7 @@ function scr_deleteTreeEntry(){
 	}
 	
 	var treeSubMap = global.treeMap[? obj_panelPane.functionTree_treeSelected];
+	if (!scr_isNumericAndExists(treeSubMap, ds_type_map)) exit;
 	
 	var treeLinkList = treeSubMap[?"linkIDList"];
 	var sourceEntryID = "";

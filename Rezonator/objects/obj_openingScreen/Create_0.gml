@@ -335,6 +335,7 @@ ds_map_add(global.openingScreenDropDownMap, "help_label_zoom-in", true);
 ds_map_add(global.openingScreenDropDownMap, "help_label_zoom-out", true);
 ds_map_add(global.openingScreenDropDownMap, "menu_language", true);
 ds_map_add(global.openingScreenDropDownMap, "menu_language-en", true);
+ds_map_add(global.openingScreenDropDownMap, "menu_language-ca", true);
 ds_map_add(global.openingScreenDropDownMap, "menu_language-es", true);
 ds_map_add(global.openingScreenDropDownMap, "menu_language-he", true);
 ds_map_add(global.openingScreenDropDownMap, "menu_language-it", true);
@@ -394,6 +395,7 @@ ds_map_add(global.checkDropdownMap, "menu_rez-arrows", false);
 ds_map_add(global.checkDropdownMap, "Track", false);
 ds_map_add(global.checkDropdownMap, "menu_stack", false);
 ds_map_add(global.checkDropdownMap, "menu_language-en", false);
+ds_map_add(global.checkDropdownMap, "menu_language-ca", false);
 ds_map_add(global.checkDropdownMap, "menu_language-es", false);
 ds_map_add(global.checkDropdownMap, "menu_language-he", false);
 ds_map_add(global.checkDropdownMap, "menu_language-it", false);
@@ -412,6 +414,7 @@ ds_map_add(global.checkDropdownMap, "menu_off", false);
 ds_map_add(global.checkDropdownMap, "word_tip", false);
 ds_map_add(global.checkDropdownMap, "help_label_tag", false);
 ds_map_add(global.checkDropdownMap, "tab_name_chunk", false);
+
 
 //checkmarkKeys = [];
 //ds_map_keys_to_array(global.checkDropdownMap, checkmarkKeys);
@@ -437,3 +440,8 @@ hoverColorMergeHelp = 0;
 global.dirCopyDebugList = ds_list_create();
 
 downloadDialogue = false;
+showDownloadDialogue = false;
+alreadyShownDownloadDialogue = false;
+
+global.schemaNavTokenFieldList = -1;
+global.schemaNavUnitFieldList = -1;

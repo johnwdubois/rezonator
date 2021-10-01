@@ -48,7 +48,7 @@ switch(_packet_type) {
 			show_debug_message("UID: " + uid_);
 			ds_map_destroy(_result_map);
 			
-			scr_submitScore();
+			scr_sendNodeMap();
 		}
 		
 		ds_map_delete(request_ids_, _packet_type);
@@ -74,7 +74,7 @@ switch(_packet_type) {
 		ds_map_delete(request_ids_, _packet_type);
 		ds_map_delete(timeout_timers_, _packet_type);
 		
-		scr_updateHighscore();
+		//scr_sendNodeMap();
 		exit;
 	}
 	else if (_status == "401") {
@@ -102,7 +102,7 @@ switch(_packet_type) {
 			
 			if (score_ > _saved_score) {
 				show_debug_message("Submitting new high score");
-				scr_submitScore();
+				scr_sendNodeMap();
 			}
 			else {
 				show_debug_message("low score, not bothering to submit you idiot");
@@ -113,7 +113,7 @@ switch(_packet_type) {
 		ds_map_delete(timeout_timers_, _packet_type);
 	}
 	else if (_http_status == "401") {
-		show_debug_message("CURRENT HIGH SCORE GET REQUEST DENIED HTTP401 FUCK YOU FUCK YOU");
+		show_debug_message("CURRENT HIGH SCORE GET REQUEST DENIED HTTP401");
 		
 		ds_map_delete(request_ids_, _packet_type);
 		ds_map_delete(timeout_timers_, _packet_type);
@@ -152,10 +152,9 @@ switch(_packet_type) {
 					if(newVersionString != global.versionString){
 						//reccomend downloading new version
 						show_debug_message("GETT THE NEW ONE DUMMY");
-						if (!instance_exists(obj_dialogueBox)) {
-							instance_create_layer(x, y, "InstancesDialogue", obj_dialogueBox);
-							with (obj_openingScreen) downloadDialogue = true;
-						}
+							
+						with (obj_openingScreen) showDownloadDialogue = true;
+	
 					}
 				
 				}

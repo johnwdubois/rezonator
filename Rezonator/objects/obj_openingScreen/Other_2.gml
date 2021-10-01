@@ -8,7 +8,6 @@ global.autosaveTimerFull = 600;
 global.autosaveTimer = global.autosaveTimerFull;
 global.previousRezDirectory = "";
 global.previousImportDirectory = "";
-global.fileExtentionOrder = "TXT file|*.txt|XML file|*.xml|CSV file|*.csv|JSON file|*.json";
 global.previousLevelEstimates = ds_list_create();
 global.previousSpecialFields = ds_list_create();
 ds_list_clear(global.previousLevelEstimates);
@@ -41,6 +40,7 @@ global.importGroupFileIndex = 0;
 global.importGroupOutputDir = "";
 global.importGroupSchemaFile = "";
 global.skipToImportScreen = false;
+
 
 
 scr_initializeFonts();
@@ -78,4 +78,4 @@ window_set_min_height(720);
 // CHANGE THIS VAR WHEN MAKING A BUILD
 // if build is true --> CJK fonts will be loaded
 // if build is false --> CJK fonts will not be loaded
-global.build = true;
+global.build = false;

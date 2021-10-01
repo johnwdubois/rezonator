@@ -163,7 +163,7 @@ function scr_panelPane_drawCliques1ToMany(){
 		draw_text(headerTextX, headerTextY, scr_get_translation(colName));
 
 		draw_set_color(global.colorThemeBorders);
-		draw_line_width(headerRectX1, y, headerRectX1, y + windowHeight, 1);
+		if(i != 0) draw_line_width(headerRectX1, y, headerRectX1, y + windowHeight, 1);
 		
 		headerPlusX += colWidth;
 	}

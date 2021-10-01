@@ -11,6 +11,9 @@ function scr_refreshDisplayCol(){
 	var unitList = docSubMap[? "unitList"];
 	var unitListSize = ds_list_size(unitList);
 	
+	var startJustify = scr_checkNativeJustification();
+	var maxColsOnScreen = scr_getMaxColsOnScreen();
+	
 	for (var i = 0; i < unitListSize; i++) {
 		var currentUnit = unitList[| i];
 		var currentUnitSubMap = global.nodeMap[? currentUnit];
@@ -24,11 +27,10 @@ function scr_refreshDisplayCol(){
 			
 
 			var currentDisplayCol = 0;
-			if (scr_checkNativeJustification()) {
+			if (startJustify) {
 				currentDisplayCol = j;
 			}
 			else {
-				var maxColsOnScreen = floor((camWidth - global.toolPaneWidth) / obj_control.gridSpaceHorizontal);
 				currentDisplayCol = maxColsOnScreen - currentEntryListSize + j - 1;
 			}
 			currentTokenSubMap[? "displayCol"] = currentDisplayCol;

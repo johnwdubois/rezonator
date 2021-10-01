@@ -37,15 +37,11 @@ function scr_panelPane_drawTree1ToMany(){
 	var originalPlusX = string_width("Leaf") + (spaceWidth * 5)
 	var plusX = originalPlusX;
 	draw_set_color(topBkgColor);
-	draw_rectangle(x, y, x + plusX, leafY, false);
-	
-	draw_set_color(global.colorThemeBorders);
-	draw_line(x, y, x, y + headerHeight);
 
 	
 
 	functionTree_treeMouseoverLinkArea = point_in_rectangle(mouse_x, mouse_y, x + originalPlusX, y, x + windowWidth - global.scrollBarWidth, leafY);
-	functionTree_treeMouseoverArea = point_in_rectangle(mouse_x, mouse_y, x + originalPlusX, y, x + windowWidth - global.scrollBarWidth, y + windowHeight);
+	functionTree_treeMouseoverArea = point_in_rectangle(mouse_x, mouse_y, x, y, x + windowWidth - global.scrollBarWidth, y + windowHeight);
 
 	
 
@@ -190,7 +186,9 @@ function scr_panelPane_drawTree1ToMany(){
 				ds_list_add(dropDownOptionList, "option_delete-entry", "option_delete-branch");
 						
 				if (ds_list_size(dropDownOptionList) > 0) {
-					scr_createDropDown(tokenX1, tokenY2, dropDownOptionList, global.optionListTypeTreeEntry);
+					var dropDownX = max(tokenX1,x+originalPlusX);
+					
+					scr_createDropDown(dropDownX, tokenY2, dropDownOptionList, global.optionListTypeTreeEntry);
 				}
 				
 			}
@@ -358,7 +356,8 @@ function scr_panelPane_drawTree1ToMany(){
 					ds_list_add(dropDownOptionList, "option_separate-chunk");
 						
 					if (ds_list_size(dropDownOptionList) > 0) {
-						scr_createDropDown(tokenX1, tokenY2, dropDownOptionList, global.optionListTypeTreeLeaf);
+						var dropDownX = max(tokenX1,x);
+						scr_createDropDown(dropDownX, tokenY2, dropDownOptionList, global.optionListTypeTreeLeaf);
 					}
 				}
 				obj_chain.currentFocusedChainID = "";

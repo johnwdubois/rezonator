@@ -7,7 +7,7 @@ function scr_viewOptions(optionSelected) {
 		case "menu_window":
 			scr_destroyAllDropDownsOtherThanSelf();
 			var dropDownOptionList = ds_list_create();
-			ds_list_add(dropDownOptionList, "menu_main", "menu_nav", "menu_search", "menu_grid");
+			ds_list_add(dropDownOptionList, "menu_nav", "menu_grid");
 						
 			if (ds_list_size(dropDownOptionList) > 0) {
 				scr_createDropDown(obj_dropDown.x + obj_dropDown.windowWidth, obj_dropDown.y, dropDownOptionList, global.optionListTypePane);

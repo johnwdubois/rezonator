@@ -5,6 +5,7 @@ function scr_panelPane_drawChains1ToMany() {
 	
 	
 	
+	
 	var chain1toManyColFieldList = -1;
 	with (obj_panelPane) {
 		if (currentFunction == functionChainList) {
@@ -69,6 +70,12 @@ function scr_panelPane_drawChains1ToMany() {
 		exit;
 	}
 	
+	if (functionChainContents_chainIDPrev != chainID) {
+		show_debug_message("functionChainContents_chainIDPrev changed");
+		if (obj_control.chain1toManyCustomSortColIndex != -1) obj_control.refreshCustomSort = true;
+	}
+	functionChainContents_chainIDPrev = chainID;
+	
 	// get some cool variables from the chain
 	var chainType = chainSubMap[? "type"];
 	var chainAligned = chainSubMap[? "alignChain"];
@@ -91,7 +98,8 @@ function scr_panelPane_drawChains1ToMany() {
 	}
 	
 	// whether or not we need to do a custom sort on this chain
-	if (obj_control.chain1toManyCustomSortColIndex >= 0) {
+	if (obj_control.chain1toManyCustomSortColIndex >= 0 && obj_control.refreshCustomSort) {
+		obj_control.refreshCustomSort = false;
 		scr_sortCustom(chainID);
 	}
 	

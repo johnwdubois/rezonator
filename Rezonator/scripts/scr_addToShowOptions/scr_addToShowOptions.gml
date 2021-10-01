@@ -21,7 +21,7 @@ function scr_addToShowOptions(optionSelected){
 					}
 					else{
 						with(obj_panelPane){
-							errorText = "Stack already In Show"
+							errorText = "Stack already in Show"
 							alarm[8] = 240;
 						}
 					}

@@ -49,7 +49,8 @@ function scr_mapViewerDrawNodeData(){
 							|| subMapKey == "entryList"|| subMapKey == "unitList" || subMapKey == "displayUnitList"
 							|| subMapKey == "inChunkList"|| subMapKey == "tagSet" || subMapKey == "targetList"
 							|| subMapKey == "docList" ||subMapKey == "tokenList" || subMapKey == "customSetIDList"
-							|| subMapKey == "inEntryList" || nodeShow == "chainShowMap");
+							|| subMapKey == "inEntryList" ||  subMapKey =="1" ||  subMapKey =="2" ||  subMapKey =="3"
+							|| subMapKey =="4" ||  subMapKey =="5" ||  subMapKey =="6" ||  subMapKey =="7");
 			if (isList && scr_isNumericAndExists(subMapVal, ds_type_list)) {
 				subMapValStr = scr_getStringOfList(subMapVal);
 			}
@@ -57,7 +58,7 @@ function scr_mapViewerDrawNodeData(){
 			
 			// check if this value is a map
 			var isMap = (subMapKey == "tagMap" or nodeShow == "tokenTagMap" or nodeShow == "unitTagMap" or nodeShow == "searchMap" or nodeShow == "cliqueMap"
-				or nodeShow == "treeMap" or nodeShow == "chainTagMap" or nodeShow == "entryTagMap" or nodeShow == "linkTagMap" or nodeShow == "participantMap");
+				or nodeShow == "treeMap" or nodeShow == "chainTagMap" or nodeShow == "entryTagMap" or nodeShow == "linkTagMap" or nodeShow == "participantMap" || nodeShow == "chainShowMap");
 			if (isMap && scr_isNumericAndExists(subMapVal, ds_type_map)) {
 				subMapValStr = "";
 				plusY += strHeight;
@@ -86,7 +87,7 @@ function scr_mapViewerDrawNodeData(){
 					var isList = (subsubMapKey == "tagSet" || subsubMapKey == "searchTermList" || subsubMapKey == "displayUnitList" 
 									|| subsubMapKey == "displayTokenList"|| subsubMapKey == "targetList"|| subsubMapKey == "unitList"|| subsubMapKey == "chainList"
 									|| subsubMapKey == "linkIDList" || subsubMapKey == "setIDList" ||subsubMapKey == "goalLinkList"||subsubMapKey == "shortcutSet"
-									||subsubMapKey == "tokenList");
+									||subsubMapKey == "tokenList" || subsubMapKey == "entryList");
 					if (isList && scr_isNumericAndExists(subsubMapVal, ds_type_list)) {
 						subsubMapValStr = scr_getStringOfList(subsubMapVal);
 					}

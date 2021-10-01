@@ -1,8 +1,9 @@
 // Script assets have changed for v2.3.0 see
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
-function scr_drawLineEntryList(unitID, unitSubMap, entryList, pixelY){
-	
-	if (pixelY + gridSpaceVertical < wordTopMargin || pixelY - gridSpaceVertical > camera_get_view_height(view_camera[0])) exit;
+function scr_drawLineEntryList(unitID, unitSubMap, entryList, pixelY, OOBCheck){
+	if(OOBCheck){
+		if (pixelY + gridSpaceVertical < wordTopMargin || pixelY - gridSpaceVertical > camera_get_view_height(view_camera[0])) exit;
+	}
 	
 	draw_set_color(global.colorThemeText);
 	draw_set_alpha(1);
@@ -33,6 +34,7 @@ function scr_drawLineEntryList(unitID, unitSubMap, entryList, pixelY){
 	var isBAD = (obj_control.justify == obj_control.justifyLeft && obj_control.drawLineState == obj_control.lineState_rtl && obj_control.shape == obj_control.shapeText);
 	if (isBAD) i = entryListSize-1;
 	var j = 0;
+	var k = (drawLineState == lineState_ltr) ? 0 : entryListSize-1;
 
 	repeat(entryListSize) {
 		
@@ -45,6 +47,7 @@ function scr_drawLineEntryList(unitID, unitSubMap, entryList, pixelY){
 		var currentToken = currentEntrySubMap[? "token"];
 		var currentTokenSubMap = global.nodeMap[? currentToken];
 		if (!scr_isNumericAndExists(currentTokenSubMap, ds_type_map)) continue;
+		currentTokenSubMap[? "relativeOrder"] = k;
 		
 		// get tag map for this token
 		var currentTagMap = currentTokenSubMap[? "tagMap"];
@@ -112,7 +115,7 @@ function scr_drawLineEntryList(unitID, unitSubMap, entryList, pixelY){
 			var inMouseRect = false;
 			if (mouseRectExists) {
 				inMouseRect = (rectangle_in_rectangle(tokenRectX1, tokenRectY1, tokenRectX2, tokenRectY2, min(mouse_x, mouseHoldRectX1), min(mouse_y, mouseHoldRectY1), max(mouse_x, mouseHoldRectX1), max(mouse_y, mouseHoldRectY1))
-				&& (mouse_x > mouseHoldRectX1 + 10 || mouse_x < mouseHoldRectX1 - 10));
+				&& (mouse_x > mouseHoldRectX1 + minimumChunkDist || mouse_x < mouseHoldRectX1 - minimumChunkDist));
 				if (mouseRectExists && inMouseRect && !mouse_check_button_released(mb_left)) {
 					ds_list_add(inRectTokenIDList, currentToken);
 					scr_addToListOnce(inRectUnitIDList, unitID);
@@ -129,7 +132,7 @@ function scr_drawLineEntryList(unitID, unitSubMap, entryList, pixelY){
 			// get this token's inChainsList, and update the chainShowList accordingly
 			var inChainsList = currentTokenSubMap[?"inChainsList"];
 			var inEntryList = currentTokenSubMap[?"inEntryList"];
-			scr_updateChainShowList(inChainsList, inEntryList, obj_chain.chainShowList, currentTokenSubMap[?"inChunkList"], obj_chain.chunkShowList, currentToken, tokenRectX1, tokenRectY1, tokenRectX2, tokenRectY2);	
+			scr_updateChainShowList(inChainsList, inEntryList, obj_chain.chainShowList, currentTokenSubMap[?"inChunkList"], currentToken, tokenRectX1, tokenRectY1, tokenRectX2, tokenRectY2);	
 		
 		
 		
@@ -216,6 +219,8 @@ function scr_drawLineEntryList(unitID, unitSubMap, entryList, pixelY){
 		
 		if(isBAD) i -= 2;
 		j++;
+		
+		k += (drawLineState == lineState_ltr) ? 1 : -1;
 		
 	}
 	

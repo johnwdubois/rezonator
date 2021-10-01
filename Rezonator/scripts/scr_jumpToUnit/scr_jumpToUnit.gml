@@ -40,5 +40,9 @@ function scr_jumpToUnit(unitOrSeq) {
 	obj_control.scrollPlusYDest = scrollPos;
 	obj_control.updateChainShowMap = true;
 	
+	obj_control.refreshYValuesUnit = unitID;
+	with (obj_alarm2) alarm[9] = 2;
+
+	
 
 }

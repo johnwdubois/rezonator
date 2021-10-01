@@ -27,13 +27,15 @@ function scr_drawDialogueBox_input(){
 		
 		// description text
 		if (instance_exists(obj_inputBox)) {
-			if (string_length(obj_inputBox.str) < 1) {
+			var strLen = string_length(obj_inputBox.str);
+			if (strLen < 1) {
 				var descTextX = obj_inputBox.x + (dropDownXBuffer * 2);
 				var descTextY = floor(mean(obj_inputBox.y, obj_inputBox.y + obj_inputBox.windowHeight));
 				var descText = scr_get_translation("search_dialogue_word");
 				draw_set_color(global.colorThemeSelected2);
 				draw_set_halign(fa_left);
 				scr_adaptFont(descText, "S", false);
+				draw_set_alpha(1);
 				draw_text(descTextX, descTextY, descText);
 			}
 		}
@@ -60,8 +62,10 @@ function scr_drawDialogueBox_input(){
 		draw_set_color(global.colorThemeText);
 		scr_adaptFont(obj_control.searchField, "S", false);
 		draw_set_halign(fa_left);
+		scr_adaptFont(obj_control.searchField, "S", false);
 		draw_text(floor(fieldRectX1 + dropDownXBuffer), floor(mean(fieldRectY1, fieldRectY2)), obj_control.searchField);
 		draw_set_halign(fa_right);
+		scr_adaptFont(scr_get_translation("option_field"), "S", false);
 		draw_text(floor(fieldRectX1 - dropDownXBuffer), floor(mean(fieldRectY1, fieldRectY2)), scr_get_translation("option_field")+": ");
 		
 		// range rect
@@ -84,10 +88,11 @@ function scr_drawDialogueBox_input(){
 		
 		// range text
 		draw_set_color(global.colorThemeText);
-		scr_adaptFont(obj_control.searchRange, "S", false);
 		draw_set_halign(fa_left);
+		scr_adaptFont(scr_get_translation(obj_control.searchRange), "S", false);
 		draw_text(floor(rangeRectX1 + dropDownXBuffer), floor(mean(rangeRectY1, rangeRectY2)), scr_get_translation(obj_control.searchRange));
 		draw_set_halign(fa_right);
+		scr_adaptFont(scr_get_translation("option_range"), "S", false);
 		draw_text(floor(rangeRectX1 - dropDownXBuffer), floor(mean(rangeRectY1, rangeRectY2)), scr_get_translation("option_range")+": ");
 		
 		

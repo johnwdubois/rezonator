@@ -23,14 +23,15 @@ function scr_audioDraw() {
 
 	// draw track title
 	draw_set_color(global.colorThemeBG);
-	draw_set_halign(fa_left);
+	draw_set_halign(fa_center);
 	draw_set_valign(fa_middle);
-	scr_adaptFont(scr_get_translation("msg_audio"), "M");
+	
+	var audioFileX = floor(x + (windowWidth * mean(0.02, 0.15)));
+	var audioFileY = floor(y + 24);
 	var strHeight = string_height("0");
-	draw_text(x + 24, y + 24, scr_get_translation("msg_audio"));
-	var strHeightAudioTrack = string_height("0");
-	scr_adaptFont(string(audioFile), "S");
-	draw_text(x + 24, y + 24 + strHeightAudioTrack, string(audioFile));
+	var audioFileStr = file_exists(audioFile) ? filename_name(audioFile) : "";
+	scr_adaptFont(audioFileStr, "S");
+	draw_text(audioFileX, audioFileY, audioFileStr);
 	
 	if (point_in_rectangle(mouse_x, mouse_y, x, y, seekBarX1 - string_width("AAAAAAA"), y + windowHeight) && audioFile != "" && file_exists(audioFile)) {
 		scr_createTooltip(mean(x, seekBarX1 - string_width("AAAAAAA")), y, string(audioFile), obj_tooltip.arrowFaceDown);

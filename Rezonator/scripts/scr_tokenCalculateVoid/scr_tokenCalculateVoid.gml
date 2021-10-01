@@ -21,7 +21,7 @@ function scr_tokenCalculateVoid(tokenID){
 	}
 	
 	// get seq & displayCol for this token
-	var tokenSeq = tokenSubMap[? "tokenOrder"];
+	var tokenSeq = tokenSubMap[? "relativeOrder"];
 	var tokenDisplayCol = tokenSubMap[? "displayCol"];
 
 	// get displayCol of previous token
@@ -45,8 +45,13 @@ function scr_tokenCalculateVoid(tokenID){
 	// set the void for this token
 	var tokenVoid = 0;
 	if (startJustify) tokenVoid = tokenDisplayCol - prevTokenDisplayCol;
-	else tokenVoid = prevTokenDisplayCol - tokenDisplayCol;
+	else {
+		tokenVoid = prevTokenDisplayCol - tokenDisplayCol
+		if (tokenSeq == 0) tokenVoid += scr_getMaxColsOnScreen();
+	}
 	tokenSubMap[? "void"] = tokenVoid;
+	
+	
 	
 	
 	// check if this word is the first word in an aligned chunk
@@ -80,7 +85,9 @@ function scr_tokenCalculateVoid(tokenID){
 			
 			// if this token is not in an aligned chain and not in an aligned chunk, then it's displayCol should be the previous displayCol + 1
 			if (startJustify) tokenDisplayCol = (tokenSeq == 0) ? 0 : prevTokenDisplayCol + 1;
-			else tokenDisplayCol = (tokenSeq == 0) ? 0 : prevTokenDisplayCol - 1;
+			else {
+				tokenDisplayCol = (tokenSeq == 0) ? scr_getMaxColsOnScreen() : prevTokenDisplayCol - 1;
+			}
 			tokenSubMap[? "displayCol"] = tokenDisplayCol;
 			
 		}
@@ -112,6 +119,13 @@ function scr_tokenCalculateVoid(tokenID){
 			if (scr_isNumericAndExists(alignedChunkChainSubMap, ds_type_map)) {
 				scr_handleVoid(alignedChunkChainSubMap[? "vizSetIDList"]);
 			}
+		}
+	}
+	
+	if (!startJustify && tokenSeq == 0) {
+		if (tokenDisplayCol + 2 > scr_getMaxColsOnScreen()) {
+			scr_refreshDisplayColUnit(tokenSubMap[? "unit"]);
+			scr_refreshPrevTokenUnit(tokenSubMap[? "unit"]);
 		}
 	}
 	

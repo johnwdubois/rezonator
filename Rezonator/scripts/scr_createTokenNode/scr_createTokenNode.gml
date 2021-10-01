@@ -6,11 +6,13 @@ function scr_createTokenNode(discourseTokenSeq , textToDisplay,newTokenSeq,newDi
 	var currentTokenSubMap = global.nodeMap[? currentTokenNode];
 	ds_map_add(currentTokenSubMap, "docTokenSeq", discourseTokenSeq);
 	ds_map_add(currentTokenSubMap, "tokenOrder", newTokenSeq);
+	ds_map_add(currentTokenSubMap, "relativeOrder", newTokenSeq);
 	ds_map_add(currentTokenSubMap, "displayCol", newDisplayCol);
 	ds_map_add(currentTokenSubMap, "void", 1);
 	ds_map_add(currentTokenSubMap, "pixelX", 0);
 	ds_map_add(currentTokenSubMap, "searched", false);
 	ds_map_add(currentTokenSubMap, "unit", unitID);
+	ds_map_add(currentTokenSubMap, "doc", global.discourseNode);
 	ds_map_add_list(currentTokenSubMap, "inChainsList", ds_list_create());
 	ds_map_add_list(currentTokenSubMap, "inChunkList", ds_list_create());
 	ds_map_add_list(currentTokenSubMap, "inEntryList", ds_list_create());

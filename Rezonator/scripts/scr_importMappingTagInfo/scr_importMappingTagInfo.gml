@@ -405,7 +405,9 @@ function scr_importMappingTagInfo() {
 			// draw text for this cell
 			if (i != global.tagInfoGrid_colError) {
 				draw_set_color(global.colorThemeText);
-				draw_text(textX - clipX, floor(textY - clipY), scr_get_translation(currentCellStr));
+				var textToDisplay = scr_get_translation(currentCellStr);
+				scr_adaptFont(textToDisplay, "M")
+				draw_text(textX - clipX, floor(textY - clipY), textToDisplay);
 			}
 			else {
 				if (currentError) {
@@ -474,7 +476,7 @@ function scr_importMappingTagInfo() {
 		// draw header text
 		draw_set_color(global.colorThemeText);
 		draw_set_halign(fa_center);
-		scr_adaptFont(headerStr, "L");
+		scr_adaptFont(scr_get_translation(headerStr), "L");
 		draw_text(floor(mean(colX1, colX2)) - clipX, floor(tagInfoWindowRectY1 + (rowHeight / 2) - clipY), scr_get_translation(headerStr));
 	
 	

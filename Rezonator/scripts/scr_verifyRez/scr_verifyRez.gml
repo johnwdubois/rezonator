@@ -149,5 +149,21 @@ function scr_verifyRez(rezFileVerison){
 		//now check for tag maps
 
 	}
+	
+	// set every unit's "active" value to be true
+	var unitList = docSubMap[? "unitList"];
+	if (scr_isNumericAndExists(unitList, ds_type_list)) {
+		var unitListSize = ds_list_size(unitList);
+		for (var i = 0; i < unitListSize; i++) {
+			var currentUnit = unitList[| i];
+			var currentUnitSubMap = global.nodeMap[? currentUnit];
+			if (scr_isNumericAndExists(currentUnitSubMap, ds_type_map)) {
+				currentUnitSubMap[? "active"] = true;
+			}
+		}
+	}
+	
+	
+	
 
 }

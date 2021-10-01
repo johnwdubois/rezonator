@@ -2,6 +2,8 @@
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
 function scr_sortCustom(chainID){
 	
+	show_debug_message("scr_sortCustom, chainID: " + string(chainID));
+	
 	var chainSubMap = global.nodeMap[? chainID];
 	if (!scr_isNumericAndExists(chainSubMap, ds_type_map)) exit;
 	

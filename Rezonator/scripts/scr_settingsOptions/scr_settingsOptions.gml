@@ -1,4 +1,6 @@
 function scr_settingsOptions(optionSelected) {
+	
+	var optionIndex = ds_list_find_index(optionList, optionSelected);
 
 	switch (optionSelected)
 	{
@@ -74,10 +76,10 @@ function scr_settingsOptions(optionSelected) {
 		case "menu_language":
 			scr_destroyAllDropDownsOtherThanSelf();
 			var dropDownOptionList = ds_list_create();
-			ds_list_add(dropDownOptionList, "menu_language-en", "menu_language-es", "menu_language-gu", "menu_language-he", "menu_language-hy", "menu_language-it", "menu_language-ja", "menu_language-kk", "menu_language-ru", "menu_language-vi", "menu_language-zh");
+			ds_list_add(dropDownOptionList, "menu_language-en", "menu_language-ca", "menu_language-es", "menu_language-gu", "menu_language-he", "menu_language-hy", "menu_language-it", "menu_language-ja", "menu_language-kk", "menu_language-ru", "menu_language-vi", "menu_language-zh");
 						
 			if (ds_list_size(dropDownOptionList) > 0) {
-				scr_createDropDown(obj_dropDown.x + obj_dropDown.windowWidth, obj_dropDown.y + (obj_dropDown.optionSpacing * 5), dropDownOptionList, global.optionListTypeLanguage);
+				scr_createDropDown(obj_dropDown.x + obj_dropDown.windowWidth, obj_dropDown.y + (obj_dropDown.optionSpacing * optionIndex), dropDownOptionList, global.optionListTypeLanguage);
 			}
 		break;
 		
@@ -87,7 +89,7 @@ function scr_settingsOptions(optionSelected) {
 			ds_list_add(dropDownOptionList, "menu_5-min", "menu_10-min", "menu_20-min", "menu_30-min", "menu_off");
 						
 			if (ds_list_size(dropDownOptionList) > 0) {
-				scr_createDropDown(obj_dropDown.x + obj_dropDown.windowWidth, obj_dropDown.y + (obj_dropDown.optionSpacing * 6), dropDownOptionList, global.optionListTypeAutosave);
+				scr_createDropDown(obj_dropDown.x + obj_dropDown.windowWidth, obj_dropDown.y + (obj_dropDown.optionSpacing * optionIndex), dropDownOptionList, global.optionListTypeAutosave);
 			}
 		break;
 		case "menu_advanced":
@@ -98,7 +100,7 @@ function scr_settingsOptions(optionSelected) {
 
 						
 			if (ds_list_size(dropDownOptionList) > 0) {
-				scr_createDropDown(obj_dropDown.x + obj_dropDown.windowWidth, obj_dropDown.y + (obj_dropDown.optionSpacing * 7), dropDownOptionList, global.optionListTypeAdvanced);
+				scr_createDropDown(obj_dropDown.x + obj_dropDown.windowWidth, obj_dropDown.y + (obj_dropDown.optionSpacing * optionIndex), dropDownOptionList, global.optionListTypeAdvanced);
 			}
 		break
 		default:
