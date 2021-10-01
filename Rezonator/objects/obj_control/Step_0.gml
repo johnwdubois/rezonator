@@ -62,13 +62,6 @@ if (keyboard_check_released(vk_rcommand) || keyboard_check_released(vk_lcommand)
 	keyboard_key_release(vk_lcontrol);
 }
 
-
-// Mechanism to update center display row
-if (!gridView) {
-	if (ds_grid_height(currentActiveLineGrid) > 0) {
-
-		currentCenterDisplayRow = scr_currentTopLine();
-	}
 	
 	
 // Retrieve booleans for NavWindow.
@@ -285,7 +278,6 @@ if (!clickedInChainList and !clickedInChainContents and not mouseoverHelpPane an
 			scr_homeEnd(true);
 		}
 	}
-}
 	
 	if (keyboard_check(vk_alt) and keyboard_check(vk_shift) and keyboard_check_pressed(ord("D"))) {
 		showDevVars = !showDevVars;

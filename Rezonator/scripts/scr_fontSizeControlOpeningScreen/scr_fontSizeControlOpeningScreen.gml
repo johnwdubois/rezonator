@@ -4,6 +4,7 @@ function scr_fontSizeControlOpeningScreen() {
 	var keyboardCheckPlusKey = (os_type == os_macosx) ? keyboard_check_direct(24) : keyboard_check_direct(187);
 	var keyboardCheckMinusKey = (os_type == os_macosx) ? keyboard_check_direct(109) : keyboard_check_direct(189);
 
+
 	// font size decrease
 	if (canPressMinus) {
 		if (global.ctrlHold and keyboard_check_pressed(vk_subtract)

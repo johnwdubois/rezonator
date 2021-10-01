@@ -20,6 +20,8 @@ function scr_panelPaneDrawBranch(){
 					draw_set_color(global.colorThemePaneBG);
 					draw_rectangle(x, y, x + windowWidth, y + windowHeight, false);
 
+
+
 					// all the possible left panes
 					if (functionChainList_currentTab == functionChainList_tabLine) {
 						scr_panelPane_drawUnitsList();
@@ -49,6 +51,9 @@ function scr_panelPaneDrawBranch(){
 						scr_panelPane_drawChainsList();
 					}
 			
+			
+					draw_set_color(global.colorThemeBorders);
+					draw_rectangle(x, y, x + windowWidth, y + windowHeight, true);
 					clickedIn = point_in_rectangle(mouse_x, mouse_y, x, y, x + windowWidth, y + windowHeight);
 				}
 				if (!obj_control.scrollBarHolding and !chainListPane.scrollBarHolding) {
@@ -73,6 +78,7 @@ function scr_panelPaneDrawBranch(){
 					draw_set_alpha(1);
 					draw_set_color(global.colorThemeBG);
 					draw_rectangle(x, y, x + windowWidth, y + windowHeight, false);
+
 					if (is_numeric(functionChainContents_BGColor)) {
 						// if we are on the line tab, set the BG color to be regular
 						if (functionChainList_currentTab == functionChainList_tabLine || functionChainList_currentTab == functionChainList_tabChunk || functionChainList_currentTab == functionChainList_tabSearch || functionChainList_currentTab == functionChainList_tabTree) {
@@ -155,7 +161,8 @@ function scr_panelPaneDrawBranch(){
 					}
 				
 
-			
+					draw_set_color(global.colorThemeBorders);
+					draw_rectangle(x, y, x + windowWidth, y + windowHeight, true);
 					clickedIn = point_in_rectangle(mouse_x, mouse_y, x, y, x + windowWidth, y + windowHeight);
 				}
 		

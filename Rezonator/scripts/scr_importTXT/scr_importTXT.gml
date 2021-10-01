@@ -9,32 +9,15 @@ function scr_importTXT(filename) {
 	ds_grid_resize(global.importTXTLineGrid, global.importTXTLineGridWidth, 0);
 	
 	
-	var str = ""
+	var str = get_string("Copy and paste text below to import it.", "");
+	if (str == "" || !is_string(str)) {
+		room_goto(rm_openingScreen);
+		exit;
+	}
 	
 	
 	// get a list of lines from the source file
-	var fileLineList = ds_list_create();//scr_splitStringImport(str, "\n", true);
-	ds_list_add(fileLineList, "We shall overcome,");
-	ds_list_add(fileLineList, "We shall overcome, some day.");
-	ds_list_add(fileLineList, "Oh, deep in my heart,");
-	ds_list_add(fileLineList, "I do believe");
-	ds_list_add(fileLineList, "We shall overcome, some day.");
-	ds_list_add(fileLineList, "We'll walk hand in hand,");
-	ds_list_add(fileLineList, "We'll walk hand in hand,");
-	ds_list_add(fileLineList, "We'll walk hand in hand, some day.");
-	ds_list_add(fileLineList, "Oh, deep in my heart,");
-	ds_list_add(fileLineList, "We shall live in peace,");
-	ds_list_add(fileLineList, "We shall live in peace,");
-	ds_list_add(fileLineList, "We shall live in peace, some day.");
-	ds_list_add(fileLineList, "Oh, deep in my heart,");
-	ds_list_add(fileLineList, "We shall all be free,");
-	ds_list_add(fileLineList, "We shall all be free,");
-	ds_list_add(fileLineList, "We shall all be free, some day.");
-	ds_list_add(fileLineList, "Oh, deep in my heart,");
-	ds_list_add(fileLineList, "We are not afraid,");
-	ds_list_add(fileLineList, "We are not afraid,");
-	ds_list_add(fileLineList, "We are not afraid, TODAY");
-	ds_list_add(fileLineList, "Oh, deep in my heart,");
+	var fileLineList = scr_splitStringImport(str, "\n", true);
 
 	
 	var fileLineListSize = ds_list_size(fileLineList);

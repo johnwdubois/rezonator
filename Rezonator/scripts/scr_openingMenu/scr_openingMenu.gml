@@ -77,6 +77,11 @@ function scr_openingMenu() {
 		}
 	}
 	
+	if (global.skipToImportScreen) {
+		global.newProject = true;
+		global.openProject = false;
+	}
+	
 	// draw import button
 	draw_set_color(merge_color(global.colorThemeBG, global.colorThemeRezPurple, hoverColorMergeImport));
 	draw_roundrect(newProjectButtonX1, newProjectButtonY1, newProjectButtonX2, newProjectButtonY2, false);
