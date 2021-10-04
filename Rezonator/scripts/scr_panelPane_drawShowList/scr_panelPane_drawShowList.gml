@@ -131,6 +131,10 @@ function scr_panelPane_drawShowList(){
 			if (mouseoverStartCol && mouse_check_button_released(mb_left)) {
 				
 				if(!currentShowPlaying){
+					
+					scr_setValueForAllChains("stack","movesMade", 0);
+					obj_chain.increaseStack = false;
+					
 					if (scr_isNumericAndExists(setList, ds_type_list)) {
 									
 						with (obj_panelPane) {

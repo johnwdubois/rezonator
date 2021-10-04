@@ -121,6 +121,8 @@ cycleDetected = false;
 rezChainGridRowToRefreshTilt = -1;
 
 
+increaseStack = false;
+moveCounter = 0;
 //recentlyMovedLinks = ds_list_create();
 recentlyMovedWords = ds_list_create();
 alarm[4] = 30;

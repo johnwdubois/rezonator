@@ -78,6 +78,14 @@ function scr_chainListOptions(optionSelected) {
 					// Destory the Dropdown
 					instance_destroy(obj_dropDown);
 					break;
+				case "Set Rez Map":
+					
+					// Create a rez map based on that Stack
+					scr_setRezMap(obj_control.selectedChainID);
+					
+					// Destory the Dropdown
+					instance_destroy(obj_dropDown);
+					break;
 				case "option_create-tree":
 					
 					var chainSubMap = global.nodeMap[? obj_control.selectedChainID];

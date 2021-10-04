@@ -19,6 +19,7 @@ function scr_removeChainFromInChainsList(chainID, entryID, tokenID) {
 	else {
 		inChainsList = tokenSubMap[? "inChainsList"];
 		inEntryList = tokenSubMap[? "inEntryList"];
+		tokenSubMap[? "rezEffect"] = false;
 	}
 	scr_deleteFromList(inChainsList, chainID);
 	scr_deleteFromList(inEntryList, entryID);

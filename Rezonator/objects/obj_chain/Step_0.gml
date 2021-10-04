@@ -2,6 +2,8 @@
 	Purpose: Consistently update attributes of chain objects
 */
 
+scr_scoreStack();
+
 scr_setFocusedChainWordID();
 
 

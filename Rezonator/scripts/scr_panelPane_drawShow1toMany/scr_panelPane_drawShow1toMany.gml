@@ -55,6 +55,10 @@ function scr_panelPane_drawShow1toMany(){
 					var currentChainName = currentChainSubMap[? "name"];
 					var currentChainColor = currentChainSubMap[? "chainColor"];
 					var chainIsFiltered = (currentChain == filteredChain);
+					var chainScore = currentChainSubMap[?"score"];
+					var par = currentChainSubMap[?"par"];
+					var totalChainScore = currentChainSubMap[?"totalScore"];
+					var movesMade = currentChainSubMap[?"movesMade"];
 							
 				
 							
@@ -80,6 +84,13 @@ function scr_panelPane_drawShow1toMany(){
 					draw_set_color(global.colorThemeText);
 					draw_text(floor(nameColX + textBuffer) - clipX, floor(mean(chainRectY1, chainRectY2)) - clipY, string(currentChainName));
 							
+							
+					var scoreText = string(chainScore) +" / "+string(totalChainScore) +" , " + string(movesMade) +" / "+ string(par);	
+					// draw chain score
+					if(chainScore!= undefined){
+						draw_set_color(global.colorThemeText);
+						draw_text(floor(nameColX + textBuffer*2 + string_width(string(currentChainName)) ) - clipX, floor(mean(chainRectY1, chainRectY2)) - clipY, string(scoreText));
+					}
 							
 					if(mouseoverChainRect){
 							
@@ -272,7 +283,7 @@ function scr_panelPane_drawShow1toMany(){
 	var currentShowSubMap = global.nodeMap[? obj_panelPane.functionChainList_playShowID];
 	var isSelected = (obj_panelPane.functionChainContents_showID != "");
 	var setList = "";
-	var currentChainIndex = -1;
+	currentChainIndex = -1;
 	var setListSize = 0;
 	var isPlaying = false;
 	if (scr_isNumericAndExists(currentShowSubMap,ds_type_map)) {
@@ -409,7 +420,10 @@ function scr_panelPane_drawShow1toMany(){
 				}
 					
 				if(setListSize > 0){
-							
+					
+					scr_setValueForAllChains("stack","movesMade", 0);
+					obj_chain.increaseStack = false;
+					
 					with (obj_panelPane) {
 						functionChainList_playShowID = functionChainContents_showID;
 					}

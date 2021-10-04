@@ -1,0 +1,1 @@
+if (obj_panelPane.functionChainList_playShowID != "") scr_scoreStack();

@@ -207,7 +207,11 @@ function scr_drawLineEntryList(unitID, unitSubMap, entryList, pixelY, OOBCheck){
 		
 
 			draw_set_color((wordFound) ? make_color_rgb(20, 146, 181) : global.colorThemeText );
+			if (ds_map_exists(currentTokenSubMap, "rezEffect")) {
+				if (currentTokenSubMap[? "rezEffect"]) draw_set_color(global.colorThemeRezPink);
+			}
 
+			
 			draw_set_alpha(1);
 			draw_text(currentPixelX, pixelY, currentDisplayStr);
 		}

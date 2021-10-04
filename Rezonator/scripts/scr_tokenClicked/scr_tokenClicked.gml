@@ -45,6 +45,7 @@ function scr_tokenClicked(tokenID){
 		obj_control.moveCounter++;
 	}
 	
+	
 	var inChainsList = tokenSubMap[?"inChainsList"];
 	show_debug_message("scr_tokenClicked ... inChainsList: " + scr_getStringOfList(inChainsList));
 	
@@ -86,7 +87,8 @@ function scr_tokenClicked(tokenID){
 	if (obj_toolPane.currentMode == obj_toolPane.modeRead) {
 		exit;
 	}
-
+	
+	obj_chain.increaseStack = true;
 	// if there is not a focused chain, we create a new chain
 	if (!ds_map_exists(global.nodeMap, obj_chain.currentFocusedChainID)) {
 		scr_newChain(tokenID);

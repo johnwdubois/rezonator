@@ -41,7 +41,7 @@ function scr_getChainTempList(chainID, sorted){
 		}
 	}
 	
-	show_debug_message("scr_getChainTempList() ... tempWordList: " + scr_getStringOfList(tempWordList));
+	//show_debug_message("scr_getChainTempList() ... tempWordList: " + scr_getStringOfList(tempWordList));
 	return tempWordList;
 
 }

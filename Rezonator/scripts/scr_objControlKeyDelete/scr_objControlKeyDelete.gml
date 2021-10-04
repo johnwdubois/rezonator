@@ -22,16 +22,13 @@ function scr_objControlKeyDelete(){
 	else {
 
 	
-		scr_deleteFromChain(true);
+		
 	
 		if (obj_chain.currentFocusedChunkID != "") {
 			scr_deleteChunk(obj_chain.currentFocusedChunkID);
 		}
 		
 		with(obj_panelPane){
-			if(functionChainList_currentTab == functionChainList_tabShow && functionChainContents_showID != ""){
-				scr_deleteShow(obj_control.selectedChainID);
-			}	
 			if(functionChainList_currentTab == functionChainList_tabTree && obj_panelPane.functionTree_treeLinkSelected != ""){
 				scr_deleteTreeLink();
 				exit;
@@ -42,6 +39,8 @@ function scr_objControlKeyDelete(){
 			}
 
 		}
+		
+		scr_deleteFromChain(true);
 	
 	}
 
