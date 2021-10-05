@@ -9,7 +9,7 @@ function scr_scoreChain(chainID, rezMap){
 	var vizSetIDList = chainSubMap[? "vizSetIDList"];
 	var vizSetIDListSize = ds_list_size(vizSetIDList);
 	
-
+	var nonResonanceMatches = 0;
 	
 	var maxResonance = 0;
 	
@@ -24,7 +24,10 @@ function scr_scoreChain(chainID, rezMap){
 		var currentTokenTagMap = currentTokenSubMap[? "tagMap"];
 		var currentDisplayStr = currentTokenTagMap[? global.displayTokenField];
 		
-		if (!ds_map_exists(rezMap, currentDisplayStr)) continue;
+		if (!ds_map_exists(rezMap, currentDisplayStr)) {
+			nonResonanceMatches++;
+			continue;
+		}
 		var rezList = rezMap[? currentDisplayStr];
 		if (!scr_isNumericAndExists(rezList, ds_type_list)) continue;
 		
@@ -61,5 +64,6 @@ function scr_scoreChain(chainID, rezMap){
 	
 
 	chainSubMap[? "maxResonance"] = maxResonance;
-
+	return nonResonanceMatches;
+	
 }

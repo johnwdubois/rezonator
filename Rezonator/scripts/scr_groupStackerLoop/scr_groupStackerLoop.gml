@@ -20,6 +20,8 @@ function scr_groupStackerLoop(){
 
 	}
 
+	show_debug_message("importGridColNameList: " + scr_getStringOfList(global.importGridColNameList));
+	show_debug_message("groupCol: " + string(groupCol));
 
 	// Exit script if no turnOrder column was found
 	if (groupCol == -1) {
@@ -32,11 +34,14 @@ function scr_groupStackerLoop(){
 	}
 	
 	
+	
 	//Set variables for loop
 	var currentGroupOrder = ds_grid_get(global.importGrid, groupCol, 0);
 	var previousGroupOrder = ds_grid_get(global.importGrid, groupCol, 0);
 	var discourseSubMap = global.nodeMap[?global.discourseNode];
 	var unitList = discourseSubMap[?"unitList"];
+	
+	global.delayInput = 0;
 
 	//Starting at the top of the unitImportGrid
 	for (var importLoop = 0; importLoop < importGridHeight; importLoop++) {
@@ -83,4 +88,6 @@ function scr_groupStackerLoop(){
 		ds_list_clear(currentUnitList);
 	}
 	splitSave = false;
+	
+	global.delayInput = 2;
 }

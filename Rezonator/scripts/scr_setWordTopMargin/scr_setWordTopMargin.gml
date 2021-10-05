@@ -20,7 +20,7 @@ function scr_setWordTopMargin(){
 		wordTopMargin = menuBarHeight + chainListHeight + tabsHeight;
 	}
 	else {
-		wordTopMargin = menuBarHeight;
+		if (!instance_exists(obj_rezzlesUI)) wordTopMargin = menuBarHeight;
 	}
 
 }

@@ -3,6 +3,7 @@
 function scr_createChunk(){
 	
 	show_debug_message("\n\n\n....scr_createChunk()");
+	exit;
 	
 	if (obj_control.mouseoverPanelPane) exit;
 	

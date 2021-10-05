@@ -1,13 +1,11 @@
 // Script assets have changed for v2.3.0 see
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
 function scr_scoreStack(){
-	
 
 	
 	var currentStackID = "";
 	
 	if(obj_panelPane.functionChainList_currentTab == obj_panelPane.functionChainList_tabShow && obj_panelPane.functionChainContents_showID != "" ){
-		
 		var currentShowSubMap = global.nodeMap[? obj_panelPane.functionChainList_playShowID];
 		if (scr_isNumericAndExists(currentShowSubMap,ds_type_map)) {
 			//get setlist of playing show
@@ -17,14 +15,14 @@ function scr_scoreStack(){
 			}
 		}
 	}
-	
-	
+
 	var stackSubMap = global.nodeMap[?currentStackID];
 	if (!scr_isNumericAndExists(stackSubMap, ds_type_map)) exit;
 	var rezMap = stackSubMap[?"rezMap"];
 	if (!scr_isNumericAndExists(rezMap, ds_type_map)) exit;
 	var stackSubMap = global.nodeMap[?currentStackID];
 	if(!scr_isNumericAndExists(stackSubMap, ds_type_map)){exit;}
+
 	
 	if(obj_chain.increaseStack){
 		obj_chain.increaseStack = false;
@@ -59,18 +57,18 @@ function scr_scoreStack(){
 		}		
 	}
 	
-
+	var totalNonResonanceMatches = 0;
 	var rezChainsInStackListSize = ds_list_size(rezChainsInStackList);
 	var stackScore = 0;
 	for(var i = 0; i < rezChainsInStackListSize; i++){
 		var currentRezChain = rezChainsInStackList[| i]
-		scr_scoreChain(currentRezChain, rezMap);
+		totalNonResonanceMatches += scr_scoreChain(currentRezChain, rezMap);
 		var currentRezChainSubMap = global.nodeMap[?currentRezChain];
 		var currentChainScore = currentRezChainSubMap[?"maxResonance"];
 		stackScore += power(currentChainScore, 2);
 	}
 	
-	stackSubMap[?"score"] = stackScore;
+	stackSubMap[?"score"] = stackScore - totalNonResonanceMatches;
 
 
 	ds_list_destroy(rezChainsInStackList);

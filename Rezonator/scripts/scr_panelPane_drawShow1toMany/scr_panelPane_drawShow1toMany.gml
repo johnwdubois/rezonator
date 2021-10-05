@@ -283,7 +283,7 @@ function scr_panelPane_drawShow1toMany(){
 	var currentShowSubMap = global.nodeMap[? obj_panelPane.functionChainList_playShowID];
 	var isSelected = (obj_panelPane.functionChainContents_showID != "");
 	var setList = "";
-	currentChainIndex = -1;
+	with (obj_panelPane) currentChainIndex = -1;
 	var setListSize = 0;
 	var isPlaying = false;
 	if (scr_isNumericAndExists(currentShowSubMap,ds_type_map)) {
@@ -291,7 +291,7 @@ function scr_panelPane_drawShow1toMany(){
 		setList = currentShowSubMap[? "setIDList"];	
 		if (scr_isNumericAndExists(setList, ds_type_list)) {		
 			//get index of filtered chain in show's setList
-			currentChainIndex = ds_list_find_index(setList,currentFilteredChain);
+			with (obj_panelPane) currentChainIndex = ds_list_find_index(setList,currentFilteredChain);
 			setListSize = ds_list_size(setList);
 			isPlaying = true;
 		}
@@ -502,6 +502,8 @@ function scr_panelPane_drawShow1toMany(){
 			}
 		}
 		
-	}	
+	}
+	
+	
 	scr_surfaceEnd();
 }

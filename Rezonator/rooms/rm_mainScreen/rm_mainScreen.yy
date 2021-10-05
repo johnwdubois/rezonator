@@ -39,6 +39,7 @@
         {"properties":[],"isDnd":false,"objectId":{"name":"obj_alarm","path":"objects/obj_alarm/obj_alarm.yy",},"inheritCode":false,"hasCreationCode":false,"colour":4294967295,"rotation":0.0,"scaleX":1.0,"scaleY":1.0,"imageIndex":0,"imageSpeed":1.0,"inheritedItemId":null,"frozen":false,"ignore":false,"inheritItemSettings":false,"x":993.0,"y":222.0,"resourceVersion":"1.0","name":"inst_4309C9E","tags":[],"resourceType":"GMRInstance",},
         {"properties":[],"isDnd":false,"objectId":{"name":"obj_alarm2","path":"objects/obj_alarm2/obj_alarm2.yy",},"inheritCode":false,"hasCreationCode":false,"colour":4294967295,"rotation":0.0,"scaleX":1.0,"scaleY":1.0,"imageIndex":0,"imageSpeed":1.0,"inheritedItemId":null,"frozen":false,"ignore":false,"inheritItemSettings":false,"x":1285.0,"y":862.0,"resourceVersion":"1.0","name":"inst_3E524CF6","tags":[],"resourceType":"GMRInstance",},
         {"properties":[],"isDnd":false,"objectId":{"name":"obj_stacker","path":"objects/obj_stacker/obj_stacker.yy",},"inheritCode":false,"hasCreationCode":false,"colour":4294967295,"rotation":0.0,"scaleX":1.0,"scaleY":1.0,"imageIndex":0,"imageSpeed":1.0,"inheritedItemId":null,"frozen":false,"ignore":false,"inheritItemSettings":false,"x":992.0,"y":672.0,"resourceVersion":"1.0","name":"inst_14039C89","tags":[],"resourceType":"GMRInstance",},
+        {"properties":[],"isDnd":false,"objectId":{"name":"obj_rezzlesUI","path":"objects/obj_rezzlesUI/obj_rezzlesUI.yy",},"inheritCode":false,"hasCreationCode":false,"colour":4294967295,"rotation":0.0,"scaleX":1.0,"scaleY":1.0,"imageIndex":0,"imageSpeed":1.0,"inheritedItemId":null,"frozen":false,"ignore":false,"inheritItemSettings":false,"x":736.0,"y":488.0,"resourceVersion":"1.0","name":"inst_7D45D25D","tags":[],"resourceType":"GMRInstance",},
       ],"visible":true,"depth":500,"userdefinedDepth":false,"inheritLayerDepth":false,"inheritLayerSettings":false,"gridX":32,"gridY":32,"layers":[],"hierarchyFrozen":false,"resourceVersion":"1.0","name":"Instances","tags":[],"resourceType":"GMRInstanceLayer",},
     {"instances":[
         {"properties":[],"isDnd":false,"objectId":{"name":"obj_toolPane","path":"objects/obj_toolPane/obj_toolPane.yy",},"inheritCode":false,"hasCreationCode":true,"colour":4294967295,"rotation":0.0,"scaleX":1.0,"scaleY":1.0,"imageIndex":0,"imageSpeed":1.0,"inheritedItemId":null,"frozen":false,"ignore":false,"inheritItemSettings":false,"x":877.0,"y":586.0,"resourceVersion":"1.0","name":"inst_3952938F","tags":[],"resourceType":"GMRInstance",},
@@ -78,6 +79,7 @@
     {"name":"inst_panelPane_help","path":"rooms/rm_mainScreen/rm_mainScreen.yy",},
     {"name":"inst_6C4713B2","path":"rooms/rm_mainScreen/rm_mainScreen.yy",},
     {"name":"inst_1C2C0693","path":"rooms/rm_mainScreen/rm_mainScreen.yy",},
+    {"name":"inst_7D45D25D","path":"rooms/rm_mainScreen/rm_mainScreen.yy",},
   ],
   "inheritCreationOrder": false,
   "sequenceId": null,

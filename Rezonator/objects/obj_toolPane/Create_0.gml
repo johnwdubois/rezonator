@@ -31,7 +31,7 @@ toolSpriteScale = 1;
 modeRead = 0;
 modeRez = 1;
 modeTrack = 2;
-currentMode = modeTrack;
+currentMode = modeRez;
 
 setModeMain = modeRead;
 setModeSearch = modeRead;

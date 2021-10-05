@@ -1,5 +1,6 @@
 /// @description Insert description here
 // You can write your code in this editor
+
 enum REQUEST_TYPE {
 	auth,
 	submit,
@@ -35,4 +36,3 @@ score_ = irandom_range(1,1000000);
 name_ = "GML USER: " + string(irandom_range(1,1000000));
 
 newestVersionNum = "";
-

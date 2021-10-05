@@ -10,20 +10,22 @@ function scr_objControlKeyDelete(){
 	}
 
 	show_debug_message("scr_objControlKeyDelete");
+	
+	if (global.delayInput > 0) exit;
 
-
+	
 	if (global.ctrlHold) {
 		// Delete the entire chain if one is focused
-		if (ds_map_exists(global.nodeMap,obj_chain.currentFocusedChainID)) {
-			scr_deleteChain(obj_chain.currentFocusedChainID);
-		}
+		//if (ds_map_exists(global.nodeMap,obj_chain.currentFocusedChainID)) {
+		//	scr_deleteChain(obj_chain.currentFocusedChainID);
+		//}
 	}
 	// If a normal delete, delete the singular focused link
 	else {
 
 	
 		
-	
+		
 		if (obj_chain.currentFocusedChunkID != "") {
 			scr_deleteChunk(obj_chain.currentFocusedChunkID);
 		}
@@ -41,6 +43,7 @@ function scr_objControlKeyDelete(){
 		}
 		
 		scr_deleteFromChain(true);
+		obj_chain.increaseStack = true;
 	
 	}
 
