@@ -4,6 +4,7 @@ with (obj_panelPane) {
 	if (scr_isNumericAndExists(showList, ds_type_list)) {
 		functionChainContents_showID = showList[| 0];
 		var showSubMap = global.nodeMap[? functionChainContents_showID];
+		if (!scr_isNumericAndExists(showSubMap, ds_type_map)) exit;
 		var setList = showSubMap[? "setIDList"];
 		
 		scr_setValueForAllChains("stack","movesMade", 0);

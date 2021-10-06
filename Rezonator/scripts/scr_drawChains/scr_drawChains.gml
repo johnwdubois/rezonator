@@ -98,12 +98,10 @@ function scr_drawChains() {
 			
 			var currentEntry1SubMap = global.nodeMap[? currentEntry1];
 			var currentEntry2SubMap = global.nodeMap[? currentEntry2];
-			
-			
-			
-			
 			if (!scr_isNumericAndExists(currentEntry1SubMap, ds_type_map)) continue;
 			if (!scr_isNumericAndExists(currentEntry2SubMap, ds_type_map)) continue;
+			
+			
 			
 			var currentTokenID1 = currentEntry1SubMap[? "token"];
 			var currentTokenID2 = currentEntry2SubMap[? "token"];

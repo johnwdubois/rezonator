@@ -4,7 +4,6 @@ draw_set_alpha(1);
 var camWidth = camera_get_view_width(view_camera[0]);
 var camHeight = camera_get_view_height(view_camera[0]);
 var mouseoverCancel = instance_exists(obj_dropDown) || instance_exists(obj_dialogueBox);
-scr_adaptFont("", "L", true);
 draw_set_halign(fa_center);
 
 // set up drawing & BG
@@ -36,10 +35,14 @@ if (!scr_isNumericAndExists(stackSubMap, ds_type_map)) exit;
 draw_set_color(global.colorThemeText);
 var stackName = string(stackSubMap[? "name"])
 var nameTextY = y + rectHeight * 0.4;
+var scoreTextX = floor(camWidth * 0.2);
+var movesTextX = floor(camWidth * 0.8);
 var textY = floor(mean(y, y + rectHeight));
 var strHeight = string_height("0");
+scr_adaptFont("", "L", true);
 draw_text(floor(camWidth * 0.5), nameTextY, stackName);
-draw_text(floor(camWidth * 0.5), textY + strHeight, string(stackSubMap[? "caption"]));
+scr_adaptFont("", "L", false);
+draw_text_ext(floor(camWidth * 0.5), textY + strHeight, string(stackSubMap[? "caption"]), strHeight, movesTextX - scoreTextX - string_width("Score Moves "));
 
 var lineY = nameTextY + (strHeight * 0.65);
 var nameWidth = string_width(stackName) * 1.5;
@@ -52,13 +55,14 @@ var par = stackSubMap[? "par"];
 var stackScore = stackSubMap[? "score"];
 var stackTotalScore = stackSubMap[? "totalScore"];
 draw_set_color(global.colorThemeText);
-draw_text(floor(camWidth * 0.2), textY, "Score");
+scr_adaptFont("", "L", true);
+draw_text(scoreTextX, textY, "Score");
 draw_set_color(stackScore >= stackTotalScore ? c_green : global.colorThemeText);
-draw_text(floor(camWidth * 0.2), textY + strHeight, string(stackScore) + " / " + string(stackTotalScore));
+draw_text(scoreTextX, textY + strHeight, string(stackScore) + " / " + string(stackTotalScore));
 draw_set_color(global.colorThemeText);
-draw_text(floor(camWidth * 0.8), textY, "Moves");
+draw_text(movesTextX, textY, "Moves");
 draw_set_color(movesMade >= par ? c_red : global.colorThemeText);
-draw_text(floor(camWidth * 0.8), textY + strHeight, string(movesMade) + " / " + string(par));
+draw_text(movesTextX, textY + strHeight, string(movesMade) + " / " + string(par));
 
 if (movesMade >= par) {
 	global.delayInput = 5;

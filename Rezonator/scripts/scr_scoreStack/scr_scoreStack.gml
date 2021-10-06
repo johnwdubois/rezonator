@@ -64,8 +64,10 @@ function scr_scoreStack(){
 		var currentRezChain = rezChainsInStackList[| i]
 		totalNonResonanceMatches += scr_scoreChain(currentRezChain, rezMap);
 		var currentRezChainSubMap = global.nodeMap[?currentRezChain];
-		var currentChainScore = currentRezChainSubMap[?"maxResonance"];
-		stackScore += power(currentChainScore, 2);
+		var currentChainMaxRez = currentRezChainSubMap[?"maxResonance"];
+		var currentChainScore = power(currentChainMaxRez, 2);
+		currentRezChainSubMap[? "score"] = currentChainScore;
+		stackScore += currentChainScore;
 	}
 	
 	stackSubMap[?"score"] = stackScore - totalNonResonanceMatches;

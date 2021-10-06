@@ -10,6 +10,28 @@ function scr_tokenClicked(tokenID){
 	show_debug_message("scr_tokenClicked ... tokenID: " + string(tokenID));
 	
 	var unitID = tokenSubMap[?"unit"];
+	
+	// prevent side-links
+	if (obj_chain.currentFocusedChainID != "") {
+		var chainSubMap = global.nodeMap[? obj_chain.currentFocusedChainID];
+		if (scr_isNumericAndExists(chainSubMap, ds_type_map)) {
+			var setIDList = chainSubMap[? "setIDList"];
+			var setIDListSize = ds_list_size(setIDList);
+			for (var i = 0; i < setIDListSize; i++) {
+				var currentEntry = setIDList[| i];
+				var currentEntrySubMap = global.nodeMap[? currentEntry];
+				var currentToken = currentEntrySubMap[? "token"];
+				var currentTokenSubMap = global.nodeMap[? currentToken];
+				if (scr_isNumericAndExists(currentTokenSubMap, ds_type_map)) {
+					var currentUnit = currentTokenSubMap[? "unit"];
+					if (currentUnit == unitID) {
+						show_debug_message("scr_tokenClicked ... side link!");
+						scr_chainDeselect();
+					}
+				}
+			}
+		}
+	}
 
 	if (obj_control.gridView or (obj_control.mouseoverPanelPane and not obj_stacker.splitSave) or obj_control.dialogueBoxActive or instance_exists(obj_dialogueBox) or instance_exists(obj_dropDown) or instance_exists(obj_flyout) or obj_toolPane.mouseOverToolPane) {
 		var shouldExit = true;
