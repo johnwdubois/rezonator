@@ -1,4 +1,5 @@
 if (obj_panelPane.showNav) exit;
+rectHeight = (camera_get_view_height(view_camera[0])*0.2);
 draw_set_alpha(1);
 
 var camWidth = camera_get_view_width(view_camera[0]);
@@ -39,9 +40,9 @@ var scoreTextX = floor(camWidth * 0.2);
 var movesTextX = floor(camWidth * 0.8);
 var textY = floor(mean(y, y + rectHeight));
 var strHeight = string_height("0");
-scr_adaptFont("", "L", true);
-draw_text(floor(camWidth * 0.5), nameTextY, stackName);
 scr_adaptFont("", "L", false);
+draw_text(floor(camWidth * 0.5), nameTextY, stackName);
+scr_adaptFont("", "M", false);
 draw_text_ext(floor(camWidth * 0.5), textY + strHeight, string(stackSubMap[? "caption"]), strHeight, movesTextX - scoreTextX - string_width("Score Moves "));
 
 var lineY = nameTextY + (strHeight * 0.65);
@@ -55,7 +56,7 @@ var par = stackSubMap[? "par"];
 var stackScore = stackSubMap[? "score"];
 var stackTotalScore = stackSubMap[? "totalScore"];
 draw_set_color(global.colorThemeText);
-scr_adaptFont("", "L", true);
+scr_adaptFont("", "L", false);
 draw_text(scoreTextX, textY, "Score");
 draw_set_color(stackScore >= stackTotalScore ? c_green : global.colorThemeText);
 draw_text(scoreTextX, textY + strHeight, string(stackScore) + " / " + string(stackTotalScore));
