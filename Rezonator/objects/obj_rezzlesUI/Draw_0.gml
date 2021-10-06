@@ -10,12 +10,12 @@ draw_set_halign(fa_center);
 // set up drawing & BG
 x = obj_control.wordLeftMargin;
 y = obj_menuBar.y;
-obj_control.wordTopMargin = y + rectHeight;
+obj_control.wordTopMargin = y + rectHeight * 1.1;
 var bgColor = merge_color(global.colorThemeSelected1, global.colorThemeBG, 0.5);
 draw_set_color(bgColor);
-draw_rectangle(0, obj_menuBar.menuHeight, camWidth, obj_control.wordTopMargin, false);
+draw_rectangle(0, obj_menuBar.menuHeight, camWidth, y + rectHeight, false);
 draw_set_color(global.colorThemeBorders);
-draw_rectangle(0, obj_menuBar.menuHeight, camWidth, obj_control.wordTopMargin, true);
+draw_rectangle(0, obj_menuBar.menuHeight, camWidth, y + rectHeight, true);
 
 // get stack, make sure it exists
 var stackID = "";

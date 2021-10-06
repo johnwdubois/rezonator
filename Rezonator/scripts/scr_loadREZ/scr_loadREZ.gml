@@ -40,7 +40,7 @@ function scr_loadREZ(bufferString) {
 	
 
 
-	var rezFileVerison = 0;
+
 
 	global.fileSaveName = fileName;
 	if (filename_path(global.fileSaveName) == global.rezonatorDefaultDiscourseDirString + "\\") {
@@ -48,7 +48,7 @@ function scr_loadREZ(bufferString) {
 	}
 	*/
 
-
+	var rezFileVerison = 0;
 	//if (file_exists(fileName)) {
 		var wrapper = json_decode(bufferString);
 	
