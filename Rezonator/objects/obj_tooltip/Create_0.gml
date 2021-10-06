@@ -1,17 +1,18 @@
-var selfID = self;
+var selfID = self.id;
 with (obj_tooltip) {
-	if (self != selfID) {
+	if (self.id != selfID) {
 		instance_destroy();
 	}
 }
 
+
 alpha = 0;
 text = "";
 arrowFacing = 0;
-arrowFaceUp = 0;
-arrowFaceRight = 1;
-arrowFaceDown = 2;
-arrowFaceLeft = 3;
+global.arrowFaceUp = 0;
+global.arrowFaceRight = 1;
+global.arrowFaceDown = 2;
+global.arrowFaceLeft = 3;
 
 show = false;
 showCount = 0;

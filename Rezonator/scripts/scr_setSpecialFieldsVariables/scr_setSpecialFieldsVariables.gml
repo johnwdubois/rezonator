@@ -15,7 +15,7 @@ function scr_setSpecialFieldsVariables() {
 	if (unitStartRow >= 0) global.unitImportUnitStartColName = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colMarker, unitStartRow);
 	if (unitEndRow >= 0) global.unitImportUnitEndColName = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colMarker, unitEndRow);
 	
-	
+
 
 	var unitDelimiterRow = ds_grid_value_y(global.tagInfoGrid, global.tagInfoGrid_colKey, 0, global.tagInfoGrid_colKey, ds_grid_height(global.tagInfoGrid), "unit_delim");
 	global.unitDelimField = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colMarker, unitDelimiterRow);

@@ -2,8 +2,10 @@
 	Purpose: draw a rectangle for creating quickLinks/quickStacks
 */
 function scr_mouseRect() {
+	
 
 	if(instance_exists(obj_dialogueBox))exit;
+	if(!instance_exists(obj_chain))exit;
 	// is user releases mouse, do something!
 	if (mouse_check_button_released(mb_left)) {
 		

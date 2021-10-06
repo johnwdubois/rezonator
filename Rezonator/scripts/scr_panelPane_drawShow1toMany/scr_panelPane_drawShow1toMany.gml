@@ -120,7 +120,7 @@ function scr_panelPane_drawShow1toMany(){
 								if (mouse_check_button_released(mb_left)) {
 									scr_deleteFromList(setList, currentChain);
 								}
-								scr_createTooltip(delButtonX, chainRectY2, scr_get_translation("msg_remove"), obj_tooltip.arrowFaceUp);
+								scr_createTooltip(delButtonX, chainRectY2, scr_get_translation("msg_remove"), global.arrowFaceUp);
 							}
 									
 								trashAlpha = 1;
@@ -338,7 +338,7 @@ function scr_panelPane_drawShow1toMany(){
 		draw_set_valign(fa_middle);
 		draw_text(floor(mean(showPrevButtonX1, showPrevButtonX2)- clipX), floor(mean(showPrevButtonY1, showPrevButtonY2)- clipY), showPrevButtonText);
 		if (mouseoverShowPrevButton) {
-			scr_createTooltip(mean(showPrevButtonX1, showPrevButtonX2), showPrevButtonY2, scr_get_translation("option_previous"), obj_tooltip.arrowFaceUp);
+			scr_createTooltip(mean(showPrevButtonX1, showPrevButtonX2), showPrevButtonY2, scr_get_translation("option_previous"), global.arrowFaceUp);
 		}
 		
 		if (isPlaying) {
@@ -380,10 +380,10 @@ function scr_panelPane_drawShow1toMany(){
 		var mouseoverShowStopButton = point_in_rectangle(mouse_x, mouse_y, showStopButtonX1, showStopButtonY1, showStopButtonX2, showStopButtonY2);
 		if(isPlaying){
 			showStopButtonText =  "  ■  ";
-			if(mouseoverShowStopButton){scr_createTooltip(mean(showStopButtonX1, showStopButtonX2),mean(showStopButtonY1, showStopButtonY2), scr_get_translation("option_stop"),obj_tooltip.arrowFaceUp);}
+			if(mouseoverShowStopButton){scr_createTooltip(mean(showStopButtonX1, showStopButtonX2),mean(showStopButtonY1, showStopButtonY2), scr_get_translation("option_stop"),global.arrowFaceUp);}
 		}
 		else{
-			if(mouseoverShowStopButton){scr_createTooltip(mean(showStopButtonX1, showStopButtonX2),showStopButtonY2, scr_get_translation("help_label_play"),obj_tooltip.arrowFaceUp);}
+			if(mouseoverShowStopButton){scr_createTooltip(mean(showStopButtonX1, showStopButtonX2),showStopButtonY2, scr_get_translation("help_label_play"),global.arrowFaceUp);}
 		}
 				
 		draw_set_color(merge_color(global.colorThemeSelected1, global.colorThemeBG, mouseoverShowStopButton ? 0.0 : 0.5));
@@ -463,7 +463,7 @@ function scr_panelPane_drawShow1toMany(){
 		draw_set_valign(fa_middle);
 		draw_text(floor(mean(showNextButtonX1, showNextButtonX2)- clipX), floor(mean(showNextButtonY1, showNextButtonY2)- clipY), showNextButtonText);
 	
-		if(mouseoverShowNextButton){scr_createTooltip(mean(showNextButtonX1, showNextButtonX2),showNextButtonY2, scr_get_translation("help_label_next"),obj_tooltip.arrowFaceUp);}
+		if(mouseoverShowNextButton){scr_createTooltip(mean(showNextButtonX1, showNextButtonX2),showNextButtonY2, scr_get_translation("help_label_next"),global.arrowFaceUp);}
 	
 		if(isPlaying){
 			if (mouse_check_button_released(mb_left) && mouseoverShowNextButton) {

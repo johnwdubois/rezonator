@@ -1,5 +1,3 @@
-scr_windowExit();
-
 
 if (keyboard_check_released(vk_escape)) {
 	show_debug_message("Going to openingScreen, obj_loadingControl step");
@@ -17,8 +15,12 @@ if (importGridRow >= ds_grid_height(global.importGrid) && !finished) {
 	room_goto(rm_mainScreen);
 }
 else {
-	var iterations = fps;
+	
+	
+	var iterations = 1;
+	show_debug_message("iterations: " + string(iterations));
 	if (global.importType == global.importType_PlainText || global.importType == global.importType_Paragraph) {
+		show_debug_message("importGridRow: " + string(importGridRow));
 		repeat(iterations) scr_importGridToNodeMap_plainText(importGridRow);
 	}
 	else if (global.importType == global.importType_IGT || global.importType == global.importType_Transcription || global.importType == global.importType_TabDelimited) {

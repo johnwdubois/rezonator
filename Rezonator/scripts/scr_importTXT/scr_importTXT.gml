@@ -9,8 +9,17 @@ function scr_importTXT(filename) {
 	ds_grid_resize(global.importTXTLineGrid, global.importTXTLineGridWidth, 0);
 	
 	
+	var str = get_string("Copy and paste text below to import it.", "");
+	if (str == "" || !is_string(str)) {
+		room_goto(rm_openingScreen);
+		exit;
+	}
+	
+	
 	// get a list of lines from the source file
-	var fileLineList = scr_readFileUTF8(filename);
+	var fileLineList = scr_splitStringImport(str, "\n", true);
+
+	
 	var fileLineListSize = ds_list_size(fileLineList);
 	
 	// resize the importTXTLineGrid to have a row for every line in the source file
@@ -26,10 +35,12 @@ function scr_importTXT(filename) {
 		ds_grid_set(global.importTXTLineGrid, global.importTXTLineGrid_colException, i, false);
 	}
 	
+
+	
 	ds_list_destroy(fileLineList);
 	// automatically mark comment lines as exceptions in importTXTGrid
 	scr_markAutoExceptions();
-	
+
 	
 	if (global.importType == global.importType_IGT) {
 		// IGT import
@@ -49,8 +60,7 @@ function scr_importTXT(filename) {
 		// plain text import
 		scr_importPlainTXT();
 	}
-	
-	
+
 	
 	show_debug_message("scr_importTXT() ... END, " + scr_printTime());
 

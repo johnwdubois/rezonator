@@ -1,9 +1,13 @@
 // Script assets have changed for v2.3.0 see
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
 function scr_importGridToNodeMap_plainText(row){
+	
+	show_debug_message("scr_importGridToNodeMap_plainText, row: " + string(row));
 
 	// make sure row is still in range
 	if (row >= importGridHeight) exit;
+	
+	show_debug_message("scr_importGridToNodeMap_plainText 1");
 	
 	// get unit string and split it
 	var unitStr = ds_grid_get(global.importGrid, 0, row);
@@ -13,6 +17,8 @@ function scr_importGridToNodeMap_plainText(row){
 	var unitNode = scr_addToNodeMap("unit");
 	var unitSubMap = global.nodeMap[? unitNode];
 	ds_list_add(unitList, unitNode);
+	
+	show_debug_message("scr_importGridToNodeMap_plainText 2");
 	
 	var unitFieldMap = global.nodeMap[?"unitTagMap"];
 	var tokenFieldMap = global.nodeMap[?"tokenTagMap"];
@@ -33,10 +39,14 @@ function scr_importGridToNodeMap_plainText(row){
 		ds_list_add(global.tokenFieldList, "~text");
 		
 	}
+	
+	show_debug_message("scr_importGridToNodeMap_plainText 3, splitList: " + scr_getStringOfList(splitList));
 	var entryList = ds_list_create();
 	if (scr_isNumericAndExists(splitList, ds_type_list)) {
 		var splitListSize = ds_list_size(splitList);
 		for (var i = 0; i < splitListSize; i++) {
+			
+			show_debug_message("scr_importGridToNodeMap_plainText 3.1, i: " + string(i));
 			
 			// make token node
 			var currentTokenNode = scr_addToNodeMap("token");
@@ -53,6 +63,7 @@ function scr_importGridToNodeMap_plainText(row){
 			ds_map_add_list(currentTokenSubMap, "inChainsList", ds_list_create());
 			ds_map_add_list(currentTokenSubMap, "inChunkList", ds_list_create());
 			ds_map_add_list(currentTokenSubMap, "inEntryList", ds_list_create());
+			show_debug_message("scr_importGridToNodeMap_plainText 3.2");
 			
 			// make tag map for token
 			var currentTokenTagMap = ds_map_create();
@@ -62,6 +73,8 @@ function scr_importGridToNodeMap_plainText(row){
 			currentTag = string_replace_all(currentTag, "\n", "");
 			ds_map_add(currentTokenTagMap, "~text", currentTag);
 			scr_addAutoTag("~text", currentTag, tokenFieldMap);
+			
+			show_debug_message("scr_importGridToNodeMap_plainText 3.3");
 			
 			//check if token is rtl
 			if (!global.RTLFound) {
@@ -76,10 +89,14 @@ function scr_importGridToNodeMap_plainText(row){
 			var currentEntrySubMap = global.nodeMap[? currentEntryNode];
 			ds_map_add(currentEntrySubMap, "token", currentTokenNode);
 			ds_map_add(currentEntrySubMap, "unit", unitNode);
+			
+			show_debug_message("scr_importGridToNodeMap_plainText 3.4");
 				
 			ds_list_add(entryList, currentEntryNode);
 		}
 	}
+	
+	show_debug_message("scr_importGridToNodeMap_plainText 4");
 	
 	// make tag map for unit
 	var unitTagMap = ds_map_create();
@@ -100,6 +117,7 @@ function scr_importGridToNodeMap_plainText(row){
 	
 	ds_list_destroy(splitList);
 	
+	show_debug_message("scr_importGridToNodeMap_plainText 5");
 
 
 	importGridRow++;

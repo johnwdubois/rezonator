@@ -2,6 +2,7 @@
 	Purpose: Instantiate all variables used by the chain objects
 */
 
+
 toggleDrawRez = true;
 toggleDrawTrack = true;
 toggleDrawStack = true;

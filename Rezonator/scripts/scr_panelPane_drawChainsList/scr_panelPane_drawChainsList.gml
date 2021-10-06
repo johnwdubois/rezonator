@@ -272,7 +272,7 @@ function scr_panelPane_drawChainsList() {
 					// draw checkbox
 					/*
 					if (mouseoverCheckbox) {
-						scr_createTooltip(mean(checkboxRectX1, checkboxRectX2), checkboxRectY2, scr_get_translation("option_select"), obj_tooltip.arrowFaceUp);
+						scr_createTooltip(mean(checkboxRectX1, checkboxRectX2), checkboxRectY2, scr_get_translation("option_select"), global.arrowFaceUp);
 					}
 					if (currentChainSelected) {
 						draw_set_color(merge_color(currentChainColor, global.colorThemeBG, 0.9));
@@ -322,7 +322,7 @@ function scr_panelPane_drawChainsList() {
 								else scr_disableFilter();
 							}
 						}
-						scr_createTooltip(filterChainX, optionsChainY + optionsIconRad, scr_get_translation("menu_filter"), obj_tooltip.arrowFaceUp);
+						scr_createTooltip(filterChainX, optionsChainY + optionsIconRad, scr_get_translation("menu_filter"), global.arrowFaceUp);
 					}
 					// mouseover & click on visible
 					if (mouseoverVisibleChain) {
@@ -334,7 +334,7 @@ function scr_panelPane_drawChainsList() {
 							if (!currentChainVisible && ds_list_find_index(hiddenList, currentChainID) == -1) ds_list_add(hiddenList, currentChainID);
 							else if (currentChainVisible) scr_deleteFromList(hiddenList, currentChainID);
 						}
-						scr_createTooltip(visibleChainX, optionsChainY + optionsIconRad, scr_get_translation("option_visible"), obj_tooltip.arrowFaceUp);
+						scr_createTooltip(visibleChainX, optionsChainY + optionsIconRad, scr_get_translation("option_visible"), global.arrowFaceUp);
 					}
 					// mouseover & click on align
 					if (mouseoverAlignChain) {
@@ -344,7 +344,7 @@ function scr_panelPane_drawChainsList() {
 							currentChainAlign = !currentChainAlign;
 							scr_setMap(currentChainSubMap, "alignChain", currentChainAlign);
 						}
-						scr_createTooltip(alignChainX, optionsChainY + optionsIconRad, scr_get_translation("help_label_align"), obj_tooltip.arrowFaceUp);
+						scr_createTooltip(alignChainX, optionsChainY + optionsIconRad, scr_get_translation("help_label_align"), global.arrowFaceUp);
 					}
 					
 					// draw filter/align/visible buttons
@@ -561,7 +561,7 @@ function scr_panelPane_drawChainsList() {
 				draw_roundrect(headerCheckboxX1 - (strHeight * 0.15), headerCheckboxY1 - (strHeight * 0.15), headerCheckboxX2 + (strHeight * 0.15), headerCheckboxY2 + (strHeight * 0.15), false);
 				
 				var tooltipText = (allChainsSelected) ? "Deselect all" : "Select all";
-				scr_createTooltip(mean(headerCheckboxX1, headerCheckboxX2), headerCheckboxY2, tooltipText, obj_tooltip.arrowFaceUp);
+				scr_createTooltip(mean(headerCheckboxX1, headerCheckboxX2), headerCheckboxY2, tooltipText, global.arrowFaceUp);
 				
 				// click on checkbox header
 				if (mouse_check_button_released(mb_left)) {
@@ -592,7 +592,7 @@ function scr_panelPane_drawChainsList() {
 			if (mouseoverFilterAll) {
 				draw_set_color(global.colorThemeSelected1);
 				draw_circle(filterAllX, filterAllY, optionsIconRad, false);
-				scr_createTooltip(filterAllX, filterAllY + optionsIconRad, scr_get_translation("option_filter-all"), obj_tooltip.arrowFaceUp);
+				scr_createTooltip(filterAllX, filterAllY + optionsIconRad, scr_get_translation("option_filter-all"), global.arrowFaceUp);
 				
 				if (mouse_check_button_pressed(mb_left)) {
 					scr_setValueForAllChains(tabChainType, "filter", (allChainsFiltered) ? false : true);
@@ -614,7 +614,7 @@ function scr_panelPane_drawChainsList() {
 			if (mouseoverHideAll) {
 				draw_set_color(global.colorThemeSelected1);
 				draw_circle(hideAllX, hideAllY, optionsIconRad, false);
-				scr_createTooltip(hideAllX, hideAllY + optionsIconRad, scr_get_translation("option_hide-all"), obj_tooltip.arrowFaceUp);
+				scr_createTooltip(hideAllX, hideAllY + optionsIconRad, scr_get_translation("option_hide-all"), global.arrowFaceUp);
 				
 				if (mouse_check_button_pressed(mb_left)) {
 					scr_setValueForAllChains(tabChainType, "visible", (allChainsHidden) ? true : false);

@@ -374,7 +374,7 @@ function scr_panelPane_drawSearch1ToMany(){
 	draw_sprite_ext(spr_search, 0, floor(mean(activateButtonX1, activateButtonX2)), floor(mean(activateButtonY1, activateButtonY2)), obj_toolPane.toolSpriteScale, obj_toolPane.toolSpriteScale, -90, global.colorThemeBG, 1);
 	if (mouseoverActivateButton) {
 		
-		scr_createTooltip(floor(mean(activateButtonX1, activateButtonX2)), activateButtonY2, searchEnabled ? scr_get_translation("msg_enabled") : scr_get_translation("msg_disabled"), obj_tooltip.arrowFaceUp);
+		scr_createTooltip(floor(mean(activateButtonX1, activateButtonX2)), activateButtonY2, searchEnabled ? scr_get_translation("msg_enabled") : scr_get_translation("msg_disabled"), global.arrowFaceUp);
 		
 		if (mouse_check_button_released(mb_left)) {
 			if (!obj_control.searchGridActive && functionSearchList_searchSelected != "") {
@@ -415,7 +415,7 @@ function scr_panelPane_drawSearch1ToMany(){
 	draw_set_valign(fa_middle);
 	draw_text(floor(mean(showPrevButtonX1, showPrevButtonX2)), floor(mean(showPrevButtonY1, showPrevButtonY2)), showPrevButtonText);
 		
-	if (mouseoverShowPrevButton) {scr_createTooltip(mean(showPrevButtonX1, showPrevButtonX2), showPrevButtonY2, scr_get_translation("msg_find_previous"), obj_tooltip.arrowFaceUp);}
+	if (mouseoverShowPrevButton) {scr_createTooltip(mean(showPrevButtonX1, showPrevButtonX2), showPrevButtonY2, scr_get_translation("msg_find_previous"), global.arrowFaceUp);}
 		
 
 	if (mouse_check_button_released(mb_left) && mouseoverShowPrevButton) {
@@ -450,7 +450,7 @@ function scr_panelPane_drawSearch1ToMany(){
 	draw_set_valign(fa_middle);
 	draw_text(floor(mean(showNextButtonX1, showNextButtonX2)), floor(mean(showNextButtonY1, showNextButtonY2)), showNextButtonText);
 	
-	if(mouseoverShowNextButton){scr_createTooltip(mean(showNextButtonX1, showNextButtonX2),showNextButtonY2, scr_get_translation("find_next"),obj_tooltip.arrowFaceUp);}
+	if(mouseoverShowNextButton){scr_createTooltip(mean(showNextButtonX1, showNextButtonX2),showNextButtonY2, scr_get_translation("find_next"),global.arrowFaceUp);}
 	
 
 	if (mouse_check_button_released(mb_left) && mouseoverShowNextButton) {

@@ -1,5 +1,6 @@
 function scr_importPlainTXT() {
 	
+	show_debug_message("scr_importPlainTXT() ... start, " + scr_printTime());
 
 
 
@@ -59,6 +60,7 @@ function scr_importPlainTXT() {
 
 	global.plainText = true;
 
+	show_debug_message("scr_importPlainTXT() ... end, " + scr_printTime());
 
 	room_goto(rm_importScreen);
 

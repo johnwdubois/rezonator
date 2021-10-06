@@ -5,7 +5,7 @@
 */
 function scr_drawSpeakerLabel(unitID, unitSubMap, pixelY) {
 	
-	
+
 	// get y coordinates for this speaker label
 	var sectionRectY1 = pixelY - (gridSpaceVertical * 0.5);
 	var sectionRectY2 = sectionRectY1 + gridSpaceVertical;
@@ -19,10 +19,13 @@ function scr_drawSpeakerLabel(unitID, unitSubMap, pixelY) {
 	var tagMap = unitSubMap[? "tagMap"];
 	if (!scr_isNumericAndExists(tagMap, ds_type_map)) exit;
 	
+
+	
 	// draw each section of speaker label
 	var plusX = 0;
 	var speakerLabelColXListSize = ds_list_size(speakerLabelColXList);
 	for (var i = 0; i < speakerLabelColXListSize; i++) {
+		
 		
 		// get x coordinates for this speaker label
 		var sectionRectX1 = plusX;
@@ -49,6 +52,7 @@ function scr_drawSpeakerLabel(unitID, unitSubMap, pixelY) {
 		draw_rectangle(sectionRectX1, sectionRectY1, sectionRectX2, sectionRectY2, false);
 		
 
+
 		
 		// cut off section text if its too long
 		var cutoffs = 0;
@@ -59,7 +63,7 @@ function scr_drawSpeakerLabel(unitID, unitSubMap, pixelY) {
 		if (cutoffs > 0) {
 			sectionText += "... ";
 		}
-		
+
 		
 		// draw section text
 		sectionText = scr_adaptFont(sectionText, "M");
@@ -73,7 +77,7 @@ function scr_drawSpeakerLabel(unitID, unitSubMap, pixelY) {
 			draw_text(floor(sectionRectX2 - spaceWidth - string_length(sectionText)), floor(pixelY), sectionText);
 			
 		}
-		
+
 		draw_set_halign(fa_left);
 		// if this is the last section, let's draw a horizontal line to divide units
 		if (i == speakerLabelColXListSize - 1) {
@@ -86,6 +90,7 @@ function scr_drawSpeakerLabel(unitID, unitSubMap, pixelY) {
 		plusX += sectionRectX2;
 		
 	}
+	
 	
 	
 	var mouseOverCurrentSpeakerLabel = (point_in_rectangle(mouse_x,mouse_y,0,sectionRectY1,wordLeftMargin,sectionRectY2) && !obj_control.mouseoverPanelPane);
@@ -110,23 +115,27 @@ function scr_drawSpeakerLabel(unitID, unitSubMap, pixelY) {
 		}
 		else {
 			
-			// if there is a focused chain that is not a stack, deselect it
-			var focusedChainIDSubMap = global.nodeMap[? obj_chain.currentFocusedChainID];
-			if (scr_isNumericAndExists(focusedChainIDSubMap, ds_type_map)) {
-				var focusedChainType = focusedChainIDSubMap[? "type"];
-				if (focusedChainType != "stack") {
-					scr_chainDeselect();
-				}
-			}
+			if (instance_exists(obj_chain)) {
 			
-			with (obj_chain) {
-				if(!instance_exists(obj_dropDown)){
-					scr_unitClicked(unitID);
+				// if there is a focused chain that is not a stack, deselect it
+				var focusedChainIDSubMap = global.nodeMap[? obj_chain.currentFocusedChainID];
+				if (scr_isNumericAndExists(focusedChainIDSubMap, ds_type_map)) {
+					var focusedChainType = focusedChainIDSubMap[? "type"];
+					if (focusedChainType != "stack") {
+						scr_chainDeselect();
+					}
+				}
+			
+				with (obj_chain) {
+					if(!instance_exists(obj_dropDown)){
+						scr_unitClicked(unitID);
+					}
 				}
 			}
 		}
 	}
 	
+
 		// Check for rightMouseClick
 	if (device_mouse_check_button_released(0, mb_right) and mouseOverCurrentSpeakerLabel and !instance_exists(obj_dialogueBox)) {
 				
@@ -138,6 +147,8 @@ function scr_drawSpeakerLabel(unitID, unitSubMap, pixelY) {
 		}
 
 	}
+	
+
 	
 	
 }

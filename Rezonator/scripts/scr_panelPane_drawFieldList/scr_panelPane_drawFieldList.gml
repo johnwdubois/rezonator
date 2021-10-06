@@ -250,7 +250,7 @@ function scr_panelPane_drawFieldList(){
 					
 					}
 				
-					scr_createTooltip(delButtonX, currentRowY2, scr_get_translation("msg_remove"), obj_tooltip.arrowFaceUp);
+					scr_createTooltip(delButtonX, currentRowY2, scr_get_translation("msg_remove"), global.arrowFaceUp);
 				}
 			
 

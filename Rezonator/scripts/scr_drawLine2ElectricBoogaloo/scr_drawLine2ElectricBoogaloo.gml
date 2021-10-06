@@ -3,14 +3,19 @@
 function scr_drawLine2ElectricBoogaloo(){
 	
 	
+	
 	scr_adaptFont("0", "M");
+
 	
 	var camHeight = camera_get_view_height(camera_get_active());
 	var camWidth = camera_get_view_width(camera_get_active());
 	
 	scr_setWordTopMargin();
 	
+
+	
 	startJustify = scr_checkNativeJustification();
+	
 
 
 	// get displayUnitList
@@ -31,7 +36,9 @@ function scr_drawLine2ElectricBoogaloo(){
 	}
 	var displayUnitListSize = ds_list_size(displayUnitList);
 	
+
 	scr_setDrawRange(camHeight, displayUnitList, displayUnitListSize);
+
 	
 	hoverTokenID = "";
 	hoverUnitID = "";
@@ -41,39 +48,39 @@ function scr_drawLine2ElectricBoogaloo(){
 	
 	
 	// destroy the lists in the chainShowMap
-	var chainShowListSize = ds_list_size(obj_chain.chainShowList);
-	for (var i = 0; i < chainShowListSize; i++) {
-		var currentChainShow = obj_chain.chainShowList[| i];
-		var currentChainShowSubMap = obj_chain.chainShowMap[? currentChainShow];
-		var currentChainShowList = currentChainShowSubMap[? "entryList"];
-		ds_list_destroy(currentChainShowList);
-		ds_map_destroy(currentChainShowSubMap);
-	}
+	if (instance_exists(obj_chain)) {
+		var chainShowListSize = ds_list_size(obj_chain.chainShowList);
+		for (var i = 0; i < chainShowListSize; i++) {
+			var currentChainShow = obj_chain.chainShowList[| i];
+			var currentChainShowSubMap = obj_chain.chainShowMap[? currentChainShow];
+			var currentChainShowList = currentChainShowSubMap[? "entryList"];
+			ds_list_destroy(currentChainShowList);
+			ds_map_destroy(currentChainShowSubMap);
+		}
 	
-	// clear lists that are meant to be refreshed each frame
-	ds_map_clear(obj_chain.chainShowMap);
-	ds_map_add(obj_chain.chainShowMap, "type", "map");
-	ds_list_clear(obj_chain.chainShowList);
+		// clear lists that are meant to be refreshed each frame
+		ds_map_clear(obj_chain.chainShowMap);
+		ds_map_add(obj_chain.chainShowMap, "type", "map");
+		ds_list_clear(obj_chain.chainShowList);
 
 	
-	// destroy the lists in the chainShowMap
-	var chunkShowMapSize = ds_map_size(obj_chain.chunkShowMap);
-	for (var i = 0; i < chunkShowMapSize; i++) {
-		var currentNest = string(i);
-		var currentNestList = obj_chain.chunkShowMap[? currentNest];
-		if(scr_isNumericAndExists(currentNestList, ds_type_list)){
-			ds_list_destroy(currentNestList);
+		// destroy the lists in the chainShowMap
+		var chunkShowMapSize = ds_map_size(obj_chain.chunkShowMap);
+		for (var i = 0; i < chunkShowMapSize; i++) {
+			var currentNest = string(i);
+			var currentNestList = obj_chain.chunkShowMap[? currentNest];
+			if(scr_isNumericAndExists(currentNestList, ds_type_list)){
+				ds_list_destroy(currentNestList);
+			}
 		}
+	
+		// clear lists that are meant to be refreshed each frame
+		ds_map_clear(obj_chain.chunkShowMap);
+		//ds_map_add(obj_chain.chunkShowMap, "type", "map");
+		ds_list_clear(obj_chain.chunkShowList);
+	
 	}
-	
-	// clear lists that are meant to be refreshed each frame
-	ds_map_clear(obj_chain.chunkShowMap);
-	//ds_map_add(obj_chain.chunkShowMap, "type", "map");
-	ds_list_clear(obj_chain.chunkShowList);
-	
-	
-	
-	
+
 	
 	ds_list_clear(inRectWordIDList);
 	ds_list_clear(chainVoidCheckList);
@@ -105,9 +112,12 @@ function scr_drawLine2ElectricBoogaloo(){
 	unitClosestToMouse = "";
 	var minUnitDistToMouse = 999999999999;
 	
+
+	
 	// loop through units
 	var unitPlusY = wordTopMargin + (gridSpaceVertical * 0.5);
 	for (var i = 0; i < displayUnitListSize; i++) {
+		
 		
 		// if unit is outside of draw range, do not draw its entries/tokens
 		if (i < drawRangeStart || i > drawRangeEnd) {
@@ -157,7 +167,7 @@ function scr_drawLine2ElectricBoogaloo(){
 		}
 
 		// draw this unit's stack if its has one
-		scr_drawStack(currentUnit, currentUnitSubMap, camWidth, currentPixelY);
+		if (instance_exists(obj_chain)) scr_drawStack(currentUnit, currentUnitSubMap, camWidth, currentPixelY);
 		
 		// get current unit's entryList and make sure it exists
 		var currentEntryList = currentUnitSubMap[? "entryList"];
@@ -169,6 +179,7 @@ function scr_drawLine2ElectricBoogaloo(){
 		
 		unitPlusY += gridSpaceVertical;
 	}
+	
 	
 	if(!obj_control.mouseoverSpeakerLabel and obj_control.hoverTokenID == "" and obj_control.hoverChunkID == "" and !obj_control.mouseoverPanelPane and !(instance_exists(obj_dropDown) and obj_control.rightClicked) and !instance_exists(obj_dialogueBox)){
 		if(device_mouse_check_button_released(0, mb_left)){
@@ -199,4 +210,5 @@ function scr_drawLine2ElectricBoogaloo(){
 	
 	updateChainShowMap = false;
 	
+
 }

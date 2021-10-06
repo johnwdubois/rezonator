@@ -279,8 +279,9 @@ function scr_preImportScreen(){
 	draw_text(floor(mean(buttonRectX1, buttonRectX2)), floor(mean(buttonRectY1, buttonRectY2)), scr_get_translation("msg_continue"));
 	
 	// click on continue button
-	if (mouseoverContinue && mouse_check_button_released(mb_left)) {		
+	if ((mouseoverContinue && mouse_check_button_released(mb_left)) || global.newProject || global.skipToImportScreen) {		
 		global.currentDirString = global.previousImportDirectory;
+		global.importType = global.importType_Paragraph;
 		scr_openFile();
 		
 	}

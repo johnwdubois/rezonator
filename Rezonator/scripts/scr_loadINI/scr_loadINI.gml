@@ -1,4 +1,7 @@
 function scr_loadINI() {
+	
+	exit;
+	
 
 
 	if (os_type == os_macosx) {
@@ -11,7 +14,7 @@ function scr_loadINI() {
 
 	// Check if the name is valid, or if the user exited the window
 	if (fileName == "" or fileName == "undefined") {
-		show_message(scr_get_translation("error_ini-loading"));
+		show_debug_message(scr_get_translation("error_ini-loading"));
 		exit;
 	}
 
@@ -28,7 +31,7 @@ function scr_loadINI() {
 		var wrapper = scr_loadJSONBuffer(fileName);
 	
 		if (not ds_exists(wrapper, ds_type_map)) {
-			show_message(scr_get_translation("msg_error_loading") + fileName + "\n" + scr_get_translation("error_user-outdated"));
+			show_debug_message(scr_get_translation("msg_error_loading") + fileName + "\n" + scr_get_translation("error_user-outdated"));
 			exit;
 		}
 	
@@ -131,7 +134,6 @@ function scr_loadINI() {
 	}
 
 	ds_list_destroy(newInstList);
-
 
 
 

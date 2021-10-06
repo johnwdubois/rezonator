@@ -1,7 +1,7 @@
 /*
 	Purpose: Help Rez load files without interruptions
 */
-
+/*
 
 
 if (global.ctrlHold and keyboard_check_pressed(ord("S")) and ableToHotkey) {

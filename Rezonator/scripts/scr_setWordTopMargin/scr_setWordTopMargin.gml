@@ -2,6 +2,7 @@
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
 function scr_setWordTopMargin(){
 	
+	if (!instance_exists(obj_menuBar) || !instance_exists(obj_panelPane)) exit;
 	var menuBarHeight = 0;
 	if (instance_exists(obj_menuBar)) {
 		menuBarHeight = obj_menuBar.menuHeight;

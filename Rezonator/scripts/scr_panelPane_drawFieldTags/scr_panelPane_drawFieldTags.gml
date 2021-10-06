@@ -257,7 +257,7 @@ function scr_panelPane_drawFieldTags(){
 								}
 
 							}
-							scr_createTooltip(delButtonX, currentRowY2, scr_get_translation("msg_remove"), obj_tooltip.arrowFaceUp);
+							scr_createTooltip(delButtonX, currentRowY2, scr_get_translation("msg_remove"), global.arrowFaceUp);
 						}
 									
 						trashAlpha = 1;
@@ -433,27 +433,27 @@ function scr_panelPane_drawFieldTags(){
 		}
 		if(fieldPaneSwitchButton == fieldPaneDocMode){
 			if(obj_panelPane.chainViewOneToMany == true){
-				scr_createTooltip(oneToOneSpriteX, oneToOneRectY2,scr_get_translation("option_token-fields"), obj_tooltip.arrowFaceUp);
+				scr_createTooltip(oneToOneSpriteX, oneToOneRectY2,scr_get_translation("option_token-fields"), global.arrowFaceUp);
 			}
 			else{
-				scr_createTooltip(oneToOneSpriteX, oneToOneRectY2,scr_get_translation("option_unit-fields"), obj_tooltip.arrowFaceUp);
+				scr_createTooltip(oneToOneSpriteX, oneToOneRectY2,scr_get_translation("option_unit-fields"), global.arrowFaceUp);
 			}
 		}
 		else if(fieldPaneSwitchButton == fieldPaneChainMode){
 			if(obj_panelPane.chainViewOneToMany == true){
 				
-				scr_createTooltip(oneToOneSpriteX, oneToOneRectY2,scr_get_translation("option_entry-fields"), obj_tooltip.arrowFaceUp);
+				scr_createTooltip(oneToOneSpriteX, oneToOneRectY2,scr_get_translation("option_entry-fields"), global.arrowFaceUp);
 			}
 			else{
 				
-				scr_createTooltip(oneToOneSpriteX, oneToOneRectY2,scr_get_translation("option_chain-fields"), obj_tooltip.arrowFaceUp);
+				scr_createTooltip(oneToOneSpriteX, oneToOneRectY2,scr_get_translation("option_chain-fields"), global.arrowFaceUp);
 			}
 		}
 		else if(fieldPaneSwitchButton == fieldPaneChunkMode){
-			scr_createTooltip(oneToOneSpriteX, oneToOneRectY2,scr_get_translation("option_chunk-fields"), obj_tooltip.arrowFaceUp);
+			scr_createTooltip(oneToOneSpriteX, oneToOneRectY2,scr_get_translation("option_chunk-fields"), global.arrowFaceUp);
 		}
 		else if(fieldPaneSwitchButton == fieldPaneLinkMode){
-			scr_createTooltip(oneToOneSpriteX, oneToOneRectY2,scr_get_translation("option_link-fields"), obj_tooltip.arrowFaceUp);
+			scr_createTooltip(oneToOneSpriteX, oneToOneRectY2,scr_get_translation("option_link-fields"), global.arrowFaceUp);
 		}
 		
 	}
@@ -476,7 +476,7 @@ function scr_panelPane_drawFieldTags(){
 		if(device_mouse_check_button_released(0,mb_left)){
 			scr_saveTagJson();
 		}
-		scr_createTooltip(saveSpriteX, saveRectY2,scr_get_translation("option_save-tag-json"), obj_tooltip.arrowFaceUp);
+		scr_createTooltip(saveSpriteX, saveRectY2,scr_get_translation("option_save-tag-json"), global.arrowFaceUp);
 	}
 	draw_sprite_ext(spr_saveIcon,0,saveSpriteX,saveSpriteY,1,1,0,global.colorThemeText, 1);
 	
@@ -497,7 +497,7 @@ function scr_panelPane_drawFieldTags(){
 		if(device_mouse_check_button_released(0,mb_left)){
 			scr_loadTagJson();
 		}
-		scr_createTooltip(loadSpriteX, loadRectY2,scr_get_translation("option_load-tag-json"), obj_tooltip.arrowFaceUp);
+		scr_createTooltip(loadSpriteX, loadRectY2,scr_get_translation("option_load-tag-json"), global.arrowFaceUp);
 	}
 	draw_sprite_ext(spr_loadingIcon,0,loadSpriteX,loadSpriteY,1,1,0,global.colorThemeText, 1);
 	

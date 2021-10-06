@@ -786,5 +786,7 @@ startJustify = true;
 refreshDisplayColUnit = "";
 refreshYValuesUnit = "";
 
-scr_setNavFieldListsFromSchema();
+//scr_setNavFieldListsFromSchema();
 minimumChunkDist = 15;
+
+show_debug_message("obj_control create end");

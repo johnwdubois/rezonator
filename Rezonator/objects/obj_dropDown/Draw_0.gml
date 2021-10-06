@@ -183,6 +183,7 @@ for (var i = 0; i < optionListSize; i++) {
 	
 	
 	var isOpeningScreenOption = ds_map_exists(global.openingScreenDropDownMap,optionText);
+	var isBannedMainScreenOption = ds_map_exists(global.mainScreenDropDownMap,optionText);
 	
 	
 	// check whether this option is expandable
@@ -205,7 +206,8 @@ for (var i = 0; i < optionListSize; i++) {
 			if (ds_list_find_index(global.linkFieldList, optionText) >= 0) isExpandable = true;
 		}
 	}
-	var unClickable = (room == rm_openingScreen and !isOpeningScreenOption);
+	var unClickable = ((room == rm_openingScreen and !isOpeningScreenOption) || (isBannedMainScreenOption));
+	
 	// gray out option if it begins with ~
 	draw_set_color(global.colorThemeText);
 	if (room == rm_mainScreen) {

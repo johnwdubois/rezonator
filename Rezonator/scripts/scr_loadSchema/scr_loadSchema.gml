@@ -54,7 +54,7 @@ function scr_loadSchema(autoload) {
 
 	var wrapper = scr_loadJSONBuffer(fileName);
 	if (!scr_isNumericAndExists(wrapper, ds_type_map)) {
-		show_message("Error loading " + fileName);
+		show_debug_message("Error loading " + fileName);
 		show_debug_message("Going to openingScreen, scr_loadSchema");
 		room_goto(rm_openingScreen);
 		exit;
@@ -62,7 +62,7 @@ function scr_loadSchema(autoload) {
 	
 	var list = ds_map_find_value(wrapper, "ROOT");
 	if (!scr_isNumericAndExists(list, ds_type_list)) {
-		show_message("Error loading " + fileName);
+		show_debug_message("Error loading " + fileName);
 		show_debug_message("Going to openingScreen, scr_loadSchema");
 		room_goto(rm_openingScreen);
 		exit;

@@ -3,6 +3,7 @@
 
 */
 
+
 window_set_cursor(cr_default);
 
 // color theme control
@@ -61,30 +62,26 @@ if (showDevVars) {
 	scr_drawDevVars();
 }
 
-var scrollBarMarginTop = 230;
-if (!obj_panelPane.showNav) {
-	scrollBarMarginTop -= inst_panelPane_help.windowHeight;
-	if(!obj_toolPane.showTool) {
-		scrollBarMarginTop -= obj_toolPane.windowHeight;
-	}
-}
-
 
 // draw scrollbar for main screen!!
 var drawScrollBar = false;
-if ((filterGridActive or quickFilterGridActive) or (searchGridActive and obj_panelPane.functionSearchList_searchSelected != "")) {
-	drawScrollBar = true;
-	scr_gridViewDrawBackArrow();
-}
-else {
-	if (!hideAll) {
+if (instance_exists(obj_panelPane)) {
+	if ((filterGridActive or quickFilterGridActive) or (searchGridActive and obj_panelPane.functionSearchList_searchSelected != "")) {
 		drawScrollBar = true;
+		scr_gridViewDrawBackArrow();
+	}
+	else {
+		if (!hideAll) {
+			drawScrollBar = true;
+		}
 	}
 }
 
 var toolbarX = camera_get_view_width(camera_get_active()) - global.toolPaneWidth;
-if(!obj_toolPane.showTool){
-	toolbarX = camera_get_view_width(camera_get_active());
+if (instance_exists(obj_toolPane)) {
+	if(!obj_toolPane.showTool){
+		toolbarX = camera_get_view_width(camera_get_active());
+	}
 }
 
 // draw scrollbar based off of displayUnitList

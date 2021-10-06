@@ -1,10 +1,10 @@
-function scr_loadREZ() {
+function scr_loadREZ(bufferString) {
 	
-
+	/*
 	var delimiter = (os_type == os_macosx) ? "/" : "\\";
 	var RezDirString = global.rezonatorDirString + delimiter + "Data" + delimiter + "SBCorpus" + delimiter + "REZ";
 
-show_debug_message("global.previousRezDirectory:  "+string(global.previousRezDirectory));
+	show_debug_message("global.previousRezDirectory:  "+string(global.previousRezDirectory));
 	if (global.previousRezDirectory != "") {
 		RezDirString = global.previousRezDirectory;
 	
@@ -46,15 +46,15 @@ show_debug_message("global.previousRezDirectory:  "+string(global.previousRezDir
 	if (filename_path(global.fileSaveName) == global.rezonatorDefaultDiscourseDirString + "\\") {
 		global.fileSaveName = "";
 	}
+	*/
 
-	var newInstList = ds_list_create();
 
-	if (file_exists(fileName)) {
-		var wrapper = scr_loadJSONBuffer(fileName);
+	//if (file_exists(fileName)) {
+		var wrapper = json_decode(bufferString);
 	
 		if (not ds_exists(wrapper, ds_type_map)) {
 			show_debug_message("Going to openingScreen, scr_loadREZ");
-			show_message("Error loading " + fileName);
+			show_debug_message("Error loading " + fileName);
 			room_goto(rm_openingScreen);
 			exit;
 		}
@@ -63,7 +63,7 @@ show_debug_message("global.previousRezDirectory:  "+string(global.previousRezDir
 	
 		if (is_undefined(list)) {
 			show_debug_message("Going to openingScreen, scr_loadREZ");
-			show_message("Error loading " + fileName);
+			show_debug_message("Error loading " + fileName);
 			room_goto(rm_openingScreen);
 			exit;
 		}
@@ -248,9 +248,8 @@ show_debug_message("global.previousRezDirectory:  "+string(global.previousRezDir
 				}
 			}		
 		}
-	}
+	//}
 
-	ds_list_destroy(newInstList);
 	
 	var exitToOpeningScreen = scr_verifyRez(rezFileVerison);
 	if (exitToOpeningScreen) {

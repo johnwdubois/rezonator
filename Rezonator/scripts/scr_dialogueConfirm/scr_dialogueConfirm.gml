@@ -147,7 +147,7 @@ function scr_dialogueConfirm(){
 		if (obj_control.recolor) {
 
 			if (string_digits(obj_control.inputText) == "") {
-				show_message(scr_get_translation("msg_numbers_only"));
+				show_debug_message(scr_get_translation("msg_numbers_only"));
 			}
 			else {
 				if (chainType == "resonance" || chainType == "trail") {

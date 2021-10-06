@@ -1,6 +1,6 @@
 //pickwhippedRow = -1;
 
-show_debug_message("obj_importMapping Create STARTING... " + scr_printTime());
+//show_debug_message("obj_importMapping Create STARTING... " + scr_printTime());
 
 mouseoverRow = -1;
 
@@ -100,4 +100,4 @@ currentGridName = "import_field-info";
 
 alarm[5] = 2;
 
-show_debug_message("obj_importMapping Create END... " + scr_printTime());
+///show_debug_message("obj_importMapping Create END... " + scr_printTime());
