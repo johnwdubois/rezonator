@@ -61,12 +61,13 @@ function scr_scoreStack(){
 	var rezChainsInStackListSize = ds_list_size(rezChainsInStackList);
 	var stackScore = 0;
 	for(var i = 0; i < rezChainsInStackListSize; i++){
-		var currentRezChain = rezChainsInStackList[| i]
-		totalNonResonanceMatches += scr_scoreChain(currentRezChain, rezMap);
+		var currentRezChain = rezChainsInStackList[| i];
+		var currentNonResonanceMatches = scr_scoreChain(currentRezChain, rezMap);
+		totalNonResonanceMatches += currentNonResonanceMatches;
 		var currentRezChainSubMap = global.nodeMap[?currentRezChain];
 		var currentChainMaxRez = currentRezChainSubMap[?"maxResonance"];
 		var currentChainScore = power(currentChainMaxRez, 2);
-		currentRezChainSubMap[? "score"] = currentChainScore;
+		currentRezChainSubMap[? "score"] = currentChainScore - currentNonResonanceMatches;
 		stackScore += currentChainScore;
 	}
 	
