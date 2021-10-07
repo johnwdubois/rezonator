@@ -1,6 +1,13 @@
 /// @description Insert description here
 // You can write your code in this editor
 
+if (instance_exists(obj_toolPane)) {
+	if (!obj_toolPane.showTool) {
+		menuHeight = 0;
+		exit;
+	}
+}
+
 
 var camWidth = camera_get_view_width(camera_get_active());
 

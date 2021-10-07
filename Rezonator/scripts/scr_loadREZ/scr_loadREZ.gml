@@ -1,5 +1,7 @@
 function scr_loadREZ(bufferString) {
 	
+	show_debug_message("scr_loadREZ");
+	
 	/*
 	var delimiter = (os_type == os_macosx) ? "/" : "\\";
 	var RezDirString = global.rezonatorDirString + delimiter + "Data" + delimiter + "SBCorpus" + delimiter + "REZ";
@@ -40,17 +42,20 @@ function scr_loadREZ(bufferString) {
 	
 
 
-	var rezFileVerison = 0;
+	
 
 	global.fileSaveName = fileName;
 	if (filename_path(global.fileSaveName) == global.rezonatorDefaultDiscourseDirString + "\\") {
 		global.fileSaveName = "";
 	}
 	*/
+	var rezFileVerison = 0;
 
 
 	//if (file_exists(fileName)) {
+	show_debug_message("before json decode" + scr_printTime());
 		var wrapper = json_decode(bufferString);
+	show_debug_message("after json decode" + scr_printTime());
 	
 		if (not ds_exists(wrapper, ds_type_map)) {
 			show_debug_message("Going to openingScreen, scr_loadREZ");

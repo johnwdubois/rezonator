@@ -8,7 +8,7 @@ var camHeight = camera_get_view_height(view_camera[0]);
 inDrag = false;
 drag_offsetY = 0;
 flickVelY = 0;
-flick_power_calibration = 4;
+flick_power_calibration = 2;
 flick_power_reduction_each_step = 3;
 //multiTouch = false;
 
@@ -28,7 +28,7 @@ gridSpaceHorizontalMax = 400;
 gridSpaceVerticalMax = 300;
 
 gridSpaceHorizontal = 100;
-gridSpaceVertical = 60;
+gridSpaceVertical = 100;
 prevGridSpaceVertical = gridSpaceVertical;
 gridSpaceRatio = 1;
 

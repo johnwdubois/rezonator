@@ -7,7 +7,7 @@ windowWidth = global.toolPaneWidth;
 windowHeight = 170;
 
 originalWindowHeight = 20;
-showTool = true;
+showTool = false;
 
 x = room_width - windowWidth;
 y = originalWindowHeight;

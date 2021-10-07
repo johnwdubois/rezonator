@@ -451,6 +451,7 @@ if (!gridView) {
 		scr_showSpeakerName(!obj_control.showSpeakerName);
 	}
 }
+obj_control.showSpeakerName = false;
 
 // Check for mouse over of the Panel Pane
 // It's gotta stop the drag but not require the user to click into the main screen first

@@ -17,11 +17,11 @@ function scr_setWordTopMargin(){
 			tabsHeight = windowHeight;
 		}
 	}
-	if (obj_panelPane.showNav) {
+	if (obj_toolPane.showTool) {
 		wordTopMargin = menuBarHeight + chainListHeight + tabsHeight;
 	}
 	else {
-		wordTopMargin = menuBarHeight;
+		wordTopMargin = 0;
 	}
 
 }

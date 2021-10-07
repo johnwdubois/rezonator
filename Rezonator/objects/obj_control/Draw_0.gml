@@ -3,7 +3,7 @@
 
 */
 
-
+draw_set_alpha(1);
 window_set_cursor(cr_default);
 
 // color theme control
@@ -84,6 +84,7 @@ if (instance_exists(obj_toolPane)) {
 	}
 }
 
+
 // draw scrollbar based off of displayUnitList
 var discourseSubMap = global.nodeMap[? global.discourseNode];
 	if (scr_isNumericAndExists(discourseSubMap, ds_type_map)) {
@@ -92,7 +93,8 @@ var discourseSubMap = global.nodeMap[? global.discourseNode];
 		if (drawScrollBar and not obj_control.mouseoverHelpPane) {
 			scr_scrollBar(ds_list_size(displayUnitList), -1, gridSpaceVertical, wordTopMargin,
 			global.colorThemeSelected1, global.colorThemeSelected2,
-			global.colorThemeSelected1, global.colorThemeSelected2, spr_ascend, toolbarX, camera_get_view_height(camera_get_active()));
+			global.colorThemeSelected1, global.colorThemeSelected2, spr_ascend, toolbarX + 200, camera_get_view_height(camera_get_active()));
 		}
 	}
 }
+

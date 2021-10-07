@@ -3,6 +3,10 @@
 function scr_panelPaneDrawBranch(){
 	
 	var camWidth = camera_get_view_width(camera_get_active());
+	if (!obj_toolPane.showTool) {
+		obj_control.wordTopMargin = 0;
+		exit;
+	}
 	
 	
 	switch (currentFunction) {

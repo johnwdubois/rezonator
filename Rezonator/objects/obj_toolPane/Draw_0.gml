@@ -34,3 +34,15 @@ if (obj_toolPane.showTool) {
 }
 
 
+// hide menu/toolpane button
+var buttonRad = sprite_get_width(spr_toolsNew);
+draw_set_color(c_yellow);
+draw_set_alpha(0.5);
+var buttonX = camWidth - buttonRad;
+var buttonY = camHeight - buttonRad;
+var mouseoverButton = point_in_circle(mouse_x, mouse_y, buttonX, buttonY, buttonRad);
+draw_circle(buttonX, buttonY, buttonRad, false);
+draw_set_alpha(1);
+if (mouseoverButton && mouse_check_button_pressed(mb_left)) {
+	obj_toolPane.showTool = !obj_toolPane.showTool;
+}

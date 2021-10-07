@@ -1,5 +1,5 @@
 if (global.openProject) {
-	show_debug_message("obj_loadingControl Create ... loading REZ");
+	show_debug_message("obj_fileLoader Create ... loading REZ");
 	scr_loadREZ(scr_getJSONStr());
 }
 with(obj_control){
