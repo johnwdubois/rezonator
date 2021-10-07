@@ -66,6 +66,11 @@ draw_set_color(movesMade >= par ? c_red : global.colorThemeText);
 draw_text(movesTextX, textY + strHeight, string(movesMade) + " / " + string(par));
 
 if (movesMade >= par) {
+	draw_set_halign(fa_center);
+	draw_text(floor(camWidth * 0.5), y + rectHeight - (strHeight * 1.5), "Out of moves!");
+}
+
+if (movesMade >= par) {
 	global.delayInput = 5;
 	scr_chainDeselect();
 }
