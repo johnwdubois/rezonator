@@ -57,10 +57,13 @@ function scr_drawLineEntryList(unitID, unitSubMap, entryList, pixelY, OOBCheck){
 		var currentDisplayStr = string(currentTagMap[? global.displayTokenField]);
 
 		// get & set pixelX value
-		var tokenOnScreen = (currentTokenSubMap[? "pixelX"] >= 0 && currentTokenSubMap[? "pixelX"] < camWidth);
+		var tokenOnScreen = (currentTokenSubMap[? "pixelX"] >= wordLeftMargin && currentTokenSubMap[? "pixelX"] < camWidth);
 		if (tokenOnScreen) {
 			scr_tokenCalculateVoid(currentToken);
 			scr_adaptFont(currentDisplayStr,"M");
+		}
+		else {
+			extraTokenX = true;
 		}
 		
 		var currentDisplayCol = currentTokenSubMap[? "displayCol"];
@@ -151,6 +154,11 @@ function scr_drawLineEntryList(unitID, unitSubMap, entryList, pixelY, OOBCheck){
 				obj_control.hoverTokenID = currentToken;
 				var tokenTagMap = currentTokenSubMap[?"tagMap"];
 				obj_control.hoverTextCopy = tokenTagMap[? global.displayTokenField];
+				
+				if (device_mouse_check_button_pressed(0, mb_left)) {
+					show_debug_message("token left pressed!");
+					clickedOnToken = true;
+				}
 			
 				// click on token
 				if(device_mouse_check_button_released(0, mb_left) and !obj_control.mouseoverPanelPane and !instance_exists(obj_dialogueBox)) {

@@ -1,9 +1,10 @@
 /// @description Insert description here
 // You can write your code in this editor
-//if (mouseoverNeutralSpace and not mouseOverUI) {
-if (hoverTokenID == "") {
+//if (mouseoverNeutralSpace) {
+if (inDrag) {
 	inDrag = false;
 	flickVelY = event_data[?"diffY"];
+	//if (extraTokenX) flickVelX = event_data[?"diffX"];
 	mouseHoldRectX1 = 0; 
 	mouseHoldRectX2 = 0; 
 	mouseHoldRectY1 = 0; 

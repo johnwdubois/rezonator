@@ -97,4 +97,3 @@ var discourseSubMap = global.nodeMap[? global.discourseNode];
 		}
 	}
 }
-

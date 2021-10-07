@@ -2,7 +2,7 @@
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
 function scr_drawLine2ElectricBoogaloo(){
 	
-	
+	extraTokenX = false;
 	
 	scr_adaptFont("0", "M");
 

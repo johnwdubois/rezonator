@@ -5,7 +5,7 @@ function scr_panelPaneDrawBranch(){
 	var camWidth = camera_get_view_width(camera_get_active());
 	if (!obj_toolPane.showTool) {
 		obj_control.wordTopMargin = 0;
-		exit;
+		//exit;
 	}
 	
 	
@@ -14,7 +14,7 @@ function scr_panelPaneDrawBranch(){
 		// LEFT NAV WINDOW
 		case functionChainList:
 			with(obj_panelPaneL){
-				if (showNavLeft) {
+				if (showNavLeft && obj_toolPane.showTool) {
 				
 					x = 0;
 					windowWidth = camWidth * 0.5;
@@ -77,7 +77,7 @@ function scr_panelPaneDrawBranch(){
 				x = camWidth * 0.5;
 				windowWidth = camWidth - x;
 			
-				if (showNavRight) {
+				if (showNavRight && obj_toolPane.showTool) {
 					scr_dropShadow(x, y, x + windowWidth, y + windowHeight);
 					draw_set_alpha(1);
 					draw_set_color(global.colorThemeBG);
@@ -201,7 +201,7 @@ function scr_panelPaneDrawBranch(){
 			
 		case functionTabs:
 
-			if(obj_panelPane.showNav){
+			if(obj_panelPane.showNav && obj_toolPane.showTool){
 				draw_set_color(global.colorThemeBG);
 				draw_rectangle(x, y, x + windowWidth, y + windowHeight, false);
 		

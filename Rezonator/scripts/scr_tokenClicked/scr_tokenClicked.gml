@@ -11,14 +11,16 @@ function scr_tokenClicked(tokenID){
 	
 	var unitID = tokenSubMap[?"unit"];
 
-	if (obj_control.gridView or (obj_control.mouseoverPanelPane and not obj_stacker.splitSave) or obj_control.dialogueBoxActive or instance_exists(obj_dialogueBox) or instance_exists(obj_dropDown) or instance_exists(obj_flyout) or obj_toolPane.mouseOverToolPane) {
-		var shouldExit = true;
+	
+	if (obj_control.gridView or (not obj_stacker.splitSave) or obj_control.dialogueBoxActive or instance_exists(obj_dialogueBox) or instance_exists(obj_dropDown) or instance_exists(obj_flyout)) {
+		var shouldExit = false;
 		if (obj_control.dialogueBoxActive or instance_exists(obj_dialogueBox)) {
 			if (obj_dialogueBox.combineChains) {
 				shouldExit = false;	
 			}
 		}
 		if (shouldExit) {
+			show_debug_message("scr_tokenClicked, shouldExit");
 			exit;
 		}
 	}
@@ -38,6 +40,7 @@ function scr_tokenClicked(tokenID){
 	
 	// if there is a focused chain, but you are not on the tool of that chain, cancel this click
 	if (obj_chain.focusedChainWrongTool) {
+		show_debug_message("scr_tokenClicked, focusedChainWrongTool");
 		exit;
 	}
 	
@@ -84,6 +87,7 @@ function scr_tokenClicked(tokenID){
 	
 	// if we are in read mode, don't go any further
 	if (obj_toolPane.currentMode == obj_toolPane.modeRead) {
+		show_debug_message("scr_tokenClicked, modeRead");
 		exit;
 	}
 

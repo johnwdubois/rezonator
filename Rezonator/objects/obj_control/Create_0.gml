@@ -5,11 +5,16 @@
 var camWidth = camera_get_view_width(view_camera[0]);
 var camHeight = camera_get_view_height(view_camera[0]);
 
+
+clickedOnToken = false;
 inDrag = false;
 drag_offsetY = 0;
+drag_offsetX = 0;
 flickVelY = 0;
-flick_power_calibration = 2;
+flickVelX = 0;
+flick_power_calibration = 3;
 flick_power_reduction_each_step = 3;
+extraTokenX = false;
 //multiTouch = false;
 
 doubleClickTimer = -1;

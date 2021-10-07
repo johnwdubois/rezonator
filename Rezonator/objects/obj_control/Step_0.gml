@@ -309,6 +309,10 @@ if (!clickedInChainList and !clickedInChainContents and not mouseoverHelpPane an
 	}
 }
 
+var camWidth = camera_get_view_width(camera_get_active());
+scrollPlusXDest = min(scrollPlusXDest, 0);//clamp(scrollPlusXDest, -camWidth, 0);
+scrollPlusX = min(scrollPlusX, 0);//scrollPlusX = clamp(scrollPlusX, -camWidth, 0);
+
 var searchGridPopulated = ds_grid_height(searchGrid);
 var filterGridPopulated = ds_grid_height(filterGrid);
 
@@ -525,7 +529,7 @@ if (instance_exists(obj_audioUI)) {
 		mouseOverUI = false;
 	}
 	else {
-		mouseOverUI = true;
+		//mouseOverUI = true;
 	}
 }
 
