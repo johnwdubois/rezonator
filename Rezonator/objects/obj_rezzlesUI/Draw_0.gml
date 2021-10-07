@@ -67,7 +67,7 @@ draw_text(movesTextX, textY + strHeight, string(movesMade) + " / " + string(par)
 
 if (movesMade >= par) {
 	draw_set_halign(fa_center);
-	draw_text(floor(camWidth * 0.5), y + rectHeight - (strHeight * 1.5), "Out of moves!");
+	draw_text(floor(camWidth * 0.5), floor(y + rectHeight - (strHeight)), "Out of moves!");
 }
 
 if (movesMade >= par) {
@@ -90,7 +90,7 @@ draw_set_color(mouseoverReset ? global.colorThemeSelected1 : resetColor);
 draw_rectangle(resetButtonX1, resetButtonY1, resetButtonX2, resetButtonY2, false);
 draw_set_color(global.colorThemeBorders);
 draw_rectangle(resetButtonX1, resetButtonY1, resetButtonX2, resetButtonY2, true);
-draw_text(resetButtonX, floor(resetButtonY), "Reset");
+draw_text(floor(resetButtonX), floor(resetButtonY), "Reset");
 if (mouseoverReset && mouse_check_button_released(mb_left)) {
 	scr_deleteAllChains(global.nodeMap[? "resonanceList"]);
 	stackSubMap[? "movesMade"] = 0;
@@ -112,7 +112,7 @@ draw_set_color(mouseoverNext ? global.colorThemeSelected1 : nextColor);
 draw_rectangle(nextButtonX1, nextButtonY1, nextButtonX2, nextButtonY2, false);
 draw_set_color(global.colorThemeBorders);
 draw_rectangle(nextButtonX1, nextButtonY1, nextButtonX2, nextButtonY2, true);
-draw_text(nextButtonX, floor(nextButtonY), "Next level");
+draw_text(floor(nextButtonX), floor(nextButtonY), "Next level");
 if (mouseoverNext && mouse_check_button_released(mb_left)) {
 	#region
 	var showID = obj_panelPane.functionChainContents_showID;

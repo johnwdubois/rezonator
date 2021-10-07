@@ -155,7 +155,7 @@ function scr_drawLineEntryList(unitID, unitSubMap, entryList, pixelY, OOBCheck){
 								var circleY = tokenRectY1 - (rad * 1.3);
 								draw_circle(circleX, circleY, rad, false);
 								
-								draw_triangle(circleX - (rad), circleY,  circleX + (rad), circleY,  mean(tokenRectX1, tokenRectX2), tokenRectY1, false);
+								draw_triangle(circleX - (rad), circleY + (rad * 0.275),  circleX + (rad), circleY + (rad * 0.275),  mean(tokenRectX1, tokenRectX2), tokenRectY1, false);
 							
 								draw_set_halign(fa_center);
 								draw_set_color(scr_textColorDarkOrLight(chainColor));
