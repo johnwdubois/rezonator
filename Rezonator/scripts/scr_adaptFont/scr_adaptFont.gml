@@ -57,8 +57,8 @@ function scr_adaptFont(inputString, size, isTitle){
 		else langCode = "LATIN";
 		ds_map_add(global.strToLangMap, inputString, langCode);
 	}
-		
-		
+	
+
 	// determine the font to set
 	if ( isCJK ){
 		if(size == "S"){
