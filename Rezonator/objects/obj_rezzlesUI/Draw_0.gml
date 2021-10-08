@@ -6,6 +6,7 @@ var camWidth = camera_get_view_width(view_camera[0]);
 var camHeight = camera_get_view_height(view_camera[0]);
 var mouseoverCancel = instance_exists(obj_dropDown) || instance_exists(obj_dialogueBox);
 draw_set_halign(fa_center);
+draw_set_valign(fa_middle);
 
 // set up drawing & BG
 x = obj_control.wordLeftMargin;
@@ -43,7 +44,7 @@ var strHeight = string_height("0");
 scr_adaptFont("", "L", false);
 draw_text(floor(camWidth * 0.5), nameTextY, stackName);
 scr_adaptFont("", "M", false);
-draw_text_ext(floor(camWidth * 0.5), textY + strHeight, string(stackSubMap[? "caption"]), strHeight, movesTextX - scoreTextX - string_width("Score Moves "));
+draw_text_ext(floor(camWidth * 0.5), floor(textY + strHeight), string(stackSubMap[? "caption"]), strHeight, movesTextX - scoreTextX - string_width("Score Moves "));
 
 var lineY = nameTextY + (strHeight * 0.65);
 var nameWidth = string_width(stackName) * 1.5;
@@ -67,7 +68,7 @@ draw_text(movesTextX, textY + strHeight, string(movesMade) + " / " + string(par)
 
 if (movesMade >= par) {
 	draw_set_halign(fa_center);
-	draw_text(floor(camWidth * 0.5), floor(y + rectHeight - (strHeight)), "Out of moves!");
+	draw_text(floor(camWidth * 0.5), floor(camHeight * 0.85), "Out of moves!");
 }
 
 if (movesMade >= par) {

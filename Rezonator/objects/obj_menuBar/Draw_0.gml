@@ -19,7 +19,8 @@ else{
 draw_set_alpha(1);
 var firstheaderString = ds_grid_get(menuBarGrid, menuBarGrid_colString, 0);
 scr_adaptFont(scr_get_translation(firstheaderString),"M");
-menuHeight = string_height("0") * 1.35;
+menuHeight = 0;//string_height("0") * 1.35;
+exit;
 
 // draw menu bar
 //draw_set_colour(global.colorThemeRezPurple);
