@@ -1,3 +1,4 @@
+
 scr_colorThemeControl();
 
 importWindowWidth = camera_get_view_width(camera_get_active()) / 2;
@@ -7,7 +8,6 @@ importWindowY1 = camera_get_view_height(camera_get_active()) * 0.4;
 importWindowX2 = importWindowX1 + importWindowWidth;
 importWindowY2 = importWindowY1 + importWindowHeight;
 
-scr_windowCameraAdjust();
 
 
 
@@ -56,4 +56,3 @@ else if (not global.newProject and global.openProject) {
 if !(global.newProject and not global.openProject) {
 	scr_drawLogo(camera_get_view_width(camera_get_active()) * .05, camera_get_view_height(camera_get_active()) * .08, true);
 }
-

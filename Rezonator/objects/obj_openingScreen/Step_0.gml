@@ -1,3 +1,5 @@
+scr_fullScreenCam();
+
 
 scr_multiDropDownMouseover();
 

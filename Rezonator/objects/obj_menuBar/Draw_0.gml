@@ -190,7 +190,7 @@ var langTextX1 = (global.lang_codes[| global.lang_index] == "he") ? langTextX2 +
 var langTextY1 = fpsTextY - (sizeOfSave/2);
 var langTextY2 = fpsTextY + (sizeOfSave/2);
 draw_set_color(c_white);
-var mouseOverLang = false;//(global.lang_codes[| global.lang_index] == "he") ? point_in_rectangle(mouse_x,mouse_y,langTextX2,langTextY1,langTextX1,langTextY2) : point_in_rectangle(mouse_x,mouse_y,langTextX1,langTextY1,langTextX2,langTextY2);
+var mouseOverLang = (global.lang_codes[| global.lang_index] == "he") ? point_in_rectangle(mouse_x,mouse_y,langTextX2,langTextY1,langTextX1,langTextY2) : point_in_rectangle(mouse_x,mouse_y,langTextX1,langTextY1,langTextX2,langTextY2);
 if(mouseOverLang){
 	//draw_set_color(global.colorThemeText);
 	if(global.lang_codes[| global.lang_index] == "he"){
@@ -200,7 +200,7 @@ if(mouseOverLang){
 	}
 	if(mouse_check_button_released(mb_left)){
 		var dropDownOptionList = ds_list_create();
-		ds_list_add(dropDownOptionList, "menu_language-en", "menu_language-ca", "menu_language-es", "menu_language-gu", "menu_language-he", "menu_language-hy", "menu_language-it", "menu_language-ja", "menu_language-kk", "menu_language-ru", "menu_language-vi", "menu_language-zh");
+		ds_list_add(dropDownOptionList, "menu_language-en", "menu_language-ca", "menu_language-es", "menu_language-he", "menu_language-hy", "menu_language-it", "menu_language-kk", "menu_language-ru", "menu_language-vi",);
 						
 		if (ds_list_size(dropDownOptionList) > 0) {
 			if(global.lang_codes[| global.lang_index] == "he"){

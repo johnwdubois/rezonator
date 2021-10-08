@@ -10,7 +10,7 @@ window_set_cursor(cr_default);
 scr_colorThemeControl();
 
 // adjust view to window size
-scr_windowCameraAdjust();
+scr_fullScreenCam();
 
 if (gridView) {
 	exit;
