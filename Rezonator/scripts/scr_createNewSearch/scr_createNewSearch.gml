@@ -70,10 +70,12 @@ function scr_createNewSearch(searchTermList){
 				with (obj_inputBox) instance_destroy();
 				scr_closeDialogueBoxVariables();
 				
+				
 				instance_create_layer(x, y, "InstancesDialogue", obj_dialogueBox);
 				obj_dialogueBox.alertWindowActive = true;
 				obj_dialogueBox.descriptionText = scr_get_translation("msg_no-results-found");
 				obj_control.noResultsFound = true;
+				with (obj_dialogueBox) alarm[1] = 2;
 			}
 		}
 	}

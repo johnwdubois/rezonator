@@ -14,10 +14,12 @@ function scr_dialogueConfirm(){
 	
 	// if this is an alert window, we just need to close out of the dialogue box
 	if (alertWindowActive) {
+		/*
 		if (obj_control.noResultsFound) {
 			with (obj_alarm2) alarm[5] = 1;
 		}
 		scr_closeDialogueBoxVariables();
+		*/
 		instance_destroy();
 		exit;
 	}
