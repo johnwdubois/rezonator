@@ -41,6 +41,11 @@ function scr_openingMenu() {
 		}
 	}
 	
+	// automatically open file
+	global.newProject = false;
+	global.openProject = true;
+	
+	
 	// draw open button
 	draw_set_color(merge_color(global.colorThemeBG, global.colorThemeRezPurple, hoverColorMergeOpen));
 	draw_roundrect(openProjectButtonX1, openProjectButtonY1, openProjectButtonX2, openProjectButtonY2, false);

@@ -151,6 +151,9 @@ if (mouseoverNext && mouse_check_button_released(mb_left)) {
 			functionChainList_playShowID = "";
 		}
 		with (obj_control) {
+			show_message("Thanks for playing!");
+			game_restart();
+			exit;
 			scr_disableFilter();
 		}
 	}
