@@ -327,6 +327,7 @@
     {"id":{"name":"scr_dropDownSelect","path":"scripts/scr_dropDownSelect/scr_dropDownSelect.yy",},"order":55,},
     {"id":{"name":"scr_refreshCliques","path":"scripts/scr_refreshCliques/scr_refreshCliques.yy",},"order":4,},
     {"id":{"name":"scr_chain1To1HeaderRightClickOptions","path":"scripts/scr_chain1To1HeaderRightClickOptions/scr_chain1To1HeaderRightClickOptions.yy",},"order":53,},
+    {"id":{"name":"scr_fullScreenCam","path":"scripts/scr_fullScreenCam/scr_fullScreenCam.yy",},"order":1,},
     {"id":{"name":"scr_chainListOptions","path":"scripts/scr_chainListOptions/scr_chainListOptions.yy",},"order":1,},
     {"id":{"name":"scr_chainRecolorOptions","path":"scripts/scr_chainRecolorOptions/scr_chainRecolorOptions.yy",},"order":2,},
     {"id":{"name":"scr_speakerLabelOptions","path":"scripts/scr_speakerLabelOptions/scr_speakerLabelOptions.yy",},"order":3,},

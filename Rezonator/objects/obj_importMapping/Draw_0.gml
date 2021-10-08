@@ -1,5 +1,5 @@
 /*
-scr_windowCameraAdjust();
+scr_fullScreenCam();
 
 	
 if (keyboard_check(vk_alt) and keyboard_check(vk_shift)

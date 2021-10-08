@@ -7,7 +7,7 @@ function scr_importMappingTagInfo() {
 	var colAmount = ds_list_size(importFieldsColRatioList);
 	var tagInfoGridHeight = ds_grid_height(global.tagInfoGrid);
 
-	scr_windowCameraAdjust();
+	scr_fullScreenCam();
 	
 	var wordFieldCount = 0;
 	var wordDelimiterEncountered = false;
@@ -37,7 +37,7 @@ function scr_importMappingTagInfo() {
 	    clipSurface = surface_create(clipWidth, clipHeight);
 	}
 
-	scr_windowCameraAdjust();
+	scr_fullScreenCam();
 
 	surface_set_target(clipSurface);
 	draw_clear_alpha(c_black, 0);
