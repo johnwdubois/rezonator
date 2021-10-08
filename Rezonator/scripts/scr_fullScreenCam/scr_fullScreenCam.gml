@@ -2,6 +2,12 @@
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
 function scr_fullScreenCam(){
 	
+	// enable these 2 lines to be able to see browser console
+	//scr_windowCameraAdjust();
+	//exit;
+	
+	
+	
 	var base = browser_width;
 	var _bw = browser_width;
 	var _bh = browser_height;

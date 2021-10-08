@@ -354,7 +354,6 @@ ds_map_add(global.mainScreenDropDownMap, "menu_clip", true);
 ds_map_add(global.mainScreenDropDownMap, "menu_media", true);
 ds_map_add(global.mainScreenDropDownMap, "menu_save-as", true);
 ds_map_add(global.mainScreenDropDownMap, "menu_autosave", true);
-ds_map_add(global.mainScreenDropDownMap, "menu_language", true);
 
 
 

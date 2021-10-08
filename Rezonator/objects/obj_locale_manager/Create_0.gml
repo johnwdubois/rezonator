@@ -60,28 +60,28 @@ for (var i = 0; i < localeStrListSize; i++) {
 
 
 
-	// set the locale to the player's native locale if possible
-	if ( ds_map_exists( global.locale_map, native_locale_code ) )				// if in the global dictionary the native_locale_code is present as a key
-	{
-		show_debug_message("Setting locale to native language.");
-		global.locale_gloss = global.locale_map[? native_locale_code];			// store as locale_gloss the value corresponding to the native_locale_code key (a dictionary): this is the glossary of the language of the user's system
-		//global.lang_index = native_locale_index;
 
-	// otherwise set it to English
-	} else if ( ds_map_exists( global.locale_map, default_locale_code ) ) {
-		show_debug_message("Setting locale to default language.");
-		global.locale_gloss = global.locale_map[? default_locale_code];
-		//global.lang_index = default_locale_index;
-
-	// if all else failes, use the first language on the stack
-	} else {
-		show_debug_message("Setting locale to fallback language.");
-		//global.lang_index = 0;
-		global.locale_gloss = global.locale_map[? global.lang_codes[| 0]];
-	}
 }
 
-show_debug_message("lang_codes: " + scr_getStringOfList(global.lang_codes));
+// set the locale to the player's native locale if possible
+if ( ds_map_exists( global.locale_map, native_locale_code ) )				// if in the global dictionary the native_locale_code is present as a key
+{
+	show_debug_message("Setting locale to native language.");
+	global.locale_gloss = global.locale_map[? native_locale_code];			// store as locale_gloss the value corresponding to the native_locale_code key (a dictionary): this is the glossary of the language of the user's system
+	global.lang_index = native_locale_index;
+
+// otherwise set it to English
+} else if ( ds_map_exists( global.locale_map, default_locale_code ) ) {
+	show_debug_message("Setting locale to default language.");
+	global.locale_gloss = global.locale_map[? default_locale_code];
+	global.lang_index = default_locale_index;
+
+// if all else failes, use the first language on the stack
+} else {
+	show_debug_message("Setting locale to fallback language.");
+	global.lang_index = 0;
+	global.locale_gloss = global.locale_map[? global.lang_codes[| 0]];
+}
 
 //show_debug_message("Locale set to " + global.lang_codes[| global.lang_index] );
 //show_debug_message("locale_gloss size: " + string(ds_map_size(global.locale_gloss)));
