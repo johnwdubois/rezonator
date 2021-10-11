@@ -5,6 +5,7 @@ function scr_createChunk(){
 	show_debug_message("\n\n\n....scr_createChunk()");
 	
 	if (obj_control.mouseoverPanelPane) exit;
+	if (global.delayInput > 0) exit;
 	
 	var chunkID = "";
 	
