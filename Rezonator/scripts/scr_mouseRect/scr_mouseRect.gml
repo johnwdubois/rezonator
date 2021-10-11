@@ -37,7 +37,7 @@ function scr_mouseRect() {
 	}
 	
 	// if user clicks, save the position of their mouse
-	var canMakeMouseRect = !mouseoverPanelPane && mouseoverNeutralSpace && mouse_check_button_pressed(mb_left) && !mouseoverScrollBar;
+	var canMakeMouseRect = !mouseoverPanelPane && mouseoverNeutralSpace && mouse_check_button_pressed(mb_left) && !mouseoverScrollBar && !mouseoverSpeakerLabelWidth;
 	if (canMakeMouseRect) {
 		drawRangeStartMax = drawRangeStart;
 		drawRangeEndMin = drawRangeEnd;

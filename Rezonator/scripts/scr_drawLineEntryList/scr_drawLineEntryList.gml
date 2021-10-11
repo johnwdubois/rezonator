@@ -104,7 +104,7 @@ function scr_drawLineEntryList(unitID, unitSubMap, entryList, pixelY, OOBCheck){
 				tokenRectX1 -= currentTokenStringWidth;
 				tokenRectX2 -= currentTokenStringWidth;
 			}
-			var mouseOverToken = point_in_rectangle(mouse_x,mouse_y, tokenRectX1, tokenRectY1, tokenRectX2, tokenRectY2) && hoverTokenID == "" && !mouseoverPanelPane && !instance_exists(obj_dropDown) && !instance_exists(obj_dialogueBox);
+			var mouseOverToken = point_in_rectangle(mouse_x,mouse_y, tokenRectX1, tokenRectY1, tokenRectX2, tokenRectY2) && hoverTokenID == "" && !mouseoverPanelPane && !instance_exists(obj_dropDown) && !instance_exists(obj_dialogueBox) && speakerLabelColXHolding == -1;
 		
 		
 			// draw background tokenRect

@@ -113,7 +113,7 @@ function scr_zoomOptions(optionSelected) {
 				global.fontSize++;
 				scr_setSpeakerLabelColWidth();
 			}
-			with (obj_dropDown) instance_destroy();
+			//with (obj_dropDown) instance_destroy();
 			break;
 			
 		case "help_label_zoom-out":
@@ -153,7 +153,7 @@ function scr_zoomOptions(optionSelected) {
 				scr_setSpeakerLabelColWidth();
 			}
 			
-			with (obj_dropDown) instance_destroy();
+			//with (obj_dropDown) instance_destroy();
 			break;
 	}
 

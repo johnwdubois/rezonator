@@ -31,6 +31,7 @@ function scr_setSpeakerLabelColWidth() {
 		ds_list_clear(speakerLabelColPrevList);
 	}
 	
+	mouseoverSpeakerLabelWidth = false;
 	
 	var speakerLabelColXListSize = ds_list_size(speakerLabelColXList);
 	for (var i = 0; i < speakerLabelColXListSize; i++) {
@@ -39,6 +40,8 @@ function scr_setSpeakerLabelColWidth() {
 		var mouseoverColX = point_in_rectangle(mouse_x, mouse_y, colX - sectionMouseWidth, wordTopMargin, colX + sectionMouseWidth, camHeight);
 		
 		if (mouseoverColX) {
+			mouseoverSpeakerLabelWidth = true;
+			window_set_cursor(cr_size_we);
 			if (mouse_check_button_pressed(mb_left)) {
 				speakerLabelColXHolding = i;
 				speakerLabelColXHoldingPrev = colX;
@@ -48,6 +51,8 @@ function scr_setSpeakerLabelColWidth() {
 		
 		// if we are dragging this column
 		if (speakerLabelColXHolding == i) {
+			window_set_cursor(cr_size_we);
+			global.delayInput = 5;
 			
 			var newColX = max(mouse_x, minColWidth);
 		
