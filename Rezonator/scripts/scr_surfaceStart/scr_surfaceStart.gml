@@ -148,7 +148,10 @@ function scr_surfaceStart() {
 	if (!surface_exists(clipSurface)) {
 	    clipSurface = surface_create(clipWidth, clipHeight);
 	}
-
+	if (surface_exists(clipSurface)) {
+		surface_resize(clipSurface, clipWidth, clipHeight);
+	}
+	
 	scr_fullScreenCam();
 
 	surface_set_target(clipSurface);
