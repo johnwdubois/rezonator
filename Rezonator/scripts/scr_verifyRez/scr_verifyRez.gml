@@ -2,13 +2,14 @@
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
 function scr_verifyRez(rezFileVerison){
 	
-	
+	// show dialogue box if the rez file is old
 	if(rezFileVerison != global.versionString){
 	
+		/*
 		var inst = instance_create_layer(0, 0, "InstancesDialogue", obj_dialogueBox);
 		obj_dialogueBox.alertWindowActive = true;
 		obj_dialogueBox.descriptionText = scr_get_translation("msg_error-previous-version");
-	
+		*/
 	}
 
 	
