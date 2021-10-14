@@ -3,8 +3,8 @@
 function scr_panelPane_drawChunkList(){
 
 	var drawScrollbar = chainViewOneToMany;
-	var strHeight = string_height("0") * 1.5;
-	with (obj_panelPane) leftPaneStrHeight = strHeight;
+	var strHeight = leftPaneStrHeight;
+
 	var numColX = x;
 	var numColWidth = windowWidth * 0.1;
 	var unitColX = numColX + numColWidth;

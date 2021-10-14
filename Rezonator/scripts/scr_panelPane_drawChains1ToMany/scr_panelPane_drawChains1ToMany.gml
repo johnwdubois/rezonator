@@ -30,7 +30,6 @@ function scr_panelPane_drawChains1ToMany() {
 	draw_set_alpha(1);
 	draw_set_halign(fa_left);
 	draw_set_valign(fa_middle);
-	var strHeight = string_height("0");
 	var tabHeight = functionTabs_tabHeight;
 	var scrollBarListHeight = 0;
 	var mouseoverHeader = point_in_rectangle(mouse_x, mouse_y, x, y, x + windowWidth, y + tabHeight);
@@ -55,9 +54,8 @@ function scr_panelPane_drawChains1ToMany() {
 	var textPlusY = 0;
 	var ableToBeMouseOver = true;
 	var textMarginTop = tabHeight;
-	var alignRectSize = strHeight;
 	var focusedElementY = -1;
-	var strHeight = string_height("0");
+	var strHeight = string_height("0") * 0.8;
 
 	// Check for focused chain and make sure grid is not empty, gather information from grids
 	// Collect beginning of chain info

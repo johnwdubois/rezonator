@@ -7,7 +7,7 @@ function scr_panelPane_drawFieldTags(){
 	draw_set_halign(fa_left);
 	draw_set_valign(fa_middle);
 	
-	var strHeight = string_height("0") * 1.5;
+	var strHeight = leftPaneStrHeight;
 	var textBuffer = 8;
 	var spaceWidth = string_width(" ");
 	var headerHeight = functionTabs_tabHeight;

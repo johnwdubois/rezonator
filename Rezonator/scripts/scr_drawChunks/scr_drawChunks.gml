@@ -101,7 +101,7 @@ function scr_drawChunks(){
 		
 		
 			scr_adaptFont(lastTokenDisplayStr, "M");
-			var strHeight = (is_string(lastTokenDisplayStr)) ? string_height(lastTokenDisplayStr) : 0;
+			var strHeight = (is_string(lastTokenDisplayStr)) ? string_height(lastTokenDisplayStr) * 0.75 : 0;
 		
 			// set rect coordinates for chunk
 			var chunkRectY1 = -1;

@@ -20,6 +20,7 @@ function scr_panelPaneDrawBranch(){
 					draw_set_color(global.colorThemePaneBG);
 					draw_rectangle(x, y, x + windowWidth, y + windowHeight, false);
 
+					with (obj_panelPane) leftPaneStrHeight = string_height("0") * 1.2;
 
 
 					// all the possible left panes

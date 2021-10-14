@@ -7,7 +7,7 @@ function scr_panelPane_drawUnits1toMany() {
 	draw_set_halign(fa_left);
 	draw_set_valign(fa_middle);
 	scr_adaptFont("0", "S");
-	var strHeight = string_height("0");
+	var strHeight = string_height("0") * 0.8;
 	var headerHeight = functionTabs_tabHeight;
 	var scrollBarListSize = 0;
 	var drawDropDowns = false;

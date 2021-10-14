@@ -7,7 +7,7 @@ function scr_panelPane_drawFieldList(){
 	draw_set_halign(fa_left);
 	draw_set_valign(fa_middle);
 	
-	var strHeight = string_height("0") * 1.5;
+	var strHeight = leftPaneStrHeight;
 	var textBuffer = 8;
 	var headerHeight = functionTabs_tabHeight;
 	var checkboxColX = x;

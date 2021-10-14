@@ -54,7 +54,7 @@ function scr_panelPane_drawChainsList() {
 	
 	
 	listOfChains = global.nodeMap[? listOfChainsKey];
-	var strHeight = string_height("0") * 1.5;
+	var strHeight = leftPaneStrHeight;
 	with (obj_panelPane) leftPaneStrHeight = strHeight;
 	
 

@@ -2,7 +2,7 @@
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
 function scr_panelPane_drawTreeList(){
 	var ltr = (obj_control.drawLineState == obj_control.lineState_ltr);
-	var strHeight = string_height("0") * 1.5;
+	var strHeight = leftPaneStrHeight;
 	var numColX = x;
 	var numColWidth = windowWidth * 0.1;
 	var nameColX = numColX + numColWidth;

@@ -15,7 +15,7 @@ function scr_panelPane_drawTree1ToMany(){
 	
 	
 	// draw light BG rect
-	var strHeight = string_height("0") * 2.5;
+	var strHeight = string_height("0") * 2;
 	var headerHeight = functionTabs_tabHeight;
 	var topBkgColor = merge_color(global.colorThemeSelected1, global.colorThemeBG, 0.4);
 	draw_set_color(topBkgColor);

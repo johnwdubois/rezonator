@@ -15,7 +15,7 @@ function scr_panelPane_drawTabs() {
 	// set positions for other panelPanes
 	var tabsPaneInst = self.id;
 	with (obj_panelPane) {
-		functionTabs_tabHeight = (strHeight * 1.5) + textMarginLeft;
+		functionTabs_tabHeight = (strHeight * 1.15) + textMarginLeft;
 		if (currentFunction == functionChainList || currentFunction == functionChainContents) {
 			y = floor(tabsPaneInst.y + tabsPaneInst.windowHeight);
 		}

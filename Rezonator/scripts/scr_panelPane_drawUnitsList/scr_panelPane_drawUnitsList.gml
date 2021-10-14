@@ -3,10 +3,9 @@ function scr_panelPane_drawUnitsList() {
 
 	
 
-	var strHeight = string_height("0") * 1.5;
+	var strHeight = leftPaneStrHeight;
 	var spaceWidth = string_width(" ");
-	
-	with (obj_panelPane) leftPaneStrHeight = strHeight;
+
 	
 	var drawScrollbar = (chainViewOneToMany or functionChainList_currentTab == functionChainList_tabTranslations);
 	var scrollBarWidth = global.scrollBarWidth;
