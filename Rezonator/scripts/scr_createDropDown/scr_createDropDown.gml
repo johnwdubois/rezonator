@@ -27,6 +27,7 @@ function scr_createDropDown(dropDownX, dropDownY, dropDownOptionList, dropDownOp
 	var dropDownInst = instance_create_depth(dropDownX, dropDownY, dropDownDepth, obj_dropDown);
 	dropDownInst.optionList = dropDownOptionList;
 	dropDownInst.optionListType = dropDownOptionListType;
+	dropDownInst.level = instance_number(obj_dropDown);
 	with(obj_dropDown){
 		
 		var maxStrWidth = originalWindowWidth;

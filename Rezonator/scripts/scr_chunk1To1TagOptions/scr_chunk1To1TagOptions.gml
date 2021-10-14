@@ -26,4 +26,9 @@ function scr_chunk1To1TagOptions(optionSelected){
 	// set the chunk tag
 	chunkTagMap[? obj_control.chunk1to1FieldToChange] = optionSelected;
 	
+	with(obj_panelPane){
+		functionField_chunkTagSelected = optionSelected;
+		functionField_chunkFieldSelected = obj_control.chunk1to1FieldToChange;
+	}
+	
 }

@@ -1,5 +1,5 @@
 function scr_speakerLabelOptions(optionSelected) {
-
+	var optionIndex = ds_list_find_index(optionList, optionSelected);
 	with (obj_panelPane) {
 		if (currentFunction == functionChainList) {
 			
@@ -144,11 +144,28 @@ function scr_speakerLabelOptions(optionSelected) {
 
 			instance_destroy(obj_dropDown);
 			break;
-				default:
-					break;
+			
+			case "tab_name_tag":
+				obj_control.unitToChange =	obj_control.rightClickID;
+				with(obj_dropDown){
+					scr_destroyAllDropDownsOtherThanSelf();
+				}
+				var dropDownOptionList = ds_list_create();
+				ds_list_add(dropDownOptionList, "Tag Unit");
+				if(obj_control.inChain == true){
+					ds_list_add(dropDownOptionList, "Tag Chain", "Tag Entry");
+				}
+				if (ds_list_size(dropDownOptionList) > 0) {
+					scr_createDropDown(obj_dropDown.x + obj_dropDown.windowWidth, obj_dropDown.y + (obj_dropDown.optionSpacing * optionIndex), dropDownOptionList, global.optionListTypeTag);
+				}
+			break;
+			
+			default:
+			break;
 			}
 		}
 	}
+obj_control.inChain = false;
 obj_control.rightClicked = false;
 
 }

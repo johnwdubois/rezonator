@@ -24,21 +24,10 @@ function scr_chunkRightClicked(){
 			for(var i = 0; i < ds_list_size(tokenInChainsList); i++){
 				var chainID = tokenInChainsList[|i];
 				var chainSubMap = global.nodeMap[?chainID];
-				
+				var chainType = "";
 				if(scr_isNumericAndExists(chainSubMap, ds_type_map)){
-					var chainType = chainSubMap[?"type"];
-					
-					if((chainType == "trail" && obj_toolPane.currentMode == obj_toolPane.modeTrack or obj_toolPane.currentMode == obj_toolPane.modeRead)
-						or (chainType == "resonance" && obj_toolPane.currentMode == obj_toolPane.modeRez or obj_toolPane.currentMode == obj_toolPane.modeRead)){
-							if (obj_panelPane.functionField_chainFieldSelected != "" && obj_panelPane.functionField_chainTagSelected != ""
-								&& is_string(obj_panelPane.functionField_chainFieldSelected) && is_string(obj_panelPane.functionField_chainTagSelected)) {
-									scr_addToListOnce(dropDownOptionList , "Tag Chain");
-							}
-							if (obj_panelPane.functionField_entryFieldSelected != "" && obj_panelPane.functionField_entryTagSelected != ""
-								&& is_string(obj_panelPane.functionField_entryFieldSelected) && is_string(obj_panelPane.functionField_entryTagSelected)) {
-									scr_addToListOnce(dropDownOptionList , "Tag Entry");
-							}
-					}
+					chainType = chainSubMap[?"type"];
+					obj_control.inChain = true;
 					
 				}
 			
@@ -55,8 +44,8 @@ function scr_chunkRightClicked(){
 					
 		}
 
-		ds_list_add(dropDownOptionList, "option_delete-chunk");
-
+		ds_list_add(dropDownOptionList, "tab_name_tag", "option_delete-chunk");
+		obj_control.inChunk = true;
 				
 		// Create the dropdown
 		if (ds_list_size(dropDownOptionList) > 0 and obj_control.ableToCreateDropDown) {

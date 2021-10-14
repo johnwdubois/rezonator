@@ -29,9 +29,55 @@ function scr_unitClicked(unitID){
 	
 	obj_toolPane.currentTool = obj_toolPane.toolStackBrush;
 	
-	
+	if(keyboard_check(vk_shift)){
+		if (obj_panelPane.functionField_chainFieldSelected != "" && obj_panelPane.functionField_chainTagSelected != ""
+		&& is_string(obj_panelPane.functionField_chainFieldSelected) && is_string(obj_panelPane.functionField_chainTagSelected)) {
+				
+				
+			var inChainsListSize = ds_list_size(inChainsList);
+			for (var i = 0; i < inChainsListSize; i++) {
+				var currentChainID = inChainsList[| i];
+				var currentChainSubMap = global.nodeMap[? currentChainID];
+				
+				if (scr_isNumericAndExists(currentChainSubMap, ds_type_map)) {
+					var tagMap = currentChainSubMap[?"tagMap"];
+					tagMap[? obj_panelPane.functionField_chainFieldSelected] = obj_panelPane.functionField_chainTagSelected;
+				}
+			}
+			show_debug_message("TAGGIN THAT CHAIN BB");
+		}
+	}
+	else if(keyboard_check(vk_alt)){
+		if (obj_panelPane.functionField_entryFieldSelected != "" && obj_panelPane.functionField_entryTagSelected != ""
+		&& is_string(obj_panelPane.functionField_entryFieldSelected) && is_string(obj_panelPane.functionField_entryTagSelected)) {
+				
+			var inChainsListSize = ds_list_size(inChainsList);
+			for (var i = 0; i < inChainsListSize; i++) {
+				var currentChainID = inChainsList[| i];
+				var currentChainSubMap = global.nodeMap[? currentChainID];
+				
+				var setIDList = currentChainSubMap[?"setIDList"];
+				var setIDListSize = ds_list_size(setIDList);
+					
+				for(var j = 0; j < setIDListSize;j ++){
+						
+					var currentEntry = setIDList[|j];
+					var entrySubMap = global.nodeMap[?currentEntry];
+						
+					var entryTokenID = entrySubMap[?"unit"];
+						
+					if(entryTokenID == unitID){
+						var tagMap = entrySubMap[?"tagMap"];
+						if(scr_isNumericAndExists(tagMap,ds_type_map)){
+							tagMap[?obj_panelPane.functionField_entryFieldSelected] = obj_panelPane.functionField_entryTagSelected;
+						}	
+					}
+				}
+			}
+		}
+	}
 	// set field/tags if in read mode
-	if (obj_toolPane.currentMode == obj_toolPane.modeRead) {
+	if (obj_toolPane.currentMode == obj_toolPane.modeRead && !keyboard_check(vk_alt) && !keyboard_check(vk_shift)) {
 		if (obj_panelPane.functionField_unitFieldSelected != "" && obj_panelPane.functionField_unitTagSelected != ""
 		&& is_string(obj_panelPane.functionField_unitFieldSelected) && is_string(obj_panelPane.functionField_unitTagSelected)) {
 			var unitTagMap = unitSubMap[? "tagMap"];

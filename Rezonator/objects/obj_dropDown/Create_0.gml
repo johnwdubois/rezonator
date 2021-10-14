@@ -29,6 +29,7 @@ if (room == rm_mainScreen) {
 	obj_control.ableToCreateDropDown = false;
 }
 optionCurrent = -1;
+level = -1;
 
 mouseOverDropDown =  false;
 textBuffer = 10;

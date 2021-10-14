@@ -34,6 +34,10 @@ function scr_chain1ToManyTagOptions(optionSelected){
 	else {
 		// set the selected tag in this entry's tagmap
 		scr_setMap(entryTagMap, fieldToChange, optionSelected);
+		with(obj_panelPane){
+			functionField_entryTagSelected = optionSelected;
+			functionField_entryFieldSelected = fieldToChange;
+		}
 	}
 	
 	if (obj_control.chain1toManyCustomSortColIndex != -1) obj_control.refreshCustomSort = true;

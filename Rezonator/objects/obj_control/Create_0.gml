@@ -571,6 +571,9 @@ combineChainsSelected = "";
 stackMerged = false;
 rightClickID = "";
 rightClicked = false;
+inChain = false;
+inChunk = false;
+
 
 deleteNewWord = false;
 deleteChunkWord = false;

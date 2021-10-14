@@ -74,7 +74,7 @@ function scr_newChain(ID) {
 
 
 	
-	obj_chain.chainHue += random_range(50, 200);
+	obj_chain.chainHue += random_range(50, 100);
 	if (obj_chain.chainHue > 255) {
 		obj_chain.chainHue -= 255;
 	}

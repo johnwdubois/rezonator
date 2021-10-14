@@ -68,7 +68,14 @@ function scr_dropDownOptionListTypeInit(){
 	global.optionListTypeTreeEntry = 73;
 	global.optionListTypeTreeLeaf = 74;
 	global.optionListTypeArrows = 75;
-
+	global.optionListTypeTag = 76;
+	global.optionListTypeTokenFields = 77;
+	global.optionListTypeChainFields = 78;
+	global.optionListTypeEntryFields = 79;
+	global.optionListTypeEntryTagMap = 80;
+	global.optionListTypeChainTagMap = 81;
+	global.optionListTypeUnitFields = 82;
+	global.optionListTypeChunkFields = 83;
 
 
 }
