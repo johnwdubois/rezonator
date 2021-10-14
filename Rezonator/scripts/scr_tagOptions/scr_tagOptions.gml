@@ -29,6 +29,10 @@ function scr_tagOptions(optionSelected) {
 		var dropDownOptionList = ds_list_create();
 		ds_list_copy(dropDownOptionList, global.chainEntryFieldList);
 		ds_list_insert(dropDownOptionList, 0, "option_create-new-field");
+		scr_deleteFromList(dropDownOptionList, "gapUnits");
+		scr_deleteFromList(dropDownOptionList, "gapWords");
+		scr_deleteFromList(dropDownOptionList, "tokenCount");
+		scr_deleteFromList(dropDownOptionList, "charCount");
 		scr_createDropDown(x + windowWidth, y + (obj_dropDown.optionSpacing * optionIndex), dropDownOptionList, global.optionListTypeEntryFields);
 
 	}
@@ -37,6 +41,7 @@ function scr_tagOptions(optionSelected) {
 		var dropDownOptionList = ds_list_create();
 		ds_list_copy(dropDownOptionList, global.chainFieldList);
 		ds_list_insert(dropDownOptionList, 0, "option_create-new-field");
+		scr_deleteFromList(dropDownOptionList, "chainSize");
 		scr_createDropDown(x + windowWidth, y + (obj_dropDown.optionSpacing * optionIndex), dropDownOptionList, global.optionListTypeChainFields);
 
 	}

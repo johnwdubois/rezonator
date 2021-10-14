@@ -324,6 +324,12 @@ ds_map_add(global.expandableDropDownMap, "text_dir", true);
 ds_map_add(global.expandableDropDownMap, "option_select-field", true);
 ds_map_add(global.expandableDropDownMap, "option-remove-tag-set", true);
 ds_map_add(global.expandableDropDownMap, "arrheads", true);
+ds_map_add(global.expandableDropDownMap, "tab_name_tag", true);
+ds_map_add(global.expandableDropDownMap, "Tag Token", true);
+ds_map_add(global.expandableDropDownMap, "Tag Chain", true);
+ds_map_add(global.expandableDropDownMap, "Tag Entry", true);
+ds_map_add(global.expandableDropDownMap, "Tag Chunk", true);
+ds_map_add(global.expandableDropDownMap, "Tag Unit", true);
 
 global.openingScreenDropDownMap = ds_map_create();
 ds_map_add(global.openingScreenDropDownMap, "menu_import", true);
