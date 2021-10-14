@@ -133,7 +133,7 @@ function scr_panelPane_scrollSelection(focusedElementY, strHeight){
 					}
 				}
 				
-				if (focusedElementY >= y + windowHeight - strHeight) {
+				if (focusedElementY >= y + windowHeight - headerHeight - strHeight) {
 					scrollPlusYDest -= max(abs(focusedElementY - (y + windowHeight - strHeight)) + strHeight, strHeight);
 				}
 			}

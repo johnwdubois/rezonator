@@ -18,7 +18,7 @@ scr_adaptFont(scr_get_translation(firstOptionTextStr), "M");
 
 
 var ableToMouseover = true;
-var strHeight = string_height("0");
+var strHeight = string_height("0") * 0.8;
 var arrowScale = 0.35;
 optionSpacing = strHeight * 1.25;
 windowHeight = ds_list_size(optionList) * optionSpacing;

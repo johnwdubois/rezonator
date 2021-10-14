@@ -36,7 +36,7 @@ global.menuOpen = true;
 global.neworOpen = false;
 
 
-
+global.rezString = "";
 
 
 
@@ -352,6 +352,9 @@ ds_map_add(global.openingScreenDropDownMap, "menu_language-hy", true);
 ds_map_add(global.openingScreenDropDownMap, "menu_language-gu", true);
 ds_map_add(global.openingScreenDropDownMap, "menu_language-kk", true);
 ds_map_add(global.openingScreenDropDownMap, "menu_language-ru", true);
+ds_map_add(global.openingScreenDropDownMap, "SBC001", true);
+ds_map_add(global.openingScreenDropDownMap, "SBC002", true);
+ds_map_add(global.openingScreenDropDownMap, "SBC003", true);
 
 global.mainScreenDropDownMap = ds_map_create();
 ds_map_add(global.mainScreenDropDownMap, "menu_save", true);

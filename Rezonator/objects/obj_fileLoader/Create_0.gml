@@ -1,6 +1,6 @@
 if (global.openProject) {
 	show_debug_message("obj_loadingControl Create ... loading REZ");
-	scr_loadREZ(scr_getJSONStr());
+	scr_loadREZ(global.rezString);
 }
 with(obj_control){
 	displayTokenList = ds_list_create();

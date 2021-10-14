@@ -36,8 +36,12 @@ function scr_openingMenu() {
 		draw_rectangle(openProjectButtonX1, openProjectButtonY1, openProjectButtonX2, openProjectButtonY2, false);
 	
 		if (device_mouse_check_button_released(0, mb_left)) {
-			global.newProject = false;
-			global.openProject = true;
+			
+			
+			var optionsList = ds_list_create();
+			ds_list_add(optionsList, "SBC001","SBC002","SBC003");
+			scr_createDropDown(mouse_x,mouse_y, optionsList,global.optionListTypeOpenFile);
+			
 		}
 	}
 	

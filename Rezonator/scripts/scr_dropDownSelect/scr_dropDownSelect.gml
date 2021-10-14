@@ -364,5 +364,9 @@ function scr_dropDownSelect(optionSelected) {
 	{
 		scr_entryTagMapOptions(optionSelected);	
 	}
+	else if (optionListType == global.optionListTypeOpenFile) // 81
+	{
+		scr_openSpecifiedFile(optionSelected);	
+	}
 
 }
