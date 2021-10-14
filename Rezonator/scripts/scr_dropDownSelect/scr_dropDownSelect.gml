@@ -332,5 +332,37 @@ function scr_dropDownSelect(optionSelected) {
 	{
 		scr_arrowOptions(optionSelected);	
 	}
+	else if (optionListType == global.optionListTypeTag) // 76
+	{
+		scr_tagOptions(optionSelected);	
+	}
+	else if (optionListType == global.optionListTypeTokenFields) // 77
+	{
+		scr_fieldOptions(optionSelected,"Token");	
+	}
+	else if (optionListType == global.optionListTypeChainFields) // 78
+	{
+		scr_fieldOptions(optionSelected,"Chain");	
+	}
+	else if (optionListType == global.optionListTypeEntryFields) // 79
+	{
+		scr_fieldOptions(optionSelected,"Entry");	
+	}
+	else if (optionListType == global.optionListTypeUnitFields) // 82
+	{
+		scr_fieldOptions(optionSelected,"Unit");	
+	}
+	else if (optionListType == global.optionListTypeChunkFields) // 83
+	{
+		scr_fieldOptions(optionSelected,"Chunk");	
+	}
+	else if (optionListType == global.optionListTypeChainTagMap) // 80
+	{
+		scr_chainTagMapOptions(optionSelected);	
+	}
+	else if (optionListType == global.optionListTypeEntryTagMap) // 81
+	{
+		scr_entryTagMapOptions(optionSelected);	
+	}
 
 }

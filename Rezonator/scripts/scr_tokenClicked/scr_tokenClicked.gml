@@ -48,7 +48,7 @@ function scr_tokenClicked(tokenID){
 	var inChainsList = tokenSubMap[?"inChainsList"];
 	show_debug_message("scr_tokenClicked ... inChainsList: " + scr_getStringOfList(inChainsList));
 	
-	
+	var shouldExit = false;
 	// loop through the chains that this token is already in (if any) to refocus that chain
 	if (obj_toolPane.currentTool != obj_toolPane.toolPlaceChains and obj_toolPane.currentTool != obj_toolPane.toolBoxBrush) {
 		var inChainsListSize = ds_list_size(inChainsList);
@@ -65,13 +65,62 @@ function scr_tokenClicked(tokenID){
 			if (refocusEntry) {
 				obj_chain.currentFocusedChainID = currentChainID;				
 				scr_refocusChainEntry(tokenID);
-				exit;
+				shouldExit = true;
 			}
 		}
 	}
 	
 	// set field/tags if in read mode
-	if (obj_toolPane.currentMode == obj_toolPane.modeRead) {
+
+	if(keyboard_check(vk_shift)){
+		if (obj_panelPane.functionField_chainFieldSelected != "" && obj_panelPane.functionField_chainTagSelected != ""
+		&& is_string(obj_panelPane.functionField_chainFieldSelected) && is_string(obj_panelPane.functionField_chainTagSelected)) {
+				
+				
+			var inChainsListSize = ds_list_size(inChainsList);
+			for (var i = 0; i < inChainsListSize; i++) {
+				var currentChainID = inChainsList[| i];
+				var currentChainSubMap = global.nodeMap[? currentChainID];
+				
+				if (scr_isNumericAndExists(currentChainSubMap, ds_type_map)) {
+					var tagMap = currentChainSubMap[?"tagMap"];
+					tagMap[? obj_panelPane.functionField_chainFieldSelected] = obj_panelPane.functionField_chainTagSelected;
+				}
+			}
+		}
+	}
+	else if(keyboard_check(vk_alt)){
+		if (obj_panelPane.functionField_entryFieldSelected != "" && obj_panelPane.functionField_entryTagSelected != ""
+		&& is_string(obj_panelPane.functionField_entryFieldSelected) && is_string(obj_panelPane.functionField_entryTagSelected)) {
+				
+			var inChainsListSize = ds_list_size(inChainsList);
+			for (var i = 0; i < inChainsListSize; i++) {
+				var currentChainID = inChainsList[| i];
+				var currentChainSubMap = global.nodeMap[? currentChainID];
+				
+				var setIDList = currentChainSubMap[?"setIDList"];
+				var setIDListSize = ds_list_size(setIDList);
+					
+				for(var j = 0; j < setIDListSize;j ++){
+						
+					var currentEntry = setIDList[|j];
+					var entrySubMap = global.nodeMap[?currentEntry];
+						
+					var entryTokenID = entrySubMap[?"token"];
+						
+					if(entryTokenID == tokenID){
+						var tagMap = entrySubMap[?"tagMap"];
+						if(scr_isNumericAndExists(tagMap,ds_type_map)){
+							tagMap[?obj_panelPane.functionField_entryFieldSelected] = obj_panelPane.functionField_entryTagSelected;
+						}	
+					}
+				}
+			}
+		}
+	}
+	
+	
+	if (obj_toolPane.currentMode == obj_toolPane.modeRead && !keyboard_check(vk_alt) && !keyboard_check(vk_shift)) {
 		if (obj_panelPane.functionField_tokenFieldSelected != "" && obj_panelPane.functionField_tokenTagSelected != ""
 		&& is_string(obj_panelPane.functionField_tokenFieldSelected) && is_string(obj_panelPane.functionField_tokenTagSelected)) {
 			var tokenTagMap = tokenSubMap[? "tagMap"];
@@ -83,7 +132,7 @@ function scr_tokenClicked(tokenID){
 	}
 	
 	// if we are in read mode, don't go any further
-	if (obj_toolPane.currentMode == obj_toolPane.modeRead) {
+	if (obj_toolPane.currentMode == obj_toolPane.modeRead or shouldExit) {
 		exit;
 	}
 

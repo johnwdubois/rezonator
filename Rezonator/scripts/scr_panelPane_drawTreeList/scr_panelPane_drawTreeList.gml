@@ -18,6 +18,7 @@ function scr_panelPane_drawTreeList(){
 	var textBuffer = 8;
 	var headerHeight = functionTabs_tabHeight;
 	var textPlusY = 0;
+	var focusedElementY = -1;
 	var mouseoverHeaderRegion = point_in_rectangle(mouse_x, mouse_y, x, y, x + windowWidth, y + headerHeight);
 	
 	// get the tree list & make sure it exists
@@ -74,6 +75,11 @@ function scr_panelPane_drawTreeList(){
 		var mouseoverTreeRect = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, treeRectX1, treeRectY1, treeRectX2, treeRectY2) && !mouseoverScrollBar && !scrollBarHolding && !instance_exists(obj_dropDown) && !instance_exists(obj_dialogueBox) && !mouseoverHeaderRegion;
 		var highlight = mouseoverTreeRect;
 		var textY = floor(mean(treeRectY1, treeRectY2));
+		
+		if (currentTreeSelected) {
+			with (obj_panelPane) functionChainList_focusedIndex = i;
+			focusedElementY = textY;
+		}
 		
 		// click on tree name
 		if (mouseoverTreeRect) {
@@ -182,7 +188,7 @@ function scr_panelPane_drawTreeList(){
 			global.colorThemeSelected1, global.colorThemeSelected2,
 			global.colorThemeSelected1, global.colorThemeSelected2, spr_ascend, windowWidth, windowHeight);
 			
-	scr_scrollMouseControls(strHeight);
+	scr_panelPane_scrollSelection(focusedElementY, strHeight);
 	scr_surfaceEnd();
 	
 	

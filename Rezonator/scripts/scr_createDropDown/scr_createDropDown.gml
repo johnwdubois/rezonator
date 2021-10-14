@@ -27,6 +27,7 @@ function scr_createDropDown(dropDownX, dropDownY, dropDownOptionList, dropDownOp
 	var dropDownInst = instance_create_depth(dropDownX, dropDownY, dropDownDepth, obj_dropDown);
 	dropDownInst.optionList = dropDownOptionList;
 	dropDownInst.optionListType = dropDownOptionListType;
+	dropDownInst.level = instance_number(obj_dropDown);
 	with(obj_dropDown){
 		
 		var maxStrWidth = originalWindowWidth;
@@ -47,6 +48,9 @@ function scr_createDropDown(dropDownX, dropDownY, dropDownOptionList, dropDownOp
 		windowWidth = maxStrWidth;	
 		
 	}
+	
+	if (object_index == obj_dropDown) dropDownInst.prevDropDown = self.id;
+	if (object_index == obj_menuBar) dropDownInst.myAlpha = 1;
 	//if(global.lang_codes[| global.lang_index] == "he" and instance_number(obj_dropDown) == 1){
 	//		dropDownInst.x -= dropDownInst.windowWidth;
 	//	}

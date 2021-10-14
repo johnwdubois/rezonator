@@ -15,6 +15,7 @@ function scr_panelPane_drawFieldTags(){
 	var checkboxColWidth = strHeight * 1.2;
 	var checkboxSize = checkboxColWidth * 0.35;
 	var checkBoxScale = (checkboxColWidth* 0.5)/checkboxColWidth;
+	var focusedElementY = -1;
 	var numColX = x;
 	var numColWidth = windowWidth * 0.1;
 	var tagNameColX = numColX + numColWidth;
@@ -85,7 +86,8 @@ function scr_panelPane_drawFieldTags(){
 	
 			var tagList = fieldSubMap[? "tagSet"];
 			if (scr_isNumericAndExists(tagList, ds_type_list)){
-			var tagListSize = ds_list_size(tagList);
+				with (obj_panelPane) functionTag_tagList = tagList;
+				var tagListSize = ds_list_size(tagList);
 	
 	
 			
@@ -103,6 +105,7 @@ function scr_panelPane_drawFieldTags(){
 					var currentRowY1 = y + plusY + scrollPlusY - 16;
 					var currentRowY2 = currentRowY1 + strHeight;
 					var mouseoverRow = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, x, currentRowY1, x + windowWidth, currentRowY2) && !instance_exists(obj_dropDown) && !instance_exists(obj_dialogueBox) && !mouseoverHeader && !mouseoverScrollBar && !scrollBarHolding;
+					var textY = floor(mean(currentRowY1, currentRowY2));
 
 						
 					if(i < tagListSize){
@@ -145,6 +148,7 @@ function scr_panelPane_drawFieldTags(){
 		
 						//check if this row/field has been selected
 						var tagSelected = false;
+		
 					
 						if(fieldPaneSwitchButton == fieldPaneDocMode){
 						
@@ -196,7 +200,11 @@ function scr_panelPane_drawFieldTags(){
 								draw_rectangle(x - clipX, currentRowY1 - clipY, x + windowWidth - clipX, currentRowY2 - clipY, false);
 							}
 						}
-					
+						
+						if (tagSelected) {
+							with (obj_panelPane) functionChainList_focusedIndex = i;
+							focusedElementY = textY;
+						}
 						var textColor = tagSelected ? global.colorThemeBG : global.colorThemeText;
 				
 						/*
@@ -269,10 +277,10 @@ function scr_panelPane_drawFieldTags(){
 		
 						// draw #
 						draw_set_color(textColor);
-						draw_text(floor(numColX + textBuffer) - clipX, floor(mean(currentRowY1, currentRowY2)) - clipY, string(i + 1));
+						draw_text(floor(numColX + textBuffer) - clipX, textY - clipY, string(i + 1));
 		
 						// draw field name
-						draw_text(floor(tagNameColX + textBuffer) - clipX, floor(mean(currentRowY1, currentRowY2)) - clipY, string(tagList[| i]));
+						draw_text(floor(tagNameColX + textBuffer) - clipX, textY - clipY, string(tagList[| i]));
 					}
 					else{
 					
@@ -357,9 +365,9 @@ function scr_panelPane_drawFieldTags(){
 						// add new tag
 						// draw #
 						draw_set_color(global.colorThemeText);
-						draw_text(floor(numColX + textBuffer) - clipX, floor(mean(currentRowY1, currentRowY2)) - clipY,"+");
+						draw_text(floor(numColX + textBuffer) - clipX, textY - clipY,"+");
 					
-						draw_text(floor(tagNameColX + textBuffer) - clipX, floor(mean(currentRowY1, currentRowY2)) - clipY, scr_get_translation("option_new-tag"));
+						draw_text(floor(tagNameColX + textBuffer) - clipX, textY - clipY, scr_get_translation("option_new-tag"));
 					}
 	
 					plusY += strHeight;
@@ -370,6 +378,7 @@ function scr_panelPane_drawFieldTags(){
 				scr_scrollBar(tagListSize+1, -1, strHeight, headerHeight,
 						global.colorThemeSelected1, global.colorThemeSelected2,
 						global.colorThemeSelected1, global.colorThemeSelected2, spr_ascend, windowWidth, windowHeight);
+				scr_panelPane_scrollSelection(focusedElementY, strHeight);
 			}
 		}
 	}
@@ -614,13 +623,14 @@ function scr_panelPane_drawFieldTags(){
 	draw_text(switchPaneLinkTextX,switchPaneLinkTextY,scr_get_translation("help_label_link"));
 	
 	
-	
+	/*
 	if (mouseoverWindow && mouse_wheel_down()) {
 		scrollPlusYDest -= 16;
 	}
 	if (mouseoverWindow && mouse_wheel_up()) {
 		scrollPlusYDest += 16;
 	}
+	*/
 	
 	
 }

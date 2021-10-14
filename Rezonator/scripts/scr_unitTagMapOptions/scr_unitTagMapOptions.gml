@@ -15,14 +15,27 @@ function scr_unitTagMapOptions() {
 	}
 	else {
 		
-		// get the unitToChange's submap, and that unit's tagmap
+		show_debug_message("unitToChange:  " +  string(obj_control.unitToChange));
+		// get the tokenToChange's submap, and that token's tagmap
 		var unitSubMap = global.nodeMap[? obj_control.unitToChange];
-		var unitTagMap = unitSubMap[? "tagMap"];
+		if(scr_isNumericAndExists(unitSubMap,ds_type_map)){
+			var unitTagMap = unitSubMap[? "tagMap"];
+			show_debug_message("unitFieldToChange:  " +  string(obj_control.unitFieldToChange));
+			// set the new value in this token's tagmap
+			unitTagMap[? obj_control.unitFieldToChange] = optionSelected;
+		}
 		
-		// set the new value in this unit's tagmap
-		unitTagMap[? obj_control.unitFieldToChange] = optionSelected;
+		with(obj_panelPane){
+			functionField_unitTagSelected = optionSelected;
+			functionField_unitFieldSelected = obj_control.unitFieldToChange;
+		}
 		
-	}
+		obj_control.unitFieldToChange = "";
+		obj_control.unitToChange = "";
 
+	}
+	with(obj_dropDown){
+		instance_destroy();
+	}
 
 }

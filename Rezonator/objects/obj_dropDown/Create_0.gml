@@ -29,6 +29,8 @@ if (room == rm_mainScreen) {
 	obj_control.ableToCreateDropDown = false;
 }
 optionCurrent = -1;
+level = -1;
+prevDropDown = -1;
 
 mouseOverDropDown =  false;
 textBuffer = 10;
@@ -39,3 +41,9 @@ scrollBarHoldingDelay = false;
 
 
 multiDropDownCancel = false;
+expandableTimer = 0;
+expandableTimerFull = 30;
+expandableTimerClicked = false;
+prevMouseoverOption = -2;
+currentMouseoverOption = -1;
+myAlpha = 0;

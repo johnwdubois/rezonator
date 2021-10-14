@@ -46,6 +46,7 @@ for (var menuHeaderLoop = 0; menuHeaderLoop < menuBarGridHeight; menuHeaderLoop+
 	}else{
 		xBuffer += menuWidth;
 	}
+	var currentOptionListType = ds_grid_get(menuBarGrid, menuBarGrid_colOptionListType, menuHeaderLoop);
 	
 	var menuHeaderRectX1 = (global.lang_codes[| global.lang_index] == "he") ? xBuffer : prevXBuffer;
 	var menuHeaderRectY1 = 0;
@@ -62,7 +63,7 @@ for (var menuHeaderLoop = 0; menuHeaderLoop < menuBarGridHeight; menuHeaderLoop+
 		with(obj_control){
 			mouseoverPanelPane = true;	
 		}
-		instance_destroy(obj_dropDown);
+
 		
 		with(obj_dropDown){
 			if(dropDownOptionList != optionList){
@@ -81,10 +82,10 @@ for (var menuHeaderLoop = 0; menuHeaderLoop < menuBarGridHeight; menuHeaderLoop+
 			
 			if (ds_list_size(dropDownOptionList) > 0 and instance_number(obj_dropDown) == 0) {
 				if(global.lang_codes[| global.lang_index] == "he"){
-					scr_createDropDown(menuHeaderRectX2, menuHeight, dropDownOptionList, ds_grid_get(menuBarGrid, menuBarGrid_colOptionListType, menuHeaderLoop), true);
+					scr_createDropDown(menuHeaderRectX2, menuHeight, dropDownOptionList, currentOptionListType, true);
 				}
 				else{
-					scr_createDropDown(menuHeaderRectX1, menuHeight, dropDownOptionList, ds_grid_get(menuBarGrid, menuBarGrid_colOptionListType, menuHeaderLoop), true);
+					scr_createDropDown(menuHeaderRectX1, menuHeight, dropDownOptionList, currentOptionListType, true);
 				}
 			}
 		}

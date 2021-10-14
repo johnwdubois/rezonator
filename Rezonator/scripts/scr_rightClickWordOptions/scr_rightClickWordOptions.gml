@@ -1,5 +1,6 @@
 function scr_rightClickWordOptions(optionSelected) {
-
+	var optionIndex = ds_list_find_index(optionList, optionSelected);
+	
 	switch (optionSelected)
 	{
 		
@@ -179,6 +180,23 @@ function scr_rightClickWordOptions(optionSelected) {
 
 			instance_destroy(obj_dropDown);
 			break;
+			case "tab_name_tag":
+			obj_control.tokenToChange =	obj_control.rightClickID;
+			scr_destroyAllDropDownsOtherThanSelf();
+			var dropDownOptionList = ds_list_create();
+			if(obj_control.inChunk == true){
+				ds_list_add(dropDownOptionList, "Tag Chunk");
+			}
+			else{
+				ds_list_add(dropDownOptionList, "Tag Token");
+			}
+			if(obj_control.inChain == true){
+				ds_list_add(dropDownOptionList, "Tag Chain", "Tag Entry");
+			}
+			if (ds_list_size(dropDownOptionList) > 0) {
+				scr_createDropDown(obj_dropDown.x + obj_dropDown.windowWidth, obj_dropDown.y + (obj_dropDown.optionSpacing * optionIndex), dropDownOptionList, global.optionListTypeTag);
+			}
+			break;
 			
 		case "option_delete-chunk":
 
@@ -210,4 +228,6 @@ function scr_rightClickWordOptions(optionSelected) {
 	}
 
 obj_control.rightClicked = false;
+obj_control.inChain = false;
+obj_control.inChunk = false;
 }

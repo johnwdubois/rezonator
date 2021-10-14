@@ -112,7 +112,7 @@ function scr_panelPane_drawChunkList(){
 		
 		if (functionChainList_chunkSelected == currentChunk) {
 			with (obj_panelPane) functionChainList_focusedUnit = currentChunk;
-			with (obj_panelPane) functionChainList_focusedChunkIndex = i;
+			with (obj_panelPane) functionChainList_focusedIndex = i;
 			focusedElementY = textY;
 		}
 		
@@ -164,7 +164,7 @@ function scr_panelPane_drawChunkList(){
 		scrollPlusY = chainContentsPanelPaneInst.scrollPlusY;
 	}
 	
-	scr_panelPane_chunkScroll(focusedElementY, strHeight);
+	scr_panelPane_scrollSelection(focusedElementY, strHeight);
 	scr_surfaceEnd();
 	
 	

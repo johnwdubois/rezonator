@@ -20,6 +20,7 @@ function scr_panelPane_drawFieldList(){
 	var fieldNameColWidth = windowWidth * 0.7;
 	var deleteColWidth = clamp(windowWidth * 0.15, sprite_get_width(spr_trash), sprite_get_width(spr_trash) * 2);
 	var deleteColX = x + windowWidth - deleteColWidth - global.scrollBarWidth;
+	var focusedElementY = -1;
 
 	var mouseoverWindow = point_in_rectangle(mouse_x, mouse_y, x, y, x + windowWidth, y + windowHeight);
 	var mouseoverHeader = point_in_rectangle(mouse_x, mouse_y, x, y, x + windowWidth, y + headerHeight);
@@ -51,6 +52,7 @@ function scr_panelPane_drawFieldList(){
 		fieldList = global.linkFieldList;
 		fieldMap = global.nodeMap[? "linkTagMap"];
 	}
+	with (obj_panelPane) functionTag_fieldList = fieldList;
 
 	
 	// make sure the field list is valid
@@ -100,6 +102,7 @@ function scr_panelPane_drawFieldList(){
 			var currentRowY1 = y + plusY + scrollPlusY - 16;
 			var currentRowY2 = currentRowY1 + strHeight;
 			var mouseoverRow = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, x, currentRowY1, x + windowWidth, currentRowY2) && !instance_exists(obj_dropDown) && !instance_exists(obj_dialogueBox) && !mouseoverHeader && !mouseoverScrollBar && !scrollBarHolding;
+			var textY = floor(mean(currentRowY1, currentRowY2));
 		
 				
 			if (i < fieldListSize) {
@@ -204,6 +207,8 @@ function scr_panelPane_drawFieldList(){
 				if (fieldSelected) {
 					draw_set_color(global.colorThemeSelected2);
 					draw_rectangle(x - clipX, currentRowY1 - clipY, x + windowWidth - clipX, currentRowY2 - clipY, false);
+					with (obj_panelPane) functionChainList_focusedIndex = i;
+					focusedElementY = textY;
 				}
 		
 		
@@ -260,10 +265,10 @@ function scr_panelPane_drawFieldList(){
 		
 				// draw #
 				draw_set_color(textColor);
-				draw_text(floor(numColX + textBuffer) - clipX, floor(mean(currentRowY1, currentRowY2)) - clipY, string(i + 1));
+				draw_text(floor(numColX + textBuffer) - clipX, textY - clipY, string(i + 1));
 		
 				// draw field name
-				draw_text(floor(fieldNameColX + textBuffer) - clipX, floor(mean(currentRowY1, currentRowY2)) - clipY, string(currentField));
+				draw_text(floor(fieldNameColX + textBuffer) - clipX, textY - clipY, string(currentField));
 		
 			}
 			else{
@@ -313,10 +318,10 @@ function scr_panelPane_drawFieldList(){
 	
 				// draw #
 				draw_set_color(global.colorThemeText);
-				draw_text(floor(numColX + textBuffer) - clipX, floor(mean(currentRowY1, currentRowY2)) - clipY, "+");
+				draw_text(floor(numColX + textBuffer) - clipX, textY - clipY, "+");
 		
 				// draw field name
-				draw_text(floor(fieldNameColX + textBuffer) - clipX, floor(mean(currentRowY1, currentRowY2)) - clipY, scr_get_translation("option_new-field"));
+				draw_text(floor(fieldNameColX + textBuffer) - clipX, textY - clipY, scr_get_translation("option_new-field"));
 		
 			}
 	
@@ -326,6 +331,8 @@ function scr_panelPane_drawFieldList(){
 		scr_scrollBar(fieldListSize+1, -1, strHeight, headerHeight,
 			global.colorThemeSelected1, global.colorThemeSelected2,
 			global.colorThemeSelected1, global.colorThemeSelected2, spr_ascend, windowWidth, windowHeight);
+			
+		scr_panelPane_scrollSelection(focusedElementY, strHeight);
 	
 	
 		scr_surfaceEnd();
@@ -362,13 +369,14 @@ function scr_panelPane_drawFieldList(){
 	
 	
 	
-	
+	/*
 	if (mouseoverWindow && mouse_wheel_down()) {
 		scrollPlusYDest -= 16;
 	}
 	if (mouseoverWindow && mouse_wheel_up()) {
 		scrollPlusYDest += 16;
 	}
+	*/
 	
 	
 

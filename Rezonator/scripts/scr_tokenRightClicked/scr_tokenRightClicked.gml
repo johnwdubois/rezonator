@@ -38,20 +38,9 @@ function scr_tokenRightClicked(){
 				var chainID = tokenInChainsList[|i];
 				var chainSubMap = global.nodeMap[?chainID];
 				if(scr_isNumericAndExists(chainSubMap, ds_type_map)){
-					var chainType = chainSubMap[?"type"];
-					
-					if((chainType == "trail" && obj_toolPane.currentMode == obj_toolPane.modeTrack or obj_toolPane.currentMode == obj_toolPane.modeRead)
-						or (chainType == "resonance" && obj_toolPane.currentMode == obj_toolPane.modeRez or obj_toolPane.currentMode == obj_toolPane.modeRead)){
-							if (obj_panelPane.functionField_chainFieldSelected != "" && obj_panelPane.functionField_chainTagSelected != ""
-								&& is_string(obj_panelPane.functionField_chainFieldSelected) && is_string(obj_panelPane.functionField_chainTagSelected)) {
-									scr_addToListOnce(dropDownOptionList , "Tag Chain");
-							}
-							if (obj_panelPane.functionField_entryFieldSelected != "" && obj_panelPane.functionField_entryTagSelected != ""
-								&& is_string(obj_panelPane.functionField_entryFieldSelected) && is_string(obj_panelPane.functionField_entryTagSelected)) {
-									scr_addToListOnce(dropDownOptionList , "Tag Entry");
-							}
-					}
-					
+
+					obj_control.inChain = true;
+	
 				}
 			
 				// check whether we should refocus this word's entry or not
@@ -67,10 +56,10 @@ function scr_tokenRightClicked(){
 		
 		if (obj_panelPane.functionField_tokenFieldSelected != "" && obj_panelPane.functionField_tokenTagSelected != ""
 			&& is_string(obj_panelPane.functionField_tokenFieldSelected) && is_string(obj_panelPane.functionField_tokenTagSelected)) {
-				scr_addToListOnce(dropDownOptionList , "Tag Token");
+				//scr_addToListOnce(dropDownOptionList , "Tag Token");
 		}
 		
-		ds_list_add(dropDownOptionList, "option_new-token", "option_delete-token");
+		ds_list_add(dropDownOptionList, "option_new-token", "option_delete-token", "tab_name_tag" );
 		if (!firstWordInLine && obj_control.showDevVars) {
 			//ds_list_add(dropDownOptionList, "Split Line");
 		}
