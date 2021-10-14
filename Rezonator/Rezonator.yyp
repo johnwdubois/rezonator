@@ -519,7 +519,7 @@
     {"id":{"name":"scr_copyListToMap","path":"scripts/scr_copyListToMap/scr_copyListToMap.yy",},"order":8,},
     {"id":{"name":"scr_dropDownOptionListTypeInit","path":"scripts/scr_dropDownOptionListTypeInit/scr_dropDownOptionListTypeInit.yy",},"order":52,},
     {"id":{"name":"scr_getChunkText","path":"scripts/scr_getChunkText/scr_getChunkText.yy",},"order":5,},
-    {"id":{"name":"scr_panelPane_chunkScroll","path":"scripts/scr_panelPane_chunkScroll/scr_panelPane_chunkScroll.yy",},"order":33,},
+    {"id":{"name":"scr_panelPane_scrollSelection","path":"scripts/scr_panelPane_scrollSelection/scr_panelPane_scrollSelection.yy",},"order":33,},
     {"id":{"name":"GML_Regular_Expressions","path":"extensions/GML_Regular_Expressions/GML_Regular_Expressions.yy",},"order":1,},
     {"id":{"name":"scr_exportLinkTempGrid","path":"scripts/scr_exportLinkTempGrid/scr_exportLinkTempGrid.yy",},"order":14,},
     {"id":{"name":"scr_panelPane_drawUnits1To1Headers","path":"scripts/scr_panelPane_drawUnits1To1Headers/scr_panelPane_drawUnits1To1Headers.yy",},"order":23,},

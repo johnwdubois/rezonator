@@ -74,7 +74,7 @@ functionChainList_sortAsc[2] = true;
 functionChainList_sortAsc[3] = true;
 functionChainList_sortAsc[4] = true;
 functionChainList_focusedUnitIndex = -1;
-functionChainList_focusedChunkIndex = -1;
+functionChainList_focusedIndex = -1;
 functionChainList_focusedUnit = "";
 functionChainList_lineGridRowFocused = 0;
 functionChainList_lineGridDisplayYList = ds_list_create();
@@ -227,7 +227,8 @@ functionTree_treeLinkMouseover = "";
 functionTree_treeLinkSelected = "";
 
 
-
+functionTag_fieldList = -1;
+functionTag_tagList = -1;
 
 
 hoverTime[0] = 0;
