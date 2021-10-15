@@ -409,13 +409,15 @@ for (var i = 0; i < optionListSize; i++) {
 
 	
 	// click on option
-	var clickCurrentOption = (mouseoverCurrentOption && ableToClick && mouse_check_button_released(mb_left));
+	var click = mouse_check_button_released(mb_left) || keyboard_check_released(vk_enter);
+	var clickCurrentOption = (mouseoverCurrentOption && ableToClick && click);
 	if (isExpandable && expandableTimer >= expandableTimerFull && ableToClick && mouseoverCurrentOption && !expandableTimerClicked) {
 		expandableTimerClicked = true;
 		clickCurrentOption = true;
 	}
 	
-	if (clickCurrentOption) {
+	if (clickCurrentOption && (prevOptionClicked != i || optionListType == global.optionListTypeZoom)) {
+		prevOptionClicked = i;
 		if(!unClickable){
 			optionCurrent = i;
 			var optionSelected = optionList[| i];
@@ -486,6 +488,11 @@ and !mouseInDropDown and !scrollBarHoldingDelay) {
 	}
 }
 scrollBarHoldingDelay = scrollBarHolding;
+
+// press escape to destroy
+if (keyboard_check_released(vk_escape)) {
+	instance_destroy();
+}
 
 
 draw_set_color(c_ltgray);

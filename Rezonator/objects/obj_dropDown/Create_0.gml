@@ -45,5 +45,6 @@ expandableTimer = 0;
 expandableTimerFull = 30;
 expandableTimerClicked = false;
 prevMouseoverOption = -2;
+prevOptionClicked = -1;
 currentMouseoverOption = -1;
 myAlpha = 0;

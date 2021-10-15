@@ -330,6 +330,7 @@ ds_map_add(global.expandableDropDownMap, "Tag Chain", true);
 ds_map_add(global.expandableDropDownMap, "Tag Entry", true);
 ds_map_add(global.expandableDropDownMap, "Tag Chunk", true);
 ds_map_add(global.expandableDropDownMap, "Tag Unit", true);
+ds_map_add(global.expandableDropDownMap, "option_new-token", true);
 
 global.openingScreenDropDownMap = ds_map_create();
 ds_map_add(global.openingScreenDropDownMap, "menu_import", true);
