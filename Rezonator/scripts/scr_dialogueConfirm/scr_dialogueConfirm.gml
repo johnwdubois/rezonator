@@ -5,7 +5,7 @@ function scr_dialogueConfirm(){
 	// check if they are trying to download newest version of rezonator
 	if (instance_exists(obj_openingScreen)) {
 		if (obj_openingScreen.downloadDialogue) {
-			url_open("https://rezonator.com/download/");
+			url_open_ext("https://rezonator.com/download/", "_blank");
 		}
 		scr_closeDialogueBoxVariables();
 		instance_destroy();

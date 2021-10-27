@@ -2,7 +2,6 @@
 	Purpose: Draw the Audio GUI when an Audio File has been uploaded, including plauhead, bookmarks, and toggles
 */
 function scr_audioDraw() {
-	
 	// Get dimensions of whole GUI window
 	windowHeight = (camera_get_view_height(camera_get_active())) * 0.08;
 	windowWidth = camera_get_view_width(camera_get_active()) - global.toolPaneWidth;
@@ -29,11 +28,11 @@ function scr_audioDraw() {
 	var audioFileX = floor(x + (windowWidth * mean(0.02, 0.15)));
 	var audioFileY = floor(y + 24);
 	var strHeight = string_height("0");
-	var audioFileStr = file_exists(audioFile) ? filename_name(audioFile) : "";
+	var audioFileStr = "sbc002.ogg";//file_exists(audioFile) ? filename_name(audioFile) : "";
 	scr_adaptFont(audioFileStr, "S");
 	draw_text(audioFileX, audioFileY, audioFileStr);
 	
-	if (point_in_rectangle(mouse_x, mouse_y, x, y, seekBarX1 - string_width("AAAAAAA"), y + windowHeight) && audioFile != "" && file_exists(audioFile)) {
+	if (point_in_rectangle(mouse_x, mouse_y, x, y, seekBarX1 - string_width("AAAAAAA"), y + windowHeight) && audioFile != "") {
 		scr_createTooltip(mean(x, seekBarX1 - string_width("AAAAAAA")), y, string(audioFile), global.arrowFaceDown);
 	}
 	
@@ -172,7 +171,7 @@ function scr_audioDraw() {
 	//Check for mousehover/click on Playhead
 	var playheadHoldable = false;
 
-	if ((mouseoverSeekbar or playheadHolding) && audioSound != -1 && file_exists(audioFile)) {
+	if ((mouseoverSeekbar or playheadHolding) && audioSound != -1) {
 		playheadHoldable = true;
 	}
 	if (playheadHoldable and !mouseOverPlayPause) {
@@ -283,6 +282,7 @@ function scr_audioDraw() {
 	
 	
 	// load audio button
+	/*
 	var loadAudioButtonX1 = x + (windowWidth * 0.02);
 	var loadAudioButtonY1 = y + (windowHeight * 0.6);
 	var loadAudioButtonX2 = x + (windowWidth * 0.15);
@@ -319,5 +319,6 @@ function scr_audioDraw() {
 			}
 		}
 	}
+	*/
 
 }

@@ -39,6 +39,7 @@ global.importGroupFileIndex = 0;
 global.importGroupOutputDir = "";
 global.importGroupSchemaFile = "";
 global.skipToImportScreen = false;
+global.skipToMainScreen = true;
 
 
 

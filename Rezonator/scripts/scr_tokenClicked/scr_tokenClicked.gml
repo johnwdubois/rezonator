@@ -30,7 +30,7 @@ function scr_tokenClicked(tokenID){
 
 	// jump audio position to unitStart time (if audioUI is visible)
 	if (instance_exists(obj_audioUI)) {
-		if (obj_audioUI.visible and file_exists(obj_audioUI.audioFile) and obj_audioUI.audioSound != -1) {
+		if (obj_audioUI.visible and obj_audioUI.audioSound != -1) {
 			scr_audioJumpToUnit(unitID);
 		}
 	}

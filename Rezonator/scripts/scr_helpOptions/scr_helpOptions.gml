@@ -7,10 +7,10 @@ function scr_helpOptions(optionSelected) {
 			obj_panelPane.functionHelp_collapsed = !obj_panelPane.functionHelp_collapsed;
 			break;
 		case "menu_guide":// hide/show rez chains
-			url_open("http://rezonator.com/documentation/");
+			url_open_ext("http://rezonator.com/documentation/", "_blank");
 			break;
 		case "menu_about":// hide/show stack chains
-			url_open("http://rezonator.com/");
+			url_open_ext("http://rezonator.com/", "_blank");
 			break;
 		default:
 			break;

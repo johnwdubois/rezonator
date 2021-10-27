@@ -8,6 +8,7 @@ y = camera_get_view_height(camera_get_active()) - windowHeight;
 
 
 if (keyboard_check(vk_alt) and keyboard_check(vk_shift) and keyboard_check_pressed(ord("A"))) {
+	/*
 	var getAudioFile = get_open_filename_ext("ogg file|*.ogg", "", working_directory, scr_get_translation("msg_file_audio"));
 	if (getAudioFile != "" and file_exists(getAudioFile)) {
 		audioFile = getAudioFile;
@@ -15,9 +16,10 @@ if (keyboard_check(vk_alt) and keyboard_check(vk_shift) and keyboard_check_press
 		audioSound = audio_play_sound(audioStream, 100, false);
 		visible = true;
 	}
+	*/
 }
 
 
-if (visible and file_exists(audioFile) and audioSound != -1) {
+if (visible and audioSound != -1) {
 	scr_audioStep();
 }

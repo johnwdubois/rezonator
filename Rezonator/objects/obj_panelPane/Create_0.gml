@@ -176,9 +176,9 @@ holdUp = 0;
 holdDown = 0;
 
 
-showNav = true;
-showNavLeft = true;
-showNavRight = true;
+showNav = false;
+showNavLeft = false;
+showNavRight = false;
 tokenContentsHeaderListSize = 3;
 unitContentsHeaderListSize = 2;
 

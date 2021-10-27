@@ -11,6 +11,7 @@ function scr_importTXT(filename) {
 	
 	var str = get_string("Copy and paste text below to import it.", "");
 	if (str == "" || !is_string(str)) {
+		global.skipToImportScreen = false;
 		room_goto(rm_openingScreen);
 		exit;
 	}
