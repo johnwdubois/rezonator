@@ -497,6 +497,7 @@
     {"id":{"name":"scr_updateTagInfoErrorCol","path":"scripts/scr_updateTagInfoErrorCol/scr_updateTagInfoErrorCol.yy",},"order":7,},
     {"id":{"name":"scr_identifyBlocks","path":"scripts/scr_identifyBlocks/scr_identifyBlocks.yy",},"order":3,},
     {"id":{"name":"obj_buh","path":"objects/obj_buh/obj_buh.yy",},"order":6,},
+    {"id":{"name":"scr_importConlluAutotag","path":"scripts/scr_importConlluAutotag/scr_importConlluAutotag.yy",},"order":32,},
     {"id":{"name":"scr_baseConvert","path":"scripts/scr_baseConvert/scr_baseConvert.yy",},"order":6,},
     {"id":{"name":"scr_panelPane_drawChains1ToManyHeaders","path":"scripts/scr_panelPane_drawChains1ToManyHeaders/scr_panelPane_drawChains1ToManyHeaders.yy",},"order":14,},
     {"id":{"name":"obj_mapViewerNodeList","path":"objects/obj_mapViewerNodeList/obj_mapViewerNodeList.yy",},"order":8,},
@@ -769,7 +770,7 @@
     {"CopyToMask":-1,"filePath":"datafiles/IncludedFiles/Localization","resourceVersion":"1.0","name":"locale_vi.json","resourceType":"GMIncludedFile",},
   ],
   "MetaData": {
-    "IDEVersion": "2.3.4.583",
+    "IDEVersion": "2.3.5.589",
   },
   "resourceVersion": "1.4",
   "name": "Rezonator",

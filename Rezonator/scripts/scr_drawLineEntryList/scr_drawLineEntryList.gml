@@ -58,7 +58,7 @@ function scr_drawLineEntryList(unitID, unitSubMap, entryList, pixelY, OOBCheck){
 		var tokenOnScreen = (currentTokenSubMap[? "pixelX"] >= 0 && currentTokenSubMap[? "pixelX"] < camWidth);
 		if (tokenOnScreen) {
 			scr_tokenCalculateVoid(currentToken);
-			scr_adaptFont(currentDisplayStr,"M");
+			currentDisplayStr = scr_adaptFont(currentDisplayStr,"M");
 		}
 		
 		var currentDisplayCol = currentTokenSubMap[? "displayCol"];
