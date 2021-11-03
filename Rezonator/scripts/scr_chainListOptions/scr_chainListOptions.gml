@@ -110,6 +110,9 @@ function scr_chainListOptions(optionSelected) {
 					// Destory the Dropdown
 					instance_destroy(obj_dropDown);
 					break;
+				case "Set Rez Map":
+					scr_setRezMap(obj_chain.currentFocusedChainID);
+					instance_destroy(obj_dropDown);
 				default:
 					break;
 			}

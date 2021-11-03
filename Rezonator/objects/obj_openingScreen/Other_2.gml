@@ -79,3 +79,4 @@ window_set_min_height(720);
 // if build is true --> CJK fonts will be loaded
 // if build is false --> CJK fonts will not be loaded
 global.build = true;
+global.rezzles = true;

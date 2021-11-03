@@ -297,6 +297,7 @@
     {"id":{"name":"scr_preImportInitiate","path":"scripts/scr_preImportInitiate/scr_preImportInitiate.yy",},"order":1,},
     {"id":{"name":"scr_chainDeselect","path":"scripts/scr_chainDeselect/scr_chainDeselect.yy",},"order":9,},
     {"id":{"name":"scr_fieldOptions","path":"scripts/scr_fieldOptions/scr_fieldOptions.yy",},"order":75,},
+    {"id":{"name":"scr_setRezMap","path":"scripts/scr_setRezMap/scr_setRezMap.yy",},"order":29,},
     {"id":{"name":"scr_addToNodeMap","path":"scripts/scr_addToNodeMap/scr_addToNodeMap.yy",},"order":0,},
     {"id":{"name":"scr_deleteAllChains","path":"scripts/scr_deleteAllChains/scr_deleteAllChains.yy",},"order":51,},
     {"id":{"name":"scr_randomChainLoop","path":"scripts/scr_randomChainLoop/scr_randomChainLoop.yy",},"order":11,},
