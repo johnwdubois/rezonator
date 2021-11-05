@@ -399,6 +399,7 @@
     {"id":{"name":"spr_gridText","path":"sprites/spr_gridText/spr_gridText.yy",},"order":10,},
     {"id":{"name":"scr_dialogueBoxNewCustomTagUnit","path":"scripts/scr_dialogueBoxNewCustomTagUnit/scr_dialogueBoxNewCustomTagUnit.yy",},"order":6,},
     {"id":{"name":"scr_adjustTokenSpacing","path":"scripts/scr_adjustTokenSpacing/scr_adjustTokenSpacing.yy",},"order":29,},
+    {"id":{"name":"scr_cliqueStackerLoop","path":"scripts/scr_cliqueStackerLoop/scr_cliqueStackerLoop.yy",},"order":54,},
     {"id":{"name":"scr_chunkTagDropDown","path":"scripts/scr_chunkTagDropDown/scr_chunkTagDropDown.yy",},"order":30,},
     {"id":{"name":"scr_dialogueBoxReplace","path":"scripts/scr_dialogueBoxReplace/scr_dialogueBoxReplace.yy",},"order":7,},
     {"id":{"name":"scr_combineChains","path":"scripts/scr_combineChains/scr_combineChains.yy",},"order":15,},
@@ -775,7 +776,7 @@
     {"CopyToMask":-1,"filePath":"datafiles/IncludedFiles/Localization","resourceVersion":"1.0","name":"locale_kk.json","resourceType":"GMIncludedFile",},
   ],
   "MetaData": {
-    "IDEVersion": "2.3.6.595",
+    "IDEVersion": "2.3.4.583",
   },
   "resourceVersion": "1.4",
   "name": "Rezonator",
