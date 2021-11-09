@@ -1,6 +1,12 @@
+
 // Script assets have changed for v2.3.0 see
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
 function scr_alignChain2ElectricBoogaloo(chainID){
+	
+	var chainSubMap = ds_map_find_value(global.nodeMap, chainID);
+	if (!scr_isNumericAndExists(chainSubMap, ds_type_map)) exit;
+	var chainType = chainSubMap[? "type"];
+	if (chainType != "resonance") exit;
 	
 	if (obj_control.chainStretchCheck) {
 		if (scr_appearancesInList(obj_control.chainStretchCheckList, chainID) > 10) {
@@ -14,12 +20,7 @@ function scr_alignChain2ElectricBoogaloo(chainID){
 	ds_list_add(obj_control.chainStretchCheckList, chainID);
 	show_debug_message("scr_alignChain2() ... chainID: " + string(chainID));	
 	
-	
-	// get chain map
-	var chainSubMap = ds_map_find_value(global.nodeMap, chainID);
-	if (!scr_isNumericAndExists(chainSubMap, ds_type_map)) exit;
-	var chainType = chainSubMap[? "type"];
-	if (chainType != "resonance") exit;
+
 	
 	
 	var unitList = ds_list_create();

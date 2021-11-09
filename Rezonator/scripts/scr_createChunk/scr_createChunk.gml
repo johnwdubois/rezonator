@@ -9,11 +9,11 @@ function scr_createChunk(){
 	var chunkID = "";
 	
 	// Place all captured unit and token info into the box grid
-	var inRectTokenIDListSize = ds_list_size(inRectTokenIDList);
-	var inRectUnitIDListSize = ds_list_size(inRectUnitIDList);
+	var inRectTokenIDListSize = ds_list_size(obj_control.inRectTokenIDList);
+	var inRectUnitIDListSize = ds_list_size(obj_control.inRectUnitIDList);
 	
 	for(var i = 0; i < inRectTokenIDListSize; i++){
-		var tokenToCheck = inRectTokenIDList[|i];
+		var tokenToCheck = obj_control.inRectTokenIDList[|i];
 		var tokenSubMap = global.nodeMap[? tokenToCheck];
 		var tokenInChunkList = tokenSubMap[? "inChunkList"];
 		var tokenInChunkListSize = ds_list_size(tokenInChunkList);
@@ -21,7 +21,7 @@ function scr_createChunk(){
 			var chunkToCheck = tokenInChunkList[|j];
 			var chunkSubMap = global.nodeMap[?chunkToCheck];
 			var tokenList = chunkSubMap[? "tokenList"];
-			if(scr_compareLists(tokenList, inRectTokenIDList)){
+			if(scr_compareLists(tokenList, obj_control.inRectTokenIDList)){
 				show_debug_message("CHUNK ALREADY EXISTS")
 				exit;
 			}
@@ -37,7 +37,7 @@ function scr_createChunk(){
 		var inEntryList = ds_list_create();
 		
 		// copy contents of inRectTokenIDList into tokenIDList
-		ds_list_copy(tokenIDList, inRectTokenIDList);
+		ds_list_copy(tokenIDList, obj_control.inRectTokenIDList);
 		show_debug_message("scr_createChunk() ... tokenIDList: " + scr_getStringOfList(tokenIDList));
 		
 		// create Chunk new node in node map
