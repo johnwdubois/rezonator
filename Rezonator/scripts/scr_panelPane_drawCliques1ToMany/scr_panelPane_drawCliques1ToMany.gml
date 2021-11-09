@@ -64,6 +64,8 @@ function scr_panelPane_drawCliques1ToMany(){
 							var currentChainSubMap = global.nodeMap[? currentChain];
 							ds_list_add(currentChainOrderListNames, currentChainSubMap[? "name"]);
 						}
+						
+						
 					}
 					else {
 						currentItemNum = string(currentItemSubMap[? "unitSeq"]);
@@ -103,10 +105,25 @@ function scr_panelPane_drawCliques1ToMany(){
 				draw_text(chainOrderColX + textBuffer - clipX, textY - clipY, chainOrderListStr);
 				ds_list_destroy(currentChainOrderListNames);
 				
+				// double click to hop to chain
 				if (mouseoverCliqueRect && mouse_check_button_released(mb_left)) {
-					var unitToJumpTo = "";
-					
-					//scr_jumpToUnitDoubleClick();
+					if (cliquePaneSwitchButton == "option_chain") {
+						var setIDList = currentItemSubMap[? "setIDList"];
+						if (scr_isNumericAndExists(setIDList, ds_type_list)) {
+							if (ds_list_size(setIDList) > 0) {
+								var firstEntry = setIDList[| 0];
+								var firstEntrySubMap = global.nodeMap[? firstEntry];
+								if (scr_isNumericAndExists(firstEntrySubMap, ds_type_map)) {
+									var firstEntryToken = firstEntrySubMap[? "token"];
+									var firstEntryTokenSubMap = global.nodeMap[? firstEntryToken];
+									if (scr_isNumericAndExists(firstEntryTokenSubMap, ds_type_map)) {
+										var firstEntryUnit = firstEntryTokenSubMap[? "unit"];
+										scr_jumpToUnitDoubleClick(firstEntryUnit);
+									}
+								}
+							}
+						}
+					}
 				}
 				
 				// increment plusY
