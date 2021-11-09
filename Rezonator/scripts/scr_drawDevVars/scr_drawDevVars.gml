@@ -67,7 +67,7 @@ function scr_drawDevVars(){
 	draw_text(devVarX, wordTopMargin + (strHeight * 30), "speakerLabelColXHolding: " + string(speakerLabelColXHolding));
 	draw_text(devVarX, wordTopMargin + (strHeight * 31), "speakerLabelColXHoldingDiff: " + string(speakerLabelColXHoldingDiff));
 	draw_text(devVarX, wordTopMargin + (strHeight * 32), "saveBeforeExiting: " + string(saveBeforeExiting) + ", saveBeforeImporting: " + string(saveBeforeImporting));
-	draw_text(devVarX, wordTopMargin + (strHeight * 33), "refreshCustomSort: " + string(refreshCustomSort));
+	draw_text(devVarX, wordTopMargin + (strHeight * 33), "quickLinkCreated: " + string(obj_chain.quickLinkCreated));
 	draw_text(devVarX, wordTopMargin + (strHeight * 34), "functionChainContents_showID: " + string(obj_panelPane.functionChainContents_showID));
 	draw_text(devVarX, wordTopMargin + (strHeight * 35), "functionChainList_playShowID: " + string(obj_panelPane.functionChainList_playShowID));
 	

@@ -219,8 +219,8 @@ function scr_newLink(ID) {
 	}
 	
 	if (focusedChainType == "resonance") {
-		show_debug_message("obj_chain.quickLinkCreated:  "+ string(obj_chain.quickLinkCreated))
-		if(obj_chain.quickLinkCreated == false){
+		show_debug_message("quickLink created:  "+ string(obj_chain.quickLinkCreated))
+		if (!obj_chain.quickLinkCreated) {
 			scr_refreshCliques();
 		}
 		scr_alignChain2ElectricBoogaloo(obj_chain.currentFocusedChainID);

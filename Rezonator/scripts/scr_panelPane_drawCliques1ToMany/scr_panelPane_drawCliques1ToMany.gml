@@ -45,7 +45,7 @@ function scr_panelPane_drawCliques1ToMany(){
 					continue;
 				}
 				
-				// get data for currentSearch
+				// get data for current clique
 				var currentItem = list[| i];
 				var currentItemNum = "";
 				var currentItemText = "";
@@ -78,8 +78,8 @@ function scr_panelPane_drawCliques1ToMany(){
 				var cliqueRectY1 = y + headerHeight + scrollPlusY + textPlusY - (strHeight / 2);
 				var cliqueRectX2 = x + windowWidth;
 				var cliqueRectY2 = cliqueRectY1 + strHeight;
-				var mouseoverSearchRect = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, cliqueRectX1, cliqueRectY1, cliqueRectX2, cliqueRectY2) && !mouseoverScrollBar && !scrollBarHolding && !instance_exists(obj_dropDown) && !instance_exists(obj_dialogueBox) && !mouseoverHeaderRegion;
-				var highlight = (mouseoverSearchRect);
+				var mouseoverCliqueRect = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, cliqueRectX1, cliqueRectY1, cliqueRectX2, cliqueRectY2) && !mouseoverScrollBar && !scrollBarHolding && !instance_exists(obj_dropDown) && !instance_exists(obj_dialogueBox) && !mouseoverHeaderRegion;
+				var highlight = (mouseoverCliqueRect);
 				var textY = floor(mean(cliqueRectY1, cliqueRectY2));
 				
 				// draw rect
@@ -102,6 +102,12 @@ function scr_panelPane_drawCliques1ToMany(){
 				scr_adaptFont(chainOrderListStr, "M");
 				draw_text(chainOrderColX + textBuffer - clipX, textY - clipY, chainOrderListStr);
 				ds_list_destroy(currentChainOrderListNames);
+				
+				if (mouseoverCliqueRect && mouse_check_button_released(mb_left)) {
+					var unitToJumpTo = "";
+					
+					//scr_jumpToUnitDoubleClick();
+				}
 				
 				// increment plusY
 				textPlusY += strHeight;

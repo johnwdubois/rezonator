@@ -76,6 +76,13 @@ function scr_panelPane_drawCliqueList(){
 		if (mouseoverCliqueRect) {
 			if (mouse_check_button_released(mb_left) && !instance_exists(obj_dropDown)) {
 				with (obj_panelPane) functionClique_cliqueSelected = currentClique;
+				
+				// double click on clique
+				if (scr_isNumericAndExists(currentCliqueUnitList, ds_type_list)) {
+					if (ds_list_size(currentCliqueUnitList) > 0) {
+						scr_jumpToUnitDoubleClick(currentCliqueUnitList[| 0]);
+					}
+				}
 			}
 		}
 		
