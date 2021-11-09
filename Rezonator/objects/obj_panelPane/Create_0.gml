@@ -247,7 +247,7 @@ fieldPaneLinkMode = "help_header_link";
 fieldPaneSwitchButton = fieldPaneDocMode;
 fieldChains1ToManyChainType = "";
 fieldChains1To1ChainType = "";
-cliquePaneSwitchButton = "Chains";
+cliquePaneSwitchButton = "option_chain";
 
 scrollPlusX = 0;
 

@@ -31,7 +31,7 @@ function scr_panelPane_drawCliques1ToMany(){
 		draw_set_valign(fa_middle);
 		draw_set_alpha(1);
 		
-		var list = cliqueSubMap[? (cliquePaneSwitchButton == "Chains") ? "chainList" : "unitList"];
+		var list = cliqueSubMap[? (cliquePaneSwitchButton == "option_chain") ? "chainList" : "unitList"];
 		if (scr_isNumericAndExists(list, ds_type_list)) {
 			var listSize = ds_list_size(list);
 			
@@ -53,7 +53,7 @@ function scr_panelPane_drawCliques1ToMany(){
 				var currentItemSubMap = global.nodeMap[? currentItem];
 				var rectColor = global.colorThemeBG;
 				if (scr_isNumericAndExists(currentItemSubMap, ds_type_map)) {
-					if (cliquePaneSwitchButton == "Chains") {
+					if (cliquePaneSwitchButton == "option_chain") {
 						currentItemNum = string(i + 1);
 						currentItemText = string(currentItemSubMap[? "name"]);
 						rectColor = currentItemSubMap[? "chainColor"];
@@ -84,7 +84,7 @@ function scr_panelPane_drawCliques1ToMany(){
 				
 				// draw rect
 				var textColor = global.colorThemeText;
-				if (cliquePaneSwitchButton == "Chains") rectColor = merge_color(rectColor, global.colorThemeBG, highlight ? 0.6 : 0.8);
+				if (cliquePaneSwitchButton == "option_chain") rectColor = merge_color(rectColor, global.colorThemeBG, highlight ? 0.6 : 0.8);
 				else rectColor = merge_color(global.colorThemeBG, global.colorThemeSelected1, highlight ? 0.8 : 0.4);
 				draw_set_color(rectColor);
 				draw_rectangle(cliqueRectX1 - clipX, cliqueRectY1 - clipY, cliqueRectX2 - clipX, cliqueRectY2 - clipY, false);
@@ -137,6 +137,7 @@ function scr_panelPane_drawCliques1ToMany(){
 			colWidth = x + windowWidth - chainOrderColX;
 			colName = (cliquePaneSwitchButton == "option_chain") ? "Chain Order" : "";
 		}
+		colName = scr_get_translation(colName);
 		
 		var headerRectX1 = x + headerPlusX;
 		var headerRectY1 = y;
@@ -160,7 +161,7 @@ function scr_panelPane_drawCliques1ToMany(){
 
 
 		scr_adaptFont(colName, "M");
-		draw_text(headerTextX, headerTextY, scr_get_translation(colName));
+		draw_text(headerTextX, headerTextY, colName);
 
 		draw_set_color(global.colorThemeBorders);
 		if(i != 0) draw_line_width(headerRectX1, y, headerRectX1, y + windowHeight, 1);

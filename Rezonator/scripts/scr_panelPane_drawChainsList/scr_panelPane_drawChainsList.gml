@@ -541,6 +541,7 @@ function scr_panelPane_drawChainsList() {
 			colWidth = windowWidth - headerRectX1;
 			colText = "tag_text";
 		}
+		colText = scr_get_translation(colText);
 		
 		// get header coordinates
 		var headerRectY1 = y;
@@ -639,7 +640,7 @@ function scr_panelPane_drawChainsList() {
 		draw_set_valign(fa_middle);
 		draw_set_color(global.colorThemeText);
 		scr_adaptFont(colText, "M");
-		draw_text(headerTextX, headerTextY, scr_get_translation(colText));
+		draw_text(headerTextX, headerTextY, colText);
 		
 		// dividing lines
 		if (i > 0) {
