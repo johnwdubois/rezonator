@@ -72,7 +72,13 @@ function scr_closeDialogueBoxVariables(){
 			saveBeforeGameEnd = false;
 		}
 		
-		with (obj_stacker) confirmStackCreate = false;
+		with (obj_stacker) {
+			confirmStackCreate = false;
+			createStacksRandom = false;
+			createStacksTurn = false;
+			createStacksSentence = false;
+			createStacksClique = false;
+		}
 	}
 	if (alertWindowActive) {
 		with (obj_control) {

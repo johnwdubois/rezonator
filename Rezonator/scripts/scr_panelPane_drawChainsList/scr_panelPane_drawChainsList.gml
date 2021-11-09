@@ -62,7 +62,7 @@ function scr_panelPane_drawChainsList() {
 	var filterRectMargin = 8;
 	var filterRectSize = (strHeight / 2) + 5;
 	var checkboxColX = x;
-	var checkboxColWidth = 0;//filterRectMargin + (filterRectSize * 2);
+	var checkboxColWidth = filterRectMargin + (filterRectSize * 2);
 	var checkboxSize = checkboxColWidth * 0.35;
 	var optionsColX = checkboxColX + checkboxColWidth;
 	var optionsColWidth = windowWidth * 0.14;
@@ -171,13 +171,11 @@ function scr_panelPane_drawChainsList() {
 
 					
 					// get dimensions of checkbox rect
-					/*
 					var checkboxRectX1 = checkboxColX + (checkboxColWidth / 2) - (checkboxSize / 2);
 					var checkboxRectY1 = mean(chainNameRectY1, chainNameRectY2) - (checkboxSize / 2);
 					var checkboxRectX2 = checkboxRectX1 + checkboxSize;
 					var checkboxRectY2 = checkboxRectY1 + checkboxSize;
-					*/
-					var mouseoverCheckbox = false;//scr_pointInRectangleClippedWindow(mouse_x, mouse_y, checkboxRectX1, checkboxRectY1, checkboxRectX2, checkboxRectY2) && !mouseoverHeaderRegion && !mouseoverScrollBar;
+					var mouseoverCheckbox = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, checkboxRectX1, checkboxRectY1, checkboxRectX2, checkboxRectY2) && !mouseoverHeaderRegion && !mouseoverScrollBar;
 					
 					// Check mouse clicks to focus a chain in the list
 					if (mouseoverChainNameRect) {
@@ -246,10 +244,17 @@ function scr_panelPane_drawChainsList() {
 						obj_control.selectedChainID = obj_chain.currentFocusedChainID 
 						obj_control.rightClicked = true;
 						
+						
 						var dropDownOptionList = ds_list_create();
 						if (functionChainList_currentTab == functionChainList_tabStackBrush) {
-							ds_list_add(dropDownOptionList, "help_label_rename", "option_recolor", "help_label_delete_plain", "help_label_caption", "option_clip", "option_create-tree");
-							if (global.rezzles) ds_list_add(dropDownOptionList, "Set Rez Map");
+							if (ds_list_size(selectedList) > 1) {
+								ds_list_add(dropDownOptionList, "option_add-to-show");
+							}
+							else {
+								ds_list_add(dropDownOptionList, "help_label_rename", "option_recolor", "help_label_delete_plain", "help_label_caption", "option_clip", "option_create-tree", "option_add-to-show");
+							}
+							
+							if (global.rezzles && ds_list_size(selectedList) < 1) ds_list_add(dropDownOptionList, "Set Rez Map");
 						}
 						else {
 							ds_list_add(dropDownOptionList, "help_label_rename", "option_recolor", "help_label_delete_plain");
@@ -271,7 +276,7 @@ function scr_panelPane_drawChainsList() {
 					}
 					
 					// draw checkbox
-					/*
+					
 					if (mouseoverCheckbox) {
 						scr_createTooltip(mean(checkboxRectX1, checkboxRectX2), checkboxRectY2, scr_get_translation("option_select"), obj_tooltip.arrowFaceUp);
 					}
@@ -298,7 +303,7 @@ function scr_panelPane_drawChainsList() {
 							scr_deleteFromList(selectedList, currentChainID);
 						}
 					}
-					*/
+					
 					
 					// setup filter/align/visible buttons
 					var optionsChainY = floor(mean(chainNameRectY1, chainNameRectY2));
@@ -501,7 +506,7 @@ function scr_panelPane_drawChainsList() {
 	for (var i = 0; i < 5; i++) {
 		
 		// skip checkbox header
-		if (i == 0) continue;
+		//if (functionChainList_currentTab != functionChainList_tabStackBrush && i == 0) continue;
 		
 		// skip text column unless this is a stack
 		if (i == 4 && functionChainList_currentTab != functionChainList_tabStackBrush) continue;

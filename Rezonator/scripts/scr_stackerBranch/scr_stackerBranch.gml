@@ -13,9 +13,13 @@ function scr_stackerBranch(){
 		else if (createStacksSentence) {
 			alarm[6] = 1;
 		}
+		else if (createStacksClique) {
+			alarm[9] = 1;
+		}
 		createStacksRandom = false;
 		createStacksTurn = false;
 		createStacksSentence = false;
 		confirmStackCreate = false;
+		createStacksClique = false;
 	}
 }

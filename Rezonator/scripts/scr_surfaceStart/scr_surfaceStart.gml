@@ -8,6 +8,10 @@ function scr_surfaceStart() {
 		panelPaneMaxHeight = camera_get_view_height(camera_get_active()) - (obj_toolPane.toolSpriteScale * widthOfTool) * 10;
 	}
 	
+	if (surface_exists(clipSurface)) {
+		surface_resize(clipSurface, clipWidth, clipHeight);
+	}
+	
 	if (object_index == obj_panelPane) {
 	
 		var chainContentsX = 0;

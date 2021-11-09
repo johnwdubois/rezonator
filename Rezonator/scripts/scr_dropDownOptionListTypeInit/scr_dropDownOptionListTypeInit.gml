@@ -76,6 +76,7 @@ function scr_dropDownOptionListTypeInit(){
 	global.optionListTypeChainTagMap = 81;
 	global.optionListTypeUnitFields = 82;
 	global.optionListTypeChunkFields = 83;
+	global.optionListTypeSelectShow = 84;
 
 
 }

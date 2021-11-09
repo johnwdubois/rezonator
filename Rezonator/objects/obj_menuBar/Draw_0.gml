@@ -269,6 +269,12 @@ if(instance_exists(obj_control)){
 
 
 }
+
+
+
+//scr_fontSlider();
+
+
 // draw border if nav is collapsed
 if (drawDropShadow) {
 	draw_set_alpha(1);

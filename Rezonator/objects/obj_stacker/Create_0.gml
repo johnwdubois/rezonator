@@ -27,6 +27,7 @@ createStacksRandom = false;
 createStacksTurn = false;
 createStacksSentence = false;
 createStacksGroup = false;
+createStacksClique = false;
 
 
 scr_scrollBarInit();

@@ -364,5 +364,10 @@ function scr_dropDownSelect(optionSelected) {
 	{
 		scr_entryTagMapOptions(optionSelected);	
 	}
+	else if (optionListType == global.optionListTypeSelectShow) // 84
+	{
+		scr_selectShowOptions(optionSelected);
+		with (obj_dropDown) instance_destroy();
+	}
 
 }

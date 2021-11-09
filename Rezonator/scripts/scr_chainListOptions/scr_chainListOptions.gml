@@ -1,4 +1,6 @@
 function scr_chainListOptions(optionSelected) {
+	
+	var optionIndex = ds_list_find_index(optionList, optionSelected);
 
 	with (obj_panelPane) {
 		if (currentFunction == functionChainList) {
@@ -37,6 +39,7 @@ function scr_chainListOptions(optionSelected) {
 					ds_list_add(dropDownOptionList, "option_red", "option_blue", "option_green", "option_gold", "option_custom");
 						
 					if (ds_list_size(dropDownOptionList) > 0) {
+						with (obj_dropDown) if (level > 1) instance_destroy();
 						scr_createDropDown(obj_dropDown.x + obj_dropDown.windowWidth, obj_dropDown.y + obj_dropDown.optionSpacing, dropDownOptionList, global.optionListTypeChainRecolor);
 					}
 	
@@ -113,6 +116,15 @@ function scr_chainListOptions(optionSelected) {
 				case "Set Rez Map":
 					scr_setRezMap(obj_chain.currentFocusedChainID);
 					instance_destroy(obj_dropDown);
+					break;
+				case "option_add-to-show":
+					var dropDownOptionList = ds_list_create();
+					var showList = global.nodeMap[? "showList"];
+					ds_list_copy(dropDownOptionList, showList);
+					ds_list_insert(dropDownOptionList, 0, "option_create-show");
+					with (obj_dropDown) if (level > 1) instance_destroy();
+					scr_createDropDown(obj_dropDown.x + obj_dropDown.windowWidth, obj_dropDown.y + (obj_dropDown.optionSpacing * optionIndex), dropDownOptionList, global.optionListTypeSelectShow);
+					break;
 				default:
 					break;
 			}
