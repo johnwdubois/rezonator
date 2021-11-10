@@ -155,6 +155,8 @@ function scr_drawChunks(){
 				var chunksChainsSubMap = global.nodeMap[? chunksChain];
 					
 				if (scr_isNumericAndExists(chunksChainsSubMap, ds_type_map)) {
+					// dont draw this chunk if the chain is not visible
+					if (!chunksChainsSubMap[? "visible"]) continue;
 					typeOfChain = chunksChainsSubMap[? "type"];
 					colorOfRect = chunksChainsSubMap[? "chainColor"];
 				}
