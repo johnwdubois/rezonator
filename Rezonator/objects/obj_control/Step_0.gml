@@ -476,7 +476,7 @@ if (keyboard_check(vk_alt) and keyboard_check(vk_shift) and keyboard_check_press
 
 
 	audio_stop_all();
-	scr_saveINI();
+
 	
 	if (!allSaved) {
 		
@@ -495,6 +495,8 @@ if (keyboard_check(vk_alt) and keyboard_check(vk_shift) and keyboard_check_press
 			}
 		}
 	}
+	
+	scr_saveINI();
 	keyboard_string = "";
 	show_debug_message("Going to openingScreen, obj_control Step");
 	room_goto(rm_openingScreen);

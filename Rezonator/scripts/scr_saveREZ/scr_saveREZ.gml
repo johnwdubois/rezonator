@@ -203,6 +203,7 @@ function scr_saveREZ(autosave) {
 	
 	// set allSaved to true so user does not get prompted to save when they quit
 	if (not autosave) {
+		scr_addToRecentFiles(string(global.fileSaveName));
 		obj_control.allSaved = true;
 	}
 

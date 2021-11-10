@@ -161,6 +161,7 @@ function scr_scrollBar(listSize, focusedElementY, strHeight, marginTop, scrollBa
 		else if (scrollBarDownButtonHeld) {
 			scrollPlusYDest -= 4;
 		}
+
 	}
 	scrollPlusYDest = clamp(scrollPlusYDest, minScrollPlusY, maxScrollPlusY);
 	draw_set_alpha(1);

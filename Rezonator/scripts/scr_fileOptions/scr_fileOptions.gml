@@ -48,6 +48,7 @@ function scr_fileOptions(optionSelected) {
 					// if everything is saved already we can just pretend they clicked "no"
 					if (obj_control.allSaved) scr_dialogueNo();
 				}
+				scr_saveINI();
 			}
 			else {
 				global.skipToImportScreen = true;
@@ -104,7 +105,7 @@ function scr_fileOptions(optionSelected) {
 				inst.questionWindowActive = true;
 				inst.noButtonActive = true;
 				obj_control.saveBeforeExiting = true;
-				
+				scr_saveINI();
 				// if everything is saved already we can just pretend they clicked "no"
 				if (obj_control.allSaved) scr_dialogueNo();
 			}

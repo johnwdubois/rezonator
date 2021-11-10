@@ -64,6 +64,13 @@ function scr_loadINI() {
 					global.autosaveTimerFull = ds_map_find_value(map, "autosaveTimerFull");
 					global.autosaveTimer = global.autosaveTimerFull;
 				}
+				
+				if(ds_map_find_value(map, "recentFilesMap") != undefined){
+					global.recentFilesMap = ds_map_find_value(map, "recentFilesMap");
+				}
+				if(ds_map_find_value(map, "recentFilesList") != undefined){
+					global.recentFilesList = ds_map_find_value(map, "recentFilesList");
+				}
 
 
 				if (global.rememberMe) {

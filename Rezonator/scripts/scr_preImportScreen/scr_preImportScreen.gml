@@ -320,6 +320,7 @@ function scr_preImportScreen(){
 		global.newProject = false;
 		global.openProject = false;
 		global.neworOpen = true;
+		obj_recentFilesWindow.inputDelay = 10;
 	}
 
 	

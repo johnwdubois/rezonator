@@ -114,6 +114,7 @@ showDevVars = false;
 
 
 global.rememberMe = false;
+global.selectedFile = "";
 
 global.importCSVGrid = ds_grid_create(0, 0);
 global.importCSVGrid_colIndex = 1;

@@ -4,7 +4,7 @@ function scr_loadREZ() {
 	var delimiter = (os_type == os_macosx) ? "/" : "\\";
 	var RezDirString = global.rezonatorDirString + delimiter + "Data" + delimiter + "SBCorpus" + delimiter + "REZ";
 
-show_debug_message("global.previousRezDirectory:  "+string(global.previousRezDirectory));
+	show_debug_message("global.previousRezDirectory:  "+string(global.previousRezDirectory));
 	if (global.previousRezDirectory != "") {
 		RezDirString = global.previousRezDirectory;
 	
@@ -19,14 +19,19 @@ show_debug_message("global.previousRezDirectory:  "+string(global.previousRezDir
 
 
 
+	var filename = "";
 
-
-
-	if (directory_exists(global.rezonatorDirString)) {
-		var fileName = get_open_filename_ext("REZ file|*.rez", "", RezDirString, "Open REZ");
+	if(global.selectedFile != ""){
+		var fileName = global.selectedFile;
+		
 	}
-	else {
-		var fileName = get_open_filename_ext("REZ file|*.rez", "", program_directory, "Open REZ");
+	else{
+		if (directory_exists(global.rezonatorDirString)) {
+			var fileName = get_open_filename_ext("REZ file|*.rez", "", RezDirString, "Open REZ");
+		}
+		else {
+			var fileName = get_open_filename_ext("REZ file|*.rez", "", program_directory, "Open REZ");
+		}
 	}
 
 	if (fileName == "" or not file_exists(fileName)) {
@@ -50,6 +55,7 @@ show_debug_message("global.previousRezDirectory:  "+string(global.previousRezDir
 	var newInstList = ds_list_create();
 
 	if (file_exists(fileName)) {
+		scr_addToRecentFiles(string(fileName));
 		var wrapper = scr_loadJSONBuffer(fileName);
 	
 		if (not ds_exists(wrapper, ds_type_map)) {

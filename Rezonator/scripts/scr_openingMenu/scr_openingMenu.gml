@@ -1,6 +1,5 @@
 function scr_openingMenu() {
 
-
 	scr_fontSizeControlOpeningScreen();
 	
 
@@ -19,7 +18,8 @@ function scr_openingMenu() {
 	draw_rectangle(0, 0, camWidth, camHeight, false);
 
 	var buttonWidth = (camWidth*.8) /3;
-	var buttonHeight = (camHeight*.3);
+	var buttonHeight = (camHeight*.2);
+	var spriteScale = 0.8;
 	
 	var mouseoverCancel = instance_exists(obj_dialogueBox) or instance_exists(obj_dropDown) or instance_exists(obj_loadingScreen);
 	
@@ -51,7 +51,7 @@ function scr_openingMenu() {
 	draw_set_halign(fa_center);
 	draw_set_valign(fa_middle);
 	draw_set_color(mouseOverOpen ? global.colorThemeBG : global.colorThemeText);
-	draw_sprite_ext(spr_openingMenuOpen, global.fontSize, mean(openProjectButtonX1,openProjectButtonX2), openProjectButtonY1 + (openProjectButtonY2 - openProjectButtonY1) * 0.38, 1, 1, 0, merge_color(global.colorThemeRezPurple, global.colorThemeBG, hoverColorMergeOpen), 1);
+	draw_sprite_ext(spr_openingMenuOpen, global.fontSize, mean(openProjectButtonX1,openProjectButtonX2), openProjectButtonY1 + (openProjectButtonY2 - openProjectButtonY1) * 0.38, spriteScale, spriteScale, 0, merge_color(global.colorThemeRezPurple, global.colorThemeBG, hoverColorMergeOpen), 1);
 	scr_adaptFont(scr_get_translation("menu_import"),"L", true);
 	draw_text(floor(mean(openProjectButtonX1, openProjectButtonX2)), openProjectButtonY1 + (openProjectButtonY2 - openProjectButtonY1)*.8,  scr_get_translation("help_label_open"));
 	
@@ -85,7 +85,7 @@ function scr_openingMenu() {
 	
 	// import button sprite & text
 	draw_set_color(mouseOverImport ? global.colorThemeBG : global.colorThemeText);
-	draw_sprite_ext(spr_openingMenuImport, global.fontSize, mean(newProjectButtonX1,newProjectButtonX2), newProjectButtonY1 + (newProjectButtonY2 - newProjectButtonY1) * 0.38, 1, 1, 0, merge_color(global.colorThemeRezPurple, global.colorThemeBG, hoverColorMergeImport), 1);
+	draw_sprite_ext(spr_openingMenuImport, global.fontSize, mean(newProjectButtonX1,newProjectButtonX2), newProjectButtonY1 + (newProjectButtonY2 - newProjectButtonY1) * 0.38, spriteScale, spriteScale, 0, merge_color(global.colorThemeRezPurple, global.colorThemeBG, hoverColorMergeImport), 1);
 	scr_adaptFont(scr_get_translation("menu_import"),"L", true);
 	draw_text(floor(mean(newProjectButtonX1, newProjectButtonX2)), newProjectButtonY1 + (newProjectButtonY2 - newProjectButtonY1)*.8,  scr_get_translation("menu_import"));
 	
@@ -111,7 +111,7 @@ function scr_openingMenu() {
 
 	// help button sprite & text
 	draw_set_color(mouseoverDocumenation ? global.colorThemeBG : global.colorThemeText);
-	draw_sprite_ext(spr_openingMenuDoc, global.fontSize, mean(documentationButtonX1, documentationButtonX2), documentationButtonY1 + (documentationButtonY2 - documentationButtonY1) * 0.38, 1, 1, 0, merge_color(global.colorThemeRezPurple, global.colorThemeBG, hoverColorMergeHelp), 1);
+	draw_sprite_ext(spr_openingMenuDoc, global.fontSize, mean(documentationButtonX1, documentationButtonX2), documentationButtonY1 + (documentationButtonY2 - documentationButtonY1) * 0.38, spriteScale, spriteScale, 0, merge_color(global.colorThemeRezPurple, global.colorThemeBG, hoverColorMergeHelp), 1);
 	scr_adaptFont(scr_get_translation("menu_import"),"L", true);
 	draw_text(floor(mean(documentationButtonX1, documentationButtonX2)), documentationButtonY1 + (documentationButtonY2 - documentationButtonY1)*.8, documentationStr);
 
