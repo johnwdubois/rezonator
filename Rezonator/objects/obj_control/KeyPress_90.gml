@@ -3,6 +3,7 @@
 /// @description quick zero
 // You can write your code in this editor
 
+exit;
 if(!obj_control.dialogueBoxActive){
 	if(obj_control.hoverTokenID != ""){
 		var fillWord = "";

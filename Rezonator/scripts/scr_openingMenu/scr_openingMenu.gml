@@ -26,7 +26,7 @@ function scr_openingMenu() {
 	
 	
 	// open rez selection
-	var openProjectButtonX1 = (camWidth * 0.10); 
+	var openProjectButtonX1 = (camWidth * 0.66) - (buttonWidth / 2);
 	var openProjectButtonY1 = camHeight * 0.4;
 	var openProjectButtonX2 = openProjectButtonX1 + buttonWidth;
 	var openProjectButtonY2 = openProjectButtonY1 + buttonHeight;
@@ -38,12 +38,13 @@ function scr_openingMenu() {
 		if (device_mouse_check_button_released(0, mb_left)) {
 			global.newProject = false;
 			global.openProject = true;
+			global.rezzlesDefaultLevel = false;
 		}
 	}
 	
 	// automatically open file
-	global.newProject = false;
-	global.openProject = true;
+	//global.newProject = false;
+	//global.openProject = true;
 	
 	
 	// draw open button
@@ -57,8 +58,8 @@ function scr_openingMenu() {
 	draw_set_valign(fa_middle);
 	draw_set_color(mouseOverOpen ? global.colorThemeBG : global.colorThemeText);
 	draw_sprite_ext(spr_openingMenuOpen, global.fontSize, mean(openProjectButtonX1,openProjectButtonX2), openProjectButtonY1 + (openProjectButtonY2 - openProjectButtonY1) * 0.38, 1, 1, 0, merge_color(global.colorThemeRezPurple, global.colorThemeBG, hoverColorMergeOpen), 1);
-	scr_adaptFont(scr_get_translation("menu_import"),"L", true);
-	draw_text(floor(mean(openProjectButtonX1, openProjectButtonX2)), openProjectButtonY1 + (openProjectButtonY2 - openProjectButtonY1)*.8,  scr_get_translation("help_label_open"));
+	scr_adaptFont("Play custom level","L", true);
+	draw_text(floor(mean(openProjectButtonX1, openProjectButtonX2)), openProjectButtonY1 + (openProjectButtonY2 - openProjectButtonY1)*.8, "Play custom level");
 	
 
 
@@ -67,7 +68,7 @@ function scr_openingMenu() {
 
 
 	// import new file selection
-	var newProjectButtonX1 = openProjectButtonX2 + verticalYSpacing;
+	var newProjectButtonX1 = (camWidth * 0.33) - (buttonWidth / 2);
 	var newProjectButtonY1 = openProjectButtonY1;
 	var newProjectButtonX2 = newProjectButtonX1 + buttonWidth;
 	var newProjectButtonY2 = newProjectButtonY1 + buttonHeight;
@@ -77,8 +78,9 @@ function scr_openingMenu() {
 		draw_rectangle(newProjectButtonX1, newProjectButtonY1, newProjectButtonX2, newProjectButtonY2, false);
 	
 		if (device_mouse_check_button_released(0, mb_left)) {
-			global.newProject = true;
-			global.openProject = false;
+			global.newProject = false;
+			global.openProject = true;
+			global.rezzlesDefaultLevel = true;
 		}
 	}
 	
@@ -96,14 +98,15 @@ function scr_openingMenu() {
 	// import button sprite & text
 	draw_set_color(mouseOverImport ? global.colorThemeBG : global.colorThemeText);
 	draw_sprite_ext(spr_openingMenuImport, global.fontSize, mean(newProjectButtonX1,newProjectButtonX2), newProjectButtonY1 + (newProjectButtonY2 - newProjectButtonY1) * 0.38, 1, 1, 0, merge_color(global.colorThemeRezPurple, global.colorThemeBG, hoverColorMergeImport), 1);
-	scr_adaptFont(scr_get_translation("menu_import"),"L", true);
-	draw_text(floor(mean(newProjectButtonX1, newProjectButtonX2)), newProjectButtonY1 + (newProjectButtonY2 - newProjectButtonY1)*.8,  scr_get_translation("menu_import"));
+	scr_adaptFont("Play default level","L", true);
+	draw_text(floor(mean(newProjectButtonX1, newProjectButtonX2)), newProjectButtonY1 + (newProjectButtonY2 - newProjectButtonY1)*.8, "Play default level");
 	
 
 
 
 
 	// help/documentation button
+	/*
 	draw_set_alpha(1);
 	scr_adaptFont(scr_get_translation("msg_go-to-guide"),"M");
 	var documentationStr = scr_get_translation("menu_help");
@@ -130,10 +133,11 @@ function scr_openingMenu() {
 			url_open("https://rezonator.com/documentation/");
 		}
 	}
+	*/
 
 
 
-
+	/*
 	var stringBuffer = string_width("   ");
 	var signInXBuffer = 20;
 	var signInYBuffer = 25;
@@ -207,6 +211,7 @@ function scr_openingMenu() {
 	else {
 		instance_create_layer(0,0,"InstancesInput", obj_inputBox);
 	}
+	*/
 
 	
 	
@@ -218,7 +223,7 @@ function scr_openingMenu() {
 	draw_set_valign(fa_middle);
 	scr_adaptFont(scr_get_translation("menu_import"),"L", true);
 	draw_set_color(global.colorThemeText);
-	draw_text(openProjectButtonX1, openProjectButtonY1 - string_height("0"),  scr_get_translation("option_get-started"));
+	draw_text(newProjectButtonX1, openProjectButtonY1 - string_height("0"),  scr_get_translation("option_get-started"));
 	
 	
 	

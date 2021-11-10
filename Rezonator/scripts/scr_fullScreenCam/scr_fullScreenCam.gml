@@ -2,8 +2,8 @@
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
 function scr_fullScreenCam(){
 	
-	scr_windowCameraAdjust();
-	exit;
+	//scr_windowCameraAdjust();
+	//exit;
 	
 	var base = browser_width;
 	var _bw = browser_width;

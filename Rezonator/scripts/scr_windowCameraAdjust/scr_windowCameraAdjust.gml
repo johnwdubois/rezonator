@@ -14,7 +14,7 @@ function scr_windowCameraAdjust() {
 
 	surface_resize(application_surface, windowWidth, windowHeight);
 
-	camera_set_view_size(camera_get_active(), windowWidth, windowHeight);
+	camera_set_view_size(view_camera[0], windowWidth, windowHeight);
 
 
 }

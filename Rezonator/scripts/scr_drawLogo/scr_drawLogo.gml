@@ -39,6 +39,6 @@ function scr_drawLogo(logoX, logoY, drawVersion){
 			versionTextY = logoY + sprite_get_height(spr_logo)* .58;
 		}
 		
-		draw_text(versionTextX, versionTextY, global.versionString);
+		//draw_text(versionTextX, versionTextY, global.versionString);
 	}
 }

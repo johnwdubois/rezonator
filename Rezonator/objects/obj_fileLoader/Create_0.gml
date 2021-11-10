@@ -1,6 +1,7 @@
 if (global.openProject) {
 	show_debug_message("obj_loadingControl Create ... loading REZ");
-	scr_loadREZ(scr_getJSONStr());
+	if (global.rezzlesDefaultLevel) scr_loadREZ(scr_getJSONStr());
+	else scr_loadREZ(get_string("Copy & paste the text from the REZ file you want to play below", ""));
 }
 with(obj_control){
 	displayTokenList = ds_list_create();

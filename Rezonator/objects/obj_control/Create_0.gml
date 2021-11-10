@@ -60,8 +60,8 @@ speakerLabelColPrevList = ds_list_create();
 var speakerLabelPlusX = 0;
 for (var i = 0; i < 2; i++) {
 	var currentSectionX2 = 0;
-	if (i == 0) currentSectionX2 = camWidth * 0.1;
-	else if (i == 1) currentSectionX2 = camWidth * 0.2;
+	if (i == 0) currentSectionX2 = camWidth * 0.05;
+	else if (i == 1) currentSectionX2 = camWidth * 0.1;
 	ds_list_add(speakerLabelColXList, speakerLabelPlusX + currentSectionX2);
 	speakerLabelPlusX += currentSectionX2;
 }
