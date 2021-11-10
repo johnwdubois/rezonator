@@ -58,7 +58,7 @@ for (var i = 0; i < fileKeyListSize; i++) {
 	var fileMap = global.recentFilesMap[?fileKey];
 	var filePath = fileMap[?"FilePath"];
 	
-	var mouseOverRow = point_in_rectangle(mouse_x, mouse_y, lineX1,lineY1,lineX2,lineY2);
+	var mouseOverRow = point_in_rectangle(mouse_x, mouse_y, lineX1,lineY1,lineX2,lineY2) && mouseOverWindow;
 	if(mouseOverRow){
 		draw_set_color(c_white);
 		draw_roundrect(lineX1 - clipX,lineY1 - clipY,lineX2 - clipX,lineY2 - clipY, false);

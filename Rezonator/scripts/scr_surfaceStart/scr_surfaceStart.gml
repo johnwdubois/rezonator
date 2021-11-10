@@ -45,7 +45,7 @@ function scr_surfaceStart() {
 			with (obj_control){
 				mouseoverPanelPane = true;
 			}
-			if (room != rm_importScreen) {
+			if (room != rm_importScreen && room != rm_openingScreen) {
 				window_set_cursor(cr_size_ns);
 			}
 			if (mouse_check_button_pressed(mb_left)) {
@@ -93,7 +93,9 @@ function scr_surfaceStart() {
 				window_set_cursor(cr_size_we);
 			}
 			else if (windowResizeYHolding) {
-				window_set_cursor(cr_size_ns);
+				if (room != rm_openingScreen) {
+					window_set_cursor(cr_size_ns);
+				}
 		
 				if (object_index == obj_panelPane) {
 					windowHeight = clamp(mouse_y - y, panelPaneMinHeight, panelPaneMaxHeight);
