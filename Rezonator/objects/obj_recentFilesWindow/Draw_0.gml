@@ -42,7 +42,10 @@ var fileKeyListSize = ds_list_size(global.recentFilesList);
 var scale = .7;
 var textY = floor(plusY + scrollPlusY);
 for (var i = 0; i < fileKeyListSize; i++) {
-		
+	
+
+	
+	
 	textY = floor(plusY + scrollPlusY);
 			
 	
@@ -56,7 +59,21 @@ for (var i = 0; i < fileKeyListSize; i++) {
 	// draw text for this cell
 	var fileKey = string(global.recentFilesList[|i]);
 	var fileMap = global.recentFilesMap[?fileKey];
-	var filePath = fileMap[?"FilePath"];
+	var filePath = "";
+	var fileName = "";
+	var fileDate = "";
+	var color = c_black;
+	if(scr_isNumericAndExists(fileMap, ds_type_map)){
+		filePath = fileMap[?"FilePath"];
+		fileName = fileMap[?"FileName"];
+		fileDate = fileMap[?"Date"];
+		color = fileMap[?"Color"];
+	}
+	
+	if(!file_exists(filePath)){
+		ds_map_delete(global.recentFilesMap,global.recentFilesList[|i]);
+		ds_list_delete(global.recentFilesList,i);			
+	}
 	
 	var mouseOverRow = point_in_rectangle(mouse_x, mouse_y, lineX1,lineY1,lineX2,lineY2) && mouseOverWindow;
 	if(mouseOverRow){
@@ -72,9 +89,7 @@ for (var i = 0; i < fileKeyListSize; i++) {
 	draw_set_color(global.colorThemeText);
 	draw_set_halign(fa_left);
 	
-	var fileName = fileMap[?"FileName"];
-	var fileDate = fileMap[?"Date"];
-	var color = fileMap[?"Color"];
+
 	scr_adaptFont(scr_get_translation(fileName), "L");
 	draw_text(fileTextX - clipX, floor(textY- stringHeight/2 - clipY), scr_get_translation(string(fileName)));
 	scr_adaptFont(scr_get_translation(fileName), "S");
