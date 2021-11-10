@@ -13,7 +13,12 @@ function scr_saveREZ(autosave) {
 		|| (!file_exists(global.fileSaveName) && !directory_exists(obj_control.clipStackDir))) {
 			
 			show_debug_message("scr_saveREZ(), not autosave, loading new file");
-			global.fileSaveName = get_save_filename_ext("REZ file|*.rez", "", program_directory, "Save REZ");
+			if(global.previousSaveDirectory == "" or global.previousSaveDirectory == undefined){
+				global.fileSaveName = get_save_filename_ext("REZ file|*.rez", "", program_directory, "Save REZ");
+			}
+			else{
+				global.fileSaveName = get_save_filename_ext("REZ file|*.rez", "", global.previousSaveDirectory, "Save REZ");	
+			}
 
 			if (global.fileSaveName == "" or global.fileSaveName == "undefined") {
 				global.fileSaveName = "undefined";
@@ -203,6 +208,7 @@ function scr_saveREZ(autosave) {
 	
 	// set allSaved to true so user does not get prompted to save when they quit
 	if (not autosave) {
+		global.previousSaveDirectory = filename_path(global.fileSaveName);
 		scr_addToRecentFiles(string(global.fileSaveName));
 		obj_control.allSaved = true;
 	}

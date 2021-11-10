@@ -79,7 +79,10 @@ for (var i = 0; i < fileKeyListSize; i++) {
 	if(mouseOverRow){
 		draw_set_color(c_white);
 		draw_roundrect(lineX1 - clipX,lineY1 - clipY,lineX2 - clipX,lineY2 - clipY, false);
-	
+		
+		
+		//scr_createTooltip(mean(lineX1 ,lineX2), lineY1, string(filePath), obj_tooltip.arrowFaceDown)
+		
 		if (mouse_check_button_released(mb_left) && (inputDelay == 0)) {
 			global.selectedFile = filePath;
 			global.openProject = true
@@ -93,8 +96,11 @@ for (var i = 0; i < fileKeyListSize; i++) {
 	scr_adaptFont(scr_get_translation(fileName), "L");
 	draw_text(fileTextX - clipX, floor(textY- stringHeight/2 - clipY), scr_get_translation(string(fileName)));
 	scr_adaptFont(scr_get_translation(fileName), "S");
-	draw_text(fileTextX - clipX, floor(textY+ stringHeight/1.5 - clipY), scr_get_translation(string(fileDate)));
-	
+	draw_text(fileTextX + string_width(scr_get_translation(string(fileName)+".rez"))+ spaceWidth- clipX, floor(textY- stringHeight/2 - clipY), "-  "+scr_get_translation(string(fileDate)));
+	draw_set_alpha(0.75);
+	scr_adaptFont(scr_get_translation(fileName), "S");
+	draw_text(fileTextX - clipX, floor(textY+ stringHeight/1.5 - clipY), scr_get_translation(string(filePath)));
+	draw_set_alpha(1);
 	//draw_set_halign(fa_center);
 	draw_text(recentFilesWindowX1 + spaceWidth - clipX, floor(textY - clipY), string(i+1));
 	

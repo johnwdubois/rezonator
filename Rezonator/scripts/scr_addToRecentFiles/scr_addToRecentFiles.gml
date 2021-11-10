@@ -20,10 +20,13 @@ function scr_addToRecentFiles(filePath){
 	
 
 	var dateString = string(string(current_month)+"/"+string(current_day)+"/"+ string(current_year));
-	var timeString = string(string(current_hour)+":"+string(current_minute)+"."+ string(current_second));
+	var actualHour = current_hour mod 12;
+	var actualMinute = (string_length(string(current_minute)) == 1)? "0"+string(current_minute) : string(current_minute);
+	var endString = (current_hour >= 12)? "PM":"AM";
+	var timeString = string(string(actualHour)+":"+ actualMinute + " " + endString);
 	show_debug_message(dateString);
 	show_debug_message(timeString);
-	fileMap[?"Date"] = "Last edited... " + dateString + " "+ timeString;
+	fileMap[?"Date"] = dateString + " "+ timeString;
 	fileMap[?"FileName"] = fileName;
 	fileMap[?"FilePath"] = filePath;
 	

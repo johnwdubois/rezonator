@@ -60,6 +60,7 @@ function scr_saveINI() {
 	
 	ds_map_add(map, "previousRezDirectory", global.previousRezDirectory);
 	ds_map_add(map, "previousImportDirectory", global.previousImportDirectory);
+	ds_map_add(map, "previousSaveDirectory", global.previousSaveDirectory);
 		
 
 	var tempList3 = ds_list_create();

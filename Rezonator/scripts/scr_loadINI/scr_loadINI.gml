@@ -81,7 +81,8 @@ function scr_loadINI() {
 
 				global.previousRezDirectory = ds_map_find_value(map, "previousRezDirectory"); 
 
-				global.previousImportDirectory = ds_map_find_value(map, "previousImportDirectory"); 
+				global.previousImportDirectory = ds_map_find_value(map, "previousImportDirectory");
+				global.previousSaveDirectory = ds_map_find_value(map, "previousSaveDirectory"); 
 		
 
 				global.previousSpecialFields = ds_map_find_value(map, "previousSpecialFields");
