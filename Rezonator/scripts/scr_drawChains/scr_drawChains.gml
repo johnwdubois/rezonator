@@ -20,7 +20,7 @@ function scr_drawChains() {
 
 
 	var wordTopMargin = obj_control.wordTopMargin;
-	var rezChainList = ds_map_find_value(global.nodeMap, "resonanceList");
+	var rezChainList = global.nodeMap[? "resonanceList"];
 	var rezChainListSize = ds_list_size(rezChainList);
 	var activeLineGridHeight = ds_grid_height(obj_control.currentActiveLineGrid);
 	var camHeight = camera_get_view_height(camera_get_active());
@@ -33,26 +33,25 @@ function scr_drawChains() {
 	for (var i = 0; i < chainShowListSize; i++) {
 		minWordWidth = 9999999;
 		
-		var currentChainID = ds_list_find_value(obj_chain.chainShowList, i);
+		var currentChainID = obj_chain.chainShowList[| i];
 		
 		// skip this chain if we can't find it in the nodeMap
 		if (!ds_map_exists(global.nodeMap, currentChainID)) continue;
 		
 		// make sure this chain's subMap exists and that it is actually a map
-		var currentChainSubMap = ds_map_find_value(global.nodeMap, currentChainID);
+		var currentChainSubMap = global.nodeMap[? currentChainID];
 		if (!scr_isNumericAndExists(currentChainSubMap, ds_type_map)) continue;
 		
 		// get chain's setIDList and make sure it exists
-		var chainType = ds_map_find_value(currentChainSubMap, "type");
-		//var currentSetIDList = ds_map_find_value(currentChainSubMap, "vizSetIDList");
+		var chainType = currentChainSubMap[? "type"];
 		var currentChainShowSubMap = obj_chain.chainShowMap[? currentChainID];
 		var currentSetIDList = currentChainShowSubMap[? "entryList"];
-		var currentVizSetIDList = ds_map_find_value(currentChainSubMap, "vizSetIDList");
+		var currentVizSetIDList = currentChainSubMap[? "vizSetIDList"];
 		
 		if (!scr_isNumericAndExists(currentSetIDList, ds_type_list)) continue;
 		var currentSetIDListSize = ds_list_size(currentSetIDList);
-		var currentChainColor = ds_map_find_value(currentChainSubMap, "chainColor");
-		var currentChainVisible = ds_map_find_value(currentChainSubMap, "visible");
+		var currentChainColor = currentChainSubMap[? "chainColor"];
+		var currentChainVisible = currentChainSubMap[? "visible"];
 		
 		// make sure this is a rezChain or trackChain and that we should be drawing it
 		if (chainType != "resonance" && chainType != "trail") continue;
@@ -202,8 +201,9 @@ function scr_drawChains() {
 			// get the pixel X values for each token
 			lineX2 = currentToken2SubMap[?"pixelX"];
 			lineY2 = tokenUnitID2SubMap[? "pixelY"];
-		
-
+			
+			// only draw lines going down or to the side, never going up
+			if (lineY1 > lineY2) continue;
 			
 			// check if these y values are in our draw range
 			var inDrawRange1 = !(lineY1 < wordTopMargin + (-obj_control.gridSpaceVertical * 2) and lineY2 < wordTopMargin + (-obj_control.gridSpaceVertical * 2));
