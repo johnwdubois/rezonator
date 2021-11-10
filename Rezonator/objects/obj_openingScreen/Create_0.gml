@@ -454,3 +454,5 @@ alreadyShownDownloadDialogue = false;
 
 global.schemaNavTokenFieldList = -1;
 global.schemaNavUnitFieldList = -1;
+
+alarm[6] = 1;

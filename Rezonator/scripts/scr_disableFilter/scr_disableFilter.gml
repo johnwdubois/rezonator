@@ -9,8 +9,6 @@ function scr_disableFilter(){
 		quickPickedChainID = "";
 		currentActiveLineGrid = lineGrid;
 		wordLeftMarginDest = 170; // Make sure the margin is placed correctly
-
-
 	}
 	
 	if (obj_panelPane.functionChainList_currentTab == obj_panelPane.functionChainList_tabRezBrush) obj_control.filterActiveRez = false;

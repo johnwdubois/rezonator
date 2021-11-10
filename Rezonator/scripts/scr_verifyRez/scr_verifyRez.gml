@@ -4,11 +4,11 @@ function scr_verifyRez(rezFileVerison){
 	
 	
 	if(rezFileVerison != global.versionString){
-	
+		/*
 		var inst = instance_create_layer(0, 0, "InstancesDialogue", obj_dialogueBox);
 		obj_dialogueBox.alertWindowActive = true;
 		obj_dialogueBox.descriptionText = scr_get_translation("msg_error-previous-version");
-	
+		*/
 	}
 
 	

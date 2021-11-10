@@ -20,30 +20,21 @@ function scr_gridViewDrawBackArrow() {
 	// Set the arrow in the bottom right column
 	var backArrowX = spriteWidth;
 	var backArrowY = camera_get_view_height(camera_get_active()) - spriteHeight;
-
-	// Draw the arrow sprite
-	if(global.colorTheme == 0){
-		draw_sprite_ext(spr_backArrow, 0, backArrowX, backArrowY, spriteSize, spriteSize, 0, global.colorThemeBorders, 1);
-	}else if(global.colorTheme == 1){      // dark mode, create a white back arrow
-		draw_sprite_ext(spr_backArrowWhite, 0, backArrowX, backArrowY, spriteSize, spriteSize, 0, global.colorThemeBorders, 1);
-	}
+	
 	// Set vraibles for checking mouse click
 	var backArrowRectX1 = backArrowX - spriteWidth / 2;
 	var backArrowRectY1 = backArrowY - spriteHeight / 2;
 	var backArrowRectX2 = backArrowRectX1 + spriteWidth;
 	var backArrowRectY2 = backArrowRectY1 + spriteHeight;
-
-	// Draw text
-	draw_set_colour(global.colorThemeBG);
-	draw_set_halign(fa_center);
-	//draw_text((backArrowRectX1 + backArrowRectX2)/2, (backArrowRectY1 + backArrowRectY2)/2, scr_get_translation("label_back"));
-
-	// Check for mouse hover over
-	if (point_in_rectangle(mouse_x, mouse_y, backArrowRectX1, backArrowRectY1, backArrowRectX2, backArrowRectY2)) {
 	
-		draw_set_color(global.colorThemeBorders);
+	// Check for mouse hover over
+	var mouseover = point_in_circle(mouse_x, mouse_y, backArrowX, backArrowY, spriteWidth / 2);
+	if (mouseover) {
+	
+		draw_set_color(global.colorThemeSelected2);
+		draw_set_alpha(0.35);
+		draw_circle(backArrowX, backArrowY, spriteWidth / 2, false);
 		draw_set_alpha(1);
-		draw_rectangle(backArrowRectX1, backArrowRectY1, backArrowRectX2, backArrowRectY2, true);
 		obj_control.mouseoverPanelPane = true;
 		
 		// Check for mouse click
@@ -52,18 +43,22 @@ function scr_gridViewDrawBackArrow() {
 				obj_control.gridView = false;
 			}
 			
-
-			if (obj_control.searchGridActive) {
-				obj_control.searchGridActive = false;
+			if (obj_control.searchGridActive || obj_control.filterGridActive) {
 				scr_disableFilter();
 			}
-
-
-			if(obj_control.filterGridActive) { 
-				scr_disableFilter();
-			}
-			scr_disableFilter();
 		}
+		
+		var tooltipText = "";
+		if (obj_control.gridView) tooltipText = scr_get_translation("label_back");
+		else if (obj_control.searchGridActive || obj_control.filterGridActive) tooltipText = scr_get_translation("menu_clear");
+		scr_createTooltip(backArrowRectX2, mean(backArrowRectY1, backArrowRectY2), tooltipText, obj_tooltip.arrowFaceLeft);
+	}
+	
+	// Draw the arrow sprite
+	if(global.colorTheme == 0){
+		draw_sprite_ext(spr_backArrow, 0, backArrowX, backArrowY, spriteSize, spriteSize, 0, global.colorThemeBorders, 1);
+	}else if(global.colorTheme == 1){      // dark mode, create a white back arrow
+		draw_sprite_ext(spr_backArrowWhite, 0, backArrowX, backArrowY, spriteSize, spriteSize, 0, global.colorThemeBorders, 1);
 	}
 
 
