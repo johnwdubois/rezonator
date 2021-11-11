@@ -414,7 +414,7 @@ for (var i = 0; i < optionListSize; i++) {
 		clickCurrentOption = true;
 	}
 	
-	if (clickCurrentOption && (prevOptionClicked != i || optionListType == global.optionListTypeZoom)) {
+	if (clickCurrentOption && (prevOptionClicked != i || !isExpandable)) {
 		prevOptionClicked = i;
 		if(!unClickable){
 			optionCurrent = i;

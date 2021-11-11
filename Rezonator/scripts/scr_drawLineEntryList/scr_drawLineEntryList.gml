@@ -134,7 +134,12 @@ function scr_drawLineEntryList(unitID, unitSubMap, entryList, pixelY, OOBCheck){
 			var inEntryList = currentTokenSubMap[?"inEntryList"];
 			scr_updateChainShowList(inChainsList, inEntryList, obj_chain.chainShowList, currentTokenSubMap[?"inChunkList"], currentToken, tokenRectX1, tokenRectY1, tokenRectX2, tokenRectY2);	
 		
-		
+			var drawTokenBorder = false;
+			if (rightClickID == currentToken) {
+				with (obj_dropDown) {
+					if (optionListType == global.optionListTypeRightClickWord) drawTokenBorder = true;
+				}
+			}
 		
 			// mouseover token
 			if(mouseOverToken){
@@ -143,8 +148,7 @@ function scr_drawLineEntryList(unitID, unitSubMap, entryList, pixelY, OOBCheck){
 				var sizeOfInChainsList = 0;
 				if (scr_isNumericAndExists(inChainsList, ds_type_list)) sizeOfInChainsList = ds_list_size(inChainsList);
 				if (sizeOfInChainsList == 0) {
-					draw_set_color(global.colorThemeBorders);
-					draw_rectangle(tokenRectX1,tokenRectY1,tokenRectX2,tokenRectY2, true);
+					drawTokenBorder = true;
 				}
 				obj_control.hoverTokenID = currentToken;
 				var tokenTagMap = currentTokenSubMap[?"tagMap"];
@@ -190,6 +194,10 @@ function scr_drawLineEntryList(unitID, unitSubMap, entryList, pixelY, OOBCheck){
 				//}
 			}
 		
+			if (drawTokenBorder) {
+				draw_set_color(global.colorThemeBorders);
+				draw_rectangle(tokenRectX1,tokenRectY1,tokenRectX2,tokenRectY2, true);
+			}
 		
 		
 			// draw the token's text

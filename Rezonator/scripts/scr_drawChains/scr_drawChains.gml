@@ -65,6 +65,7 @@ function scr_drawChains() {
 	
 		var tokensInSameLine = false;
 		var firstTokenInLine = "";
+		var token1IsChunk = false;
 		var token2IsChunk = false;
 		
 	
@@ -108,8 +109,14 @@ function scr_drawChains() {
 			var currentTokenID2 = currentEntry2SubMap[? "token"];
 			
 			// if this token is a chunk, we will just draw the line coming out of the chunk's first token
-			if (scr_isChunk(currentTokenID1)) currentTokenID1 = scr_getFirstWordOfChunk(currentTokenID1);
-			if (scr_isChunk(currentTokenID2)) currentTokenID2 = scr_getFirstWordOfChunk(currentTokenID2);
+			if (scr_isChunk(currentTokenID1)) {
+				token1IsChunk = true;
+				currentTokenID1 = scr_getFirstWordOfChunk(currentTokenID1);
+			}
+			if (scr_isChunk(currentTokenID2)) {
+				token2IsChunk = true;
+				currentTokenID2 = scr_getFirstWordOfChunk(currentTokenID2);
+			}
 
 			
 			// get tokenSubMaps
@@ -201,6 +208,12 @@ function scr_drawChains() {
 			// get the pixel X values for each token
 			lineX2 = currentToken2SubMap[?"pixelX"];
 			lineY2 = tokenUnitID2SubMap[? "pixelY"];
+			
+			// if both ends of the line are chunks, we will offset the X a litle bit so we dont cover up another line
+			if (token1IsChunk && token2IsChunk) {
+				lineX1 += 10;
+				lineX2 += 10;
+			}
 			
 			// only draw lines going down or to the side, never going up
 			if (lineY1 > lineY2) continue;
