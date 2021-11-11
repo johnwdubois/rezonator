@@ -187,7 +187,15 @@ function scr_panelPane_drawChainsList() {
 							draw_circle(mouse_x, mouse_y, 5, true);
 						}
 						
-						if (device_mouse_check_button_released(0, mb_left) and !mouseoverCancel) {
+						if (device_mouse_check_button_released(0, mb_left) and !mouseoverCancel and !mouseoverCheckbox) {
+							
+							// deselect all chains of this type and select the current one
+							scr_setValueForAllChains(tabChainType, "selected", false);
+							currentChainSubMap[? "selected"] = true;
+							currentChainSelected = true;
+							scr_addToListOnce(selectedList, currentChainID);
+							
+							
 		
 							if (obj_chain.currentFocusedChainID != currentChainID) {
 								// Focuses on selected chain
@@ -254,8 +262,8 @@ function scr_panelPane_drawChainsList() {
 										}
 										selectIndex += loopIncrement;
 									}
-									currentChainSelected = !currentChainSelected;
-									scr_chainSetSelected(currentChainID, currentChainSelected);
+									//currentChainSelected = !currentChainSelected;
+									//scr_chainSetSelected(currentChainID, currentChainSelected);
 								}
 							}
 						}
@@ -441,6 +449,12 @@ function scr_panelPane_drawChainsList() {
 				var newFocusedChainID = ds_list_find_value(listOfChains, functionChainList_focusedChainIndex);
 				obj_chain.currentFocusedChainID = newFocusedChainID;
 				
+				// deselect all chains of this type and select the current one
+				var newFocusedChainSubMap = global.nodeMap[? newFocusedChainID];
+				scr_setValueForAllChains(tabChainType, "selected", false);
+				newFocusedChainSubMap[? "selected"] = true;
+				scr_addToListOnce(selectedList, newFocusedChainID);
+				
 				if (focusedElementY <= y + headerHeight + strHeight) {
 					with (instToScroll) {
 						scrollPlusYDest += max(abs(focusedElementY - (y + headerHeight + strHeight)) + strHeight, strHeight);
@@ -449,7 +463,7 @@ function scr_panelPane_drawChainsList() {
 			}
 			else {
 				with (instToScroll) {
-					scrollPlusYDest += 4;
+					scrollPlusYDest += 16;
 				}
 			}
 		}
@@ -461,6 +475,12 @@ function scr_panelPane_drawChainsList() {
 				var newFocusedChainID = ds_list_find_value(listOfChains, functionChainList_focusedChainIndex);
 				obj_chain.currentFocusedChainID = newFocusedChainID;
 				
+				// deselect all chains of this type and select the current one
+				var newFocusedChainSubMap = global.nodeMap[? newFocusedChainID];
+				scr_setValueForAllChains(tabChainType, "selected", false);
+				newFocusedChainSubMap[? "selected"] = true;
+				scr_addToListOnce(selectedList, newFocusedChainID);
+				
 				if (focusedElementY >= y + windowHeight - strHeight) {
 					with (instToScroll) {
 						scrollPlusYDest -= max(abs(focusedElementY - (y + windowHeight - strHeight)) + strHeight, strHeight);
@@ -469,7 +489,7 @@ function scr_panelPane_drawChainsList() {
 			}
 			else {
 				with (instToScroll) {
-					scrollPlusYDest -= 4;
+					scrollPlusYDest -= 16;
 				}
 			}
 		}
