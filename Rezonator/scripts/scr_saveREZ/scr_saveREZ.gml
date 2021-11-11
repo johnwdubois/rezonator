@@ -13,7 +13,7 @@ function scr_saveREZ(autosave) {
 		|| (!file_exists(global.fileSaveName) && !directory_exists(obj_control.clipStackDir))) {
 			
 			show_debug_message("scr_saveREZ(), not autosave, loading new file");
-			if(global.previousSaveDirectory == "" or global.previousSaveDirectory == undefined){
+			if(global.previousSaveDirectory == "" or !is_string(global.previousSaveDirectory)){
 				global.fileSaveName = get_save_filename_ext("REZ file|*.rez", "", program_directory, "Save REZ");
 			}
 			else{

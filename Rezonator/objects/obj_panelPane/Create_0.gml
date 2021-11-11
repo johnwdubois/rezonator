@@ -253,6 +253,8 @@ scrollPlusX = 0;
 
 leftPaneStrHeight = 0;
 
+selectListPrevIndex = -1;
+
 
 #macro EVENT_TICK 0
 #macro EVENT_STOP 1

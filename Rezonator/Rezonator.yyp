@@ -132,6 +132,7 @@
     {"id":{"name":"spr_contextTool","path":"sprites/spr_contextTool/spr_contextTool.yy",},"order":0,},
     {"id":{"name":"scr_loadTagJsonFields","path":"scripts/scr_loadTagJsonFields/scr_loadTagJsonFields.yy",},"order":1,},
     {"id":{"name":"scr_showSpeakerName","path":"scripts/scr_showSpeakerName/scr_showSpeakerName.yy",},"order":5,},
+    {"id":{"name":"scr_chainSetSelected","path":"scripts/scr_chainSetSelected/scr_chainSetSelected.yy",},"order":55,},
     {"id":{"name":"scr_setDrawRange","path":"scripts/scr_setDrawRange/scr_setDrawRange.yy",},"order":6,},
     {"id":{"name":"scr_createFlyout","path":"scripts/scr_createFlyout/scr_createFlyout.yy",},"order":2,},
     {"id":{"name":"e_UTF8","path":"scripts/e_UTF8/e_UTF8.yy",},"order":2,},
