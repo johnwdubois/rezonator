@@ -441,6 +441,23 @@ function scr_panelPane_drawChainsList() {
 	
 	// Allows use of arrow keys, pgUp/pgDwn, and ctrl+key in chain list if clicked in chainList
 	var instToScroll = (drawScrollbar) ? self.id : chainContentsPanelPaneInst;
+
+/*var updated = false;
+	if(!drawScrollbar and updated == false){
+		var currentPaneScroll =0;
+			with (self.id) {
+					currentPaneScroll = max(abs(focusedElementY - (y + headerHeight + strHeight)) + strHeight, strHeight);
+			}
+			with (instToScroll) {
+						scrollPlusYDest = currentPaneScroll;
+			}
+		updated = true;
+	}
+	else{
+		updated = false;
+	}
+	*/
+	
 	if (clickedIn) {	
 		if ((mouse_wheel_up() or keyboard_check(vk_up)) and (holdUp < 2 or holdUp > 30)) {
 			

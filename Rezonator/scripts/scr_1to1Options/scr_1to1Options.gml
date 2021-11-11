@@ -12,7 +12,7 @@ function scr_1to1Options(optionSelected){
 	
 	
 	
-	if (optionSelected == scr_get_translation("option_one-to-one")) {
+	if (optionSelected == "option_one-to-one") {
 		
 		with (obj_panelPane) chainViewOneToMany = false;
 		if (instance_exists(leftPaneInst)) {
@@ -22,7 +22,7 @@ function scr_1to1Options(optionSelected){
 			}
 		}
 	}
-	else if (optionSelected == scr_get_translation("option_one-to-many")) {
+	else if (optionSelected == "option_one-to-many") {
 		
 		with (obj_panelPane) chainViewOneToMany = true;
 		if (instance_exists(rightPaneInst)) {

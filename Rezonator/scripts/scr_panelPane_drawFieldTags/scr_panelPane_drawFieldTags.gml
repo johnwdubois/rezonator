@@ -433,10 +433,10 @@ function scr_panelPane_drawFieldTags(){
 		draw_rectangle(oneToOneRectX1,oneToOneRectY1,oneToOneRectX2,oneToOneRectY2, true);
 		if(device_mouse_check_button_released(0,mb_left)){
 			if(obj_panelPane.chainViewOneToMany == true){
-				scr_1to1Options(scr_get_translation("option_one-to-one"));
+				scr_1to1Options("option_one-to-one");
 			}
 			else{
-				scr_1to1Options(scr_get_translation("option_one-to-many"));
+				scr_1to1Options("option_one-to-many");
 			}
 
 		}

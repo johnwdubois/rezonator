@@ -200,7 +200,7 @@ function scr_drawToolPane(toolSprScale) {
 		
 		if (mouse_check_button_released(mb_left)) {
 			var oneToOneOptionList = ds_list_create();
-			ds_list_add(oneToOneOptionList, scr_get_translation("option_one-to-one"), scr_get_translation("option_one-to-many"));
+			ds_list_add(oneToOneOptionList, "option_one-to-one", "option_one-to-many");
 			scr_createFlyout(oneToOneButtonRectX1 - flyoutXBuffer, oneToOneButtonY, oneToOneOptionList, global.optionListType1to1, spr_oneToOneTool, false);
 		}
 	}
