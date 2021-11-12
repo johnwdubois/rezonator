@@ -80,7 +80,31 @@ function scr_drawChains() {
 				currentEntry2 = currentSetIDList[| 0];
 				var vizSetIndex = ds_list_find_index(currentVizSetIDList, currentEntry2);
 				if (vizSetIndex >= 1) {
+					
 					currentEntry1 = currentVizSetIDList[| vizSetIndex - 1];
+					var currentEntry1SubMap = global.nodeMap[? currentEntry1];
+					var tokenID = currentEntry1SubMap[?"token"];
+					var tokenSubMap = global.nodeMap[?tokenID];
+					var tokensUnit = tokenSubMap[?"unit"];
+					var newTokensUnit = tokenSubMap[?"unit"];
+					var k = vizSetIndex - 1;
+					
+					while(tokensUnit == newTokensUnit && k > 0){
+						k-=1;
+						show_debug_message("k: "+ string(k))
+						currentEntry1 = currentVizSetIDList[| k];
+						currentEntry1SubMap = global.nodeMap[? currentEntry1];
+						tokenID = currentEntry1SubMap[?"token"];
+						tokenSubMap = global.nodeMap[?tokenID];
+						newTokensUnit = tokenSubMap[?"unit"];
+						
+					
+					}
+					if(k != 0){
+						k+=1;
+					}
+					currentEntry1 = currentVizSetIDList[| k];
+					
 				}
 			}
 			else if (j >= 1 && j < currentSetIDListSize) {
@@ -145,6 +169,7 @@ function scr_drawChains() {
 			if (j == 0) {
 				var currentEntryList = tokenUnitID1SubMap[? "entryList"];
 				if (!scr_isNumericAndExists(currentEntryList, ds_type_list)) continue;
+				
 				with(obj_control){
 					scr_drawLineEntryList(tokenUnitID1,tokenUnitID1SubMap,currentEntryList, -200,false);
 				}
