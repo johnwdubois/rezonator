@@ -115,7 +115,7 @@ for (var i = 0; i < fileKeyListSize; i++) {
 }
 
 if(fileKeyListSize == 0 ){
-	draw_text(recentFilesWindowX1 + spaceWidth - clipX, floor(textY - clipY), "No Recent Files Dectected");
+	draw_text(recentFilesWindowX1 + spaceWidth - clipX, floor(textY - clipY), "No recent files");
 }
 	
 // draw scrollbar only if we're not looking at field summary window

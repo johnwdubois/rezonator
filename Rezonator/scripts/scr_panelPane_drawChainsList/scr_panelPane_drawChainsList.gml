@@ -187,10 +187,11 @@ function scr_panelPane_drawChainsList() {
 							draw_circle(mouse_x, mouse_y, 5, true);
 						}
 						
+						// left-click on chain in chainList
 						if (device_mouse_check_button_released(0, mb_left) and !mouseoverCancel and !mouseoverCheckbox) {
 							
 							// deselect all chains of this type and select the current one
-							scr_setValueForAllChains(tabChainType, "selected", false);
+							if (!global.ctrlHold) scr_setValueForAllChains(tabChainType, "selected", false);
 							currentChainSubMap[? "selected"] = true;
 							currentChainSelected = true;
 							scr_addToListOnce(selectedList, currentChainID);
@@ -243,13 +244,8 @@ function scr_panelPane_drawChainsList() {
 								}
 							}
 							
-							// holt CTRL and click to select
-							if (global.ctrlHold) {
-								currentChainSelected = !currentChainSelected;
-								scr_chainSetSelected(currentChainID, currentChainSelected);
-							}
-							else if (keyboard_check(vk_shift)) {
-								// hold SHIFT and click to select range of chains
+							// hold SHIFT and click to select range of chains
+							if (keyboard_check(vk_shift)) {
 								if (selectListPrevIndex >= 0) {
 									var loopIncrement = (selectListPrevIndex < i) ? 1 : -1;
 									var selectIndex = selectListPrevIndex;									
@@ -262,8 +258,6 @@ function scr_panelPane_drawChainsList() {
 										}
 										selectIndex += loopIncrement;
 									}
-									//currentChainSelected = !currentChainSelected;
-									//scr_chainSetSelected(currentChainID, currentChainSelected);
 								}
 							}
 						}
@@ -271,6 +265,11 @@ function scr_panelPane_drawChainsList() {
 
 					// right-click on chain in chainList
 					if (mouseoverChainNameRect && mouse_check_button_pressed(mb_right) && !mouseoverCancel) {
+						
+						scr_setValueForAllChains(tabChainType, "selected", false);
+						currentChainSubMap[? "selected"] = true;
+						currentChainSelected = true;
+						scr_addToListOnce(selectedList, currentChainID);
 
 						obj_chain.currentFocusedChainID = currentChainID;
 						obj_control.selectedChainID = obj_chain.currentFocusedChainID 
@@ -279,12 +278,8 @@ function scr_panelPane_drawChainsList() {
 						
 						var dropDownOptionList = ds_list_create();
 						if (functionChainList_currentTab == functionChainList_tabStackBrush) {
-							if (ds_list_size(selectedList) > 1) {
-								ds_list_add(dropDownOptionList, "option_add-to-show");
-							}
-							else {
-								ds_list_add(dropDownOptionList, "help_label_rename", "option_recolor", "help_label_delete_plain", "help_label_caption", "option_clip", "option_create-tree", "option_add-to-show");
-							}
+
+							ds_list_add(dropDownOptionList, "help_label_rename", "option_recolor", "help_label_delete_plain", "help_label_caption", "option_clip", "option_create-tree", "option_add-to-show");
 							
 							if (global.rezzles && ds_list_size(selectedList) < 1) ds_list_add(dropDownOptionList, "Set Rez Map");
 						}
@@ -468,7 +463,7 @@ function scr_panelPane_drawChainsList() {
 				
 				// deselect all chains of this type and select the current one
 				var newFocusedChainSubMap = global.nodeMap[? newFocusedChainID];
-				scr_setValueForAllChains(tabChainType, "selected", false);
+				if (!keyboard_check(vk_shift)) scr_setValueForAllChains(tabChainType, "selected", false);
 				newFocusedChainSubMap[? "selected"] = true;
 				scr_addToListOnce(selectedList, newFocusedChainID);
 				
@@ -494,7 +489,7 @@ function scr_panelPane_drawChainsList() {
 				
 				// deselect all chains of this type and select the current one
 				var newFocusedChainSubMap = global.nodeMap[? newFocusedChainID];
-				scr_setValueForAllChains(tabChainType, "selected", false);
+				if (!keyboard_check(vk_shift)) scr_setValueForAllChains(tabChainType, "selected", false);
 				newFocusedChainSubMap[? "selected"] = true;
 				scr_addToListOnce(selectedList, newFocusedChainID);
 				
@@ -698,6 +693,32 @@ function scr_panelPane_drawChainsList() {
 					
 		}
 		
+		
+		// more options button
+		if (i == 4 && functionChainList_currentTab == functionChainList_tabStackBrush) {
+			var moreOptionsX = x + windowWidth - sprite_get_width(spr_moreOptions);
+			var moreOptionsY = mean(headerRectY1, headerRectY2);
+			var moreOptionsClickable = (ds_list_size(selectedList) >= 1);
+			var mouseoverMoreOptions = point_in_circle(mouse_x, mouse_y, moreOptionsX, moreOptionsY, optionsIconRad) && moreOptionsClickable && !mouseoverCancel;
+			var moreOptionsDropDownExists = false;
+			with (obj_dropDown) {
+				if (optionListType == global.optionListTypeChainListMulti) moreOptionsDropDownExists = true;
+			}
+			if (mouseoverMoreOptions || moreOptionsDropDownExists) {
+				draw_set_color(global.colorThemeSelected1);
+				draw_circle(moreOptionsX, moreOptionsY, optionsIconRad, false);
+			}
+			if (mouseoverMoreOptions) {
+				scr_createTooltip(moreOptionsX, moreOptionsY + optionsIconRad, "More", obj_tooltip.arrowFaceUp);
+				if (mouse_check_button_pressed(mb_left)) {
+					var dropDownOptionList = ds_list_create();
+					ds_list_add(dropDownOptionList, "option_add-to-show");
+					scr_createDropDown(moreOptionsX - (optionsIconRad * 0.4), moreOptionsY + (optionsIconRad * 0.8), dropDownOptionList, global.optionListTypeChainListMulti);
+				}
+			}
+			var moreOptionsAlpha = (moreOptionsClickable) ? 0.8 : 0.4;
+			draw_sprite_ext(spr_moreOptions, 0, moreOptionsX, moreOptionsY, 1, 1, 0, c_black, moreOptionsAlpha);
+		}
 		
 		
 		// draw header text

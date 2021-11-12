@@ -189,6 +189,10 @@ function scr_dialogueConfirm(){
 		with (obj_panelPane) {
 			obj_control.discoIDSelected = false;
 		}
+		
+		if (obj_control.setRezMap) {
+			scr_setRezMap(obj_chain.currentFocusedChainID, obj_control.inputText);
+		}
 			
 		scr_closeDialogueBoxVariables();
 		instance_destroy();

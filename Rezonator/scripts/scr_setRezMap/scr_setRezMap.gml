@@ -1,10 +1,6 @@
-function scr_setRezMap(stackID){
-
-	var par = get_string("","");
+function scr_setRezMap(stackID, par){
 
 	var chainMap = ds_map_create();
-
-
 	var stackSubMap = global.nodeMap[?stackID];
 	if(!scr_isNumericAndExists(stackSubMap, ds_type_map)){exit;}
 

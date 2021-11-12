@@ -7,8 +7,14 @@ function scr_drawDialogueBox_input(){
 		instance_create_layer(0,0,"InstancesInput", obj_inputBox);
 	}
 	with(obj_inputBox){
-		x =  floor(obj_dialogueBox.boxRectX1 + (obj_dialogueBox.boxWidth * 0.1));
-		y = floor(obj_dialogueBox.boxRectY1 + (obj_dialogueBox.boxHeight * 0.22));
+		x = floor(obj_dialogueBox.boxRectX1 + (obj_dialogueBox.boxWidth * 0.1));
+		
+		if (obj_dialogueBox.descriptionText != "") {
+			y = floor(obj_dialogueBox.boxRectY1 + (obj_dialogueBox.boxHeight * 0.42));
+		}
+		else {
+			y = floor(obj_dialogueBox.boxRectY1 + (obj_dialogueBox.boxHeight * 0.22));
+		}
 		windowWidth = obj_dialogueBox.boxWidth * 0.8;
 		
 	}

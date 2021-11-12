@@ -34,6 +34,7 @@ function scr_closeDialogueBoxVariables(){
 			fromDropDown = false;
 			inputText = "";
 			cursorPos = 1;
+			setRezMap = false;
 			dialogueBoxActive = false;
 		
 		}

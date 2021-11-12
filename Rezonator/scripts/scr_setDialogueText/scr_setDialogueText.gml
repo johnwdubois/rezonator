@@ -166,12 +166,17 @@ function scr_setDialogueText(){
 			// draw background text
 			if(obj_control.regExCheck){
 				titleText = scr_get_translation("search_dialogue_regEx");
-				descriptionText = scr_get_translation("msg_input_regex");
+				descriptionText = "";//scr_get_translation("msg_input_regex");
 			}
 			else{
 				titleText = scr_get_translation("search_dialogue_word");
-				descriptionText = scr_get_translation("search_dialogue_word");
+				descriptionText = "";//scr_get_translation("search_dialogue_word");
 			}
+		}
+		
+		if (obj_control.setRezMap) {
+			titleText = "Set rez map";
+			descriptionText = "Type in the amount of actions needed for the resonance chains in this stack";
 		}
 	}
 	

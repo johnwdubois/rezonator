@@ -198,10 +198,6 @@ trackGrid = ds_grid_create(trackGridWidth, 0);
 rezGrid = ds_grid_create(trackGridWidth, 0);
 
 mouseOverAnyChunk = false;
-
-
-
-
 dragStartOriginalChain = "";
 dragStartOriginalUnit = "";
 

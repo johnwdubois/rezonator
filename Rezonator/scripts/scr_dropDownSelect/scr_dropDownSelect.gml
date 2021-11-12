@@ -369,5 +369,9 @@ function scr_dropDownSelect(optionSelected) {
 		scr_selectShowOptions(optionSelected);
 		with (obj_dropDown) instance_destroy();
 	}
+	if (optionListType == global.optionListTypeChainListMulti) //85
+	{
+	    scr_chainListMultiOptions(optionSelected);
+	}
 
 }

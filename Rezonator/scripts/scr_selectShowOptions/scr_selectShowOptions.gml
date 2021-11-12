@@ -30,6 +30,11 @@ function scr_selectShowOptions(optionSelected){
 	// add selected stack(s) to show
 	var selectedStackList = obj_control.selectedStackChainList;
 	var selectedStackListSize = ds_list_size(selectedStackList);
+	
+	// sort selected list
+	scr_sortChainList("stack", selectedStackList);
+	
+	
 	if (selectedStackListSize > 1) {
 		// if multiple stacks are selected with checkboxes, we'll add all of those to the show
 		for (var i = selectedStackListSize - 1; i >= 0; i--) {
