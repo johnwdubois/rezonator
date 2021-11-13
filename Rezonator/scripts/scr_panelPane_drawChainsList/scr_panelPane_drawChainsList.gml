@@ -281,7 +281,7 @@ function scr_panelPane_drawChainsList() {
 
 							ds_list_add(dropDownOptionList, "help_label_rename", "option_recolor", "help_label_delete_plain", "help_label_caption", "option_clip", "option_create-tree", "option_add-to-show");
 							
-							if (global.rezzles && ds_list_size(selectedList) < 1) ds_list_add(dropDownOptionList, "Set Rez Map");
+							ds_list_add(dropDownOptionList, "Set Rez Map");
 						}
 						else {
 							ds_list_add(dropDownOptionList, "help_label_rename", "option_recolor", "help_label_delete_plain");

@@ -104,6 +104,7 @@ function scr_setRezMap(stackID, par){
 	ds_map_add(stackSubMap, "movesMade", 0);
 	
 	// delete all rez chains in this stack
+	/*
 	var stackUnitList = scr_getChainTempList(stackID, false);
 	var deleteChainList = ds_list_create();
 	var rezList = global.nodeMap[?"resonanceList"];
@@ -134,6 +135,7 @@ function scr_setRezMap(stackID, par){
 	scr_deleteAllChains(deleteChainList);
 	ds_list_destroy(deleteChainList);
 	ds_list_destroy(stackUnitList);
+	*/
 
 	
 }
