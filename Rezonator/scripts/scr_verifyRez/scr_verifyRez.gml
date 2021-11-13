@@ -2,13 +2,20 @@
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
 function scr_verifyRez(rezFileVerison){
 	
-	
-	if(rezFileVerison != global.versionString){
-		/*
+	show_debug_message("rezFileVerison:  "+ string(rezFileVerison))
+	rezFileVerison = string(rezFileVerison)
+	var firstNum = string_digits(rezFileVerison);
+	if(string_length(firstNum)> 0){	
+		if(string_char_at(firstNum, 1) == "0"){
+			var inst = instance_create_layer(0, 0, "InstancesDialogue", obj_dialogueBox);
+			obj_dialogueBox.alertWindowActive = true;
+			obj_dialogueBox.descriptionText = scr_get_translation("msg_error-previous-version");
+		}
+	}
+	else{
 		var inst = instance_create_layer(0, 0, "InstancesDialogue", obj_dialogueBox);
 		obj_dialogueBox.alertWindowActive = true;
 		obj_dialogueBox.descriptionText = scr_get_translation("msg_error-previous-version");
-		*/
 	}
 
 	
