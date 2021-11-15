@@ -139,8 +139,8 @@ function scr_scrollBar(listSize, focusedElementY, strHeight, marginTop, scrollBa
 	// Draw scrollbar button sprites
 	var scrollUpScale = (mouseOverUpButton) ? 1.2: 1;
 	var scrollDownScale = (mouseOverDownButton) ? 1.2: 1;
-	draw_sprite_ext(scrollButtonSprite, 0, mean(scrollBarX1 - clipX, scrollBarX2 - clipX), mean(y + marginTop - clipY, y + global.scrollBarWidth + marginTop - clipY), scrollUpScale, scrollUpScale, 0, global.colorThemeText, currentAlpha);
-	draw_sprite_ext(scrollButtonSprite, 0, mean(scrollBarX1 - clipX, scrollBarX2 - clipX), mean(y + windowHeightAdjusted - global.scrollBarWidth + marginTop - clipY, y + windowHeightAdjusted + marginTop - clipY), scrollDownScale, -scrollDownScale, 0, global.colorThemeText, currentAlpha);
+	draw_sprite_ext(scrollButtonSprite, 0, mean(scrollBarX1 - clipX, scrollBarX2 - clipX), mean(y + marginTop - clipY, y + global.scrollBarWidth + marginTop - clipY), scrollUpScale, scrollUpScale, 0, scrollBarColor, currentAlpha);
+	draw_sprite_ext(scrollButtonSprite, 0, mean(scrollBarX1 - clipX, scrollBarX2 - clipX), mean(y + windowHeightAdjusted - global.scrollBarWidth + marginTop - clipY, y + windowHeightAdjusted + marginTop - clipY), scrollDownScale, -scrollDownScale, 0, scrollBarColor, currentAlpha);
 	
 	if (instance_exists(obj_control)) {
 		if (obj_control.showDevVars) {

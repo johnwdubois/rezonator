@@ -38,18 +38,19 @@ function scr_surfaceStart() {
 		}
 	}
 
-	
-	if (abs(mouse_y - (y + windowHeight)) < 5
-	and mouse_x > x and mouse_x < x + windowWidth) {
-		if (object_index != obj_gridViewer) {
-			with (obj_control){
-				mouseoverPanelPane = true;
-			}
-			if (room != rm_importScreen && room != rm_openingScreen && !instance_exists(obj_dropDown)) {
-				window_set_cursor(cr_size_ns);
-			}
-			if (mouse_check_button_pressed(mb_left) && !instance_exists(obj_dropDown)) {
-				windowResizeYHolding = true;
+	if(!mouseoverHorScrollBar){
+		if (abs(mouse_y - (y + windowHeight)) < 5
+		and mouse_x > x and mouse_x < x + windowWidth) {
+			if (object_index != obj_gridViewer) {
+				with (obj_control){
+					mouseoverPanelPane = true;
+				}
+				if (room != rm_importScreen && room != rm_openingScreen && !instance_exists(obj_dropDown)) {
+					window_set_cursor(cr_size_ns);
+				}
+				if (mouse_check_button_pressed(mb_left) && !instance_exists(obj_dropDown) ) {
+					windowResizeYHolding = true;
+				}
 			}
 		}
 	}

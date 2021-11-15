@@ -7,12 +7,17 @@ function scr_panelPane_drawUnits1ToManyHeaders(){
 	var headerHeight = functionTabs_tabHeight;
 	var textMarginLeft = 8;
 	var lineStateLTR = (obj_control.drawLineState == obj_control.lineState_ltr);
-	var colWidth = windowWidth / ds_list_size(headerList);
+	var colWidth = windowWidth / obj_panelPane.unit1toMColAmount;
 	var plusX = x;
+	
+	scr_surfaceStart();
+	
+	
+	
 	for (var i = 0; i < headerListSize; i++) {
 		
 		// get header coordinates
-		var headerRectX1 = plusX;
+		var headerRectX1 = plusX + scrollHorPlusX-16;
 		var headerRectY1 = y;
 		var headerRectX2 = headerRectX1 + colWidth;
 		var headerRectY2 = headerRectY1 + headerHeight;
@@ -23,12 +28,12 @@ function scr_panelPane_drawUnits1ToManyHeaders(){
 		// draw BG rects & lines to separate columns
 		draw_set_alpha(1);
 		draw_set_color(global.colorThemeBG);
-		draw_rectangle(headerRectX1, headerRectY1, headerRectX2, headerRectY2, false);
+		draw_rectangle(headerRectX1- clipX, headerRectY1- clipY, headerRectX2- clipX, headerRectY2- clipY, false);
 		if (i > 0) {
 			draw_set_color(global.colorThemeBorders);
-			draw_line(headerRectX1, headerRectY1 + headerHeight, headerRectX1, y + windowHeight);
+			draw_line(headerRectX1- clipX, headerRectY1 + headerHeight- clipY, headerRectX1- clipX, y + windowHeight - clipY);
 			draw_set_color(global.colorThemeBorders);
-			draw_line(headerRectX1, headerRectY1, headerRectX1, y + headerHeight);
+			draw_line(headerRectX1- clipX, headerRectY1- clipY, headerRectX1- clipX, y + headerHeight - clipY);
 		}
 		// draw token selection button
 		var dropDownButtonSize = sprite_get_width(spr_dropDown);
@@ -43,7 +48,7 @@ function scr_panelPane_drawUnits1ToManyHeaders(){
 			draw_set_halign(fa_right);
 			headerTextX = headerRectX2 - (textMarginLeft) - dropDownButtonSize - (textMarginLeft * 2);
 		}
-		draw_text(headerTextX, headerTextY, currentField);
+		draw_text(headerTextX- clipX, headerTextY- clipY, currentField);
 	
 		// draw displayToken button
 		var displayTokenButtonSize = (headerHeight / 4);
@@ -70,7 +75,7 @@ function scr_panelPane_drawUnits1ToManyHeaders(){
 			}
 			var underlineY = headerTextY + (headerHeight * 0.25);
 			draw_set_color(global.colorThemeBorders);
-			draw_line_width(underlineX1, underlineY, underlineX2, underlineY, 2);
+			draw_line_width(underlineX1- clipX, underlineY- clipY, underlineX2- clipX, underlineY- clipY, 2);
 			
 			if (mouse_check_button_released(mb_left)) {
 				with (obj_panelPane) {
@@ -93,7 +98,7 @@ function scr_panelPane_drawUnits1ToManyHeaders(){
 				
 			scr_createTooltip(displayTokenButtonX, displayTokenButtonY + displayTokenButtonSize, scr_get_translation("option_display-token"), obj_tooltip.arrowFaceUp);
 			draw_set_color(global.colorThemeSelected1);
-			draw_circle(displayTokenButtonX, displayTokenButtonY, displayTokenButtonSize * 0.75, false);
+			draw_circle(displayTokenButtonX- clipX, displayTokenButtonY- clipY, displayTokenButtonSize * 0.75, false);
 			
 			if (mouse_check_button_released(mb_left)) {
 				global.displayTokenField = currentField;
@@ -102,11 +107,11 @@ function scr_panelPane_drawUnits1ToManyHeaders(){
 		}
 
 		draw_set_color(global.colorThemeBorders);
-		draw_circle(displayTokenButtonX, displayTokenButtonY, displayTokenButtonSize, true);
+		draw_circle(displayTokenButtonX- clipX, displayTokenButtonY- clipY, displayTokenButtonSize, true);
 
 		if (global.displayTokenField == currentField) {
 			draw_set_color(merge_color(global.colorThemeBorders, global.colorThemeBG, 0.1));
-			draw_circle(displayTokenButtonX, displayTokenButtonY, displayTokenButtonSize * 0.75, false);
+			draw_circle(displayTokenButtonX- clipX, displayTokenButtonY- clipY, displayTokenButtonSize * 0.75, false);
 			draw_set_color(global.colorThemeBorders);
 		}
 		else {
@@ -120,6 +125,8 @@ function scr_panelPane_drawUnits1ToManyHeaders(){
 	
 	// draw line to separate column headers from data
 	draw_set_color(global.colorThemeBorders);
-	draw_line(x, y + headerHeight, x + windowWidth, y + headerHeight);
-
+	draw_line(x- clipX, y + headerHeight- clipY, x + windowWidth- clipX, y + headerHeight- clipY);
+	
+	scr_surfaceEnd();
+	
 }

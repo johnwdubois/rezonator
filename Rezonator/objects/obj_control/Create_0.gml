@@ -641,8 +641,8 @@ ds_list_copy(navUnitFieldList, global.unitFieldList);
 ds_list_copy(navChunkFieldList, chunkFieldList);
 
 // we shouldn't have more than 6 columns in our nav panes
-while (ds_list_size(navTokenFieldList) > 6) ds_list_delete(navTokenFieldList, ds_list_size(navTokenFieldList) - 1);
-while (ds_list_size(navUnitFieldList) > 6) ds_list_delete(navUnitFieldList, ds_list_size(navTokenFieldList) - 1);
+//while (ds_list_size(navTokenFieldList) > 6) ds_list_delete(navTokenFieldList, ds_list_size(navTokenFieldList) - 1);
+while (ds_list_size(navUnitFieldList) > 6) ds_list_delete(navUnitFieldList, ds_list_size(navUnitFieldList) - 1);
 while (ds_list_size(navChunkFieldList) > 6) ds_list_delete(navChunkFieldList, ds_list_size(navChunkFieldList) - 1);
 
 
@@ -728,7 +728,6 @@ with (obj_alarm) {
 
 
 
-
 global.delayInput = 10;
 
 
@@ -790,6 +789,7 @@ refreshDisplayColUnit = "";
 refreshYValuesUnit = "";
 
 scr_setNavFieldListsFromSchema();
+
 
 minimumChunkDist = 15;
 mouseoverSpeakerLabelWidth = false;

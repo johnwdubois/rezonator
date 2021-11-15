@@ -75,18 +75,7 @@ focusedItemString = " ";
 
 scr_scrollBarInit();
 
-// horizontal scrollbar variables
-scrollBarHorHolding = false;
-scrollBarLeftButtonHeld = false;
-scrollBarRightButtonHeld = false;
-scrollBarHorWidth = 20;
-scrollBarHorHeight = 0;
-scrollHorPlusX = 100;
-scrollHorPlusXDest = 100;
-scrollBarHorPlusX = 0;
 
-scrollHorPlusXPrev = 0;
-scrollHorPlusXDiff = 0;
 XDest = 0;
 
 

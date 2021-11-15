@@ -1,27 +1,14 @@
-function scr_scrollBarGridViewer(scrollBackColor, scrollBarColor, scrollButtonColor1, scrollButtonColor2, scrollButtonSprite, windowWidth, windowHeight) {
+function scr_scrollBarHorizontal(listSize,colWidth,scrollBackColor, scrollBarColor, scrollButtonColor1, scrollButtonColor2, scrollButtonSprite, windowWidth, windowHeight) {
 
 
 	var outterBuffer = 50;
-	var mouseNear = point_in_rectangle(mouse_x, mouse_y, x- outterBuffer, y + windowHeight- global.scrollBarWidth - outterBuffer, x + windowWidth + outterBuffer, y + windowHeight + outterBuffer);
-	var currentAlpha = (mouseNear || scrollBarHolding) ? 1 : 0.5;
+	var mouseNear = point_in_rectangle(mouse_x, mouse_y, x, y + windowHeight- global.scrollBarWidth- outterBuffer, x + windowWidth- global.scrollBarWidth + outterBuffer, y + windowHeight) && !windowResizeYHolding;
+	var currentAlpha = (mouseNear || scrollBarHorHolding) ? 1 : 0.5;
 	draw_set_alpha(currentAlpha);
 
-
-	var colXList = ds_map_find_value(gridViewColXListMap, scr_getGridNameString(grid));
-	var firstColX = ds_list_find_value(colXList, 0);
-	var lastColX = ds_list_find_value(colXList, ds_list_size(colXList) - 1);
-	
-	if (firstColX == undefined){
-	firstColX = 0;
-	}
-	if (lastColX == undefined){
-	lastColX = 0;
-	}
 	
 	
-	var colXDifference = lastColX - firstColX;
-	
-	var minScrollHorPlusX = windowWidth - (colXDifference + windowWidth);
+	var minScrollHorPlusX = windowWidth - (listSize * colWidth);
 	var maxScrollHorPlusX = 16;
 	
 	// Set the scroll button size
@@ -29,29 +16,25 @@ function scr_scrollBarGridViewer(scrollBackColor, scrollBarColor, scrollButtonCo
 	
 	// Setup scrollbar width limiters
 	var scrollBarHorWidthMin = 30;
-	var scrollBarHorWidthMax = windowWidth - (buttonSize * 3);
+	var scrollBarHorWidthMax = windowWidth - (buttonSize * 2);
 	
 	// Calculate the width
-	scrollBarHorWidth = (windowWidth / colXDifference) * (windowWidth - (buttonSize * 3));
+	scrollBarHorWidth = ((windowWidth / colWidth)/listSize) * (windowWidth - (buttonSize * 2));
 	scrollBarHorWidth = clamp(scrollBarHorWidth, scrollBarHorWidthMin, scrollBarHorWidthMax);
 
+
+	var dontDraw = (scrollBarHorWidth == scrollBarHorWidthMax)
+	if(dontDraw) currentAlpha = 0;
+	draw_set_alpha(currentAlpha);
 	
 	// For clicking and dragging scrollbar
-	var mouseoverScrollBar = point_in_rectangle(mouse_x, mouse_y, x + buttonSize, y + windowHeight - buttonSize, x + windowWidth - buttonSize*2, y + windowHeight);
-	if (mouseoverScrollBar) {
-		if (mouse_check_button_pressed(mb_left) and global.canScroll) {
+	mouseoverHorScrollBar = point_in_rectangle(mouse_x, mouse_y, x + buttonSize, y + windowHeight - buttonSize, x + windowWidth - buttonSize*2, y + windowHeight) && !dontDraw;
+	if (mouseoverHorScrollBar) {
+		if (mouse_check_button_pressed(mb_left) and global.canScroll && !windowResizeYHolding) {
 			scrollBarHorHolding = true;
 			global.canScroll = false;
 			with (obj_control) {
 				mouseoverNeutralSpace = false;
-			}
-			
-			// gridview-specific
-			if (gridViewColXHolding == -1) {
-				scrollHorPlusXPrev = scrollHorPlusX;
-				var gridColXList = ds_map_find_value(gridViewColXListMap, scr_getGridNameString(grid));
-				ds_list_clear(gridViewColPrevList);
-				ds_list_copy(gridViewColPrevList, gridColXList);
 			}
 		}
 	}
@@ -88,7 +71,7 @@ function scr_scrollBarGridViewer(scrollBackColor, scrollBarColor, scrollButtonCo
 	scrollBarHorPlusX = clamp(scrollBarHorPlusX, buttonSize, windowWidth - buttonSize);
 	
 	var holdOffset = 0;
-	if(mouseoverScrollBar || scrollBarHolding){
+	if(mouseoverHorScrollBar || scrollBarHorHolding){
 		holdOffset = global.scrollBarWidth/8;
 	}
 
@@ -125,14 +108,6 @@ function scr_scrollBarGridViewer(scrollBackColor, scrollBarColor, scrollButtonCo
 		if (mouse_check_button_pressed(mb_left)) {
 			scrollBarLeftButtonHeld = true;
 			
-						// gridview-specific
-			if (gridViewColXHolding == -1) {
-				scrollHorPlusXPrev = scrollHorPlusX;
-				var gridColXList = ds_map_find_value(gridViewColXListMap, scr_getGridNameString(grid));
-				ds_list_clear(gridViewColPrevList);
-				ds_list_copy(gridViewColPrevList, gridColXList);
-			}
-			
 		}
 	}
 	else {
@@ -150,25 +125,12 @@ function scr_scrollBarGridViewer(scrollBackColor, scrollBarColor, scrollButtonCo
 		if (mouse_check_button_pressed(mb_left)) {
 			scrollBarRightButtonHeld = true;
 			
-						// gridview-specific
-			if (gridViewColXHolding == -1) {
-				scrollHorPlusXPrev = scrollHorPlusX;
-				var gridColXList = ds_map_find_value(gridViewColXListMap, scr_getGridNameString(grid));
-				ds_list_clear(gridViewColPrevList);
-				ds_list_copy(gridViewColPrevList, gridColXList);
-			}
-			
 		}
 	}
 	else {
 		scrollBarRightButtonHeld = false;
 	}
-	//draw_rectangle(scrollRightButtonX1 - clipX, scrollRightButtonY1 - clipY, scrollRightButtonX2 - clipX, scrollRightButtonY2 - clipY, false);
-	
-	
-	
-	
-	
+
 	
 	
 	// Draw scrollbar
@@ -176,15 +138,18 @@ function scr_scrollBarGridViewer(scrollBackColor, scrollBarColor, scrollButtonCo
 	draw_roundrect(scrollBarHorX1 - clipX, scrollBarHorY1 - clipY, scrollBarHorX2 - clipX, scrollBarHorY2 - clipY, false);
 	
 	
+	
+	var scrollRightScale = (mouseOverRightButton) ? 1.2: 1;
+	var scrollLeftScale = (mouseOverLeftButton) ? 1.2: 1;
 	// Draw scrollbar button sprites
-	draw_sprite_ext(scrollButtonSprite, 0, mean(scrollLeftButtonX1, scrollLeftButtonX2) - clipX, mean(scrollLeftButtonY1, scrollLeftButtonY2) - clipY, 1, 1, 90, scrollBarColor, 1);
-	draw_sprite_ext(scrollButtonSprite, 0, mean(scrollRightButtonX1, scrollRightButtonX2) - clipX, mean(scrollRightButtonY1, scrollRightButtonY2) - clipY, 1, 1, 270, scrollBarColor, 1);
+	draw_sprite_ext(scrollButtonSprite, 0, mean(scrollLeftButtonX1, scrollLeftButtonX2) - clipX, mean(scrollLeftButtonY1, scrollLeftButtonY2) - clipY, scrollLeftScale, scrollLeftScale, 90, scrollBarColor, currentAlpha);
+	draw_sprite_ext(scrollButtonSprite, 0, mean(scrollRightButtonX1, scrollRightButtonX2) - clipX, mean(scrollRightButtonY1, scrollRightButtonY2) - clipY, scrollRightScale, scrollRightScale, 270, scrollBarColor, currentAlpha);
 	
 	
 	
 	
 		
-		// Move scrollbar with regular scroll
+	// Move scrollbar with regular scroll
 	if (point_in_rectangle(mouse_x, mouse_y, x, y, x + windowWidth, y + windowHeight)) {
 		if (scrollBarLeftButtonHeld) {
 			scrollHorPlusXDest += 8;

@@ -11,7 +11,7 @@ function scr_panelPane_drawUnits1toMany() {
 	var headerHeight = functionTabs_tabHeight;
 	var scrollBarListSize = 0;
 	var drawDropDowns = false;
-
+	var mouseoverCancel = (instance_exists(obj_dropDown) || instance_exists(obj_dialogueBox) || mouseoverHorScrollBar);
 
 	var grid = obj_control.currentActiveLineGrid;
 
@@ -81,7 +81,7 @@ function scr_panelPane_drawUnits1toMany() {
 				var rectY1 = y + textMarginTop + textPlusY - (strHeight / 2) + scrollPlusY;
 				var rectX2 = x + windowWidth - global.scrollBarWidth;
 				var rectY2 = rectY1 + strHeight;
-				var mouseoverRect = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, rectX1, max(rectY1, y + headerHeight), rectX2, rectY2);
+				var mouseoverRect = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, rectX1, max(rectY1, y + headerHeight), rectX2, rectY2)  && !mouseoverCancel;
 
 				if (mouseoverRect and ableToBeMouseOver and !instance_exists(obj_dropDown)
 				and !instance_exists(obj_dialogueBox)) {
@@ -106,18 +106,18 @@ function scr_panelPane_drawUnits1toMany() {
 		}
 	}
 
-
-
-
-	var scrollBarBackColor = global.colorThemeSelected1;
-	if (scrollBarListSize > 1000) {
-		scrollBarBackColor = global.colorThemeSelected2;
-	}
 	if (!instance_exists(obj_dropDown)) {
 		
-		scr_scrollBar(scrollBarListSize, focusedElementY, strHeight, headerHeight,
-			scrollBarBackColor, global.colorThemeSelected2,
+		var fieldListSize = ds_list_size(obj_control.navTokenFieldList);
+		var colWidth = windowWidth/obj_panelPane.unit1toMColAmount;
+		scr_scrollBarHorizontal(fieldListSize, colWidth, global.colorThemeSelected1, global.colorThemeSelected2,
+		global.colorThemeSelected1, global.colorThemeSelected2, spr_ascend, windowWidth, windowHeight);
+		
+		scr_scrollBar(scrollBarListSize+1, focusedElementY, strHeight, headerHeight,
+			global.colorThemeSelected1, global.colorThemeSelected2,
 			global.colorThemeSelected1, global.colorThemeSelected2, spr_ascend, windowWidth, windowHeight);
+		
+
 	}
 	
 

@@ -11,6 +11,7 @@ function scr_scrollBarInit(){
 	scrollPlusYDest = 999;
 	scrollBarPlusY = 0;
 	mouseoverScrollBar = false;
+	mouseoverHorScrollBar = false;
 
 	windowHeight = 299;
 	windowWidth = 360;
@@ -24,5 +25,18 @@ function scr_scrollBarInit(){
 	windowResizeYHolding = false;
 	canResizeWindowX = true;
 	canResizeWindowY = true;
+	
+	// horizontal scrollbar variables
+	scrollBarHorHolding = false;
+	scrollBarLeftButtonHeld = false;
+	scrollBarRightButtonHeld = false;
+	scrollBarHorWidth = 20;
+	scrollBarHorHeight = 0;
+	scrollHorPlusX = 100;
+	scrollHorPlusXDest = 100;
+	scrollBarHorPlusX = 0;
+
+	scrollHorPlusXPrev = 0;
+	scrollHorPlusXDiff = 0;
 
 }

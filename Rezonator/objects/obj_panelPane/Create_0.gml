@@ -255,6 +255,9 @@ leftPaneStrHeight = 0;
 
 selectListPrevIndex = -1;
 
+unit1toMColAmount = 6;
+unit1to1ColAmount = 6;
+
 
 #macro EVENT_TICK 0
 #macro EVENT_STOP 1

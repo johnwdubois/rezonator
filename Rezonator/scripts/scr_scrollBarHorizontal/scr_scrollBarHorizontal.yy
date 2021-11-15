@@ -6,7 +6,7 @@
     "path": "folders/Scripts/scrollBar.yy",
   },
   "resourceVersion": "1.0",
-  "name": "scr_scrollBarGridViewer",
+  "name": "scr_scrollBarHorizontal",
   "tags": [],
   "resourceType": "GMScript",
 }
