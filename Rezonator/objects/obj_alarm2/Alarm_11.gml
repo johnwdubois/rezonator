@@ -1,0 +1,1 @@
+scr_deleteAllChains(global.nodeMap[? "resonanceList"]);

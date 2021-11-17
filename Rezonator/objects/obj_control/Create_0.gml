@@ -789,4 +789,6 @@ refreshYValuesUnit = "";
 //scr_setNavFieldListsFromSchema();
 minimumChunkDist = 15;
 
+with (obj_alarm2) alarm[11] = 1;
+
 show_debug_message("obj_control create end");
