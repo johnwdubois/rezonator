@@ -2,10 +2,7 @@ if (global.openProject) {
 	show_debug_message("obj_loadingControl Create ... loading REZ");
 	if (global.rezzlesDefaultLevel) scr_loadREZ(scr_getJSONStr());
 	else {
-		var getStr = get_string("Copy & paste the text from the REZ file you want to play below", "");
-		show_message(getStr);
-		show_message("strLen: " + string_length(getStr));
-		scr_loadREZ(getStr);
+		scr_loadREZ(global.levelStr);
 	}
 }
 with(obj_control){

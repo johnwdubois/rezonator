@@ -455,3 +455,5 @@ global.schemaNavTokenFieldList = -1;
 global.schemaNavUnitFieldList = -1;
 
 global.rezzlesDefaultLevel = false;
+
+global.levelStr = "";

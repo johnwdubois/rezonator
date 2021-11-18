@@ -432,6 +432,7 @@
     {"id":{"name":"snd_buh1","path":"sounds/snd_buh1/snd_buh1.yy",},"order":0,},
     {"id":{"name":"scr_setEntryAutoTags","path":"scripts/scr_setEntryAutoTags/scr_setEntryAutoTags.yy",},"order":37,},
     {"id":{"name":"scr_gridViewDrawBackArrow","path":"scripts/scr_gridViewDrawBackArrow/scr_gridViewDrawBackArrow.yy",},"order":6,},
+    {"id":{"name":"webclipboard","path":"extensions/webclipboard/webclipboard.yy",},"order":3,},
     {"id":{"name":"scr_getChainFieldList","path":"scripts/scr_getChainFieldList/scr_getChainFieldList.yy",},"order":39,},
     {"id":{"name":"scr_updateFilteredChainLists","path":"scripts/scr_updateFilteredChainLists/scr_updateFilteredChainLists.yy",},"order":30,},
     {"id":{"name":"g_UTF8","path":"scripts/g_UTF8/g_UTF8.yy",},"order":3,},
