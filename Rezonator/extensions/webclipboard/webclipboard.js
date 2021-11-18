@@ -1,7 +1,7 @@
 function webClipboard() {
     navigator.clipboard.readText()
     .then(text => {
-      console.log("Clipboard content good : " + text);
+      console.log("Clipboard content good");
       var map = {};
       map["id"] = "webclipboardID";
       map["clipboard"] = text;

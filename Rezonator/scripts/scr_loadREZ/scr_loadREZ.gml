@@ -1,5 +1,10 @@
 function scr_loadREZ(bufferString) {
 	
+	while (string_char_at(bufferString, string_length(bufferString)) != "}") {
+		bufferString = string_delete(bufferString, string_length(bufferString), 1);
+	}
+	
+	
 	/*
 	var delimiter = (os_type == os_macosx) ? "/" : "\\";
 	var RezDirString = global.rezonatorDirString + delimiter + "Data" + delimiter + "SBCorpus" + delimiter + "REZ";
@@ -53,7 +58,7 @@ function scr_loadREZ(bufferString) {
 		var wrapper = json_decode(bufferString);
 	
 		if (not ds_exists(wrapper, ds_type_map)) {
-			show_debug_message("Going to openingScreen, scr_loadREZ");
+			show_debug_message("Going to openingScreen, scr_loadREZ 1");
 			show_debug_message("Error loading " + fileName);
 			room_goto(rm_openingScreen);
 			exit;
@@ -62,7 +67,7 @@ function scr_loadREZ(bufferString) {
 		var list = ds_map_find_value(wrapper, "ROOT");
 	
 		if (is_undefined(list)) {
-			show_debug_message("Going to openingScreen, scr_loadREZ");
+			show_debug_message("Going to openingScreen, scr_loadREZ 2");
 			show_debug_message("Error loading " + fileName);
 			room_goto(rm_openingScreen);
 			exit;
