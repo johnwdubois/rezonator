@@ -7,6 +7,9 @@ function scr_importConlluAutotag(){
 	//if(skip){
 	//	exit;	
 	//}
+	var trackField = global.conlluAutotagColName;
+	
+	global.delayInput = 0;
 	
 	show_debug_message("scr_importConlluAutotag... ");
 	var docSubMap = global.nodeMap[?global.discourseNode];
@@ -18,7 +21,7 @@ function scr_importConlluAutotag(){
 		var currentToken = tokenList[|i];
 		var currentTokenSubMap = global.nodeMap[?currentToken];
 		var currentTokenTagMap = currentTokenSubMap[?"tagMap"];
-		var currentMiscString = currentTokenTagMap[?" MISC"]; //Might have to use scr_isNumericAndExists later on
+		var currentMiscString = currentTokenTagMap[?trackField]; //Might have to use scr_isNumericAndExists later on
 		var currentTokenList = ds_list_create();
 		ds_list_add(currentTokenList, currentToken);
 
@@ -50,7 +53,7 @@ function scr_importConlluAutotag(){
 					var subToken = tokenList[|j];
 					var subTokenSubMap = global.nodeMap[?subToken];
 					var subTokenTagMap = subTokenSubMap[?"tagMap"];
-					var subMiscString = subTokenTagMap[?" MISC"];
+					var subMiscString = subTokenTagMap[?trackField];
 					var endString = currentEntityKey + ")";
 					show_debug_message("endString = " + endString);
 					ds_list_add(currentTokenList, subToken);
@@ -62,7 +65,7 @@ function scr_importConlluAutotag(){
 						}
 						subTokenSubMap = global.nodeMap[?subToken];
 						subTokenTagMap = subTokenSubMap[?"tagMap"];
-						subMiscString = subTokenTagMap[?" MISC"];
+						subMiscString = subTokenTagMap[?trackField];
 						ds_list_add(currentTokenList, subToken);
 						j++;
 					}
@@ -111,6 +114,7 @@ function scr_importConlluAutotag(){
 				var unitList = ds_list_create();
 				ds_list_add(unitList, currentUnit);
 				obj_control.inRectUnitIDList = unitList;
+				global.delayInput = 0;
 				scr_createChunk();
 			}
 			else{
@@ -126,4 +130,6 @@ function scr_importConlluAutotag(){
 		key = ds_map_find_next(entityMap, key);
 	}
 	show_debug_message(string(entityMapSize));
+	
+	global.delayInput = 8;
 }

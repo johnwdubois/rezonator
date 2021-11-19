@@ -53,7 +53,7 @@ if (global.importType == global.importType_PlainText && !global.openProject) {
 	currentStackerFuntion = stackerFunctionGroup;
 	alarm[5] = 3;
 }
-if (global.importType == global.importType_CoNLLU && !global.openProject) {
+if (global.importType == global.importType_CoNLLU && !global.openProject && global.conlluAutotagColName != "") {
 	currentStackerFuntion = stackerFunctionConllu;
 	alarm[5] = 3;
 }

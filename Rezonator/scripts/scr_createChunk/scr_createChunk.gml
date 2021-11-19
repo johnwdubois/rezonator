@@ -2,7 +2,7 @@
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
 function scr_createChunk(){
 	
-	show_debug_message("\n\n\n....scr_createChunk()");
+	show_debug_message("....scr_createChunk, mouseoverPanelPane: " + string(obj_control.mouseoverPanelPane) + ", delayInput: " + string(global.delayInput));
 	
 	if (obj_control.mouseoverPanelPane) exit;
 	if (global.delayInput > 0) exit;

@@ -274,6 +274,7 @@ global.currentTranslation = "";
 global.unitImportSpeakerColName = "";
 global.tokenImportTranscriptColName = "";
 global.tokenImportDisplayTokenColName = "";
+global.conlluAutotagColName = "";
 
 global.translationList = ds_list_create();
 

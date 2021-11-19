@@ -46,8 +46,12 @@ function scr_setSpecialFieldsVariables() {
 	global.tokenImportDisplayTokenColName = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colMarker, displayTokenRow);
 	global.displayTokenField = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colMarker, displayTokenRow);
 	
+	var conlluAutotagRow = ds_grid_value_y(global.tagInfoGrid, global.tagInfoGrid_colSpecialFields, 0, global.tagInfoGrid_colSpecialFields, ds_grid_height(global.tagInfoGrid), "tab_name_track");
+	if (conlluAutotagRow >= 0) global.conlluAutotagColName = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colMarker, conlluAutotagRow);
+	
 	show_debug_message("scr_setSpecialFieldsVariables ... displayTokenField: " + string(global.displayTokenField));
 	show_debug_message("scr_setSpecialFieldsVariables ... participantField: " + string(global.participantField));
+	show_debug_message("scr_setSpecialFieldsVariables ... conlluAutotagColName: " + string(global.conlluAutotagColName));
 
 
 }
