@@ -10,11 +10,8 @@ function scr_dialogueBoxNewCustomFieldUnit() {
 	var newFieldMap = ds_map_create();
 	ds_map_add_list(newFieldMap, "tagSet", ds_list_create());
 	
-	//add to nav window list if
-	var sizeOfNavUnitList = ds_list_size(obj_control.navUnitFieldList);
-	if(sizeOfNavUnitList < 6){
-		scr_addToListOnce(obj_control.navUnitFieldList, newField);
-	}
+	//add to nav window list
+	scr_addToListOnce(obj_control.navUnitFieldList, newField);
 	
 	
 	// add our new field's submap to the tagMap
