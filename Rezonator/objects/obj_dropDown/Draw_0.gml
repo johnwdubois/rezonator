@@ -111,6 +111,9 @@ for (var i = 0; i < optionListSize; i++) {
 		if (optionListType == global.optionListTypeLinkFields) {
 			if (ds_list_find_index(global.linkFieldList, currentOptionStrOriginal) >= 0) isExpandable = true;
 		}
+		if (currentOptionStrOriginal == "menu_hide" && optionListType == global.optionListTypeChainListMulti) {
+			isExpandable = false;
+		}
 		if (optionListType == global.optionListTypeTokenFields || optionListType == global.optionListTypeUnitFields
 		|| optionListType == global.optionListTypeEntryFields || optionListType == global.optionListTypeChainFields
 		|| optionListType == global.optionListTypeChunkFields) {

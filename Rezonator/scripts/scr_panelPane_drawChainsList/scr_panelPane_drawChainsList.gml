@@ -695,7 +695,7 @@ function scr_panelPane_drawChainsList() {
 		
 		
 		// more options button
-		if (i == 4 && functionChainList_currentTab == functionChainList_tabStackBrush) {
+		if ((i == 4 && functionChainList_currentTab == functionChainList_tabStackBrush) or (i == 3 && functionChainList_currentTab != functionChainList_tabStackBrush)) {
 			var moreOptionsX = x + windowWidth - sprite_get_width(spr_moreOptions);
 			var moreOptionsY = mean(headerRectY1, headerRectY2);
 			var moreOptionsClickable = (ds_list_size(selectedList) >= 1);
@@ -712,7 +712,10 @@ function scr_panelPane_drawChainsList() {
 				scr_createTooltip(moreOptionsX, moreOptionsY + optionsIconRad, "More", obj_tooltip.arrowFaceUp);
 				if (mouse_check_button_pressed(mb_left)) {
 					var dropDownOptionList = ds_list_create();
-					ds_list_add(dropDownOptionList, "option_add-to-show");
+					if(obj_panelPane.functionChainList_currentTab == obj_panelPane.functionChainList_tabStackBrush){
+						ds_list_add(dropDownOptionList, "option_add-to-show");
+					}
+					ds_list_add(dropDownOptionList, "help_label_delete_plain", "menu_filter", "menu_hide");
 					scr_createDropDown(moreOptionsX - (optionsIconRad * 0.4), moreOptionsY + (optionsIconRad * 0.8), dropDownOptionList, global.optionListTypeChainListMulti);
 				}
 			}
