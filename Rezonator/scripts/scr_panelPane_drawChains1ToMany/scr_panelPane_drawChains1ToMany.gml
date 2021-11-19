@@ -215,6 +215,9 @@ function scr_panelPane_drawChains1ToMany() {
 		scrollBarBackColor = global.colorThemeSelected2;
 	}
 
+	var colWidth = windowWidth / chain1toMColAmount;
+	scr_scrollBarHorizontal(ds_list_size(chain1toManyColFieldList) + 3, colWidth, global.colorThemeSelected1, global.colorThemeSelected2,
+		global.colorThemeSelected1, global.colorThemeSelected2, spr_ascend, windowWidth, windowHeight);
 	scr_scrollBar(scrollBarListSize, focusedElementY, strHeight, tabHeight,
 		scrollBarBackColor, global.colorThemeSelected2,
 		global.colorThemeSelected1, global.colorThemeSelected2, spr_ascend, windowWidth, windowHeight);

@@ -12,13 +12,9 @@ function scr_dialogueBoxNewCustomFieldToken() {
 	}
 	scr_addToListOnce(obj_control.chunkFieldList, newField);
 	
-	//add to nav window list if
-	var sizeOfNavTokenList = ds_list_size(obj_control.navTokenFieldList);
-	if (!obj_control.selectFieldChunk) {
-		if(sizeOfNavTokenList < 6){
-			scr_addToListOnce(obj_control.navTokenFieldList, newField);
-		}
-	}
+	//add to nav window list
+	scr_addToListOnce(obj_control.navTokenFieldList, newField);
+
 	
 	var sizeOfNavChunkList = ds_list_size(obj_control.navChunkFieldList);
 	if(sizeOfNavChunkList < 6){

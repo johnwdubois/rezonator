@@ -3,7 +3,7 @@
 function scr_addToChainFieldMap(map, key, tagSet, shortcutSet, rezTag, trackTag, stackTag){
 	// make sure field/key isn't in the map already
 	if (ds_map_exists(map, key)) {
-		show_debug_message("scr_addToChainFieldMap() ... " + string(key) + " already exists in entryFieldMap");
+		show_debug_message("scr_addToChainFieldMap ... " + string(key) + " already exists in entryFieldMap");
 		exit;
 	}
 	
@@ -92,5 +92,5 @@ function scr_addToChainFieldMap(map, key, tagSet, shortcutSet, rezTag, trackTag,
 		ds_map_add(subMap, "card", stackTag);
 	
 	}
-
+	
 }

@@ -709,9 +709,16 @@ ds_list_add(chain1to1ColFieldListStack, "chainSize", "entityType");
 chain1toManyColFieldListRez = ds_list_create(); // list of the dynamic columns in the rez 1-many pane
 chain1toManyColFieldListTrack = ds_list_create(); // list of the dynamic columns in the track 1-many pane
 chain1toManyColFieldListStack = ds_list_create(); // list of the dynamic columns in the stack 1-many pane
-ds_list_add(chain1toManyColFieldListRez, "gapUnits", "gapWords", "charCount");
-ds_list_add(chain1toManyColFieldListTrack, "gapUnits", "gapWords", "charCount");
-ds_list_add(chain1toManyColFieldListStack, "gapUnits");
+//ds_list_add(chain1toManyColFieldListRez, "gapUnits", "gapWords", "charCount");
+//ds_list_add(chain1toManyColFieldListTrack, "gapUnits", "gapWords", "charCount");
+//ds_list_add(chain1toManyColFieldListStack, "gapUnits");
+var chainEntryFieldListSize = ds_list_size(global.chainEntryFieldList);
+for (var i = 0; i < chainEntryFieldListSize; i++) {
+	var currentField = global.chainEntryFieldList[| i];
+	scr_addToListOnce(chain1toManyColFieldListRez, currentField);
+	scr_addToListOnce(chain1toManyColFieldListTrack, currentField);
+	scr_addToListOnce(chain1toManyColFieldListStack, currentField);
+}
 
 
 
@@ -797,3 +804,5 @@ mouseoverSpeakerLabelWidth = false;
 show_debug_message("obj_control create end");
 
 setRezMap = false;
+
+global.inputBoxDefStr = "";
