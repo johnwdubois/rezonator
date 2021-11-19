@@ -59,6 +59,7 @@
     {"id":{"name":"scr_panelPane_drawChains1ToManyInnerLoop","path":"scripts/scr_panelPane_drawChains1ToManyInnerLoop/scr_panelPane_drawChains1ToManyInnerLoop.yy",},"order":11,},
     {"id":{"name":"scr_jumpToLineCalled","path":"scripts/scr_jumpToLineCalled/scr_jumpToLineCalled.yy",},"order":4,},
     {"id":{"name":"spr_filterTool","path":"sprites/spr_filterTool/spr_filterTool.yy",},"order":1,},
+    {"id":{"name":"scr_sortSearchLists","path":"scripts/scr_sortSearchLists/scr_sortSearchLists.yy",},"order":9,},
     {"id":{"name":"scr_separateChunk","path":"scripts/scr_separateChunk/scr_separateChunk.yy",},"order":11,},
     {"id":{"name":"scr_objControlKeyDelete","path":"scripts/scr_objControlKeyDelete/scr_objControlKeyDelete.yy",},"order":21,},
     {"id":{"name":"scr_gridMultiColSort","path":"scripts/scr_gridMultiColSort/scr_gridMultiColSort.yy",},"order":0,},
