@@ -457,3 +457,7 @@ global.schemaNavTokenFieldList = -1;
 global.schemaNavUnitFieldList = -1;
 
 alarm[6] = 1;
+
+var defStr = "";
+defStr = (global.userName == "") ? scr_get_translation("msg_signin") : global.userName;
+global.inputBoxDefStr = defStr;

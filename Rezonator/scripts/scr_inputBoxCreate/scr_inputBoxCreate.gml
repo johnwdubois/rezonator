@@ -1,45 +1,49 @@
 // Script assets have changed for v2.3.0 see
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
-function scr_inputBoxCreate(){
-	str = "";
-
-	windowWidth = 700;
-	windowHeight = 400;
-
-	cursorIndex = 0;
+function scr_inputBoxCreate(strDefault){
+	
+	// get dimensions for input window (windowHeight will adjust based on font size)
+	textBoxX = 0;
+	textBoxY = 0;
+	windowWidth = 100;
+	windowHeight = 100;
+	windowFocused = true;
+	
+	// str, cursor, & highlight
+	str = strDefault;
+	cursorIndex = string_length(str);
+	highlightIndex = 0;
 	strToCursor = "";
 	strToHighlight = "";
 
+	// frames that left/right/backspace has been held for
 	leftArrowHold = 0;
 	rightArrowHold = 0;
 	backspaceHold = 0;
-
-	highlightIndex = 0;
-
+	
+	// cursor blinking effect
 	blinkRate = 30;
 	drawCursor = true;
 	alarm[0] = blinkRate;
 
-
-
-
-	overflow = 0;
-	overflowMax = 20;
-	xOffset = 0;
-	firstVisChar = "";
-
+	// declare variables for text positioning
 	textX = 0;
 	textY = 0;
 	cursorX = 0;
-
-	validDrag = false;
-
+	
+	// surface variables for clipping effect
 	clipSurface = -1;
-	clipWidth = 100;
-	clipHeight = 100;
+	clipWidth = 0;
+	clipHeight = 0;
 	clipX = 0;
 	clipY = 0;
+	xOffset = 0;
+
+	// track drag & double-click
+	validDrag = false;
+	doubleClickTimerFull = 30;
+	doubleClickTimer = 0;
+	doubleClick = false;
 	
-	clickedIn = (room != rm_openingScreen);
 
 }

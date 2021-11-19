@@ -1,4 +1,4 @@
 /// @description Blink Cursor
-if (!clickedIn) exit;
+if (!windowFocused) exit;
 drawCursor = !drawCursor;
 alarm[0] = blinkRate;

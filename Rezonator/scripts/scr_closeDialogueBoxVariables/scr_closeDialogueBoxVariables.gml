@@ -93,4 +93,5 @@ function scr_closeDialogueBoxVariables(){
 			downloadDialogue = false;
 		}
 	}
+	global.inputBoxDefStr = "";
 }

@@ -7,13 +7,13 @@ function scr_drawDialogueBox_input(){
 		instance_create_layer(0,0,"InstancesInput", obj_inputBox);
 	}
 	with(obj_inputBox){
-		x = floor(obj_dialogueBox.boxRectX1 + (obj_dialogueBox.boxWidth * 0.1));
+		textBoxX = floor(obj_dialogueBox.boxRectX1 + (obj_dialogueBox.boxWidth * 0.1));
 		
 		if (obj_dialogueBox.descriptionText != "") {
-			y = floor(obj_dialogueBox.boxRectY1 + (obj_dialogueBox.boxHeight * 0.42));
+			textBoxY = floor(obj_dialogueBox.boxRectY1 + (obj_dialogueBox.boxHeight * 0.42));
 		}
 		else {
-			y = floor(obj_dialogueBox.boxRectY1 + (obj_dialogueBox.boxHeight * 0.22));
+			textBoxY = floor(obj_dialogueBox.boxRectY1 + (obj_dialogueBox.boxHeight * 0.22));
 		}
 		windowWidth = obj_dialogueBox.boxWidth * 0.8;
 		
@@ -35,8 +35,8 @@ function scr_drawDialogueBox_input(){
 		if (instance_exists(obj_inputBox)) {
 			var strLen = string_length(obj_inputBox.str);
 			if (strLen < 1) {
-				var descTextX = obj_inputBox.x + (dropDownXBuffer * 2);
-				var descTextY = floor(mean(obj_inputBox.y, obj_inputBox.y + obj_inputBox.windowHeight));
+				var descTextX = obj_inputBox.textBoxX + (dropDownXBuffer * 2);
+				var descTextY = floor(mean(obj_inputBox.textBoxY, obj_inputBox.textBoxY + obj_inputBox.windowHeight));
 				var descText = scr_get_translation("search_dialogue_word");
 				draw_set_color(global.colorThemeSelected2);
 				draw_set_halign(fa_left);
@@ -48,7 +48,7 @@ function scr_drawDialogueBox_input(){
 		
 		// field rect
 		var fieldRectX1 = boxRectX1 + (boxWidth * 0.25);
-		var fieldRectY1 = obj_inputBox.y + obj_inputBox.windowHeight + dropDownXBuffer;
+		var fieldRectY1 = obj_inputBox.textBoxY + obj_inputBox.windowHeight + dropDownXBuffer;
 		var fieldRectX2 = boxRectX1 + (boxWidth * 0.75);
 		var fieldRectY2 = fieldRectY1 + dropDownHeight;
 		var mouseoverFieldRect = point_in_rectangle(mouse_x, mouse_y, fieldRectX1, fieldRectY1, fieldRectX2, fieldRectY2) && !instance_exists(obj_dropDown);
@@ -103,7 +103,7 @@ function scr_drawDialogueBox_input(){
 		
 		
 		// regex checkbox
-		var regexCheckboxX1 = obj_inputBox.x;
+		var regexCheckboxX1 = obj_inputBox.textBoxX;
 		var regexCheckboxY1 = rangeRectY2 + dropDownXBuffer;
 		var regexCheckboxX2 = regexCheckboxX1 + checkboxSize;
 		var regexCheckboxY2 = regexCheckboxY1 + checkboxSize;
@@ -123,7 +123,7 @@ function scr_drawDialogueBox_input(){
 		
 		if(!obj_control.regExCheck){
 			// case-sensitive checkbox
-			var caseCheckboxX1 = obj_inputBox.x;
+			var caseCheckboxX1 = obj_inputBox.textBoxX;
 			var caseCheckboxY1 = regexCheckboxY2 + dropDownXBuffer;
 			var caseCheckboxX2 = caseCheckboxX1 + checkboxSize;
 			var caseCheckboxY2 = caseCheckboxY1 + checkboxSize;
@@ -148,8 +148,8 @@ function scr_drawDialogueBox_input(){
 	
 	if (obj_control.newWordCreated) {
 			
-		var insertBeforeBoxRectX1 = obj_inputBox.x;
-		var insertBeforeBoxRectY1 = obj_inputBox.y + obj_inputBox.windowHeight + dropDownXBuffer;
+		var insertBeforeBoxRectX1 = obj_inputBox.textBoxX;
+		var insertBeforeBoxRectY1 = obj_inputBox.textBoxY + obj_inputBox.windowHeight + dropDownXBuffer;
 		var insertBeforeBoxRectX2 = insertBeforeBoxRectX1 + checkboxSize;
 		var insertBeforeBoxRectY2 = insertBeforeBoxRectY1 + checkboxSize;
 	

@@ -12,6 +12,7 @@ function scr_chainListOptions(optionSelected) {
 				show_debug_message("scr_chainListOptions() exiting...");
 				exit;
 			}
+			var selectedChainSubMap = global.nodeMap[? obj_control.selectedChainID];
 
 
 			//"help_label_rename", "Recolor", "help_label_delete_plain"
@@ -21,6 +22,8 @@ function scr_chainListOptions(optionSelected) {
 					if (!obj_control.dialogueBoxActive) {
 						keyboard_string = "";
 						obj_control.rename = true;
+						global.inputBoxDefStr = string(selectedChainSubMap[? "name"]);
+						show_debug_message("global.inputBoxDefStr: " + string(global.inputBoxDefStr));
 					}
 
 					obj_control.dialogueBoxActive = true;

@@ -188,8 +188,8 @@ function scr_openingMenu() {
 	
 
 	if (instance_exists(obj_inputBox)) {
-		obj_inputBox.x = userSignInBoxX1;
-		obj_inputBox.y = userSignInBoxY1;
+		obj_inputBox.textBoxX= userSignInBoxX1;
+		obj_inputBox.textBoxY = userSignInBoxY1;
 		obj_inputBox.windowWidth = userSignInBoxX2 - userSignInBoxX1;
 		obj_inputBox.windowHeight = userSignInBoxY2 - userSignInBoxY1;
 		obj_openingScreen.inputText = obj_inputBox.str;
