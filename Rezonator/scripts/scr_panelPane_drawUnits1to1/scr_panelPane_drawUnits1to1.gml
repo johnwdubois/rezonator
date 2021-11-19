@@ -85,7 +85,7 @@ function scr_panelPane_drawUnits1to1() {
 		    var unitRectY1 = y + headerHeight + textPlusY + relativeScrollPlusY - (strHeight / 2);
 		    var unitRectX2 = x + windowWidth;
 		    var unitRectY2 = unitRectY1 + strHeight;
-			var mouseoverunitRect = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, unitRectX1, max(unitRectY1, y + headerHeight), unitRectX2, unitRectY2) && !mouseoverScrollBar && !scrollBarHorHolding && !scrollBarHolding;
+			var mouseoverunitRect = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, unitRectX1, max(unitRectY1, y + headerHeight), unitRectX2, unitRectY2) && !mouseoverScrollBar && !mouseoverHorScrollBar && !scrollBarHorHolding && !scrollBarHolding;
     
 			// highlight rect
 			draw_set_color(global.colorThemeBG);
@@ -130,10 +130,12 @@ function scr_panelPane_drawUnits1to1() {
 				else {
 					if(i == 0) dropDownButtonX1 -= global.scrollBarWidth;
 				}
+				
 				var dropDownButtonY1 = unitRectY1;
 				var dropDownButtonX2 = dropDownButtonX1 + sprite_get_width(spr_dropDown);
 				var dropDownButtonY2 = unitRectY2;
-				var mouseoverDropDownButton = point_in_rectangle(mouse_x, mouse_y, dropDownButtonX1, dropDownButtonY1, dropDownButtonX2, dropDownButtonY2);
+				var mouseoverDropDownButton = false;
+				if (mouseoverunitRect) mouseoverDropDownButton = point_in_rectangle(mouse_x, mouse_y, dropDownButtonX1, dropDownButtonY1, dropDownButtonX2, dropDownButtonY2);
 					
 				draw_sprite_ext(spr_dropDown, 0, mean(dropDownButtonX1, dropDownButtonX2) - clipX, mean(dropDownButtonY1, dropDownButtonY2) - clipY, 1, 1, 0, global.colorThemeText, 1);
 				if (mouseoverDropDownButton) {
