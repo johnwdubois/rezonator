@@ -10,8 +10,12 @@ function scr_getStringOfList(list) {
 		var listSizeMax = 90;
 	
 		for (var i = 0; i < min(listSizeMax, listSize); i++) {
-			str += string(ds_list_find_value(list, i));
-	
+			if(scr_isNumericAndExists(list[|i], ds_type_list)){
+				str += scr_getStringOfList(list[|i]);	
+			}
+			else{
+				str += string(ds_list_find_value(list, i));
+			}
 			if (i < listSize - 1) {
 				str += ", ";
 			}
