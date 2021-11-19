@@ -24,6 +24,7 @@ function scr_panelPane_drawUnits1to1() {
 
 	var headerHeight = functionTabs_tabHeight;
 	var textPlusY = 0;
+	var colWidth = windowWidth/obj_panelPane.unit1to1ColAmount;
 	
 	var mouseoverScrollBar = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, x + windowWidth - global.scrollBarWidth, y + headerHeight, x + windowWidth, y + windowHeight);
 	var focusedElementY = -1;
@@ -58,8 +59,7 @@ function scr_panelPane_drawUnits1to1() {
 		textPlusY = 0;
 		drawDropDowns = false;
 		
-		var colWidth = windowWidth / headerListSize;
-	    var colRectX1 = (lineStateLTR)? x + (colWidth * i) : x + windowWidth - (colWidth * (i+1));
+	    var colRectX1 = (lineStateLTR)? x + (colWidth * i) + scrollHorPlusX : x + windowWidth - (colWidth * (i+1)) + scrollHorPlusX;
 	    var colRectY1 = y;
 	    var colRectX2 = colRectX1 + colWidth;
 	    var colRectY2 = colRectY1 + headerHeight;
@@ -81,11 +81,11 @@ function scr_panelPane_drawUnits1to1() {
 		    var currentStr = string(currentTagMap[? currentField]);
     
 		    // Get dimensions of rectangle around line name
-		    var unitRectX1 = x;
+		    var unitRectX1 = x + scrollHorPlusX;
 		    var unitRectY1 = y + headerHeight + textPlusY + relativeScrollPlusY - (strHeight / 2);
 		    var unitRectX2 = x + windowWidth;
 		    var unitRectY2 = unitRectY1 + strHeight;
-			var mouseoverunitRect = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, unitRectX1, max(unitRectY1, y + headerHeight), unitRectX2, unitRectY2) && !mouseoverScrollBar;
+			var mouseoverunitRect = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, unitRectX1, max(unitRectY1, y + headerHeight), unitRectX2, unitRectY2) && !mouseoverScrollBar && !scrollBarHorHolding && !scrollBarHolding;
     
 			// highlight rect
 			draw_set_color(global.colorThemeBG);
@@ -239,6 +239,11 @@ function scr_panelPane_drawUnits1to1() {
 	
 	
 	if (!chainViewOneToMany) {
+		
+		var fieldListSize = ds_list_size(obj_control.navUnitFieldList);
+		scr_scrollBarHorizontal(fieldListSize, colWidth, global.colorThemeSelected1, global.colorThemeSelected2,
+		global.colorThemeSelected1, global.colorThemeSelected2, spr_ascend, windowWidth, windowHeight);
+		
 		scr_scrollBar(displayUnitListSize, focusedElementY, strHeight, headerHeight,
 		    global.colorThemeSelected1, global.colorThemeSelected2,
 		    global.colorThemeSelected1, global.colorThemeSelected2, spr_ascend, windowWidth, windowHeight);

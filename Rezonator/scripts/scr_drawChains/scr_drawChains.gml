@@ -91,7 +91,6 @@ function scr_drawChains() {
 					
 					while(tokensUnit == newTokensUnit && k > 0){
 						k-=1;
-						show_debug_message("k: "+ string(k))
 						currentEntry1 = currentVizSetIDList[| k];
 						currentEntry1SubMap = global.nodeMap[? currentEntry1];
 						tokenID = currentEntry1SubMap[?"token"];
