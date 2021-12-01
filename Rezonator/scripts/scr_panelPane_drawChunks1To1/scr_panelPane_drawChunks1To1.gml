@@ -14,7 +14,6 @@ function scr_panelPane_drawChunks1To1(){
 		}
 	}
 	
-	
 	var lineStateLTR = (obj_control.drawLineState == obj_control.lineState_ltr);
 	var strHeight = leftPaneStrHeight;
 	var headerHeight = functionTabs_tabHeight;
@@ -22,6 +21,8 @@ function scr_panelPane_drawChunks1To1(){
 	var focusedElementY = -1;
 	var focusedRowRectY1 = -1;
 	var focusedRowRectY2 = -1;
+	var colWidth = windowWidth / obj_panelPane.chunk1to1ColAmount;
+	
 	with (obj_panelPane) functionChainList_chunkMouseover = "";
 	
 	// get the chunk list & make sure it exists
@@ -69,7 +70,7 @@ function scr_panelPane_drawChunks1To1(){
 			
 			
 			// get coordinates for cell rectangle
-			var cellRectX1 = x + (i * (windowWidth / chunkFieldListSize));
+			var cellRectX1 = x + (i * (windowWidth / chunkFieldListSize)) + scrollHorPlusX;
 			var cellRectY1 = y + headerHeight + textPlusY + scrollPlusY - (strHeight / 2);
 			var cellRectX2 = cellRectX1 + (windowWidth / chunkFieldListSize);
 			var cellRectY2 = cellRectY1 + strHeight;
@@ -162,6 +163,9 @@ function scr_panelPane_drawChunks1To1(){
 		draw_line_width(x - clipX, focusedRowRectY1 - clipY, x + windowWidth - clipX, focusedRowRectY1 - clipY, 4);
 		draw_line_width(x - clipX, focusedRowRectY2 - clipY, x + windowWidth - clipX, focusedRowRectY2 - clipY, 4);
 	}
+	
+	scr_scrollBarHorizontal(chunkFieldList, colWidth, global.colorThemeSelected1, global.colorThemeSelected2,
+		global.colorThemeSelected1, global.colorThemeSelected2, spr_ascend, windowWidth, windowHeight);
 	
 	scr_scrollBar(chunkListSize, focusedElementY, strHeight, headerHeight,
 		global.colorThemeSelected1, global.colorThemeSelected2,

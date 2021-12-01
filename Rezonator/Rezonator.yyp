@@ -123,6 +123,7 @@
     {"id":{"name":"scr_printTime","path":"scripts/scr_printTime/scr_printTime.yy",},"order":7,},
     {"id":{"name":"scr_gridListWindow","path":"scripts/scr_gridListWindow/scr_gridListWindow.yy",},"order":5,},
     {"id":{"name":"scr_scrollMouseControls","path":"scripts/scr_scrollMouseControls/scr_scrollMouseControls.yy",},"order":9,},
+    {"id":{"name":"scr_steamInit","path":"scripts/scr_steamInit/scr_steamInit.yy",},"order":30,},
     {"id":{"name":"scr_chain1ToManyFieldOptions","path":"scripts/scr_chain1ToManyFieldOptions/scr_chain1ToManyFieldOptions.yy",},"order":46,},
     {"id":{"name":"scr_setChainName","path":"scripts/scr_setChainName/scr_setChainName.yy",},"order":49,},
     {"id":{"name":"scr_unitRightClicked","path":"scripts/scr_unitRightClicked/scr_unitRightClicked.yy",},"order":7,},
