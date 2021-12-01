@@ -13,16 +13,18 @@ function scr_dialogueBoxNewCustomFieldEntry() {
 		}
 	}
 	
-	/*
+
 	if (scr_isNumericAndExists(chain1toManyColFieldList, ds_type_list)) {
-		var sizeofList = ds_list_size(chain1toManyColFieldList);
-		if(sizeofList == 6){
-			ds_list_set(chain1toManyColFieldList, obj_control.chain1ToManyColFieldToChange, newField);
-		}
+		scr_addToListOnce(chain1toManyColFieldList, newField);
+		show_debug_message("chain1toManyColFieldList: " + scr_getStringOfList(chain1toManyColFieldList));
 	}
-	*/
-	scr_addToListOnce(chain1toManyColFieldList, newField);
-	show_debug_message("chain1toManyColFieldList: " + scr_getStringOfList(chain1toManyColFieldList));
+	else{
+		scr_addToListOnce(obj_control.chain1toManyColFieldListRez, newField);
+		scr_addToListOnce(obj_control.chain1toManyColFieldListTrack, newField);
+		scr_addToListOnce(obj_control.chain1toManyColFieldListStack, newField);
+	
+	}
+	
 
 	
 	// create a new tagSet and shortcutSet for the new field
