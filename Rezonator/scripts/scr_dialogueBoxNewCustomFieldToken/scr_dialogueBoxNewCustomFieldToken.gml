@@ -1,6 +1,10 @@
 function scr_dialogueBoxNewCustomFieldToken() {
 	
 	var newField = obj_control.inputText;
+	if (!is_string(newField) || string_length(string(newField)) < 1) {
+		show_debug_message("new field is invalid or blank string, exiting...");
+		exit;
+	}
 	
 	// add new field to the list of token fields
 	if (!obj_control.selectFieldChunk) {

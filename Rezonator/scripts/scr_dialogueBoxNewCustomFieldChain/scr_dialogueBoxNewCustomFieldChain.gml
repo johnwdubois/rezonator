@@ -3,6 +3,10 @@ function scr_dialogueBoxNewCustomFieldChain() {
 	// set the new field to be viewed in the chainContents pane
 	var newField = obj_control.inputText;
 	show_debug_message("scr_dialogueBoxNewCustomFieldChain(), newField: " + string(newField));
+	if (!is_string(newField) || string_length(string(newField)) < 1) {
+		show_debug_message("new field is invalid or blank string, exiting...");
+		exit;
+	}
 	
 	var chain1to1ColFieldList = -1;
 	with (obj_panelPane) {

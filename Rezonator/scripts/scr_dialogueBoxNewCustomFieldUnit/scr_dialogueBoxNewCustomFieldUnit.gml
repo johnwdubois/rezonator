@@ -1,6 +1,10 @@
 function scr_dialogueBoxNewCustomFieldUnit() {
 	
 	var newField = obj_control.inputText;
+	if (!is_string(newField) || string_length(string(newField)) < 1) {
+		show_debug_message("new field is invalid or blank string, exiting...");
+		exit;
+	}
 	
 	// add new field to the list of unit fields
 	if (ds_list_find_index(obj_control.unitFieldList, newField) != -1) exit;
