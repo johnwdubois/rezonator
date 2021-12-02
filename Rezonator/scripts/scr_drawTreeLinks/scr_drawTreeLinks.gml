@@ -7,6 +7,7 @@ function scr_drawTreeLinks(){
 	var linkList = treeSubMap[?"linkIDList"];
 	with (obj_panelPane) functionTree_treeLinkMouseover = "";
 	var mouseoverLinkColor = c_blue;
+	var mouseoverCancel = scrollBarHorHolding || scrollBarHolding || mouseoverHorScrollBar || mouseoverScrollBar || instance_exists(obj_dropDown) || instance_exists(obj_dialogueBox);
 	
 	var linkListSize = ds_list_size(linkList);
 	for(var i = 0; i < linkListSize; i++){
@@ -43,7 +44,7 @@ function scr_drawTreeLinks(){
 				}
 			}
 		}
-		var mouseover = (functionTree_treeLinkMouseover == currentLink) && !instance_exists(obj_dropDown) && !instance_exists(obj_dialogueBox);
+		var mouseover = (functionTree_treeLinkMouseover == currentLink) && !mouseoverCancel;
 		
 		// click on link
 		if (mouseover) {

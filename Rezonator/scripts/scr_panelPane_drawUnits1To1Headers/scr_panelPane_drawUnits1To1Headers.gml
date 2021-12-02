@@ -12,6 +12,8 @@ function scr_panelPane_drawUnits1To1Headers(){
 	var textMarginLeft = 8;
 	var plusX = x;
 	var dropDownButtonSize = sprite_get_width(spr_dropDown);
+	var mouseoverCancel = !point_in_rectangle(mouse_x, mouse_y, x, y, x + windowWidth, y + windowHeight) || instance_exists(obj_dropDown) || instance_exists(obj_dialogueBox);
+	
 	for (var i = 0; i < headerListSize; i++) {
 		
 		var currentField = headerList[| i];
@@ -54,8 +56,8 @@ function scr_panelPane_drawUnits1To1Headers(){
 			displayUnitButtonX = headerRectX2 - (displayUnitButtonSize) - (textMarginLeft);
 		}
 		var displayUnitButtonY = mean(headerRectY1, headerRectY2);
-		var mouseoverDisplayUnit = point_in_circle(mouse_x, mouse_y, displayUnitButtonX, displayUnitButtonY, displayUnitButtonSize) && !instance_exists(obj_dropDown) && !instance_exists(obj_dialogueBox);
-		var mouseoverHeader = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, headerRectX1, headerRectY1, headerRectX2, headerRectY2) && !instance_exists(obj_dropDown) && !instance_exists(obj_dialogueBox) && !mouseoverDisplayUnit;
+		var mouseoverDisplayUnit = point_in_circle(mouse_x, mouse_y, displayUnitButtonX, displayUnitButtonY, displayUnitButtonSize) && !mouseoverCancel;
+		var mouseoverHeader = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, headerRectX1, headerRectY1, headerRectX2, headerRectY2) && !mouseoverDisplayUnit && !mouseoverCancel;
 	
 		
 		// mouseover & click on header

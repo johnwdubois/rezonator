@@ -5,10 +5,14 @@ function scr_scrollBarHorizontal(listSize,colWidth,scrollBackColor, scrollBarCol
 	var mouseNear = point_in_rectangle(mouse_x, mouse_y, x, y + windowHeight- global.scrollBarWidth- outterBuffer, x + windowWidth- global.scrollBarWidth + outterBuffer, y + windowHeight) && !windowResizeYHolding;
 	var currentAlpha = (mouseNear || scrollBarHorHolding) ? 1 : 0.5;
 	draw_set_alpha(currentAlpha);
-
 	
 	
-	var minScrollHorPlusX = windowWidth - (listSize * colWidth);
+	var treeTab = false;
+	var chainListPane = -1;
+	with (obj_panelPane) if (currentFunction == functionChainList) chainListPane = self.id;
+	if (functionChainList_currentTab == functionChainList_tabTree) treeTab = true;
+	
+	var minScrollHorPlusX = (treeTab) ? windowWidth - obj_panelPane.treeTabScrollMin : windowWidth - (listSize * colWidth);
 	var maxScrollHorPlusX = 16;
 	
 	// Set the scroll button size
@@ -19,7 +23,8 @@ function scr_scrollBarHorizontal(listSize,colWidth,scrollBackColor, scrollBarCol
 	var scrollBarHorWidthMax = windowWidth - (buttonSize * 2);
 	
 	// Calculate the width
-	scrollBarHorWidth = ((windowWidth / colWidth)/listSize) * (windowWidth - (buttonSize * 2));
+	var scrollBarHorWithDiv = (treeTab) ? windowWidth * (1 / obj_panelPane.treeTabScrollMin) : ((windowWidth / colWidth)/listSize);
+	scrollBarHorWidth = scrollBarHorWithDiv * (windowWidth - (buttonSize * 2));
 	scrollBarHorWidth = clamp(scrollBarHorWidth, scrollBarHorWidthMin, scrollBarHorWidthMax);
 
 

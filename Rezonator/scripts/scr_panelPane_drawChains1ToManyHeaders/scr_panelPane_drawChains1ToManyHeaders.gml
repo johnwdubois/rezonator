@@ -6,6 +6,7 @@ function scr_panelPane_drawChains1ToManyHeaders(){
 	var textMarginLeft = 8;
 	var dropDownButtonSize = sprite_get_width(spr_dropDown);
 	var camWidth = camera_get_view_width(view_camera[0]);
+	var mouseoverCancel = !point_in_rectangle(mouse_x, mouse_y, x, y, x + windowWidth, y + windowHeight) || instance_exists(obj_dropDown) || instance_exists(obj_dialogueBox);
 	
 	var sortArrowScale = 0.4;
 	if(camWidth > 2000){sortArrowScale *= 1.25;}
@@ -52,9 +53,9 @@ function scr_panelPane_drawChains1ToManyHeaders(){
 			
 			var sortArrowX = headerRectX2 - sprite_get_width(spr_linkArrow)*sortArrowScale;
 			var sortArrowY = floor(mean(headerRectY1, headerRectY2));
-			var mouseoverSortArrow = point_in_circle(mouse_x, mouse_y, sortArrowX, sortArrowY, sprite_get_width(spr_linkArrow) * 0.5);
+			var mouseoverSortArrow = point_in_circle(mouse_x, mouse_y, sortArrowX, sortArrowY, sprite_get_width(spr_linkArrow) * 0.5) && !mouseoverCancel;
 			
-			var mouseoverColHeader = point_in_rectangle(mouse_x, mouse_y, headerRectX1, headerRectY1, headerRectX2, headerRectY2) && !instance_exists(obj_dropDown) && !instance_exists(obj_dialogueBox) && !mouseoverSortArrow;
+			var mouseoverColHeader = point_in_rectangle(mouse_x, mouse_y, headerRectX1, headerRectY1, headerRectX2, headerRectY2) && !mouseoverSortArrow && !mouseoverCancel;
 			
 			// get coordinates for header text
 			var headerTextX = floor(headerRectX1 + textMarginLeft);

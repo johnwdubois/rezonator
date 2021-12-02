@@ -121,7 +121,7 @@ function scr_panelPane_drawUnits1toManyInnerLoop(tokenID, drawDropDowns, strHeig
 						obj_control.tokenToChange = tokenID;
 						obj_control.tokenFieldToChange = currentField;
 						var dropDownX = textX - xBuffer;
-						var dropDownY = textY + scrollPlusY;							
+						var dropDownY = textY + (strHeight / 2);							
 						scr_createDropDown(dropDownX, dropDownY, dropDownOptionList, global.optionListTypeTokenTagMap);
 
 					}

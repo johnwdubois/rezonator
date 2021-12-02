@@ -9,6 +9,7 @@ function scr_panelPane_drawUnits1ToManyHeaders(){
 	var lineStateLTR = (obj_control.drawLineState == obj_control.lineState_ltr);
 	var colWidth = windowWidth / obj_panelPane.unit1toMColAmount;
 	var plusX = x;
+	var mouseoverCancel = !point_in_rectangle(mouse_x, mouse_y, x, y, x + windowWidth, y + windowHeight) || instance_exists(obj_dropDown) || instance_exists(obj_dialogueBox);
 	
 	scr_surfaceStart();
 	
@@ -57,8 +58,8 @@ function scr_panelPane_drawUnits1ToManyHeaders(){
 			displayTokenButtonX = headerRectX2 - (displayTokenButtonSize) - (textMarginLeft);
 		}
 		var displayTokenButtonY = mean(headerRectY1, headerRectY2);
-		var mouseoverDisplayToken = point_in_circle(mouse_x, mouse_y, displayTokenButtonX, displayTokenButtonY, displayTokenButtonSize) && !instance_exists(obj_dropDown) && !instance_exists(obj_dialogueBox);
-		var mouseoverHeader = point_in_rectangle(mouse_x, mouse_y, headerRectX1, headerRectY1, headerRectX2, headerRectY2) && !mouseoverDisplayToken && !instance_exists(obj_dropDown) && !instance_exists(obj_dialogueBox);
+		var mouseoverDisplayToken = point_in_circle(mouse_x, mouse_y, displayTokenButtonX, displayTokenButtonY, displayTokenButtonSize) && !mouseoverCancel;
+		var mouseoverHeader = point_in_rectangle(mouse_x, mouse_y, headerRectX1, headerRectY1, headerRectX2, headerRectY2) && !mouseoverDisplayToken && !mouseoverCancel;
 
 		// user interaction for header click
 		if (mouseoverHeader) {

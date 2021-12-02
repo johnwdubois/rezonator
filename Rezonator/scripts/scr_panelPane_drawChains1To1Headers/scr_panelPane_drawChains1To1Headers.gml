@@ -9,6 +9,7 @@ function scr_panelPane_drawChains1To1Headers(chain1to1ColFieldList, chainType){
 	var chain1to1ColFieldListSize = ds_list_size(chain1to1ColFieldList);
 	var lineStateLTR = (obj_control.drawLineState == obj_control.lineState_ltr);
 	var colWidth = windowWidth / obj_panelPane.chain1to1ColAmount;
+	var mouseoverCancel = !point_in_rectangle(mouse_x, mouse_y, x, y, x + windowWidth, y + windowHeight) || instance_exists(obj_dropDown) || instance_exists(obj_dialogueBox);
 
 	// Create the column headers
 	for (var i = 0; i < chain1to1ColFieldListSize; i++) {
@@ -18,7 +19,7 @@ function scr_panelPane_drawChains1To1Headers(chain1to1ColFieldList, chainType){
 		var headerRectY1 = y;
 		var headerRectX2 = headerRectX1 + colWidth;
 		var headerRectY2 = headerRectY1 + headerHeight;
-		var mouseoverColHeader = point_in_rectangle(mouse_x, mouse_y, headerRectX1, headerRectY1, headerRectX2, headerRectY2) && !instance_exists(obj_dropDown) && !instance_exists(obj_dialogueBox);
+		var mouseoverColHeader = point_in_rectangle(mouse_x, mouse_y, headerRectX1, headerRectY1, headerRectX2, headerRectY2) && !mouseoverCancel;
 		
 		// get header column name
 		var currentField = string(chain1to1ColFieldList[| i]);
