@@ -258,6 +258,7 @@ selectListPrevIndex = -1;
 unit1toMColAmount = 6;
 unit1to1ColAmount = 6;
 chain1toMColAmount = 6;
+chain1to1ColAmount = 2;
 chunk1to1ColAmount = 6;
 
 

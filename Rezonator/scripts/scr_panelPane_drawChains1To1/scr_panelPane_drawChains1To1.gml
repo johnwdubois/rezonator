@@ -70,6 +70,7 @@ function scr_panelPane_drawChains1To1(){
 	var textMarginLeft = 8;
 
 	var textPlusY = 0;
+	var colWidth = windowWidth / obj_panelPane.chain1to1ColAmount;
 
 	var drawDropDowns = false;
 	if (!instance_exists(obj_dropDown) && !instance_exists(obj_dialogueBox) && !scr_pointInRectangleClippedWindow(mouse_x, mouse_y, x, y + headerHeight, x + windowWidth, y + windowHeight)) {
@@ -85,7 +86,6 @@ function scr_panelPane_drawChains1To1(){
 	draw_set_halign(lineStateLTR ? fa_left : fa_right);
 	draw_set_valign(fa_middle);
 	draw_set_color(global.colorThemeText);
-	
 	
 	for (var j = 0; j < chain1to1ColFieldListSize; j++) {
 		
@@ -112,9 +112,9 @@ function scr_panelPane_drawChains1To1(){
 			if (!scr_isNumericAndExists(tagMap, ds_type_map)) continue;
 			
 			// get coordinates for cell rectangle
-			var cellRectX1 = x + (j * (windowWidth / chain1to1ColFieldListSize));
+			var cellRectX1 = x + (j * colWidth) + scrollHorPlusX;
 			var cellRectY1 = y + headerHeight + textPlusY + scrollPlusY - (strHeight / 2);
-			var cellRectX2 = cellRectX1 + (windowWidth / chain1to1ColFieldListSize);
+			var cellRectX2 = cellRectX1 + colWidth;
 			var cellRectY2 = cellRectY1 + strHeight;
 			var mouseoverCell = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, cellRectX1, max(cellRectY1, y + headerHeight), cellRectX2, cellRectY2) && !mouseoverScrollBar && !instance_exists(obj_dialogueBox) && !instance_exists(obj_dropDown);
 			var focusedCell = (obj_chain.currentFocusedChainID == chainID);
@@ -195,6 +195,8 @@ function scr_panelPane_drawChains1To1(){
 	}
 	
 	
+	scr_scrollBarHorizontal(chain1to1ColFieldListSize, colWidth, global.colorThemeSelected1, global.colorThemeSelected2,
+		global.colorThemeSelected1, global.colorThemeSelected2, spr_ascend, windowWidth, windowHeight);
 	
 	scr_scrollBar(listOfChainsSize, focusedElementY, strHeight, headerHeight,
 		global.colorThemeSelected1, global.colorThemeSelected2,

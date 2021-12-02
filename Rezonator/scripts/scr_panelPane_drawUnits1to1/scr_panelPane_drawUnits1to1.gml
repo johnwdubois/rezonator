@@ -24,7 +24,7 @@ function scr_panelPane_drawUnits1to1() {
 
 	var headerHeight = functionTabs_tabHeight;
 	var textPlusY = 0;
-	var colWidth = windowWidth/obj_panelPane.unit1to1ColAmount;
+	var colWidth = windowWidth / obj_panelPane.unit1to1ColAmount;
 	
 	var mouseoverScrollBar = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, x + windowWidth - global.scrollBarWidth, y + headerHeight, x + windowWidth, y + windowHeight);
 	var focusedElementY = -1;
