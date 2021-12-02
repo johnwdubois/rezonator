@@ -89,7 +89,7 @@ function scr_chainListOptions(optionSelected) {
 					var chainSubMap = global.nodeMap[? obj_control.selectedChainID];
 					if (scr_isNumericAndExists(chainSubMap, ds_type_map)) {
 						var tokenList = ds_list_create();
-						var setIDList = chainSubMap[? "setIDList"];
+						var setIDList = chainSubMap[? "vizSetIDList"];
 						var setIDListSize = ds_list_size(setIDList);
 						show_debug_message("setIDListSize:   "+ string(setIDListSize));
 						for (var i = 0; i < setIDListSize; i++) {
