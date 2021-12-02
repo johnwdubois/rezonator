@@ -70,9 +70,9 @@ function scr_panelPane_drawChunks1To1(){
 			
 			
 			// get coordinates for cell rectangle
-			var cellRectX1 = x + (i * (windowWidth / chunkFieldListSize)) + scrollHorPlusX;
+			var cellRectX1 = x + (i * colWidth) + scrollHorPlusX;
 			var cellRectY1 = y + headerHeight + textPlusY + scrollPlusY - (strHeight / 2);
-			var cellRectX2 = cellRectX1 + (windowWidth / chunkFieldListSize);
+			var cellRectX2 = cellRectX1 + colWidth;
 			var cellRectY2 = cellRectY1 + strHeight;
 			var mouseoverRow = point_in_rectangle(mouse_x, mouse_y, 0, max(cellRectY1, y + headerHeight), x + windowWidth, min(cellRectY2, y + windowHeight)) && !mouseoverScrollBar && !instance_exists(obj_dropDown) && !instance_exists(obj_dialogueBox) && !scrollBarHolding;
 			var mouseoverCell = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, cellRectX1, cellRectY1, cellRectX2, cellRectY2) && mouseoverRow;
@@ -164,7 +164,7 @@ function scr_panelPane_drawChunks1To1(){
 		draw_line_width(x - clipX, focusedRowRectY2 - clipY, x + windowWidth - clipX, focusedRowRectY2 - clipY, 4);
 	}
 	
-	scr_scrollBarHorizontal(chunkFieldList, colWidth, global.colorThemeSelected1, global.colorThemeSelected2,
+	scr_scrollBarHorizontal(ds_list_size(chunkFieldList), colWidth, global.colorThemeSelected1, global.colorThemeSelected2,
 		global.colorThemeSelected1, global.colorThemeSelected2, spr_ascend, windowWidth, windowHeight);
 	
 	scr_scrollBar(chunkListSize, focusedElementY, strHeight, headerHeight,

@@ -2,18 +2,21 @@
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
 function scr_panelPane_drawChunks1To1Headers(fieldList){
 	
+	scr_surfaceStart();
+	
 	var headerHeight = functionTabs_tabHeight;
 	var textMarginLeft = 8;
 	var fieldListSize = ds_list_size(fieldList);
 	var lineStateLTR = (obj_control.drawLineState == obj_control.lineState_ltr);
+	var colWidth = windowWidth / obj_panelPane.chunk1to1ColAmount;
 
 	// Create the column headers
 	for (var i = 0; i < fieldListSize; i++) {
 		
 		// header coordinates
-		var headerRectX1 = x + (i * (windowWidth / fieldListSize));
+		var headerRectX1 = x + (i * colWidth) + scrollHorPlusX;
 		var headerRectY1 = y;
-		var headerRectX2 = headerRectX1 + (windowWidth / fieldListSize);
+		var headerRectX2 = headerRectX1 + colWidth;
 		var headerRectY2 = headerRectY1 + headerHeight;
 		var mouseoverColHeader = point_in_rectangle(mouse_x, mouse_y, headerRectX1, headerRectY1, headerRectX2, headerRectY2) && !instance_exists(obj_dropDown) && !instance_exists(obj_dialogueBox);
 		
@@ -23,16 +26,16 @@ function scr_panelPane_drawChunks1To1Headers(fieldList){
 		
 		// BG & outline rects
 		draw_set_color(global.colorThemeBG);
-		draw_rectangle(headerRectX1, headerRectY1, headerRectX2, headerRectY1 + headerHeight, false);
+		draw_rectangle(headerRectX1 - clipX, headerRectY1 - clipY, headerRectX2 - clipX, headerRectY1 + headerHeight - clipY, false);
 		
 		
 		draw_set_color(global.colorThemeBorders);
 		if(i > 0 ){
-			draw_line(headerRectX1, headerRectY1, headerRectX1, headerRectY2);
+			draw_line(headerRectX1 - clipX, headerRectY1 - clipY, headerRectX1 - clipX, headerRectY2 - clipY);
 		}
 		// draw line to separate column headers from data
 
-		draw_line(x, headerRectY2, x + windowWidth, headerRectY2);
+		draw_line(x - clipX, headerRectY2 - clipY, x + windowWidth - clipX, headerRectY2 - clipY);
 		
 		// draw header name
 		draw_set_valign(fa_middle);
@@ -62,7 +65,7 @@ function scr_panelPane_drawChunks1To1Headers(fieldList){
 			}
 			var underlineY = headerTextY + (headerHeight * 0.25);
 			draw_set_color(global.colorThemeBorders);
-			draw_line_width(underlineX1, underlineY, underlineX2, underlineY, 2);
+			draw_line_width(underlineX1 - clipX, underlineY - clipY, underlineX2 - clipX, underlineY - clipY, 2);
 			
 			if (mouse_check_button_released(mb_left)) {
 				
@@ -82,25 +85,24 @@ function scr_panelPane_drawChunks1To1Headers(fieldList){
 		
 		// draw header text
 		draw_set_color(global.colorThemeText);
-		draw_text(headerTextX, headerTextY, currentField);
+		draw_text(headerTextX - clipX, headerTextY - clipY, currentField);
 		
 		// draw lines for dividing columns
 		if(lineStateLTR){	
 			if(i > 0){
 				draw_set_color(global.colorThemeBorders);
-				draw_line_width(headerRectX1, y, headerRectX1, y + windowHeight, 1);
+				draw_line_width(headerRectX1 - clipX, y - clipY, headerRectX1 - clipX, y + windowHeight - clipY, 1);
 			}
 		}
 		else{
 			if(i > 0 && i < fieldListSize){
 				draw_set_color(global.colorThemeBorders);
-				draw_line_width(headerRectX1 + 1, y, headerRectX1 + 1, y + windowHeight, 1);
+				draw_line_width(headerRectX1 + 1 - clipX, y - clipY, headerRectX1 + 1 - clipX, y + windowHeight - clipY, 1);
 			}
 		}
-		
-		
-		
 	
 	}
+	
+	scr_surfaceEnd();
 
 }

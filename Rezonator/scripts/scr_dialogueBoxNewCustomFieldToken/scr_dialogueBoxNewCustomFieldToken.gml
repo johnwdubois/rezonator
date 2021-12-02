@@ -14,16 +14,10 @@ function scr_dialogueBoxNewCustomFieldToken() {
 	
 	//add to nav window list
 	scr_addToListOnce(obj_control.navTokenFieldList, newField);
+	scr_addToListOnce(obj_control.navChunkFieldList, newField);
+	
+	
 
-	
-	var sizeOfNavChunkList = ds_list_size(obj_control.navChunkFieldList);
-	if(sizeOfNavChunkList < 6){
-		scr_addToListOnce(obj_control.navChunkFieldList, newField);
-	}
-	
-	
-	
-	
 	
 	
 	// create a new submap for this field
