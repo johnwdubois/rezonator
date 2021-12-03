@@ -54,6 +54,15 @@ for (var i = 0; i < optionListSize; i++) {
 	
 	// get width of current string
 	currentOptionStr = scr_get_translation(currentOptionStr);
+	
+	//get name of chain instead
+	if(optionListType == global.optionListTypeSearchChain){
+		if(currentOptionStr != "Create New Chain"){
+			var chainSubMap = global.nodeMap[?currentOptionStr];
+			var chainName = chainSubMap[?"name"];
+			currentOptionStr = chainName;
+		}
+	}
 
 	var currentOptionStrWidth = string_width(currentOptionStr) + string_width(shortcutStr) + (textBuffer * 2);
 	
@@ -283,14 +292,13 @@ for (var i = 0; i < optionListSize; i++) {
 	var optionTextStr = scr_get_translation(optionText);
 	
 	// for special cases, draw chain name instead of hex-string
-	if (optionListType == global.optionListTypeAddToShow || (optionListType == global.optionListTypeSelectShow && optionText != "option_create-show")) {
+	if (optionListType == global.optionListTypeSearchChain || optionListType == global.optionListTypeAddToShow || (optionListType == global.optionListTypeSelectShow && optionText != "option_create-show")) {
 		var subMap = global.nodeMap[? optionText];
 		if (scr_isNumericAndExists(subMap, ds_type_map)) {
 			optionTextStr = subMap[? "name"];
 		}
 	}
-	
-	
+
 	//optionTextStr = optionText;
 	//uncomment this line to see the raw strings instead of display strings in dropdown
 	

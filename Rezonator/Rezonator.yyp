@@ -3,6 +3,7 @@
     {"id":{"name":"spr_toggleDraw","path":"sprites/spr_toggleDraw/spr_toggleDraw.yy",},"order":0,},
     {"id":{"name":"spr_filterArrows","path":"sprites/spr_filterArrows/spr_filterArrows.yy",},"order":1,},
     {"id":{"name":"scr_getChainTempList","path":"scripts/scr_getChainTempList/scr_getChainTempList.yy",},"order":31,},
+    {"id":{"name":"scr_searchChainOptions","path":"scripts/scr_searchChainOptions/scr_searchChainOptions.yy",},"order":80,},
     {"id":{"name":"spr_ascend","path":"sprites/spr_ascend/spr_ascend.yy",},"order":3,},
     {"id":{"name":"scr_setWordTopMargin","path":"scripts/scr_setWordTopMargin/scr_setWordTopMargin.yy",},"order":26,},
     {"id":{"name":"scr_getPrevDisplayCol","path":"scripts/scr_getPrevDisplayCol/scr_getPrevDisplayCol.yy",},"order":6,},
