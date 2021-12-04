@@ -164,6 +164,14 @@ function scr_panelPane_drawSearch1ToMany(){
 				var mouseoverSearchRect = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, searchRectX1, searchRectY1, searchRectX2, searchRectY2) && !mouseoverScrollBar && !scrollBarHolding && !instance_exists(obj_dropDown) && !instance_exists(obj_dialogueBox) && !mouseoverHeaderRegion;
 				var highlight = (mouseoverSearchRect || functionSearchList_tokenMouseover == currentToken);
 				var textY = floor(mean(searchRectY1, searchRectY2));
+				
+				// get dimensions of checkbox rect
+				var checkboxRectX1 = checkboxColX + (checkboxColWidth / 2) - (checkboxSize / 2);
+				var checkboxRectY1 = mean(searchRectY1, searchRectY2) - (checkboxSize / 2);
+				var checkboxRectX2 = checkboxRectX1 + checkboxSize;
+				var checkboxRectY2 = checkboxRectY1 + checkboxSize;
+				var mouseoverCheckbox = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, checkboxRectX1, checkboxRectY1, checkboxRectX2, checkboxRectY2) && !mouseoverHeaderRegion && !mouseoverScrollBar;
+				if (mouseoverCheckbox) mouseoverSearchRect = false;
 		
 		
 				
@@ -173,35 +181,58 @@ function scr_panelPane_drawSearch1ToMany(){
 				// click on search name
 				if (mouseoverSearchRect) {
 					anyOptionMousedOver = true;
-					if (mouse_check_button_released(mb_left) && !instance_exists(obj_dropDown)) {
+					if (mouse_check_button_released(mb_left)) {
 						with (obj_panelPane) functionSearchList_tokenSelected = currentToken;
 						obj_control.selectedSearchTokenID = functionSearchList_tokenSelected;
 						scr_jumpToUnit(currentUnitID);
+						
+						// deselect all other tokens and select the current one
+						if (!global.ctrlHold) ds_list_clear(selectedTokenList);
+						scr_addToListOnce(selectedTokenList, currentToken);
+						currentTokenChecked = true;
+						
+						// hold SHIFT and click to select range of chains
+						if (keyboard_check(vk_shift)) {
+							if (selectListPrevIndex >= 0) {
+								var loopIncrement = (selectListPrevIndex < i) ? 1 : -1;
+								var selectIndex = selectListPrevIndex;		
+								show_debug_message("selectListPrevIndex: " + string(selectListPrevIndex) + ", i: " + string(i));
+								
+								while (selectIndex != i) {										
+									var tokenToSelect = tokenDisplayList[| selectIndex];
+									show_debug_message("tokenToSelect: " + string(tokenToSelect) + ", selectIndex: " + string(selectIndex));
+									if (ds_list_find_index(selectedTokenList, tokenToSelect) == -1) {
+										ds_list_add(selectedTokenList, tokenToSelect);
+									}
+									else {
+										scr_deleteFromList(selectedTokenList, tokenToSelect);
+									}
+									selectIndex += loopIncrement;
+								}
+							}
+						}
+						
+						with (obj_panelPane) selectListPrevIndex = i;
 					}
+
 			
 					if (mouse_check_button_released(mb_right)) {
 						with (obj_panelPane) functionSearchList_tokenSelected = currentToken;
 						obj_control.selectedSearchTokenID = functionSearchList_tokenSelected;
+						/*
 						var dropDownOptionList = ds_list_create();
 
 						ds_list_add(dropDownOptionList, "help_label_rename", "help_label_delete_plain");
 
 						if (ds_list_size(dropDownOptionList) > 0 and obj_control.ableToCreateDropDown) {
-							//scr_createDropDown(mouse_x, mouse_y, dropDownOptionList, global.optionListTypesearchList);
+							scr_createDropDown(mouse_x, mouse_y, dropDownOptionList, global.optionListTypesearchList);
 						}
-			
+						*/
 					}
 				}
 				
 				
-								
-				// get dimensions of checkbox rect
-				var checkboxRectX1 = checkboxColX + (checkboxColWidth / 2) - (checkboxSize / 2);
-				var checkboxRectY1 = mean(searchRectY1, searchRectY2) - (checkboxSize / 2);
-				var checkboxRectX2 = checkboxRectX1 + checkboxSize;
-				var checkboxRectY2 = checkboxRectY1 + checkboxSize;
-				var mouseoverCheckbox = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, checkboxRectX1, checkboxRectY1, checkboxRectX2, checkboxRectY2) && !mouseoverHeaderRegion && !mouseoverScrollBar;
-				
+
 
 				var unitRectX1 = searchRectX1;
 				var unitRectY1 = searchRectY1

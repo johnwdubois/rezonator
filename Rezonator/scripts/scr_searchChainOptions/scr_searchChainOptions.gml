@@ -11,6 +11,7 @@ function scr_searchChainOptions(optionSelected){
 		exit;
 	}
 	
+	obj_toolPane.currentMode = obj_toolPane.modeTrack;
 	var selectedTokenListSize = ds_list_size(selectedTokenList);
 	
 	if (optionSelected == "Create New Chain") {	

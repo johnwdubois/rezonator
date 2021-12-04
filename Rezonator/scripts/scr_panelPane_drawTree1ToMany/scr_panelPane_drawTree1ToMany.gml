@@ -416,7 +416,7 @@ function scr_panelPane_drawTree1ToMany(){
 	
 	
 	// if user clicks, save the position of their mouse
-	var canMakeMouseRect = obj_control.mouseoverPanelPane && !functionTree_treeMouseoverLinkArea && mouse_check_button_pressed(mb_left) && !obj_control.mouseoverScrollBar && !mouseoverScrollBar && !mouseoverHorScrollBar && !scrollBarHorHolding;
+	var canMakeMouseRect = obj_control.mouseoverPanelPane && functionTree_treeMouseoverArea && !functionTree_treeMouseoverLinkArea && mouse_check_button_pressed(mb_left) && !obj_control.mouseoverScrollBar && !mouseoverScrollBar && !mouseoverHorScrollBar && !scrollBarHorHolding;
 	if (canMakeMouseRect) {
 		obj_control.mouseHoldRectX1 = mouse_x;
 		obj_control.mouseHoldRectY1 = mouse_y;
