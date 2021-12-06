@@ -101,6 +101,9 @@ function scr_loadSchema(autoload) {
 			}
 			if (!is_undefined(specialFieldFromMap)) {
 				ds_grid_set(global.tagInfoGrid, global.tagInfoGrid_colSpecialFields, i, specialFieldFromMap);
+				if (global.CoNLLUwithMeta && currentField == " MISC" && specialFieldFromMap == "tab_name_track") {
+					ds_grid_set(global.tagInfoGrid, global.tagInfoGrid_colSpecialFields, i, "");
+				}
 			}
 			if (!is_undefined(keyFromMap)) {
 				ds_grid_set(global.tagInfoGrid, global.tagInfoGrid_colKey, i, keyFromMap);

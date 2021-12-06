@@ -1,7 +1,7 @@
 {
-  "option_mac_display_name": "Rezonator 1.0.6",
+  "option_mac_display_name": "Rezonator 1.0.7",
   "option_mac_app_id": "com.company.game",
-  "option_mac_version": "1.0.6",
+  "option_mac_version": "1.0.7",
   "option_mac_output_dir": "~/GameMakerStudio2/Mac",
   "option_mac_team_id": "SGU37PG886",
   "option_mac_signing_identity": "Developer ID Application: Terrence DuBois (SGU37PG886)",
@@ -23,7 +23,7 @@
   "option_mac_allow_incoming_network": false,
   "option_mac_allow_outgoing_network": false,
   "option_mac_app_category": "Education",
-  "option_mac_enable_steam": false,
+  "option_mac_enable_steam": true,
   "option_mac_disable_sandbox": true,
   "option_mac_apple_sign_in": false,
   "resourceVersion": "1.0",

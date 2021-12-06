@@ -162,8 +162,11 @@ function scr_importConlluTXT(filename) {
 			var colNameLength = string_pos("=", lineInFile);
 			var colName = string_copy(lineInFile, 1, colNameLength - 1);
 			var colVal = string_copy(lineInFile, colNameLength + 1, string_length(lineInFile) - colNameLength);
+			var colNameMeta = (string_count("meta::", colName) > 0);
+			var colValMeta = (string_count("meta::", colVal) > 0);
 			
-			if (string_count("meta::", colName) > 0 || string_count("meta::", colVal) > 0) continue; // skip over meta fields
+			if (colNameMeta) global.CoNLLUwithMeta = true;
+			if (colNameMeta || colValMeta) continue; // skip over meta fields
 			
 			
 			show_debug_message("unit level - lineInFile: " + string(lineInFile));

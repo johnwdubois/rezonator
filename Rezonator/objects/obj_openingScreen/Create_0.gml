@@ -453,6 +453,7 @@ downloadDialogue = false;
 showDownloadDialogue = false;
 alreadyShownDownloadDialogue = false;
 
+global.CoNLLUwithMeta = false;
 global.schemaNavTokenFieldList = -1;
 global.schemaNavUnitFieldList = -1;
 
