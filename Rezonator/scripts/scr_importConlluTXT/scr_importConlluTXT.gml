@@ -32,7 +32,7 @@ function scr_importConlluTXT(filename) {
 		importSourceRow++;
 		if (importSourceRow >= importTXTLineGridHeight) continue;
 		var lineInFile = global.importTXTLineGrid[# global.importTXTLineGrid_colLine, importSourceRow];
-		show_debug_message("lineInFile: " + string(lineInFile));
+	
 	
 		// Here we check if we are encountering the first cluster
 		if (!firstClusterEncountered) {
@@ -62,20 +62,22 @@ function scr_importConlluTXT(filename) {
 			}
 			lineInCluster++;
 		}
-	
-
+		
+		var tokenLevel = (string_char_at(lineInFile, 1) != "#");
+		var unitLevel = !tokenLevel;
+		
+		show_debug_message("START lineInFile: " + string(lineInFile) + ", tokenLevel: " + string(tokenLevel));
+		
 	
 		// Check for Token level data
-		if (string_char_at(lineInFile, 1) != "#") {
+		if (tokenLevel) {
+			var firstClusterTagListSize = ds_list_size(firstClusterTagList);
 		
-			if (!firstCluster and lineInCluster - 1 < ds_list_size(firstClusterTagList)) {
-				lineInFile = ds_list_find_value(firstClusterTagList, lineInCluster - 1) + " " + lineInFile;
-			}
-		
-			else {
+
 				// Split the tokens into their individual columns
 				var listOfColumns = ds_list_create();
 				listOfColumns = scr_splitString(lineInFile,chr(9));
+				show_debug_message("listOfColumns: " + scr_getStringOfList(listOfColumns));
 				var listOfColumnsSize = ds_list_size(listOfColumns);
 				/*
 				// Take out any spaces or blank tokens
@@ -141,7 +143,7 @@ function scr_importConlluTXT(filename) {
 				}
 			
 				row++;
-			}
+
 		}
 	
 
@@ -155,17 +157,16 @@ function scr_importConlluTXT(filename) {
 	
 	
 	
-
-	
-	
 		// Check for Unit Level Data
-		if (string_char_at(lineInFile, 1) == "#") {
+		if (unitLevel) {
 			var colNameLength = string_pos("=", lineInFile);
 			var colName = string_copy(lineInFile, 1, colNameLength - 1);
-			//show_debug_message("colName: " + string(colName));
 			var colVal = string_copy(lineInFile, colNameLength + 1, string_length(lineInFile) - colNameLength);
 			
 			if (string_count("meta::", colName) > 0 || string_count("meta::", colVal) > 0) continue; // skip over meta fields
+			
+			
+			show_debug_message("unit level - lineInFile: " + string(lineInFile));
 		
 		
 			if (firstCluster) {
@@ -176,6 +177,8 @@ function scr_importConlluTXT(filename) {
 			var col = ds_map_find_value(global.importGridColMap, colName);
 
 			if (is_undefined(col)) {
+				
+				show_debug_message("is_undefined colName: " + string(colName));
 
 				widthOfImportGrid++;
 				global.importGridWidth = widthOfImportGrid;
