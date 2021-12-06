@@ -16,24 +16,23 @@ function scr_importConlluTXT(filename) {
 	ds_list_add(CoNLLUColNameList, " ID", " FORM", " LEMMA", " UPOS", " XPOS", " FEATS", " HEAD", " DEPREL", " DEPS", " MISC");
 
 
-	var fileOpenRead = file_text_open_read(filename);
 	var tokenColListCreated = false;
-	var lineInFile = file_text_readln(fileOpenRead);
-	var first3Char = string_char_at(lineInFile, 1) + string_char_at(lineInFile, 2) + string_char_at(lineInFile, 3);
+	var lineInFile = "";
 
 	global.importType = global.importType_CoNLLU;
 
+	var importSourceRow = -1;
 	var rowCounter = 0;
+	var nextItterator = 0;
 
+	var importTXTLineGridHeight = ds_grid_height(global.importTXTLineGrid);
 	var widthOfImportGrid = 0;
-	while (not file_text_eof(fileOpenRead)) {
-	
-		var lineInFile = file_text_readln(fileOpenRead);
-	
-		// Beginning of Terry's section
-		ds_grid_resize(global.importTXTLineGrid, global.importTXTLineGridWidth, ds_grid_height(global.importTXTLineGrid) + 1);
-		ds_grid_set(global.importTXTLineGrid, global.importTXTLineGrid_colLine, ds_grid_height(global.importTXTLineGrid) - 1, lineInFile);
-		ds_grid_set(global.importTXTLineGrid, global.importTXTLineGrid_colException, ds_grid_height(global.importTXTLineGrid) - 1, false);
+	while (importSourceRow < importTXTLineGridHeight) {
+		
+		importSourceRow++;
+		if (importSourceRow >= importTXTLineGridHeight) continue;
+		var lineInFile = global.importTXTLineGrid[# global.importTXTLineGrid_colLine, importSourceRow];
+		show_debug_message("lineInFile: " + string(lineInFile));
 	
 		// Here we check if we are encountering the first cluster
 		if (!firstClusterEncountered) {
@@ -93,7 +92,7 @@ function scr_importConlluTXT(filename) {
 					var indexOfColNameList = 0;
 				
 					if(!tokensAdded){
-						var nextItterator = widthOfImportGrid;
+						nextItterator = widthOfImportGrid;
 						widthOfImportGrid += ds_list_size(listOfColumns);
 						global.importGridWidth = widthOfImportGrid;
 						tokensAdded =true;
@@ -163,7 +162,10 @@ function scr_importConlluTXT(filename) {
 		if (string_char_at(lineInFile, 1) == "#") {
 			var colNameLength = string_pos("=", lineInFile);
 			var colName = string_copy(lineInFile, 1, colNameLength - 1);
+			//show_debug_message("colName: " + string(colName));
 			var colVal = string_copy(lineInFile, colNameLength + 1, string_length(lineInFile) - colNameLength);
+			
+			if (string_count("meta::", colName) > 0 || string_count("meta::", colVal) > 0) continue; // skip over meta fields
 		
 		
 			if (firstCluster) {
