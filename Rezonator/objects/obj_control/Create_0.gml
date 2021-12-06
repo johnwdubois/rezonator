@@ -1,7 +1,11 @@
 /*
 	Purpose: Instantiate all variables used by control objects
 */
-
+if(global.steamAPI){
+	if(!steam_get_achievement("SA_open-file")){
+		steam_set_achievement("SA_open-file");
+	}
+}
 var camWidth = camera_get_view_width(view_camera[0]);
 var camHeight = camera_get_view_height(view_camera[0]);
 
