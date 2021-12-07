@@ -1,2 +1,2 @@
 /// @description Steam Init
-//scr_steamInit();
+scr_steamInit();

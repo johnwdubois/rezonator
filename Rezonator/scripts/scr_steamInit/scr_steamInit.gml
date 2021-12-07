@@ -10,13 +10,13 @@ function scr_steamInit(){
 		var steamOverlay = steam_is_overlay_enabled();
 		var steamAppID = steam_get_app_id();
 
-		show_message("steamStatsReady: " + string(steamStatsReady) + " \nsteamOverlay: " + string(steamOverlay) + " \nsteamAppID: " + string(steamAppID));
+		//show_message("steamStatsReady: " + string(steamStatsReady) + " \nsteamOverlay: " + string(steamOverlay) + " \nsteamAppID: " + string(steamAppID));
 	
 		if (steamStatsReady && steamOverlay) {
 			global.steamAPI = true;
 		}
 	}
 
-	show_message("steamAPI: " + string(global.steamAPI));
+	//show_message("steamAPI: " + string(global.steamAPI));
 	
 }
