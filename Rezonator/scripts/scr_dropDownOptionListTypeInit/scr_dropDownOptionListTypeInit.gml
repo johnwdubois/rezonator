@@ -79,6 +79,7 @@ function scr_dropDownOptionListTypeInit(){
 	global.optionListTypeSelectShow = 84;
 	global.optionListTypeChainListMulti = 85;
 	global.optionListTypeSearchChain = 86;
+	global.optionListTypeTagSchema = 87;
 
 
 }

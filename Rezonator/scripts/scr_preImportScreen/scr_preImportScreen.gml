@@ -322,6 +322,43 @@ function scr_preImportScreen(){
 		global.neworOpen = true;
 		obj_recentFilesWindow.inputDelay = 10;
 	}
-
 	
+	
+	
+	
+	
+	// tag button
+	var tagButtonRectWidth = camera_get_view_width(camera_get_active()) / 8;
+	var tagButtonRectHeight = camera_get_view_height(camera_get_active()) / 20;
+	var tagButtonRectX1 = (camera_get_view_width(camera_get_active()) * .9) - (tagButtonRectWidth / 2);
+	var tagButtonRectY1 = (camera_get_view_height(camera_get_active()) * 0.05);
+	var tagButtonRectX2 = tagButtonRectX1 + tagButtonRectWidth;
+	var tagButtonRectY2 = tagButtonRectY1 + tagButtonRectHeight;
+	var mouseoverTag = point_in_rectangle(mouse_x, mouse_y, tagButtonRectX1, tagButtonRectY1, tagButtonRectX2, tagButtonRectY2) && !mouseoverCancel;
+	
+	draw_set_alpha(1);
+	draw_set_color(mouseoverTag ? global.colorThemeSelected1 : global.colorThemeBG);
+	draw_roundrect(tagButtonRectX1, tagButtonRectY1, tagButtonRectX2, tagButtonRectY2, false);
+	draw_set_color(rezonatorPink);
+	draw_roundrect(tagButtonRectX1, tagButtonRectY1, tagButtonRectX2, tagButtonRectY2, true);
+	
+	draw_set_color(global.colorThemeText);
+	draw_set_halign(fa_center);
+	draw_set_valign(fa_middle);
+	scr_adaptFont(scr_get_translation("msg_continue"), "M");
+	draw_text(floor(mean(tagButtonRectX1, tagButtonRectX2)), floor(mean(tagButtonRectY1, tagButtonRectY2)), scr_get_translation("Add Tags"));
+	
+	draw_text(tagButtonRectX2 + textBufferLeft, floor(tagButtonRectY2), ds_list_size(global.selectedTagSchemaFileList));
+
+	// click on continue button
+	if (mouseoverTag && mouse_check_button_released(mb_left)) {		
+		var dropDownOptionList = ds_list_create();
+		ds_list_copy(dropDownOptionList, global.includedTagSchemaFileList)
+		ds_list_insert(dropDownOptionList, 0,"Custom .json");
+		scr_createDropDown(mouse_x, mouse_y, dropDownOptionList, global.optionListTypeTagSchema);
+		
+	}
+
+		draw_text(camera_get_view_height(camera_get_active()) * 0.5, camera_get_view_height(camera_get_active()) * 0.92,scr_getStringOfList(global.selectedTagSchemaFileList));
+
 }

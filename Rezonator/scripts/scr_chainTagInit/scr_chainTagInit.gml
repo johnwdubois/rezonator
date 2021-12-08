@@ -18,6 +18,7 @@ function scr_chainTagInit(){
 	global.chainFieldList = ds_list_create();
 	global.chainEntryFieldList = ds_list_create();
 	
+	/*
 	// entityType (chain-level)
 	var entityTypeTagSet = ds_list_create();
 	var entityTypeShortcutSet = ds_list_create();
@@ -114,6 +115,6 @@ function scr_chainTagInit(){
 	ds_list_add(markCountTagSet, "0", "1", "2");
 	ds_list_add(markCountShortcutSet, "0", "1", "2");
 	scr_addToChainFieldMap(global.entryFieldMap, "markCount", markCountTagSet, markCountShortcutSet, true, true, true);
-	
+	*/
 
 }

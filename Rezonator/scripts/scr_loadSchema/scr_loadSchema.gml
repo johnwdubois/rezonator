@@ -9,26 +9,26 @@ function scr_loadSchema(autoload) {
 		show_debug_message("scr_loadSchema, AUTOLOAD");
 		if (global.importType == global.importType_IGT) {
 			if (os_type == os_macosx) {
-				fileName = global.rezonatorDirString + "/Schemas/igt_schema.json";
+				fileName = global.rezonatorDirString + "/Schemas/Import/igt_schema.json";
 			}
 			else {
-				fileName = global.rezonatorDirString + "\\Schemas\\IGT Schema.json";
+				fileName = global.rezonatorDirString + "\\Schemas\\Import\\IGT Schema.json";
 			}
 		}
 		else if (global.importType == global.importType_CSV) {
 			if (os_type == os_macosx) {
-				fileName = global.rezonatorDirString + "/Schemas/csv_schema.json";
+				fileName = global.rezonatorDirString + "/Schemas/Import/csv_schema.json";
 			}
 			else {
-				fileName = global.rezonatorDirString + "\\Schemas\\CSV Schema.json";
+				fileName = global.rezonatorDirString + "\\Schemas\\Import\\CSV Schema.json";
 			}
 		}
 		else if (global.importType == global.importType_CoNLLU) {
 			if (os_type == os_macosx) {
-				fileName = global.rezonatorDirString + "/Schemas/conll-u_schema.json";
+				fileName = global.rezonatorDirString + "/Schemas/Import/conll-u_schema.json";
 			}
 			else {
-				fileName = global.rezonatorDirString + "\\Schemas\\CoNLL-U Schema.json";
+				fileName = global.rezonatorDirString + "\\Schemas\\Import\\CoNLL-U Schema.json";
 			}
 		}
 		else {

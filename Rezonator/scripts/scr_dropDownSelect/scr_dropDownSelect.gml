@@ -377,5 +377,9 @@ function scr_dropDownSelect(optionSelected) {
 	{
 	    scr_searchChainOptions(optionSelected);
 	}
+	if (optionListType == global.optionListTypeTagSchema) //87
+	{
+	    scr_tagSchemaOptions(optionSelected);
+	}
 
 }

@@ -242,7 +242,7 @@ for (var i = 0; i < optionListSize; i++) {
 	draw_rectangle(optionRectX1 - clipX, optionRectY1 - clipY, optionRectX2 - clipX, optionRectY2 - clipY, false);
 	
 	
-	var isOpeningScreenOption = ds_map_exists(global.openingScreenDropDownMap,optionText);
+	var isOpeningScreenOption = ds_map_exists(global.openingScreenDropDownMap,optionText) or optionListType == global.optionListTypeTagSchema;
 	
 	
 	// check whether this option is expandable

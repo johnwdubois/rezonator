@@ -462,3 +462,7 @@ alarm[6] = 1;
 var defStr = "";
 defStr = (global.userName == "") ? scr_get_translation("msg_signin") : global.userName;
 global.inputBoxDefStr = defStr;
+
+global.includedTagSchemaFileList = ds_list_create();
+scr_addtoTagSchemaList();
+global.selectedTagSchemaFileList = ds_list_create();

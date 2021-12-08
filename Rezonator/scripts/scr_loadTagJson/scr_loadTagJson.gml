@@ -1,9 +1,9 @@
 // Script assets have changed for v2.3.0 see
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
-function scr_loadTagJson(){
-	
-	var fileName = get_open_filename_ext("Tag file|*.json", "", global.rezonatorSchemaDirString, "Open Tag JSON");
-	
+function scr_loadTagJson(fileName){
+	if(!is_string(fileName)){
+		fileName = get_open_filename_ext("Tag file|*.json", "", global.rezonatorSchemaDirString, "Open Tag JSON");
+	}
 	// make sure the file exists
 	if (fileName == "" or not file_exists(fileName)) {
 		show_debug_message("scr_loadTagJson ... ERROR: file does not exist");
