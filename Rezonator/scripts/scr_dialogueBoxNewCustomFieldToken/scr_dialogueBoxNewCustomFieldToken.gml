@@ -39,10 +39,12 @@ function scr_dialogueBoxNewCustomFieldToken() {
 	ds_map_add_map(tagMap, newField, newFieldMap);
 	
 	
+	scr_addNewFieldToNodes("token", newField);
+	
+	/*
 	// loop over all tokens and give their tagmaps this new field
 	var discourseSubMap = global.nodeMap[? global.discourseNode];
 	var tokenList = discourseSubMap[? "tokenList"];
-	
 
 	if (scr_isNumericAndExists(tokenList, ds_type_list)) {
 		
@@ -61,7 +63,7 @@ function scr_dialogueBoxNewCustomFieldToken() {
 		}
 	}
 	
-
+	*/
 	
 
 

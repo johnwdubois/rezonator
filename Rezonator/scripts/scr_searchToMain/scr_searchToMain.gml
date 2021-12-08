@@ -35,9 +35,5 @@ function scr_searchToMain(){
 	}
 	//currentCenterDisplayRow = preSwitchDisplayRow;
 	obj_control.scrollPlusYDest = obj_control.preSwitchDisplayRow;
-		
-	//wordLeftMarginDest = 170;
-	with (obj_alarm) {
-		alarm[0] = 5;
-	}
+	
 }

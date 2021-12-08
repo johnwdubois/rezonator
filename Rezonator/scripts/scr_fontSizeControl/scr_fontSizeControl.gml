@@ -8,9 +8,6 @@ function scr_fontSizeControl() {
 			if (keyboard_check(vk_shift)) {
 				if (global.fontSize > 0) {
 					global.fontSize--;
-					with (obj_alarm) {
-						alarm[0] = 5;
-					}
 				}
 				gridSpaceVerticalMin = gridSpaceVerticalMinOriginal + ((global.fontSize + 1) * 5);
 				//Vertical				
@@ -52,9 +49,6 @@ function scr_fontSizeControl() {
 			if (keyboard_check(vk_shift)) {
 				if (global.fontSize < 5) {
 					global.fontSize++;
-					with (obj_alarm) {
-						alarm[0] = 5;
-					}
 				}
 				gridSpaceVerticalMin = gridSpaceVerticalMinOriginal + ((global.fontSize + 1) * 5);
 				//vertical
@@ -105,9 +99,6 @@ function scr_fontSizeControl() {
 			if (keyboard_check(vk_shift)) {
 				if (global.fontSize > 0) {
 					global.fontSize--;
-					with (obj_alarm) {
-						alarm[0] = 5;
-					}
 				}
 				gridSpaceVerticalMin = gridSpaceVerticalMinOriginal + ((global.fontSize + 1) * 5);
 				//Vertical				
@@ -149,9 +140,6 @@ function scr_fontSizeControl() {
 			if (keyboard_check(vk_shift)) {
 				if (global.fontSize < 5) {
 					global.fontSize++;
-					with (obj_alarm) {
-						alarm[0] = 5;
-					}
 				}
 				gridSpaceVerticalMin = gridSpaceVerticalMinOriginal + ((global.fontSize + 1) * 5);
 				//vertical

@@ -91,7 +91,7 @@ function scr_mapViewerDrawNodeData(){
 									|| subsubMapKey == "displayTokenList"|| subsubMapKey == "targetList"|| subsubMapKey == "unitList"|| subsubMapKey == "chainList"
 									|| subsubMapKey == "linkIDList" || subsubMapKey == "setIDList" ||subsubMapKey == "goalLinkList"||subsubMapKey == "shortcutSet"
 									||subsubMapKey == "tokenList" || subsubMapKey == "entryList" || nodeShow == "entityMap" || scr_isNumericAndExists(subsubMapVal, ds_type_list));
-					show_debug_message(string(isList));
+		
 					if (isList && scr_isNumericAndExists(subsubMapVal, ds_type_list)) {
 						subsubMapValStr = scr_getStringOfList(subsubMapVal);
 					}

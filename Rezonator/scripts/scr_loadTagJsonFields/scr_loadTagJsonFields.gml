@@ -1,6 +1,6 @@
 // Script assets have changed for v2.3.0 see
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
-function scr_loadTagJsonFields(originalTagMap, originalFieldList, tagMapJson, nodeList){
+function scr_loadTagJsonFields(originalTagMap, originalFieldList, tagMapJson, nodeType){
 
 	if(!scr_isNumericAndExists(originalTagMap, ds_type_map)  or !scr_isNumericAndExists(tagMapJson, ds_type_map)){
 		exit;
@@ -40,7 +40,7 @@ function scr_loadTagJsonFields(originalTagMap, originalFieldList, tagMapJson, no
 		
 		if (ds_map_exists(originalTagMap, currentJsonField)) {
 			
-			if(nodeList == "token"){
+			if(nodeType == "token"){
 				if(!scr_isNumericAndExists(currentJsonMap, ds_type_map)){continue;}
 				var typeList = currentJsonMap[?"targetList"];
 				show_debug_message("field in map TOKEN targetList: " + scr_getStringOfList(typeList));
@@ -56,7 +56,7 @@ function scr_loadTagJsonFields(originalTagMap, originalFieldList, tagMapJson, no
 					}
 				}
 			}
-			else if(nodeList == "chunk"){
+			else if(nodeType == "chunk"){
 				if(!scr_isNumericAndExists(currentJsonMap, ds_type_map)){continue;}
 				var typeList = currentJsonMap[?"targetList"];
 				show_debug_message("field in map CHUNK targetList: " + scr_getStringOfList(typeList));
@@ -73,6 +73,7 @@ function scr_loadTagJsonFields(originalTagMap, originalFieldList, tagMapJson, no
 				}
 			}
 			else{
+				show_debug_message("exists in map!");
 				// if this field is already in the originalTagMap, we will add any tag from the json that is not already there
 				var originalFieldSubMap = originalTagMap[? currentJsonField];
 				var originalTagSet = originalFieldSubMap[? "tagSet"];
@@ -85,12 +86,10 @@ function scr_loadTagJsonFields(originalTagMap, originalFieldList, tagMapJson, no
 			}
 		}
 		else {
-			
-			
 
 			
 			//check for chunk fields when loading token map
-			if(nodeList == "token"){
+			if(nodeType == "token"){
 				if(!scr_isNumericAndExists(currentJsonMap, ds_type_map)){continue;}
 				var typeList = currentJsonMap[?"targetList"];
 				show_debug_message("field not in map TOKEN targetList: " + scr_getStringOfList(typeList));
@@ -101,7 +100,7 @@ function scr_loadTagJsonFields(originalTagMap, originalFieldList, tagMapJson, no
 					scr_addToListOnce(newFieldList, currentJsonField);
 				}
 			}
-			else if(nodeList == "chunk"){
+			else if(nodeType == "chunk"){
 
 				if(!scr_isNumericAndExists(currentJsonMap, ds_type_map)){continue;}
 				var typeList = currentJsonMap[? "targetList"];
@@ -114,6 +113,7 @@ function scr_loadTagJsonFields(originalTagMap, originalFieldList, tagMapJson, no
 				}
 			}
 			else{
+				show_debug_message("does not exist in map!");
 				// if this field is not in the originalTagMap at all, we will add its entire submap
 				ds_map_add_map(originalTagMap, currentJsonField, currentJsonMap);
 				scr_addToListOnce(originalFieldList, currentJsonField);
@@ -124,39 +124,47 @@ function scr_loadTagJsonFields(originalTagMap, originalFieldList, tagMapJson, no
 		currentJsonField = ds_map_find_next(tagMapJson, currentJsonField);
 	}
 	
+	var newFieldListSize = ds_list_size(newFieldList);
+	show_debug_message("NEW FIELD LIST: "+ scr_getStringOfList(newFieldList))
 	
-	if(nodeList == "token"){
-		nodeList = discourseSubMap[? "tokenList"];
+	if(nodeType == "token"){
+		for(var i = 0; i < newFieldListSize; i ++){
+			show_debug_message("field: "+ string(newFieldList[|i]));
+			scr_addNewFieldToNodes("token", newFieldList[|i]);
+		}
 	}
-	else if(nodeList == "unit"){
-		nodeList = discourseSubMap[? "unitList"];
+	else if(nodeType == "unit"){
+		for(var i = 0; i < newFieldListSize; i ++){
+			scr_addNewFieldToNodes("unit", newFieldList[|i]);
+		}
 	}
-	else if(nodeList == "chunk"){
-		nodeList = global.nodeMap[? "chunkList"];
+	else if(nodeType == "chunk"){
 	}
 	
+	
+	/*
 	var chainField = false;
 	var entryField = false;
 	var linkField = false;
-	if (nodeList == "chain" || nodeList == "entry" || nodeList == "link") {
-		if (nodeList == "chain") chainField = true;
-		if (nodeList == "entry") entryField = true;
-		if (nodeList == "link"){ linkField = true;
-			nodeList = global.nodeMap[? "treeList"];
+	if (nodeType == "chain" || nodeType == "entry" || nodeType == "link") {
+		if (nodeType == "chain") chainField = true;
+		if (nodeType == "entry") entryField = true;
+		if (nodeType == "link"){ linkField = true;
+			nodeType = global.nodeMap[? "treeList"];
 		}
 		else{
-			nodeList = global.nodeMap[? "nodeList"];
+			nodeType = global.nodeMap[? "nodeType"];
 		}
 	}
 	
 
 		
-	// loop through the given nodeList to add new fields
-	var nodeListSize = ds_list_size(nodeList);
+	// loop through the given nodeType to add new fields
+	var nodeTypeSize = ds_list_size(nodeType);
 	var newFieldListSize = ds_list_size(newFieldList);
 	//show_debug_message(""+string(newFieldListSize))
-	for (var i = 0; i < nodeListSize; i++) {
-		var currentNode = nodeList[| i];
+	for (var i = 0; i < nodeTypeSize; i++) {
+		var currentNode = nodeType[| i];
 		if (linkField){		
 			var currentSubMap = global.treeMap[? currentNode];
 		}
@@ -184,7 +192,7 @@ function scr_loadTagJsonFields(originalTagMap, originalFieldList, tagMapJson, no
 			currentTagMap[? currentNewField] = "";
 		}
 	}
-	
+	*/
 
 	ds_list_destroy(newFieldList);
 

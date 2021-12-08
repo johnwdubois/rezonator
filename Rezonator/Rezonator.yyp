@@ -310,6 +310,7 @@
     {"id":{"name":"scr_addToNodeMap","path":"scripts/scr_addToNodeMap/scr_addToNodeMap.yy",},"order":0,},
     {"id":{"name":"scr_deleteAllChains","path":"scripts/scr_deleteAllChains/scr_deleteAllChains.yy",},"order":51,},
     {"id":{"name":"scr_randomChainLoop","path":"scripts/scr_randomChainLoop/scr_randomChainLoop.yy",},"order":11,},
+    {"id":{"name":"scr_addNewFieldToNodes","path":"scripts/scr_addNewFieldToNodes/scr_addNewFieldToNodes.yy",},"order":11,},
     {"id":{"name":"spr_shapeOptions","path":"sprites/spr_shapeOptions/spr_shapeOptions.yy",},"order":34,},
     {"id":{"name":"scr_panelPane_drawTabs","path":"scripts/scr_panelPane_drawTabs/scr_panelPane_drawTabs.yy",},"order":0,},
     {"id":{"name":"scr_panelPane_drawChains1ToMany","path":"scripts/scr_panelPane_drawChains1ToMany/scr_panelPane_drawChains1ToMany.yy",},"order":1,},
