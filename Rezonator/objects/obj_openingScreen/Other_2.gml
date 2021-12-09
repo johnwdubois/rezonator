@@ -89,5 +89,5 @@ global.build = false;
 global.rezzles = true;
 
 
-global.steamAPI = false;
+global.steamAPI = true;
 alarm[7] = 3;

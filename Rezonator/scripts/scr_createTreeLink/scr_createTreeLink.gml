@@ -38,6 +38,7 @@ function scr_createTreeLink(clickedEntry){
 	if(global.steamAPI){
 		var currentMaxTreeHeight = steam_get_stat_int("SA_entry-count");
 		var currentTreeHeight = clickedEntrySubMap[? "level"];
+		
 		if(currentTreeHeight > currentMaxTreeHeight){
 			steam_set_stat_int("SA_tree-height",currentTreeHeight);
 			if(steam_get_stat_int("SA_tree-height") >= 10 ){

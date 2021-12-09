@@ -16,4 +16,5 @@ steam_clear_achievement("SA_mw-search");
 steam_clear_achievement("SA_export");
 steam_clear_achievement("SA_clique");
 
+steam_reset_all_stats();
 }
