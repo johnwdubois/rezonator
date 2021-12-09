@@ -347,18 +347,18 @@ function scr_preImportScreen(){
 	draw_set_valign(fa_middle);
 	scr_adaptFont(scr_get_translation("msg_continue"), "M");
 	draw_text(floor(mean(tagButtonRectX1, tagButtonRectX2)), floor(mean(tagButtonRectY1, tagButtonRectY2)), scr_get_translation("Add Tags"));
-	
-	draw_text(tagButtonRectX2 + textBufferLeft, floor(tagButtonRectY2), ds_list_size(global.selectedTagSchemaFileList));
+
+	if (mouseoverTag) scr_createTooltip(floor(tagButtonRectX1),floor(mean(tagButtonRectY1, tagButtonRectY2)),"Tag schemas imported: "+ string( ds_list_size(global.selectedTagSchemaFileList)),obj_tooltip.arrowFaceRight);
 
 	// click on continue button
 	if (mouseoverTag && mouse_check_button_released(mb_left)) {		
 		var dropDownOptionList = ds_list_create();
 		ds_list_copy(dropDownOptionList, global.includedTagSchemaFileList)
-		ds_list_insert(dropDownOptionList, 0,"Custom .json");
-		scr_createDropDown(mouse_x, mouse_y, dropDownOptionList, global.optionListTypeTagSchema);
+		ds_list_insert(dropDownOptionList, 0,"Custom tag schema");
+		scr_createDropDown(floor(tagButtonRectX1),floor(tagButtonRectY2), dropDownOptionList, global.optionListTypeTagSchema);
 		
 	}
 
-		draw_text(camera_get_view_height(camera_get_active()) * 0.5, camera_get_view_height(camera_get_active()) * 0.92,scr_getStringOfList(global.selectedTagSchemaFileList));
+		//draw_text(camera_get_view_height(camera_get_active()) * 0.5, camera_get_view_height(camera_get_active()) * 0.92,scr_getStringOfList(global.selectedTagSchemaFileList));
 
 }

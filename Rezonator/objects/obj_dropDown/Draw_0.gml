@@ -63,6 +63,12 @@ for (var i = 0; i < optionListSize; i++) {
 			currentOptionStr = chainName;
 		}
 	}
+	//get name of file instead
+	if(optionListType == global.optionListTypeTagSchema){
+		if(currentOptionStr != "Custom tag schema"){
+			currentOptionStr = filename_name(currentOptionStr);
+		}
+	}
 
 	var currentOptionStrWidth = string_width(currentOptionStr) + string_width(shortcutStr) + (textBuffer * 2);
 	
@@ -296,6 +302,12 @@ for (var i = 0; i < optionListSize; i++) {
 		var subMap = global.nodeMap[? optionText];
 		if (scr_isNumericAndExists(subMap, ds_type_map)) {
 			optionTextStr = subMap[? "name"];
+		}
+	}
+	//get name of file instead
+	if(optionListType == global.optionListTypeTagSchema){
+		if(optionTextStr != "Custom tag schema"){
+			optionTextStr = filename_name(optionTextStr);
 		}
 	}
 
