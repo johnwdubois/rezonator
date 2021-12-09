@@ -168,5 +168,11 @@ function scr_quickLinkCreation(){
 	ds_grid_destroy(gridOfFutureChains);
 	
 	scr_refreshCliques();
+	if(global.steamAPI){
+		if(!steam_get_achievement("SA_quicklink")){
+			steam_set_achievement("SA_quicklink");
+		}
+	}
 	obj_chain.quickLinkCreated = false;
+	
 }

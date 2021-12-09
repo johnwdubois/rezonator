@@ -6,6 +6,13 @@ function scr_createNewSearch(searchTermList){
 	
 
 		var searchTermListCopy = ds_list_create();
+		if(ds_list_size(searchTermList) >= 2){
+			if(global.steamAPI){
+				if(!steam_get_achievement("SA_quicklink")){
+					steam_set_achievement("SA_quicklink");
+				}
+			}
+		}
 		
 		ds_list_copy(searchTermListCopy, searchTermList);
 	

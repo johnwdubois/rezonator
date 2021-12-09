@@ -123,4 +123,13 @@ function scr_exportGrids() {
 	// destroy temp header lists
 	ds_list_destroy(tempChainGridHeaderList);
 	ds_list_destroy(tempSearchGridHeaderList);
+	
+	
+
+	if(global.steamAPI){
+		if(!steam_get_achievement("SA_export")){
+			steam_set_achievement("SA_export");
+		}
+	}
+	
 }

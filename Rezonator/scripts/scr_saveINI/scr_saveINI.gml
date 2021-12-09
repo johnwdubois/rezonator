@@ -68,6 +68,12 @@ function scr_saveINI() {
 		ds_list_copy(tempList3, global.recentFilesList);
 	}
 	ds_map_add_list(map, "recentFilesList", tempList3);
+	
+	var tempList4 = ds_list_create();
+	if (global.usedImports != undefined) {
+		ds_list_copy(tempList4, global.usedImports);
+	}
+	ds_map_add_list(map, "usedImports", tempList4);
 
 
 

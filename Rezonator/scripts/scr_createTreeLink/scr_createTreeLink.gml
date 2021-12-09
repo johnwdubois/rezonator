@@ -34,4 +34,17 @@ function scr_createTreeLink(clickedEntry){
 	
 	//update tree subamp
 	ds_list_add(treeSubMap[?"linkIDList"], linkID);
+	
+	if(global.steamAPI){
+		var currentMaxTreeHeight = steam_get_stat_int("SA_entry-count");
+		var currentTreeHeight = clickedEntrySubMap[? "level"];
+		if(currentTreeHeight > currentMaxTreeHeight){
+			steam_set_stat_int("SA_tree-height",currentTreeHeight);
+			if(steam_get_stat_int("SA_tree-height") >= 10 ){
+				if(!steam_get_achievement("SA_tree-10")){
+					steam_set_achievement("SA_tree-10");
+				}
+			}
+		}
+	}
 }

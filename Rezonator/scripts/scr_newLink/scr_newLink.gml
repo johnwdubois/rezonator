@@ -225,7 +225,22 @@ function scr_newLink(ID) {
 		}
 		scr_alignChain2ElectricBoogaloo(obj_chain.currentFocusedChainID);
 	}
+	if(global.steamAPI){
+		var currentMaxChainLength = steam_get_stat_int("SA_entry-count");
+		var currentChainLength = ds_list_size(idList);
+		if(currentChainLength > currentMaxChainLength){
+			steam_set_stat_int("SA_entry-count",currentChainLength);
+			if(steam_get_stat_int("SA_entry-count") >= 100 ){
+				if(!steam_get_achievement("SA_trail-100")){
+					steam_set_achievement("SA_trail-100");
+				}
+			}
+		}
+	}
+	
 	
 	show_debug_message("scr_newLink() ... end of script for ID: " + string(ID));
+	
+	
 
 }

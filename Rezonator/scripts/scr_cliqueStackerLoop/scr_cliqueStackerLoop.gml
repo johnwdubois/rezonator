@@ -38,5 +38,11 @@ function scr_cliqueStackerLoop(){
 			scr_unitClicked(currentCliqeUnit);
 		}
 	}
+	
+	if(global.steamAPI){
+		if(!steam_get_achievement("SA_clique")){
+			steam_set_achievement("SA_clique");
+		}
+	}
 
 }

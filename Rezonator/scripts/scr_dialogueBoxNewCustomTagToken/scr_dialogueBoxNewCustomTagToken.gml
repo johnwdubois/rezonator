@@ -49,6 +49,12 @@ function scr_dialogueBoxNewCustomTagToken() {
 			if(scr_isNumericAndExists(tokenSubMap, ds_type_map)){
 				var tokenTagMap = tokenSubMap[? "tagMap"];
 				// set the new value in this token's tagmap
+				if(global.steamAPI){
+					if(!steam_get_achievement("SA_tag-token")){
+						steam_set_achievement("SA_tag-token");
+					}
+				}
+
 				tokenTagMap[? obj_control.tokenFieldToChange] = obj_control.inputText;
 			}
 			obj_control.tokenToChange = "";

@@ -18,6 +18,7 @@ global.readHintHide = false;
 
 global.recentFilesMap = ds_map_create();
 global.recentFilesList = ds_list_create();
+global.usedImports = ds_list_create();
 
 
 global.importType_Default = 0;

@@ -71,6 +71,9 @@ function scr_loadINI() {
 				if(ds_map_find_value(map, "recentFilesList") != undefined){
 					global.recentFilesList = ds_map_find_value(map, "recentFilesList");
 				}
+				if(ds_map_find_value(map, "usedImports") != undefined){
+					global.usedImports = ds_map_find_value(map, "usedImports");
+				}
 
 
 				if (global.rememberMe) {
