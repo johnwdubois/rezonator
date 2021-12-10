@@ -1,5 +1,7 @@
 function scr_groupStackerLoop(){
 	
+	global.delayInput = 0;
+	
 	show_debug_message("scr_groupStackerLoop");
 	
 	// Set script variables
@@ -14,7 +16,7 @@ function scr_groupStackerLoop(){
 
 		if (ds_list_find_value(global.importGridColNameList, groupColLoop) == "Group") {
 			groupCol = groupColLoop;
-			show_debug_message("scr_groupStackerLoop() ... groupCol: " + string(groupCol));
+			show_debug_message("scr_groupStackerLoop ... groupCol: " + string(groupCol));
 			break;
 		}
 
@@ -27,7 +29,7 @@ function scr_groupStackerLoop(){
 		inst.alertWindowActive = true;
 		obj_control.noTurnFound = true;
 		splitSave = false;
-
+		show_debug_message("scr_groupStackerLoop, splitSave is false. Exiting...");
 		exit;	
 	}
 	
@@ -83,4 +85,6 @@ function scr_groupStackerLoop(){
 		ds_list_clear(currentUnitList);
 	}
 	splitSave = false;
+	
+	global.delayInput = 5;
 }
