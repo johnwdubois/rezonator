@@ -13,7 +13,7 @@ function scr_scrollBarHorizontal(listSize,colWidth,scrollBackColor, scrollBarCol
 	if (functionChainList_currentTab == functionChainList_tabTree) treeTab = true;
 	
 	var minScrollHorPlusX = (treeTab) ? windowWidth - obj_panelPane.treeTabScrollMin : windowWidth - (listSize * colWidth);
-	var maxScrollHorPlusX = 16;
+	var maxScrollHorPlusX = 0;
 	
 	// Set the scroll button size
 	var buttonSize = max(20, window_get_width() * 0.010416);

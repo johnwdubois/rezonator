@@ -41,7 +41,7 @@ function scr_panelPane_drawUnits1toManyInnerLoop(tokenID, drawDropDowns, strHeig
 		
 		// get BG rect coordinates
 		var colWidth = windowWidth/obj_panelPane.unit1toMColAmount;
-		var cellRectX1 = plusX + scrollHorPlusX-16;
+		var cellRectX1 = plusX + scrollHorPlusX;
 		var cellRectX2 = cellRectX1 + colWidth;
 		var mouseoverCell = point_in_rectangle(mouse_x, mouse_y, cellRectX1, cellRectY1, cellRectX2, cellRectY2) && !mouseoverCancel;
 		

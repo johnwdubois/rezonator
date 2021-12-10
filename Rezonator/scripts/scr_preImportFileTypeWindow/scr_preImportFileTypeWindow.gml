@@ -7,7 +7,6 @@ function scr_preImportFileTypeWindow(){
 	
 	var mouseoverCancel = instance_exists(obj_dialogueBox);
 	
-		
 	var backgroundWindowX1 = floor(camWidth * 0.04);
 	var backgroundWindowX2 = floor(camWidth * 0.96);
 	var backgroundWidth = backgroundWindowX2 - backgroundWindowX1;

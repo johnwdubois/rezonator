@@ -255,11 +255,11 @@ leftPaneStrHeight = 0;
 
 selectListPrevIndex = -1;
 
-unit1toMColAmount = 6;
-unit1to1ColAmount = 6;
+unit1toMColAmount = 1;
+unit1to1ColAmount = 1;
 chain1toMColAmount = 6;
 chain1to1ColAmount = 2;
-chunk1to1ColAmount = 6;
+chunk1to1ColAmount = 1;
 
 
 #macro EVENT_TICK 0

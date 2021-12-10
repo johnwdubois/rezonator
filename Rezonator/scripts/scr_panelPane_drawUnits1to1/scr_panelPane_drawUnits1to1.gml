@@ -122,56 +122,59 @@ function scr_panelPane_drawUnits1to1() {
 				draw_rectangle(colRectX1 - clipX, unitRectY1 - clipY, colRectX2 - clipX, unitRectY2 - clipY, false);
 				
 			
-				// dropdown buttons
-				var dropDownButtonX1 = colRectX2 - sprite_get_width(spr_dropDown) - 4;
-				if (lineStateLTR){
-					if(i == headerListSize - 1) dropDownButtonX1 -= global.scrollBarWidth;
-				}
-				else {
-					if(i == 0) dropDownButtonX1 -= global.scrollBarWidth;
-				}
-				
-				var dropDownButtonY1 = unitRectY1;
-				var dropDownButtonX2 = dropDownButtonX1 + sprite_get_width(spr_dropDown);
-				var dropDownButtonY2 = unitRectY2;
-				var mouseoverDropDownButton = false;
-				if (mouseoverunitRect) mouseoverDropDownButton = point_in_rectangle(mouse_x, mouse_y, dropDownButtonX1, dropDownButtonY1, dropDownButtonX2, dropDownButtonY2);
-					
-				draw_sprite_ext(spr_dropDown, 0, mean(dropDownButtonX1, dropDownButtonX2) - clipX, mean(dropDownButtonY1, dropDownButtonY2) - clipY, 1, 1, 0, global.colorThemeText, 1);
-				if (mouseoverDropDownButton) {
-					scr_createTooltip(mean(dropDownButtonX1, dropDownButtonX2), dropDownButtonY2, scr_get_translation("option-tag"), obj_tooltip.arrowFaceUp);
-					draw_set_alpha(1);
-					draw_set_color(global.colorThemeBorders);
-					draw_rectangle(dropDownButtonX1 - clipX, dropDownButtonY1 - clipY, dropDownButtonX2 - clipX, dropDownButtonY2 - clipY, true);
-				
-					if (mouse_check_button_released(mb_left)) {
-								
-						// get submap for this field
-						var unitTagMap = global.nodeMap[? "unitTagMap"];
-						var fieldSubMap = unitTagMap[? currentField];
-					
-						// get the tagSet for this field
-						var tagSet = fieldSubMap[? "tagSet"];
-						if (scr_isNumericAndExists(tagSet, ds_type_list)) {
-					
-							// create dropdown
-							var dropDownOptionList = ds_list_create();
-							ds_list_copy(dropDownOptionList, tagSet);
-							ds_list_insert(dropDownOptionList, 0, "option_add-to-tag-set");
 
-							obj_control.unitToChange = currentUnitID;
-							obj_control.unitFieldToChange = currentField;
-							var dropDownX = colRectX1;
-							var dropDownY = unitRectY2;						
-							scr_createDropDown(dropDownX, dropDownY, dropDownOptionList, global.optionListTypeUnitTagMap);
 
-						}
-					}
-				}
 			}
 			draw_set_alpha(1);
 
-	
+			// dropdown buttons
+			var dropDownButtonX1 = colRectX2 - sprite_get_width(spr_dropDown) - 4;
+			if (lineStateLTR){
+				if(i == headerListSize - 1) dropDownButtonX1 -= global.scrollBarWidth;
+			}
+			else {
+				if(i == 0) dropDownButtonX1 -= global.scrollBarWidth;
+			}
+				
+			var dropDownButtonY1 = unitRectY1;
+			var dropDownButtonX2 = dropDownButtonX1 + sprite_get_width(spr_dropDown);
+			var dropDownButtonY2 = unitRectY2;
+			var mouseoverDropDownButton = false;
+								
+			if (mouseoverunitRect) mouseoverDropDownButton = point_in_rectangle(mouse_x, mouse_y, dropDownButtonX1, dropDownButtonY1, dropDownButtonX2, dropDownButtonY2);
+					
+				
+								
+			if (mouseoverDropDownButton) {
+				scr_createTooltip(mean(dropDownButtonX1, dropDownButtonX2), dropDownButtonY2, scr_get_translation("option-tag"), obj_tooltip.arrowFaceUp);
+				draw_set_alpha(1);
+				draw_set_color(global.colorThemeBorders);
+				draw_rectangle(dropDownButtonX1 - clipX, dropDownButtonY1 - clipY, dropDownButtonX2 - clipX, dropDownButtonY2 - clipY, true);
+				
+				if (mouse_check_button_released(mb_left)) {
+								
+					// get submap for this field
+					var unitTagMap = global.nodeMap[? "unitTagMap"];
+					var fieldSubMap = unitTagMap[? currentField];
+					
+					// get the tagSet for this field
+					var tagSet = fieldSubMap[? "tagSet"];
+					if (scr_isNumericAndExists(tagSet, ds_type_list)) {
+					
+						// create dropdown
+						var dropDownOptionList = ds_list_create();
+						ds_list_copy(dropDownOptionList, tagSet);
+						ds_list_insert(dropDownOptionList, 0, "option_add-to-tag-set");
+
+						obj_control.unitToChange = currentUnitID;
+						obj_control.unitFieldToChange = currentField;
+						var dropDownX = colRectX1;
+						var dropDownY = unitRectY2;						
+						scr_createDropDown(dropDownX, dropDownY, dropDownOptionList, global.optionListTypeUnitTagMap);
+
+					}
+				}
+			}
 	
     
 		    // Outline the rectangle in black
@@ -186,6 +189,7 @@ function scr_panelPane_drawUnits1to1() {
 			
 			var mouseOverCell = scr_pointInRectangleClippedWindow(mouse_x,mouse_y, colRectX1, unitRectY1, colRectX2, unitRectY2);
 			if(mouseOverCell){
+				draw_sprite_ext(spr_dropDown, 0, mean(dropDownButtonX1, dropDownButtonX2) - clipX, mean(unitRectY1, unitRectY2) - clipY, 1, 1, 0, global.colorThemeText, 1);
 				obj_control.hoverTextCopy = currentStr;
 			}
 

@@ -48,7 +48,7 @@ function scr_panelPane_drawTree1ToMany(){
 
 	scr_surfaceStart();
 	
-	var currentScrollPlusY = scrollPlusY-16;
+	var currentScrollPlusY = scrollPlusY;
 	
 	var maxLevel = -1;
 	if (ds_map_exists(treeSubMap, "maxLevel")) {

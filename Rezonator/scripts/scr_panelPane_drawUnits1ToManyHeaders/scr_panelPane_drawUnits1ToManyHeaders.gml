@@ -18,7 +18,7 @@ function scr_panelPane_drawUnits1ToManyHeaders(){
 	for (var i = 0; i < headerListSize; i++) {
 		
 		// get header coordinates
-		var headerRectX1 = plusX + scrollHorPlusX-16;
+		var headerRectX1 = plusX + scrollHorPlusX;
 		var headerRectY1 = y;
 		var headerRectX2 = headerRectX1 + colWidth;
 		var headerRectY2 = headerRectY1 + headerHeight;
