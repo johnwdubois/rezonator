@@ -5,8 +5,9 @@ function scr_preImportFileTypeWindow(){
 	var camWidth = camera_get_view_width(camera_get_active());
 	var camHeight = camera_get_view_height(camera_get_active());
 	
-	var mouseoverCancel = instance_exists(obj_dialogueBox);
+	var mouseoverCancel = instance_exists(obj_dialogueBox) || instance_exists(obj_dropDown);
 	
+		
 	var backgroundWindowX1 = floor(camWidth * 0.04);
 	var backgroundWindowX2 = floor(camWidth * 0.96);
 	var backgroundWidth = backgroundWindowX2 - backgroundWindowX1;
@@ -161,9 +162,5 @@ function scr_preImportFileTypeWindow(){
 	
 	draw_set_color(rezonatorPink)
 	draw_line_width(backgroundWindowX1,y,backgroundWindowX2,y, 1)
-	
-	
-	
 
-	
 }
