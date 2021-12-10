@@ -498,7 +498,7 @@ for (var i = 0; i < dropDownInstanceNumber; i++) {
 	}
 }
 
-if (ableToMouseover and ableToClick and mouse_check_button_released(mb_left) 
+if (ableToMouseover and ableToClick and mouse_check_button_pressed(mb_left) 
 and !mouseInDropDown and !scrollBarHoldingDelay) {
 	if (room == rm_mainScreen) {
 		obj_menuBar.menuClickedIn = false;
