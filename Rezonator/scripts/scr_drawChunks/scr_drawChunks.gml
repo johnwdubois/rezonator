@@ -166,20 +166,16 @@ function scr_drawChunks(){
 			if (!obj_control.hideChunks || ds_list_size(currentChunkInChainsList) >= 1) {
 				draw_set_color(colorOfRect);
 				draw_set_alpha(1);
-				scr_drawRectWidth(chunkRectX1, chunkRectY1, chunkRectX2, chunkRectY2, 3, (typeOfChain == "trail"));
+				scr_drawRectWidth(chunkRectX1, chunkRectY1, chunkRectX2, chunkRectY2, chunkInFocusedChain ? 4 : 3, (typeOfChain == "trail"));
 			}
 		
 			// if this chunk is focused, fill it in and draw the focused sqaures
-			if (obj_chain.currentFocusedChunkID == currentChunkID || chunkInFocusedChain) {
-				draw_set_color((obj_chain.mouseLineWordID == currentChunkID || obj_chain.mouseLineWordID ==  scr_getFirstWordOfChunk(currentChunkID)) ? colorOfRect : global.colorThemeSelected1);
+			if (obj_chain.currentFocusedChunkID == currentChunkID || obj_chain.mouseLineWordID == currentChunkID || obj_chain.mouseLineWordID == scr_getFirstWordOfChunk(currentChunkID)) {
+				draw_set_color(colorOfRect);
 				draw_set_alpha(.5);
 				draw_rectangle(chunkRectX1, chunkRectY1, chunkRectX2, chunkRectY2, false);			
 
-				var fontScale = 1;
-			    draw_sprite_ext(spr_focusPoint, 0, chunkRectX1 - obj_control.wordDrawGridFocusedAnimation, chunkRectY1 - obj_control.wordDrawGridFocusedAnimation, fontScale, fontScale, 0, colorOfRect, 1);
-			    draw_sprite_ext(spr_focusPoint, 0, chunkRectX2 + obj_control.wordDrawGridFocusedAnimation, chunkRectY1 - obj_control.wordDrawGridFocusedAnimation, fontScale, fontScale, 0, colorOfRect, 1);
-			    draw_sprite_ext(spr_focusPoint, 0, chunkRectX1 - obj_control.wordDrawGridFocusedAnimation, chunkRectY2 + obj_control.wordDrawGridFocusedAnimation, fontScale, fontScale, 0, colorOfRect, 1);
-			    draw_sprite_ext(spr_focusPoint, 0, chunkRectX2 + obj_control.wordDrawGridFocusedAnimation, chunkRectY2 + obj_control.wordDrawGridFocusedAnimation, fontScale, fontScale, 0, colorOfRect, 1);	    
+		
 			}
 		}
 	}

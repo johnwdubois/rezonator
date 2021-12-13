@@ -1,6 +1,6 @@
 // Script assets have changed for v2.3.0 see
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
-function scr_updateChainShowList(inChainsList, inEntryList, chainShowList, inBoxList,tokenID,rectX1,rectY1,rectX2,rectY2){
+function scr_updateChainShowList(inChainsList, inEntryList, chainShowList, inBoxList,tokenID,rectX1,rectY1,rectX2,rectY2, mouseOverToken){
 	
 	// get size of inChainsList
 	var inChainsListSize = 0;
@@ -52,12 +52,18 @@ function scr_updateChainShowList(inChainsList, inEntryList, chainShowList, inBox
 				else if (chainType == "trail") draw_roundrect(rectX1, rectY1, rectX2, rectY2, false);
 				draw_set_alpha(1);
 			}
+			else if (mouseOverToken) {
+				draw_set_color(merge_color(global.colorThemeSelected1, global.colorThemeBG, 0.5));
+				if (chainType == "resonance") draw_rectangle(rectX1, rectY1, rectX2, rectY2, false);
+				else if (chainType == "trail") draw_roundrect(rectX1, rectY1, rectX2, rectY2, false);
+			}
+
 				
 			// draw border around token if its in a chain
 			if (chainVisible) {
 				draw_set_color(chainColor);
 				draw_set_alpha(1);
-				scr_drawRectWidth(rectX1, rectY1, rectX2, rectY2, 2, chainType == "trail");
+				scr_drawRectWidth(rectX1, rectY1, rectX2, rectY2, (obj_chain.currentFocusedChainID == currentChain) ? 3 : 2, chainType == "trail");
 			}
 			
 			

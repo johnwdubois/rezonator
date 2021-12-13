@@ -54,10 +54,10 @@ function scr_drawChainPickwhip(){
 				if (currentChainVisible) {
 					if (not mouseLineHide) {
 						if (chainType == "resonance") {
-							draw_line_width(mouseLineX, mouseLineY, mouse_x, mouse_y, 2);
+							draw_line_width(mouseLineX, mouseLineY, mouse_x, mouse_y, 3);
 						}
 						else if (chainType == "trail") {
-							scr_drawCurvedLine(mouseLineX, mouseLineY, mouse_x, mouse_y, currentChainColor);
+							scr_drawCurvedLine(mouseLineX, mouseLineY, mouse_x, mouse_y, currentChainColor, 3);
 						}
 						if ((obj_chain.showRezArrows and chainType = "resonance") or (obj_chain.showTrackArrows and chainType = "trail")) {
 							var arrowAngle = point_direction(mouseLineX, mouseLineY, mouse_x, mouse_y);
