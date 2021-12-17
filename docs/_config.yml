@@ -11,6 +11,6 @@ theme: jekyll-theme-leap-day
 show_downloads: true
 
 github:
-  repository_url: https://johnwdubois.github.io/Test-Documentation/
+  repository_url: https://johnwdubois.github.io/rezonator/
   zip_url: https://github.com/johnwdubois/rezonator/raw/master/Executables/Windows/Rezonator%201.0.8.zip
   tar_url: https://github.com/johnwdubois/rezonator/raw/master/Executables/Mac/Rezonator%201.0.8.dmg.zip
