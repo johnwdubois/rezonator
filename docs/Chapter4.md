@@ -154,11 +154,11 @@ All of the Contexts can be activated at the same time, or any combination of the
 
 In order to begin using audio in Rezonator, you’ll need to open an audio file. To do so you can, **Left Mouse Click** on the **Media** option from the **File** dropdown. **Note:** Rezonator only supports .OGG audio files.
 
-IMAGE
+![audio drop down](https://user-images.githubusercontent.com/46977535/146619059-b05fa09b-0887-406f-a330-0fd680131090.png)
 
 If the audio file successfully imports, then the Audio Interface will appear, like so:
 
-IMAGE
+![audio](https://user-images.githubusercontent.com/46977535/146619065-3830ac1b-d1e1-44f3-b42e-dd6196f45ab0.png)
 
 A **Left Mouse Click** on the media icon in at the bottom of the toolbar will also toggle this interface
 
@@ -166,11 +166,11 @@ A **Left Mouse Click** on the media icon in at the bottom of the toolbar will al
 
 On the leftmost panel, we display the name and file location of the current Audio Track:
 
-IMAGE
+![audio-file](https://user-images.githubusercontent.com/46977535/146619072-9d56c624-2313-4988-99fc-b0f788f5e5ef.png)
 
 At the top-middle portion of the interface is the **Play/Pause Button**. A Left Mouse Click on this button will play or pause the current Audio track. Also, pressing the **Spacebar** on you keyboard will play or pause the current Audio Track
 
-IMAGE
+![audio-playhead](https://user-images.githubusercontent.com/46977535/146619079-ccfdafd7-4372-4281-9394-da3741030cb3.png)
 
 On top of the Seek Bar is the **Playhead**, represented by an orange circle. This is a visual representation of what position in the current Audio Track is being played.
 
@@ -178,7 +178,7 @@ The Playhead can be clicked and dragged with a **Left Mouse Hold** to a differen
 
 On the Right Most side of the Audio Interface is the **Click word to jump audio** button. When this option is toggled on, you can click on a word in the Main Screen to jump the audio playhead to the start time of the unit containing it.
 
-IMAGE
+![audio-clicktoggle](https://user-images.githubusercontent.com/46977535/146619087-0641df50-7fcb-4f0a-95b9-bb6b3419a41f.png)
 
 ## 4.6 Export
 
