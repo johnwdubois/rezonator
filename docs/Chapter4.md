@@ -81,6 +81,7 @@ In order for the Filter Screen to be activated, at least one Chain must be Picke
 
 There are 2 ways to activate the Filter Screen: 
 * Click on the **Filter Button in the Tool Pane**.
+
 ![Screen Shot 2021-12-17 at 12 24 27 PM (2)](https://user-images.githubusercontent.com/36257165/146603689-179f5111-62fc-447b-88d5-2e08ff967f46.png)
 * Or you can press **CTRL** and **P** on the keyboard. (**Command** and **P** for Mac)
 
@@ -88,18 +89,21 @@ There are 2 ways to activate the Filter Screen:
 
 The Filter Screen allows you to view the Picked Chains in different **Contexts**. These are activated by the **Context Button**. Select the Context Button in the right hand toolbar and then click on Above, Between, or Below.
 * The **Context Above** button will add all the lines above the Picked Chains to the Filter Screen.
-* IMAGE
+![Screen Shot 2021-12-17 at 3 03 22 PM (2) 3](https://user-images.githubusercontent.com/36257165/146617693-7d4ad93d-a340-47f0-bc3e-bc169b8f660e.png)
+
 * The **Context Between** button will add the lines in between the lines within the Picked Chains.
-* IMAGE
+![Screen Shot 2021-12-17 at 3 03 22 PM (2) 2](https://user-images.githubusercontent.com/36257165/146617737-e9c60edd-f4d4-4dd3-b90b-98eb38c714cf.png)
+
 * The **Context Below** button will add all the lines below the Picked Chains to the Filter Screen.
-* IMAGE
+![Screen Shot 2021-12-17 at 3 03 22 PM (2)](https://user-images.githubusercontent.com/36257165/146617745-67b3a8bf-6bc3-437c-8209-ac2205e8fec8.png)
+
 All of the Contexts can be activated at the same time, or any combination of the three options.
 
 ## 4.4 Unique Nav Window Tabs
 
 ### 4.4.1 Show Tab
 
-IMAGE
+<img width="1015" alt="Screen Shot 2021-12-17 at 3 08 48 PM" src="https://user-images.githubusercontent.com/36257165/146617967-5ce355b7-ddfc-4533-904f-9c70c9f4fe23.png">
 
 * Functionality
     * Here you can create a group of stacks called a **Show**. These shows can be played using the sequence of stacks listed in the right pane to filter each stack on the main screen.
@@ -108,18 +112,16 @@ IMAGE
 
 ### 4.4.2 Tree Tab
 
-IMAGE
+![screenshot S6](https://user-images.githubusercontent.com/36257165/146618086-60c9c1e9-23ee-4125-b911-bb69cce0855b.png)
 
 * Functionality
     * The Tree pane allows for you to mark up dialogic syntax in units or stacks. The tokens in each tree are broken out into leafs that can be added to a tree. You can tag the links between the tokens for more analysis on the Tree level
 * How to Use
     * A tree can be created by right clicking on a unit or a stack and choosing the **Create tree** option. This will spawn a tree in the tree pane with clickable tokens that create the tree when clicked upon. If nothing is selected the token will go to level 0 and become a root. That token will become selected and, when clicking on the next token, will rise to the next available level. You can click on open space to deselect and delete entries and links from the tree. Tree links can be tagged by right clicking on the link arrows between entries, and can also be tagged via the Tag tool. Trees can have multiple roots, and an existing root can also be added to any part of the tree that isn’t branching from that root.
 
-IMAGE
-
 ### 4.4.3 Tag Tab
 
-IMAGE
+![Screen Shot 2021-12-17 at 3 12 47 PM (2)](https://user-images.githubusercontent.com/36257165/146618200-dba2f034-ed21-47bd-9131-6c9577129f6b.png)
 
 * Functionality
     * The Tag tab is used to display every one of the document’s annotation fields along with its associated tag set. The fields are separated into four groups: Doc, Chain, Chunk, and Link. The Doc and Chain groups are also further separated into One-to-many and One-to-one groups.
@@ -130,7 +132,7 @@ IMAGE
 
 ### 4.4.4 Clique Tab
 
-IMAGE
+<img width="1436" alt="Screen Shot 2021-12-17 at 3 15 42 PM" src="https://user-images.githubusercontent.com/36257165/146618373-a788c029-6882-4666-a432-882eef26e50d.png">
 
 * Functionality
     * The Clique tab is used to highlight areas of dialogue with high resonance. A Clique is defined as a group of Resonance chains that are connected through their shared unit(s).
@@ -140,7 +142,7 @@ IMAGE
 
 ### 4.4.5 Translation Tab
 
-IMAGE
+![Screen Shot 2021-12-17 at 3 20 57 PM (2)](https://user-images.githubusercontent.com/36257165/146618670-cac1058e-3f66-4d8c-9434-ade7508b3fa9.png)
 
 * Functionality
     * The Translation tab is used to view a per-unit translation of the imported file. This tab will only be accessible if a unit field has been set as “Translation” during the import process.
