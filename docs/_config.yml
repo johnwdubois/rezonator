@@ -3,7 +3,7 @@ plugins:
 - jekyll-remote-theme # add this line to the plugins list if you already have one
 
 
-title: [Rezonator Docs]
+title: [Rezonator Guide]
 description: [Dynamics of Human Engagement]
 
 theme: jekyll-theme-leap-day
