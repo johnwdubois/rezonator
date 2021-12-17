@@ -176,7 +176,7 @@ On top of the Seek Bar is the **Playhead**, represented by an orange circle. Thi
 
 The Playhead can be clicked and dragged with a **Left Mouse Hold** to a different position on the Seek Bar, which will update the current position of the Audio Trail being played.
 
-On the Right Most side of the Audio Interface is the **Click word to jump audio** button. When this option is toggled on, you can click on a word in the Main Screen to jump the audio playhead to the start time of the unit containing it.
+On the Right Most side of the Audio Interface is the **Play audio from focused word** button. When this option is toggled on, you can click on a word in the Main Screen to jump the audio playhead to the start time of the unit containing it.
 
 ![audio-clicktoggle](https://user-images.githubusercontent.com/46977535/146619087-0641df50-7fcb-4f0a-95b9-bb6b3419a41f.png)
 
