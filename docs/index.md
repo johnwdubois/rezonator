@@ -1,20 +1,37 @@
----
-description: Dynamics of Human Engagement
----
+## Welcome to GitHub Pages
 
-![Frontpage](https://user-images.githubusercontent.com/46977535/146440686-e42fc9ec-2ef4-48b6-a879-692b496c177e.png)
+You can use the [editor on GitHub](https://github.com/johnwdubois/rezonator/edit/master/docs/index.md) to maintain and preview the content for your website in Markdown files.
 
-Table of Contents
-====
+Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
 
-### <u><a href="{{site.baseurl}}/Chapter1">Chapter 1: How to start and manage files</a></u>
-Brief introduction to the Opening Screen and Rezonator's multiple import types. Details about the Import screen and how to correctly structure your data.
+### Markdown
 
-### <u><a href="{{site.baseurl}}/Chapter2">Chapter 2: Overview of Main Screen</a></u>
-Descriptions of the Main Screen and the various sections that the user has access to navigate around.
-	
-### <u><a href="{{site.baseurl}}/Chapter3">Chapter 3: Annotation Tools</a></u>
-Defines the tools that allow you to link, Tag, and mark up your data. Learn about Stacks, Trails, and Resonance Chains and how to further their analyisis with tags.
+Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
 
-### <u><a href="{{site.baseurl}}/Chapter4">Chapter 4: Functionalities of Rezonator</a></u>
-Describes the plethora of functions available to users that enhance the data they have already created.
+```markdown
+Syntax highlighted code block
+
+# Header 1
+## Header 2
+### Header 3
+
+- Bulleted
+- List
+
+1. Numbered
+2. List
+
+**Bold** and _Italic_ and `Code` text
+
+[Link](url) and ![Image](src)
+```
+
+For more details see [Basic writing and formatting syntax](https://docs.github.com/en/github/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax).
+
+### Jekyll Themes
+
+Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/johnwdubois/rezonator/settings/pages). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
+
+### Support or Contact
+
+Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://support.github.com/contact) and we’ll help you sort it out.
