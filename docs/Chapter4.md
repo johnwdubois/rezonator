@@ -81,7 +81,6 @@ In order for the Filter Screen to be activated, at least one Chain must be Picke
 
 There are 2 ways to activate the Filter Screen: 
 * Click on the **Filter Button in the Tool Pane**.
-
 ![Screen Shot 2021-12-17 at 12 24 27 PM (2)](https://user-images.githubusercontent.com/36257165/146603689-179f5111-62fc-447b-88d5-2e08ff967f46.png)
 * Or you can press **CTRL** and **P** on the keyboard. (**Command** and **P** for Mac)
 
@@ -89,21 +88,18 @@ There are 2 ways to activate the Filter Screen:
 
 The Filter Screen allows you to view the Picked Chains in different **Contexts**. These are activated by the **Context Button**. Select the Context Button in the right hand toolbar and then click on Above, Between, or Below.
 * The **Context Above** button will add all the lines above the Picked Chains to the Filter Screen.
-![Screen Shot 2021-12-17 at 3 03 22 PM (2) 3](https://user-images.githubusercontent.com/36257165/146617693-7d4ad93d-a340-47f0-bc3e-bc169b8f660e.png)
-
+* IMAGE
 * The **Context Between** button will add the lines in between the lines within the Picked Chains.
-![Screen Shot 2021-12-17 at 3 03 22 PM (2) 2](https://user-images.githubusercontent.com/36257165/146617737-e9c60edd-f4d4-4dd3-b90b-98eb38c714cf.png)
-
+* IMAGE
 * The **Context Below** button will add all the lines below the Picked Chains to the Filter Screen.
-![Screen Shot 2021-12-17 at 3 03 22 PM (2)](https://user-images.githubusercontent.com/36257165/146617745-67b3a8bf-6bc3-437c-8209-ac2205e8fec8.png)
-
+* IMAGE
 All of the Contexts can be activated at the same time, or any combination of the three options.
 
 ## 4.4 Unique Nav Window Tabs
 
 ### 4.4.1 Show Tab
 
-<img width="1015" alt="Screen Shot 2021-12-17 at 3 08 48 PM" src="https://user-images.githubusercontent.com/36257165/146617967-5ce355b7-ddfc-4533-904f-9c70c9f4fe23.png">
+IMAGE
 
 * Functionality
     * Here you can create a group of stacks called a **Show**. These shows can be played using the sequence of stacks listed in the right pane to filter each stack on the main screen.
@@ -112,16 +108,18 @@ All of the Contexts can be activated at the same time, or any combination of the
 
 ### 4.4.2 Tree Tab
 
-![screenshot S6](https://user-images.githubusercontent.com/36257165/146618086-60c9c1e9-23ee-4125-b911-bb69cce0855b.png)
+IMAGE
 
 * Functionality
     * The Tree pane allows for you to mark up dialogic syntax in units or stacks. The tokens in each tree are broken out into leafs that can be added to a tree. You can tag the links between the tokens for more analysis on the Tree level
 * How to Use
     * A tree can be created by right clicking on a unit or a stack and choosing the **Create tree** option. This will spawn a tree in the tree pane with clickable tokens that create the tree when clicked upon. If nothing is selected the token will go to level 0 and become a root. That token will become selected and, when clicking on the next token, will rise to the next available level. You can click on open space to deselect and delete entries and links from the tree. Tree links can be tagged by right clicking on the link arrows between entries, and can also be tagged via the Tag tool. Trees can have multiple roots, and an existing root can also be added to any part of the tree that isn’t branching from that root.
 
+IMAGE
+
 ### 4.4.3 Tag Tab
 
-![Screen Shot 2021-12-17 at 3 12 47 PM (2)](https://user-images.githubusercontent.com/36257165/146618200-dba2f034-ed21-47bd-9131-6c9577129f6b.png)
+IMAGE
 
 * Functionality
     * The Tag tab is used to display every one of the document’s annotation fields along with its associated tag set. The fields are separated into four groups: Doc, Chain, Chunk, and Link. The Doc and Chain groups are also further separated into One-to-many and One-to-one groups.
@@ -132,7 +130,7 @@ All of the Contexts can be activated at the same time, or any combination of the
 
 ### 4.4.4 Clique Tab
 
-<img width="1436" alt="Screen Shot 2021-12-17 at 3 15 42 PM" src="https://user-images.githubusercontent.com/36257165/146618373-a788c029-6882-4666-a432-882eef26e50d.png">
+IMAGE
 
 * Functionality
     * The Clique tab is used to highlight areas of dialogue with high resonance. A Clique is defined as a group of Resonance chains that are connected through their shared unit(s).
@@ -142,7 +140,7 @@ All of the Contexts can be activated at the same time, or any combination of the
 
 ### 4.4.5 Translation Tab
 
-![Screen Shot 2021-12-17 at 3 20 57 PM (2)](https://user-images.githubusercontent.com/36257165/146618670-cac1058e-3f66-4d8c-9434-ade7508b3fa9.png)
+IMAGE
 
 * Functionality
     * The Translation tab is used to view a per-unit translation of the imported file. This tab will only be accessible if a unit field has been set as “Translation” during the import process.
@@ -154,11 +152,11 @@ All of the Contexts can be activated at the same time, or any combination of the
 
 In order to begin using audio in Rezonator, you’ll need to open an audio file. To do so you can, **Left Mouse Click** on the **Media** option from the **File** dropdown. **Note:** Rezonator only supports .OGG audio files.
 
-![audio drop down](https://user-images.githubusercontent.com/46977535/146619059-b05fa09b-0887-406f-a330-0fd680131090.png)
+IMAGE
 
 If the audio file successfully imports, then the Audio Interface will appear, like so:
 
-![audio](https://user-images.githubusercontent.com/46977535/146619065-3830ac1b-d1e1-44f3-b42e-dd6196f45ab0.png)
+IMAGE
 
 A **Left Mouse Click** on the media icon in at the bottom of the toolbar will also toggle this interface
 
@@ -166,30 +164,22 @@ A **Left Mouse Click** on the media icon in at the bottom of the toolbar will al
 
 On the leftmost panel, we display the name and file location of the current Audio Track:
 
-![audio-file](https://user-images.githubusercontent.com/46977535/146619072-9d56c624-2313-4988-99fc-b0f788f5e5ef.png)
+IMAGE
 
 At the top-middle portion of the interface is the **Play/Pause Button**. A Left Mouse Click on this button will play or pause the current Audio track. Also, pressing the **Spacebar** on you keyboard will play or pause the current Audio Track
 
-![audio-playhead](https://user-images.githubusercontent.com/46977535/146619079-ccfdafd7-4372-4281-9394-da3741030cb3.png)
+IMAGE
 
 On top of the Seek Bar is the **Playhead**, represented by an orange circle. This is a visual representation of what position in the current Audio Track is being played.
 
 The Playhead can be clicked and dragged with a **Left Mouse Hold** to a different position on the Seek Bar, which will update the current position of the Audio Trail being played.
 
-On the Right Most side of the Audio Interface is the **Play audio from focused word** button. When this option is toggled on, you can click on a word in the Main Screen to jump the audio playhead to the start time of the unit containing it.
+On the Right Most side of the Audio Interface is the **Click word to jump audio** button. When this option is toggled on, you can click on a word in the Main Screen to jump the audio playhead to the start time of the unit containing it.
 
-![audio-clicktoggle](https://user-images.githubusercontent.com/46977535/146619087-0641df50-7fcb-4f0a-95b9-bb6b3419a41f.png)
+IMAGE
 
 ## 4.6 Export
 
 ### 4.6.1 How to export your data
 
-To export data from Rezonator in CSV format, use the **File** drop down in the menu bar and click **Export**. Rezonator will prompt you for a location to save a directory containing several CSV files.
-
-![Screen Shot 2021-12-17 at 3 23 34 PM (2)](https://user-images.githubusercontent.com/36257165/146618963-699e7948-c2ae-41d4-91f1-d204fe4554df.png)
-
-Once exported, this directory will have a CSV breakdown of all of the document’s units, tokens, chunks, chains, and searches.
-
-<img width="902" alt="Screen Shot 2021-12-17 at 3 25 18 PM" src="https://user-images.githubusercontent.com/36257165/146618995-eec64832-d379-4a6c-9805-6c67e3231b28.png">
-
-
+To export data from Rezonator in CSV format, use the **File** drop down in the menu bar and click **Export**. Rezonator will prompt you for a location to save a directory containing several CSV files. Once exported, this directory will have a CSV breakdown of all of the document’s units, tokens, chunks, chains, and searches.
