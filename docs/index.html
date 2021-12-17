@@ -1,0 +1,13 @@
+---
+title: Welcome
+layout: default
+---
+<div class="post-list">
+    {% for post in site.posts %}
+    
+        <a class="post-title" href="{{site.baseurl}}{{post.url}}"><h2>{{ post.title }}</h2></a>
+        <p class="date">{{ post.date | date: "%b %-d, %Y" }}</p>
+        <p>{{post.excerpt | strip_html}}</p>
+    
+    {% endfor %}
+</div>
