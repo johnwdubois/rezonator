@@ -154,11 +154,12 @@ All of the Contexts can be activated at the same time, or any combination of the
 
 In order to begin using audio in Rezonator, you’ll need to open an audio file. To do so you can, **Left Mouse Click** on the **Media** option from the **File** dropdown. **Note:** Rezonator only supports .OGG audio files.
 
-IMAGE
+![audio drop down](https://user-images.githubusercontent.com/46977535/146618938-64d50e11-39c9-4df8-874b-5bd00b8e081e.png)
+
 
 If the audio file successfully imports, then the Audio Interface will appear, like so:
 
-IMAGE
+![audio](https://user-images.githubusercontent.com/46977535/146618952-3976a5ba-f543-40a6-b68f-1326b661e6cf.png)
 
 A **Left Mouse Click** on the media icon in at the bottom of the toolbar will also toggle this interface
 
@@ -166,11 +167,11 @@ A **Left Mouse Click** on the media icon in at the bottom of the toolbar will al
 
 On the leftmost panel, we display the name and file location of the current Audio Track:
 
-IMAGE
+![audio-file](https://user-images.githubusercontent.com/46977535/146618966-2be2597a-5ebf-4fee-84bb-c5c0d2edc7cd.png)
 
 At the top-middle portion of the interface is the **Play/Pause Button**. A Left Mouse Click on this button will play or pause the current Audio track. Also, pressing the **Spacebar** on you keyboard will play or pause the current Audio Track
 
-IMAGE
+![audio-playhead](https://user-images.githubusercontent.com/46977535/146618973-e1e7f3a0-d246-481c-811f-1e56e8c062e3.png)
 
 On top of the Seek Bar is the **Playhead**, represented by an orange circle. This is a visual representation of what position in the current Audio Track is being played.
 
@@ -178,7 +179,7 @@ The Playhead can be clicked and dragged with a **Left Mouse Hold** to a differen
 
 On the Right Most side of the Audio Interface is the **Click word to jump audio** button. When this option is toggled on, you can click on a word in the Main Screen to jump the audio playhead to the start time of the unit containing it.
 
-IMAGE
+![audio-clicktoggle](https://user-images.githubusercontent.com/46977535/146618980-453478e1-eb28-4bee-b3c2-365eab104c1c.png)
 
 ## 4.6 Export
 
