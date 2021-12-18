@@ -82,6 +82,9 @@ Displays whether a filter is actively being viewed and can be used to toggle the
 ## 2.3	Navigation Window 
 
 ### 2.3.1 Unit
+
+![unit-Tab](https://user-images.githubusercontent.com/46977535/146622375-ed6a648c-60f8-4aa9-8849-80b38d52c4c5.png)
+
  **Left Pane**: 
  Displays a list of all the units within the current file. Units can be selected here for further analysis in the right pane.
 
@@ -90,6 +93,8 @@ Displays whether a filter is actively being viewed and can be used to toggle the
   * **One-To-Many**: Shows token tags in relation to the unit that is selected in the left pane, based on the selected fields in the column headers.
 
 ### 2.3.2 Chunk
+
+![Chunk-Tab](https://user-images.githubusercontent.com/46977535/146622383-2579e6e4-b2a3-472e-acda-c51039f8f5e4.png)
 
  **Left Pane**: 
  Displays the list of all the chunks within the current file. Chunks can be selected here for further analysis in the right pane.
@@ -100,13 +105,19 @@ Displays whether a filter is actively being viewed and can be used to toggle the
 
 ### 2.3.3 Translate
 
+![Translation-Tab](https://user-images.githubusercontent.com/46977535/146622620-4b8ab122-c08b-4ad7-a4a4-7622bdedfd73.png)
+
  **Left Pane**: 
  Displays the list of all the units within the current file.
 
  **Right Pane**: 
   * **One-To-One / One-To-Many**: Shows the unit tag that the user selects as their current translation.
+ 
+ - **Note:** This tab is only present if a unit field has been selected as to be a trnslation field.
 
 ### 2.3.4 Stack
+
+![stack-Tab](https://user-images.githubusercontent.com/46977535/146622633-8fa0b3c3-b371-4adf-a21e-e5288af06937.png)
 
  **Left Pane**: 
  Displays the list of all the stacks within the current file. Stacks can be selected here for further analysis in the right pane.
@@ -116,7 +127,9 @@ Displays whether a filter is actively being viewed and can be used to toggle the
   * **One-To-Many**: Shows chain entry tags in relation to the stack that is selected in the left pane, based on the selected fields in the column headers.
 
 ### 2.3.5 Track
- 
+
+ ![Track-Tab](https://user-images.githubusercontent.com/46977535/146622636-b6efa4f2-dfd6-472d-826c-2f2c659a2fde.png)
+
  **Left Pane**: 
  Displays the list of all the trails within the current file. Trails can be selected here for further analysis in the right pane.
 
@@ -126,6 +139,8 @@ Displays whether a filter is actively being viewed and can be used to toggle the
 
 ### 2.3.7 Clique
 
+![Clique-Tab](https://user-images.githubusercontent.com/46977535/146622652-edf122a0-9ab2-49f8-a9de-922a37eb3dd1.png)
+
  **Left Pane**: 
  Displays the list of all the cliques within the current file. Cliques can be selected here for further analysis in the right pane.
 
@@ -133,6 +148,8 @@ Displays whether a filter is actively being viewed and can be used to toggle the
   * **One-To-One / One-To-Many**: Displays all of the chains within the clique selected in the left pane. Each chain shows it's pushing order for alignment. 
 
 ### 2.3.8 Tree
+
+![tree-Tab](https://user-images.githubusercontent.com/46977535/146622660-25eeba0f-4bc8-41e8-b5a9-bb2bb5082588.png)
 
  **Left Pane**: 
  Displays the list of all the trees within the current file. Trees can be selected here for further analysis in the right pane.
@@ -142,6 +159,8 @@ Displays whether a filter is actively being viewed and can be used to toggle the
 
 ### 2.3.9 Show
 
+![Show TAB](https://user-images.githubusercontent.com/46977535/146622667-77f5c0c7-9e06-43ac-bc5c-6560dd89623f.png)
+
  **Left Pane**: 
  Displays the list of all the shows within the current file. Shows can be selected here for further analysis in the right pane.
 
@@ -149,6 +168,8 @@ Displays whether a filter is actively being viewed and can be used to toggle the
   * **One-To-One / One-To-Many**: Shows the user the list of stacks within the selected show. Here the user can add more stacks to the show, or start/stop the show.
 
 ### 2.3.10 Tag
+
+![TAG TAB NEW](https://user-images.githubusercontent.com/46977535/146622677-b9519aef-774c-4300-bd6f-aa2118e6e6e0.png)
 
  **Left Pane**: 
  Displays the list of all the fields within the current file. Fields can be selected here to edit their tag set in the right pane.
@@ -171,6 +192,8 @@ Displays whether a filter is actively being viewed and can be used to toggle the
   - **One-To-One / One-To-Many**: Allows the user to edit **Link** level tags
 
 ### 2.3.11 Search
+
+![Search TAB](https://user-images.githubusercontent.com/46977535/146622686-57b7ad7d-05ca-4c9a-8bd1-b9071fdd9995.png)
 
  **Left Pane**: Displays the list of all the searches within the current file. Searches can be selected here for further analysis in the right pane.
  
