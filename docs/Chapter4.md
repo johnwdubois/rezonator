@@ -57,7 +57,7 @@ When a word or token has been marked as a match to the current Search, it will b
 The search is also saved and can be toggled through the **Search Tab**.
 
 
-### 4.2.3 Functionality of the Seach Tab
+### 4.2.3 Functionality of the Search Tab
 
 ![Search - happy sbc035](https://user-images.githubusercontent.com/36257165/146602454-5f2052f8-ace3-477b-ae9d-54702b7e7569.gif)
 
