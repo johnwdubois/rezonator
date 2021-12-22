@@ -173,9 +173,12 @@ function scr_drawChunks(){
 			if (obj_chain.currentFocusedChunkID == currentChunkID || obj_chain.mouseLineWordID == currentChunkID || obj_chain.mouseLineWordID == scr_getFirstWordOfChunk(currentChunkID)) {
 				draw_set_color(colorOfRect);
 				draw_set_alpha(.5);
-				draw_rectangle(chunkRectX1, chunkRectY1, chunkRectX2, chunkRectY2, false);			
-
-		
+				if((typeOfChain == "trail")){
+					draw_roundrect(chunkRectX1, chunkRectY1, chunkRectX2, chunkRectY2, false);	
+				}
+				else{
+					draw_rectangle(chunkRectX1, chunkRectY1, chunkRectX2, chunkRectY2, false);	
+				}
 			}
 		}
 	}
@@ -224,6 +227,13 @@ function scr_drawChunks(){
 
 		// click on chunk
 		if (device_mouse_check_button_released(0, mb_left) and !(global.delayInput > 0)and !instance_exists(obj_dropDown)) {
+			
+						
+			if (global.ctrlHold) {
+				// combine chains
+				var inChainsList = currentChunkSubMap[?"inChainsList"];
+				scr_combineChainsDrawLine(inChainsList);
+			}
 			
 			// focus chunk in panelPane
 			with (obj_panelPane) {
@@ -331,6 +341,9 @@ function scr_drawChunks(){
 					scr_refocusChainEntry(obj_control.hoverChunkID);
 				}
 			}
+			
+
+			
 		}
 			
 		// Check for rightMouseClick
@@ -366,7 +379,12 @@ function scr_drawChunks(){
 				draw_set_color(global.colorThemeSelected1);
 				draw_set_alpha(.5);
 				if (is_numeric(highlightChunkX1) && is_numeric(highlightChunkY1) && is_numeric(highlightChunkX2) && is_numeric(highlightChunkY2)) {
-					draw_rectangle(highlightChunkX1, highlightChunkY1, highlightChunkX2, highlightChunkY2, false);
+					if((typeOfChain == "trail")){
+						draw_roundrect(chunkRectX1, chunkRectY1, chunkRectX2, chunkRectY2, false);	
+					}
+					else{
+						draw_rectangle(chunkRectX1, chunkRectY1, chunkRectX2, chunkRectY2, false);	
+					}
 				}
 			}
 		}
