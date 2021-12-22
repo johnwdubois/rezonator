@@ -380,10 +380,10 @@ function scr_drawChunks(){
 				draw_set_alpha(.5);
 				if (is_numeric(highlightChunkX1) && is_numeric(highlightChunkY1) && is_numeric(highlightChunkX2) && is_numeric(highlightChunkY2)) {
 					if((typeOfChain == "trail")){
-						draw_roundrect(chunkRectX1, chunkRectY1, chunkRectX2, chunkRectY2, false);	
+						draw_roundrect(highlightChunkX1, highlightChunkY1, highlightChunkX2, highlightChunkY2, false);	
 					}
 					else{
-						draw_rectangle(chunkRectX1, chunkRectY1, chunkRectX2, chunkRectY2, false);	
+						draw_rectangle(highlightChunkX1, highlightChunkY1, highlightChunkX2, highlightChunkY2, false);	
 					}
 				}
 			}
