@@ -441,7 +441,7 @@ function scr_panelPane_drawSearch1ToMany(){
 	var activateButtonY1 = y + (functionTabs_tabHeight * 0.5) - (strHeight * 0.4);
 	var activateButtonX1 = activateButtonX2 - buttonWidth;
 	var activateButtonY2 = y + (functionTabs_tabHeight * 0.5) + strHeight * 0.4;
-	var searchEnabled = (obj_control.searchGridActive && functionSearchList_searchSelected != "");
+	var searchEnabled = (obj_control.currentView == obj_control.searchView);
 	var mouseoverActivateButton = point_in_rectangle(mouse_x, mouse_y, activateButtonX1, activateButtonY1, activateButtonX2, activateButtonY2);
 	if (searchEnabled) {
 		draw_set_color(merge_color(global.colorThemeRezPink, global.colorThemeBG, mouseoverActivateButton ? 0.4 : 0.1));
@@ -457,13 +457,13 @@ function scr_panelPane_drawSearch1ToMany(){
 		scr_createTooltip(floor(mean(activateButtonX1, activateButtonX2)), activateButtonY2, searchEnabled ? scr_get_translation("msg_enabled") : scr_get_translation("msg_disabled"), obj_tooltip.arrowFaceUp);
 		
 		if (mouse_check_button_released(mb_left)) {
-			if (!obj_control.searchGridActive && functionSearchList_searchSelected != "") {
+			if (obj_control.currentView != obj_control.searchView) {
 				obj_control.selectedSearchID = functionSearchList_searchSelected;
-				obj_control.searchGridActive = true;
+				obj_control.currentView = obj_control.searchView;
 				scr_renderFilter2();
 			}
-			else if (obj_control.searchGridActive) {
-				obj_control.searchGridActive = false;
+			else {
+				obj_control.currentView = obj_control.mainView;
 				scr_disableFilter();
 			}
 		}

@@ -20,7 +20,7 @@ function scr_toolsOptions(optionSelected) {
 			}
 			with (obj_toolPane) {
 				currentMode = modeRez;
-				if(obj_control.searchGridActive) {
+				if(obj_control.currentView == obj_control.searchView) {
 					obj_toolPane.setModeSearch = obj_toolPane.modeRez;
 				}
 				else {
@@ -39,7 +39,7 @@ function scr_toolsOptions(optionSelected) {
 			}
 			with (obj_toolPane) {
 				currentMode = modeTrack;
-				if(obj_control.searchGridActive) {
+				if(obj_control.currentView == obj_control.searchView) {
 					obj_toolPane.setModeSearch = obj_toolPane.modeTrack;
 				}
 				else {

@@ -2,12 +2,9 @@
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
 function scr_disableFilter(){
 
-	with (obj_control) {
-		searchGridActive = false;
-		filterGridActive = false;
-		quickFilterGridActive = false;
+	with (obj_control) {		
 		quickPickedChainID = "";
-		currentActiveLineGrid = lineGrid;
+		currentView = mainView;
 		wordLeftMarginDest = 170; // Make sure the margin is placed correctly
 	}
 	

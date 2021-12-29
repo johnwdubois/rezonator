@@ -84,6 +84,9 @@ function scr_drawDevVars(){
 	draw_text(devVarX - 580, wordTopMargin + (strHeight * 11), "currentFocusedEntryID: " + string(obj_chain.currentFocusedEntryID));
 	draw_text(devVarX - 580, wordTopMargin + (strHeight * 12), "startRangeMax: " + string(obj_control.drawRangeStartMax));
 	draw_text(devVarX - 580, wordTopMargin + (strHeight * 13), "endRangeMin: " + string(obj_control.drawRangeEndMin));
+	draw_text(devVarX - 580, wordTopMargin + (strHeight * 14), "filterActiveRez: " + string(obj_control.filterActiveRez));
+	draw_text(devVarX - 580, wordTopMargin + (strHeight * 15), "filterActiveTrack: " + string(obj_control.filterActiveTrack));
+	draw_text(devVarX - 580, wordTopMargin + (strHeight * 16), "filterActiveStack: " + string(obj_control.filterActiveStack));
 
 	
 	// reset halign to left

@@ -170,11 +170,14 @@ searchGrid = ds_grid_create(lineGridWidth, 0);
 emptySearchGrid = ds_grid_create(lineGridWidth, 0);
 
 // Initialize filter and search as deactivated
-filterGridActive = false;
-quickFilterGridActive = false;
-searchGridActive = false;
+filterView = "Filter";
+quickFilterView = "Quick Filter";
+searchView = "Search";
+mainView = "Main";
 // Initialize line grid as active
 currentActiveLineGrid = lineGrid;
+
+currentView = mainView;
 
 
 

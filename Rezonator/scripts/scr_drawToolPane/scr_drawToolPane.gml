@@ -74,11 +74,11 @@ function scr_drawToolPane(toolSprScale) {
 	var filterButtonRectX2 = floor(toolButtonX + (toolSprWidth / 2) + toolButtonRectBuffer);
 	var filterButtonRectY2 = floor(filterButtonY + (toolSprHeight / 2) + toolButtonRectBuffer);
 	var mouseoverFilter = point_in_rectangle(mouse_x, mouse_y, filterButtonRectX1, filterButtonRectY1, filterButtonRectX2, filterButtonRectY2) && !mouseoverCancel;
-	var filterButtonColor = (obj_control.filterGridActive|| obj_control.quickFilterGridActive) ? global.colorThemeRezPink : c_white;
+	var filterButtonColor = (obj_control.currentView == obj_control.filterView|| obj_control.currentView == obj_control.quickFilterView) ? global.colorThemeRezPink : c_white;
 	var filterList = scr_getFilterList();
 	var filterListSize = ds_list_size(filterList);
 	
-	if (filterListSize <= 0 && obj_control.filterGridActive && obj_panelPane.functionChainList_playShowID == "") {
+	if (filterListSize <= 0 && obj_control.currentView == obj_control.filterView && obj_panelPane.functionChainList_playShowID == "") {
 		scr_disableFilter();
 	}
 	
@@ -95,7 +95,7 @@ function scr_drawToolPane(toolSprScale) {
 	}
 	
 	// draw highlight rectangle if filter is on
-	if (obj_control.filterGridActive || obj_control.quickFilterGridActive) {
+	if (obj_control.currentView == obj_control.filterView || obj_control.currentView == obj_control.quickFilterView) {
 		draw_set_color(global.colorThemeBG);
 		draw_roundrect(filterButtonRectX1, filterButtonRectY1, filterButtonRectX2, filterButtonRectY2, false);
 	}
@@ -130,7 +130,7 @@ function scr_drawToolPane(toolSprScale) {
 	}
 	
 	// draw highlight rect
-	if (obj_control.filterGridActive || obj_control.quickFilterGridActive) {
+	if (obj_control.currentView == obj_control.filterView || obj_control.currentView == obj_control.quickFilterView) {
 		draw_set_color(global.colorThemeBG);
 		draw_roundrect(contextButtonRectX1, contextButtonRectY1, contextButtonRectX2, contextButtonRectY2, false);
 	}
@@ -330,6 +330,13 @@ function scr_drawToolPane(toolSprScale) {
 			}
 		}
 	}
+	
+	draw_set_color(c_white);
+	var buffer = string_height("0");
+	draw_set_halign(fa_center);
+	draw_set_alpha(1);
+	draw_text(mean(x + windowWidth,x), camHeight - buffer*1.5, string(obj_control.currentView));
+	
 
 	
 

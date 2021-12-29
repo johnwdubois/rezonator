@@ -24,8 +24,8 @@ function scr_removeSearch(searchID){
 	
 	//set active show to be nothing
 	if(obj_panelPane.functionSearchList_searchSelected == searchID){
-		if (obj_control.searchGridActive) {
-			obj_control.searchGridActive = false;
+		if (obj_control.currentView == obj_control.searchView) {
+			obj_control.currentView = obj_control.mainView;
 			scr_disableFilter();
 		}
 

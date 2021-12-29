@@ -207,13 +207,13 @@ function scr_panelPane_drawTabs() {
 					if (tabFilterActive) {
 						scr_renderFilter2();
 					}
-					else if (obj_control.filterGridActive) {
+					else if (obj_control.currentView == obj_control.filterView) {
 						scr_disableFilter();
 					}
 
 				}
-				else if (obj_control.filterGridActive) {
-					obj_control.filterGridActive = false;
+				else if (obj_control.currentView == obj_control.filterView) {
+					obj_control.currentView = obj_control.mainView;
 					scr_disableFilter();
 				}
 			

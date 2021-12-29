@@ -14,11 +14,16 @@ function scr_toggleFilter(){
 		else if (obj_panelPane.functionChainList_currentTab == obj_panelPane.functionChainList_tabStackBrush) obj_control.filterActiveStack = !obj_control.filterActiveStack;
 							
 		// determine if filter should be activated or disabled
-		obj_control.filterGridActive = (obj_panelPane.functionChainList_currentTab == obj_panelPane.functionChainList_tabRezBrush && obj_control.filterActiveRez)
+		var activateFilter = (obj_panelPane.functionChainList_currentTab == obj_panelPane.functionChainList_tabRezBrush && obj_control.filterActiveRez)
 										|| (obj_panelPane.functionChainList_currentTab == obj_panelPane.functionChainList_tabTrackBrush && obj_control.filterActiveTrack)
 										|| (obj_panelPane.functionChainList_currentTab == obj_panelPane.functionChainList_tabStackBrush && obj_control.filterActiveStack);
-							
-		if (obj_control.filterGridActive) {
+		
+		show_debug_message("activateFilter:  "+ string(activateFilter));
+		if(activateFilter){
+			obj_control.currentView = obj_control.filterView;
+		}
+		
+		if (obj_control.currentView == obj_control.filterView) {
 					
 			scr_renderFilter2();
 		}
@@ -27,7 +32,7 @@ function scr_toggleFilter(){
 		}
 	}
 	
-	if (obj_control.quickFilterGridActive) {
+	if (obj_control.currentView == obj_control.quickFilterView) {
 		scr_disableFilter();
 	}
 }

@@ -35,7 +35,7 @@ function scr_toggleFilterForAllChains(chainType){
 	}
 					
 	// render filter!
-	if (obj_control.filterGridActive) {
+	if (obj_control.currentView == obj_control.filterView) {
 		with (obj_control) {
 			scr_renderFilter2();
 		}
@@ -44,9 +44,7 @@ function scr_toggleFilterForAllChains(chainType){
 		var totalChainsFiltered = ds_list_size(obj_chain.filteredRezChainList) + ds_list_size(obj_chain.filteredTrackChainList) + ds_list_size(obj_chain.filteredStackChainList);
 		if (totalChainsFiltered <= 0) {
 			with (obj_control) {
-				searchGridActive = false;
-				filterGridActive = false;
-				currentActiveLineGrid = lineGrid;
+				currentView = mainView;
 				obj_toolPane.currentMode = obj_toolPane.setModeMain;
 				wordLeftMarginDest = 170; // Make sure the margin is placed correctly
 

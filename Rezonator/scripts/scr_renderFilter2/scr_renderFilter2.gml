@@ -7,14 +7,14 @@ function scr_renderFilter2(){
 	// if we're doing a quickpick, just make a list that contains only the quickpicked chain
 	var quickpick = obj_control.quickPickedChainID != "" && ds_map_exists(global.nodeMap, obj_control.quickPickedChainID);
 	if (quickpick) {
-		obj_control.quickFilterGridActive = true;
+		obj_control.currentView = obj_control.quickFilterView;
 		list = ds_list_create();
 		ds_list_add(list, obj_control.quickPickedChainID);
 	}
 	
 	
 	
-	var search = obj_control.searchGridActive;
+	var search = (obj_control.currentView == obj_control.searchView);
 	if (search) {
 		var searchSubMap = global.searchMap[?obj_panelPane.functionSearchList_searchSelected];
 		if(!scr_isNumericAndExists(searchSubMap,ds_type_map)){exit;}
@@ -29,10 +29,14 @@ function scr_renderFilter2(){
 	
 	
 	// determine if filter should be activated or disabled
-	obj_control.filterGridActive = (obj_panelPane.functionChainList_currentTab == obj_panelPane.functionChainList_tabRezBrush && obj_control.filterActiveRez)
+	var activateFilter = (obj_panelPane.functionChainList_currentTab == obj_panelPane.functionChainList_tabRezBrush && obj_control.filterActiveRez)
 									|| (obj_panelPane.functionChainList_currentTab == obj_panelPane.functionChainList_tabTrackBrush && obj_control.filterActiveTrack)
 									|| (obj_panelPane.functionChainList_currentTab == obj_panelPane.functionChainList_tabStackBrush && obj_control.filterActiveStack)
 									|| (obj_panelPane.functionChainList_currentTab == obj_panelPane.functionChainList_tabShow && obj_control.filterActiveStack);
+	
+	if(activateFilter){
+		obj_control.currentView = obj_control.filterView;
+	}
 	
 	show_debug_message("scr_renderFilter2!");
 	

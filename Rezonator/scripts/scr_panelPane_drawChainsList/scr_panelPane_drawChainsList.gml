@@ -345,7 +345,7 @@ function scr_panelPane_drawChainsList() {
 							else if (!currentChainFiltered) scr_deleteFromList(filterList, currentChainID);
 							
 							// update the filter if we need to
-							if (obj_control.filterGridActive) {
+							if (obj_control.currentView == obj_control.filterView) {
 								if (ds_list_size(filterList) > 0) scr_renderFilter2();
 								else scr_disableFilter();
 							}
@@ -666,7 +666,7 @@ function scr_panelPane_drawChainsList() {
 				if (mouse_check_button_pressed(mb_left)) {
 					scr_setValueForAllChains(tabChainType, "filter", (allChainsFiltered) ? false : true);
 					// update the filter if we need to
-					if (obj_control.filterGridActive) {
+					if (obj_control.currentView == obj_control.filterView) {
 						if (ds_list_size(filterList) > 0) scr_renderFilter2();
 						else scr_disableFilter();
 					}

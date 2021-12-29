@@ -43,7 +43,7 @@ function scr_gridViewDrawBackArrow() {
 				obj_control.gridView = false;
 			}
 			
-			if (obj_control.searchGridActive || obj_control.filterGridActive || obj_control.quickFilterGridActive) {
+			if (obj_control.currentView != obj_control.mainView) {
 				scr_disableFilter();
 			}
 		}

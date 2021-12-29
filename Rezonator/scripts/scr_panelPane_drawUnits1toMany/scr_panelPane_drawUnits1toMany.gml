@@ -13,16 +13,6 @@ function scr_panelPane_drawUnits1toMany() {
 	var drawDropDowns = false;
 	var mouseoverCancel = (instance_exists(obj_dropDown) || instance_exists(obj_dialogueBox) || mouseoverHorScrollBar);
 
-	var grid = obj_control.currentActiveLineGrid;
-
-
-
-
-
-	var rowInLineGrid = functionChainList_lineGridRowFocused;
-
-
-
 	// Set text margins
 	var textMarginTop = headerHeight;
 	var textPlusY = 0;

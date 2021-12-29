@@ -56,7 +56,7 @@ function scr_dialogueConfirm(){
 			var listOfWordsInput = scr_splitString(obj_control.inputText, "&");
 			scr_createNewSearch(listOfWordsInput);
 			if (searchSelectedBefore != obj_panelPane.functionSearchList_searchSelected) {
-				obj_control.searchGridActive = true;
+				obj_control.currentView = obj_control.searchView;
 				scr_renderFilter2();
 			}
 			
