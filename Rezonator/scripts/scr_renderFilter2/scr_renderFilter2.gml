@@ -2,15 +2,21 @@
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
 function scr_renderFilter2(){
 	
-	var list = scr_getFilterList();
+	show_debug_message("scr_renderFilter2!");
+	
+	// get a list of all the filtered chains
+	var list = scr_getFilterList(true);
+	if (!scr_isNumericAndExists(list, ds_type_list)) list = ds_list_create();
 	
 	// if we're doing a quickpick, just make a list that contains only the quickpicked chain
 	var quickpick = obj_control.quickPickedChainID != "" && ds_map_exists(global.nodeMap, obj_control.quickPickedChainID);
 	if (quickpick) {
 		obj_control.currentView = obj_control.quickFilterView;
-		list = ds_list_create();
+		ds_list_clear(list);
 		ds_list_add(list, obj_control.quickPickedChainID);
 	}
+	show_debug_message("scr_renderFilter2, list: " + scr_getStringOfList(list));
+	show_debug_message("scr_renderFilter2, quickpick: " + string(quickpick));
 	
 	
 	
@@ -25,20 +31,8 @@ function scr_renderFilter2(){
 	}
 	
 
-	
-	
-	
-	// determine if filter should be activated or disabled
-	var activateFilter = (obj_panelPane.functionChainList_currentTab == obj_panelPane.functionChainList_tabRezBrush && obj_control.filterActiveRez)
-									|| (obj_panelPane.functionChainList_currentTab == obj_panelPane.functionChainList_tabTrackBrush && obj_control.filterActiveTrack)
-									|| (obj_panelPane.functionChainList_currentTab == obj_panelPane.functionChainList_tabStackBrush && obj_control.filterActiveStack)
-									|| (obj_panelPane.functionChainList_currentTab == obj_panelPane.functionChainList_tabShow && obj_control.filterActiveStack);
-	
-	if(activateFilter){
-		obj_control.currentView = obj_control.filterView;
-	}
-	
-	show_debug_message("scr_renderFilter2!");
+
+
 	
 	var listSize = ds_list_size(list);
 	
@@ -51,6 +45,7 @@ function scr_renderFilter2(){
 	
 	// if search returned no results, then exit the filter
 	if (ds_list_size(list) < 1) {
+		show_debug_message("scr_renderFilter2, no results");
 		scr_disableFilter();
 		exit;
 	}

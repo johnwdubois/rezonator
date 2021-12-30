@@ -551,23 +551,21 @@ if (keyboard_check(vk_alt) and keyboard_check(vk_shift) and keyboard_check_press
 }
 
 
-// quick filter
+// filter & quick filter
 if (keyboard_check_pressed(ord("P")) and !keyboard_check(vk_lshift) and !keyboard_check(vk_rshift)
 and shortcutsEnabled and mouseoverTagShortcut == "" and currentActiveLineGrid != searchGrid and !instance_exists(obj_dropDown) and !instance_exists(obj_dialogueBox)) {
 	
 	if (global.ctrlHold) {
+		// regular filter (CTRL+P)
 		scr_toggleFilter();
 	}
 	else {
+		// quick filter (P)
 		
-		// If filter is active, deactivate it
+		// If quickfilter is active, deactivate it
 		if (obj_control.currentView == obj_control.quickFilterView) {
-			
-			// Switch to active grid
 			obj_control.currentView = obj_control.mainView;
 			scr_disableFilter();
-			
-
 		}
 		else if (obj_chain.currentFocusedChainID != "" || quickPickedChainID != "") {
 			

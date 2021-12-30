@@ -41,6 +41,9 @@ function scr_dialogueConfirm(){
 			
 		if (obj_control.fPressed) {
 			
+			obj_control.quickPickedChainID = "";
+			obj_control.switchToTab = obj_panelPane.functionChainList_tabSearch;
+			
 			show_debug_message("obj_control.inputText: " + string(obj_control.inputText));
 			if (obj_control.inputText == "buh") {
 				global.buh = true;

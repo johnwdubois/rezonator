@@ -75,7 +75,7 @@ function scr_drawToolPane(toolSprScale) {
 	var filterButtonRectY2 = floor(filterButtonY + (toolSprHeight / 2) + toolButtonRectBuffer);
 	var mouseoverFilter = point_in_rectangle(mouse_x, mouse_y, filterButtonRectX1, filterButtonRectY1, filterButtonRectX2, filterButtonRectY2) && !mouseoverCancel;
 	var filterButtonColor = (obj_control.currentView == obj_control.filterView|| obj_control.currentView == obj_control.quickFilterView) ? global.colorThemeRezPink : c_white;
-	var filterList = scr_getFilterList();
+	var filterList = scr_getFilterList(true);
 	var filterListSize = ds_list_size(filterList);
 	
 	if (filterListSize <= 0 && obj_control.currentView == obj_control.filterView && obj_panelPane.functionChainList_playShowID == "") {
@@ -309,15 +309,12 @@ function scr_drawToolPane(toolSprScale) {
 	if (!obj_control.gridView and !obj_control.dialogueBoxActive and !instance_exists(obj_dropDown) and !instance_exists(obj_dialogueBox) and obj_control.mouseoverTagShortcut == "") {
 		if (keyboard_check_pressed(ord("E")) and !global.ctrlHold) {
 			currentMode = modeRead;
-			//obj_panelPane.functionChainList_currentTab = obj_panelPane.functionChainList_tabLine;
 		}
 		if (keyboard_check_pressed(ord("R")) and !global.ctrlHold) {
 			currentMode = modeRez;
-			//obj_panelPane.functionChainList_currentTab = obj_panelPane.functionChainList_tabRezBrush;
 		}
 		if (keyboard_check_pressed(ord("T"))) {
 			currentMode = modeTrack;
-			//obj_panelPane.functionChainList_currentTab = obj_panelPane.functionChainList_tabTrackBrush;
 		}
 	}
 
@@ -331,11 +328,13 @@ function scr_drawToolPane(toolSprScale) {
 		}
 	}
 	
-	draw_set_color(c_white);
-	var buffer = string_height("0");
-	draw_set_halign(fa_center);
-	draw_set_alpha(1);
-	draw_text(mean(x + windowWidth,x), camHeight - buffer*1.5, string(obj_control.currentView));
+	if (obj_control.showDevVars) {
+		draw_set_color(c_white);
+		var buffer = string_height("0");
+		draw_set_halign(fa_center);
+		draw_set_alpha(1);
+		draw_text(mean(x + windowWidth,x), camHeight - buffer*1.5, string(obj_control.currentView));
+	}
 	
 
 	
