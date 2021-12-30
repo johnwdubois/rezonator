@@ -17,7 +17,7 @@ Chapter 1:	How to start
 
 Rezonator supports multiple user interface languages. You can change the user interface language at any time. Upon opening Rezonator, you can select the language code on the upper right corner and change the language.
 
-![unnamed-1](https://user-images.githubusercontent.com/77072787/133002587-7f9a2670-6d4e-4a82-9566-9797a402347d.png)
+![local image](https://user-images.githubusercontent.com/46977535/147793342-d9e6ce7b-2220-45e4-940a-c0ff4f308d99.png)
 
 You can also change language from the Menu bar selecting Settings > Language. At present, Rezonator supports Chinese, Hebrew, Italian, Japanese, Spanish, Vietnamese, Kazakh, Russian, Gujarati, and Armenian. New languages can be easily added: if you would like to contribute to the translation in a different language, please contact the Rezonator team.
 
@@ -39,49 +39,49 @@ Rezonator supports TXT and CSV. There are seven different **Import** functions, 
 
 ### 1.3.2	Song & Verse
 
-![unnamed-2](https://user-images.githubusercontent.com/77072787/133002833-e6937f7a-4281-4a33-8249-f62c28365eb3.png)
+![Pre-Import Screen 1](https://user-images.githubusercontent.com/46977535/147793357-3ca939d6-d11b-41f9-a8a3-84ce39a77540.png)
 
 
 Song & verse data consists of short lines of text in which line breaks are meaningful. Within this schema, there is no word wrap and words are split on whitespace. The accepted file type is plain text (.TXT). Examples include songs and poems. 
 
 ### 1.3.3	Prose
 
-![unnamed-3](https://user-images.githubusercontent.com/77072787/133002842-3c94632d-efc5-45dc-9451-4acca83754c1.png)
+![Pre-Import Screen 2](https://user-images.githubusercontent.com/46977535/147793367-899b1a5a-d5ab-4cb1-93ee-4486068f4252.png)
 
 
 Prose data consists of long paragraphs of text. Within this schema, data is organized with a hard return at the end of the paragraph. Words are also split on whitespace. The accepted file type is plain text (.TXT). Examples include news articles, blogs, Wikipedia pages, and novels.  
 
 ### 1.3.4	One Word Per Line (OWPL)
 
-![unnamed-4](https://user-images.githubusercontent.com/77072787/133002847-1c71724e-8aa3-4c46-b64c-5f2795a09d50.png)
+![Pre-Import Screen 3](https://user-images.githubusercontent.com/46977535/147793386-128bf81b-fb5b-48f8-bbc9-c4f0d0cefb87.png)
 
 
 One Word Per Line (OWPL) data consists of columns and rows of text in which the text columns read vertically. Each row represents 1 word (token), while each column displays a word feature. The accepted file type is a spreadsheet (.CSV). An example shown above is a Santa Barbara Corpus .CSV file. 
 
 ### 1.3.5	CoNLL-U
 
-![unnamed-5](https://user-images.githubusercontent.com/77072787/133002857-4d6df24d-6032-4ab5-88b1-b6a53fa9aede.png)
+![Pre-Import Screen 4](https://user-images.githubusercontent.com/46977535/147793400-526c07a4-1d63-4772-ba07-4a5b4398d68c.png)
 
 
 CoNLL-U data consists of columns and rows of text in which the text columns read vertically. Each row represents 1 word (token) while each column displays a word feature. Hashtag lines mark unit features. The accepted file type is a spreadsheet (.TXT). An example shown above is the Universal Dependencies corpus. 
 
 ### 1.3.6	Transcription
 
-![unnamed-6](https://user-images.githubusercontent.com/77072787/133002876-27e0fdf1-047a-46af-9612-8a1c04ff5a7b.png)
+![Pre-Import Screen 5](https://user-images.githubusercontent.com/46977535/147793418-37a84597-11e3-41b8-a122-8c9db7d04480.png)
 
 
 Transcription data consists of one unit per line in which the text reads horizontally. There is a tab for speaker labels and an optional tab for timestamps. Within this schema, words are split on whitespace. The accepted file type is tab-delimited text (.TXT, .CSV). An example shown above is the Santa Barbara Corpus .TXT file. 
 
 ### 1.3.7	Elan (tab-delimited export)
 
-![unnamed-7](https://user-images.githubusercontent.com/77072787/133002899-bf5bf758-948d-42c3-b98f-63939b647558.png)
+![Pre-Import Screen 6](https://user-images.githubusercontent.com/46977535/147793426-fbb2cafa-6736-446d-ab26-86c159bb85c1.png)
 
 
 Elan data consists of one unit per block in which each block has 1 or more lines. Within this schema, the text reads horizontally. There is a tab for speaker labels and a tab for timestamps with words split on whitespace. Once imported the file is sorted based on timestamps, defined by the unit-start and unit-end fields declared on import. The accepted file type is tab-delimited text (.TXT). An example shown above is the Santa Barbara Corpus .TXT file.
 
 ### 1.3.8	Interlinear Glossed Text (IGT)
 
-![unnamed-8](https://user-images.githubusercontent.com/77072787/133002909-ee814a05-d148-4ecc-9a1b-0cf0a05be501.png)
+![Pre-Import Screen 7](https://user-images.githubusercontent.com/46977535/147793438-7acb36c3-d1bf-48a6-92b3-40db567223c9.png)
 
 
 Interlinear Glossed Text (IGT) consists of one unit per block in which each block has 2 or more lines. The blocks are separated by a blank line and the schema splits tokens on hyphens and whitespace. The accepted file type is plain text (.TXT). An example shown above is a conversation Nuu-chah-nulth. 
