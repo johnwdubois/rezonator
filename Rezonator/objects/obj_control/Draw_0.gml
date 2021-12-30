@@ -72,7 +72,7 @@ if (!obj_panelPane.showNav) {
 
 // draw scrollbar for main screen!!
 var drawScrollBar = false;
-if ((filterGridActive or quickFilterGridActive) or (searchGridActive and obj_panelPane.functionSearchList_searchSelected != "")) {
+if (currentView != mainView) {
 	drawScrollBar = true;
 	scr_gridViewDrawBackArrow();
 }

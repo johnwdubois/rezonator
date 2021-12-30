@@ -7,7 +7,7 @@ function scr_helpOptions(optionSelected) {
 			obj_panelPane.functionHelp_collapsed = !obj_panelPane.functionHelp_collapsed;
 			break;
 		case "menu_guide":// hide/show rez chains
-			url_open("http://rezonator.com/documentation/");
+			url_open("https://johnwdubois.github.io/rezonator/");
 			break;
 		case "menu_about":// hide/show stack chains
 			url_open("http://rezonator.com/");

@@ -22,7 +22,6 @@ function scr_drawChains() {
 	var wordTopMargin = obj_control.wordTopMargin;
 	var rezChainList = global.nodeMap[? "resonanceList"];
 	var rezChainListSize = ds_list_size(rezChainList);
-	var activeLineGridHeight = ds_grid_height(obj_control.currentActiveLineGrid);
 	var camHeight = camera_get_view_height(camera_get_active());
 	
 	var justifyLeft = (obj_control.justify == obj_control.justifyLeft);
@@ -47,6 +46,7 @@ function scr_drawChains() {
 		var currentChainShowSubMap = obj_chain.chainShowMap[? currentChainID];
 		var currentSetIDList = currentChainShowSubMap[? "entryList"];
 		var currentVizSetIDList = currentChainSubMap[? "vizSetIDList"];
+		var currentChainFocused = obj_chain.currentFocusedChainID == currentChainID;
 		
 		if (!scr_isNumericAndExists(currentSetIDList, ds_type_list)) continue;
 		var currentSetIDListSize = ds_list_size(currentSetIDList);
@@ -305,7 +305,7 @@ function scr_drawChains() {
 					if (chainType == "resonance") {
 						
 
-						draw_line_width(rezChainLineX1, rezChainLineY1, rezChainLineX2, rezChainLineY2, 2);
+						draw_line_width(rezChainLineX1, rezChainLineY1, rezChainLineX2, rezChainLineY2, currentChainFocused ? 3 : 2);
 
 						
 						// mark stretches visually with a circle
@@ -324,10 +324,10 @@ function scr_drawChains() {
 					else if (chainType == "trail") {
 						
 						if (sideLink) {
-							draw_line_width(trackChainLineX1, trackChainLineY1, trackChainLineX2, trackChainLineY2, 2);
+							draw_line_width(trackChainLineX1, trackChainLineY1, trackChainLineX2, trackChainLineY2, currentChainFocused ? 3 : 2);
 						}
 						else {
-							scr_drawCurvedLine(trackChainLineX1, lineY1 + (currentWordStringHeight1 / 2), trackChainLineX2, lineY2 - (currentWordStringHeight2 / 2), currentChainColor);
+							scr_drawCurvedLine(trackChainLineX1, lineY1 + (currentWordStringHeight1 / 2), trackChainLineX2, lineY2 - (currentWordStringHeight2 / 2), currentChainColor, currentChainFocused ? 3 : 2);
 						}
 
 					}

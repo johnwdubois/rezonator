@@ -132,7 +132,7 @@ function scr_drawLineEntryList(unitID, unitSubMap, entryList, pixelY, OOBCheck){
 			// get this token's inChainsList, and update the chainShowList accordingly
 			var inChainsList = currentTokenSubMap[?"inChainsList"];
 			var inEntryList = currentTokenSubMap[?"inEntryList"];
-			scr_updateChainShowList(inChainsList, inEntryList, obj_chain.chainShowList, currentTokenSubMap[?"inChunkList"], currentToken, tokenRectX1, tokenRectY1, tokenRectX2, tokenRectY2);	
+			scr_updateChainShowList(inChainsList, inEntryList, obj_chain.chainShowList, currentTokenSubMap[?"inChunkList"], currentToken, tokenRectX1, tokenRectY1, tokenRectX2, tokenRectY2, mouseOverToken);	
 		
 			var drawTokenBorder = false;
 			if (rightClickID == currentToken) {
@@ -150,6 +150,7 @@ function scr_drawLineEntryList(unitID, unitSubMap, entryList, pixelY, OOBCheck){
 				if (sizeOfInChainsList == 0) {
 					drawTokenBorder = true;
 				}
+				
 				obj_control.hoverTokenID = currentToken;
 				var tokenTagMap = currentTokenSubMap[?"tagMap"];
 				obj_control.hoverTextCopy = tokenTagMap[? global.displayTokenField];
@@ -186,18 +187,15 @@ function scr_drawLineEntryList(unitID, unitSubMap, entryList, pixelY, OOBCheck){
 					}
 
 				}
-			
-				//if (keyboard_check_released(ord("N"))) {
-				//	if (ds_list_size(inChainsList) > 0) {
-				//		scr_alignChain2ElectricBoogaloo(inChainsList[| 0]);
-				//	}
-				//}
+
 			}
-		
+
+
 			if (drawTokenBorder) {
 				draw_set_color(global.colorThemeBorders);
 				draw_rectangle(tokenRectX1,tokenRectY1,tokenRectX2,tokenRectY2, true);
 			}
+
 		
 		
 			// draw the token's text

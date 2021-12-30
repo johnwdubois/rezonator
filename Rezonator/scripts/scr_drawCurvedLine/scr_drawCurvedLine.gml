@@ -1,15 +1,4 @@
-/*
-	scr_drawCurvedLine(x1, y1, x2, y2);
-	
-	Last Updated: 2018-07-12
-	
-	Called from: obj_chain
-	
-	Purpose: draw curved line between given points (for trackChains)
-	
-	Mechanism: create several tiny lines to draw that form a curve in between the two points
-*/
-function scr_drawCurvedLine(x1, y1, x2, y2, color) {
+function scr_drawCurvedLine(x1, y1, x2, y2, color, width) {
 	
 	draw_set_color(color);
 	draw_set_alpha(1);
@@ -46,7 +35,7 @@ function scr_drawCurvedLine(x1, y1, x2, y2, color) {
 	        var Qyy = (Qy2 - Qy1) * (new_pr) + Qy1;
                                 
                               
-	        draw_line_width(QX, QY, Qxx, Qyy, 2);
+	        draw_line_width(QX, QY, Qxx, Qyy, width);
                             
 	    }
                             
@@ -83,7 +72,7 @@ function scr_drawCurvedLine(x1, y1, x2, y2, color) {
 			var Qxx_2 = (Qx2_2 - Qx1_2) * (new_pr_2) + Qx1_2;
 			var Qyy_2 = (Qy2_2 - Qy1_2) * (new_pr_2) + Qy1_2;
                                     
-			draw_line_width(QX_2, QY_2, Qxx_2, Qyy_2, 2);
+			draw_line_width(QX_2, QY_2, Qxx_2, Qyy_2, width);
                          
 	    }
 	}
