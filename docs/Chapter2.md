@@ -8,7 +8,8 @@ description:
 =====
 The main screen of Rezonator is our visual representation of the text imported delineated into tokens and units. 
 
-![image45](https://user-images.githubusercontent.com/34769184/132994278-f4c43f7d-36f2-4c4b-a626-cf16ab463f9e.png)
+![main screen layout](https://user-images.githubusercontent.com/46977535/147793672-eea6fd39-a7f4-4e67-bbda-e8cc985d00bd.png)
+
 
 The main screen consists of four major sections:
 * The Workspace where the document is displayed and edited
@@ -44,6 +45,8 @@ To begin Word Editing, **Right Mouse Click** on a word/token in the Main Screen.
  The Tool pane consist of 7 sections
 
 ### 2.2.1 Tools  
+
+ ![TOOLS Flyout](https://user-images.githubusercontent.com/46977535/147796762-919ff013-b345-4aae-8076-c81b06764ae5.png)
  
  * **Resonance**: The Resonance tool is used to add words to a chain that will try to align to the furthest display column.
  * **Track**: The Track tool is used to add words to a chain that will not try to align.
@@ -55,11 +58,15 @@ Displays whether a filter is actively being viewed and can be used to toggle the
 
 ### 2.2.3 Context
 
+  ![Context Flyout](https://user-images.githubusercontent.com/46977535/147796787-a0fa6e42-5b61-4150-86e6-4bfaa9e34cb4.png)
+
   * **Context Above**: While in a filter, enabling this option shows all units prior to the first unit gathered in the filter.
   * **Context Between**: While in a filter, enabling this option shows all units between the first and last unit gathered in the filter.
   * **Context Below**: While in a filter, enabling this option shows all units after the last unit gathered in the filter.
 
 ### 2.2.4 Justify
+
+  ![Justify Flyout](https://user-images.githubusercontent.com/46977535/147796794-925cd7ef-8cc9-4fa0-8399-4659b6d06a20.png)
 
   * **Left Prose**: This option spaces out by word length and is left justified.
   * **Left Grid**: This option spaces out by set grid distances and is left justified.
@@ -67,6 +74,8 @@ Displays whether a filter is actively being viewed and can be used to toggle the
   * **Right Grid**: This option spaces out by set grid distances and is right justified.
 
 ### 2.2.5 One to Many & One to One
+
+  ![oto-otm Flyout](https://user-images.githubusercontent.com/46977535/147796797-5d29366f-82f0-423c-8c2a-95c6e955b501.png)
 
   * **One to Many**: Enabling this option switches the navigation window to One to many mode.
   * **One to One**: Enabling this option switches the navigation window to One to one mode.
@@ -83,7 +92,8 @@ Displays whether a filter is actively being viewed and can be used to toggle the
 
 ### 2.3.1 Unit
 
-![unit-Tab](https://user-images.githubusercontent.com/46977535/146622375-ed6a648c-60f8-4aa9-8849-80b38d52c4c5.png)
+![Unit Tab F](https://user-images.githubusercontent.com/46977535/147795149-5f64f967-7aa0-433b-8afd-d9fec460bae1.png)
+
 
  **Left Pane**: 
  Displays a list of all the units within the current file. Units can be selected here for further analysis in the right pane.
@@ -94,7 +104,8 @@ Displays whether a filter is actively being viewed and can be used to toggle the
 
 ### 2.3.2 Chunk
 
-![Chunk-Tab](https://user-images.githubusercontent.com/46977535/146622383-2579e6e4-b2a3-472e-acda-c51039f8f5e4.png)
+![Chunks](https://user-images.githubusercontent.com/46977535/147794189-3ad5bc06-644b-4d5a-a74c-18339f4a34da.png)
+
 
  **Left Pane**: 
  Displays the list of all the chunks within the current file. Chunks can be selected here for further analysis in the right pane.
@@ -105,7 +116,8 @@ Displays whether a filter is actively being viewed and can be used to toggle the
 
 ### 2.3.3 Translate
 
-![Translation-Tab](https://user-images.githubusercontent.com/46977535/146622620-4b8ab122-c08b-4ad7-a4a4-7622bdedfd73.png)
+![Translate Tab F](https://user-images.githubusercontent.com/46977535/147795237-ef202409-b87b-4270-8f93-094fde751d73.png)
+
 
  **Left Pane**: 
  Displays the list of all the units within the current file.
@@ -117,7 +129,8 @@ Displays whether a filter is actively being viewed and can be used to toggle the
 
 ### 2.3.4 Stack
 
-![stack-Tab](https://user-images.githubusercontent.com/46977535/146622633-8fa0b3c3-b371-4adf-a21e-e5288af06937.png)
+![Stack Tab F](https://user-images.githubusercontent.com/46977535/147795323-e20424be-3ac1-4d6a-92c9-b8bbe49354bd.png)
+
 
  **Left Pane**: 
  Displays the list of all the stacks within the current file. Stacks can be selected here for further analysis in the right pane.
@@ -128,7 +141,7 @@ Displays whether a filter is actively being viewed and can be used to toggle the
 
 ### 2.3.5 Track
 
- ![Track-Tab](https://user-images.githubusercontent.com/46977535/146622636-b6efa4f2-dfd6-472d-826c-2f2c659a2fde.png)
+![Track Tab F](https://user-images.githubusercontent.com/46977535/147795516-0564beee-9dd6-4ba4-8df0-53393a562755.png)
 
  **Left Pane**: 
  Displays the list of all the trails within the current file. Trails can be selected here for further analysis in the right pane.
@@ -137,9 +150,21 @@ Displays whether a filter is actively being viewed and can be used to toggle the
   * **One-To-One**: Shows chain tags in relation to the trail on the same row, based on the selected fields in the column headers.
   * **One-To-Many**: Shows chain entry tags in relation to the trail that is selected in the left pane, based on the selected fields in the column headers.
 
+### 2.3.6 Resonance
+
+![Rez Tab F](https://user-images.githubusercontent.com/46977535/147795533-1f2081e6-3c2b-4964-af32-36a640ef27ea.png)
+
+ **Left Pane**: 
+ Displays the list of all the resonance chains within the current file. Trails can be selected here for further analysis in the right pane.
+
+ **Right Pane**: 
+  * **One-To-One**: Shows chain tags in relation to the resonance chain on the same row, based on the selected fields in the column headers.
+  * **One-To-Many**: Shows chain entry tags in relation to the resonance chain that is selected in the left pane, based on the selected fields in the column headers.
+
 ### 2.3.7 Clique
 
-![Clique-Tab](https://user-images.githubusercontent.com/46977535/146622652-edf122a0-9ab2-49f8-a9de-922a37eb3dd1.png)
+![Clique Tab F](https://user-images.githubusercontent.com/46977535/147796032-eedd4d97-a942-4060-939e-9b25a04f9b81.png)
+
 
  **Left Pane**: 
  Displays the list of all the cliques within the current file. Cliques can be selected here for further analysis in the right pane.
@@ -149,7 +174,8 @@ Displays whether a filter is actively being viewed and can be used to toggle the
 
 ### 2.3.8 Tree
 
-![tree-Tab](https://user-images.githubusercontent.com/46977535/146622660-25eeba0f-4bc8-41e8-b5a9-bb2bb5082588.png)
+![Tree Tab F](https://user-images.githubusercontent.com/46977535/147796376-b6f4cb9f-7a64-4e7f-b5b6-9eeae5d5a049.png)
+
 
  **Left Pane**: 
  Displays the list of all the trees within the current file. Trees can be selected here for further analysis in the right pane.
@@ -159,7 +185,8 @@ Displays whether a filter is actively being viewed and can be used to toggle the
 
 ### 2.3.9 Show
 
-![Show TAB](https://user-images.githubusercontent.com/46977535/146622667-77f5c0c7-9e06-43ac-bc5c-6560dd89623f.png)
+![Show Tab F](https://user-images.githubusercontent.com/46977535/147796506-ca1d5ea3-9c29-47cc-be50-ef896ab67bce.png)
+
 
  **Left Pane**: 
  Displays the list of all the shows within the current file. Shows can be selected here for further analysis in the right pane.
@@ -169,7 +196,8 @@ Displays whether a filter is actively being viewed and can be used to toggle the
 
 ### 2.3.10 Tag
 
-![TAG TAB NEW](https://user-images.githubusercontent.com/46977535/146622677-b9519aef-774c-4300-bd6f-aa2118e6e6e0.png)
+![Tag Tab F](https://user-images.githubusercontent.com/46977535/147796508-d8ee8edf-3910-448f-bb3f-8f6fdb89200b.png)
+
 
  **Left Pane**: 
  Displays the list of all the fields within the current file. Fields can be selected here to edit their tag set in the right pane.
@@ -193,7 +221,8 @@ Displays whether a filter is actively being viewed and can be used to toggle the
 
 ### 2.3.11 Search
 
-![Search TAB](https://user-images.githubusercontent.com/46977535/146622686-57b7ad7d-05ca-4c9a-8bd1-b9071fdd9995.png)
+![Search Tab F](https://user-images.githubusercontent.com/46977535/147796577-b329ce84-3229-4532-a0d5-065c685d96d2.png)
+
 
  **Left Pane**: Displays the list of all the searches within the current file. Searches can be selected here for further analysis in the right pane.
  
