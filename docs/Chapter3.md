@@ -60,19 +60,23 @@ Alternatively, you can Left Mouse Click on the word you want to remove from the 
 
 When in **Track Mode**, the **Trail List** can be found in the top 1/3rd of the window.
 
-![image96](https://user-images.githubusercontent.com/34769184/130831450-5881dfc8-15af-4684-86ef-91d4662730f4.png)
+![trail image](https://user-images.githubusercontent.com/46977535/147841126-b6e2861d-dad8-4b06-9fc0-0b045b0df00f.png)
+
 
 There are 2 buttons on the lines in **Track Mode**: **Filter Chains Button** & **Visibility Button**. The Filter Chains Button (filter cone), when activated by a Left Mouse Click, will add all active Trails to the list of chains shown on the **Filter Screen**.
 
-![image97](https://user-images.githubusercontent.com/34769184/130831607-4fb0f866-9320-42f8-b7e9-2e7fbe4e5528.png)![image23](https://user-images.githubusercontent.com/34769184/130834345-22bd4f32-9438-431b-a5ea-f260b5a676ff.png)
+Off: ![filter off](https://user-images.githubusercontent.com/46977535/147841066-0564f685-e58f-46e5-82eb-1dbc3570dd8c.png)  On: ![filter on](https://user-images.githubusercontent.com/46977535/147841067-c3f315bc-1c58-433d-93a5-3ffd805ad9c7.png)
+
 
 The Visibility Button (eyeball), when activated by a Left Mouse Click, will toggle the visibility of all Trails on the main screen.
 
-![image84](https://user-images.githubusercontent.com/34769184/130831676-6f8ad1e6-7757-4c43-a316-c14c60083feb.png)![image3](https://user-images.githubusercontent.com/34769184/130834391-935efef3-44c4-498f-afd1-24894203dec8.png)
+Off: ![Hidden](https://user-images.githubusercontent.com/46977535/147841081-836edcc1-a098-4e80-aa7e-9332feed0430.png) On: ![Shown](https://user-images.githubusercontent.com/46977535/147841083-19978b66-9a58-4953-b78f-4e0c7b315517.png)
+
 
 While in Track Mode, the List Window will display a list of all the Trails you have created, as shown here:
 
-![image102](https://user-images.githubusercontent.com/34769184/130832167-802a3a62-5786-46b8-be0b-14a66fb5b0f1.png)
+![Trails](https://user-images.githubusercontent.com/46977535/147841128-bfbf8cf9-0a4b-4727-8c9d-a0cc449aa58f.png)
+
 
 A way to focus a Trail is with a **Mouse Click** on the chain’s row within the **Trail List**
 
@@ -140,15 +144,11 @@ As noted above, Resonance Chains will automatically Align when possible. This is
 **Resonance Chain List** allows users to visualize the active **Resonance Chains** and their contents.
 There are 2 buttons on the lines in **Resonance Mode: Filter Chains Button** & **Visibility Button**. The Filter Chains Button (filter cone), when activated by a Left Mouse Click, will add all active Resonance Chains to the list of chains shown on the **Filter Screen**.
 
-![image29](https://user-images.githubusercontent.com/34769184/130875009-3403fbd4-3bdc-46fe-9d8a-ce35017f2e95.png)
-
-![image31](https://user-images.githubusercontent.com/34769184/130875015-022786a7-3b41-4027-9791-524e3b1b52a1.png)
+Off: ![filter off](https://user-images.githubusercontent.com/46977535/147841066-0564f685-e58f-46e5-82eb-1dbc3570dd8c.png)  On: ![filter on](https://user-images.githubusercontent.com/46977535/147841067-c3f315bc-1c58-433d-93a5-3ffd805ad9c7.png)
 
 The Visibility Button (eyeball), when activated by a Left Mouse Click, will toggle the visibility of all Resonance Chains on the main screen.
 
-![image74](https://user-images.githubusercontent.com/34769184/130875067-eea3890f-99ad-4409-a8b8-3a43b7c55687.png)
-
-![image42](https://user-images.githubusercontent.com/34769184/130875071-d2c94eb1-84d8-498d-a03d-97c497d956d2.png)
+Off: ![Hidden](https://user-images.githubusercontent.com/46977535/147841081-836edcc1-a098-4e80-aa7e-9332feed0430.png) On: ![Shown](https://user-images.githubusercontent.com/46977535/147841083-19978b66-9a58-4953-b78f-4e0c7b315517.png)
 
 While in Resonance Mode, the **List Window** will display a list of all the Resonance Chains you have created, as shown here:
 
@@ -199,19 +199,22 @@ To **Delete a Link** within a Stack, Left Mouse Click on the unit you want to re
 
 ### 3.4.2 Functionality of the Stack Tab
 
-There are 2 buttons on the Tab: **Filter Chains Button**, & **Visibility Button**
-  - The Filter Chains Button (filter cone), when activated by a Left Mouse Click, will add all Stacks to the list of chains shown on the **Filter Screen**.
-  - The Visibility Button (eyeball), when activated by a Left Mouse Click, will toggle the visibility of all Stacks on the main screen.
 While in Stack Mode, the List Window will display a list of all the Stack Chains you have created, as shown here:
+
 ![Houston stacks 10](https://user-images.githubusercontent.com/46977535/146464586-48b49c1e-ffc4-474a-81ce-1909c6de71ce.PNG)
 
   - **Note**: To the right of each Stack’s name is a text readout of the units it contains.
 
 Another way to Focus a Stack is with a Left Mouse Click on the Stack’s row within the Stack Pane
  
-On the left side of the Stack’s name is the **Pick Toggle Button**. The Pick Toggle Button will add that Stack to the list of chains shown on the **Filter Screen**.
+There are 2 buttons on the lines in **Stack Mode: Filter Chains Button** & **Visibility Button**. The Filter Chains Button (filter cone), when activated by a Left Mouse Click, will add all active Stacks to the list of chains shown on the **Filter Screen**.
 
-Also on the left side of the Stack’s name is the **Visibility Button**. This can be used to toggle the visibility of specific Stacks.
+Off: ![filter off](https://user-images.githubusercontent.com/46977535/147841066-0564f685-e58f-46e5-82eb-1dbc3570dd8c.png)  On: ![filter on](https://user-images.githubusercontent.com/46977535/147841067-c3f315bc-1c58-433d-93a5-3ffd805ad9c7.png)
+
+The Visibility Button (eyeball), when activated by a Left Mouse Click, will toggle the visibility of all Stacks on the main screen.
+
+Off: ![Hidden](https://user-images.githubusercontent.com/46977535/147841081-836edcc1-a098-4e80-aa7e-9332feed0430.png) On: ![Shown](https://user-images.githubusercontent.com/46977535/147841083-19978b66-9a58-4953-b78f-4e0c7b315517.png)
+
 More options for Stacks can be accessed with a **Right Mouse Click** on a chain’s row (CTRL & Mouse Click on Mac)
   - **Rename** lets you input a string to name the selected Stack.
   - **Recolor** lets you choose a new color for the selected Stack.
