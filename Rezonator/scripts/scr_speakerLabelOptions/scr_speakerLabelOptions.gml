@@ -29,6 +29,7 @@ function scr_speakerLabelOptions(optionSelected) {
 						scr_createTreeFromStack(inChainsList[| 0]);
 					}
 				}
+				instance_destroy(obj_dropDown);
 			}
 			else if (optionSelected == "Toggle Line #") {
 				obj_control.showLineNumber = !obj_control.showLineNumber;
