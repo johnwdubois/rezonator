@@ -231,12 +231,16 @@ The Contents of any Stack can be sorted using the **Sort Buttons** next to the c
 
 ### 3.5.1 Accessing Chunk Creation
 
+![Chunks](https://user-images.githubusercontent.com/46977535/147841301-da7e9bc9-f2f5-49c5-8645-8db0ba091223.png)
+
 To create a **chunk** the user must click and drag horizonatally across tokens then release. This creates a new token-like data structure called a chunk that can be added to chains and annotated similarly to how tokens behave.
 
   - As noted above, Chunks can be made in any Mode. However, when making chunks outside of Tag mode the chunk will automatically be added to a chain as if it was clicked. 
 
 ## 3.6 Merging Chains
 
-You are able to **Merge Chains** together, combining one chain with another. This is done by focusing one chain you want combined, then **CTRL + Left Mouse Clicking (Command + Left Mouse Clicking** for Mac) on a word within the non-focused chain you want combined. If both chains being merged are over the length of one, then a **Warning Window** will appear asking you to confirm the merge. If you press “Yes”, the second chain will be merged into the first chain.
+![merge](https://user-images.githubusercontent.com/46977535/147841317-da2798ab-9e58-4266-b05c-7bd505188ae5.png)
+
+You are able to **Merge Chains** together, combining one chain with another. This is done by focusing one chain you want combined, then **CTRL + Left Mouse Clicking (Command + Left Mouse Clicking** for Mac) on a word within the non-focused chain you want combined. If both chains being merged are over the length of one, then a **Warning Window** will appear asking you to confirm the merge. If you press “Ok”, the second chain will be merged into the first chain.
 
 **Next Page:** <u><a href="{{site.baseurl}}/Chapter4">Chapter 4: Functionalities of Rezonator</a></u>
