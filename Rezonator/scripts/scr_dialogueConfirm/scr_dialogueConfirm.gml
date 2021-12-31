@@ -223,6 +223,15 @@ function scr_dialogueConfirm(){
 			// delete all track chains!!
 			scr_deleteAllChains(global.nodeMap[? "trailList"]);
 		}
+		if (clearAllChunks) {
+				
+			// delete all track chunks!!
+			var chunkListSize = global.nodeMap[?"chunkList"];
+			repeat(chunkListSize){
+				scr_deleteChunk(global.nodeMap[?"chunkList"][|0]);
+			}
+			
+		}
 		
 		
 		if (removeTagToken) scr_removeFromTagSetOptions(string(stringToBeRemoved), "token");

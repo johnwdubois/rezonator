@@ -242,7 +242,7 @@ cursorPos = 1 ;
 cursorViz = false;
 inputText = "";
 cursorTimer = 20;
-global.userName = "";
+  
 
 maxDisplaySize = 12;
 canDelete = true;
@@ -459,10 +459,8 @@ global.schemaNavUnitFieldList = -1;
 
 alarm[6] = 1;
 
-var defStr = "";
-defStr = (global.userName == "") ? scr_get_translation("msg_signin") : global.userName;
-global.inputBoxDefStr = defStr;
 
 global.includedTagSchemaFileList = ds_list_create();
 scr_addtoTagSchemaList();
 global.selectedTagSchemaFileList = ds_list_create();
+

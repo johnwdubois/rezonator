@@ -6,6 +6,7 @@ function scr_closeQuestionBoxVariables(){
 	questionWindowActive = false;
 	clearAllStacks = false;
 	clearAllTracks = false;
+	clearAllChunks = false;
 	clearAllRez = false;
 	clearAllLinks = false;
 	clearChain = false;
