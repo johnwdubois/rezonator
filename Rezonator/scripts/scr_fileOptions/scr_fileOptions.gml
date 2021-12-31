@@ -111,6 +111,9 @@ function scr_fileOptions(optionSelected) {
 				inst.noButtonActive = true;
 				obj_control.saveBeforeExiting = true;
 				scr_saveINI();
+				var defStr = "";
+				defStr = (global.userName == "") ? scr_get_translation("msg_signin") : global.userName;
+				global.inputBoxDefStr = defStr;
 				// if everything is saved already we can just pretend they clicked "no"
 				if (obj_control.allSaved) scr_dialogueNo();
 			}

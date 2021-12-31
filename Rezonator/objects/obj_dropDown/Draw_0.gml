@@ -368,7 +368,7 @@ for (var i = 0; i < optionListSize; i++) {
 	}
 	
 	var hasCheck = false;
-	if(ds_map_exists(global.checkDropdownMap, optionText)){
+	if(ds_map_exists(global.checkDropdownMap, optionText) && optionListType != global.optionListTypeDelete){
 		scr_updateCheckMap(optionText);
 		hasCheck = ds_map_find_value(global.checkDropdownMap, optionText);
 		if (optionListType == global.optionListTypeNav) hasCheck = false;

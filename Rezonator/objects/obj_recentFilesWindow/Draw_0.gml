@@ -86,6 +86,7 @@ for (var i = 0; i < fileKeyListSize; i++) {
 		if (mouse_check_button_released(mb_left) && (inputDelay == 0)) {
 			global.selectedFile = filePath;
 			global.openProject = true
+			global.userName = obj_openingScreen.inputText;
 		}
 	}
 	

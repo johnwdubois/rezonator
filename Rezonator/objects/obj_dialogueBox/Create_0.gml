@@ -31,6 +31,7 @@ selectAll = false;
 
 clearAllStacks = false;
 clearAllTracks = false;
+clearAllChunks = false;
 clearAllRez = false;
 clearAllLinks = false;
 clearChain = false;

@@ -15,6 +15,7 @@ ds_list_clear(global.previousLevelEstimates);
 ds_list_clear(global.previousSpecialFields);
 
 global.readHintHide = false;
+global.userName = "";
 
 global.recentFilesMap = ds_map_create();
 global.recentFilesList = ds_list_create();
@@ -45,7 +46,9 @@ global.importGroupOutputDir = "";
 global.importGroupSchemaFile = "";
 global.skipToImportScreen = false;
 
-
+var defStr = "";
+defStr = (global.userName == "") ? scr_get_translation("msg_signin") : global.userName;
+global.inputBoxDefStr = defStr;
 
 scr_initializeFonts();
 scr_fontGlobalUpdate();
