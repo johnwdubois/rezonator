@@ -39,7 +39,7 @@ function scr_chainListOptions(optionSelected) {
 					//might be a special case
 
 					var dropDownOptionList = ds_list_create();
-					ds_list_add(dropDownOptionList, "option_red", "option_blue", "option_green", "option_gold", "option_custom");
+					ds_list_add(dropDownOptionList, "menu_random" , "option_red", "option_blue", "option_green", "option_gold", "option_custom");
 						
 					if (ds_list_size(dropDownOptionList) > 0) {
 						with (obj_dropDown) if (level > 1) instance_destroy();

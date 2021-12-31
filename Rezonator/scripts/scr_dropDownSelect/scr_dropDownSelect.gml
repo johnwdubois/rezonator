@@ -15,7 +15,7 @@ function scr_dropDownSelect(optionSelected) {
 	else if (optionListType == global.optionListTypeChainRecolor) //2
 	{
 	    scr_chainRecolorOptions(optionSelected);
-	    instance_destroy();
+	    
 	}
 	//speakerLabelEdit
 	else if (optionListType == global.optionListTypeSpeakerLabel) //3
