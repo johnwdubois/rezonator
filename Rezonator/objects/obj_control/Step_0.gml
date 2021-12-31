@@ -69,6 +69,17 @@ if (!gridView) {
 		currentCenterDisplayRow = scr_currentTopLine();
 	}
 	
+	// trigger Home/End
+	if ((keyboard_check_pressed(vk_right) and global.ctrlHold)
+	or (keyboard_check_pressed(vk_end) and !global.ctrlHold)
+	or (keyboard_check_pressed(vk_right) and keyboard_check(vk_alt))) {
+		scr_homeEnd(false);
+	}
+	if ((keyboard_check_pressed(vk_left) and global.ctrlHold)
+	or (keyboard_check_pressed(vk_home) and !global.ctrlHold)
+	or (keyboard_check_pressed(vk_left) and keyboard_check(vk_alt)) ) {
+		scr_homeEnd(true);
+	}
 	
 	// Retrieve booleans for NavWindow.
 	var clickedInChainList = false;
@@ -267,21 +278,13 @@ if (!gridView) {
 			if (keyboard_check_pressed(vk_right) and !global.ctrlHold and not dialogueBoxActive) {
 				scrollPlusXDest -= gridSpaceHorizontal;
 			}
-			if ((keyboard_check_pressed(vk_right) and global.ctrlHold)
-			or (keyboard_check_pressed(vk_end) and !global.ctrlHold)
-			or (keyboard_check_pressed(vk_right) and keyboard_check(vk_alt))) {
-				scr_homeEnd(false);
-			}
+
 
 
 			if (keyboard_check_pressed(vk_left) and !global.ctrlHold and not dialogueBoxActive) {
 				scrollPlusXDest += gridSpaceHorizontal;
 			}
-			if ((keyboard_check_pressed(vk_left) and global.ctrlHold)
-			or (keyboard_check_pressed(vk_home) and !global.ctrlHold)
-			or (keyboard_check_pressed(vk_left) and keyboard_check(vk_alt)) ) {
-				scr_homeEnd(true);
-			}
+
 		}
 	}
 	

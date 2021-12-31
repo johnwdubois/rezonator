@@ -239,7 +239,14 @@ function scr_rightClickWordOptions(optionSelected) {
 			instance_destroy();
 			break;
 
+		case "word_tip":
+			obj_wordTip.wordTipDisplay = !obj_wordTip.wordTipDisplay;			
+			instance_destroy();
+			break;
 			
+		case "option_zero-0":
+			scr_newTokenOptions("option_zero-0");
+			break;
 			
 		default:
 			break;

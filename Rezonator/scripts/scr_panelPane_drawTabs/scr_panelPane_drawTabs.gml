@@ -101,7 +101,6 @@ function scr_panelPane_drawTabs() {
 		}
 		
 		// determine tabChainType for this tab
-		var chainTab = (functionChainList_currentTab == functionChainList_tabRezBrush || functionChainList_currentTab == functionChainList_tabTrackBrush || functionChainList_currentTab == functionChainList_tabStackBrush);
 		var tabChainType = "";
 		var tabFilterActive = false;
 		if (functionChainList_currentTab == functionChainList_tabRezBrush) {
@@ -213,15 +212,7 @@ function scr_panelPane_drawTabs() {
 				obj_chain.currentFocusedEntryID = "";
 			}
 				
-			chainTab = (functionChainList_currentTab == functionChainList_tabRezBrush || functionChainList_currentTab == functionChainList_tabTrackBrush || functionChainList_currentTab == functionChainList_tabStackBrush);
 				
-			if (chainTab) {
-
-			}
-			else if (obj_control.currentView == obj_control.filterView) {
-				obj_control.currentView = obj_control.mainView;
-				scr_disableFilter();
-			}
 			
 			// unfocus chains of all type
 			scr_chainDeselect();

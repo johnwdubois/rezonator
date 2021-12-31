@@ -27,6 +27,7 @@ function scr_toolsOptions(optionSelected) {
 					obj_toolPane.setModeMain = obj_toolPane.modeRez;
 				}
 			}
+			obj_wordTip.wordTipDisplay = false;
 			with (obj_dropDown) {
 				instance_destroy();
 			}
@@ -46,6 +47,7 @@ function scr_toolsOptions(optionSelected) {
 					obj_toolPane.setModeMain = obj_toolPane.modeTrack;
 				}
 			}
+			obj_wordTip.wordTipDisplay = false;
 			with (obj_dropDown) {
 				instance_destroy();
 			}
@@ -59,6 +61,7 @@ function scr_toolsOptions(optionSelected) {
 			with (obj_toolPane){
 				currentMode = modeRead;
 			}
+			obj_wordTip.wordTipDisplay = true;
 			with(obj_dropDown){
 				instance_destroy();	
 			}
