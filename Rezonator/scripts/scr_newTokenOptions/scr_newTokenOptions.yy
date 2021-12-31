@@ -6,7 +6,7 @@
     "path": "folders/Scripts/UI/dropDownLists.yy",
   },
   "resourceVersion": "1.0",
-  "name": "scr_newWordOptions",
+  "name": "scr_newTokenOptions",
   "tags": [],
   "resourceType": "GMScript",
 }

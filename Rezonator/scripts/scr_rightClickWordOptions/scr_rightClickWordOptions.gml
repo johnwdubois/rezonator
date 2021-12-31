@@ -64,6 +64,19 @@ function scr_rightClickWordOptions(optionSelected) {
 	
 			break;
 			
+		case "option_zero":
+			//obj_control.newWordPre1 = true;
+			obj_control.currentNewWordPre = 1;
+			
+				
+			scr_newToken(scr_get_translation("option_zero-0"), obj_control.rightClickID);
+			obj_control.alarm[11] = 60;
+
+		
+			obj_control.rightClicked = false;
+			instance_destroy();
+			break;
+			
 		case "help_label_delete-link":
 		
 			scr_deleteFromChain(true);

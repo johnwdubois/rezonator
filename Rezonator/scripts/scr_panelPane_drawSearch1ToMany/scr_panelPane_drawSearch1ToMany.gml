@@ -30,6 +30,20 @@ function scr_panelPane_drawSearch1ToMany(){
 					hitColWidth = max(hitColWidth, strWidth);
 				}
 			}
+			
+			var tokenTokenList = searchSubMap[?"displayTokenList"];
+			if (scr_isNumericAndExists(tokenTokenList, ds_type_list)) {
+				var tokenTokenListSize = ds_list_size(tokenTokenList);
+				for (var i = 0; i < tokenTokenListSize; i++) {
+					var tokenID = tokenTokenList[| i];
+					var tokenSubMap = global.nodeMap[?tokenID]
+					var tokenTagMap = tokenSubMap[?"tagMap"];
+					var currentTokenStr = tokenTagMap[?global.displayTokenField];
+					var strWidth = string_width(currentTokenStr) + (spaceWidth * 2);
+					hitColWidth = max(hitColWidth, strWidth);
+				}
+			}
+			
 		}
 	}
 	hitColWidth = clamp(hitColWidth, windowWidth * 0.05, windowWidth * 0.4);
@@ -127,14 +141,18 @@ function scr_panelPane_drawSearch1ToMany(){
 				}
 				var beforeTokenList = ds_list_create();
 				var afterTokenList = ds_list_create();
-				var contextAmount = 6;
+				var contextAmount = 20;
 				var itterator = 1;
-				repeat(contextAmount){
+				var totalLineCount = (windowWidth/string_width("A"))/2;
+				var charCount = 0;
+				while(charCount < totalLineCount && itterator < 100){
 					var newTokenID = tokenList[| currentTokenIndex - itterator];
 					var newTokenSubMap = global.nodeMap[? newTokenID];
 					if(scr_isNumericAndExists(newTokenSubMap, ds_type_map)){
 						var newTokenTagMap = newTokenSubMap[? "tagMap"];
 						var newTokenText = newTokenTagMap[? global.displayTokenField];
+						var tokenCharCount = string_length(newTokenText);
+						charCount += tokenCharCount;
 						if(newTokenText != undefined && newTokenText != ""){
 							ds_list_add(beforeTokenList, newTokenText);
 						}
@@ -142,12 +160,15 @@ function scr_panelPane_drawSearch1ToMany(){
 					itterator ++;
 				}
 				itterator = 1;
-				repeat(contextAmount){
+				charCount = 0;
+				while(charCount < totalLineCount && itterator < 100){
 					var newTokenID = tokenList[| currentTokenIndex + itterator];
 					var newTokenSubMap = global.nodeMap[? newTokenID];
 					if(scr_isNumericAndExists(newTokenSubMap, ds_type_map)){
 						var newTokenTagMap = newTokenSubMap[? "tagMap"];
 						var newTokenText = newTokenTagMap[? global.displayTokenField];
+						var tokenCharCount = string_length(newTokenText);
+						charCount += tokenCharCount;
 						if(newTokenText != undefined && newTokenText != ""){
 							ds_list_add(afterTokenList, newTokenText);
 						}

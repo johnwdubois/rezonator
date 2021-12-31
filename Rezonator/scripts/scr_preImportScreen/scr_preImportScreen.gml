@@ -152,6 +152,11 @@ function scr_preImportScreen(){
 	draw_set_alpha(1);
 	draw_roundrect(exampleTabX1, exampleTabY1, exampleTabX2, exampleTabY2, false);
 	
+	// draw window border
+	draw_set_color(global.colorThemeBG);
+	draw_set_alpha(1);
+	draw_roundrect(exampleWindowX1, exampleWindowY1, exampleWindowX2, exampleWindowY2, false);
+	
 	
 	
 	// draw window title
