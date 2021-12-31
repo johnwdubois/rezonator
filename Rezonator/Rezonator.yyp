@@ -298,6 +298,7 @@
     {"id":{"name":"scr_dropShadow","path":"scripts/scr_dropShadow/scr_dropShadow.yy",},"order":11,},
     {"id":{"name":"spr_contextOptions","path":"sprites/spr_contextOptions/spr_contextOptions.yy",},"order":8,},
     {"id":{"name":"scr_drawCurvedLine","path":"scripts/scr_drawCurvedLine/scr_drawCurvedLine.yy",},"order":1,},
+    {"id":{"name":"scr_createTreeFromStack","path":"scripts/scr_createTreeFromStack/scr_createTreeFromStack.yy",},"order":14,},
     {"id":{"name":"scr_createNewSearch","path":"scripts/scr_createNewSearch/scr_createNewSearch.yy",},"order":5,},
     {"id":{"name":"scr_newChain","path":"scripts/scr_newChain/scr_newChain.yy",},"order":3,},
     {"id":{"name":"utf8_codepoint_info","path":"scripts/utf8_codepoint_info/utf8_codepoint_info.yy",},"order":0,},
