@@ -226,8 +226,11 @@ function scr_drawChunks(){
 		obj_control.mouseoverNeutralSpace = false;
 
 		// click on chunk
-		if (device_mouse_check_button_released(0, mb_left) and !(global.delayInput > 0)and !instance_exists(obj_dropDown)) {
+		if (device_mouse_check_button_released(0, mb_left) and !(global.delayInput > 0) and !instance_exists(obj_dropDown)) {
 			
+			//deselect tree pane chain entities
+			with (obj_panelPane) functionTree_treeLinkSelected = "";
+			obj_chain.currentFocusedEntryID = "";
 						
 			if (global.ctrlHold) {
 				// combine chains
