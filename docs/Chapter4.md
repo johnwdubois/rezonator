@@ -77,6 +77,7 @@ The **Filter Screen** is a modified version of the Main Screen, showing only Cha
 ### 4.3.1 Activating the Filter Screen
 
 In order for the Filter Screen to be activated, at least one Chain must be Picked for the Filter. An example of a picked Chain is shown below:
+
 <img width="534" alt="Screen Shot 2021-12-17 at 12 26 12 PM" src="https://user-images.githubusercontent.com/36257165/146603932-6ae6870e-2199-4574-ab00-c27920bd1913.png">
 
 There are 2 ways to activate the Filter Screen: 
@@ -89,12 +90,15 @@ There are 2 ways to activate the Filter Screen:
 
 The Filter Screen allows you to view the Picked Chains in different **Contexts**. These are activated by the **Context Button**. Select the Context Button in the right hand toolbar and then click on Above, Between, or Below.
 * The **Context Above** button will add all the lines above the Picked Chains to the Filter Screen.
+
 ![Screen Shot 2021-12-17 at 3 03 22 PM (2) 3](https://user-images.githubusercontent.com/36257165/146617693-7d4ad93d-a340-47f0-bc3e-bc169b8f660e.png)
 
 * The **Context Between** button will add the lines in between the lines within the Picked Chains.
+
 ![Screen Shot 2021-12-17 at 3 03 22 PM (2) 2](https://user-images.githubusercontent.com/36257165/146617737-e9c60edd-f4d4-4dd3-b90b-98eb38c714cf.png)
 
 * The **Context Below** button will add all the lines below the Picked Chains to the Filter Screen.
+
 ![Screen Shot 2021-12-17 at 3 03 22 PM (2)](https://user-images.githubusercontent.com/36257165/146617745-67b3a8bf-6bc3-437c-8209-ac2205e8fec8.png)
 
 All of the Contexts can be activated at the same time, or any combination of the three options.
