@@ -5,14 +5,14 @@ function scr_filterOptions(optionSelected) {
 		case "menu_filter": // toggles the filter view on and off
 		
 	
-			if (obj_control.filterGridActive) {
+			if (obj_control.currentView == obj_control.filterView) {
 				if (obj_control.currentCenterDisplayRow >= 0 and obj_control.currentCenterDisplayRow < ds_grid_height(obj_control.filterGrid)) {
 					obj_control.scrollPlusYDest = obj_control.prevCenterYDest;
 				}
 			
 				// Switch to active grid
-				obj_control.filterGridActive = false;
-				obj_control.currentActiveLineGrid = obj_control.lineGrid;
+				
+				obj_control.currentView = obj_control.mainView;
 			}
 			else {
 			

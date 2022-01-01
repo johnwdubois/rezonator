@@ -41,6 +41,9 @@ function scr_dialogueConfirm(){
 			
 		if (obj_control.fPressed) {
 			
+			obj_control.quickPickedChainID = "";
+			obj_control.switchToTab = obj_panelPane.functionChainList_tabSearch;
+			
 			show_debug_message("obj_control.inputText: " + string(obj_control.inputText));
 			if (obj_control.inputText == "buh") {
 				global.buh = true;
@@ -56,7 +59,7 @@ function scr_dialogueConfirm(){
 			var listOfWordsInput = scr_splitString(obj_control.inputText, "&");
 			scr_createNewSearch(listOfWordsInput);
 			if (searchSelectedBefore != obj_panelPane.functionSearchList_searchSelected) {
-				obj_control.searchGridActive = true;
+				obj_control.currentView = obj_control.searchView;
 				scr_renderFilter2();
 			}
 			
@@ -219,6 +222,15 @@ function scr_dialogueConfirm(){
 				
 			// delete all track chains!!
 			scr_deleteAllChains(global.nodeMap[? "trailList"]);
+		}
+		if (clearAllChunks) {
+				
+			// delete all track chunks!!
+			var chunkListSize = global.nodeMap[?"chunkList"];
+			repeat(chunkListSize){
+				scr_deleteChunk(global.nodeMap[?"chunkList"][|0]);
+			}
+			
 		}
 		
 		

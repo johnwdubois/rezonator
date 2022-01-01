@@ -20,13 +20,14 @@ function scr_toolsOptions(optionSelected) {
 			}
 			with (obj_toolPane) {
 				currentMode = modeRez;
-				if(obj_control.searchGridActive) {
+				if(obj_control.currentView == obj_control.searchView) {
 					obj_toolPane.setModeSearch = obj_toolPane.modeRez;
 				}
 				else {
 					obj_toolPane.setModeMain = obj_toolPane.modeRez;
 				}
 			}
+			obj_wordTip.wordTipDisplay = false;
 			with (obj_dropDown) {
 				instance_destroy();
 			}
@@ -39,13 +40,14 @@ function scr_toolsOptions(optionSelected) {
 			}
 			with (obj_toolPane) {
 				currentMode = modeTrack;
-				if(obj_control.searchGridActive) {
+				if(obj_control.currentView == obj_control.searchView) {
 					obj_toolPane.setModeSearch = obj_toolPane.modeTrack;
 				}
 				else {
 					obj_toolPane.setModeMain = obj_toolPane.modeTrack;
 				}
 			}
+			obj_wordTip.wordTipDisplay = false;
 			with (obj_dropDown) {
 				instance_destroy();
 			}
@@ -59,6 +61,7 @@ function scr_toolsOptions(optionSelected) {
 			with (obj_toolPane){
 				currentMode = modeRead;
 			}
+			obj_wordTip.wordTipDisplay = true;
 			with(obj_dropDown){
 				instance_destroy();	
 			}

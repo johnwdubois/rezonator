@@ -2,15 +2,17 @@
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
 function scr_unitRightClicked(){
 	
+	var unitSubMap = global.nodeMap[?obj_control.rightClickID];
+	if(!scr_isNumericAndExists(unitSubMap, ds_type_map)){exit;}
+	var unitInChainsList = unitSubMap[?"inChainsList"];
+	
 	if (instance_exists(obj_control) and !instance_exists(obj_dialogueBox)) {
 		
-		var unitSubMap = global.nodeMap[?obj_control.rightClickID];
-		if(!scr_isNumericAndExists(unitSubMap, ds_type_map)){exit;}
+
 		//deselect tree pane chain entities
 		obj_panelPane.functionTree_treeLinkSelected = "";
 		obj_chain.currentFocusedEntryID = "";
-		
-		var unitInChainsList = unitSubMap[?"inChainsList"];
+	
 
 		obj_control.rightClicked = true;
 		obj_control.wideDropDown = true;
@@ -40,7 +42,15 @@ function scr_unitRightClicked(){
 					
 		}
 		
-		ds_list_add(dropDownOptionList, "tab_name_tag" ,"option_create-tree");
+		// check if this unit is in any trees
+		var unitInStack = (ds_list_size(unitInChainsList) > 0);
+		
+		ds_list_add(dropDownOptionList, "tab_name_tag", "option_create-tree");
+		if (unitInStack) {
+			scr_deleteFromList(dropDownOptionList, "option_create-tree");
+			ds_list_add(dropDownOptionList, "Create tree (unit)", "Create tree (stack)");
+		}
+		
 				
 		// Create the dropdown
 		if (ds_list_size(dropDownOptionList) > 0 and obj_control.ableToCreateDropDown) {

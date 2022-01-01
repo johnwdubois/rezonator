@@ -84,6 +84,7 @@ function scr_drawDevVars(){
 	draw_text(devVarX - 580, wordTopMargin + (strHeight * 11), "currentFocusedEntryID: " + string(obj_chain.currentFocusedEntryID));
 	draw_text(devVarX - 580, wordTopMargin + (strHeight * 12), "startRangeMax: " + string(obj_control.drawRangeStartMax));
 	draw_text(devVarX - 580, wordTopMargin + (strHeight * 13), "endRangeMin: " + string(obj_control.drawRangeEndMin));
+	draw_text(devVarX - 580, wordTopMargin + (strHeight * 14), "quickPickedChainID: " + string(obj_control.quickPickedChainID));
 
 	
 	// reset halign to left

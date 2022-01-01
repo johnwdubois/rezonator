@@ -2,11 +2,11 @@
   "isDnD": false,
   "isCompatibility": false,
   "parent": {
-    "name": "dropDownLists",
-    "path": "folders/Scripts/UI/dropDownLists.yy",
+    "name": "Tree",
+    "path": "folders/Scripts/Tree.yy",
   },
   "resourceVersion": "1.0",
-  "name": "scr_newWordOptions",
+  "name": "scr_createTreeFromStack",
   "tags": [],
   "resourceType": "GMScript",
 }

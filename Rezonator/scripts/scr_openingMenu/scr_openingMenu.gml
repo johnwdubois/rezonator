@@ -38,6 +38,7 @@ function scr_openingMenu() {
 		if (device_mouse_check_button_released(0, mb_left)) {
 			global.newProject = false;
 			global.openProject = true;
+			global.userName = obj_openingScreen.inputText;
 		}
 	}
 	
@@ -74,6 +75,7 @@ function scr_openingMenu() {
 		if (device_mouse_check_button_released(0, mb_left)) {
 			global.newProject = true;
 			global.openProject = false;
+			global.userName = obj_openingScreen.inputText;
 		}
 	}
 	
@@ -184,8 +186,6 @@ function scr_openingMenu() {
 
 
 
-
-	
 
 	if (instance_exists(obj_inputBox)) {
 		obj_inputBox.textBoxX= userSignInBoxX1;

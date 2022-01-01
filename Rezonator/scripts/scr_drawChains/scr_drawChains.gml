@@ -22,7 +22,6 @@ function scr_drawChains() {
 	var wordTopMargin = obj_control.wordTopMargin;
 	var rezChainList = global.nodeMap[? "resonanceList"];
 	var rezChainListSize = ds_list_size(rezChainList);
-	var activeLineGridHeight = ds_grid_height(obj_control.currentActiveLineGrid);
 	var camHeight = camera_get_view_height(camera_get_active());
 	
 	var justifyLeft = (obj_control.justify == obj_control.justifyLeft);

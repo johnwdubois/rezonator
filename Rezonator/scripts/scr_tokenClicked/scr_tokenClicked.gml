@@ -24,7 +24,7 @@ function scr_tokenClicked(tokenID){
 	}
 	
 	//deselect tree pane chain entities
-	obj_panelPane.functionTree_treeLinkSelected = "";
+	with (obj_panelPane) functionTree_treeLinkSelected = "";
 	obj_chain.currentFocusedEntryID = "";
 	
 

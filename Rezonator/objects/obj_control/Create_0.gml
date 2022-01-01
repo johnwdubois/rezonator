@@ -170,11 +170,14 @@ searchGrid = ds_grid_create(lineGridWidth, 0);
 emptySearchGrid = ds_grid_create(lineGridWidth, 0);
 
 // Initialize filter and search as deactivated
-filterGridActive = false;
-quickFilterGridActive = false;
-searchGridActive = false;
+filterView = "Filter";
+quickFilterView = "Quick Filter";
+searchView = "Search";
+mainView = "Main";
 // Initialize line grid as active
 currentActiveLineGrid = lineGrid;
+
+currentView = mainView;
 
 
 
@@ -751,9 +754,6 @@ hiddenTrackChainList = ds_list_create();
 hiddenStackChainList = ds_list_create();
 
 
-filterActiveRez = false;
-filterActiveTrack = false;
-filterActiveStack = false;
 
 menuDepth = -1;
 
@@ -808,6 +808,8 @@ mouseoverSpeakerLabelWidth = false;
 show_debug_message("obj_control create end");
 
 setRezMap = false;
+
+switchToTab = "";
 
 global.inputBoxDefStr = "";
 //set up tags from schema a frame after loading

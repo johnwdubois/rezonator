@@ -30,6 +30,20 @@ function scr_panelPane_drawSearch1ToMany(){
 					hitColWidth = max(hitColWidth, strWidth);
 				}
 			}
+			
+			var tokenTokenList = searchSubMap[?"displayTokenList"];
+			if (scr_isNumericAndExists(tokenTokenList, ds_type_list)) {
+				var tokenTokenListSize = ds_list_size(tokenTokenList);
+				for (var i = 0; i < tokenTokenListSize; i++) {
+					var tokenID = tokenTokenList[| i];
+					var tokenSubMap = global.nodeMap[?tokenID]
+					var tokenTagMap = tokenSubMap[?"tagMap"];
+					var currentTokenStr = tokenTagMap[?global.displayTokenField];
+					var strWidth = string_width(currentTokenStr) + (spaceWidth * 2);
+					hitColWidth = max(hitColWidth, strWidth);
+				}
+			}
+			
 		}
 	}
 	hitColWidth = clamp(hitColWidth, windowWidth * 0.05, windowWidth * 0.4);
@@ -127,14 +141,18 @@ function scr_panelPane_drawSearch1ToMany(){
 				}
 				var beforeTokenList = ds_list_create();
 				var afterTokenList = ds_list_create();
-				var contextAmount = 6;
+				var contextAmount = 20;
 				var itterator = 1;
-				repeat(contextAmount){
+				var totalLineCount = (windowWidth/string_width("A"))/2;
+				var charCount = 0;
+				while(charCount < totalLineCount && itterator < 100){
 					var newTokenID = tokenList[| currentTokenIndex - itterator];
 					var newTokenSubMap = global.nodeMap[? newTokenID];
 					if(scr_isNumericAndExists(newTokenSubMap, ds_type_map)){
 						var newTokenTagMap = newTokenSubMap[? "tagMap"];
 						var newTokenText = newTokenTagMap[? global.displayTokenField];
+						var tokenCharCount = string_length(newTokenText);
+						charCount += tokenCharCount;
 						if(newTokenText != undefined && newTokenText != ""){
 							ds_list_add(beforeTokenList, newTokenText);
 						}
@@ -142,12 +160,15 @@ function scr_panelPane_drawSearch1ToMany(){
 					itterator ++;
 				}
 				itterator = 1;
-				repeat(contextAmount){
+				charCount = 0;
+				while(charCount < totalLineCount && itterator < 100){
 					var newTokenID = tokenList[| currentTokenIndex + itterator];
 					var newTokenSubMap = global.nodeMap[? newTokenID];
 					if(scr_isNumericAndExists(newTokenSubMap, ds_type_map)){
 						var newTokenTagMap = newTokenSubMap[? "tagMap"];
 						var newTokenText = newTokenTagMap[? global.displayTokenField];
+						var tokenCharCount = string_length(newTokenText);
+						charCount += tokenCharCount;
 						if(newTokenText != undefined && newTokenText != ""){
 							ds_list_add(afterTokenList, newTokenText);
 						}
@@ -441,7 +462,7 @@ function scr_panelPane_drawSearch1ToMany(){
 	var activateButtonY1 = y + (functionTabs_tabHeight * 0.5) - (strHeight * 0.4);
 	var activateButtonX1 = activateButtonX2 - buttonWidth;
 	var activateButtonY2 = y + (functionTabs_tabHeight * 0.5) + strHeight * 0.4;
-	var searchEnabled = (obj_control.searchGridActive && functionSearchList_searchSelected != "");
+	var searchEnabled = (obj_control.currentView == obj_control.searchView);
 	var mouseoverActivateButton = point_in_rectangle(mouse_x, mouse_y, activateButtonX1, activateButtonY1, activateButtonX2, activateButtonY2);
 	if (searchEnabled) {
 		draw_set_color(merge_color(global.colorThemeRezPink, global.colorThemeBG, mouseoverActivateButton ? 0.4 : 0.1));
@@ -457,13 +478,13 @@ function scr_panelPane_drawSearch1ToMany(){
 		scr_createTooltip(floor(mean(activateButtonX1, activateButtonX2)), activateButtonY2, searchEnabled ? scr_get_translation("msg_enabled") : scr_get_translation("msg_disabled"), obj_tooltip.arrowFaceUp);
 		
 		if (mouse_check_button_released(mb_left)) {
-			if (!obj_control.searchGridActive && functionSearchList_searchSelected != "") {
+			if (obj_control.currentView != obj_control.searchView) {
 				obj_control.selectedSearchID = functionSearchList_searchSelected;
-				obj_control.searchGridActive = true;
+				obj_control.currentView = obj_control.searchView;
 				scr_renderFilter2();
 			}
-			else if (obj_control.searchGridActive) {
-				obj_control.searchGridActive = false;
+			else {
+				obj_control.currentView = obj_control.mainView;
 				scr_disableFilter();
 			}
 		}

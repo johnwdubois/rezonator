@@ -2,11 +2,11 @@
   "isDnD": false,
   "isCompatibility": false,
   "parent": {
-    "name": "drawLine",
-    "path": "folders/Scripts/drawLine.yy",
+    "name": "drawChains",
+    "path": "folders/Scripts/chains/drawChains.yy",
   },
   "resourceVersion": "1.0",
-  "name": "scr_renderFilter",
+  "name": "scr_randomChainColor",
   "tags": [],
   "resourceType": "GMScript",
 }

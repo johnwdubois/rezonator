@@ -22,32 +22,39 @@ function scr_homeEnd(home) {
 	var lastPixelX = 0;
 	
 	var discourseSubMap = global.nodeMap[? global.discourseNode];
-	if(!scr_isNumericAndExists(discourseSubMap, ds_type_map)){exit;}
+	if (!scr_isNumericAndExists(discourseSubMap, ds_type_map)) exit;
 	var displayUnitList = discourseSubMap[? "displayUnitList"];
+	if (!scr_isNumericAndExists(displayUnitList, ds_type_list)) exit;
+	if (!is_numeric(obj_control.drawRangeStart) || !is_numeric(obj_control.drawRangeEnd)) exit;
+	var drawStart = obj_control.drawRangeStart;
+	var drawEnd = obj_control.drawRangeEnd;
 	
-	for (var i = obj_control.drawRangeStart; i < obj_control.drawRangeEnd; i++) {
+	for (var i = drawStart; i < drawEnd; i++) {
 		
 		var currentUnit = displayUnitList[| i];
 		var currentUnitSubMap = global.nodeMap[? currentUnit];
-		if(!scr_isNumericAndExists(currentUnitSubMap, ds_type_map)){continue;}
+		if (!scr_isNumericAndExists(currentUnitSubMap, ds_type_map)) continue;
 		var currentPixelY = currentUnitSubMap[? "pixelY"];
 		
 		if (currentPixelY >= obj_control.wordTopMargin && currentPixelY < camHeight) {
 		
 			var currentEntryList = currentUnitSubMap[? "entryList"];
+			if (!scr_isNumericAndExists(currentEntryList, ds_type_list)) continue;
 			var currentEntryListSize = ds_list_size(currentEntryList);
 		
 			for (var j = 0; j < currentEntryListSize; j++) {
 			
 				var currentEntry = currentEntryList[| j];
 				var currentEntrySubMap = global.nodeMap[? currentEntry];
+				if (!scr_isNumericAndExists(currentEntrySubMap, ds_type_map)) continue;
 				var currentToken = currentEntrySubMap[? "token"];
 				var currentTokenSubMap = global.nodeMap[? currentToken];
+				if (!scr_isNumericAndExists(currentTokenSubMap, ds_type_map)) continue;
 			
 				var currentDisplayCol = currentTokenSubMap[? "displayCol"];
 				var currentPixelX = currentTokenSubMap[? "pixelX"];
-			
-			
+				if (!is_numeric(currentDisplayCol) || !is_numeric(currentPixelX)) continue;
+				
 				if (currentDisplayCol < firstDisplayCol) {
 					firstDisplayCol = currentDisplayCol;
 					firstPixelX = currentPixelX;
