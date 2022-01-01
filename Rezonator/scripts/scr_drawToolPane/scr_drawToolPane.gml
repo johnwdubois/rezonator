@@ -9,6 +9,7 @@ function scr_drawToolPane(toolSprScale) {
 	
 	var toolButtonX = floor(x + (windowWidth / 2));
 	var toolButtonRectBuffer = toolSprWidth * 0.06;
+	var toolButtonRectBuffer = toolSprWidth * 0.06;
 	var flyoutXBuffer = mouseoverRectWidth * 2;
 	
 	
@@ -328,13 +329,16 @@ function scr_drawToolPane(toolSprScale) {
 		}
 	}
 	
-	if (obj_control.showDevVars) {
-		draw_set_color(c_white);
-		var buffer = string_height("0");
-		draw_set_halign(fa_center);
-		draw_set_alpha(1);
-		draw_text(mean(x + windowWidth,x), camHeight - buffer*1.5, string(obj_control.currentView));
+	// draw text for which view you are in
+	draw_set_color(c_white);
+	var buffer = string_height("0");
+	draw_set_halign(fa_center);
+	draw_set_alpha(1);
+	var viewTextY = camHeight - (buffer * 1.5);
+	if (helpButtonRectY2 < viewTextY + (buffer * 0.5)) {
+		draw_text(mean(x + windowWidth,x), viewTextY, string(obj_control.currentView));
 	}
+
 	
 
 	
