@@ -4,6 +4,11 @@ description: Dynamics of Human Engagement
 
 ![Frontpage](https://user-images.githubusercontent.com/46977535/146440686-e42fc9ec-2ef4-48b6-a879-692b496c177e.png)
 
+
+<u><a href="https://www.youtube.com/watch?v=phJa-pw-ASw">Mac Install Guide</a></u>
+
+<u><a href="https://www.youtube.com/watch?v=X76whf7dZnQ">Windows Install Guide</a></u>
+
 Table of Contents
 ====
 
