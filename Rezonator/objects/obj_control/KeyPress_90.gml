@@ -5,25 +5,15 @@
 
 if(!obj_control.dialogueBoxActive){
 	if(obj_control.hoverTokenID != ""){
-		var fillWord = "";
-		/*
-		if(obj_control.currentNewWordPre == 1){
-			fillWord = scr_get_translation("option_zero-0");
+		var fillWord = scr_get_translation("option_zero-0");
+
+		if(keyboard_check(vk_shift)){
+			obj_control.before = false;
 		}
-		else if(obj_control.currentNewWordPre == 2){
-			fillWord = scr_get_translation("option_zero");
+		else {
+			obj_control.before = true;
 		}
-		else if(obj_control.currentNewWordPre == 3){
-			fillWord = scr_get_translation("option_pronoun");
-		}
-		else if(obj_control.currentNewWordPre == 4){
-			fillWord = obj_control.lastAddedWord;
-		}
-		else{
-			*/
-			fillWord = scr_get_translation("option_zero-0");
-		//}
-		obj_control.before = true;
+		
 		scr_newToken(fillWord,obj_control.hoverTokenID);
 	}
 }
