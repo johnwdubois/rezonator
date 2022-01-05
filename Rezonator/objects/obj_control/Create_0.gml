@@ -810,6 +810,7 @@ show_debug_message("obj_control create end");
 setRezMap = false;
 
 switchToTab = "";
+showInNavID = "";
 
 global.inputBoxDefStr = "";
 //set up tags from schema a frame after loading

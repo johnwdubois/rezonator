@@ -114,6 +114,7 @@
     {"id":{"name":"scr_addtoTagSchemaList","path":"scripts/scr_addtoTagSchemaList/scr_addtoTagSchemaList.yy",},"order":3,},
     {"id":{"name":"scr_newToken","path":"scripts/scr_newToken/scr_newToken.yy",},"order":2,},
     {"id":{"name":"scr_findNext","path":"scripts/scr_findNext/scr_findNext.yy",},"order":7,},
+    {"id":{"name":"scr_showInNav","path":"scripts/scr_showInNav/scr_showInNav.yy",},"order":7,},
     {"id":{"name":"scr_fontSizeControl","path":"scripts/scr_fontSizeControl/scr_fontSizeControl.yy",},"order":0,},
     {"id":{"name":"scr_1to1Options","path":"scripts/scr_1to1Options/scr_1to1Options.yy",},"order":59,},
     {"id":{"name":"spr_justifyOptions","path":"sprites/spr_justifyOptions/spr_justifyOptions.yy",},"order":15,},
