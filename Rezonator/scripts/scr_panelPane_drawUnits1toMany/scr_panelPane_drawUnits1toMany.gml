@@ -1,6 +1,6 @@
 function scr_panelPane_drawUnits1toMany() {
 	
-	scr_surfaceStart();
+	
 
 	// Set opacity, alignment, and font of contents list
 	draw_set_alpha(1);
@@ -11,17 +11,7 @@ function scr_panelPane_drawUnits1toMany() {
 	var headerHeight = functionTabs_tabHeight;
 	var scrollBarListSize = 0;
 	var drawDropDowns = false;
-
-
-	var grid = obj_control.currentActiveLineGrid;
-
-
-
-
-
-	var rowInLineGrid = functionChainList_lineGridRowFocused;
-
-
+	var mouseoverCancel = (instance_exists(obj_dropDown) || instance_exists(obj_dialogueBox) || mouseoverHorScrollBar);
 
 	// Set text margins
 	var textMarginTop = headerHeight;
@@ -50,7 +40,6 @@ function scr_panelPane_drawUnits1toMany() {
 		}
 		if ((unitType == "unit" && obj_panelPane.functionChainList_currentTab == functionChainList_tabChunk)
 		|| (unitType == "chunk" && obj_panelPane.functionChainList_currentTab == functionChainList_tabLine)) {
-			scr_surfaceEnd();
 			exit;
 		}
 		
@@ -81,7 +70,7 @@ function scr_panelPane_drawUnits1toMany() {
 				var rectY1 = y + textMarginTop + textPlusY - (strHeight / 2) + scrollPlusY;
 				var rectX2 = x + windowWidth - global.scrollBarWidth;
 				var rectY2 = rectY1 + strHeight;
-				var mouseoverRect = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, rectX1, max(rectY1, y + headerHeight), rectX2, rectY2);
+				var mouseoverRect = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, rectX1, max(rectY1, y + headerHeight), rectX2, rectY2)  && !mouseoverCancel;
 
 				if (mouseoverRect and ableToBeMouseOver and !instance_exists(obj_dropDown)
 				and !instance_exists(obj_dialogueBox)) {
@@ -106,18 +95,18 @@ function scr_panelPane_drawUnits1toMany() {
 		}
 	}
 
-
-
-
-	var scrollBarBackColor = global.colorThemeSelected1;
-	if (scrollBarListSize > 1000) {
-		scrollBarBackColor = global.colorThemeSelected2;
-	}
 	if (!instance_exists(obj_dropDown)) {
 		
-		scr_scrollBar(scrollBarListSize, focusedElementY, strHeight, headerHeight,
-			scrollBarBackColor, global.colorThemeSelected2,
+		var fieldListSize = ds_list_size(obj_control.navTokenFieldList);
+		var colWidth = windowWidth/obj_panelPane.unit1toMColAmount;
+		scr_scrollBarHorizontal(fieldListSize, colWidth, global.colorThemeSelected1, global.colorThemeSelected2,
+		global.colorThemeSelected1, global.colorThemeSelected2, spr_ascend, windowWidth, windowHeight);
+		
+		scr_scrollBar(scrollBarListSize+1, focusedElementY, strHeight, headerHeight,
+			global.colorThemeSelected1, global.colorThemeSelected2,
 			global.colorThemeSelected1, global.colorThemeSelected2, spr_ascend, windowWidth, windowHeight);
+		
+
 	}
 	
 
@@ -125,8 +114,7 @@ function scr_panelPane_drawUnits1toMany() {
 	draw_set_color(global.colorThemeBG);
 	draw_rectangle(x - clipX, y - clipY, x + windowWidth - clipX, y + headerHeight - clipY, false);
 	
-	scr_surfaceEnd();
-
+	
 	// Allows use of arrow keys, pgUp/pgDwn, and ctrl+key in chain list if clicked in chainContents
 	if (clickedIn) {
 	

@@ -12,9 +12,10 @@ if (_status == 0) {
 	
 	var _size = ds_map_size(request_ids_);
 	var _key = ds_map_find_first(request_ids_);
+	var _packet_type = undefined;
 	for (var i = 0; i < _size; i++) {
 		if (request_ids_[? _key] == _packet_id) {
-			var _packet_type = real(_key);
+			_packet_type = real(_key);
 			continue;
 		}
 		_key = ds_map_find_next(timeout_timers_, _key);

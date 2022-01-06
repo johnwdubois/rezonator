@@ -24,7 +24,7 @@ function scr_tokenClicked(tokenID){
 	}
 	
 	//deselect tree pane chain entities
-	obj_panelPane.functionTree_treeLinkSelected = "";
+	with (obj_panelPane) functionTree_treeLinkSelected = "";
 	obj_chain.currentFocusedEntryID = "";
 	
 
@@ -125,6 +125,11 @@ function scr_tokenClicked(tokenID){
 		&& is_string(obj_panelPane.functionField_tokenFieldSelected) && is_string(obj_panelPane.functionField_tokenTagSelected)) {
 			var tokenTagMap = tokenSubMap[? "tagMap"];
 			if (scr_isNumericAndExists(tokenTagMap, ds_type_map)) {
+				if(global.steamAPI){
+					if(!steam_get_achievement("SA_tag-token")){
+						steam_set_achievement("SA_tag-token");
+					}
+				}
 				tokenTagMap[? obj_panelPane.functionField_tokenFieldSelected] = obj_panelPane.functionField_tokenTagSelected;
 				show_debug_message("scr_tokenClicked ... setting token: " + string(tokenID) + ", field:" + string(obj_panelPane.functionField_tokenFieldSelected) + ", tag: " + string(obj_panelPane.functionField_tokenTagSelected));
 			}

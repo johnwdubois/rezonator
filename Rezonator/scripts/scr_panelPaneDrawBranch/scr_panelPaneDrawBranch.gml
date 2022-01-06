@@ -99,8 +99,10 @@ function scr_panelPaneDrawBranch(){
 					if (chainViewOneToMany) {
 						// one to many
 						if (functionChainList_currentTab == functionChainList_tabLine) {
+								scr_surfaceStart();
 								scr_panelPane_drawUnits1toMany();
 								scr_panelPane_drawUnits1ToManyHeaders();
+								scr_surfaceEnd();
 						}
 						else if (functionChainList_currentTab == functionChainList_tabShow) {
 							scr_panelPane_drawShow1toMany();
@@ -115,8 +117,10 @@ function scr_panelPaneDrawBranch(){
 							scr_panelPane_drawSearch1ToMany();
 						}
 						else if (functionChainList_currentTab == functionChainList_tabChunk) {
+							scr_surfaceStart();
 							scr_panelPane_drawUnits1toMany();
 							scr_panelPane_drawUnits1ToManyHeaders();
+							scr_surfaceEnd();
 						}
 						else if (functionChainList_currentTab == functionChainList_tabClique) {
 							scr_panelPane_drawCliques1ToMany();
@@ -125,15 +129,18 @@ function scr_panelPaneDrawBranch(){
 							scr_panelPane_drawTree1ToMany();
 						}
 						else {
+							scr_surfaceStart();
 							scr_panelPane_drawChains1ToMany();
 							scr_panelPane_drawChains1ToManyHeaders();
+							scr_surfaceEnd();
 						}
 					}
 					else {
 						// one to one
 						if (functionChainList_currentTab == functionChainList_tabLine) {
+							scr_surfaceStart();
 							scr_panelPane_drawUnits1to1();
-						
+							scr_surfaceEnd();
 						}
 						else if (functionChainList_currentTab == functionChainList_tabShow) {
 							scr_panelPane_drawShow1toMany();
@@ -148,7 +155,9 @@ function scr_panelPaneDrawBranch(){
 							scr_panelPane_drawSearch1ToMany();
 						}
 						else if (functionChainList_currentTab == functionChainList_tabChunk) {
+							scr_surfaceStart();
 							scr_panelPane_drawChunks1To1();
+							scr_surfaceEnd();
 						}
 						else if (functionChainList_currentTab == functionChainList_tabClique) {
 							scr_panelPane_drawCliques1ToMany();
@@ -157,7 +166,9 @@ function scr_panelPaneDrawBranch(){
 							scr_panelPane_drawTree1ToMany();
 						}
 						else {
+							scr_surfaceStart();
 							scr_panelPane_drawChains1To1();
+							scr_surfaceEnd();
 						}
 					}
 				

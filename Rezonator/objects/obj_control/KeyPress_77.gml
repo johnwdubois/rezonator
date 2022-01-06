@@ -10,4 +10,5 @@ with(obj_panelPane){
 	}
 }
 
-scr_toggle1to1();
+var optionStr = (obj_panelPane.chainViewOneToMany)? "option_one-to-one":"option_one-to-many";
+scr_1to1Options(optionStr);

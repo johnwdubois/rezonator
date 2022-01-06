@@ -473,10 +473,6 @@
 "menu_language-ja": "日本語",
 "menu_language-vi": "Tiếng Việt",
 "menu_language-zh": "中文",
-"menu_language-hy": "Հայերեն",
-"menu_language-gu": "ગુજરાતી",
-"menu_language-kk" : "Қазақша",
-"menu_language-ru": "Русский",
 "menu_autosave": "Автоматты сақтау",
 "menu_advanced": "Қосымша",
 "menu_developer": "Әзірлеуші",
@@ -536,5 +532,16 @@
 "import_mapping_fields_unitDelim": "Бірлік бөлгіші",
 "import_mapping_fields_turnDelim": "Бөлгішті қосу\/өшіру",
 "import_mapping_fields_trnaslation": "Аударма",
-"import_mapping_selectmessage": "Арнайы өрістер бөлімін қолданып Көрсету таңбашасы болатын өрісті таңдаңыз."
+"import_mapping_selectmessage": "Арнайы өрістер бөлімін қолданып Көрсету таңбашасы болатын өрісті таңдаңыз.",
+"tab_name_unit" : "Бірлік",
+"tab_name_chunk" : "Үзік",
+"tab_name_translate" : "Аудару",
+"tab_name_stack" : "Десте",
+"tab_name_track" : "Жолақ",
+"tab_name_resonate" : "Rez тізбег",
+"tab_name_clique" : "Жиын",
+"tab_name_tree" : "Ағаш",
+"tab_name_show" : "Көрсету",
+"tab_name_tag" : "Тәг",
+"tab_name_search" : "Іздеу"
 }

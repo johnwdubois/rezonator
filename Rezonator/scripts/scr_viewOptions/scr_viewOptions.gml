@@ -91,11 +91,11 @@ function scr_viewOptions(optionSelected) {
 		
 		case "word_tip":
 			obj_wordTip.wordTipDisplay = !obj_wordTip.wordTipDisplay;			
-		break;
+			break;
 		
 		case "tab_name_chunk":
 			obj_control.hideChunks = !obj_control.hideChunks;
-		break;
+			break;
 		
 		case "arrheads":
 			scr_destroyAllDropDownsOtherThanSelf();

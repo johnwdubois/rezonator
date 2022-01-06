@@ -14,10 +14,12 @@ function scr_sortCustom(chainID){
 	var customSetIDList = chainSubMap[? "customSetIDList"];
 	
 	var setIDListSize = ds_list_size(setIDList);
-	var tempStrGrid = ds_grid_create(2, 0);
-	var tempDigitGrid = ds_grid_create(2, 0);
+	var tempGridWidth = 3;
+	var tempStrGrid = ds_grid_create(tempGridWidth, 0);
+	var tempDigitGrid = ds_grid_create(tempGridWidth, 0);
 	var tempGrid_colID = 0;
 	var tempGrid_colVal = 1;
+	var tempGrid_colDiscourseSeq = 2;
 	
 	var fieldIndex = obj_control.chain1toManyCustomSortColIndex;
 	var fieldList = -1;
@@ -34,7 +36,11 @@ function scr_sortCustom(chainID){
 			}
 		}
 	}
-	if (!scr_isNumericAndExists(fieldList, ds_type_list)) exit;
+	if (!scr_isNumericAndExists(fieldList, ds_type_list)) {
+		show_debug_message("scr_sortCustom, fieldList does not exist");
+		exit;
+	}
+	var fieldName = fieldList[| fieldIndex];
 
 	
 
@@ -53,13 +59,15 @@ function scr_sortCustom(chainID){
 			if (currentChunk != "") {currentEntryToken = scr_getFirstWordOfChunk(currentEntryToken)}
 		}
 		var currentEntryTokenSubMap = global.nodeMap[? currentEntryToken];
-		if(!scr_isNumericAndExists(currentEntryTokenSubMap, ds_type_map)){continue;}
+		if(!scr_isNumericAndExists(currentEntryTokenSubMap, ds_type_map)) continue;
 		var currentEntryTokenSeq = currentEntryTokenSubMap[? "tokenOrder"];
 		var currentEntryUnit = (chainType == "stack") ? currentEntryToken : currentEntryTokenSubMap[? "unit"];
 		var currentEntryUnitSubMap = global.nodeMap[? currentEntryUnit];
 		var currentEntryUnitTagMap = currentEntryUnitSubMap[? "tagMap"];
 		var currentEntryUnitSeq = currentEntryUnitSubMap[? "unitSeq"];
 		var currentEntryTokenTagMap = currentEntryTokenSubMap[? "tagMap"];
+		var currentEntryDiscourseSeq = 0;
+		if (chainType != "stack") currentEntryDiscourseSeq = currentEntryTokenSubMap[? "docTokenSeq"];
 
 		var currentVal = -1;
 		
@@ -120,15 +128,16 @@ function scr_sortCustom(chainID){
 		
 		// put the currentVal into either the tempStrGrid or tempDigitGrid
 		var grid = (is_string(currentVal)) ? tempStrGrid : tempDigitGrid;
-		ds_grid_resize(grid, 2, ds_grid_height(grid) + 1);
+		ds_grid_resize(grid, tempGridWidth, ds_grid_height(grid) + 1);
 		grid[# tempGrid_colID, ds_grid_height(grid) - 1] = currentEntry;
 		grid[# tempGrid_colVal, ds_grid_height(grid) - 1] = currentVal;
+		grid[# tempGrid_colDiscourseSeq, ds_grid_height(grid) - 1] = currentEntryDiscourseSeq;
 
 	}
 	
 	// sort the tempGrids based on their value columns
-	ds_grid_sort(tempStrGrid, tempGrid_colVal, asc);
-	ds_grid_sort(tempDigitGrid, tempGrid_colVal, asc);
+	scr_gridMultiColSort(tempStrGrid, tempGrid_colVal, asc, tempGrid_colDiscourseSeq, asc);
+	scr_gridMultiColSort(tempDigitGrid, tempGrid_colVal, asc, tempGrid_colDiscourseSeq, asc);
 	
 	
 	

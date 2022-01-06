@@ -14,7 +14,12 @@ function scr_saveREZ(autosave) {
 		|| (!file_exists(global.fileSaveName) && !directory_exists(obj_control.clipStackDir))) {
 			
 			show_debug_message("scr_saveREZ(), not autosave, loading new file");
-			global.fileSaveName = get_save_filename_ext("REZ file|*.rez", "", program_directory, "Save REZ");
+			if(global.previousSaveDirectory == "" or !is_string(global.previousSaveDirectory)){
+				global.fileSaveName = get_save_filename_ext("REZ file|*.rez", "", program_directory, "Save REZ");
+			}
+			else{
+				global.fileSaveName = get_save_filename_ext("REZ file|*.rez", "", global.previousSaveDirectory, "Save REZ");	
+			}
 
 			if (global.fileSaveName == "" or global.fileSaveName == "undefined") {
 				global.fileSaveName = "undefined";
@@ -49,6 +54,8 @@ function scr_saveREZ(autosave) {
 		}
 	}
 	
+	show_debug_message("here 1 " + scr_printTime());
+	
 	// create maps to hold copies of other maps we want in the REZ file
 	var nodeMapCopy = ds_map_create();
 
@@ -79,7 +86,7 @@ function scr_saveREZ(autosave) {
 			var tempUnitFieldList = scr_copyListToMap(unitFieldList, map, "unitFieldList");
 			var tempTranslationList = scr_copyListToMap(global.translationList, map, "translationList");
 			
-			
+			show_debug_message("here 2 " + scr_printTime());
 
 		
 			//save special feild colnames
@@ -99,10 +106,15 @@ function scr_saveREZ(autosave) {
 			ds_map_add(map, "functionChainList_focusedUnit", obj_panelPane.functionChainList_focusedUnit);
 			ds_map_add(map, "functionChainList_focusedUnitSeq", obj_panelPane.functionChainList_focusedUnitIndex);
 			
+			show_debug_message("here 3 " + scr_printTime());
 			
 			// deep-copy nodeMap
 			nodeMapCopy = json_decode(json_encode(global.nodeMap));
+			show_debug_message("here 4 " + scr_printTime());
 			ds_map_add_map(map, "nodeMap", nodeMapCopy);
+			show_debug_message("here 5 " + scr_printTime());
+			
+			
 		 	
 			// save the displayTokenField & participantField
 			ds_map_add(map, "displayTokenField", global.displayTokenField);
@@ -204,6 +216,8 @@ function scr_saveREZ(autosave) {
 	
 	// set allSaved to true so user does not get prompted to save when they quit
 	if (not autosave) {
+		global.previousSaveDirectory = filename_path(global.fileSaveName);
+		scr_addToRecentFiles(string(global.fileSaveName));
 		obj_control.allSaved = true;
 	}
 

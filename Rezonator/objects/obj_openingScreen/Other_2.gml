@@ -7,13 +7,18 @@ global.autosaveTimerFull = 600;
 global.autosaveTimer = global.autosaveTimerFull;
 global.previousRezDirectory = "";
 global.previousImportDirectory = "";
+global.previousSaveDirectory = "";
 global.previousLevelEstimates = ds_list_create();
 global.previousSpecialFields = ds_list_create();
 ds_list_clear(global.previousLevelEstimates);
 ds_list_clear(global.previousSpecialFields);
 
 global.readHintHide = false;
+global.userName = "";
 
+global.recentFilesMap = ds_map_create();
+global.recentFilesList = ds_list_create();
+global.usedImports = ds_list_create();
 
 
 global.importType_Default = 0;
@@ -28,7 +33,7 @@ global.importType_Transcription = "import_type_transcription";
 
 
 // by default, we will set importType to be the first item in the importTypeList
-global.importType = global.importType_PlainText;
+global.importType = "";
 
 
 
@@ -41,7 +46,9 @@ global.importGroupSchemaFile = "";
 global.skipToImportScreen = false;
 global.skipToMainScreen = true;
 
-
+var defStr = "";
+defStr = (global.userName == "") ? scr_get_translation("msg_signin") : global.userName;
+global.inputBoxDefStr = defStr;
 
 scr_initializeFonts();
 scr_fontGlobalUpdate();
@@ -71,6 +78,9 @@ global.searchMap = -1;
 
 global.cliqueMap = -1;
 
+
+
+
 window_set_min_width(800);
 window_set_min_height(720);
 
@@ -79,3 +89,8 @@ window_set_min_height(720);
 // if build is true --> CJK fonts will be loaded
 // if build is false --> CJK fonts will not be loaded
 global.build = true;
+global.rezzles = true;
+
+
+global.steamAPI = true;
+alarm[7] = 3;

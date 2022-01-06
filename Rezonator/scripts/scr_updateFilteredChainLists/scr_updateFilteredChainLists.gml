@@ -2,9 +2,11 @@
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
 function scr_updateFilteredChainLists(){
 	
-	var rezChainList = ds_map_find_value(global.nodeMap, "resonanceList");
-	var trackChainList = ds_map_find_value(global.nodeMap, "trailList");
-	var stackChainList = ds_map_find_value(global.nodeMap, "stackList");
+	show_debug_message("scr_updateFilteredChainLists");
+	
+	var rezChainList = global.nodeMap[? "resonanceList"];
+	var trackChainList = global.nodeMap[? "trailList"];
+	var stackChainList = global.nodeMap[? "stackList"];
 	
 	// reset filter lists
 	ds_list_clear(obj_chain.filteredRezChainList);
@@ -24,10 +26,9 @@ function scr_updateFilteredChainLists(){
 	// update filteredChainLists for rez
 	var rezChainListSize = ds_list_size(rezChainList);
 	for (var i = 0; i < rezChainListSize; i++) {
-		var currentChain = ds_list_find_value(rezChainList, i);
-		var currentChainSubMap = ds_map_find_value(global.nodeMap, currentChain);
-		if (!is_numeric(currentChainSubMap)) continue;
-		if (!ds_exists(currentChainSubMap, ds_type_map)) continue;
+		var currentChain = rezChainList[| i];
+		var currentChainSubMap = global.nodeMap[? currentChain];
+		if (!scr_isNumericAndExists(currentChainSubMap, ds_type_map)) continue;
 		
 		// add chain to filtered list if needed
 		var inFilter = ds_map_find_value(currentChainSubMap, "filter");
@@ -50,10 +51,9 @@ function scr_updateFilteredChainLists(){
 	// update filteredChainLists for tracks
 	var trackChainListSize = ds_list_size(trackChainList);
 	for (var i = 0; i < trackChainListSize; i++) {
-		var currentChain = ds_list_find_value(trackChainList, i);
-		var currentChainSubMap = ds_map_find_value(global.nodeMap, currentChain);
-		if (!is_numeric(currentChainSubMap)) continue;
-		if (!ds_exists(currentChainSubMap, ds_type_map)) continue;
+		var currentChain = trackChainList[| i];
+		var currentChainSubMap = global.nodeMap[? currentChain];
+		if (!scr_isNumericAndExists(currentChainSubMap, ds_type_map)) continue;
 		
 		// add chain to filtered list if needed
 		var inFilter = ds_map_find_value(currentChainSubMap, "filter");
@@ -76,10 +76,9 @@ function scr_updateFilteredChainLists(){
 	// update filteredChainLists for stacks
 	var stackChainListSize = ds_list_size(stackChainList);
 	for (var i = 0; i < stackChainListSize; i++) {
-		var currentChain = ds_list_find_value(stackChainList, i);
-		var currentChainSubMap = ds_map_find_value(global.nodeMap, currentChain);
-		if (!is_numeric(currentChainSubMap)) continue;
-		if (!ds_exists(currentChainSubMap, ds_type_map)) continue;
+		var currentChain = stackChainList[| i];
+		var currentChainSubMap = global.nodeMap[? currentChain];
+		if (!scr_isNumericAndExists(currentChainSubMap, ds_type_map)) continue;
 		
 		// add chain to filtered list if needed
 		var inFilter = ds_map_find_value(currentChainSubMap, "filter");

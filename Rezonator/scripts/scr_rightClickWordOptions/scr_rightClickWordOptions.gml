@@ -64,6 +64,19 @@ function scr_rightClickWordOptions(optionSelected) {
 	
 			break;
 			
+		case "option_zero":
+			//obj_control.newWordPre1 = true;
+			obj_control.currentNewWordPre = 1;
+			
+				
+			scr_newToken(scr_get_translation("option_zero-0"), obj_control.rightClickID);
+			obj_control.alarm[11] = 60;
+
+		
+			obj_control.rightClicked = false;
+			instance_destroy();
+			break;
+			
 		case "help_label_delete-link":
 		
 			scr_deleteFromChain(true);
@@ -170,6 +183,11 @@ function scr_rightClickWordOptions(optionSelected) {
 					&& is_string(obj_panelPane.functionField_tokenFieldSelected) && is_string(obj_panelPane.functionField_tokenTagSelected)) {
 						var tokenTagMap = tokenSubMap[? "tagMap"];
 						if (scr_isNumericAndExists(tokenTagMap, ds_type_map)) {
+							if(global.steamAPI){
+								if(!steam_get_achievement("SA_tag-token")){
+									steam_set_achievement("SA_tag-token");
+								}
+							}
 							tokenTagMap[? obj_panelPane.functionField_tokenFieldSelected] = obj_panelPane.functionField_tokenTagSelected;
 							show_debug_message("scr_tokenRightClicked ... setting tokenSubMap: " + string(obj_control.rightClickID) + ", field:" + string(obj_panelPane.functionField_tokenFieldSelected) + ", tag: " + string(obj_panelPane.functionField_tokenTagSelected));
 						}
@@ -221,7 +239,14 @@ function scr_rightClickWordOptions(optionSelected) {
 			instance_destroy();
 			break;
 
+		case "word_tip":
+			obj_wordTip.wordTipDisplay = !obj_wordTip.wordTipDisplay;			
+			instance_destroy();
+			break;
 			
+		case "option_zero-0":
+			scr_newTokenOptions("option_zero-0");
+			break;
 			
 		default:
 			break;

@@ -80,6 +80,7 @@ function scr_loadREZ(bufferString) {
 		
 			with (asset_get_index(objectIndex)) {
 				if (objectIndex == "obj_control") {
+					obj_control.currentCenterDisplayRow = 0;
 			
 					global.importGridWidth = ds_map_find_value(map, "importGridWidth");
 					global.importCSVGridWidth = ds_map_find_value(map, "importCSVGridWidth");
@@ -100,6 +101,7 @@ function scr_loadREZ(bufferString) {
 					}
 					
 					if(global.tokenImportDisplayTokenColName == undefined ){
+						show_message("here");
 						global.tokenImportDisplayTokenColName = "~text";
 					}
 					
@@ -147,18 +149,14 @@ function scr_loadREZ(bufferString) {
 					}
 					
 					
-					// get navTokenFieldList, if supplied
-					var navTokenFieldList = ds_map_find_value(map, "navTokenFieldList");
-					if (scr_isNumericAndExists(navTokenFieldList, ds_type_list)) {
-						ds_list_destroy(obj_control.navTokenFieldList);
-						obj_control.navTokenFieldList = navTokenFieldList;
-					}
 					
-					// get navTokenFieldList, if supplied
+					// get tokenFieldList, if supplied
 					var tokenFieldList = ds_map_find_value(map, "tokenFieldList");
 					if (scr_isNumericAndExists(tokenFieldList, ds_type_list)) {
 						ds_list_destroy(obj_control.tokenFieldList);
 						obj_control.tokenFieldList = tokenFieldList;
+						ds_list_clear(obj_control.navTokenFieldList);
+						ds_list_copy(obj_control.navTokenFieldList, tokenFieldList);
 					}
 					
 					
@@ -182,11 +180,13 @@ function scr_loadREZ(bufferString) {
 						obj_control.chunkFieldList = chunkFieldList;
 					}
 					
-					// get navTokenFieldList, if supplied
+					// get navUnitFieldList, if supplied
 					var unitFieldList = ds_map_find_value(map, "unitFieldList");
 					if (scr_isNumericAndExists(unitFieldList, ds_type_list)) {
 						ds_list_destroy(obj_control.unitFieldList);
 						obj_control.unitFieldList = unitFieldList;
+						ds_list_clear(obj_control.navUnitFieldList);
+						ds_list_copy(obj_control.navUnitFieldList, unitFieldList);
 					}
 					
 					
@@ -224,26 +224,10 @@ function scr_loadREZ(bufferString) {
 					}
 
 
-					// get session length
+					
 					if (ds_map_exists(map, "sessionLength")) {
 						var sessionLength = map[? "sessionLength"];
 						if (is_numeric(sessionLength)) obj_control.loadSessionLength = sessionLength;
-					}
-					
-					// get resonance counter
-					if (ds_map_exists(map, "resonanceCounter")) {
-						var resonanceCounter = map[? "resonanceCounter"];
-						if (is_numeric(resonanceCounter)) obj_chain.rezChainNameCounter = resonanceCounter;
-					}
-					// get trail counter
-					if (ds_map_exists(map, "trailCounter")) {
-						var trailCounter = map[? "trailCounter"];
-						if (is_numeric(trailCounter)) obj_chain.trackChainNameCounter = trailCounter;
-					}
-					// get stack counter
-					if (ds_map_exists(map, "stackCounter")) {
-						var stackCounter = map[? "stackCounter"];
-						if (is_numeric(stackCounter)) obj_chain.stackChainNameCounter = stackCounter;
 					}
 				}
 			}		

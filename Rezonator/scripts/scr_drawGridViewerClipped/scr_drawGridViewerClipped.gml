@@ -235,7 +235,7 @@ function scr_drawGridViewerClipped() {
 
 
 
-	scr_scrollBarGridViewer(global.colorThemeSelected1, global.colorThemeSelected2, global.colorThemeSelected1, global.colorThemeSelected2, spr_ascend, windowWidth, windowHeight);
+	//scr_scrollBarGridViewer(global.colorThemeSelected1, global.colorThemeSelected2, global.colorThemeSelected1, global.colorThemeSelected2, spr_ascend, windowWidth, windowHeight);
 	
 		
 

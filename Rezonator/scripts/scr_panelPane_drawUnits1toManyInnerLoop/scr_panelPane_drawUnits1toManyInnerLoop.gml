@@ -12,7 +12,8 @@ function scr_panelPane_drawUnits1toManyInnerLoop(tokenID, drawDropDowns, strHeig
 	var fieldListSize = ds_list_size(fieldList);
 	var lineStateLTR = (obj_control.drawLineState == obj_control.lineState_ltr);
 	var spaceWidth = string_width(" ");
-	var mouseoverCancel = (instance_exists(obj_dropDown) || instance_exists(obj_dialogueBox));
+	var mouseoverCancel = (instance_exists(obj_dropDown) || instance_exists(obj_dialogueBox)
+	|| mouseoverHorScrollBar || scrollBarHorHolding || mouseoverScrollBar || scrollBarHolding);
 	
 	// draw BG highlight for the entire windowWidth (if we have less than 6 columns)
 	if (highlight && fieldListSize < 6) {
@@ -39,8 +40,8 @@ function scr_panelPane_drawUnits1toManyInnerLoop(tokenID, drawDropDowns, strHeig
 		var isTildaField = (string_char_at(string(currentField), 1) == "~");
 		
 		// get BG rect coordinates
-		var colWidth = windowWidth / fieldListSize;
-		var cellRectX1 = plusX;
+		var colWidth = windowWidth/obj_panelPane.unit1toMColAmount;
+		var cellRectX1 = plusX + scrollHorPlusX;
 		var cellRectX2 = cellRectX1 + colWidth;
 		var mouseoverCell = point_in_rectangle(mouse_x, mouse_y, cellRectX1, cellRectY1, cellRectX2, cellRectY2) && !mouseoverCancel;
 		
@@ -81,7 +82,7 @@ function scr_panelPane_drawUnits1toManyInnerLoop(tokenID, drawDropDowns, strHeig
 		var dropDownRectY1 = mean(cellRectY1, cellRectY2) - (dropDownButtonHeight / 2);
 		var dropDownRectX2 = dropDownRectX1 + dropDownButtonWidth;
 		var dropDownRectY2 = dropDownRectY1 + dropDownButtonHeight;
-		var mouseoverDropDown = point_in_rectangle(mouse_x, mouse_y, dropDownRectX1, dropDownRectY1, dropDownRectX2, dropDownRectY2);
+		var mouseoverDropDown = (point_in_rectangle(mouse_x, mouse_y, dropDownRectX1, dropDownRectY1, dropDownRectX2, dropDownRectY2) && !mouseoverCancel);
 		
 		// draw dropdown sprite if mouseover on this cell
 		if (mouseoverCell && !isTildaField) {
@@ -102,6 +103,7 @@ function scr_panelPane_drawUnits1toManyInnerLoop(tokenID, drawDropDowns, strHeig
 				draw_rectangle(dropDownRectX1- clipX, dropDownRectY1 - clipY , dropDownRectX2 - clipX, dropDownRectY2 - clipY, true);
 
 				if (mouse_check_button_released(mb_left)) {
+
 					
 					// get submap for this field
 					var tokenTagMap = global.nodeMap[? "tokenTagMap"];
@@ -119,7 +121,7 @@ function scr_panelPane_drawUnits1toManyInnerLoop(tokenID, drawDropDowns, strHeig
 						obj_control.tokenToChange = tokenID;
 						obj_control.tokenFieldToChange = currentField;
 						var dropDownX = textX - xBuffer;
-						var dropDownY = textY + scrollPlusY;							
+						var dropDownY = textY + (strHeight / 2);							
 						scr_createDropDown(dropDownX, dropDownY, dropDownOptionList, global.optionListTypeTokenTagMap);
 
 					}

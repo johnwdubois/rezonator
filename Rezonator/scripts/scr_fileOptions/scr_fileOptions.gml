@@ -50,6 +50,7 @@ function scr_fileOptions(optionSelected) {
 					// if everything is saved already we can just pretend they clicked "no"
 					scr_dialogueNo();
 				}
+				scr_saveINI();
 			}
 			else {
 				global.skipToImportScreen = true;
@@ -89,6 +90,11 @@ function scr_fileOptions(optionSelected) {
 			
 				var getAudioFile = get_open_filename_ext("ogg file|*.ogg", "", working_directory, scr_get_translation("msg_file_audio"));
 					if (getAudioFile != "" and file_exists(getAudioFile)) {
+						if(global.steamAPI){
+							if(!steam_get_achievement("SA_play-audio")){
+								steam_set_achievement("SA_play-audio");
+							}
+						}
 						audioFile = getAudioFile;
 						audioStream = audio_create_stream(audioFile);
 						audioSound = audio_play_sound(audioStream, 100, false);
@@ -106,7 +112,10 @@ function scr_fileOptions(optionSelected) {
 				inst.questionWindowActive = true;
 				inst.noButtonActive = true;
 				obj_control.saveBeforeExiting = true;
-				
+				scr_saveINI();
+				var defStr = "";
+				defStr = (global.userName == "") ? scr_get_translation("msg_signin") : global.userName;
+				global.inputBoxDefStr = defStr;
 				// if everything is saved already we can just pretend they clicked "no"
 				scr_dialogueNo();
 			}

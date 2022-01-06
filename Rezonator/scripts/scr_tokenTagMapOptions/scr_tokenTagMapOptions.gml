@@ -21,6 +21,11 @@ function scr_tokenTagMapOptions(optionSelected) {
 			var tokenTagMap = tokenSubMap[? "tagMap"];
 			show_debug_message(string(obj_control.tokenFieldToChange));
 			// set the new value in this token's tagmap
+			if(global.steamAPI){
+				if(!steam_get_achievement("SA_tag-token")){
+					steam_set_achievement("SA_tag-token");
+				}
+			}
 			tokenTagMap[? obj_control.tokenFieldToChange] = optionSelected;
 		}
 		

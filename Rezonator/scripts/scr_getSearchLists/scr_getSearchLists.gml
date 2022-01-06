@@ -189,6 +189,8 @@ function scr_getSearchLists(searchTermList){
 	ds_list_add(listOfResultLists,searchUnitList);
 	ds_list_add(listOfResultLists,searchTokenList);
 	
+	scr_sortSearchLists(listOfResultLists);
+	
 	return listOfResultLists;
 
 }

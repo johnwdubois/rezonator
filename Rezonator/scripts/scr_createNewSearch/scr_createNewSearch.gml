@@ -6,15 +6,25 @@ function scr_createNewSearch(searchTermList){
 	
 
 		var searchTermListCopy = ds_list_create();
+		if(ds_list_size(searchTermList) >= 2){
+			if(global.steamAPI){
+				if(!steam_get_achievement("SA_mw-search")){
+					steam_set_achievement("SA_mw-search");
+				}
+			}
+		}
+		
 		ds_list_copy(searchTermListCopy, searchTermList);
 	
 		var searchLists = scr_getSearchLists(searchTermListCopy);
 
 		var displayUnitList = searchLists[|0];
 		var displayTokenList = searchLists[|1];
+	
 		if(scr_isNumericAndExists(displayTokenList, ds_type_list)){
 
 			if(ds_list_size(displayTokenList) > 0){
+				var selectedTokenList = ds_list_create();
 				//global.displayTokenField = obj_control.searchField;
 				// type variable should be a string that declares what "type" of Node this is
 				// for example, "Chain", "Link", "Unit", etc.
@@ -52,6 +62,9 @@ function scr_createNewSearch(searchTermList){
 	
 					// add displayTokenList to subMap
 					ds_map_add_list(subMap, "displayTokenList", displayTokenList);
+					
+					// add selectedTokenList to subMap
+					ds_map_add_list(subMap, "selectedTokenList", selectedTokenList);
 	
 					// add Node to NodeMap
 					ds_map_add_map(global.searchMap, nodeKey, subMap);

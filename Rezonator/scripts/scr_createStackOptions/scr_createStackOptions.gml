@@ -65,6 +65,16 @@ function scr_createStackOptions(optionSelected) {
 			obj_stacker.createStacksSentence = true;
 			instance_destroy(obj_dropDown);
 			break;
+		case "menu_clique":
+			if (doStacksExist) {
+				confirmStack = true;
+			}
+			else {
+				obj_stacker.alarm[9] = 1;
+			}
+			obj_stacker.createStacksClique = true;
+			instance_destroy(obj_dropDown);
+			break;
 		default:
 			break;
 	}

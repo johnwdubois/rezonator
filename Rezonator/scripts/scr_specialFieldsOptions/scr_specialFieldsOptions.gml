@@ -110,6 +110,17 @@ function scr_specialFieldsOptions(optionSelected) {
 				obj_importMapping.currentTokenThreshold = (currentMarkerCount * obj_importMapping.tokenRatio);
 			}
 			break;
+		case "tab_name_track":
+			for (var i = 0; i < tagInfoGridHeight; i++) {
+				if (ds_grid_get(global.tagInfoGrid, obj_importMapping.colToChange, i) == "tab_name_track") {
+					ds_grid_set(global.tagInfoGrid, obj_importMapping.colToChange, i, 0);
+				}
+			}
+			ds_grid_set(global.tagInfoGrid, obj_importMapping.colToChange, obj_importMapping.rowToChange, "tab_name_track");
+			break;
+		case "menu_clear":
+			ds_grid_set(global.tagInfoGrid, obj_importMapping.colToChange, obj_importMapping.rowToChange, "");
+			break;
 		default:
 			break;
 	}

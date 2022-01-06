@@ -1,6 +1,10 @@
 function scr_dialogueBoxNewCustomFieldToken() {
 	
 	var newField = obj_control.inputText;
+	if (!is_string(newField) || string_length(string(newField)) < 1) {
+		show_debug_message("new field is invalid or blank string, exiting...");
+		exit;
+	}
 	
 	// add new field to the list of token fields
 	if (!obj_control.selectFieldChunk) {
@@ -12,22 +16,12 @@ function scr_dialogueBoxNewCustomFieldToken() {
 	}
 	scr_addToListOnce(obj_control.chunkFieldList, newField);
 	
-	//add to nav window list if
-	var sizeOfNavTokenList = ds_list_size(obj_control.navTokenFieldList);
-	if (!obj_control.selectFieldChunk) {
-		if(sizeOfNavTokenList < 6){
-			scr_addToListOnce(obj_control.navTokenFieldList, newField);
-		}
-	}
-	
-	var sizeOfNavChunkList = ds_list_size(obj_control.navChunkFieldList);
-	if(sizeOfNavChunkList < 6){
-		scr_addToListOnce(obj_control.navChunkFieldList, newField);
-	}
+	//add to nav window list
+	scr_addToListOnce(obj_control.navTokenFieldList, newField);
+	scr_addToListOnce(obj_control.navChunkFieldList, newField);
 	
 	
-	
-	
+
 	
 	
 	// create a new submap for this field
@@ -45,10 +39,12 @@ function scr_dialogueBoxNewCustomFieldToken() {
 	ds_map_add_map(tagMap, newField, newFieldMap);
 	
 	
+	scr_addNewFieldToNodes("token", newField);
+	
+	/*
 	// loop over all tokens and give their tagmaps this new field
 	var discourseSubMap = global.nodeMap[? global.discourseNode];
 	var tokenList = discourseSubMap[? "tokenList"];
-	
 
 	if (scr_isNumericAndExists(tokenList, ds_type_list)) {
 		
@@ -67,7 +63,7 @@ function scr_dialogueBoxNewCustomFieldToken() {
 		}
 	}
 	
-
+	*/
 	
 
 

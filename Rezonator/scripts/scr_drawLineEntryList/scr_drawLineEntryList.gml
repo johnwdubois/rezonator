@@ -60,7 +60,7 @@ function scr_drawLineEntryList(unitID, unitSubMap, entryList, pixelY, OOBCheck){
 		var tokenOnScreen = (currentTokenSubMap[? "pixelX"] >= 0 && currentTokenSubMap[? "pixelX"] < camWidth);
 		if (tokenOnScreen) {
 			scr_tokenCalculateVoid(currentToken);
-			scr_adaptFont(currentDisplayStr,"M");
+			currentDisplayStr = scr_adaptFont(currentDisplayStr,"M");
 		}
 		
 		var currentDisplayCol = currentTokenSubMap[? "displayCol"];
@@ -134,9 +134,18 @@ function scr_drawLineEntryList(unitID, unitSubMap, entryList, pixelY, OOBCheck){
 			// get this token's inChainsList, and update the chainShowList accordingly
 			var inChainsList = currentTokenSubMap[?"inChainsList"];
 			var inEntryList = currentTokenSubMap[?"inEntryList"];
-			scr_updateChainShowList(inChainsList, inEntryList, obj_chain.chainShowList, currentTokenSubMap[?"inChunkList"], currentToken, tokenRectX1, tokenRectY1, tokenRectX2, tokenRectY2);	
+
+
+			scr_updateChainShowList(inChainsList, inEntryList, obj_chain.chainShowList, currentTokenSubMap[?"inChunkList"], currentToken, tokenRectX1, tokenRectY1, tokenRectX2, tokenRectY2, mouseOverToken);	
+
+
 		
-		
+			var drawTokenBorder = false;
+			if (rightClickID == currentToken) {
+				with (obj_dropDown) {
+					if (optionListType == global.optionListTypeRightClickWord) drawTokenBorder = true;
+				}
+			}
 		
 			// mouseover token
 			if(mouseOverToken){
@@ -145,9 +154,9 @@ function scr_drawLineEntryList(unitID, unitSubMap, entryList, pixelY, OOBCheck){
 				var sizeOfInChainsList = 0;
 				if (scr_isNumericAndExists(inChainsList, ds_type_list)) sizeOfInChainsList = ds_list_size(inChainsList);
 				if (sizeOfInChainsList == 0) {
-					draw_set_color(global.colorThemeBorders);
-					draw_rectangle(tokenRectX1,tokenRectY1,tokenRectX2,tokenRectY2, true);
+					drawTokenBorder = true;
 				}
+				
 				obj_control.hoverTokenID = currentToken;
 				var tokenTagMap = currentTokenSubMap[?"tagMap"];
 				obj_control.hoverTextCopy = tokenTagMap[? global.displayTokenField];
@@ -184,10 +193,15 @@ function scr_drawLineEntryList(unitID, unitSubMap, entryList, pixelY, OOBCheck){
 					}
 
 				}
-			
 
 			}
-		
+
+
+			if (drawTokenBorder) {
+				draw_set_color(global.colorThemeBorders);
+				draw_rectangle(tokenRectX1,tokenRectY1,tokenRectX2,tokenRectY2, true);
+			}
+
 		
 		
 			// draw the token's text

@@ -42,6 +42,7 @@ function scr_panelPane_drawChains1ToManyInnerLoop(chain1toManyColFieldList, entr
 	var textMarginTop = functionTabs_tabHeight;
 	var xBuffer = 6;
 	var dropDownButtonWidth = sprite_get_width(spr_dropDown);
+	var colWidth = windowWidth / chain1toMColAmount;
 
 	var chunkSubMap = isChunk ? global.nodeMap[? ID] : -1;
 	
@@ -51,9 +52,9 @@ function scr_panelPane_drawChains1ToManyInnerLoop(chain1toManyColFieldList, entr
 	for (var i = 0; i < colAmount; i++) {
 
 		// draw rectangle to prevent text overlapping
-		var cellRectX1 = x + (i * (windowWidth / colAmount));
+		var cellRectX1 = x + (i * colWidth) + scrollHorPlusX;
 		var cellRectY1 = rectY1;
-		var cellRectX2 = cellRectX1 + (windowWidth / colAmount);
+		var cellRectX2 = cellRectX1 + colWidth;
 		var cellRectY2 = rectY2;
 		var mouseoverCell = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, cellRectX1, cellRectY1, cellRectX2, cellRectY2) && !instance_exists(obj_dropDown) && !instance_exists(obj_dialogueBox) && !mouseoverHeader && !mouseoverScrollBar;
 		draw_set_alpha(1);
@@ -132,11 +133,11 @@ function scr_panelPane_drawChains1ToManyInnerLoop(chain1toManyColFieldList, entr
 		// text coordinates
 		if(lineStateLTR){
 			draw_set_halign(fa_left);
-			var textX = x + (i * (windowWidth / colAmount)) + xBuffer;
+			var textX = x + (i * colWidth) + xBuffer + scrollHorPlusX;
 		}
 		else{
 			draw_set_halign(fa_right);
-			var textX = floor(x + ((i+1) * (windowWidth / colAmount)) - xBuffer);
+			var textX = floor(x + ((i+1) * colWidth) - xBuffer) + scrollHorPlusX;
 			if(mouseoverCell ){
 				textX = textX - dropDownButtonWidth;
 			}

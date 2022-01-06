@@ -77,6 +77,12 @@ function scr_exportGrids() {
 	// header list for temp chaingrids
 	var tempChainGridHeaderList = ds_list_create();
 	ds_list_add(tempChainGridHeaderList, "chainID", "type", "name", "filter", "align");
+	var chainFieldListSize = ds_list_size(global.chainFieldList);
+	for (var i = 0; i < chainFieldListSize; i++) {
+		ds_list_add(tempChainGridHeaderList, global.chainFieldList[| i]);
+	}
+	
+	
 	
 	var tempChunkGridHeaderList = ds_list_create();
 	ds_list_add(tempChunkGridHeaderList, "chunkID", "tokenList", "Display Text");
@@ -117,4 +123,13 @@ function scr_exportGrids() {
 	// destroy temp header lists
 	ds_list_destroy(tempChainGridHeaderList);
 	ds_list_destroy(tempSearchGridHeaderList);
+	
+	
+
+	if(global.steamAPI){
+		if(!steam_get_achievement("SA_export")){
+			steam_set_achievement("SA_export");
+		}
+	}
+	
 }

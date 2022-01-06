@@ -6,9 +6,11 @@ function scr_panelPane_drawChains1ToManyHeaders(){
 	var textMarginLeft = 8;
 	var dropDownButtonSize = sprite_get_width(spr_dropDown);
 	var camWidth = camera_get_view_width(view_camera[0]);
+	var mouseoverCancel = !point_in_rectangle(mouse_x, mouse_y, x, y, x + windowWidth, y + windowHeight) || instance_exists(obj_dropDown) || instance_exists(obj_dialogueBox);
+	
 	
 	var sortArrowScale = 0.4;
-	if(camWidth > 2000){sortArrowScale *= 1.25;}
+	if (camWidth > 2000) {sortArrowScale *= 1.25;}
 	var tabHeight = functionTabs_tabHeight;
 	var chain1toManyColFieldList = -1;
 	var chainType = "";
@@ -29,17 +31,22 @@ function scr_panelPane_drawChains1ToManyHeaders(){
 		}
 	}
 	
+
+	
+
+	
 	if (scr_isNumericAndExists(chain1toManyColFieldList, ds_type_list)) {
 		
 		// draw headers for chainContents columns
 		var chainContents1toManyFieldListSize = ds_list_size(chain1toManyColFieldList);
 		var colAmount = 3 + chainContents1toManyFieldListSize;
+		var colWidth = windowWidth / chain1toMColAmount;
 		var i = 0;
+		
 		repeat(colAmount) {
 			
 			// get coordinates for header rect
-			var colWidth = windowWidth / colAmount;
-			var headerRectX1 = x + (colWidth * i);
+			var headerRectX1 = x + (colWidth * i) + scrollHorPlusX;
 			var headerRectY1 = y;
 			var headerRectX2 = headerRectX1 + colWidth;
 			if (colAmount == 3 && i == 2) {
@@ -49,9 +56,9 @@ function scr_panelPane_drawChains1ToManyHeaders(){
 			
 			var sortArrowX = headerRectX2 - sprite_get_width(spr_linkArrow)*sortArrowScale;
 			var sortArrowY = floor(mean(headerRectY1, headerRectY2));
-			var mouseoverSortArrow = point_in_circle(mouse_x, mouse_y, sortArrowX, sortArrowY, sprite_get_width(spr_linkArrow) * 0.5);
+			var mouseoverSortArrow = point_in_circle(mouse_x, mouse_y, sortArrowX, sortArrowY, sprite_get_width(spr_linkArrow) * 0.5) && !mouseoverCancel;
 			
-			var mouseoverColHeader = point_in_rectangle(mouse_x, mouse_y, headerRectX1, headerRectY1, headerRectX2, headerRectY2) && !instance_exists(obj_dropDown) && !instance_exists(obj_dialogueBox) && !mouseoverSortArrow;
+			var mouseoverColHeader = point_in_rectangle(mouse_x, mouse_y, headerRectX1, headerRectY1, headerRectX2, headerRectY2) && !mouseoverSortArrow && !mouseoverCancel;
 			
 			// get coordinates for header text
 			var headerTextX = floor(headerRectX1 + textMarginLeft);
@@ -91,7 +98,7 @@ function scr_panelPane_drawChains1ToManyHeaders(){
 		
 			// make headers not overlap with each other
 			draw_set_color(global.colorThemeBG);
-			draw_rectangle(headerRectX1, headerRectY1, headerRectX2, headerRectY1 + tabHeight, false);
+			draw_rectangle(headerRectX1 - clipX, headerRectY1 - clipY, headerRectX2 - clipX, headerRectY1 + tabHeight - clipY, false);
 			
 			// draw sort arrow
 			if (mouseoverColHeader || mouseoverSortArrow || obj_control.chain1toManyCustomSortColIndex == i) {
@@ -124,7 +131,7 @@ function scr_panelPane_drawChains1ToManyHeaders(){
 				if (obj_control.chain1toManyCustomSortColIndex == i) {
 					sortArrowAngle = obj_control.chain1toManyCustomSortAsc ? 270 : 90;
 				}
-				draw_sprite_ext(spr_linkArrow, 0, sortArrowX, sortArrowY, sortArrowScale, sortArrowScale, sortArrowAngle, mouseoverSortArrow && mouse_check_button(mb_left) ? global.colorThemeSelected2 : global.colorThemeText, 1);
+				draw_sprite_ext(spr_linkArrow, 0, sortArrowX - clipX, sortArrowY - clipY, sortArrowScale, sortArrowScale, sortArrowAngle, mouseoverSortArrow && mouse_check_button(mb_left) ? global.colorThemeSelected2 : global.colorThemeText, 1);
 			}
 			
 		
@@ -151,7 +158,7 @@ function scr_panelPane_drawChains1ToManyHeaders(){
 					}
 					var underlineY = headerTextY + (tabHeight * 0.25);
 					draw_set_color(global.colorThemeBorders);
-					draw_line_width(underlineX1, underlineY, underlineX2, underlineY, 2);
+					draw_line_width(underlineX1 - clipX, underlineY - clipY, underlineX2 - clipX, underlineY - clipY, 2);
 					
 					if (mouse_check_button_released(mb_left)) {
 						with (obj_panelPane) fieldChains1ToManyChainType = chainType;
@@ -185,22 +192,22 @@ function scr_panelPane_drawChains1ToManyHeaders(){
 			
 
 			
-			draw_text(headerTextX, headerTextY, colName);
+			draw_text(headerTextX - clipX, headerTextY - clipY, colName);
 		
 	
 			
 			if(i > 0){
 				draw_set_color(global.colorThemeBorders);
-				draw_line(headerRectX1, y, headerRectX1, y + windowHeight);
+				draw_line(headerRectX1 - clipX, y - clipY, headerRectX1 - clipX, y + windowHeight - clipY);
 			}
 		
 
 			
 			i++;
 		}
-
-
-		// draw horizontal line between headers and contents
-		draw_line(x , y + tabHeight , x + windowWidth , y + tabHeight  );
 	}
+
+	
+	// draw horizontal line between headers and contents
+	draw_line(x , y + tabHeight , x + windowWidth , y + tabHeight);
 }

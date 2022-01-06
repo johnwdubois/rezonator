@@ -28,12 +28,15 @@ function scr_deleteChain(chainID){
 	
 	// remove every entry from this chain
 	var sizeOfEntryList = ds_list_size(setIDList);
-	while (sizeOfEntryList > 0) {
+	while (sizeOfEntryList > 0 and scr_isNumericAndExists(chainSubMap, ds_type_map)) {
 		if(sizeOfEntryList == 1){
 			obj_chain.quickLinkDeleted = false;
-		}
+		} 
 		var currentEntry = ds_list_find_value(setIDList, 0);
+
 		ds_map_replace(chainSubMap, "focused", currentEntry);
+
+		show_debug_message("sizeOfEntryList: " + string(sizeOfEntryList));
 		scr_deleteFromChain(false);
 		
 		if (ds_exists(setIDList, ds_type_list)) {

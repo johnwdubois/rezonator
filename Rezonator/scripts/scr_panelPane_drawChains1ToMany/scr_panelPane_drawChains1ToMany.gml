@@ -41,11 +41,10 @@ function scr_panelPane_drawChains1ToMany() {
 
 
 
-	scr_surfaceStart();
+
 	
 	
 	if (!ds_exists(chain1toManyColFieldList, ds_type_list)) {
-		scr_surfaceEnd();
 		exit;
 	}
 
@@ -64,7 +63,6 @@ function scr_panelPane_drawChains1ToMany() {
 	
 	// make sure chain exists and that its submap exists
 	if (!scr_isNumericAndExists(chainSubMap, ds_type_map)) {
-		scr_surfaceEnd();
 		exit;
 	}
 	
@@ -82,7 +80,6 @@ function scr_panelPane_drawChains1ToMany() {
 	// make sure that we have a valid chain type
 	if (chainType != "resonance" && chainType != "trail" && chainType != "stack") {
 		functionChainContents_chainID = "";
-		scr_surfaceEnd();
 		exit;
 	}
 	
@@ -91,7 +88,6 @@ function scr_panelPane_drawChains1ToMany() {
 	|| (chainType == "trail" && functionChainList_currentTab != functionChainList_tabTrackBrush)
 	|| (chainType == "stack" && functionChainList_currentTab != functionChainList_tabStackBrush)) {
 		functionChainContents_chainID = "";
-		scr_surfaceEnd();
 		exit;
 	}
 	
@@ -213,6 +209,9 @@ function scr_panelPane_drawChains1ToMany() {
 		scrollBarBackColor = global.colorThemeSelected2;
 	}
 
+	var colWidth = windowWidth / chain1toMColAmount;
+	scr_scrollBarHorizontal(ds_list_size(chain1toManyColFieldList) + 3, colWidth, global.colorThemeSelected1, global.colorThemeSelected2,
+		global.colorThemeSelected1, global.colorThemeSelected2, spr_ascend, windowWidth, windowHeight);
 	scr_scrollBar(scrollBarListSize, focusedElementY, strHeight, tabHeight,
 		scrollBarBackColor, global.colorThemeSelected2,
 		global.colorThemeSelected1, global.colorThemeSelected2, spr_ascend, windowWidth, windowHeight);
@@ -221,6 +220,6 @@ function scr_panelPane_drawChains1ToMany() {
 
 	scr_scrollMouseControls(strHeight);
 
-	scr_surfaceEnd();
+
 
 }

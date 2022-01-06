@@ -143,9 +143,6 @@ function scr_quickLinkCreation(){
 		obj_chain.currentFocusedChainID = "";
 		var gridOfFutureChainsHeight = ds_grid_height(gridOfFutureChains);
 		for (var i = 0; i < gridOfFutureChainsHeight; i++) {
-			if(i == gridOfFutureChainsHeight-1){
-				obj_chain.quickLinkCreated = false;
-			}
 			
 			var currentTokenIDList = ds_grid_get(gridOfFutureChains, gridOfFutureChains_colTokenIDList, i);
 			var currentTokenIDListSize = ds_list_size(currentTokenIDList);
@@ -169,4 +166,13 @@ function scr_quickLinkCreation(){
 
 	// Clear/destroy/reset the quicklink data structures
 	ds_grid_destroy(gridOfFutureChains);
+	
+	scr_refreshCliques();
+	if(global.steamAPI){
+		if(!steam_get_achievement("SA_quicklink")){
+			steam_set_achievement("SA_quicklink");
+		}
+	}
+	obj_chain.quickLinkCreated = false;
+	
 }

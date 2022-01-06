@@ -72,17 +72,7 @@ function scr_newChain(ID) {
 	var listOfChains = global.nodeMap[? listOfChainsKey];
 	ds_list_add(listOfChains, obj_chain.currentChainID);
 
-
-	
-	obj_chain.chainHue += random_range(50, 100);
-	if (obj_chain.chainHue > 255) {
-		obj_chain.chainHue -= 255;
-	}
-	while( obj_chain.chainHue > 30 && obj_chain.chainHue < 70){
-		obj_chain.chainHue = random_range(0, 255);
-	}
-
-	var chainColor = make_color_hsv(obj_chain.chainHue, random_range(125, 255), random_range(200, 255));
+	var chainColor = scr_randomChainColor();
 	
 	// set values in nodeMap
 	scr_nodeMapSetChainValues(obj_chain.currentChainID, chainName, chainColor, chainSeq);
@@ -106,6 +96,10 @@ function scr_newChain(ID) {
 			alarm[4] = 2;
 		}
 	}
-
+	if(global.steamAPI){
+		if(!steam_get_achievement("SA_chain")){
+			steam_set_achievement("SA_chain");
+		}
+	}
 
 }

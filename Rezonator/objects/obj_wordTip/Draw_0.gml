@@ -89,14 +89,16 @@ if ((obj_control.hoverTokenID != "" or obj_control.hoverUnitID != "" or obj_cont
 
 	// Handle the case where the box clips off the bottom of the screen
 	var fullWindowHeight = camera_get_view_height(camera_get_active());
-	if (boxY2 >= fullWindowHeight)
-	{
+	if (boxY2 >= fullWindowHeight) {
 		var overflowHeight = boxY2 - fullWindowHeight;
 		boxY1 -= overflowHeight;
 		boxY2 -= overflowHeight;
 	}
+	
+	scr_dropShadow(boxX1, boxY1, boxX2, boxY2);
 
 	// Draw the box's outline
+	draw_set_alpha(1);
 	draw_set_color(c_black);
 	draw_rectangle(boxX1, boxY1, boxX2, boxY2, true);
 

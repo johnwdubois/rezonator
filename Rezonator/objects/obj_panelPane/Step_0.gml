@@ -46,3 +46,7 @@ if (keyboard_check_pressed(ord("N")) and global.ctrlHold) {
 		}
 	}
 }
+
+unit1toMColAmount = min(6,ds_list_size(obj_control.tokenFieldList));
+unit1to1ColAmount = min(6,ds_list_size(obj_control.unitFieldList));
+chunk1to1ColAmount = min(6,ds_list_size(obj_control.chunkFieldList));;

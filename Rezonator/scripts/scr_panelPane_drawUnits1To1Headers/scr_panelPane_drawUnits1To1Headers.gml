@@ -2,22 +2,23 @@
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
 function scr_panelPane_drawUnits1To1Headers(){
 	
-
 	
 	var headerList = obj_control.navUnitFieldList;
 	var headerListSize = ds_list_size(headerList);
 	var headerHeight = functionTabs_tabHeight;
-	var colWidth = windowWidth / ds_list_size(headerList);
+	var colWidth = windowWidth/obj_panelPane.unit1to1ColAmount;
 	var lineStateLTR = (obj_control.drawLineState == obj_control.lineState_ltr);
 	var textMarginLeft = 8;
 	var plusX = x;
 	var dropDownButtonSize = sprite_get_width(spr_dropDown);
+	var mouseoverCancel = !point_in_rectangle(mouse_x, mouse_y, x, y, x + windowWidth, y + windowHeight) || instance_exists(obj_dropDown) || instance_exists(obj_dialogueBox);
+	
 	for (var i = 0; i < headerListSize; i++) {
 		
 		var currentField = headerList[| i];
 		
 		// get header coordinates
-		var headerRectX1 = plusX;
+		var headerRectX1 = plusX + scrollHorPlusX;
 		var headerRectY1 = y;
 		var headerRectX2 = headerRectX1 + colWidth;
 		var headerRectY2 = headerRectY1 + headerHeight;
@@ -29,19 +30,19 @@ function scr_panelPane_drawUnits1To1Headers(){
 		
 		// draw headers
 		draw_set_color(global.colorThemeBG);
-		draw_rectangle(headerRectX1, headerRectY1, headerRectX2, headerRectY2, false);
+		draw_rectangle(headerRectX1 - clipX, headerRectY1 - clipY, headerRectX2 - clipX, headerRectY2 - clipY, false);
 		
 		// draw vertical lines dividing columns
 		if(lineStateLTR){	
 			if(i > 0){
 				draw_set_color(global.colorThemeBorders);
-				draw_line_width(headerRectX1, headerRectY1, headerRectX1, y + windowHeight, 1);
+				draw_line_width(headerRectX1 - clipX, headerRectY1 - clipY, headerRectX1 - clipX, y + windowHeight - clipY, 1);
 			}
 		}
 		else{
 			if(i < headerListSize){
 				draw_set_color(global.colorThemeBorders);
-				draw_line_width(headerRectX1 + 1, headerRectY1, headerRectX1 + 1, y + windowHeight, 1);
+				draw_line_width(headerRectX1 + 1 - clipX, headerRectY1 - clipY, headerRectX1 + 1 - clipX, y + windowHeight - clipY, 1);
 			}
 		}
 
@@ -54,8 +55,8 @@ function scr_panelPane_drawUnits1To1Headers(){
 			displayUnitButtonX = headerRectX2 - (displayUnitButtonSize) - (textMarginLeft);
 		}
 		var displayUnitButtonY = mean(headerRectY1, headerRectY2);
-		var mouseoverDisplayUnit = point_in_circle(mouse_x, mouse_y, displayUnitButtonX, displayUnitButtonY, displayUnitButtonSize) && !instance_exists(obj_dropDown) && !instance_exists(obj_dialogueBox);
-		var mouseoverHeader = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, headerRectX1, headerRectY1, headerRectX2, headerRectY2) && !instance_exists(obj_dropDown) && !instance_exists(obj_dialogueBox) && !mouseoverDisplayUnit;
+		var mouseoverDisplayUnit = point_in_circle(mouse_x, mouse_y, displayUnitButtonX, displayUnitButtonY, displayUnitButtonSize) && !mouseoverCancel;
+		var mouseoverHeader = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, headerRectX1, headerRectY1, headerRectX2, headerRectY2) && !mouseoverDisplayUnit && !mouseoverCancel;
 	
 		
 		// mouseover & click on header
@@ -71,9 +72,10 @@ function scr_panelPane_drawUnits1To1Headers(){
 			}
 			var underlineY = headerTextY + (headerHeight * 0.25);
 			draw_set_color(global.colorThemeBorders);
-			draw_line_width(underlineX1, underlineY, underlineX2, underlineY, 2);
+
+			draw_line_width(underlineX1 - clipX, underlineY - clipY, underlineX2 - clipX, underlineY - clipY, 2);
 			scr_createTooltip(mean(headerRectX1, headerRectX2), headerRectY2, scr_get_translation("msg_change_field"), global.arrowFaceUp);
-			
+
 			if (mouse_check_button_released(mb_left)) {
 				obj_control.unitToChange = "";
 				obj_control.unitFieldToChange = currentField;
@@ -95,7 +97,7 @@ function scr_panelPane_drawUnits1To1Headers(){
 				
 			scr_createTooltip(displayUnitButtonX, displayUnitButtonY + displayUnitButtonSize, scr_get_translation("msg_display_unit"), global.arrowFaceUp);
 			draw_set_color(global.colorThemeSelected1);
-			draw_circle(displayUnitButtonX, displayUnitButtonY, displayUnitButtonSize * 0.75, false);
+			draw_circle(displayUnitButtonX - clipX, displayUnitButtonY - clipY, displayUnitButtonSize * 0.75, false);
 			
 			if (mouse_check_button_released(mb_left)) {
 				global.participantField = currentField;		
@@ -105,10 +107,10 @@ function scr_panelPane_drawUnits1To1Headers(){
 	
 		// draw circle for display unit selection
 		draw_set_color(global.colorThemeBorders);
-		draw_circle(displayUnitButtonX, displayUnitButtonY, displayUnitButtonSize, true);
+		draw_circle(displayUnitButtonX - clipX, displayUnitButtonY - clipY, displayUnitButtonSize, true);
 		if (global.participantField == currentField) {
 			draw_set_color(merge_color(global.colorThemeBorders, global.colorThemeBG, 0.1));
-			draw_circle(displayUnitButtonX, displayUnitButtonY, displayUnitButtonSize * 0.75, false);
+			draw_circle(displayUnitButtonX - clipX, displayUnitButtonY - clipY, displayUnitButtonSize * 0.75, false);
 			draw_set_color(global.colorThemeBorders);
 		}
 
@@ -119,7 +121,7 @@ function scr_panelPane_drawUnits1To1Headers(){
 		draw_set_color(global.colorThemeText);
 	
 
-		draw_text(headerTextX, headerTextY, currentField);
+		draw_text(headerTextX - clipX, headerTextY - clipY, currentField);
 	
 		plusX += colWidth;
 	}
@@ -127,6 +129,8 @@ function scr_panelPane_drawUnits1To1Headers(){
 	
 	// draw horizontal line to separate column headers from data
 	draw_set_color(global.colorThemeBorders);
-	draw_rectangle(x, y, x + windowWidth, y + headerHeight, true);
+	draw_rectangle(x - clipX, y - clipY, x + windowWidth - clipX, y + headerHeight - clipY, true);
+	
+
 
 }

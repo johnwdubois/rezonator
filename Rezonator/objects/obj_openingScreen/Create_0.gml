@@ -115,6 +115,7 @@ showDevVars = false;
 
 
 global.rememberMe = false;
+global.selectedFile = "";
 
 global.importCSVGrid = ds_grid_create(0, 0);
 global.importCSVGrid_colIndex = 1;
@@ -241,7 +242,7 @@ cursorPos = 1 ;
 cursorViz = false;
 inputText = "";
 cursorTimer = 20;
-global.userName = "";
+  
 
 maxDisplaySize = 12;
 canDelete = true;
@@ -273,6 +274,7 @@ global.currentTranslation = "";
 global.unitImportSpeakerColName = "";
 global.tokenImportTranscriptColName = "";
 global.tokenImportDisplayTokenColName = "";
+global.conlluAutotagColName = "";
 
 global.translationList = ds_list_create();
 
@@ -331,6 +333,7 @@ ds_map_add(global.expandableDropDownMap, "Tag Entry", true);
 ds_map_add(global.expandableDropDownMap, "Tag Chunk", true);
 ds_map_add(global.expandableDropDownMap, "Tag Unit", true);
 ds_map_add(global.expandableDropDownMap, "option_new-token", true);
+ds_map_add(global.expandableDropDownMap, "option_add-to-show", true);
 
 global.openingScreenDropDownMap = ds_map_create();
 ds_map_add(global.openingScreenDropDownMap, "menu_import", true);
@@ -460,5 +463,14 @@ downloadDialogue = false;
 showDownloadDialogue = false;
 alreadyShownDownloadDialogue = false;
 
+global.CoNLLUwithMeta = false;
 global.schemaNavTokenFieldList = -1;
 global.schemaNavUnitFieldList = -1;
+
+alarm[6] = 1;
+
+
+global.includedTagSchemaFileList = ds_list_create();
+scr_addtoTagSchemaList();
+global.selectedTagSchemaFileList = ds_list_create();
+

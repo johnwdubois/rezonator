@@ -1,6 +1,10 @@
 function scr_dialogueBoxNewCustomFieldUnit() {
 	
 	var newField = obj_control.inputText;
+	if (!is_string(newField) || string_length(string(newField)) < 1) {
+		show_debug_message("new field is invalid or blank string, exiting...");
+		exit;
+	}
 	
 	// add new field to the list of unit fields
 	if (ds_list_find_index(obj_control.unitFieldList, newField) != -1) exit;
@@ -10,11 +14,8 @@ function scr_dialogueBoxNewCustomFieldUnit() {
 	var newFieldMap = ds_map_create();
 	ds_map_add_list(newFieldMap, "tagSet", ds_list_create());
 	
-	//add to nav window list if
-	var sizeOfNavUnitList = ds_list_size(obj_control.navUnitFieldList);
-	if(sizeOfNavUnitList < 6){
-		scr_addToListOnce(obj_control.navUnitFieldList, newField);
-	}
+	//add to nav window list
+	scr_addToListOnce(obj_control.navUnitFieldList, newField);
 	
 	
 	// add our new field's submap to the tagMap

@@ -30,6 +30,20 @@ function scr_panelPane_drawSearch1ToMany(){
 					hitColWidth = max(hitColWidth, strWidth);
 				}
 			}
+			
+			var tokenTokenList = searchSubMap[?"displayTokenList"];
+			if (scr_isNumericAndExists(tokenTokenList, ds_type_list)) {
+				var tokenTokenListSize = ds_list_size(tokenTokenList);
+				for (var i = 0; i < tokenTokenListSize; i++) {
+					var tokenID = tokenTokenList[| i];
+					var tokenSubMap = global.nodeMap[?tokenID]
+					var tokenTagMap = tokenSubMap[?"tagMap"];
+					var currentTokenStr = tokenTagMap[?global.displayTokenField];
+					var strWidth = string_width(currentTokenStr) + (spaceWidth * 2);
+					hitColWidth = max(hitColWidth, strWidth);
+				}
+			}
+			
 		}
 	}
 	hitColWidth = clamp(hitColWidth, windowWidth * 0.05, windowWidth * 0.4);
@@ -40,7 +54,13 @@ function scr_panelPane_drawSearch1ToMany(){
 	var mouseoverScrollBar = (drawScrollbar) ? point_in_rectangle(mouse_x, mouse_y, x + windowWidth - global.scrollBarWidth, y, x + windowWidth, y + windowHeight) : false;
 	var mouseoverHeaderRegion = point_in_rectangle(mouse_x, mouse_y, x, y, x + windowWidth, y + headerHeight);
 	
-	var unitColX = x;
+	var filterRectMargin = 8;
+	var filterRectSize = (strHeight / 2) + 5;
+	var checkboxColX = x;
+	var checkboxColWidth = filterRectMargin + (filterRectSize * 2);
+	var checkboxSize = checkboxColWidth * 0.35;
+	
+	var unitColX = checkboxColX + checkboxColWidth;
 	var beforeColX = unitColX + unitColWidth;
 	var hitColX = beforeColX + contextColWidth;
 	var afterColX = hitColX + hitColWidth;
@@ -49,8 +69,9 @@ function scr_panelPane_drawSearch1ToMany(){
 	var beforeTextX = beforeColX + contextColWidth - textBuffer;
 	var hitTextX = mean(hitColX, hitColX+hitColWidth);
 	var afterTextX = afterColX + textBuffer;
-
 	
+	
+	var checkBoxScale = 1* max(global.fontSize,3)/5;
 	var sizeOfLine = 0;
 	var currentSelectedTokenIndex = -1;
 	
@@ -63,8 +84,8 @@ function scr_panelPane_drawSearch1ToMany(){
 	}
 	var relativeScrollPlusY = (drawScrollbar) ? scrollPlusY : chainContentsPanelPaneInst.scrollPlusY;
 	
-	
-
+	var tokenDisplayListSize = 0;
+	var selectedTokenList = "";
 	
 	if(scr_isNumericAndExists( global.searchMap, ds_type_map)){
 		// get the search list & make sure it exists
@@ -73,7 +94,8 @@ function scr_panelPane_drawSearch1ToMany(){
 			
 
 			var tokenDisplayList = searchSubMap[?"displayTokenList"];
-			var tokenDisplayListSize = ds_list_size(tokenDisplayList);
+			var selectedTokenList = searchSubMap[?"selectedTokenList"];
+			tokenDisplayListSize = ds_list_size(tokenDisplayList);
 	
 	
 			var discourseNodeSubMap = global.nodeMap[?global.discourseNode];
@@ -89,7 +111,7 @@ function scr_panelPane_drawSearch1ToMany(){
 
 			// loop over searchs
 			for (var i = 0; i < tokenDisplayListSize; i++) {
-				
+
 				
 				// don't bother drawing this stuff if it won't be on screen
 				if (y + headerHeight + scrollPlusY + textPlusY < y - strHeight
@@ -113,19 +135,24 @@ function scr_panelPane_drawSearch1ToMany(){
 				}
 				var currentTokenIndex = ds_list_find_index(tokenList, currentToken);
 				var currentTokenSelected = (functionSearchList_tokenSelected == currentToken);
+				var currentTokenChecked = (ds_list_find_index(selectedTokenList, currentToken) != -1);
 				if(currentTokenSelected){
 					currentSelectedTokenIndex = i;
 				}
 				var beforeTokenList = ds_list_create();
 				var afterTokenList = ds_list_create();
-				var contextAmount = 6;
+				var contextAmount = 20;
 				var itterator = 1;
-				repeat(contextAmount){
+				var totalLineCount = (windowWidth/string_width("A"))/2;
+				var charCount = 0;
+				while(charCount < totalLineCount && itterator < 100){
 					var newTokenID = tokenList[| currentTokenIndex - itterator];
 					var newTokenSubMap = global.nodeMap[? newTokenID];
 					if(scr_isNumericAndExists(newTokenSubMap, ds_type_map)){
 						var newTokenTagMap = newTokenSubMap[? "tagMap"];
 						var newTokenText = newTokenTagMap[? global.displayTokenField];
+						var tokenCharCount = string_length(newTokenText);
+						charCount += tokenCharCount;
 						if(newTokenText != undefined && newTokenText != ""){
 							ds_list_add(beforeTokenList, newTokenText);
 						}
@@ -133,12 +160,15 @@ function scr_panelPane_drawSearch1ToMany(){
 					itterator ++;
 				}
 				itterator = 1;
-				repeat(contextAmount){
+				charCount = 0;
+				while(charCount < totalLineCount && itterator < 100){
 					var newTokenID = tokenList[| currentTokenIndex + itterator];
 					var newTokenSubMap = global.nodeMap[? newTokenID];
 					if(scr_isNumericAndExists(newTokenSubMap, ds_type_map)){
 						var newTokenTagMap = newTokenSubMap[? "tagMap"];
 						var newTokenText = newTokenTagMap[? global.displayTokenField];
+						var tokenCharCount = string_length(newTokenText);
+						charCount += tokenCharCount;
 						if(newTokenText != undefined && newTokenText != ""){
 							ds_list_add(afterTokenList, newTokenText);
 						}
@@ -155,6 +185,14 @@ function scr_panelPane_drawSearch1ToMany(){
 				var mouseoverSearchRect = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, searchRectX1, searchRectY1, searchRectX2, searchRectY2) && !mouseoverScrollBar && !scrollBarHolding && !instance_exists(obj_dropDown) && !instance_exists(obj_dialogueBox) && !mouseoverHeaderRegion;
 				var highlight = (mouseoverSearchRect || functionSearchList_tokenMouseover == currentToken);
 				var textY = floor(mean(searchRectY1, searchRectY2));
+				
+				// get dimensions of checkbox rect
+				var checkboxRectX1 = checkboxColX + (checkboxColWidth / 2) - (checkboxSize / 2);
+				var checkboxRectY1 = mean(searchRectY1, searchRectY2) - (checkboxSize / 2);
+				var checkboxRectX2 = checkboxRectX1 + checkboxSize;
+				var checkboxRectY2 = checkboxRectY1 + checkboxSize;
+				var mouseoverCheckbox = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, checkboxRectX1, checkboxRectY1, checkboxRectX2, checkboxRectY2) && !mouseoverHeaderRegion && !mouseoverScrollBar;
+				if (mouseoverCheckbox) mouseoverSearchRect = false;
 		
 		
 				
@@ -164,30 +202,62 @@ function scr_panelPane_drawSearch1ToMany(){
 				// click on search name
 				if (mouseoverSearchRect) {
 					anyOptionMousedOver = true;
-					if (mouse_check_button_released(mb_left) && !instance_exists(obj_dropDown)) {
+					if (mouse_check_button_released(mb_left)) {
 						with (obj_panelPane) functionSearchList_tokenSelected = currentToken;
 						obj_control.selectedSearchTokenID = functionSearchList_tokenSelected;
 						scr_jumpToUnit(currentUnitID);
+						
+						// deselect all other tokens and select the current one
+						if (!global.ctrlHold) ds_list_clear(selectedTokenList);
+						scr_addToListOnce(selectedTokenList, currentToken);
+						currentTokenChecked = true;
+						
+						// hold SHIFT and click to select range of chains
+						if (keyboard_check(vk_shift)) {
+							if (selectListPrevIndex >= 0) {
+								var loopIncrement = (selectListPrevIndex < i) ? 1 : -1;
+								var selectIndex = selectListPrevIndex;		
+								show_debug_message("selectListPrevIndex: " + string(selectListPrevIndex) + ", i: " + string(i));
+								
+								while (selectIndex != i) {										
+									var tokenToSelect = tokenDisplayList[| selectIndex];
+									show_debug_message("tokenToSelect: " + string(tokenToSelect) + ", selectIndex: " + string(selectIndex));
+									if (ds_list_find_index(selectedTokenList, tokenToSelect) == -1) {
+										ds_list_add(selectedTokenList, tokenToSelect);
+									}
+									else {
+										scr_deleteFromList(selectedTokenList, tokenToSelect);
+									}
+									selectIndex += loopIncrement;
+								}
+							}
+						}
+						
+						with (obj_panelPane) selectListPrevIndex = i;
 					}
+
 			
 					if (mouse_check_button_released(mb_right)) {
 						with (obj_panelPane) functionSearchList_tokenSelected = currentToken;
 						obj_control.selectedSearchTokenID = functionSearchList_tokenSelected;
+						/*
 						var dropDownOptionList = ds_list_create();
 
 						ds_list_add(dropDownOptionList, "help_label_rename", "help_label_delete_plain");
 
 						if (ds_list_size(dropDownOptionList) > 0 and obj_control.ableToCreateDropDown) {
-							//scr_createDropDown(mouse_x, mouse_y, dropDownOptionList, global.optionListTypesearchList);
+							scr_createDropDown(mouse_x, mouse_y, dropDownOptionList, global.optionListTypesearchList);
 						}
-			
+						*/
 					}
 				}
+				
+				
 
 
-				var unitRectX1 = searchRectX1
+				var unitRectX1 = searchRectX1;
 				var unitRectY1 = searchRectY1
-				var unitRectX2 = searchRectX1 + unitColWidth;
+				var unitRectX2 = searchRectX1 + checkboxColWidth + unitColWidth;
 				var unitRectY2 = searchRectY2
 		
 		
@@ -215,6 +285,35 @@ function scr_panelPane_drawSearch1ToMany(){
 				draw_set_halign(fa_center);
 				draw_set_color(textColor);
 				draw_text(unitTextX - clipX, textY - clipY, string(unitSeq));
+				
+				
+				if (mouseoverCheckbox) {
+					scr_createTooltip(mean(checkboxRectX1, checkboxRectX2), checkboxRectY2, scr_get_translation("option_select"), obj_tooltip.arrowFaceUp);
+				}
+				if (currentTokenChecked) {
+					draw_set_color(merge_color(global.colorThemeSelected1, global.colorThemeBG, 0.9));
+					draw_roundrect(checkboxRectX1 - clipX, checkboxRectY1 - clipY, checkboxRectX2 - clipX, checkboxRectY2 - clipY, false);
+				}
+				else if (mouseoverCheckbox) {
+					draw_set_color(merge_color(global.colorThemeSelected1, global.colorThemeBG, 0.9));
+					draw_roundrect(checkboxRectX1 - (strHeight * 0.15) - clipX, checkboxRectY1 - (strHeight * 0.15) - clipY, checkboxRectX2 + (strHeight * 0.15) - clipX, checkboxRectY2 + (strHeight * 0.15) - clipY, false);
+				}
+				draw_set_color(global.colorThemeBorders);
+				scr_drawRectWidth(checkboxRectX1 - clipX, checkboxRectY1 - clipY, checkboxRectX2 - clipX, checkboxRectY2 - clipY, 2, false);
+				if (currentTokenChecked) draw_sprite_ext(spr_checkmark, 0, mean(checkboxRectX1, checkboxRectX2) - clipX, mean(checkboxRectY1, checkboxRectY2) - clipY, checkBoxScale , checkBoxScale , 0, global.colorThemeText, 1);
+				
+				
+				
+				// click on checkbox
+				if (mouseoverCheckbox && mouse_check_button_released(mb_left)) {
+					if(currentTokenChecked){
+						scr_deleteFromList(selectedTokenList,currentToken);
+					}
+					else{
+						scr_addToListOnce(selectedTokenList,currentToken);
+					}
+				}
+		
 
 				// text column
 				draw_set_halign(fa_center);
@@ -258,93 +357,95 @@ function scr_panelPane_drawSearch1ToMany(){
 
 
 
-	var headerPlusX = 0;
-	var colAmount = 4;
-	for (var i = 0; i < colAmount; i++) {
-		var colWidth = 0;
-		// get coordinates for header rect
-		if(i == 0){
-			colWidth = unitColWidth;
-		}
-		else if(i == 1  or i == 3){
-			colWidth = contextColWidth;
-		}
-		else{
-			colWidth = hitColWidth;
-		}
-		
-		var headerRectX1 =  x + headerPlusX;
-		var headerRectY1 = y;
-		var headerRectX2 = headerRectX1 + colWidth;
-		var headerRectY2 = headerRectY1 + headerHeight;
-		if (i == 3) {
-			headerRectX2 = windowX + windowWidth;
-			colWidth = headerRectX2 - headerRectX1;
-		}
-		var mouseoverColHeader = point_in_rectangle(mouse_x, mouse_y, headerRectX1, headerRectY1, headerRectX2, headerRectY2) && !instance_exists(obj_dropDown) && !instance_exists(obj_dialogueBox);
-			
-		// get coordinates for header text
-		var headerTextX = 0;
-		if(i == 0 ){
-			draw_set_halign(fa_center);
-			var headerTextX = floor(mean(headerRectX2 , headerRectX1));
-		}
-		else if(i == 1 ){
-			draw_set_halign(fa_right);
-			var headerTextX = floor(headerRectX2 - textMarginLeft);
-		}
-		
-		else if(i == 2 ){
-			draw_set_halign(fa_center);
-			var headerTextX = floor(mean(headerRectX2 , headerRectX1));
-		}
-		
-		else if(i == 3 ){
-			draw_set_halign(fa_left);
-			var headerTextX = floor(headerRectX1 + textMarginLeft);
-		}
-		
 
-		var headerTextY = floor(y + (headerHeight / 2));
+	var colWidth = 0;
+
+		
+	var headerRectX1 =  x;
+	var headerRectY1 = y;
+	var headerRectX2 = x+windowWidth;
+	var headerRectY2 = headerRectY1 + headerHeight;
+
+	// get coordinates for header text
+	var headerTextX = unitTextX;
+
+	var headerTextY = floor(y + (headerHeight / 2));
 	
-		// get header string for static columns
-		var colName = "";
-		if (i == 0) colName = scr_get_translation("error_unit");
+	// get header string for static columns
+	var colName = scr_get_translation("error_unit");
 
-		// make headers not overlap with each other
-		draw_set_color(global.colorThemeBG);
-		draw_rectangle(headerRectX1, headerRectY1, headerRectX2, headerRectY1 + headerHeight, false);
+	// make headers not overlap with each other
+	draw_set_color(global.colorThemeBG);
+	draw_rectangle(headerRectX1, headerRectY1, headerRectX2, headerRectY1 + headerHeight, false);
 		
 		
-		// draw header name
-		draw_set_color(global.colorThemeText);
-		draw_set_valign(fa_middle);
-
-
-		scr_adaptFont(colName, "M");
-			
-
-			
-		draw_text(headerTextX, headerTextY, colName);
-		
-
-			
-			
+	// draw header name
+	draw_set_color(global.colorThemeText);
+	draw_set_valign(fa_middle);
+	draw_set_halign(fa_center);
 	
+	scr_adaptFont(colName, "M");
+	draw_text(headerTextX, headerTextY, colName);
+	var allChainsSelected = false;
+	var someChainsSelected = false;
+	if(scr_isNumericAndExists(selectedTokenList, ds_type_list)){
+		allChainsSelected = (tokenDisplayListSize == ds_list_size(selectedTokenList) && tokenDisplayListSize > 0);
+		someChainsSelected = (tokenDisplayListSize > ds_list_size(selectedTokenList) && ds_list_size(selectedTokenList) > 0 && tokenDisplayListSize > 0);
+
+		var headerCheckboxX1 = checkboxColX + (checkboxColWidth / 2) - (checkboxSize / 2);
+		var headerCheckboxY1 = mean(headerRectY1, headerRectY2) - (checkboxSize / 2);
+		var headerCheckboxX2 = headerCheckboxX1 + checkboxSize;
+		var headerCheckboxY2 = headerCheckboxY1 + checkboxSize;
+		var mouseoverHeaderCheckbox = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, headerCheckboxX1, headerCheckboxY1, headerCheckboxX2, headerCheckboxY2) ;
+
+
 	
+		if (mouseoverHeaderCheckbox) {
+			draw_set_color(merge_color(global.colorThemeSelected2, global.colorThemeBG, 0.4));
+			draw_roundrect(headerCheckboxX1 - (strHeight * 0.15), headerCheckboxY1 - (strHeight * 0.15), headerCheckboxX2 + (strHeight * 0.15), headerCheckboxY2 + (strHeight * 0.15), false);
 				
-	
-		// draw vertical line separating unit column from the others
-		if (i <= 1) {
-			draw_set_color(global.colorThemeBorders);
-			//draw_line_width(headerRectX1, y, headerRectX1, y + windowHeight, 1);
+			var tooltipText = (allChainsSelected) ? "Deselect all" : "Select all";
+			scr_createTooltip(mean(headerCheckboxX1, headerCheckboxX2), headerCheckboxY2, tooltipText, obj_tooltip.arrowFaceUp);
+				
+			// click on checkbox header
+			if (mouse_check_button_released(mb_left)) {
+				if(allChainsSelected){
+					ds_list_clear(selectedTokenList);
+				}
+				else{
+					var i = 0
+					repeat(tokenDisplayListSize){
+						scr_addToListOnce(selectedTokenList, tokenDisplayList[|i]);
+						i++
+					}
+				}
+				allChainsSelected = (tokenDisplayListSize == ds_list_size(selectedTokenList));
+			}
 		}
-
-
-		
-		headerPlusX += colWidth;
-
-	}
+			
+		// fill in checkbox header if any chains are selected
+		if (allChainsSelected || someChainsSelected) {
+			draw_set_color(merge_color(global.colorThemeSelected2, global.colorThemeBG, 0.6));
+			draw_rectangle(headerCheckboxX1, headerCheckboxY1, headerCheckboxX2, headerCheckboxY2, false);
+		}
+			
+		// draw checkmark for checkbox header
+		if (allChainsSelected) {
+			draw_sprite_ext(spr_checkmark, 0, mean(headerCheckboxX1, headerCheckboxX2), mean(headerCheckboxY1, headerCheckboxY2), checkBoxScale , checkBoxScale , 0, global.colorThemeText, 1);
+		}
+		else if (someChainsSelected) {
+			// draw line in checkbox if only some chains are selected
+			var someChainsSelectedLineY = mean(headerCheckboxY1, headerCheckboxY2);
+			draw_set_color(global.colorThemeBorders);
+			draw_line_width(headerCheckboxX1 + (checkboxSize * 0.2), someChainsSelectedLineY, headerCheckboxX2 - (checkboxSize * 0.2), someChainsSelectedLineY, 2);
+		}
+	
+	
+		draw_set_color(global.colorThemeBorders);
+		scr_drawRectWidth(headerCheckboxX1, headerCheckboxY1, headerCheckboxX2, headerCheckboxY2, 2, false);
+		//if (currentTokenChecked) draw_sprite_ext(spr_checkmark, 0, mean(checkboxRectX1, checkboxRectX2) - clipX, mean(checkboxRectY1, checkboxRectY2) - clipY, checkBoxScale , checkBoxScale , 0, global.colorThemeText, 1);
+	}			
+				
 
 
 	// draw horizontal line between headers and contents
@@ -361,7 +462,7 @@ function scr_panelPane_drawSearch1ToMany(){
 	var activateButtonY1 = y + (functionTabs_tabHeight * 0.5) - (strHeight * 0.4);
 	var activateButtonX1 = activateButtonX2 - buttonWidth;
 	var activateButtonY2 = y + (functionTabs_tabHeight * 0.5) + strHeight * 0.4;
-	var searchEnabled = (obj_control.searchGridActive && functionSearchList_searchSelected != "");
+	var searchEnabled = (obj_control.currentView == obj_control.searchView);
 	var mouseoverActivateButton = point_in_rectangle(mouse_x, mouse_y, activateButtonX1, activateButtonY1, activateButtonX2, activateButtonY2);
 	if (searchEnabled) {
 		draw_set_color(merge_color(global.colorThemeRezPink, global.colorThemeBG, mouseoverActivateButton ? 0.4 : 0.1));
@@ -377,13 +478,13 @@ function scr_panelPane_drawSearch1ToMany(){
 		scr_createTooltip(floor(mean(activateButtonX1, activateButtonX2)), activateButtonY2, searchEnabled ? scr_get_translation("msg_enabled") : scr_get_translation("msg_disabled"), global.arrowFaceUp);
 		
 		if (mouse_check_button_released(mb_left)) {
-			if (!obj_control.searchGridActive && functionSearchList_searchSelected != "") {
+			if (obj_control.currentView != obj_control.searchView) {
 				obj_control.selectedSearchID = functionSearchList_searchSelected;
-				obj_control.searchGridActive = true;
+				obj_control.currentView = obj_control.searchView;
 				scr_renderFilter2();
 			}
-			else if (obj_control.searchGridActive) {
-				obj_control.searchGridActive = false;
+			else {
+				obj_control.currentView = obj_control.mainView;
 				scr_disableFilter();
 			}
 		}
@@ -473,6 +574,37 @@ function scr_panelPane_drawSearch1ToMany(){
 
 				
 		}	
+	}
+	
+	
+	var addToChainButtonX2 = showPrevButtonX1 - (buttonWidth / 2);
+	var addToChainButtonX1 = addToChainButtonX2 - buttonWidth;
+	var addToChainButtonY1 = showNextButtonY1;
+	var addToChainButtonY2 = showNextButtonY2;
+		
+		
+	// addTo buttons (Chain)
+	var mouseoverAddToChainButton = point_in_rectangle(mouse_x, mouse_y, addToChainButtonX1, addToChainButtonY1, addToChainButtonX2, addToChainButtonY2);
+	draw_set_color(merge_color(global.colorThemeSelected1, global.colorThemeBG, mouseoverAddToChainButton ? 0 : 0.5));
+	draw_roundrect(addToChainButtonX1, addToChainButtonY1, addToChainButtonX2, addToChainButtonY2, false);
+	draw_set_color(global.colorThemeText);
+
+	draw_sprite_ext(spr_toolsNew,1,floor(mean(addToChainButtonX1, addToChainButtonX2)), floor(mean(addToChainButtonY1, addToChainButtonY2)),.3,.3,0,(someChainsSelected or allChainsSelected)? global.colorThemeRezPink:c_white,1)
+	
+	if (mouseoverAddToChainButton) {scr_createTooltip(mean(addToChainButtonX1, addToChainButtonX2), addToChainButtonY2, scr_get_translation("Add to Chain"), obj_tooltip.arrowFaceUp);}
+		
+
+	if (mouse_check_button_released(mb_left) && mouseoverAddToChainButton) {
+		var dropDownOptionList = ds_list_create();
+		ds_list_add(dropDownOptionList, "Create New Chain");
+		var currentTrackList = global.nodeMap[?"trailList"];
+		var currentTrackListSize = ds_list_size(currentTrackList);
+		var i = 0;
+		repeat(currentTrackListSize){
+			ds_list_add(dropDownOptionList, currentTrackList[|i]);
+			i++;
+		}
+		scr_createDropDown(addToChainButtonX1, addToChainButtonY2, dropDownOptionList, global.optionListTypeSearchChain);
 	}
 
 

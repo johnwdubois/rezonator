@@ -61,7 +61,7 @@ with (obj_alarm2) alarm[4] = 2;
 
 
 
-
+treeTabScrollMin = 0;
 
 
 
@@ -247,11 +247,19 @@ fieldPaneLinkMode = "help_header_link";
 fieldPaneSwitchButton = fieldPaneDocMode;
 fieldChains1ToManyChainType = "";
 fieldChains1To1ChainType = "";
-cliquePaneSwitchButton = "Chains";
+cliquePaneSwitchButton = "option_chain";
 
 scrollPlusX = 0;
 
 leftPaneStrHeight = 0;
+
+selectListPrevIndex = -1;
+
+unit1toMColAmount = 1;
+unit1to1ColAmount = 1;
+chain1toMColAmount = 6;
+chain1to1ColAmount = 2;
+chunk1to1ColAmount = 1;
 
 
 #macro EVENT_TICK 0

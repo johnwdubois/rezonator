@@ -42,16 +42,33 @@ if (y + windowHeight > camHeight) {
 var optionListSize = ds_list_size(optionList);
 var maxStrWidth = originalWindowWidth;
 for (var i = 0; i < optionListSize; i++) {
-	var currentOptionStr = string(ds_list_find_value(optionList, i));
+	
+	var currentOptionStrOriginal = string(optionList[| i]);
+	var currentOptionStr = currentOptionStrOriginal;
 	
 	// get keyboard shortcut if provided
 	var shortcutStr = "";
-	if(ds_map_exists(global.keyboardShortcutMap, currentOptionStr)){
-		shortcutStr = ds_map_find_value(global.keyboardShortcutMap, currentOptionStr);	
+	if(ds_map_exists(global.keyboardShortcutMap, currentOptionStrOriginal)){
+		shortcutStr = global.keyboardShortcutMap[? currentOptionStrOriginal];	
 	}
 	
 	// get width of current string
 	currentOptionStr = scr_get_translation(currentOptionStr);
+	
+	//get name of chain instead
+	if(optionListType == global.optionListTypeSearchChain){
+		if(currentOptionStr != "Create New Chain"){
+			var chainSubMap = global.nodeMap[?currentOptionStr];
+			var chainName = chainSubMap[?"name"];
+			currentOptionStr = chainName;
+		}
+	}
+	//get name of file instead
+	if(optionListType == global.optionListTypeTagSchema){
+		if(currentOptionStr != "Custom tag schema"){
+			currentOptionStr = filename_name(currentOptionStr);
+		}
+	}
 
 	var currentOptionStrWidth = string_width(currentOptionStr) + string_width(shortcutStr) + (textBuffer * 2);
 	
@@ -93,26 +110,29 @@ for (var i = 0; i < optionListSize; i++) {
 	// check if expandable
 	var isExpandable = false;
 	if (ds_exists(global.expandableDropDownMap, ds_type_map)) {
-		isExpandable = ds_map_exists(global.expandableDropDownMap, currentOptionStr);
-		if (currentOptionStr == "menu_stack" &&  ds_list_size(optionList) == 3) {
+		isExpandable = ds_map_exists(global.expandableDropDownMap, currentOptionStrOriginal);
+		if (currentOptionStrOriginal == "menu_stack" &&  ds_list_size(optionList) == 3) {
 			isExpandable = false;
 		}
-		else if (currentOptionStr == "menu_search" && ds_list_size(optionList) == 4) {
+		else if (currentOptionStrOriginal == "menu_search" && ds_list_size(optionList) == 4) {
 			isExpandable = false;
 		}
-		else if (currentOptionStr == "menu_prose" && ds_list_size(optionList) == 2) {
+		else if (currentOptionStrOriginal == "menu_prose" && ds_list_size(optionList) == 2) {
 			isExpandable = false;
 		}
-		else if (currentOptionStr == "menu_nav" && ds_list_size(optionList) == 5) {
+		else if (currentOptionStrOriginal == "menu_nav" && ds_list_size(optionList) == 5) {
 			isExpandable = false;
 		}
 		if (optionListType == global.optionListTypeLinkFields) {
-			if (ds_list_find_index(global.linkFieldList, currentOptionStr) >= 0) isExpandable = true;
+			if (ds_list_find_index(global.linkFieldList, currentOptionStrOriginal) >= 0) isExpandable = true;
+		}
+		if (currentOptionStrOriginal == "menu_hide" && optionListType == global.optionListTypeChainListMulti) {
+			isExpandable = false;
 		}
 		if (optionListType == global.optionListTypeTokenFields || optionListType == global.optionListTypeUnitFields
 		|| optionListType == global.optionListTypeEntryFields || optionListType == global.optionListTypeChainFields
 		|| optionListType == global.optionListTypeChunkFields) {
-			if (currentOptionStr != "option_create-new-field") isExpandable = true;
+			if (currentOptionStrOriginal != "option_create-new-field") isExpandable = true;
 		}
 	}
 	
@@ -228,7 +248,8 @@ for (var i = 0; i < optionListSize; i++) {
 	draw_rectangle(optionRectX1 - clipX, optionRectY1 - clipY, optionRectX2 - clipX, optionRectY2 - clipY, false);
 	
 	
-	var isOpeningScreenOption = ds_map_exists(global.openingScreenDropDownMap,optionText);
+
+	var isOpeningScreenOption = ds_map_exists(global.openingScreenDropDownMap,optionText) or optionListType == global.optionListTypeTagSchema;
 	var isBannedMainScreenOption = ds_map_exists(global.mainScreenDropDownMap,optionText);
 	
 	
@@ -251,6 +272,9 @@ for (var i = 0; i < optionListSize; i++) {
 		if (optionListType == global.optionListTypeLinkFields) {
 			if (ds_list_find_index(global.linkFieldList, optionText) >= 0) isExpandable = true;
 		}
+		if (currentOptionStrOriginal == "menu_hide" && optionListType == global.optionListTypeChainListMulti) {
+			isExpandable = false;
+		}
 		if (optionListType == global.optionListTypeTokenFields || optionListType == global.optionListTypeUnitFields
 		|| optionListType == global.optionListTypeEntryFields || optionListType == global.optionListTypeChainFields
 		|| optionListType == global.optionListTypeChunkFields) {
@@ -259,7 +283,7 @@ for (var i = 0; i < optionListSize; i++) {
 	}
 
 	var unClickable = ((room == rm_openingScreen and !isOpeningScreenOption) || (isBannedMainScreenOption));
-	
+
 	// gray out option if it begins with ~
 	draw_set_color(global.colorThemeText);
 	if (room == rm_mainScreen) {
@@ -277,16 +301,19 @@ for (var i = 0; i < optionListSize; i++) {
 	var optionTextStr = scr_get_translation(optionText);
 	
 	// for special cases, draw chain name instead of hex-string
-	if (optionListType == global.optionListTypeAddToShow) {
-		var subMap = ds_map_find_value(global.nodeMap, optionText);
-		if (is_numeric(subMap)) {
-			if (ds_exists(subMap, ds_type_map)) {
-				optionTextStr = ds_map_find_value(subMap, "name");
-			}
+	if (optionListType == global.optionListTypeSearchChain || optionListType == global.optionListTypeAddToShow || (optionListType == global.optionListTypeSelectShow && optionText != "option_create-show")) {
+		var subMap = global.nodeMap[? optionText];
+		if (scr_isNumericAndExists(subMap, ds_type_map)) {
+			optionTextStr = subMap[? "name"];
 		}
 	}
-	
-	
+	//get name of file instead
+	if(optionListType == global.optionListTypeTagSchema){
+		if(optionTextStr != "Custom tag schema"){
+			optionTextStr = filename_name(optionTextStr);
+		}
+	}
+
 	//optionTextStr = optionText;
 	//uncomment this line to see the raw strings instead of display strings in dropdown
 	
@@ -344,7 +371,7 @@ for (var i = 0; i < optionListSize; i++) {
 	}
 	
 	var hasCheck = false;
-	if(ds_map_exists(global.checkDropdownMap, optionText)){
+	if(ds_map_exists(global.checkDropdownMap, optionText) && optionListType != global.optionListTypeDelete){
 		scr_updateCheckMap(optionText);
 		hasCheck = ds_map_find_value(global.checkDropdownMap, optionText);
 		if (optionListType == global.optionListTypeNav) hasCheck = false;
@@ -416,7 +443,7 @@ for (var i = 0; i < optionListSize; i++) {
 		clickCurrentOption = true;
 	}
 	
-	if (clickCurrentOption && (prevOptionClicked != i || optionListType == global.optionListTypeZoom)) {
+	if (clickCurrentOption && (prevOptionClicked != i || !isExpandable)) {
 		prevOptionClicked = i;
 		if(!unClickable){
 			optionCurrent = i;
@@ -474,11 +501,11 @@ for (var i = 0; i < dropDownInstanceNumber; i++) {
 	}
 }
 
-if (ableToMouseover and ableToClick and mouse_check_button_released(mb_left) 
+if (ableToMouseover and ableToClick and mouse_check_button_pressed(mb_left) 
 and !mouseInDropDown and !scrollBarHoldingDelay) {
 	if (room == rm_mainScreen) {
 		obj_menuBar.menuClickedIn = false;
-	}
+	} 
 	else if (room == rm_importScreen) {
 		obj_fieldSummaryWindow.clickedIn = false;
 	}

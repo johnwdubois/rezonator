@@ -3,19 +3,19 @@
 function scr_addToChainFieldMap(map, key, tagSet, shortcutSet, rezTag, trackTag, stackTag){
 	// make sure field/key isn't in the map already
 	if (ds_map_exists(map, key)) {
-		show_debug_message("scr_addToChainFieldMap() ... " + string(key) + " already exists in entryFieldMap");
+		show_debug_message("scr_addToChainFieldMap ... " + string(key) + " already exists in entryFieldMap");
 		exit;
 	}
 	
 	if(map == global.linkFieldMap){
 		// add this field to either the linkMap
 		var fieldList = global.linkFieldList;
-		ds_list_add(fieldList, key);
+		scr_addToListOnce(fieldList, key);
 	}
 	else{
 		// add this field to either the chainFieldMap or the entryFieldMap
 		var fieldList = (map == global.chainFieldMap) ? global.chainFieldList : global.chainEntryFieldList;
-		ds_list_add(fieldList, key);
+		scr_addToListOnce(fieldList, key);
 	}
 	
 	if(room == rm_mainScreen){
@@ -26,12 +26,12 @@ function scr_addToChainFieldMap(map, key, tagSet, shortcutSet, rezTag, trackTag,
 		if(rezTag){
 			if (map == global.chainFieldMap){ 
 				if(sizeOfchainFieldList < 6){
-					ds_list_add(obj_control.chain1to1ColFieldListRez, key);
+					scr_addToListOnce(obj_control.chain1to1ColFieldListRez, key);
 				}
 			}
 			else{
 				if(sizeOfchainFieldList < 3){
-					ds_list_add(obj_control.chain1toManyColFieldListRez, key);
+					scr_addToListOnce(obj_control.chain1toManyColFieldListRez, key);
 				}
 			}
 			
@@ -41,12 +41,12 @@ function scr_addToChainFieldMap(map, key, tagSet, shortcutSet, rezTag, trackTag,
 		if(trackTag){
 			if (map == global.chainFieldMap){ 
 				if(sizeOfchainFieldList < 6){
-					ds_list_add(obj_control.chain1to1ColFieldListTrack, key);
+					scr_addToListOnce(obj_control.chain1to1ColFieldListTrack, key);
 				}
 			}
 			else{
 				if(sizeOfchainFieldList < 3){
-					ds_list_add(obj_control.chain1toManyColFieldListTrack, key);
+					scr_addToListOnce(obj_control.chain1toManyColFieldListTrack, key);
 				}
 			}
 			
@@ -57,12 +57,12 @@ function scr_addToChainFieldMap(map, key, tagSet, shortcutSet, rezTag, trackTag,
 				
 			if (map == global.chainFieldMap){
 				if(sizeOfchainFieldList < 6){
-					ds_list_add(obj_control.chain1to1ColFieldListStack, key);
+					scr_addToListOnce(obj_control.chain1to1ColFieldListStack, key);
 				}
 			}
 			else{
 				if(sizeOfchainFieldList < 3){
-					ds_list_add(obj_control.chain1toManyColFieldListStack, key);
+					scr_addToListOnce(obj_control.chain1toManyColFieldListStack, key);
 				}
 			}
 		}
@@ -92,5 +92,5 @@ function scr_addToChainFieldMap(map, key, tagSet, shortcutSet, rezTag, trackTag,
 		ds_map_add(subMap, "card", stackTag);
 	
 	}
-
+	
 }

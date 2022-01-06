@@ -15,7 +15,7 @@ function scr_dropDownSelect(optionSelected) {
 	else if (optionListType == global.optionListTypeChainRecolor) //2
 	{
 	    scr_chainRecolorOptions(optionSelected);
-	    instance_destroy();
+	    
 	}
 	//speakerLabelEdit
 	else if (optionListType == global.optionListTypeSpeakerLabel) //3
@@ -364,7 +364,24 @@ function scr_dropDownSelect(optionSelected) {
 	{
 		scr_entryTagMapOptions(optionSelected);	
 	}
-	else if (optionListType == global.optionListTypeOpenFile) // 81
+	else if (optionListType == global.optionListTypeSelectShow) // 84
+	{
+		scr_selectShowOptions(optionSelected);
+		with (obj_dropDown) instance_destroy();
+	}
+	if (optionListType == global.optionListTypeChainListMulti) //85
+	{
+	    scr_chainListMultiOptions(optionSelected);
+	}
+	if (optionListType == global.optionListTypeSearchChain) //86
+	{
+	    scr_searchChainOptions(optionSelected);
+	}
+	if (optionListType == global.optionListTypeTagSchema) //87
+	{
+	    scr_tagSchemaOptions(optionSelected);
+	}
+	else if (optionListType == global.optionListTypeOpenFile) // 88
 	{
 		scr_openSpecifiedFile(optionSelected);	
 	}

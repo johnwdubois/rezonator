@@ -1,23 +1,42 @@
 // Script assets have changed for v2.3.0 see
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
 function scr_inputBoxDraw(){
-
+	
+	// set text positions and window height
+	scr_adaptFont(str, "M");
+	var strLen = string_length(str);
 	var strHeight = string_height("A");
 	var textMarginX = 10;
 	var textMarginY = 10;
-
-	textX = floor(x + textMarginX + xOffset);
-	textY = floor(y + textMarginY);
+	textX = floor(textBoxX + textMarginX + xOffset);
+	textY = floor(textBoxY + textMarginY);
 	windowHeight = strHeight + (textMarginY * 2);
+
+	// click in window to focus it
+	var mouseoverWindow = point_in_rectangle(mouse_x, mouse_y, textBoxX, textBoxY, textBoxX + windowWidth, textBoxY + windowHeight);
+	if (mouse_check_button_pressed(mb_left)) {
+		if (mouseoverWindow && !windowFocused) {
+			windowFocused = true;
+			drawCursor = true;
+			alarm[0] = blinkRate;
+		}
+		else if (!mouseoverWindow && windowFocused) {
+			if (!instance_exists(obj_openingScreen)) {
+				windowFocused = false;
+			}
+		}
+	}
 	
-
-
+	if (instance_exists(obj_openingScreen)) {
+		windowFocused = !obj_openingScreen.showPreImportScreen;
+	}
+	
 	// moving cursor with mouse click
-	var mouseoverWindow = point_in_rectangle(mouse_x, mouse_y, x, y, x + windowWidth, y + windowHeight);
 	if (mouse_check_button(mb_left)) {
 		var closestCharToMouse = 0;
 		var minDistToMouse = 999999999;
-		var strLen = string_length(str);
+		
+		// find closest character to mouse
 		for (var i = 0; i <= strLen; i++) {
 			var subStr = string_copy(str, 1, i);
 			var subStrX = textX + string_width(subStr);
@@ -28,53 +47,61 @@ function scr_inputBoxDraw(){
 				closestCharToMouse = i;
 			}
 		}
+		
+		// check to move cursor/highlight index
 		if (mouse_check_button_pressed(mb_left)) {
 			validDrag = mouseoverWindow;
 			if (validDrag) highlightIndex = closestCharToMouse;
 		}
 		if (validDrag) cursorIndex = closestCharToMouse;
+		
+		// check if double-clicking
+		if (mouse_check_button_pressed(mb_left) && validDrag && mouseoverWindow) {
+			if (doubleClickTimer > 0) doubleClick = true;
+			else doubleClickTimer = doubleClickTimerFull;
+		}
 	}
 
-	if (mouse_check_button_released(mb_left)) validDrag = true;
+	if (mouse_check_button_released(mb_left)) {
+		validDrag = true;
+		
+		// double click to select word
+		if (doubleClick) {
+			doubleClick = false;
+			while (scr_isCharLetter(string_char_at(str, cursorIndex)) && cursorIndex < strLen) cursorIndex++;
+			while (scr_isCharLetter(string_char_at(str, highlightIndex)) && highlightIndex > 0) highlightIndex--;
+			if (cursorIndex < strLen || !scr_isCharLetter(string_char_at(str, cursorIndex))) cursorIndex--;
+		}
+	}
 
-
-	// BG rect
+	// draw BG rect
+	draw_set_alpha(1);
 	draw_set_color(global.colorThemeBG);
-	draw_rectangle(x, y, x + windowWidth, y + windowHeight, false);
+	draw_rectangle(textBoxX, textBoxY, textBoxX + windowWidth, textBoxY + windowHeight, false);
 
 	// start clipping for text
 	scr_miniSurfaceStart();
 
-
 	// draw text
+	scr_adaptFont(str, "M");
 	draw_set_color(global.colorThemeText);
 	draw_set_alpha(1);
 	draw_set_halign(fa_left);
 	draw_set_valign(fa_top);
-	scr_adaptFont(str, "M",false);
 	draw_text(textX - clipX, textY - clipY, str);
 
-	// draw user sign in text on opening screen
-	if (room == rm_openingScreen){
-		if (string_length(str) < 1) {
-			scr_adaptFont(scr_get_translation("msg_signin"),"M");
-			draw_set_color(global.colorThemeSelected2);
-			draw_text(textX - clipX, textY - clipY, " " + scr_get_translation("msg_signin"));
-		}
-	}
-
-
 	// draw cursor
+	cursorX = textX + string_width(strToCursor);
 	var cursorY1 = textY;
 	var cursorY2 = cursorY1 + strHeight;
-	cursorX = textX + string_width(strToCursor);
-	if (clickedIn) {
-		draw_set_color(global.colorThemeRezPink);
+	if (windowFocused) {
 		var drawCursorReal = false;
 		if (drawCursor || keyboard_check(vk_anykey)) drawCursorReal = true;
-		if (drawCursorReal) draw_line_width(cursorX - clipX, cursorY1 - clipY, cursorX - clipX, cursorY2 - clipY, 2);
+		if (drawCursorReal) {
+			draw_set_color(global.colorThemeRezPink);
+			draw_line_width(cursorX - clipX, cursorY1 - clipY, cursorX - clipX, cursorY2 - clipY, 2);
+		}
 	}
-
 
 	// draw highlight rect if we need to
 	var drawHighlightRect = (mouse_check_button(mb_left) || cursorIndex != highlightIndex);
@@ -95,8 +122,12 @@ function scr_inputBoxDraw(){
 	// end clipping for text
 	scr_surfaceEnd();
 
-
 	// outline rect
 	draw_set_color(global.colorThemeBorders);
-	draw_rectangle(x, y, x + windowWidth, y + windowHeight, true);
+	if (windowFocused) {
+		for (var i = 0; i < 3; i++) draw_rectangle(textBoxX + i, textBoxY + i, textBoxX + windowWidth + i, textBoxY + windowHeight + i, true);
+	}
+	else {
+		draw_rectangle(textBoxX, textBoxY, textBoxX + windowWidth, textBoxY + windowHeight, true);
+	}
 }

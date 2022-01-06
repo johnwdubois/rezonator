@@ -67,17 +67,27 @@ function scr_loadINI() {
 					global.autosaveTimerFull = ds_map_find_value(map, "autosaveTimerFull");
 					global.autosaveTimer = global.autosaveTimerFull;
 				}
+				
+				if(ds_map_find_value(map, "recentFilesMap") != undefined){
+					global.recentFilesMap = ds_map_find_value(map, "recentFilesMap");
+				}
+				if(ds_map_find_value(map, "recentFilesList") != undefined){
+					global.recentFilesList = ds_map_find_value(map, "recentFilesList");
+				}
+				if(ds_map_find_value(map, "usedImports") != undefined){
+					global.usedImports = ds_map_find_value(map, "usedImports");
+				}
 
 
 				if (global.rememberMe) {
-					obj_openingScreen.inputText = string(ds_map_find_value(map, "userName"));
+					global.userName = string(ds_map_find_value(map, "userName"));
 
-					obj_openingScreen.cursorPos = string_length(obj_openingScreen.inputText) + 1;
 				}
 
 				global.previousRezDirectory = ds_map_find_value(map, "previousRezDirectory"); 
 
-				global.previousImportDirectory = ds_map_find_value(map, "previousImportDirectory"); 
+				global.previousImportDirectory = ds_map_find_value(map, "previousImportDirectory");
+				global.previousSaveDirectory = ds_map_find_value(map, "previousSaveDirectory"); 
 		
 
 				global.previousSpecialFields = ds_map_find_value(map, "previousSpecialFields");

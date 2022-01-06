@@ -199,11 +199,6 @@ trackGrid = ds_grid_create(trackGridWidth, 0);
 rezGrid = ds_grid_create(trackGridWidth, 0);
 
 mouseOverAnyChunk = false;
-
-
-// update the filtered chain lists now that we have those good ol chain lists loaded
-scr_updateFilteredChainLists();
-
 dragStartOriginalChain = "";
 dragStartOriginalUnit = "";
 
@@ -212,3 +207,5 @@ chainHue = random(255);
 
 quickLinkCreated = false;
 quickLinkDeleted = false;
+
+alarm[10] = 1;

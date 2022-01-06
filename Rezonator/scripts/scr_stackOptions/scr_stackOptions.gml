@@ -11,7 +11,7 @@ function scr_stackOptions(optionSelected) {
 			with (obj_toolPane) {
 				if (currentMode == modeRead) {
 					currentMode = modeTrack;
-					if(obj_control.searchGridActive) {
+					if(obj_control.currentView == obj_control.searchView) {
 						obj_toolPane.setModeSearch = obj_toolPane.modeTrack;
 					}
 					else {
@@ -32,7 +32,7 @@ function scr_stackOptions(optionSelected) {
 		case "menu_stacker":
 			var dropDownOptionList = ds_list_create();
 			//, "menu_sentence"
-			ds_list_add(dropDownOptionList,  "menu_turn", "menu_random","menu_sentence");
+			ds_list_add(dropDownOptionList,  "menu_turn", "menu_random","menu_sentence", "menu_clique");
 			if (ds_list_size(dropDownOptionList) > 0) {
 				scr_createDropDown(x + windowWidth, y, dropDownOptionList, global.optionListTypeCreateStack);
 			}

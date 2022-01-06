@@ -1,9 +1,9 @@
 // Script assets have changed for v2.3.0 see
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
-function scr_loadTagJson(){
-	
-	var fileName = get_open_filename_ext("Tag file|*.json", "", global.rezonatorSchemaDirString, "Open Tag JSON");
-	
+function scr_loadTagJson(fileName){
+	if(!is_string(fileName)){
+		fileName = get_open_filename_ext("Tag file|*.json", "", global.rezonatorSchemaDirString, "Open Tag JSON");
+	}
 	// make sure the file exists
 	if (fileName == "" or not file_exists(fileName)) {
 		show_debug_message("scr_loadTagJson ... ERROR: file does not exist");
@@ -78,6 +78,31 @@ function scr_loadTagJson(){
 	if (scr_isNumericAndExists(navTrack1to1FieldList, ds_type_list)) obj_control.chain1to1ColFieldListTrack = navTrack1to1FieldList;
 	if (scr_isNumericAndExists(navStack1to1FieldList, ds_type_list)) obj_control.chain1to1ColFieldListStack = navStack1to1FieldList;
 	#endregion
+	
+	
 
+
+	
+	
+	// any fields that are not in their respective nav field lists, add them!
+	var tokenFieldListSize = ds_list_size(obj_control.tokenFieldList);
+	for (var i = 0; i < tokenFieldListSize; i++) scr_addToListOnce(obj_control.navTokenFieldList, obj_control.tokenFieldList[| i]);
+	var unitFieldListSize = ds_list_size(obj_control.unitFieldList);
+	for (var i = 0; i < unitFieldListSize; i++) scr_addToListOnce(obj_control.navUnitFieldList, obj_control.unitFieldList[| i]);
+	var chunkFieldListSize = ds_list_size(obj_control.chunkFieldList);
+	for (var i = 0; i < chunkFieldListSize; i++) scr_addToListOnce(obj_control.navChunkFieldList, obj_control.chunkFieldList[| i]);
+	var entryFieldListSize = ds_list_size(global.chainEntryFieldList);
+	for (var i = 0; i < entryFieldListSize; i++) {
+		scr_addToListOnce(obj_control.chain1toManyColFieldListRez, global.chainEntryFieldList[| i]);
+		scr_addToListOnce(obj_control.chain1toManyColFieldListTrack, global.chainEntryFieldList[| i]);
+		scr_addToListOnce(obj_control.chain1toManyColFieldListStack, global.chainEntryFieldList[| i]);
+	}
+	var chainFieldListSize = ds_list_size(global.chainFieldList);
+	for (var i = 0; i < chainFieldListSize; i++) {
+		scr_addToListOnce(obj_control.chain1to1ColFieldListRez, global.chainFieldList[| i]);
+		scr_addToListOnce(obj_control.chain1to1ColFieldListTrack, global.chainFieldList[| i]);
+		scr_addToListOnce(obj_control.chain1to1ColFieldListStack, global.chainFieldList[| i]);
+	}
+	
 	
 }

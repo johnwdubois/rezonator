@@ -13,8 +13,8 @@ function scr_fontSizeControl() {
 					}
 				}
 				gridSpaceVerticalMin = gridSpaceVerticalMinOriginal + ((global.fontSize + 1) * 5);
-				//Vertical				
-				obj_control.prevCenterDisplayRow = scr_currentTopLine();
+
+
 
 				if(obj_control.gridSpaceVertical > obj_control.gridSpaceVerticalMin) {
 					obj_control.gridSpaceVertical -= 10;
@@ -23,7 +23,6 @@ function scr_fontSizeControl() {
 					obj_control.lineSpacing -= 4;
 					obj_control.gridSpaceRatio = (obj_control.gridSpaceVertical/obj_control.prevGridSpaceVertical);
 
-					scr_jumpToUnitTop(obj_control.prevCenterDisplayRow);
 					// reset the ratio
 					obj_control.prevGridSpaceVertical = obj_control.gridSpaceVertical;
 					if(obj_control.arrowSpeed > obj_control.arrowSpeedMin) {
@@ -58,6 +57,7 @@ function scr_fontSizeControl() {
 				}
 				gridSpaceVerticalMin = gridSpaceVerticalMinOriginal + ((global.fontSize + 1) * 5);
 				//vertical
+
 				obj_control.prevCenterDisplayRow = scr_currentTopLine();
 		
 				if(obj_control.gridSpaceVertical < obj_control.gridSpaceVerticalMax) {
@@ -67,7 +67,6 @@ function scr_fontSizeControl() {
 					obj_control.lineSpacing += 4;
 					obj_control.gridSpaceRatio = (obj_control.gridSpaceVertical/obj_control.prevGridSpaceVertical);
 
-					scr_jumpToUnitTop(obj_control.prevCenterDisplayRow);
 					// reset the ratio
 					obj_control.prevGridSpaceVertical = obj_control.gridSpaceVertical;
 					if(obj_control.arrowSpeed < obj_control.arrowSpeedMax) {
@@ -111,7 +110,6 @@ function scr_fontSizeControl() {
 				}
 				gridSpaceVerticalMin = gridSpaceVerticalMinOriginal + ((global.fontSize + 1) * 5);
 				//Vertical				
-				obj_control.prevCenterDisplayRow = scr_currentTopLine();
 
 				if(obj_control.gridSpaceVertical > obj_control.gridSpaceVerticalMin) {
 					obj_control.gridSpaceVertical -= 10;
@@ -120,7 +118,7 @@ function scr_fontSizeControl() {
 					obj_control.lineSpacing -= 4;
 					obj_control.gridSpaceRatio = (obj_control.gridSpaceVertical/obj_control.prevGridSpaceVertical);
 
-					scr_jumpToUnitTop(obj_control.prevCenterDisplayRow);
+
 					// reset the ratio
 					obj_control.prevGridSpaceVertical = obj_control.gridSpaceVertical;
 					if(obj_control.arrowSpeed > obj_control.arrowSpeedMin) {
@@ -154,9 +152,7 @@ function scr_fontSizeControl() {
 					}
 				}
 				gridSpaceVerticalMin = gridSpaceVerticalMinOriginal + ((global.fontSize + 1) * 5);
-				//vertical
-				obj_control.prevCenterDisplayRow = scr_currentTopLine();
-		
+
 				if(obj_control.gridSpaceVertical < obj_control.gridSpaceVerticalMax) {
 					obj_control.gridSpaceVertical += 10;
 					// Don't go above the max
@@ -164,7 +160,6 @@ function scr_fontSizeControl() {
 					obj_control.lineSpacing += 4;
 					obj_control.gridSpaceRatio = (obj_control.gridSpaceVertical/obj_control.prevGridSpaceVertical);
 
-					scr_jumpToUnitTop(obj_control.prevCenterDisplayRow);
 					// reset the ratio
 					obj_control.prevGridSpaceVertical = obj_control.gridSpaceVertical;
 					if(obj_control.arrowSpeed < obj_control.arrowSpeedMax) {

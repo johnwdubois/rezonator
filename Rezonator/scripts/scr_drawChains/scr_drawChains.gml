@@ -20,9 +20,8 @@ function scr_drawChains() {
 
 
 	var wordTopMargin = obj_control.wordTopMargin;
-	var rezChainList = ds_map_find_value(global.nodeMap, "resonanceList");
+	var rezChainList = global.nodeMap[? "resonanceList"];
 	var rezChainListSize = ds_list_size(rezChainList);
-	var activeLineGridHeight = ds_grid_height(obj_control.currentActiveLineGrid);
 	var camHeight = camera_get_view_height(camera_get_active());
 	
 	var justifyLeft = (obj_control.justify == obj_control.justifyLeft);
@@ -33,26 +32,26 @@ function scr_drawChains() {
 	for (var i = 0; i < chainShowListSize; i++) {
 		minWordWidth = 9999999;
 		
-		var currentChainID = ds_list_find_value(obj_chain.chainShowList, i);
+		var currentChainID = obj_chain.chainShowList[| i];
 		
 		// skip this chain if we can't find it in the nodeMap
 		if (!ds_map_exists(global.nodeMap, currentChainID)) continue;
 		
 		// make sure this chain's subMap exists and that it is actually a map
-		var currentChainSubMap = ds_map_find_value(global.nodeMap, currentChainID);
+		var currentChainSubMap = global.nodeMap[? currentChainID];
 		if (!scr_isNumericAndExists(currentChainSubMap, ds_type_map)) continue;
 		
 		// get chain's setIDList and make sure it exists
-		var chainType = ds_map_find_value(currentChainSubMap, "type");
-		//var currentSetIDList = ds_map_find_value(currentChainSubMap, "vizSetIDList");
+		var chainType = currentChainSubMap[? "type"];
 		var currentChainShowSubMap = obj_chain.chainShowMap[? currentChainID];
 		var currentSetIDList = currentChainShowSubMap[? "entryList"];
-		var currentVizSetIDList = ds_map_find_value(currentChainSubMap, "vizSetIDList");
+		var currentVizSetIDList = currentChainSubMap[? "vizSetIDList"];
+		var currentChainFocused = obj_chain.currentFocusedChainID == currentChainID;
 		
 		if (!scr_isNumericAndExists(currentSetIDList, ds_type_list)) continue;
 		var currentSetIDListSize = ds_list_size(currentSetIDList);
-		var currentChainColor = ds_map_find_value(currentChainSubMap, "chainColor");
-		var currentChainVisible = ds_map_find_value(currentChainSubMap, "visible");
+		var currentChainColor = currentChainSubMap[? "chainColor"];
+		var currentChainVisible = currentChainSubMap[? "visible"];
 		
 		// make sure this is a rezChain or trackChain and that we should be drawing it
 		if (chainType != "resonance" && chainType != "trail") continue;
@@ -66,6 +65,7 @@ function scr_drawChains() {
 	
 		var tokensInSameLine = false;
 		var firstTokenInLine = "";
+		var token1IsChunk = false;
 		var token2IsChunk = false;
 		
 	
@@ -80,7 +80,30 @@ function scr_drawChains() {
 				currentEntry2 = currentSetIDList[| 0];
 				var vizSetIndex = ds_list_find_index(currentVizSetIDList, currentEntry2);
 				if (vizSetIndex >= 1) {
+					
 					currentEntry1 = currentVizSetIDList[| vizSetIndex - 1];
+					var currentEntry1SubMap = global.nodeMap[? currentEntry1];
+					var tokenID = currentEntry1SubMap[?"token"];
+					var tokenSubMap = global.nodeMap[?tokenID];
+					var tokensUnit = tokenSubMap[?"unit"];
+					var newTokensUnit = tokenSubMap[?"unit"];
+					var k = vizSetIndex - 1;
+					
+					while(tokensUnit == newTokensUnit && k > 0){
+						k-=1;
+						currentEntry1 = currentVizSetIDList[| k];
+						currentEntry1SubMap = global.nodeMap[? currentEntry1];
+						tokenID = currentEntry1SubMap[?"token"];
+						tokenSubMap = global.nodeMap[?tokenID];
+						newTokensUnit = tokenSubMap[?"unit"];
+						
+					
+					}
+					if(k != 0){
+						k+=1;
+					}
+					currentEntry1 = currentVizSetIDList[| k];
+					
 				}
 			}
 			else if (j >= 1 && j < currentSetIDListSize) {
@@ -109,8 +132,14 @@ function scr_drawChains() {
 			var currentTokenID2 = currentEntry2SubMap[? "token"];
 			
 			// if this token is a chunk, we will just draw the line coming out of the chunk's first token
-			if (scr_isChunk(currentTokenID1)) currentTokenID1 = scr_getFirstWordOfChunk(currentTokenID1);
-			if (scr_isChunk(currentTokenID2)) currentTokenID2 = scr_getFirstWordOfChunk(currentTokenID2);
+			if (scr_isChunk(currentTokenID1)) {
+				token1IsChunk = true;
+				currentTokenID1 = scr_getFirstWordOfChunk(currentTokenID1);
+			}
+			if (scr_isChunk(currentTokenID2)) {
+				token2IsChunk = true;
+				currentTokenID2 = scr_getFirstWordOfChunk(currentTokenID2);
+			}
 
 			
 			// get tokenSubMaps
@@ -139,6 +168,7 @@ function scr_drawChains() {
 			if (j == 0) {
 				var currentEntryList = tokenUnitID1SubMap[? "entryList"];
 				if (!scr_isNumericAndExists(currentEntryList, ds_type_list)) continue;
+				
 				with(obj_control){
 					scr_drawLineEntryList(tokenUnitID1,tokenUnitID1SubMap,currentEntryList, -200,false);
 				}
@@ -202,8 +232,15 @@ function scr_drawChains() {
 			// get the pixel X values for each token
 			lineX2 = currentToken2SubMap[?"pixelX"];
 			lineY2 = tokenUnitID2SubMap[? "pixelY"];
-		
-
+			
+			// if both ends of the line are chunks, we will offset the X a litle bit so we dont cover up another line
+			if (token1IsChunk && token2IsChunk) {
+				lineX1 += 10;
+				lineX2 += 10;
+			}
+			
+			// only draw lines going down or to the side, never going up
+			if (lineY1 > lineY2) continue;
 			
 			// check if these y values are in our draw range
 			var inDrawRange1 = !(lineY1 < wordTopMargin + (-obj_control.gridSpaceVertical * 2) and lineY2 < wordTopMargin + (-obj_control.gridSpaceVertical * 2));
@@ -268,7 +305,7 @@ function scr_drawChains() {
 					if (chainType == "resonance") {
 						
 
-						draw_line_width(rezChainLineX1, rezChainLineY1, rezChainLineX2, rezChainLineY2, 2);
+						draw_line_width(rezChainLineX1, rezChainLineY1, rezChainLineX2, rezChainLineY2, currentChainFocused ? 3 : 2);
 
 						
 						// mark stretches visually with a circle
@@ -287,10 +324,10 @@ function scr_drawChains() {
 					else if (chainType == "trail") {
 						
 						if (sideLink) {
-							draw_line_width(trackChainLineX1, trackChainLineY1, trackChainLineX2, trackChainLineY2, 2);
+							draw_line_width(trackChainLineX1, trackChainLineY1, trackChainLineX2, trackChainLineY2, currentChainFocused ? 3 : 2);
 						}
 						else {
-							scr_drawCurvedLine(trackChainLineX1, lineY1 + (currentWordStringHeight1 / 2), trackChainLineX2, lineY2 - (currentWordStringHeight2 / 2), currentChainColor);
+							scr_drawCurvedLine(trackChainLineX1, lineY1 + (currentWordStringHeight1 / 2), trackChainLineX2, lineY2 - (currentWordStringHeight2 / 2), currentChainColor, currentChainFocused ? 3 : 2);
 						}
 
 					}

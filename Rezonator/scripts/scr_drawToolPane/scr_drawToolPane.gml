@@ -1,6 +1,6 @@
 function scr_drawToolPane(toolSprScale) {
 
-	var mouseoverCancel = (instance_exists(obj_dropDown) || instance_exists(obj_dialogueBox) || instance_exists(obj_flyout));
+	var mouseoverCancel = (instance_exists(obj_dropDown) || instance_exists(obj_dialogueBox) || instance_exists(obj_flyout)) || obj_control.gridView;
 	var toolSprWidth = sprite_get_width(spr_toolsNew) * toolSprScale;
 	var toolSprHeight = sprite_get_height(spr_toolsNew) * toolSprScale;
 	var camHeight = camera_get_view_height(camera_get_active());
@@ -8,6 +8,7 @@ function scr_drawToolPane(toolSprScale) {
 	var mouseoverRectWidth = 5;
 	
 	var toolButtonX = floor(x + (windowWidth / 2));
+	var toolButtonRectBuffer = toolSprWidth * 0.06;
 	var toolButtonRectBuffer = toolSprWidth * 0.06;
 	var flyoutXBuffer = mouseoverRectWidth * 2;
 	
@@ -74,11 +75,11 @@ function scr_drawToolPane(toolSprScale) {
 	var filterButtonRectX2 = floor(toolButtonX + (toolSprWidth / 2) + toolButtonRectBuffer);
 	var filterButtonRectY2 = floor(filterButtonY + (toolSprHeight / 2) + toolButtonRectBuffer);
 	var mouseoverFilter = point_in_rectangle(mouse_x, mouse_y, filterButtonRectX1, filterButtonRectY1, filterButtonRectX2, filterButtonRectY2) && !mouseoverCancel;
-	var filterButtonColor = (obj_control.filterGridActive|| obj_control.quickFilterGridActive) ? global.colorThemeRezPink : c_white;
-	var filterList = scr_getFilterList();
+	var filterButtonColor = (obj_control.currentView == obj_control.filterView|| obj_control.currentView == obj_control.quickFilterView) ? global.colorThemeRezPink : c_white;
+	var filterList = scr_getFilterList(true);
 	var filterListSize = ds_list_size(filterList);
 	
-	if (filterListSize <= 0 && obj_control.filterGridActive && obj_panelPane.functionChainList_playShowID == "") {
+	if (filterListSize <= 0 && obj_control.currentView == obj_control.filterView && obj_panelPane.functionChainList_playShowID == "") {
 		scr_disableFilter();
 	}
 	
@@ -95,7 +96,7 @@ function scr_drawToolPane(toolSprScale) {
 	}
 	
 	// draw highlight rectangle if filter is on
-	if (obj_control.filterGridActive || obj_control.quickFilterGridActive) {
+	if (obj_control.currentView == obj_control.filterView || obj_control.currentView == obj_control.quickFilterView) {
 		draw_set_color(global.colorThemeBG);
 		draw_roundrect(filterButtonRectX1, filterButtonRectY1, filterButtonRectX2, filterButtonRectY2, false);
 	}
@@ -130,7 +131,7 @@ function scr_drawToolPane(toolSprScale) {
 	}
 	
 	// draw highlight rect
-	if (obj_control.filterGridActive || obj_control.quickFilterGridActive) {
+	if (obj_control.currentView == obj_control.filterView || obj_control.currentView == obj_control.quickFilterView) {
 		draw_set_color(global.colorThemeBG);
 		draw_roundrect(contextButtonRectX1, contextButtonRectY1, contextButtonRectX2, contextButtonRectY2, false);
 	}
@@ -200,7 +201,7 @@ function scr_drawToolPane(toolSprScale) {
 		
 		if (mouse_check_button_released(mb_left)) {
 			var oneToOneOptionList = ds_list_create();
-			ds_list_add(oneToOneOptionList, scr_get_translation("option_one-to-one"), scr_get_translation("option_one-to-many"));
+			ds_list_add(oneToOneOptionList, "option_one-to-one", "option_one-to-many");
 			scr_createFlyout(oneToOneButtonRectX1 - flyoutXBuffer, oneToOneButtonY, oneToOneOptionList, global.optionListType1to1, spr_oneToOneTool, false);
 		}
 	}
@@ -309,15 +310,12 @@ function scr_drawToolPane(toolSprScale) {
 	if (!obj_control.gridView and !obj_control.dialogueBoxActive and !instance_exists(obj_dropDown) and !instance_exists(obj_dialogueBox) and obj_control.mouseoverTagShortcut == "") {
 		if (keyboard_check_pressed(ord("E")) and !global.ctrlHold) {
 			currentMode = modeRead;
-			//obj_panelPane.functionChainList_currentTab = obj_panelPane.functionChainList_tabLine;
 		}
 		if (keyboard_check_pressed(ord("R")) and !global.ctrlHold) {
 			currentMode = modeRez;
-			//obj_panelPane.functionChainList_currentTab = obj_panelPane.functionChainList_tabRezBrush;
 		}
 		if (keyboard_check_pressed(ord("T"))) {
 			currentMode = modeTrack;
-			//obj_panelPane.functionChainList_currentTab = obj_panelPane.functionChainList_tabTrackBrush;
 		}
 	}
 
@@ -330,6 +328,18 @@ function scr_drawToolPane(toolSprScale) {
 			}
 		}
 	}
+	
+	// draw text for which view you are in
+	draw_set_color(c_white);
+	var buffer = string_height("0");
+	draw_set_halign(fa_center);
+	draw_set_alpha(1);
+	var viewTextY = camHeight - (buffer * 1.5);
+	if (helpButtonRectY2 < viewTextY + (buffer * 0.5)) {
+		draw_text(mean(x + windowWidth,x), viewTextY, string(obj_control.currentView));
+	}
+
+	
 
 	
 

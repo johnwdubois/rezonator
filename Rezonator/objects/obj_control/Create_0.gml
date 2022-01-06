@@ -1,7 +1,11 @@
 /*
 	Purpose: Instantiate all variables used by control objects
 */
-
+if(global.steamAPI){
+	if(!steam_get_achievement("SA_open-file")){
+		steam_set_achievement("SA_open-file");
+	}
+}
 var camWidth = camera_get_view_width(view_camera[0]);
 var camHeight = camera_get_view_height(view_camera[0]);
 
@@ -166,11 +170,14 @@ searchGrid = ds_grid_create(lineGridWidth, 0);
 emptySearchGrid = ds_grid_create(lineGridWidth, 0);
 
 // Initialize filter and search as deactivated
-filterGridActive = false;
-quickFilterGridActive = false;
-searchGridActive = false;
+filterView = "Filter";
+quickFilterView = "Quick Filter";
+searchView = "Search";
+mainView = "Main";
 // Initialize line grid as active
 currentActiveLineGrid = lineGrid;
+
+currentView = mainView;
 
 
 
@@ -641,8 +648,8 @@ ds_list_copy(navUnitFieldList, global.unitFieldList);
 ds_list_copy(navChunkFieldList, chunkFieldList);
 
 // we shouldn't have more than 6 columns in our nav panes
-while (ds_list_size(navTokenFieldList) > 6) ds_list_delete(navTokenFieldList, ds_list_size(navTokenFieldList) - 1);
-while (ds_list_size(navUnitFieldList) > 6) ds_list_delete(navUnitFieldList, ds_list_size(navTokenFieldList) - 1);
+//while (ds_list_size(navTokenFieldList) > 6) ds_list_delete(navTokenFieldList, ds_list_size(navTokenFieldList) - 1);
+//while (ds_list_size(navUnitFieldList) > 6) ds_list_delete(navUnitFieldList, ds_list_size(navUnitFieldList) - 1);
 while (ds_list_size(navChunkFieldList) > 6) ds_list_delete(navChunkFieldList, ds_list_size(navChunkFieldList) - 1);
 
 
@@ -709,9 +716,16 @@ ds_list_add(chain1to1ColFieldListStack, "chainSize", "entityType");
 chain1toManyColFieldListRez = ds_list_create(); // list of the dynamic columns in the rez 1-many pane
 chain1toManyColFieldListTrack = ds_list_create(); // list of the dynamic columns in the track 1-many pane
 chain1toManyColFieldListStack = ds_list_create(); // list of the dynamic columns in the stack 1-many pane
-ds_list_add(chain1toManyColFieldListRez, "gapUnits", "gapWords", "charCount");
-ds_list_add(chain1toManyColFieldListTrack, "gapUnits", "gapWords", "charCount");
-ds_list_add(chain1toManyColFieldListStack, "gapUnits");
+//ds_list_add(chain1toManyColFieldListRez, "gapUnits", "gapWords", "charCount");
+//ds_list_add(chain1toManyColFieldListTrack, "gapUnits", "gapWords", "charCount");
+//ds_list_add(chain1toManyColFieldListStack, "gapUnits");
+var chainEntryFieldListSize = ds_list_size(global.chainEntryFieldList);
+for (var i = 0; i < chainEntryFieldListSize; i++) {
+	var currentField = global.chainEntryFieldList[| i];
+	scr_addToListOnce(chain1toManyColFieldListRez, currentField);
+	scr_addToListOnce(chain1toManyColFieldListTrack, currentField);
+	scr_addToListOnce(chain1toManyColFieldListStack, currentField);
+}
 
 
 
@@ -728,7 +742,6 @@ with (obj_alarm) {
 
 
 
-
 global.delayInput = 10;
 
 
@@ -741,9 +754,6 @@ hiddenTrackChainList = ds_list_create();
 hiddenStackChainList = ds_list_create();
 
 
-filterActiveRez = false;
-filterActiveTrack = false;
-filterActiveStack = false;
 
 menuDepth = -1;
 
@@ -790,9 +800,21 @@ refreshDisplayColUnit = "";
 refreshYValuesUnit = "";
 
 
-scr_setNavFieldListsFromSchema();
+//scr_setNavFieldListsFromSchema();
+
 
 minimumChunkDist = 15;
 mouseoverSpeakerLabelWidth = false;
 
 show_debug_message("obj_control create end");
+
+setRezMap = false;
+
+switchToTab = "";
+
+global.inputBoxDefStr = "";
+//set up tags from schema a frame after loading
+with(obj_alarm){
+	alarm[0] = 1;
+}
+

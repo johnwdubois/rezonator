@@ -6,11 +6,11 @@ if (!shortcutsEnabled || dialogueBoxActive) {
 	exit;
 }
 
-if (searchGridActive) {
-	searchGridActive = false;
+if (obj_control.currentView == obj_control.searchView) {
+	obj_control.currentView = obj_control.mainView;
 	scr_disableFilter();
 }
 else {
-	searchGridActive = true;
+	obj_control.currentView = obj_control.searchView;
 	scr_renderFilter2();
 }

@@ -13,6 +13,7 @@ stackerFunctionRandom = 1;
 stackerFunctionTurn = 2;
 stackerFunctionSent = 3;
 stackerFunctionGroup = 4;
+stackerFunctionConllu = 5;
 currentStackerFuntion = stackerFunctionDefault;
 
 endNoteTagsGrid = ds_grid_create(2, 0);
@@ -29,6 +30,7 @@ createStacksRandom = false;
 createStacksTurn = false;
 createStacksSentence = false;
 createStacksGroup = false;
+createStacksClique = false;
 
 
 scr_scrollBarInit();
@@ -51,5 +53,9 @@ canResizeWindowY = false;
 // run stacker for song & verse
 if (global.importType == global.importType_PlainText && !global.openProject) {
 	currentStackerFuntion = stackerFunctionGroup;
+	alarm[5] = 3;
+}
+if (global.importType == global.importType_CoNLLU && !global.openProject && global.conlluAutotagColName != "") {
+	currentStackerFuntion = stackerFunctionConllu;
 	alarm[5] = 3;
 }

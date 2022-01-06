@@ -24,6 +24,9 @@ function scr_saveINI() {
 	ds_list_add(rootList, map);
 	ds_list_mark_as_map(rootList, ds_list_size(rootList) - 1);
 	
+	
+	// create maps to hold copies of other maps we want in the REZ file
+	var recentFilesMapCopy = ds_map_create();
 
 
 	ds_map_add(map,"rememberMe",global.rememberMe);
@@ -38,12 +41,10 @@ function scr_saveINI() {
 	ds_map_add(map,"showNav", obj_panelPane.showNav);
 	ds_map_add(map,"showNavLeft", obj_panelPane.showNavLeft);
 	ds_map_add(map,"showNavRight", obj_panelPane.showNavRight);
-	
-	
-
 
 	
 	
+
 	var tempList = ds_list_create();
 	if (global.previousLevelEstimates != undefined) {
 		ds_list_copy(tempList, global.previousLevelEstimates);
@@ -56,10 +57,28 @@ function scr_saveINI() {
 		ds_list_copy(tempList2, global.previousSpecialFields);
 	}
 	ds_map_add_list(map, "previousSpecialFields", tempList2);
+	
 	ds_map_add(map, "previousRezDirectory", global.previousRezDirectory);
 	ds_map_add(map, "previousImportDirectory", global.previousImportDirectory);
+	ds_map_add(map, "previousSaveDirectory", global.previousSaveDirectory);
 		
 
+	var tempList3 = ds_list_create();
+	if (global.recentFilesList != undefined) {
+		ds_list_copy(tempList3, global.recentFilesList);
+	}
+	ds_map_add_list(map, "recentFilesList", tempList3);
+	
+	var tempList4 = ds_list_create();
+	if (global.usedImports != undefined) {
+		ds_list_copy(tempList4, global.usedImports);
+	}
+	ds_map_add_list(map, "usedImports", tempList4);
+
+
+
+	recentFilesMapCopy = json_decode(json_encode(global.recentFilesMap));
+	ds_map_add_map(map,"recentFilesMap", recentFilesMapCopy);
 
 	var wrapper = ds_map_create();
 	ds_map_add_list(wrapper, "ROOT", rootList);
@@ -73,7 +92,7 @@ function scr_saveINI() {
 
 	scr_saveFileBuffer(working_directory + filename_name(fileName), fileName, jsonString);
 
-
+	show_debug_message(string(working_directory) + string(filename_name(fileName)));
 	ds_map_destroy(wrapper);
 
 

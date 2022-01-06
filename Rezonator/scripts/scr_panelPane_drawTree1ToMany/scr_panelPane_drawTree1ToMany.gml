@@ -21,6 +21,7 @@ function scr_panelPane_drawTree1ToMany(){
 	draw_set_color(topBkgColor);
 	draw_rectangle(x, y, x + windowWidth, y + windowHeight - strHeight, false);
 	
+	var mouseoverCancel = scrollBarHorHolding || scrollBarHolding || mouseoverHorScrollBar || mouseoverScrollBar || instance_exists(obj_dropDown) || instance_exists(obj_dialogueBox);
 
 
 
@@ -41,13 +42,13 @@ function scr_panelPane_drawTree1ToMany(){
 	
 
 	functionTree_treeMouseoverLinkArea = point_in_rectangle(mouse_x, mouse_y, x + originalPlusX, y, x + windowWidth - global.scrollBarWidth, leafY);
-	functionTree_treeMouseoverArea = point_in_rectangle(mouse_x, mouse_y, x, y, x + windowWidth - global.scrollBarWidth, y + windowHeight);
+	functionTree_treeMouseoverArea = point_in_rectangle(mouse_x, mouse_y, x, y, x + windowWidth - global.scrollBarWidth, y + windowHeight) && !mouseoverHorScrollBar;
 
 	
 
 	scr_surfaceStart();
 	
-	var currentScrollPlusY = scrollPlusY-16;
+	var currentScrollPlusY = scrollPlusY;
 	
 	var maxLevel = -1;
 	if (ds_map_exists(treeSubMap, "maxLevel")) {
@@ -92,7 +93,7 @@ function scr_panelPane_drawTree1ToMany(){
 		
 		//get entry box dimensions, check if this entry is in draw range
 		var boxWidth = string_width(currentDisplayToken) + (spaceWidth * 8);
-		var tokenX1 = floor(x + plusX + scrollPlusX);
+		var tokenX1 = floor(x + plusX + scrollHorPlusX);
 		var tokenY1 = floor(currentEntryY - realStrheight/1.8 + currentScrollPlusY);
 		var tokenX2 = floor(tokenX1 + boxWidth);
 		var tokenY2 = floor(currentEntryY + realStrheight/1.8 + currentScrollPlusY);
@@ -124,7 +125,7 @@ function scr_panelPane_drawTree1ToMany(){
 		
 
 		//mouse over for entry
-		var mouseOverEntry = (point_in_rectangle(mouse_x, mouse_y,tokenX1,tokenY1,tokenX2,tokenY2) && mouseOverEntryID == "") && !instance_exists(obj_dropDown) && !instance_exists(obj_dialogueBox);
+		var mouseOverEntry = (point_in_rectangle(mouse_x, mouse_y,tokenX1,tokenY1,tokenX2,tokenY2) && mouseOverEntryID == "") && !mouseoverCancel;
 		if(mouseOverEntry){
 			
 			mouseOverEntryID = currentEntry;
@@ -275,7 +276,7 @@ function scr_panelPane_drawTree1ToMany(){
 	
 		//get entry box demensions, check if this token is in draw range
 		var boxWidth = string_width(currentDisplayToken) + (spaceWidth * 8);
-		var tokenX1 = x + plusX + scrollPlusX;
+		var tokenX1 = x + plusX + scrollHorPlusX;
 		var tokenX2 = tokenX1 + boxWidth;
 		if (tokenX2 < x || tokenX1 > x + windowWidth) {
 			plusX += boxWidth;
@@ -293,7 +294,7 @@ function scr_panelPane_drawTree1ToMany(){
 
 		
 		//mouse over for entry
-		var mouseOverEntry = point_in_rectangle(mouse_x, mouse_y,tokenX1,tokenY1,tokenX2,tokenY2) && mouseOverEntryID == "" && currentEntrySubMap[?"level"] == -1 && !instance_exists(obj_dropDown) && !instance_exists(obj_dialogueBox);
+		var mouseOverEntry = point_in_rectangle(mouse_x, mouse_y,tokenX1,tokenY1,tokenX2,tokenY2) && mouseOverEntryID == "" && currentEntrySubMap[?"level"] == -1 && !instance_exists(obj_dropDown) && !instance_exists(obj_dialogueBox) && !mouseoverHorScrollBar && !scrollBarHorHolding;
 		
 		// check if this entry should be added to entryRectList
 		var mouseRectExists = (obj_control.mouseHoldRectX1 >= 10 && obj_control.mouseHoldRectY1 >= 0);
@@ -375,7 +376,7 @@ function scr_panelPane_drawTree1ToMany(){
 		// draw vertical line for each column
 		draw_set_color(global.colorThemeBG);
 		draw_set_alpha(0.5);
-		var lineX = x + plusX + scrollPlusX;
+		var lineX = x + plusX + scrollHorPlusX;
 		//draw_line(lineX - clipX, y - clipY, lineX - clipX, y + windowHeight - clipY);
 		
 		plusX += boxWidth;
@@ -383,9 +384,12 @@ function scr_panelPane_drawTree1ToMany(){
 	}
 	maxPlusX = plusX;
 	plusX = originalPlusX;
-
-
 	
+	with (obj_panelPane) treeTabScrollMin = maxPlusX;
+
+	scr_scrollBarHorizontal(0, 0, global.colorThemeSelected1, global.colorThemeSelected2,
+		global.colorThemeSelected1, global.colorThemeSelected2, spr_ascend, windowWidth, windowHeight - strHeight);
+
 	scr_scrollBar(maxLevel + 2, -1, strHeight, 0,
 		global.colorThemeSelected1, global.colorThemeSelected2,
 		global.colorThemeSelected1, global.colorThemeSelected2, spr_ascend, windowWidth, windowHeight - strHeight);
@@ -412,7 +416,7 @@ function scr_panelPane_drawTree1ToMany(){
 	
 	
 	// if user clicks, save the position of their mouse
-	var canMakeMouseRect = obj_control.mouseoverPanelPane &&  mouse_check_button_pressed(mb_left) && !obj_control.mouseoverScrollBar;
+	var canMakeMouseRect = obj_control.mouseoverPanelPane && functionTree_treeMouseoverArea && !functionTree_treeMouseoverLinkArea && mouse_check_button_pressed(mb_left) && !obj_control.mouseoverScrollBar && !mouseoverScrollBar && !mouseoverHorScrollBar && !scrollBarHorHolding;
 	if (canMakeMouseRect) {
 		obj_control.mouseHoldRectX1 = mouse_x;
 		obj_control.mouseHoldRectY1 = mouse_y;
@@ -441,16 +445,17 @@ function scr_panelPane_drawTree1ToMany(){
 
 	scr_scrollMouseControls(strHeight);
 	
+	/*
 	if (clickedIn) {
 		if (keyboard_check(vk_left)) {
-			scrollPlusX += 8;
+			scrollHorPlusX += 8;
 		}
 		if (keyboard_check(vk_right)) {
-			scrollPlusX -= 8;
+			scrollHorPlusX -= 8;
 		}
 	}
-	scrollPlusX = clamp(scrollPlusX, -maxPlusX + windowWidth, 0);
-	
+	scrollHorPlusX = clamp(scrollHorPlusX, -maxPlusX + windowWidth, 0);
+	*/
 
 	
 	if(keyboard_check_released(vk_escape)){

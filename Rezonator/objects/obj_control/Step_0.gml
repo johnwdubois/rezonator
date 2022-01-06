@@ -62,220 +62,234 @@ if (keyboard_check_released(vk_rcommand) || keyboard_check_released(vk_lcommand)
 	keyboard_key_release(vk_lcontrol);
 }
 
-	
-	
-// Retrieve booleans for NavWindow.
-var clickedInChainList = false;
-var clickedInChainContents = false;
-with (obj_panelPane) {
-	if (currentFunction == functionChainList) {
-		clickedInChainList = clickedIn;
+
+// Mechanism to update center display row
+if (!gridView) {
+	if (ds_grid_height(currentActiveLineGrid) > 0) {
+		currentCenterDisplayRow = scr_currentTopLine();
 	}
-	if (currentFunction == functionChainContents) {
-		clickedInChainContents = clickedIn;
-	}
-}
-
-
-scrollPlusX = lerp(scrollPlusX, scrollPlusXDest, 0.4);
-
-
-
-
-// Check if user is in the NavWindow. If not, allow key control on main screen.
-if (!clickedInChainList and !clickedInChainContents and not mouseoverHelpPane and !instance_exists(obj_dropDown)) {
 
 	
-	var scrollSpeed = 0;
-	// Single press of arrow keys now moves screen by one line
-	if ((keyboard_check(vk_down) or mouse_wheel_down())) {
-		if(holdDownArrowKey == 0 and not mouse_wheel_down()) {
-
-			scrollSpeed = -gridSpaceVertical;
-
+	// trigger Home/End
+	if ((keyboard_check_pressed(vk_right) and global.ctrlHold)
+	or (keyboard_check_pressed(vk_end) and !global.ctrlHold)
+	or (keyboard_check_pressed(vk_right) and keyboard_check(vk_alt))) {
+		scr_homeEnd(false);
+	}
+	if ((keyboard_check_pressed(vk_left) and global.ctrlHold)
+	or (keyboard_check_pressed(vk_home) and !global.ctrlHold)
+	or (keyboard_check_pressed(vk_left) and keyboard_check(vk_alt)) ) {
+		scr_homeEnd(true);
+	}
+	
+	// Retrieve booleans for NavWindow.
+	var clickedInChainList = false;
+	var clickedInChainContents = false;
+	with (obj_panelPane) {
+		if (currentFunction == functionChainList) {
+			clickedInChainList = clickedIn;
 		}
-		if (holdDownArrowKey > 15) {
-			scrollSpeed = (-min(arrowSpeed, 25)) * holdArrowMod;
+		if (currentFunction == functionChainContents) {
+			clickedInChainContents = clickedIn;
+		}
+	}
+
+
+	scrollPlusX = lerp(scrollPlusX, scrollPlusXDest, 0.4);
+
+
+
+	// Check if user is in the NavWindow. If not, allow key control on main screen.
+	if (!clickedInChainList and !clickedInChainContents and not mouseoverHelpPane and !instance_exists(obj_dropDown)) {
+
+	
+		var scrollSpeed = 0;
+		// Single press of arrow keys now moves screen by one line
+		if ((keyboard_check(vk_down) or mouse_wheel_down())) {
+			if(holdDownArrowKey == 0 and not mouse_wheel_down()) {
+
+				scrollSpeed = -gridSpaceVertical;
+
+			}
+			if (holdDownArrowKey > 15) {
+				scrollSpeed = (-min(arrowSpeed, 25)) * holdArrowMod;
+				if (mouse_wheel_down()) {
+					scrollSpeed = -(min(arrowSpeed, 25) * 2);
+				}
+
+			}
+			else if(mouse_wheel_down()) {
+				scrollSpeed = -(min(arrowSpeed, 25) * 1.5);
+
+			}
+			if(holdDownArrowKey > 45) {
+					holdArrowMod = 2;
+			}
+			if(holdDownArrowKey > 75) {
+				holdArrowMod = 3;
+			}
+			holdDownArrowKey++;
 			if (mouse_wheel_down()) {
-				scrollSpeed = -(min(arrowSpeed, 25) * 2);
-			}
-
+				holdDownArrowKey = 31;
+			} 
 		}
-		else if(mouse_wheel_down()) {
-			scrollSpeed = -(min(arrowSpeed, 25) * 1.5);
-
-		}
-		if(holdDownArrowKey > 45) {
-				holdArrowMod = 2;
-		}
-		if(holdDownArrowKey > 75) {
-			holdArrowMod = 3;
-		}
-		holdDownArrowKey++;
-		if (mouse_wheel_down()) {
-			holdDownArrowKey = 31;
-		} 
-	}
-	if (keyboard_check(vk_up) or mouse_wheel_up()) {
-		if(holdUpArrowKey == 0 and not mouse_wheel_up()) {
+		if (keyboard_check(vk_up) or mouse_wheel_up()) {
+			if(holdUpArrowKey == 0 and not mouse_wheel_up()) {
 			
-			scrollSpeed = gridSpaceVertical;
+				scrollSpeed = gridSpaceVertical;
+			
+			}
 
-		}
-		if (holdUpArrowKey > 15) {
-			scrollSpeed = min(arrowSpeed, 25) * holdArrowMod;
+			if (holdUpArrowKey > 15) {
+				scrollSpeed = min(arrowSpeed, 25) * holdArrowMod;
+				if (mouse_wheel_up()) {
+					scrollSpeed = (min(arrowSpeed, 25) * 2);
+				}
+			
+			}
+			else if(mouse_wheel_up()) {
+				scrollSpeed = (min(arrowSpeed, 25) *1.5);
+			}
+			if(holdUpArrowKey > 45) {
+					holdArrowMod = 2;
+			}
+			if(holdUpArrowKey > 75) {
+				holdArrowMod = 3;
+			}
+			holdUpArrowKey++;
 			if (mouse_wheel_up()) {
-				scrollSpeed = (min(arrowSpeed, 25) * 2);
+				holdUpArrowKey = 31;
 			}
+		}
 
-		}
-		else if(mouse_wheel_up()) {
-			scrollSpeed = (min(arrowSpeed, 25) *1.5);
-
-		}
-		if(holdUpArrowKey > 45) {
-				holdArrowMod = 2;
-		}
-		if(holdUpArrowKey > 75) {
-			holdArrowMod = 3;
-		}
-		holdUpArrowKey++;
-		if (mouse_wheel_up()) {
-			holdUpArrowKey = 31;
-		}
-	}
-
-	// Allow the user to hold down the pageUp or pageDown buttons
-	if (not instance_exists(obj_dialogueBox)) {
-		if (keyboard_check(vk_pagedown) and not keyboard_check(vk_pageup)) {
-			if (holdPgDn == 0 or (holdPgDn > 15 and holdPgDn % holdPgMod == 0)) {
-				// will need to make this the difference with windowHeight to scale with PanelPanes
-				scrollSpeed -= camera_get_view_height(view_get_camera(0)) - wordTopMargin - (gridSpaceVertical);//(((camera_get_view_height(camera_get_active()) - instance_find(obj_panelPane,0).windowHeight)) - obj_menuBar.menuHeight) * 0.9;//* 0.8;
+		// Allow the user to hold down the pageUp or pageDown buttons
+		if (not instance_exists(obj_dialogueBox)) {
+			if (keyboard_check(vk_pagedown) and not keyboard_check(vk_pageup)) {
+				if (holdPgDn == 0 or (holdPgDn > 15 and holdPgDn % holdPgMod == 0)) {
+					// will need to make this the difference with windowHeight to scale with PanelPanes
+					scrollSpeed -= camera_get_view_height(view_get_camera(0)) - wordTopMargin - (gridSpaceVertical);//(((camera_get_view_height(camera_get_active()) - instance_find(obj_panelPane,0).windowHeight)) - obj_menuBar.menuHeight) * 0.9;//* 0.8;
+				}
+				if(holdPgDn > 45) {
+					holdPgMod = 3;
+				}
+				if(holdPgDn > 75) {
+					holdPgMod = 2;
+				}
+				holdPgDn++;
 			}
-			if(holdPgDn > 45) {
-				holdPgMod = 3;
+			if (keyboard_check(vk_pageup) and not keyboard_check(vk_pagedown)) {
+				if (holdPgUp == 0 or (holdPgUp > 15 and holdPgUp % holdPgMod == 0)) {
+					scrollSpeed += camera_get_view_height(view_get_camera(0)) - wordTopMargin - (gridSpaceVertical);//(((camera_get_view_height(camera_get_active()) - instance_find(obj_panelPane,0).windowHeight)) - obj_menuBar.menuHeight) * 0.9;//* 0.8;
+				}
+				if(holdPgUp > 45) {
+					holdPgMod = 3;
+				}
+				if(holdPgUp > 75) {
+					holdPgMod = 2;
+				}
+				holdPgUp++;
 			}
-			if(holdPgDn > 75) {
-				holdPgMod = 2;
-			}
-			holdPgDn++;
 		}
-		if (keyboard_check(vk_pageup) and not keyboard_check(vk_pagedown)) {
-			if (holdPgUp == 0 or (holdPgUp > 15 and holdPgUp % holdPgMod == 0)) {
-				scrollSpeed += camera_get_view_height(view_get_camera(0)) - wordTopMargin - (gridSpaceVertical);//(((camera_get_view_height(camera_get_active()) - instance_find(obj_panelPane,0).windowHeight)) - obj_menuBar.menuHeight) * 0.9;//* 0.8;
-			}
-			if(holdPgUp > 45) {
-				holdPgMod = 3;
-			}
-			if(holdPgUp > 75) {
-				holdPgMod = 2;
-			}
-			holdPgUp++;
-		}
-	}
 	
-	if (instance_exists(obj_dialogueBox)) {
-		holdUpArrowKey = 0;
-		holdDownArrowKey = 0;
-		holdArrowMod = 1;
-		holdPgDn = 0;
-		holdPgUp = 0;
-		holdPgMod = 4;
-		scrollSpeed = 0;
-	}
-	
-	if(flickVelY != 0) {
-		flick_power = abs(flickVelY);
-		flick_direction = sign(flickVelY);
-	
-		if(flick_power > flick_power_reduction_each_step) {
-			 scrollPlusYDest += (( flick_power / flick_power_calibration) * flick_direction);
-			 flickVelY -= flick_power_reduction_each_step * flick_direction;
-	
+		if (instance_exists(obj_dialogueBox)) {
+			holdUpArrowKey = 0;
+			holdDownArrowKey = 0;
+			holdArrowMod = 1;
+			holdPgDn = 0;
+			holdPgUp = 0;
+			holdPgMod = 4;
+			scrollSpeed = 0;
 		}
-		else {
-			flickVelY = 0;	
-		}
-	}
 	
-	if(scrollPlusYDest != undefined && scrollSpeed != undefined){
-		scrollPlusYDest += scrollSpeed;
-	}
+		if(flickVelY != 0) {
+			flick_power = abs(flickVelY);
+			flick_direction = sign(flickVelY);
+	
+			if(flick_power > flick_power_reduction_each_step) {
+				 scrollPlusYDest += (( flick_power / flick_power_calibration) * flick_direction);
+				 flickVelY -= flick_power_reduction_each_step * flick_direction;
+	
+			}
+			else {
+				flickVelY = 0;	
+			}
+		}
+	
+		if(scrollPlusYDest != undefined && scrollSpeed != undefined){
+			scrollPlusYDest += scrollSpeed;
+		}
 
 
-	if (keyboard_check_released(vk_down) and !mouse_wheel_down()) {
-		holdDownArrowKey = 0;
-		holdArrowMod = 1;
-	}
-	if (holdDownArrowKey > 0 and !mouse_wheel_down() and !keyboard_check(vk_down)) {
-		holdDownArrowKey = 0;
-		holdArrowMod = 1;
-	}
-	if (keyboard_check_released(vk_up) and !mouse_wheel_up()) {
-		holdUpArrowKey = 0;
-		holdArrowMod = 1;
-	}
-	if (holdUpArrowKey > 0 and !mouse_wheel_up() and !keyboard_check(vk_up)) {
-		holdUpArrowKey = 0;
-		holdArrowMod = 1;
-	}
+		if (keyboard_check_released(vk_down) and !mouse_wheel_down()) {
+			holdDownArrowKey = 0;
+			holdArrowMod = 1;
+		}
+		if (holdDownArrowKey > 0 and !mouse_wheel_down() and !keyboard_check(vk_down)) {
+			holdDownArrowKey = 0;
+			holdArrowMod = 1;
+		}
+		if (keyboard_check_released(vk_up) and !mouse_wheel_up()) {
+			holdUpArrowKey = 0;
+			holdArrowMod = 1;
+		}
+		if (holdUpArrowKey > 0 and !mouse_wheel_up() and !keyboard_check(vk_up)) {
+			holdUpArrowKey = 0;
+			holdArrowMod = 1;
+		}
 	
-	if (keyboard_check_released(vk_pagedown)) {
-		holdPgDn = 0;
-		holdPgMod = 4;
-	}
-	if (holdPgDn > 0 and !keyboard_check(vk_pagedown)) {
-		holdPgDn = 0;
-		holdPgMod = 4;
-	}
-	if (keyboard_check_released(vk_pageup)) {
-		holdPgUp = 0;
-		holdPgMod = 4;
-	}
-	if (holdPgUp > 0 and !keyboard_check(vk_pageup)) {
-		holdPgUp = 0;
-		holdPgMod = 4;
-	}
+		if (keyboard_check_released(vk_pagedown)) {
+			holdPgDn = 0;
+			holdPgMod = 4;
+		}
+		if (holdPgDn > 0 and !keyboard_check(vk_pagedown)) {
+			holdPgDn = 0;
+			holdPgMod = 4;
+		}
+		if (keyboard_check_released(vk_pageup)) {
+			holdPgUp = 0;
+			holdPgMod = 4;
+		}
+		if (holdPgUp > 0 and !keyboard_check(vk_pageup)) {
+			holdPgUp = 0;
+			holdPgMod = 4;
+		}
 	
 
-	if (not instance_exists(obj_dialogueBox)) {
-	
-		// Sends user to the bottom of the main screen
-		if ((global.ctrlHold and (keyboard_check_pressed(vk_down) or keyboard_check_pressed(vk_end))) or (keyboard_check(vk_alt) and (keyboard_check_pressed(vk_down) or keyboard_check_pressed(vk_end)))) {
-			scrollPlusYDest = -999999999999;
-			var docSubMap = global.nodeMap[? global.discourseNode];
-			var docDisplayUnitList = docSubMap[? "displayUnitList"];
-			if (ds_list_size(docDisplayUnitList) > 0)
-			refreshYValuesUnit = docDisplayUnitList[| ds_list_size(docDisplayUnitList) - 1];
-			with (obj_alarm2) alarm[9] = 2;
-		}
-		// Sends user to the top of the main screen
-		else if ((global.ctrlHold and (keyboard_check_pressed(vk_up) or keyboard_check_pressed(vk_home))) or (keyboard_check(vk_alt) and (keyboard_check_pressed(vk_up)  or keyboard_check_pressed(vk_home)))) {
-			scrollPlusYDest = 100;
-			var docSubMap = global.nodeMap[? global.discourseNode];
-			var docDisplayUnitList = docSubMap[? "displayUnitList"];
-			if (ds_list_size(docDisplayUnitList) > 0)
-			refreshYValuesUnit = docDisplayUnitList[| 0];
-			with (obj_alarm2) alarm[9] = 2;
-		}
+
+
+		if (not instance_exists(obj_dialogueBox)) {
+
+
+
+			// Sends user to the bottom of the main screen
+			if ((global.ctrlHold and (keyboard_check_pressed(vk_down) or keyboard_check_pressed(vk_end))) or (keyboard_check(vk_alt) and (keyboard_check_pressed(vk_down) or keyboard_check_pressed(vk_end)))) {
+				scrollPlusYDest = -999999999999;
+				var docSubMap = global.nodeMap[? global.discourseNode];
+				var docDisplayUnitList = docSubMap[? "displayUnitList"];
+				if (ds_list_size(docDisplayUnitList) > 0)
+				refreshYValuesUnit = docDisplayUnitList[| ds_list_size(docDisplayUnitList) - 1];
+				with (obj_alarm2) alarm[9] = 2;
+			}
+			// Sends user to the top of the main screen
+			else if ((global.ctrlHold and (keyboard_check_pressed(vk_up) or keyboard_check_pressed(vk_home))) or (keyboard_check(vk_alt) and (keyboard_check_pressed(vk_up)  or keyboard_check_pressed(vk_home)))) {
+				scrollPlusYDest = 100;
+				var docSubMap = global.nodeMap[? global.discourseNode];
+				var docDisplayUnitList = docSubMap[? "displayUnitList"];
+				if (ds_list_size(docDisplayUnitList) > 0)
+				refreshYValuesUnit = docDisplayUnitList[| 0];
+				with (obj_alarm2) alarm[9] = 2;
+			}
 		
-		if (keyboard_check_pressed(vk_right) and !global.ctrlHold and not dialogueBoxActive) {
-			scrollPlusXDest -= gridSpaceHorizontal;
-		}
-		if ((keyboard_check_pressed(vk_right) and global.ctrlHold)
-		or (keyboard_check_pressed(vk_end) and !global.ctrlHold)
-		or (keyboard_check_pressed(vk_right) and keyboard_check(vk_alt))) {
-			scr_homeEnd(false);
-		}
+			if (keyboard_check_pressed(vk_right) and !global.ctrlHold and not dialogueBoxActive) {
+				scrollPlusXDest -= gridSpaceHorizontal;
+			}
 
 
-		if (keyboard_check_pressed(vk_left) and !global.ctrlHold and not dialogueBoxActive) {
-			scrollPlusXDest += gridSpaceHorizontal;
-		}
-		if ((keyboard_check_pressed(vk_left) and global.ctrlHold)
-		or (keyboard_check_pressed(vk_home) and !global.ctrlHold)
-		or (keyboard_check_pressed(vk_left) and keyboard_check(vk_alt)) ) {
-			scr_homeEnd(true);
+
+			if (keyboard_check_pressed(vk_left) and !global.ctrlHold and not dialogueBoxActive) {
+				scrollPlusXDest += gridSpaceHorizontal;
+			}
+
 		}
 	}
 	
@@ -412,7 +426,7 @@ if (keyboard_check(vk_alt) and keyboard_check(vk_shift) and keyboard_check_press
 
 
 	audio_stop_all();
-	scr_saveINI();
+
 	
 	if (!allSaved) {
 		
@@ -431,6 +445,8 @@ if (keyboard_check(vk_alt) and keyboard_check(vk_shift) and keyboard_check_press
 			}
 		}
 	}
+	
+	scr_saveINI();
 	keyboard_string = "";
 	show_debug_message("Going to openingScreen, obj_control Step");
 	room_goto(rm_openingScreen);
@@ -546,27 +562,21 @@ if (keyboard_check(vk_alt) and keyboard_check(vk_shift) and keyboard_check_press
 }
 
 
-// quick filter
+// filter & quick filter
 if (keyboard_check_pressed(ord("P")) and !keyboard_check(vk_lshift) and !keyboard_check(vk_rshift)
 and shortcutsEnabled and mouseoverTagShortcut == "" and currentActiveLineGrid != searchGrid and !instance_exists(obj_dropDown) and !instance_exists(obj_dialogueBox)) {
 	
 	if (global.ctrlHold) {
+		// regular filter (CTRL+P)
 		scr_toggleFilter();
 	}
 	else {
+		// quick filter (P)
 		
-		// If filter is active, deactivate it
-		if (obj_control.quickFilterGridActive) {
-			
-			// Switch to active grid
-			obj_control.quickFilterGridActive = false;
-			if (obj_control.filterGridActive) {
-				scr_toggleFilter();
-			}
-			else {
-				scr_disableFilter();
-			}
-
+		// If quickfilter is active, deactivate it
+		if (obj_control.currentView == obj_control.quickFilterView) {
+			obj_control.currentView = obj_control.mainView;
+			scr_disableFilter();
 		}
 		else if (obj_chain.currentFocusedChainID != "" || quickPickedChainID != "") {
 			

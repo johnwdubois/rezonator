@@ -7,7 +7,7 @@ function scr_surfaceStart() {
 	if (instance_exists(obj_toolPane)) {
 		panelPaneMaxHeight = camera_get_view_height(camera_get_active()) - (obj_toolPane.toolSpriteScale * widthOfTool) * 10;
 	}
-	
+
 	if (object_index == obj_panelPane) {
 	
 		var chainContentsX = 0;
@@ -36,19 +36,21 @@ function scr_surfaceStart() {
 		}
 	}
 
-	
-	if (abs(mouse_y - (y + windowHeight)) < 5
-	and mouse_x > x and mouse_x < x + windowWidth) {
-		if (object_index != obj_gridViewer) {
-			with (obj_control){
-				mouseoverPanelPane = true;
-			}
-			if (room != rm_importScreen) {
-				window_set_cursor(cr_size_ns);
-			}
-			if (mouse_check_button_pressed(mb_left)) {
-				with (obj_panelPaneL) windowResizeYHolding = true;
-				with (obj_panelPaneR) windowResizeYHolding = true;
+
+	if(!mouseoverHorScrollBar){
+		if (abs(mouse_y - (y + windowHeight)) < 5
+		and mouse_x > x and mouse_x < x + windowWidth) {
+			if (object_index != obj_gridViewer) {
+				with (obj_control){
+					mouseoverPanelPane = true;
+				}
+				if (room != rm_importScreen && room != rm_openingScreen && !instance_exists(obj_dropDown)) {
+					window_set_cursor(cr_size_ns);
+				}
+				if (mouse_check_button_pressed(mb_left) && !instance_exists(obj_dropDown) ) {
+					with (obj_panelPaneL) windowResizeYHolding = true;
+					with (obj_panelPaneR) windowResizeYHolding = true;
+				}
 			}
 		}
 	}
@@ -92,7 +94,9 @@ function scr_surfaceStart() {
 				window_set_cursor(cr_size_we);
 			}
 			else if (windowResizeYHolding) {
-				window_set_cursor(cr_size_ns);
+				if (room != rm_openingScreen && !instance_exists(obj_dropDown)) {
+					window_set_cursor(cr_size_ns);
+				}
 		
 				if (object_index == obj_panelPane) {
 					windowHeight = clamp(mouse_y - y, panelPaneMinHeight, panelPaneMaxHeight);

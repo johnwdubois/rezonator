@@ -5,46 +5,49 @@ function scr_inputBoxStep(){
 	if(!instance_exists(obj_dialogueBox) && room != rm_openingScreen) instance_destroy();
 	
 	
-	var controlHold = global.ctrlHold;
+	// check important keys
+	var ctrlCheck = global.ctrlHold;
+	if (!windowFocused) ctrlCheck = false;
+	var keyShift = keyboard_check(vk_shift) && windowFocused;
+	var keyBackspace = keyboard_check(vk_backspace) && windowFocused;
+	var keyHomePressed = keyboard_check_pressed(vk_home) && windowFocused;
+	var keyEndPressed = keyboard_check_pressed(vk_end) && windowFocused;
+	var keyLeft = keyboard_check(vk_left) && windowFocused;
+	var keyRight = keyboard_check(vk_right) && windowFocused;
+	var keyLeftPressed = keyboard_check_pressed(vk_left) && windowFocused;
+	var keyRightPressed = keyboard_check_pressed(vk_right) && windowFocused;
 	
-	// click in and out of box
-	if (mouse_check_button_released(mb_left)) {
-		if (point_in_rectangle(mouse_x, mouse_y, x, y, x + windowWidth, y + windowHeight)) {
-			clickedIn = true;
-			drawCursor = true;
-			alarm[0] = blinkRate;
-		}
-	}
-	else if (mouse_check_button_pressed(mb_left)) {
-		if (!point_in_rectangle(mouse_x, mouse_y, x, y, x + windowWidth, y + windowHeight)) {
-			clickedIn = false;
-		}
-	}
+	// check shortcuts
+	var shortcutPaste = ctrlCheck && keyboard_check_pressed(ord("V"));
+	var shortcutCopy = ctrlCheck && keyboard_check_pressed(ord("C"));
+	var shortcutCut = ctrlCheck && keyboard_check_pressed(ord("X"));
+	var shortcutSelectAll = ctrlCheck && keyboard_check_pressed(ord("A"));
+	var shortcutJumpRight = ctrlCheck && keyRightPressed;
+	var shortcutJumpLeft = ctrlCheck && keyLeftPressed;
 	
-	
+	// set font here so that string width/height checks are accurate
+	scr_adaptFont(str, "M");
 
 	// make sure we don't get multiple keys inputting at once
 	if (string_length(keyboard_string) > 1) {
 		keyboard_string = string_char_at(keyboard_string, 1);
 	}
-	
 
-
+	// get keyboard input
 	var input = "";
-	if (string_length(keyboard_string) > 0) input = keyboard_string;
-	var paste = controlHold && keyboard_check_pressed(ord("V"));
-	if (paste) {
-		if (clipboard_has_text()) input = clipboard_get_text();
-	}
+	if (string_length(keyboard_string) > 0 && windowFocused) input = keyboard_string;
 	
-	if (!clickedIn) {
-		input = "";
-		keyboard_string = "";
+	// CTRL+V (paste)
+	var paste = false;
+	if (shortcutPaste) {
+		if (clipboard_has_text()) {
+			paste = true;
+			input = clipboard_get_text();
+		}
 	}
-
 
 	// get keyboard input for typing in
-	if (string_length(keyboard_string) == 1 || paste) {
+	if (string_length(keyboard_string) == 1 || shortcutPaste) {
 	
 		// delete highlighted text if there is any
 		if (cursorIndex != highlightIndex) {
@@ -62,9 +65,7 @@ function scr_inputBoxStep(){
 			}
 		}
 	
-		// add keyboard input
-		var backspaceOrd = ord(input) == 127;
-
+		// move cursor forward with new character
 		cursorIndex++;
 		str = string_insert(input, str, cursorIndex);
 		if (string_length(input) > 1) cursorIndex += string_length(input) - 1;
@@ -73,15 +74,15 @@ function scr_inputBoxStep(){
 		// dealing with cursor/clipping
 		strToCursor = string_copy(str, 1, cursorIndex);
 		cursorX = textX + string_width(strToCursor);
-		if (cursorX > x + windowWidth) xOffset -= string_width(input);
+		if (cursorX > textBoxX + windowWidth) xOffset -= string_width(input);
 	
 		// reset keyboard string
-		keyboard_string = "";
+		if (windowFocused) keyboard_string = "";
 	}
 
 
 	// backspace
-	if (keyboard_check(vk_backspace)) {
+	if (keyBackspace) {
 		var backspaceTimer = os_type == os_macosx ? 1 : 0
 		if (backspaceHold <= backspaceTimer || backspaceHold > 30) {
 		
@@ -102,7 +103,7 @@ function scr_inputBoxStep(){
 				str = string_delete(str, cursorIndex, 1);
 				cursorIndex--;
 				highlightIndex = cursorIndex;
-				if (xOffset < 0 && cursorX < x + (windowWidth * 0.7)) {
+				if (xOffset < 0 && cursorX < textBoxX + (windowWidth * 0.7)) {
 					xOffset += string_width(strToDel);
 				}
 			}
@@ -115,23 +116,24 @@ function scr_inputBoxStep(){
 
 
 
-	// moving cursor with arrow keys
-	if (keyboard_check(vk_left)) {
+	// LEFT ARROW (move cursor to previous character)
+	if (keyLeft && !shortcutJumpLeft && !ctrlCheck) {
 		if (leftArrowHold == 0 || leftArrowHold > 30) {
 			cursorIndex--;
-			if (!keyboard_check(vk_shift)) highlightIndex = cursorIndex;
-			if (cursorX < x + (windowWidth * 0.1)) xOffset += string_width("A");
+			if (!keyShift) highlightIndex = cursorIndex;
+			if (cursorX < textBoxX + (windowWidth * 0.1)) xOffset += string_width("A");
 		}
 		leftArrowHold++;
 	}
 	else {
 		leftArrowHold = 0;
 	}
-	if (keyboard_check(vk_right)) {
+	// RIGHT ARROW (move cursor to previous character)
+	if (keyRight && !shortcutJumpRight && !ctrlCheck) {
 		if (rightArrowHold == 0 || rightArrowHold > 30) {
 			cursorIndex++;
-			if (!keyboard_check(vk_shift)) highlightIndex = cursorIndex;
-			if (cursorX > x + (windowWidth * 0.9)) xOffset -= string_width("A");
+			if (!keyShift) highlightIndex = cursorIndex;
+			if (cursorX > textBoxX + (windowWidth * 0.9)) xOffset -= string_width("A");
 		}
 		rightArrowHold++;
 	}
@@ -141,12 +143,12 @@ function scr_inputBoxStep(){
 
 	// drag and scroll outside of text box
 	if (mouse_check_button(mb_left)) {
-		if (cursorIndex > highlightIndex && mouse_x > x + windowWidth * 0.95) {
+		if (cursorIndex > highlightIndex && mouse_x > textBoxX + windowWidth * 0.95) {
 			if (xOffset > -(string_width(str) - (windowWidth * 0.9))) {
 				xOffset -= string_width("A");
 			}
 		}
-		else if ((cursorIndex < highlightIndex || cursorX < 0) && mouse_x < x + windowWidth * 0.05) {
+		else if ((cursorIndex < highlightIndex || cursorX < 0) && mouse_x < textBoxX + windowWidth * 0.05) {
 			if (xOffset < 0) {
 				xOffset += string_width("A");
 			}
@@ -156,35 +158,32 @@ function scr_inputBoxStep(){
 
 
 
-	// moving cursor with home/end keys
-	var controlLeft = controlHold && keyboard_check_pressed(vk_left);
-	var controlRight = controlHold && keyboard_check_pressed(vk_right);
-
-	if (keyboard_check_pressed(vk_home) || controlLeft) {
+	// HOME (move cursor to begining of text)
+	if (keyHomePressed) {
 		cursorIndex = 0;
 		xOffset = 0;
-		if (!keyboard_check(vk_shift)) highlightIndex = cursorIndex;
+		if (!keyShift) highlightIndex = cursorIndex;
 	}
-	if (keyboard_check_pressed(vk_end) || controlRight) {
+	// END (move cursor to end of text)
+	if (keyEndPressed) {
 		cursorIndex = string_length(str);
 		xOffset = -(string_width(str) - (windowWidth * 0.9));
-		if (!keyboard_check(vk_shift)) highlightIndex = cursorIndex;
+		if (!keyShift) highlightIndex = cursorIndex;
 	}
-
-	// CTRL+A
-	if (keyboard_check_pressed(ord("A")) && controlHold) {
+	// CTRL+A (select all)
+	if (shortcutSelectAll) {
 		cursorIndex = 0;
 		highlightIndex = string_length(str);
 		xOffset = 0;
 	}
-	// CTRL+C
-	if (keyboard_check_pressed(ord("C")) && controlHold && cursorIndex != highlightIndex) {
+	// CTRL+C (copy)
+	if (shortcutCopy && cursorIndex != highlightIndex) {
 		var _min = min(cursorIndex, highlightIndex);
 		var _max = max(cursorIndex, highlightIndex);
 		clipboard_set_text(string_copy(str, _min + 1, _max - _min));
 	}
-	// CTRL+X
-	if (keyboard_check_pressed(ord("X")) && controlHold && cursorIndex != highlightIndex) {
+	// CTRL+textBoxX (cut)
+	if (shortcutCut && cursorIndex != highlightIndex) {
 		var _min = min(cursorIndex, highlightIndex);
 		var _max = max(cursorIndex, highlightIndex);
 		clipboard_set_text(string_copy(str, _min + 1, _max - _min));
@@ -195,12 +194,28 @@ function scr_inputBoxStep(){
 			highlightIndex = cursorIndex;
 		}
 	}
+	// CTRL+RIGHT ARROW (jump cursor to next letter character)
+	if (shortcutJumpRight) {
+		if (cursorIndex < string_length(str)) cursorIndex++;
+		while (scr_isCharLetter(string_char_at(str, cursorIndex)) && cursorIndex < string_length(str)) cursorIndex++;
+		if (cursorIndex + 1 < string_length(str)) {
+			while (!scr_isCharLetter(string_char_at(str, cursorIndex + 1)) && cursorIndex < string_length(str)) cursorIndex++;
+		}
+		if (!keyShift) highlightIndex = cursorIndex;
+	}
+	// CTRL+LEFT ARROW (jump cursor to previous letter character)
+	if (shortcutJumpLeft) {
+		if (cursorIndex > 0) cursorIndex--;
+		while (scr_isCharLetter(string_char_at(str, cursorIndex)) && cursorIndex > 0) cursorIndex--;
+		if (cursorIndex - 1 > 0) {
+			while (!scr_isCharLetter(string_char_at(str, cursorIndex)) && cursorIndex  > 0) cursorIndex--;
+		}
+		if (!keyShift) highlightIndex = cursorIndex;
+	}
 
-
-
+	// clamp cursor & highlight indexes so they're within string
 	cursorIndex = clamp(cursorIndex, 0, string_length(str));
 	highlightIndex = clamp(highlightIndex, 0, string_length(str));
-
 
 	// get strToCursor, so we know where to draw the cursor
 	strToCursor = string_copy(str, 1, cursorIndex);
@@ -213,8 +228,12 @@ function scr_inputBoxStep(){
 			keyboard_key_release(vk_right);
 		}
 	}
-
+	
+	// make sure xOffset is at least 0
 	xOffset = min(xOffset, 0);
+	
+	// decrease doubleClickTimer
+	doubleClickTimer = max(doubleClickTimer - 1, 0);
 	
 	
 }

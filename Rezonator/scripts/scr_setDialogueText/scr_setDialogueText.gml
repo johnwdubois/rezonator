@@ -28,6 +28,10 @@ function scr_setDialogueText(){
 			titleText = scr_get_translation("Clear All Chains");
 			descriptionText = scr_get_translation("msg_warning_clear_chains");
 		}
+		if(clearAllChunks){
+			titleText = scr_get_translation("Clear All Chunks");
+			descriptionText = scr_get_translation("This will remove all chunks created");
+		}
 		if (clearChain) {
 			titleText = scr_get_translation("Clear Current Chain");
 			descriptionText = scr_get_translation("msg_warning_clear_focused_chain");
@@ -166,12 +170,17 @@ function scr_setDialogueText(){
 			// draw background text
 			if(obj_control.regExCheck){
 				titleText = scr_get_translation("search_dialogue_regEx");
-				descriptionText = scr_get_translation("msg_input_regex");
+				descriptionText = "";//scr_get_translation("msg_input_regex");
 			}
 			else{
 				titleText = scr_get_translation("search_dialogue_word");
-				descriptionText = scr_get_translation("search_dialogue_word");
+				descriptionText = "";//scr_get_translation("search_dialogue_word");
 			}
+		}
+		
+		if (obj_control.setRezMap) {
+			titleText = "Set rez map";
+			descriptionText = "Type in the amount of actions needed for the resonance chains in this stack";
 		}
 	}
 	

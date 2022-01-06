@@ -23,6 +23,9 @@ switch (currentStackerFuntion) {
 		scr_groupStackerLoop();
 		break;
 		
+	case stackerFunctionConllu:
+		scr_importConlluAutotag();
+		break;
 	default:
 		break;
 }

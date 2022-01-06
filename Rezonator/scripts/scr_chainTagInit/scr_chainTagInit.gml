@@ -18,12 +18,7 @@ function scr_chainTagInit(){
 	global.chainFieldList = ds_list_create();
 	global.chainEntryFieldList = ds_list_create();
 	
-	// entityType (chain-level)
-	var entityTypeTagSet = ds_list_create();
-	var entityTypeShortcutSet = ds_list_create();
-	ds_list_add(entityTypeTagSet, "person", "location", "organization", "thing", "event", "abstract", "substance", "quantity", "number", "date/time", "animal", "plant");
-	ds_list_add(entityTypeShortcutSet, "P", "L", "O", "T", "E", "A", "S", "Q", "N", "D", "M", "");
-	scr_addToChainFieldMap(global.chainFieldMap, "entityType", entityTypeTagSet, entityTypeShortcutSet, true, true, true);
+
 	
 	// chainSize (chain-level)
 	scr_addToChainFieldMap(global.chainFieldMap, "chainSize", undefined, undefined, true, true, true);
@@ -39,6 +34,14 @@ function scr_chainTagInit(){
 	
 	// charCount (entry-level)
 	scr_addToChainFieldMap(global.entryFieldMap, "charCount", undefined, undefined, true, true, false);
+	
+	/*
+	// entityType (chain-level)
+	var entityTypeTagSet = ds_list_create();
+	var entityTypeShortcutSet = ds_list_create();
+	ds_list_add(entityTypeTagSet, "person", "location", "organization", "thing", "event", "abstract", "substance", "quantity", "number", "date/time", "animal", "plant");
+	ds_list_add(entityTypeShortcutSet, "P", "L", "O", "T", "E", "A", "S", "Q", "N", "D", "M", "");
+	scr_addToChainFieldMap(global.chainFieldMap, "entityType", entityTypeTagSet, entityTypeShortcutSet, true, true, true);
 	
 	// person tags (entry-level)
 	var personTagSet = ds_list_create();
@@ -114,6 +117,6 @@ function scr_chainTagInit(){
 	ds_list_add(markCountTagSet, "0", "1", "2");
 	ds_list_add(markCountShortcutSet, "0", "1", "2");
 	scr_addToChainFieldMap(global.entryFieldMap, "markCount", markCountTagSet, markCountShortcutSet, true, true, true);
-	
+	*/
 
 }

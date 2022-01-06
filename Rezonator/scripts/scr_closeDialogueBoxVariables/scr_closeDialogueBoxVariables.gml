@@ -34,6 +34,7 @@ function scr_closeDialogueBoxVariables(){
 			fromDropDown = false;
 			inputText = "";
 			cursorPos = 1;
+			setRezMap = false;
 			dialogueBoxActive = false;
 		
 		}
@@ -42,6 +43,7 @@ function scr_closeDialogueBoxVariables(){
 		questionWindowActive = false;
 		clearAllStacks = false;
 		clearAllTracks = false;
+		clearAllChunks = false;
 		clearAllRez = false;
 		clearAllLinks = false;
 		clearChain = false;
@@ -72,7 +74,13 @@ function scr_closeDialogueBoxVariables(){
 			saveBeforeGameEnd = false;
 		}
 		
-		with (obj_stacker) confirmStackCreate = false;
+		with (obj_stacker) {
+			confirmStackCreate = false;
+			createStacksRandom = false;
+			createStacksTurn = false;
+			createStacksSentence = false;
+			createStacksClique = false;
+		}
 	}
 	if (alertWindowActive) {
 		with (obj_control) {
@@ -86,4 +94,5 @@ function scr_closeDialogueBoxVariables(){
 			downloadDialogue = false;
 		}
 	}
+	global.inputBoxDefStr = "";
 }
