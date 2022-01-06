@@ -1,4 +1,5 @@
-if(global.newProject)exit;
+// for HTML5 we will not draw the recent files window
+exit;
 // setup coordinates for field summary window
 recentFilesWindowX1 = camera_get_view_width(camera_get_active()) * 0.1;
 recentFilesWindowY1 = camera_get_view_height(camera_get_active()) * 0.7;
@@ -81,8 +82,7 @@ for (var i = 0; i < fileKeyListSize; i++) {
 		draw_roundrect(lineX1 - clipX,lineY1 - clipY,lineX2 - clipX,lineY2 - clipY, false);
 		
 		
-		//scr_createTooltip(mean(lineX1 ,lineX2), lineY1, string(filePath), obj_tooltip.arrowFaceDown)
-		
+	
 		if (mouse_check_button_released(mb_left) && (inputDelay == 0)) {
 			global.selectedFile = filePath;
 			global.openProject = true

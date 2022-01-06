@@ -711,7 +711,7 @@ function scr_panelPane_drawChainsList() {
 				draw_circle(moreOptionsX, moreOptionsY, optionsIconRad, false);
 			}
 			if (mouseoverMoreOptions) {
-				scr_createTooltip(moreOptionsX, moreOptionsY + optionsIconRad, "More", obj_tooltip.arrowFaceUp);
+				scr_createTooltip(moreOptionsX, moreOptionsY + optionsIconRad, "More", global.arrowFaceUp);
 				if (mouse_check_button_pressed(mb_left)) {
 					var dropDownOptionList = ds_list_create();
 					if(obj_panelPane.functionChainList_currentTab == obj_panelPane.functionChainList_tabStackBrush){

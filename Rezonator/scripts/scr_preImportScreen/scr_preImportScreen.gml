@@ -354,7 +354,7 @@ function scr_preImportScreen(){
 	scr_adaptFont(scr_get_translation("msg_continue"), "M");
 	draw_text(floor(mean(tagButtonRectX1, tagButtonRectX2)), floor(mean(tagButtonRectY1, tagButtonRectY2)), scr_get_translation("Add Tags"));
 
-	if (mouseoverTag) scr_createTooltip(floor(tagButtonRectX1),floor(mean(tagButtonRectY1, tagButtonRectY2)),"Tag schemas imported: "+ string( ds_list_size(global.selectedTagSchemaFileList)),obj_tooltip.arrowFaceRight);
+	if (mouseoverTag) scr_createTooltip(floor(tagButtonRectX1),floor(mean(tagButtonRectY1, tagButtonRectY2)),"Tag schemas imported: "+ string( ds_list_size(global.selectedTagSchemaFileList)),global.arrowFaceRight);
 
 	// click on continue button
 	if (mouseoverTag && mouse_check_button_released(mb_left)) {		

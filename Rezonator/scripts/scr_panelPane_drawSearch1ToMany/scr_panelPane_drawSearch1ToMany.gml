@@ -288,7 +288,7 @@ function scr_panelPane_drawSearch1ToMany(){
 				
 				
 				if (mouseoverCheckbox) {
-					scr_createTooltip(mean(checkboxRectX1, checkboxRectX2), checkboxRectY2, scr_get_translation("option_select"), obj_tooltip.arrowFaceUp);
+					scr_createTooltip(mean(checkboxRectX1, checkboxRectX2), checkboxRectY2, scr_get_translation("option_select"), global.arrowFaceUp);
 				}
 				if (currentTokenChecked) {
 					draw_set_color(merge_color(global.colorThemeSelected1, global.colorThemeBG, 0.9));
@@ -405,7 +405,7 @@ function scr_panelPane_drawSearch1ToMany(){
 			draw_roundrect(headerCheckboxX1 - (strHeight * 0.15), headerCheckboxY1 - (strHeight * 0.15), headerCheckboxX2 + (strHeight * 0.15), headerCheckboxY2 + (strHeight * 0.15), false);
 				
 			var tooltipText = (allChainsSelected) ? "Deselect all" : "Select all";
-			scr_createTooltip(mean(headerCheckboxX1, headerCheckboxX2), headerCheckboxY2, tooltipText, obj_tooltip.arrowFaceUp);
+			scr_createTooltip(mean(headerCheckboxX1, headerCheckboxX2), headerCheckboxY2, tooltipText, global.arrowFaceUp);
 				
 			// click on checkbox header
 			if (mouse_check_button_released(mb_left)) {
@@ -591,7 +591,7 @@ function scr_panelPane_drawSearch1ToMany(){
 
 	draw_sprite_ext(spr_toolsNew,1,floor(mean(addToChainButtonX1, addToChainButtonX2)), floor(mean(addToChainButtonY1, addToChainButtonY2)),.3,.3,0,(someChainsSelected or allChainsSelected)? global.colorThemeRezPink:c_white,1)
 	
-	if (mouseoverAddToChainButton) {scr_createTooltip(mean(addToChainButtonX1, addToChainButtonX2), addToChainButtonY2, scr_get_translation("Add to Chain"), obj_tooltip.arrowFaceUp);}
+	if (mouseoverAddToChainButton) {scr_createTooltip(mean(addToChainButtonX1, addToChainButtonX2), addToChainButtonY2, scr_get_translation("Add to Chain"), global.arrowFaceUp);}
 		
 
 	if (mouse_check_button_released(mb_left) && mouseoverAddToChainButton) {

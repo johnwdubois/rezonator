@@ -36,7 +36,7 @@ function scr_chainTagDropDown(fieldMap, field, IDtoChange, cellRectX1, cellRectY
 								
 					// click on dropdown button to create dropdown
 					if (mouseoverDropDown) {
-						scr_createTooltip(mean(dropDownButtonX1, dropDownButtonX2), dropDownButtonY2, scr_get_translation("option-tag"), obj_tooltip.arrowFaceUp);
+						scr_createTooltip(mean(dropDownButtonX1, dropDownButtonX2), dropDownButtonY2, scr_get_translation("option-tag"), global.arrowFaceUp);
 						draw_set_color(global.colorThemeBorders);
 						draw_rectangle(dropDownButtonX1 - clipX, dropDownButtonY1 - clipY, dropDownButtonX2 - clipX, dropDownButtonY2 - clipY, true);
 						if (mouse_check_button_released(mb_left)) {

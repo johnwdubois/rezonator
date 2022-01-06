@@ -88,12 +88,18 @@ function scr_openingMenu() {
 			global.newProject = true;
 			global.openProject = false;
 			global.userName = obj_openingScreen.inputText;
+			global.importType = global.importType_Paragraph;
+			scr_openFile();
 		}
 	}
 	
 	if (global.skipToImportScreen) {
 		global.newProject = true;
 		global.openProject = false;
+		global.userName = obj_openingScreen.inputText;
+		global.importType = global.importType_Paragraph;
+		scr_openFile();
+		
 	}
 	
 	// draw import button

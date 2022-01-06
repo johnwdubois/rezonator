@@ -1,5 +1,7 @@
 function scr_openFile() {
 	
+	show_debug_message("scr_openFile");
+	
 	/*
 	show_debug_message("global.importType: " + string(global.importType));
 
