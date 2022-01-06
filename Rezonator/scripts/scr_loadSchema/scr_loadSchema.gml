@@ -37,7 +37,8 @@ function scr_loadSchema(autoload) {
 		
 	}
 	else {
-		var openFileName = (global.importGroupSchemaFile == "") ? get_open_filename_ext("SCHEMA file|*.json", "", global.rezonatorSchemaDirString, "Open Schema") : global.importGroupSchemaFile;
+		//var openFileName = (global.importGroupSchemaFile == "") ? get_open_filename_ext("SCHEMA file|*.json", "", global.rezonatorSchemaDirString, "Open Schema") : global.importGroupSchemaFile;
+		var openFileName = "";
 		if (openFileName != "") {
 			fileName = openFileName;
 		}

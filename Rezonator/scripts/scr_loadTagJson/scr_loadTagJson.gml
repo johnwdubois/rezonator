@@ -2,7 +2,8 @@
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
 function scr_loadTagJson(fileName){
 	if(!is_string(fileName)){
-		fileName = get_open_filename_ext("Tag file|*.json", "", global.rezonatorSchemaDirString, "Open Tag JSON");
+		//fileName = get_open_filename_ext("Tag file|*.json", "", global.rezonatorSchemaDirString, "Open Tag JSON");
+		fileName = "";
 	}
 	// make sure the file exists
 	if (fileName == "" or not file_exists(fileName)) {
