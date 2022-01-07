@@ -1,4 +1,6 @@
 function scr_scrollBarHorizontal(listSize,colWidth,scrollBackColor, scrollBarColor, scrollButtonColor1, scrollButtonColor2, scrollButtonSprite, windowWidth, windowHeight) {
+	
+	var scrollCancel = instance_exists(obj_flyout) || instance_exists(obj_dropDown);
 
 
 	var outterBuffer = 50;
@@ -33,7 +35,7 @@ function scr_scrollBarHorizontal(listSize,colWidth,scrollBackColor, scrollBarCol
 	draw_set_alpha(currentAlpha);
 	
 	// For clicking and dragging scrollbar
-	mouseoverHorScrollBar = point_in_rectangle(mouse_x, mouse_y, x + buttonSize, y + windowHeight - buttonSize, x + windowWidth - buttonSize*2, y + windowHeight) && !dontDraw;
+	mouseoverHorScrollBar = point_in_rectangle(mouse_x, mouse_y, x + buttonSize, y + windowHeight - buttonSize, x + windowWidth - buttonSize*2, y + windowHeight) && !dontDraw && !scrollCancel;
 	if (mouseoverHorScrollBar) {
 		if (mouse_check_button_pressed(mb_left) and global.canScroll && !windowResizeYHolding) {
 			scrollBarHorHolding = true;
@@ -45,7 +47,7 @@ function scr_scrollBarHorizontal(listSize,colWidth,scrollBackColor, scrollBarCol
 	}
 	
 	// User can't scroll if they're changing the window size
-	if (windowResizeXHolding) {
+	if (windowResizeXHolding || scrollCancel) {
 		scrollBarHorHolding = false;
 	}
 	

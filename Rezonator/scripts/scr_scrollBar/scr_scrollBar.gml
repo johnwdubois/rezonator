@@ -28,7 +28,7 @@ function scr_scrollBar(listSize, focusedElementY, strHeight, marginTop, scrollBa
 	// Calculate the height based on the window height, string height, and the size of the list
 	scrollBarHeight = ((windowHeightAdjusted / strHeight) / (listSize)) * (windowHeightAdjusted - (global.scrollBarWidth * 2));
 	scrollBarHeight = clamp(scrollBarHeight, scrollBarHeightMin, scrollBarHeightMax);
-	mouseoverScrollBar = point_in_rectangle(mouse_x, mouse_y, x + windowWidth - global.scrollBarWidth, y + global.scrollBarWidth + marginTop, x + windowWidth, y + windowHeight - global.scrollBarWidth);
+	mouseoverScrollBar = point_in_rectangle(mouse_x, mouse_y, x + windowWidth - global.scrollBarWidth, y + global.scrollBarWidth + marginTop, x + windowWidth, y + windowHeight - global.scrollBarWidth) && !scrollCancel;
 	
 	if (scrollBarHeight == scrollBarHeightMax) currentAlpha = 0;
 	draw_set_alpha(currentAlpha);
