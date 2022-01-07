@@ -467,6 +467,7 @@ gPressed = false;
 regExCheck = false;
 goToTime = false;
 rename = false;
+renameTree = false;
 before = true;
 recolor = false;
 caption = false;

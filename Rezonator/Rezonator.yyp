@@ -157,6 +157,7 @@
     {"id":{"name":"scr_preImportFileTypeWindow","path":"scripts/scr_preImportFileTypeWindow/scr_preImportFileTypeWindow.yy",},"order":0,},
     {"id":{"name":"scr_mapViewerDrawNodeData","path":"scripts/scr_mapViewerDrawNodeData/scr_mapViewerDrawNodeData.yy",},"order":9,},
     {"id":{"name":"scr_sortFilterList","path":"scripts/scr_sortFilterList/scr_sortFilterList.yy",},"order":5,},
+    {"id":{"name":"scr_treeRightClickOptions","path":"scripts/scr_treeRightClickOptions/scr_treeRightClickOptions.yy",},"order":82,},
     {"id":{"name":"scr_calculateTokenThreshold","path":"scripts/scr_calculateTokenThreshold/scr_calculateTokenThreshold.yy",},"order":28,},
     {"id":{"name":"scr_drawGridViewerClipped","path":"scripts/scr_drawGridViewerClipped/scr_drawGridViewerClipped.yy",},"order":0,},
     {"id":{"name":"scr_drawLineEntryList","path":"scripts/scr_drawLineEntryList/scr_drawLineEntryList.yy",},"order":27,},

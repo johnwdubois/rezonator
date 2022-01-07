@@ -134,6 +134,9 @@ function scr_setDialogueText(){
 			titleText = scr_get_translation("help_label_rename");
 			descriptionText = scr_get_translation("msg_input_chain-name");
 		}
+		if (obj_control.renameTree) {
+			titleText = scr_get_translation("help_label_rename");
+		}
 		if (obj_control.recolor) {
 			titleText = scr_get_translation("option_recolor");
 			descriptionText = scr_get_translation("msg_input_chain-color");
