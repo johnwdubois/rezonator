@@ -91,6 +91,10 @@ window_set_min_height(720);
 global.build = true;
 global.rezzles = true;
 
+global.buildType = "Windows_GitHub_Master"
+
+//"Windows_GitHub_Master","Mac_GitHub_Master","Windows_GitHub_Release"
+//"Mac_GitHub_Release","Steam","Windows_Website", "Mac_Website"
 
 global.steamAPI = true;
 alarm[7] = 3;
