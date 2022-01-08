@@ -467,6 +467,7 @@ gPressed = false;
 regExCheck = false;
 goToTime = false;
 rename = false;
+renameTree = false;
 before = true;
 recolor = false;
 caption = false;
@@ -810,6 +811,7 @@ show_debug_message("obj_control create end");
 setRezMap = false;
 
 switchToTab = "";
+showInNavID = "";
 
 global.inputBoxDefStr = "";
 //set up tags from schema a frame after loading

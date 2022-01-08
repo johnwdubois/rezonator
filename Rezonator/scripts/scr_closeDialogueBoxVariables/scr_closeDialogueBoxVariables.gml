@@ -36,6 +36,7 @@ function scr_closeDialogueBoxVariables(){
 			cursorPos = 1;
 			setRezMap = false;
 			dialogueBoxActive = false;
+			renameTree = false;
 		
 		}
 	}

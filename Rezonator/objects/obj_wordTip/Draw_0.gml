@@ -148,7 +148,7 @@ if ((obj_control.hoverTokenID != "" or obj_control.hoverUnitID != "" or obj_cont
 		if ((IDType == "token" && fieldName == obj_panelPane.functionField_tokenFieldSelected)
 		|| (IDType == "unit" && fieldName == obj_panelPane.functionField_unitFieldSelected)
 		|| (IDType == "chunk" && fieldName == obj_panelPane.functionField_chunkFieldSelected)
-		|| (IDType == "link" && fieldName == obj_panelPane.functionField_linkFieldSelected)) {
+		|| (IDType == "treeLink" && fieldName == obj_panelPane.functionField_linkFieldSelected)) {
 			var rectY1 = valueY - (lineHeight * 0.5);
 			var rectY2 = rectY1 + lineHeight;
 			draw_set_color(merge_color(c_yellow, global.colorThemeBG, 0.4));

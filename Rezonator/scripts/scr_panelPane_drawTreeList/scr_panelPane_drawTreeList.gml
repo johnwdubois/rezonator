@@ -1,6 +1,7 @@
 // Script assets have changed for v2.3.0 see
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
 function scr_panelPane_drawTreeList(){
+	
 	var ltr = (obj_control.drawLineState == obj_control.lineState_ltr);
 	var strHeight = string_height("0") * 1.5;
 	var numColX = x;
@@ -13,7 +14,7 @@ function scr_panelPane_drawTreeList(){
 	var deleteColX = x + windowWidth - deleteColWidth - global.scrollBarWidth;
 	var mouseOverDel = false;
 	
-	var maxCaptionSize = deleteColX-captionColX;
+	var maxCaptionSize = deleteColX - captionColX;
 	
 	var textBuffer = 8;
 	var headerHeight = functionTabs_tabHeight;
@@ -83,12 +84,19 @@ function scr_panelPane_drawTreeList(){
 		
 		// click on tree name
 		if (mouseoverTreeRect) {
-			if (mouse_check_button_released(mb_left) && !instance_exists(obj_dropDown)) {
+			if (mouse_check_button_released(mb_left)) {
 				with (obj_panelPane) functionTree_treeSelected = currentTree;
 				obj_chain.currentFocusedEntryID = "";
 				with (obj_panelPane) {
 					if (currentFunction == functionChainContents) scrollPlusX = 0;
 				}
+			}
+			else if (mouse_check_button_released(mb_right)) {
+				with (obj_panelPane) functionTree_treeSelected = currentTree;
+				obj_chain.currentFocusedEntryID = "";
+				var dropDownOptionList = ds_list_create();
+				ds_list_add(dropDownOptionList, "help_label_rename", "help_label_delete_plain");
+				scr_createDropDown(mouse_x, mouse_y, dropDownOptionList, global.optionListTypeTreeRightClick);
 			}
 		}
 		

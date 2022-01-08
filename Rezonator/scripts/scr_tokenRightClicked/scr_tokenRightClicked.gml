@@ -59,7 +59,7 @@ function scr_tokenRightClicked(){
 				//scr_addToListOnce(dropDownOptionList , "Tag Token");
 		}
 		
-		ds_list_add(dropDownOptionList, "option_zero", "option_delete-token", "tab_name_tag" );
+		ds_list_add(dropDownOptionList, "word_tip", "option_zero", "option_delete-token", "tab_name_tag" );
 		if (!firstWordInLine && obj_control.showDevVars) {
 			//ds_list_add(dropDownOptionList, "Split Line");
 		}

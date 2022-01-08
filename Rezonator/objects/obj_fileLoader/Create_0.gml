@@ -85,11 +85,8 @@ global.unitGridCopied = false;
 global.discoGridCopied = false;
 
 // if this is prose/paragraph import, we will run the prose linebreak script
-if (global.importType == global.importType_Paragraph) {
-	with (obj_alarm2) {
-		alarm[0] = 3;
-	}
-}
+//if (global.importType == global.importType_Paragraph) {
+//}
 
 
 

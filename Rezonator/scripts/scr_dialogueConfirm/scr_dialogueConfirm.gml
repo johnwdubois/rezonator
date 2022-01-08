@@ -101,10 +101,15 @@ function scr_dialogueConfirm(){
 			
 			
 		if (obj_control.rename) {
-			if (is_numeric(chainSubMap)) {
-				if (ds_exists(chainSubMap, ds_type_map)) {
-					ds_map_replace(chainSubMap, "name", obj_control.inputText);
-				}
+			if (scr_isNumericAndExists(chainSubMap, ds_type_map)) {
+				ds_map_replace(chainSubMap, "name", obj_control.inputText);
+			}
+		}
+		if (obj_control.renameTree) {
+			var selectedTree = obj_panelPane.functionTree_treeSelected;
+			var selectedTreeSubMap = global.treeMap[? selectedTree];
+			if (scr_isNumericAndExists(selectedTreeSubMap, ds_type_map)) {
+				ds_map_replace(selectedTreeSubMap, "name", obj_control.inputText);
 			}
 		}
 		if (obj_control.newCustomFieldToken) {

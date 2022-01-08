@@ -248,6 +248,11 @@ function scr_rightClickWordOptions(optionSelected) {
 			scr_newTokenOptions("option_zero-0");
 			break;
 			
+		case "Show in Nav":
+			scr_showInNav(obj_control.rightClickID);
+			instance_destroy();
+			break;
+			
 		default:
 			break;
 	}
