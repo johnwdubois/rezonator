@@ -46,6 +46,10 @@ function scr_importConlluAutotag(){
 			currentEntityKey = string_replace(currentEntityKey,"SpaceAfter=No","");
 			currentEntityKey = string_replace_all(currentEntityKey, "\n", "");
 			currentEntityKey = string_replace_all(currentEntityKey, "\r", "");
+			currentEntityKey = string_replace_all(currentEntityKey, "|", "");
+			currentEntityKey = string_replace_all(currentEntityKey, ">", "");
+			currentEntityKey = string_replace_all(currentEntityKey, "<", "");
+			
 			var keyList = ds_list_create();
 			//case of more than one entity being referenced in a token
 			if(string_count("(",currentEntityKey) > 1 or string_count(")",currentEntityKey) > 1){
@@ -86,6 +90,8 @@ function scr_importConlluAutotag(){
 						nextTokenIndex++;
 					}
 				}
+				currentEntityKey = string_replace_all(currentEntityKey, "(", "");
+				currentEntityKey = string_replace_all(currentEntityKey, ")", "");
 				if(ds_map_exists(entityMap, currentEntityKey)){
 					ds_list_add(entityMap[?currentEntityKey], currentTokenList);
 					ds_list_mark_as_list(entityMap[?currentEntityKey],ds_list_size(entityMap[?currentEntityKey]) - 1)

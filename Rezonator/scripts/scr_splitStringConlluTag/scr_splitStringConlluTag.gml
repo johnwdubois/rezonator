@@ -6,8 +6,10 @@ function scr_splitStringConlluTag(key, keyList){
   var insertString = "";
   var openBracketPos = 0;
   var closeBracketPos = 0;
+  var i = 0; //max iterator failsafe
   show_debug_message(string(string_length(str)));
-  while(string_length(str) > 0){
+  while(string_length(str) > 0 and i < 1000){
+	  i++;
 	  if(string_char_at(str,1) == "("){
 		insertString += "(";
 		str = string_delete(str,1,1);
@@ -37,6 +39,5 @@ function scr_splitStringConlluTag(key, keyList){
 	  }
 	  ds_list_add(keyList, insertString);
 	  insertString = "";
-	  
   }
 }
