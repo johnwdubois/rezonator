@@ -17,10 +17,10 @@ function scr_loadSchema(autoload) {
 		}
 		else if (global.importType == global.importType_CSV) {
 			if (os_type == os_macosx) {
-				fileName = global.rezonatorDirString + "/Schemas/Import/csv_schema.json";
+				fileName = global.rezonatorDirString + "/Schemas/Import/owpl_sbc.json";
 			}
 			else {
-				fileName = global.rezonatorDirString + "\\Schemas\\Import\\CSV Schema.json";
+				fileName = global.rezonatorDirString + "\\Schemas\\Import\\owpl_sbc.json";
 			}
 		}
 		else if (global.importType == global.importType_CoNLLU) {
