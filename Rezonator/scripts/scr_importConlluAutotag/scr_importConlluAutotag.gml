@@ -34,31 +34,47 @@ function scr_importConlluAutotag(){
 		if(string_pos("Entity=", currentMiscString) != 0){ //verifies that there is an entity being referenced
 			
 			//need to clean up the coreference string to create a key
+			
 			var currentEntityKey = string_replace(currentMiscString, "Entity=", "");
+			if(string_pos("Discourse=", currentMiscString) != 0){
+				currentEntityKey = string_delete(currentEntityKey,1,string_pos("|", currentEntityKey));
+			}
+			if(string_pos("XML=", currentMiscString) != 0){
+				var xmlIndex = string_pos("XML=", currentEntityKey);
+				currentEntityKey = string_delete(currentEntityKey, xmlIndex, string_length(currentEntityKey) - xmlIndex);
+			}
 			currentEntityKey = string_replace(currentEntityKey,"SpaceAfter=No","");
 			currentEntityKey = string_replace_all(currentEntityKey, "\n", "");
 			currentEntityKey = string_replace_all(currentEntityKey, "\r", "");
-			
+			var keyList = ds_list_create();
 			//case of more than one entity being referenced in a token
 			if(string_count("(",currentEntityKey) > 1 or string_count(")",currentEntityKey) > 1){
 				//string split or character iteration over misc string
-				
+				scr_splitStringConlluTag(currentEntityKey, keyList);
 			}
 			else{
-				
-				currentEntityKey = string_replace_all(currentEntityKey, "(", "");
-				currentEntityKey = string_replace_all(currentEntityKey, ")", "");
-				if(string_pos("(", currentMiscString) != 0 and string_pos(")", currentMiscString) == 0){ // checking for an open parentheses without a close
-					var j = i+1;
-					var subToken = tokenList[|j];
+				ds_list_add(keyList, currentEntityKey);		
+			}
+			show_debug_message("keylist: "+ scr_getStringOfList(keyList));
+			var keyListSize = ds_list_size(keyList);
+			for(var j = 0; j < keyListSize; j++){
+				currentEntityKey = keyList[|j];
+				if(string_pos(")", currentEntityKey) != 0 and string_pos("(", currentEntityKey) == 0) continue;
+				if(string_pos("(", currentEntityKey) != 0 and string_pos(")", currentEntityKey) == 0){ // checking for an open parentheses without a close
+					currentEntityKey = string_replace_all(currentEntityKey, "(", "");
+					currentEntityKey = string_replace_all(currentEntityKey, ")", "");
+					ds_list_clear(currentTokenList);
+					ds_list_add(currentTokenList, currentToken);
+					var nextTokenIndex = i+1;
+					var subToken = tokenList[|nextTokenIndex];
 					var subTokenSubMap = global.nodeMap[?subToken];
 					var subTokenTagMap = subTokenSubMap[?"tagMap"];
 					var subMiscString = subTokenTagMap[?trackField];
 					var endString = currentEntityKey + ")";
-					show_debug_message("endString = " + endString);
+					//show_debug_message("endString = " + endString);
 					ds_list_add(currentTokenList, subToken);
 					while(string_pos(endString, subMiscString) == 0){
-						subToken = tokenList[|j];
+						subToken = tokenList[|nextTokenIndex];
 						//show_debug_message("subToken = " + string(subToken));
 						if(is_undefined(subToken)){
 							break;	
@@ -67,11 +83,8 @@ function scr_importConlluAutotag(){
 						subTokenTagMap = subTokenSubMap[?"tagMap"];
 						subMiscString = subTokenTagMap[?trackField];
 						ds_list_add(currentTokenList, subToken);
-						j++;
+						nextTokenIndex++;
 					}
-				}
-				else if(string_pos("(", currentMiscString) == 0 and string_pos(")", currentMiscString) != 0){
-					continue;
 				}
 				if(ds_map_exists(entityMap, currentEntityKey)){
 					ds_list_add(entityMap[?currentEntityKey], currentTokenList);
@@ -83,7 +96,6 @@ function scr_importConlluAutotag(){
 					ds_list_mark_as_list(newEntryList, 0);
 					ds_map_add_list(entityMap, currentEntityKey, newEntryList);
 				}
-				
 			}
 		}
 	}
@@ -106,6 +118,8 @@ function scr_importConlluAutotag(){
 				
 				// NAMING FUNCTIONALITY GOES HERE
 				// get obj_chain.currentFocusedChainID for naming
+				var newChainSubMap = global.nodeMap[?obj_chain.currentFocusedChainID];
+				newChainSubMap[?"name"] = key;
 			}
 			if(ds_list_size(currentEntitySubList) > 1){
 				//this is the condition for creating chunks, might have to put this if statement somewhere else

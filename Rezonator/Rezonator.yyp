@@ -105,6 +105,7 @@
     {"id":{"name":"scr_regularExpressionCreate","path":"scripts/scr_regularExpressionCreate/scr_regularExpressionCreate.yy",},"order":0,},
     {"id":{"name":"scr_removeChainFromLists","path":"scripts/scr_removeChainFromLists/scr_removeChainFromLists.yy",},"order":42,},
     {"id":{"name":"scr_regularExpressionDestroy","path":"scripts/scr_regularExpressionDestroy/scr_regularExpressionDestroy.yy",},"order":1,},
+    {"id":{"name":"scr_splitStringConlluTag","path":"scripts/scr_splitStringConlluTag/scr_splitStringConlluTag.yy",},"order":11,},
     {"id":{"name":"scr_regularExpressionMatch","path":"scripts/scr_regularExpressionMatch/scr_regularExpressionMatch.yy",},"order":2,},
     {"id":{"name":"scr_panelPane_drawUnits1ToManyHeaders","path":"scripts/scr_panelPane_drawUnits1ToManyHeaders/scr_panelPane_drawUnits1ToManyHeaders.yy",},"order":18,},
     {"id":{"name":"spr_proseGridTool","path":"sprites/spr_proseGridTool/spr_proseGridTool.yy",},"order":3,},
