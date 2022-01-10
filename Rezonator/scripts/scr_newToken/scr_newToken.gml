@@ -4,7 +4,7 @@ function scr_newToken(newTokenStr, refTokenID) {
 	*/
 	if(string_length(string(newTokenStr)) <= 0 or newTokenStr == undefined){exit;}
 
-	var refTokenSubMap = global.nodeMap[?refTokenID];
+	var refTokenSubMap = global.nodeMap[? refTokenID];
 	if(!scr_isNumericAndExists(refTokenSubMap, ds_type_map)){ exit; }
 	
 	
@@ -19,6 +19,9 @@ function scr_newToken(newTokenStr, refTokenID) {
 	// get the unitID for the ref token
 	var unitID = refTokenSubMap[? "unit"];
 	var unitSubMap = global.nodeMap[? unitID];
+	
+	// get chunkList for ref token
+	var refTokenInChunkList = refTokenSubMap[? "inChunkList"];
 	
 	// create new token Node
 	var newTokenID = scr_createTokenNode(newDiscourseTokenSeq, newTokenStr, newTokenSeq, newDisplayCol, unitID);
@@ -95,6 +98,21 @@ function scr_newToken(newTokenStr, refTokenID) {
 		var currentTokenSubMap = global.nodeMap[? currentToken];
 		
 		currentTokenSubMap[? "prevToken"] = scr_prevTokenInSequence(currentToken);
+	}
+	
+	
+	// insert the new token into any chunks, if we need to
+	var refTokenInChunkListSize = ds_list_size(refTokenInChunkList);
+	for (var i = 0; i < refTokenInChunkListSize; i++) {
+		var currentChunk = refTokenInChunkList[| i];
+		var currentChunkSubMap = global.nodeMap[? currentChunk];
+		if (!scr_isNumericAndExists(currentChunkSubMap, ds_type_map)) continue;
+		var currentChunkTokenList = currentChunkSubMap[? "tokenList"];
+		if (!scr_isNumericAndExists(currentChunkTokenList, ds_type_list)) continue;
+		
+		var refTokenChunkIndex = ds_list_find_index(currentChunkTokenList, refTokenID);
+		var newTokenChunkIndex = (obj_control.before) ? refTokenChunkIndex : refTokenChunkIndex + 1;
+		ds_list_insert(currentChunkTokenList, newTokenChunkIndex, newTokenID);
 	}
 	
 }

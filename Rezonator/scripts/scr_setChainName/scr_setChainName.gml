@@ -1,6 +1,9 @@
 // Script assets have changed for v2.3.0 see
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
 function scr_setChainName(){
+	
+	show_debug_message("scr_setChainName, rightClickID: " + string(obj_control.rightClickID));
+	
 	if (obj_control.rightClickID != "") {
 		var rightClickSubMap = global.nodeMap[? obj_control.rightClickID];
 		if(scr_isNumericAndExists(rightClickSubMap, ds_type_map)){
@@ -30,13 +33,11 @@ function scr_setChainName(){
 				var chainSubMap = global.nodeMap[? currentChainID];						
 				if(scr_isNumericAndExists(chainSubMap, ds_type_map)){
 					var chainType = chainSubMap[? "type"];							
-					if((chainType == "trail" && obj_toolPane.currentMode == obj_toolPane.modeTrack or obj_toolPane.currentMode == obj_toolPane.modeRead)
+					if ((chainType == "trail" && obj_toolPane.currentMode == obj_toolPane.modeTrack or obj_toolPane.currentMode == obj_toolPane.modeRead)
 					or (chainType == "resonance" && obj_toolPane.currentMode == obj_toolPane.modeRez or obj_toolPane.currentMode == obj_toolPane.modeRead)
-					or (chainType == "stack")){
-						
+					or ((chainType == "trail" || chainType == "resonance") && inChainsListSize == 1)
+					or (chainType == "stack")) {
 						chainSubMap[? "name"] = stringToSet;
-						
-									
 					}
 				}						
 			}

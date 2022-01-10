@@ -65,9 +65,7 @@ function scr_drawTreeLinks(){
 				obj_chain.currentFocusedEntryID = "";
 				with (obj_panelPane) functionTree_treeLinkSelected = currentLink;
 				var dropDownOptionList = ds_list_create();
-				ds_list_copy(dropDownOptionList, global.linkFieldList);
-				ds_list_insert(dropDownOptionList, 0, "help_label_delete-link");
-				ds_list_insert(dropDownOptionList, 0, "option_create-new-field");
+				ds_list_add(dropDownOptionList, "option_create-new-field", "help_label_delete-link", "Tag Link");
 				scr_createDropDown(mouse_x, mouse_y, dropDownOptionList, global.optionListTypeLinkFields);
 			}
 		}

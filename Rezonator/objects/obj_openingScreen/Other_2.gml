@@ -15,6 +15,7 @@ ds_list_clear(global.previousLevelEstimates);
 ds_list_clear(global.previousSpecialFields);
 
 global.readHintHide = false;
+global.userName = "";
 
 global.recentFilesMap = ds_map_create();
 global.recentFilesList = ds_list_create();
@@ -45,7 +46,9 @@ global.importGroupOutputDir = "";
 global.importGroupSchemaFile = "";
 global.skipToImportScreen = false;
 
-
+var defStr = "";
+defStr = (global.userName == "") ? scr_get_translation("msg_signin") : global.userName;
+global.inputBoxDefStr = defStr;
 
 scr_initializeFonts();
 scr_fontGlobalUpdate();
@@ -88,6 +91,10 @@ window_set_min_height(720);
 global.build = false;
 global.rezzles = true;
 
+global.buildType = "Windows_GitHub_Master"
+
+//"Windows_GitHub_Master","Mac_GitHub_Master","Windows_GitHub_Release"
+//"Mac_GitHub_Release","Steam","Windows_Website", "Mac_Website"
 
 global.steamAPI = true;
 alarm[7] = 3;

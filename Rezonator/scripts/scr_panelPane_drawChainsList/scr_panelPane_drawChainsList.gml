@@ -30,7 +30,7 @@ function scr_panelPane_drawChainsList() {
 	var listOfChains = -1;
 	var listOfChainsKey = "";
 	var tabChainType = "";
-	var filterList = scr_getFilterList();
+	var filterList = scr_getFilterList(false);
 	var selectedList = -1;
 	var hiddenList = -1;
 	if (functionChainList_currentTab == functionChainList_tabRezBrush) {
@@ -167,7 +167,10 @@ function scr_panelPane_drawChainsList() {
 					var chainNameRectY1 = y + headerHeight + textPlusY + relativeScrollPlusY - (strHeight / 2);
 					var chainNameRectX2 = x + windowWidth - scrollbarWidth;
 					var chainNameRectY2 = chainNameRectY1 + strHeight;
-					var mouseoverChainNameRect = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, chainNameRectX1, chainNameRectY1, chainNameRectX2, chainNameRectY2) && !mouseoverHeaderRegion && !mouseoverScrollBar;
+					var optionsChainY = floor(mean(chainNameRectY1, chainNameRectY2));
+					var mouseoverFilterChain = scr_pointInCircleClippedWindow(mouse_x, mouse_y, filterChainX, optionsChainY, optionsIconRad) && !mouseoverCancel && ableToMouseoverOption && !mouseoverHeaderRegion;
+					var mouseoverVisibleChain = scr_pointInCircleClippedWindow(mouse_x, mouse_y, visibleChainX, optionsChainY, optionsIconRad) && !mouseoverCancel && !mouseoverFilterChain && ableToMouseoverOption && !mouseoverHeaderRegion;
+					var mouseoverChainNameRect = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, chainNameRectX1, chainNameRectY1, chainNameRectX2, chainNameRectY2) && !mouseoverHeaderRegion && !mouseoverScrollBar && !mouseoverFilterChain && !mouseoverVisibleChain;
 
 					
 					// get dimensions of checkbox rect
@@ -328,9 +331,6 @@ function scr_panelPane_drawChainsList() {
 					
 					
 					// setup filter/align/visible buttons
-					var optionsChainY = floor(mean(chainNameRectY1, chainNameRectY2));
-					var mouseoverFilterChain = scr_pointInCircleClippedWindow(mouse_x, mouse_y, filterChainX, optionsChainY, optionsIconRad) && !mouseoverCancel && ableToMouseoverOption && !mouseoverHeaderRegion;
-					var mouseoverVisibleChain = scr_pointInCircleClippedWindow(mouse_x, mouse_y, visibleChainX, optionsChainY, optionsIconRad) && !mouseoverCancel && !mouseoverFilterChain && ableToMouseoverOption && !mouseoverHeaderRegion;
 					var mouseoverAlignChain = false; // scr_pointInCircleClippedWindow(mouse_x, mouse_y, alignChainX, optionsChainY, optionsIconRad) && !mouseoverCancel && !mouseoverFilterChain && !mouseoverVisibleChain && functionChainList_currentTab == functionChainList_tabRezBrush && ableToMouseoverOption && !mouseoverHeaderRegion;
 					draw_set_color(merge_color(global.colorThemeSelected1, currentChainColor, 0.3));
 					
@@ -345,9 +345,10 @@ function scr_panelPane_drawChainsList() {
 							else if (!currentChainFiltered) scr_deleteFromList(filterList, currentChainID);
 							
 							// update the filter if we need to
-							if (obj_control.filterGridActive) {
-								if (ds_list_size(filterList) > 0) scr_renderFilter2();
-								else scr_disableFilter();
+							if (obj_control.currentView == obj_control.filterView) {
+								scr_renderFilter2();
+								//if (ds_list_size(filterList) > 0) scr_renderFilter2();
+								//else scr_disableFilter();
 							}
 						}
 						scr_createTooltip(filterChainX, optionsChainY + optionsIconRad, scr_get_translation("menu_filter"), obj_tooltip.arrowFaceUp);
@@ -666,9 +667,10 @@ function scr_panelPane_drawChainsList() {
 				if (mouse_check_button_pressed(mb_left)) {
 					scr_setValueForAllChains(tabChainType, "filter", (allChainsFiltered) ? false : true);
 					// update the filter if we need to
-					if (obj_control.filterGridActive) {
-						if (ds_list_size(filterList) > 0) scr_renderFilter2();
-						else scr_disableFilter();
+					if (obj_control.currentView == obj_control.filterView) {
+						scr_renderFilter2();
+						//if (ds_list_size(filterList) > 0) scr_renderFilter2();
+						//else scr_disableFilter();
 					}
 				}
 			}

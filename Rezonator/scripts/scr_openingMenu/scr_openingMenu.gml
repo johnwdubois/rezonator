@@ -38,6 +38,7 @@ function scr_openingMenu() {
 		if (device_mouse_check_button_released(0, mb_left)) {
 			global.newProject = false;
 			global.openProject = true;
+			global.userName = obj_openingScreen.inputText;
 		}
 	}
 	
@@ -74,6 +75,7 @@ function scr_openingMenu() {
 		if (device_mouse_check_button_released(0, mb_left)) {
 			global.newProject = true;
 			global.openProject = false;
+			global.userName = obj_openingScreen.inputText;
 		}
 	}
 	
@@ -117,7 +119,7 @@ function scr_openingMenu() {
 
 	if (mouseoverDocumenation && documentationButtonActive) {
 		if(mouse_check_button_released(mb_left)){
-			url_open("https://rezonator.com/documentation/");
+			url_open("https://johnwdubois.github.io/rezonator/");
 		}
 	}
 
@@ -184,8 +186,6 @@ function scr_openingMenu() {
 
 
 
-
-	
 
 	if (instance_exists(obj_inputBox)) {
 		obj_inputBox.textBoxX= userSignInBoxX1;

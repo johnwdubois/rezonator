@@ -64,6 +64,19 @@ function scr_rightClickWordOptions(optionSelected) {
 	
 			break;
 			
+		case "option_zero":
+			//obj_control.newWordPre1 = true;
+			obj_control.currentNewWordPre = 1;
+			
+				
+			scr_newToken(scr_get_translation("option_zero-0"), obj_control.rightClickID);
+			obj_control.alarm[11] = 60;
+
+		
+			obj_control.rightClicked = false;
+			instance_destroy();
+			break;
+			
 		case "help_label_delete-link":
 		
 			scr_deleteFromChain(true);
@@ -226,7 +239,19 @@ function scr_rightClickWordOptions(optionSelected) {
 			instance_destroy();
 			break;
 
+		case "word_tip":
+			obj_wordTip.wordTipDisplay = !obj_wordTip.wordTipDisplay;			
+			instance_destroy();
+			break;
 			
+		case "option_zero-0":
+			scr_newTokenOptions("option_zero-0");
+			break;
+			
+		case "Show in Nav":
+			scr_showInNav(obj_control.rightClickID);
+			instance_destroy();
+			break;
 			
 		default:
 			break;

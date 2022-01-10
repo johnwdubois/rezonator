@@ -133,7 +133,7 @@ function scr_importMappingTagInfo() {
 			
 			
 			// check for mouseover
-			if (point_in_rectangle(mouse_x, mouse_y, cellRectX1, cellRectY1, cellRectX2, cellRectY2) and point_in_rectangle(mouse_x, mouse_y, x, y, x + windowWidth - global.scrollBarWidth, y + windowHeight)
+			if (scr_pointInRectangleClippedWindow(mouse_x, mouse_y, cellRectX1, cellRectY1, cellRectX2, cellRectY2) and point_in_rectangle(mouse_x, mouse_y, x, y, x + windowWidth - global.scrollBarWidth, y + windowHeight)
 			&& !instance_exists(obj_dropDown)) {
 				if (!scrollBarHolding) {
 					obj_importMapping.mouseoverRow = j;
@@ -527,7 +527,7 @@ function scr_importMappingTagInfo() {
 
 
 	// if mouse is outside the window, or not on a row, then don't highlight a row
-	if ((!point_in_rectangle(mouse_x, mouse_y, tagInfoWindowRectX1, tagInfoWindowRectY1, tagInfoWindowRectX2 - global.scrollBarWidth, tagInfoWindowRectY2) && !instance_exists(obj_dropDown))
+	if ((!scr_pointInRectangleClippedWindow(mouse_x, mouse_y, tagInfoWindowRectX1, tagInfoWindowRectY1, tagInfoWindowRectX2 - global.scrollBarWidth, tagInfoWindowRectY2) && !instance_exists(obj_dropDown))
 	|| scrollBarHolding || !mouseoverAnyRow) {
 		obj_importMapping.mouseoverRow = -1;
 	}

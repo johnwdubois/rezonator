@@ -36,6 +36,7 @@ function scr_closeDialogueBoxVariables(){
 			cursorPos = 1;
 			setRezMap = false;
 			dialogueBoxActive = false;
+			renameTree = false;
 		
 		}
 	}
@@ -43,6 +44,7 @@ function scr_closeDialogueBoxVariables(){
 		questionWindowActive = false;
 		clearAllStacks = false;
 		clearAllTracks = false;
+		clearAllChunks = false;
 		clearAllRez = false;
 		clearAllLinks = false;
 		clearChain = false;

@@ -43,14 +43,14 @@ function scr_gridViewDrawBackArrow() {
 				obj_control.gridView = false;
 			}
 			
-			if (obj_control.searchGridActive || obj_control.filterGridActive) {
+			if (obj_control.currentView != obj_control.mainView) {
 				scr_disableFilter();
 			}
 		}
 		
 		var tooltipText = "";
 		if (obj_control.gridView) tooltipText = scr_get_translation("label_back");
-		else if (obj_control.searchGridActive || obj_control.filterGridActive) tooltipText = scr_get_translation("menu_clear");
+		else tooltipText = scr_get_translation("menu_clear");
 		scr_createTooltip(backArrowRectX2, mean(backArrowRectY1, backArrowRectY2), tooltipText, obj_tooltip.arrowFaceLeft);
 	}
 	

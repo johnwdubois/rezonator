@@ -28,6 +28,10 @@ function scr_setDialogueText(){
 			titleText = scr_get_translation("Clear All Chains");
 			descriptionText = scr_get_translation("msg_warning_clear_chains");
 		}
+		if(clearAllChunks){
+			titleText = scr_get_translation("Clear All Chunks");
+			descriptionText = scr_get_translation("This will remove all chunks created");
+		}
 		if (clearChain) {
 			titleText = scr_get_translation("Clear Current Chain");
 			descriptionText = scr_get_translation("msg_warning_clear_focused_chain");
@@ -129,6 +133,9 @@ function scr_setDialogueText(){
 		if (obj_control.rename) {
 			titleText = scr_get_translation("help_label_rename");
 			descriptionText = scr_get_translation("msg_input_chain-name");
+		}
+		if (obj_control.renameTree) {
+			titleText = scr_get_translation("help_label_rename");
 		}
 		if (obj_control.recolor) {
 			titleText = scr_get_translation("option_recolor");

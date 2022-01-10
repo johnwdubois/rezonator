@@ -97,7 +97,7 @@ function scr_panelPane_drawSearchList(){
 			if (mouse_check_button_released(mb_left) && !instance_exists(obj_dropDown) && !mouseOverDel) {
 				with (obj_panelPane) functionSearchList_searchSelected = currentSearch;
 				obj_control.selectedSearchID = functionSearchList_searchSelected;
-				obj_control.searchGridActive = true;
+				obj_control.currentView = obj_control.searchView;
 				scr_renderFilter2();
 			}
 			

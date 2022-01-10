@@ -15,7 +15,7 @@ function scr_chunkRightClicked(){
 		obj_control.rightClicked = true;
 		obj_control.wideDropDown = true;
 		var dropDownOptionList = ds_list_create();
-
+		
 		// Options for a word in a Chain
 		if(ds_list_size(tokenInChainsList) > 0){
 					
@@ -44,7 +44,7 @@ function scr_chunkRightClicked(){
 					
 		}
 
-		ds_list_add(dropDownOptionList, "tab_name_tag", "option_delete-chunk");
+		ds_list_add(dropDownOptionList, "tab_name_tag", "option_delete-chunk", "Show in Nav");
 		obj_control.inChunk = true;
 				
 		// Create the dropdown

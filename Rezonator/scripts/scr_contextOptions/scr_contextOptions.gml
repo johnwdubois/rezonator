@@ -10,7 +10,7 @@ function scr_contextOptions(optionSelected) {
 			}
 
 			// Rerender filter
-			if (obj_control.filterGridActive || obj_control.quickFilterGridActive) {
+			if (obj_control.currentView == obj_control.filterView || obj_control.currentView == obj_control.quickFilterView) {
 				with (obj_control) {
 					scr_renderFilter2();
 				}
@@ -25,7 +25,7 @@ function scr_contextOptions(optionSelected) {
 			}
 		
 			// Rerender filter
-			if (obj_control.filterGridActive || obj_control.quickFilterGridActive) {
+			if (obj_control.currentView == obj_control.filterView || obj_control.currentView == obj_control.quickFilterView) {
 				with (obj_control) {
 					scr_renderFilter2();
 				}
@@ -40,7 +40,7 @@ function scr_contextOptions(optionSelected) {
 			}
 	
 			// Rerender filter
-			if (obj_control.filterGridActive || obj_control.quickFilterGridActive) {
+			if (obj_control.currentView == obj_control.filterView || obj_control.currentView == obj_control.quickFilterView) {
 				with (obj_control) {
 					scr_renderFilter2();
 				}

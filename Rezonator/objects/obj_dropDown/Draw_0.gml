@@ -80,6 +80,7 @@ for (var i = 0; i < optionListSize; i++) {
 		var isChainOption = string_count("Chain", currentOptionStr) > 0;
 		var isEntryOption = string_count("Entry", currentOptionStr) > 0;
 		var isChunkOption = string_count("Chunk", currentOptionStr) > 0;
+		var isTreeLinkOption = string_count("Link", currentOptionStr) > 0;
 	
 		if(isTokenOption){
 
@@ -100,6 +101,10 @@ for (var i = 0; i < optionListSize; i++) {
 		}
 		if(isChunkOption){
 			var entryTagText =  "   (" + string(obj_panelPane.functionField_chunkTagSelected) + " : " + string(obj_panelPane.functionField_chunkFieldSelected) + ")";
+			tagWidth = string_width(entryTagText); 
+		}
+		if(isTreeLinkOption){
+			var entryTagText =  "   (" + string(obj_panelPane.functionField_linkFieldSelected) + " : " + string(obj_panelPane.functionField_linkTagSelected) + ")";
 			tagWidth = string_width(entryTagText); 
 		}
 	
@@ -368,7 +373,7 @@ for (var i = 0; i < optionListSize; i++) {
 	}
 	
 	var hasCheck = false;
-	if(ds_map_exists(global.checkDropdownMap, optionText)){
+	if(ds_map_exists(global.checkDropdownMap, optionText) && optionListType != global.optionListTypeDelete){
 		scr_updateCheckMap(optionText);
 		hasCheck = ds_map_find_value(global.checkDropdownMap, optionText);
 		if (optionListType == global.optionListTypeNav) hasCheck = false;
@@ -406,6 +411,7 @@ for (var i = 0; i < optionListSize; i++) {
 		var isChainOption = string_count("Chain", optionTextStr) > 0;
 		var isEntryOption = string_count("Entry", optionTextStr) > 0;
 		var isChunkOption = string_count("Chunk", optionTextStr) > 0;
+		var isTreeLinkOption = string_count("Link", optionTextStr) > 0;
 	
 		if(isTokenOption){
 			tagText =  "   (" + string(obj_panelPane.functionField_tokenFieldSelected) + " :  " + string(obj_panelPane.functionField_tokenTagSelected) + ")";
@@ -421,6 +427,9 @@ for (var i = 0; i < optionListSize; i++) {
 		}
 		if(isChunkOption){
 			tagText =  "   (" + string(obj_panelPane.functionField_chunkFieldSelected) + " : " + string(obj_panelPane.functionField_chunkTagSelected) + ")";
+		}
+		if(isTreeLinkOption){
+			tagText =  "   (" + string(obj_panelPane.functionField_linkFieldSelected) + " : " + string(obj_panelPane.functionField_linkTagSelected) + ")";
 		}
 
 	draw_set_color(merge_color(global.colorThemeText, global.colorThemeBG, 0.3));

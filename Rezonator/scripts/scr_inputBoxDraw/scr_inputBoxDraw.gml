@@ -21,8 +21,14 @@ function scr_inputBoxDraw(){
 			alarm[0] = blinkRate;
 		}
 		else if (!mouseoverWindow && windowFocused) {
-			windowFocused = false;
+			if (!instance_exists(obj_openingScreen)) {
+				windowFocused = false;
+			}
 		}
+	}
+	
+	if (instance_exists(obj_openingScreen)) {
+		windowFocused = !obj_openingScreen.showPreImportScreen;
 	}
 	
 	// moving cursor with mouse click
