@@ -589,22 +589,16 @@ function scr_panelPane_drawSearch1ToMany(){
 	draw_roundrect(addToChainButtonX1, addToChainButtonY1, addToChainButtonX2, addToChainButtonY2, false);
 	draw_set_color(global.colorThemeText);
 
-	draw_sprite_ext(spr_toolsNew,1,floor(mean(addToChainButtonX1, addToChainButtonX2)), floor(mean(addToChainButtonY1, addToChainButtonY2)),.3,.3,0,(someChainsSelected or allChainsSelected)? global.colorThemeRezPink:c_white,1)
+	draw_sprite_ext(spr_moreOptions,1,floor(mean(addToChainButtonX1, addToChainButtonX2)), floor(mean(addToChainButtonY1, addToChainButtonY2)),.8,.8,0,(someChainsSelected or allChainsSelected)? global.colorThemeRezPink:c_white,1)
 	
-	if (mouseoverAddToChainButton) {scr_createTooltip(mean(addToChainButtonX1, addToChainButtonX2), addToChainButtonY2, scr_get_translation("Add to Chain"), obj_tooltip.arrowFaceUp);}
+	if (mouseoverAddToChainButton) {scr_createTooltip(mean(addToChainButtonX1, addToChainButtonX2), addToChainButtonY2, scr_get_translation("More"), obj_tooltip.arrowFaceUp);}
 		
 
 	if (mouse_check_button_released(mb_left) && mouseoverAddToChainButton) {
 		var dropDownOptionList = ds_list_create();
-		ds_list_add(dropDownOptionList, "Create New Chain");
-		var currentTrackList = global.nodeMap[?"trailList"];
-		var currentTrackListSize = ds_list_size(currentTrackList);
-		var i = 0;
-		repeat(currentTrackListSize){
-			ds_list_add(dropDownOptionList, currentTrackList[|i]);
-			i++;
-		}
-		scr_createDropDown(addToChainButtonX1, addToChainButtonY2, dropDownOptionList, global.optionListTypeSearchChain);
+		//, "Add to Stack"
+		ds_list_add(dropDownOptionList, "Add to Trail", "Add to Resonance", "Remove from Search");
+		scr_createDropDown(addToChainButtonX1, addToChainButtonY2, dropDownOptionList, global.optionListTypeSearchPane);
 	}
 
 

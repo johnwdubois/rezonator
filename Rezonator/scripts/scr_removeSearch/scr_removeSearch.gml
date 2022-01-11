@@ -11,7 +11,7 @@ function scr_removeSearch(searchID){
 	
 	
 	
-	var currentSearchSubMap = global.searchMap[?obj_dialogueBox.searchToBeRemoved];
+	var currentSearchSubMap = global.searchMap[?searchID];
 
 
 

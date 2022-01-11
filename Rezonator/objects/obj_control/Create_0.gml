@@ -813,6 +813,8 @@ setRezMap = false;
 switchToTab = "";
 showInNavID = "";
 
+searchChainType = "trail";
+
 global.inputBoxDefStr = "";
 //set up tags from schema a frame after loading
 with(obj_alarm){

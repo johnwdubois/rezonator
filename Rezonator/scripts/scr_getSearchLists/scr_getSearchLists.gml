@@ -91,6 +91,7 @@ function scr_getSearchLists(searchTermList){
 			var entryList = currentUnitSubMap[? "entryList"];
 			var entryListSize = ds_list_size(entryList);
 			
+
 			// loop over the entries for this unit and check their tokens
 			for (var k = 0; k < entryListSize; k++) {
 				
@@ -188,7 +189,7 @@ function scr_getSearchLists(searchTermList){
 	
 	ds_list_add(listOfResultLists,searchUnitList);
 	ds_list_add(listOfResultLists,searchTokenList);
-	
+
 	scr_sortSearchLists(listOfResultLists);
 	
 	return listOfResultLists;

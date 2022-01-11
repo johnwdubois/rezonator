@@ -385,5 +385,9 @@ function scr_dropDownSelect(optionSelected) {
 	{
 		scr_treeRightClickOptions(optionSelected);
 	}
+	else if (optionListType == global.optionListTypeSearchPane) //88
+	{
+		scr_searchPaneOptions(optionSelected);
+	}
 
 }

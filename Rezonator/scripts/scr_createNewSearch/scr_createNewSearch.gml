@@ -20,6 +20,20 @@ function scr_createNewSearch(searchTermList){
 
 		var displayUnitList = searchLists[|0];
 		var displayTokenList = searchLists[|1];
+		
+		
+		var unitListSize = ds_list_size(displayUnitList);
+		var counter = 0;
+		show_debug_message("unitListSize:  " +string(unitListSize));
+		repeat(unitListSize){
+			show_debug_message(string(counter) + ":  "+string(displayUnitList[|counter]));
+			if(!is_string(displayUnitList[|counter])){
+				ds_list_delete(displayUnitList,counter);
+			}
+			else{
+				counter++;
+			}
+		}
 	
 		if(scr_isNumericAndExists(displayTokenList, ds_type_list)){
 
