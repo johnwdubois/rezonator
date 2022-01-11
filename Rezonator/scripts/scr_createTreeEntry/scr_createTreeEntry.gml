@@ -1,9 +1,10 @@
 // Script assets have changed for v2.3.0 see
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
-function scr_createTreeEntry(treeID, tokenID, order){
+function scr_createTreeEntry(treeID, tokenID, order, addToTokenList){
 	
 	var treeSubMap = global.treeMap[? treeID];
 	var treeSetIDList = treeSubMap[? "setIDList"];
+	var treeTokenList = treeSubMap[? "tokenList"];
 	
 	// get random hex and make a subMap for each entry
 	var currentEntry = scr_generateRandomHex();
@@ -26,6 +27,7 @@ function scr_createTreeEntry(treeID, tokenID, order){
 		
 	// throw this new entry into the tree's setList (at the correct position)
 	ds_list_insert(treeSetIDList, order, currentEntry);
+	if (addToTokenList) ds_list_insert(treeTokenList, order, tokenID);
 	
 	return currentEntry;
 

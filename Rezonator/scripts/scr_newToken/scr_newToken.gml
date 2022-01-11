@@ -151,6 +151,8 @@ function scr_newToken(newTokenStr, refTokenID) {
 			// now we determine if we're adding to a tree chunk, or just making a new tree entry
 			var currentTreeSetIDList = currentTreeSubMap[? "setIDList"];
 			var currentTreeSetIDListSize = ds_list_size(currentTreeSetIDList);
+			var currentTreeTokenList = currentTreeSubMap[? "tokenList"];
+			
 			for (var j = 0; j < currentTreeSetIDListSize; j++) {
 				
 				var currentTreeEntry = currentTreeSetIDList[| j];
@@ -162,9 +164,12 @@ function scr_newToken(newTokenStr, refTokenID) {
 					var prevTokenIndex = ds_list_find_index(currentTreeEntryTokenList, prevTokenID);
 					var nextTokenIndex = ds_list_find_index(currentTreeEntryTokenList, nextTokenID);
 					show_debug_message("prevTokenIndex: " + string(prevTokenIndex) + ", nextTokenIndex: " + string(nextTokenIndex));
-						
+					
+					// in this case, the prev and next tokens are in a tree chunk, so we'll add our new token to that tree chunk
 					if (prevTokenIndex >= 0 && nextTokenIndex >= 0) {
 						ds_list_insert(currentTreeEntryTokenList, nextTokenIndex, newTokenID);
+						var nextTokenInTokenListIndex = ds_list_find_index(currentTreeTokenList, nextTokenID);
+						ds_list_insert(currentTreeTokenList, nextTokenInTokenListIndex, newTokenID);
 						addingToTreeChunk = true;
 					}
 				}
@@ -172,13 +177,38 @@ function scr_newToken(newTokenStr, refTokenID) {
 			
 			// if we're not adding to a tree chunk, we will create a new tree entry
 			if (!addingToTreeChunk) {
-				var newTreeEntryOrder = (obj_control.before) ? refTokenInTreeIndex - 1 : refTokenInTreeIndex;
-				scr_createTreeEntry(currentTree, newTokenID, newTreeEntryOrder);
-				// because we've inserted a new tree entry, we need to increment the order values for the following entries in this tree
-				for (var j = newTreeEntryOrder; j < currentTreeSetIDListSize; j++) {
+				
+				// we need to check which entry the ref token is in, because it could be in a tree chunk, which would screw up our ordering
+				show_debug_message("refTokenID: " + string(refTokenID));
+				var refTokenInTreeOrder = -1;
+				var refTokenFound = false;
+				var j = 0;
+				while (!refTokenFound && j < 9999) {
 					var currentTreeEntry = currentTreeSetIDList[| j];
 					var currentTreeEntrySubMap = global.treeMap[? currentTreeEntry];
-					currentTreeEntrySubMap[? "order"] = currentTreeEntrySubMap[? "order"] + 1;
+					var currentTreeEntryTokenList = currentTreeEntrySubMap[? "tokenList"];
+					var currentTreeEntryTokenListIndex = ds_list_find_index(currentTreeEntryTokenList, refTokenID);
+					show_debug_message("currentTreeEntryTokenList: " + scr_getStringOfList(currentTreeEntryTokenList) + ", currentTreeEntryTokenListIndex: " + string(currentTreeEntryTokenListIndex) + ", refTokenInTreeOrder: " + string(refTokenInTreeOrder));
+					if (currentTreeEntryTokenListIndex >= 0) refTokenFound = true;
+					refTokenInTreeOrder++;
+					j++;
+				}
+				
+				
+				// get order of new token/entry in tree & create new tree entry
+				show_debug_message("refTokenInTreeOrder: " + string(refTokenInTreeOrder));
+				var newTreeEntryOrder = (obj_control.before) ? refTokenInTreeOrder : refTokenInTreeOrder + 1;
+				show_debug_message("newTreeEntryOrder: " + string(newTreeEntryOrder));
+				scr_createTreeEntry(currentTree, newTokenID, newTreeEntryOrder, true);
+				currentTreeSetIDListSize = ds_list_size(currentTreeSetIDList);
+				
+				// because we've inserted a new tree entry, we need to increment the order values for the following entries in this tree
+				for (var j = newTreeEntryOrder + 1; j < currentTreeSetIDListSize; j++) {
+					var currentTreeEntry = currentTreeSetIDList[| j];
+					var currentTreeEntrySubMap = global.treeMap[? currentTreeEntry];
+					var currentTreeEntryOrder = currentTreeEntrySubMap[? "order"];
+					currentTreeEntrySubMap[? "order"] = currentTreeEntryOrder + 1;
+					show_debug_message("incrementing order for entry: " + string(currentTreeEntry));
 				}
 			}
 			

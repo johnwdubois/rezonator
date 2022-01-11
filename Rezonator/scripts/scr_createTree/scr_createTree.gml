@@ -13,7 +13,6 @@ function scr_createTree(tokenList){
 		exit;
 	}
 	
-	
 	// get ID for this tree, and give it a subMap within the treeMap
 	var treeNode = scr_generateRandomHex();
 	//show_debug_message("scr_createTree, treeNode: " + string(treeNode) + ", tokenList: " + scr_getStringOfList(tokenList));
@@ -36,7 +35,7 @@ function scr_createTree(tokenList){
 	for (var i = 0; i < tokenListSize; i++) {
 		
 		var currentToken = tokenList[| i];
-		scr_createTreeEntry(treeNode, currentToken, i);
+		scr_createTreeEntry(treeNode, currentToken, i, false);
 		
 	}
 	
