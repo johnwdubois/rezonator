@@ -19,8 +19,7 @@ function scr_panelPane_drawUnitsList() {
 		}
 	}
 	var relativeScrollPlusY = (drawScrollbar) ? scrollPlusY : chainContentsPanelPaneInst.scrollPlusY;
-	
-	
+	var mouseoverLeftPane = point_in_rectangle(mouse_x, mouse_y, x, y, x + windowWidth, y + windowHeight);
 	
 
 	// Set text margin area
@@ -37,8 +36,8 @@ function scr_panelPane_drawUnitsList() {
 		mouseoverScrollBar = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, x + windowWidth - global.scrollBarWidth, y + headerHeight, x + windowWidth, y + windowHeight);
 	}
 	
-	// if mouse is hovered on header region, make sure there is no line highlighted
-	if (mouseoverHeaderRegion || !obj_control.mouseoverPanelPane) {
+	// if mouse is hovered on header region, or mouse is in another pane, make sure there is no line highlighted
+	if (mouseoverHeaderRegion || !obj_control.mouseoverPanelPane || !mouseoverLeftPane) {
 		with (obj_panelPane) {
 			functionChainList_highlightUnit = "";
 		}
