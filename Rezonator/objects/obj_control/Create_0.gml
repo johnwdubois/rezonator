@@ -819,6 +819,7 @@ unitFlash = 0;
 flashTime = 20;
 unitToFlash = "";
 offIndex = false;
+multiWordTag = false;
 
 global.inputBoxDefStr = "";
 //set up tags from schema a frame after loading

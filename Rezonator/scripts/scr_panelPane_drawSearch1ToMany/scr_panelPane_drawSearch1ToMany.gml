@@ -130,10 +130,15 @@ function scr_panelPane_drawSearch1ToMany(){
 				var currentTokenText = currentTokenTagMap[? global.displayTokenField];
 				var currentUnitID = currentTokenSubMap[? "unit"];
 				var unitSeq = "NULL";
+				var unitTagMap = "";
+				var displayUnitStr = "";
 				var unitSubMap = global.nodeMap[? currentUnitID];
 				if(scr_isNumericAndExists(unitSubMap, ds_type_map)){
 					unitSeq = unitSubMap[?"unitSeq"];
+					unitTagMap = unitSubMap[?"tagMap"];
+					displayUnitStr = unitTagMap[?global.participantField];
 				}
+				
 				var currentTokenIndex = ds_list_find_index(tokenList, currentToken);
 				var currentTokenSelected = (functionSearchList_tokenSelected == currentToken);
 				var currentTokenChecked = (ds_list_find_index(selectedTokenList, currentToken) != -1);
@@ -279,7 +284,7 @@ function scr_panelPane_drawSearch1ToMany(){
 				var beforeText = scr_getSearchString(beforeTokenList, true);
 				scr_adaptFont(beforeText, "M");
 				draw_text(beforeTextX - clipX, textY - clipY,beforeText);
-
+				rectColor = merge_color(rectColor,scr_strToColor(displayUnitStr), 0.5);
 				//draw rect to clip before text
 				draw_set_color(rectColor);
 				draw_rectangle(unitRectX1 - clipX, unitRectY1 - clipY, unitRectX2 - clipX, unitRectY2 - clipY, false);
@@ -601,7 +606,7 @@ function scr_panelPane_drawSearch1ToMany(){
 	if (mouse_check_button_released(mb_left) && mouseoverAddToChainButton) {
 		var dropDownOptionList = ds_list_create();
 		//, "Add to Stack"
-		ds_list_add(dropDownOptionList, "Add to Trail", "Add to Resonance", "Remove from Search");
+		ds_list_add(dropDownOptionList, "Add to Trail", "Add to Resonance", "Tag Token", "Remove from Search");
 		scr_createDropDown(addToChainButtonX1, addToChainButtonY2, dropDownOptionList, global.optionListTypeSearchPane);
 	}
 
