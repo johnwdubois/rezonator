@@ -115,4 +115,75 @@ function scr_newToken(newTokenStr, refTokenID) {
 		ds_list_insert(currentChunkTokenList, newTokenChunkIndex, newTokenID);
 	}
 	
+	
+	// get the tokens that surround the new token within the unit, if they exist
+	var newTokenUnitIndex = ds_list_find_index(unitEntryList, currentEntryNode);
+	var prevEntryID = "";
+	var prevTokenID = "";
+	var nextEntryID = "";
+	var nextTokenID = "";
+	if (newTokenUnitIndex - 1 >= 0) {
+		prevEntryID = unitEntryList[| newTokenUnitIndex - 1];
+		var prevEntrySubMap = global.nodeMap[? prevEntryID];
+		prevTokenID = prevEntrySubMap[? "token"];
+	}
+	if (newTokenUnitIndex + 1 < ds_list_size(unitEntryList)) {
+		nextEntryID = unitEntryList[| newTokenUnitIndex + 1];
+		var nextEntrySubMap = global.nodeMap[? nextEntryID];
+		nextTokenID = nextEntrySubMap[? "token"];
+	}
+	show_debug_message("prevTokenID: " + string(prevTokenID) + ", nextTokenID: " + string(nextTokenID));
+	
+	// add this to a tree if we need to
+	var treeList = global.nodeMap[? "treeList"];
+	var treeListSize = ds_list_size(treeList);
+	for (var i = 0; i < treeListSize; i++) {
+		var currentTree = treeList[| i];
+		var currentTreeSubMap = global.treeMap[? currentTree];
+		var currentTreeTokenList = currentTreeSubMap[? "tokenList"];
+		
+		var addingToTreeChunk = false;
+		
+		// if this tree contains the ref token, we need to add to it
+		var refTokenInTreeIndex = ds_list_find_index(currentTreeTokenList, refTokenID);
+		if (refTokenInTreeIndex >= 0) {
+			
+			// now we determine if we're adding to a tree chunk, or just making a new tree entry
+			var currentTreeSetIDList = currentTreeSubMap[? "setIDList"];
+			var currentTreeSetIDListSize = ds_list_size(currentTreeSetIDList);
+			for (var j = 0; j < currentTreeSetIDListSize; j++) {
+				
+				var currentTreeEntry = currentTreeSetIDList[| j];
+				var currentTreeEntrySubMap = global.treeMap[? currentTreeEntry];
+				var currentTreeEntryTokenList = currentTreeEntrySubMap[? "tokenList"];
+				
+				// check if the new token should be added to a tree chunk (the tree chunk would need at least 2 tokens)
+				if (prevTokenID != "" && nextTokenID != "" && ds_list_size(currentTreeEntryTokenList) >= 2) {
+					var prevTokenIndex = ds_list_find_index(currentTreeEntryTokenList, prevTokenID);
+					var nextTokenIndex = ds_list_find_index(currentTreeEntryTokenList, nextTokenID);
+					show_debug_message("prevTokenIndex: " + string(prevTokenIndex) + ", nextTokenIndex: " + string(nextTokenIndex));
+						
+					if (prevTokenIndex >= 0 && nextTokenIndex >= 0) {
+						ds_list_insert(currentTreeEntryTokenList, nextTokenIndex, newTokenID);
+						addingToTreeChunk = true;
+					}
+				}
+			}
+			
+			// if we're not adding to a tree chunk, we will create a new tree entry
+			if (!addingToTreeChunk) {
+				var newTreeEntryOrder = (obj_control.before) ? refTokenInTreeIndex - 1 : refTokenInTreeIndex;
+				scr_createTreeEntry(currentTree, newTokenID, newTreeEntryOrder);
+				// because we've inserted a new tree entry, we need to increment the order values for the following entries in this tree
+				for (var j = newTreeEntryOrder; j < currentTreeSetIDListSize; j++) {
+					var currentTreeEntry = currentTreeSetIDList[| j];
+					var currentTreeEntrySubMap = global.treeMap[? currentTreeEntry];
+					currentTreeEntrySubMap[? "order"] = currentTreeEntrySubMap[? "order"] + 1;
+				}
+			}
+			
+			show_debug_message("addingToTreeChunk: " + string(addingToTreeChunk));
+		}
+	}
+	
 }
