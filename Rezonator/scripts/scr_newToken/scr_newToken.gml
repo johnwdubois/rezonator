@@ -25,7 +25,7 @@ function scr_newToken(newTokenStr, refTokenID) {
 	
 	// create new token Node
 	var newTokenID = scr_createTokenNode(newDiscourseTokenSeq, newTokenStr, newTokenSeq, newDisplayCol, unitID);
-	
+	var newTokenSubMap = global.nodeMap[? newTokenID];
 	
 
 	var unitEntryList = unitSubMap[?"entryList"];
@@ -102,6 +102,7 @@ function scr_newToken(newTokenStr, refTokenID) {
 	
 	
 	// insert the new token into any chunks, if we need to
+	var newTokenInChunkList = newTokenSubMap[? "inChunkList"];
 	var refTokenInChunkListSize = ds_list_size(refTokenInChunkList);
 	for (var i = 0; i < refTokenInChunkListSize; i++) {
 		var currentChunk = refTokenInChunkList[| i];
@@ -113,6 +114,7 @@ function scr_newToken(newTokenStr, refTokenID) {
 		var refTokenChunkIndex = ds_list_find_index(currentChunkTokenList, refTokenID);
 		var newTokenChunkIndex = (obj_control.before) ? refTokenChunkIndex : refTokenChunkIndex + 1;
 		ds_list_insert(currentChunkTokenList, newTokenChunkIndex, newTokenID);
+		scr_addToListOnce(newTokenInChunkList, currentChunk);
 	}
 	
 	

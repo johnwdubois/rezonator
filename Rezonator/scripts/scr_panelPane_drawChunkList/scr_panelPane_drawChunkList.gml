@@ -149,6 +149,9 @@ function scr_panelPane_drawChunkList(){
 		draw_text(floor(textColX + textBuffer) - clipX, textY - clipY, chunkText);
 		
 		// nest column
+		draw_set_color(rectColor);
+		draw_rectangle(nestColX - clipX, rowRectY1 - clipY, rowRectX2 - clipX, rowRectY2 - clipY, false);
+		draw_set_color(textColor);
 		draw_text(floor(nestColX + textBuffer) - clipX, textY - clipY, string(currentChunkNest));
 
 		// increment plusY
