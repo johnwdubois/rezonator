@@ -161,6 +161,7 @@ function scr_importGridToNodeMap_fieldsRowUnit(row){
 					ds_map_add(currentTokenSubMap, "docTokenSeq", ds_list_size(tokenList) + 1);
 					ds_map_add(currentTokenSubMap, "tokenOrder", tokenCount);
 					ds_map_add(currentTokenSubMap, "relativeOrder", tokenCount);
+					ds_map_add(currentTokenSubMap, "place", tokenCount);
 					ds_map_add(currentTokenSubMap, "displayCol", tokenCount - 1);
 					ds_map_add(currentTokenSubMap, "void", 1);
 					ds_map_add(currentTokenSubMap, "pixelX", 0);
