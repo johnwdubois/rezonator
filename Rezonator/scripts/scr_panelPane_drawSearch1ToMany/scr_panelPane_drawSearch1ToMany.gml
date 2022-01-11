@@ -95,6 +95,7 @@ function scr_panelPane_drawSearch1ToMany(){
 
 			var tokenDisplayList = searchSubMap[?"displayTokenList"];
 			var selectedTokenList = searchSubMap[?"selectedTokenList"];
+			var displayUnitList = searchSubMap[?"displayUnitList"];
 			tokenDisplayListSize = ds_list_size(tokenDisplayList);
 	
 	
@@ -205,7 +206,10 @@ function scr_panelPane_drawSearch1ToMany(){
 					if (mouse_check_button_released(mb_left)) {
 						with (obj_panelPane) functionSearchList_tokenSelected = currentToken;
 						obj_control.selectedSearchTokenID = functionSearchList_tokenSelected;
-						scr_jumpToUnit(currentUnitID);
+						
+						//var nextUnitPos = min(ds_list_size(displayUnitList)-1,ds_list_find_index(displayUnitList,currentUnitID)+1);
+						//displayUnitList[|nextUnitPos]
+						scr_jumpToUnitTop(currentUnitID);
 						
 						// deselect all other tokens and select the current one
 						if (!global.ctrlHold) ds_list_clear(selectedTokenList);

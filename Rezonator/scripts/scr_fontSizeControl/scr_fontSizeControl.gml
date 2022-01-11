@@ -19,7 +19,7 @@ function scr_fontSizeControl() {
 					obj_control.gridSpaceVertical = max(obj_control.gridSpaceVertical, obj_control.gridSpaceVerticalMin);
 					obj_control.lineSpacing -= 4;
 					obj_control.gridSpaceRatio = (obj_control.gridSpaceVertical/obj_control.prevGridSpaceVertical);
-
+					obj_control.offIndex = true;
 					scr_jumpToUnitTop(obj_control.prevCenterDisplayRow);
 					// reset the ratio
 					obj_control.prevGridSpaceVertical = obj_control.gridSpaceVertical;
@@ -60,7 +60,7 @@ function scr_fontSizeControl() {
 					obj_control.gridSpaceVertical = min(obj_control.gridSpaceVertical, obj_control.gridSpaceVerticalMax);
 					obj_control.lineSpacing += 4;
 					obj_control.gridSpaceRatio = (obj_control.gridSpaceVertical/obj_control.prevGridSpaceVertical);
-
+					obj_control.offIndex = true;
 					scr_jumpToUnitTop(obj_control.prevCenterDisplayRow);
 					// reset the ratio
 					obj_control.prevGridSpaceVertical = obj_control.gridSpaceVertical;
@@ -110,7 +110,7 @@ function scr_fontSizeControl() {
 					obj_control.gridSpaceVertical = max(obj_control.gridSpaceVertical, obj_control.gridSpaceVerticalMin);
 					obj_control.lineSpacing -= 4;
 					obj_control.gridSpaceRatio = (obj_control.gridSpaceVertical/obj_control.prevGridSpaceVertical);
-
+					obj_control.offIndex = true;
 					scr_jumpToUnitTop(obj_control.prevCenterDisplayRow);
 					// reset the ratio
 					obj_control.prevGridSpaceVertical = obj_control.gridSpaceVertical;
@@ -151,7 +151,7 @@ function scr_fontSizeControl() {
 					obj_control.gridSpaceVertical = min(obj_control.gridSpaceVertical, obj_control.gridSpaceVerticalMax);
 					obj_control.lineSpacing += 4;
 					obj_control.gridSpaceRatio = (obj_control.gridSpaceVertical/obj_control.prevGridSpaceVertical);
-
+					obj_control.offIndex = true;
 					scr_jumpToUnitTop(obj_control.prevCenterDisplayRow);
 					// reset the ratio
 					obj_control.prevGridSpaceVertical = obj_control.gridSpaceVertical;

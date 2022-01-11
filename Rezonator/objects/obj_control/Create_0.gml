@@ -815,6 +815,11 @@ showInNavID = "";
 
 searchChainType = "trail";
 
+unitFlash = 0;
+flashTime = 20;
+unitToFlash = "";
+offIndex = false;
+
 global.inputBoxDefStr = "";
 //set up tags from schema a frame after loading
 with(obj_alarm){

@@ -387,6 +387,7 @@ if (shortcutsEnabled) {
 						arrowSpeed *= gridSpaceRatio;	
 					}
 				}
+				obj_control.offIndex = true;
 				scr_jumpToUnitTop(scr_currentTopLine());
 				alarm[3] = 15;
 				
@@ -407,6 +408,7 @@ if (shortcutsEnabled) {
 						arrowSpeed *= gridSpaceRatio;	
 					}
 				}
+				obj_control.offIndex = true;
 				scr_jumpToUnitTop(scr_currentTopLine());
 				alarm[4] = 15;
 			}

@@ -49,16 +49,23 @@ function scr_drawStack(unitID, unitSubMap, camWidth, pixelY){
 			drawStackRect = true;
 		}
 	}
-
+	var stackRectY1 = pixelY - (gridSpaceVertical * 0.5);
+	var stackRectX1 = wordLeftMargin;
+	var stackRectX2 = camWidth;				
+	var stackRectY2 = stackRectY1 + gridSpaceVertical;
 
 	// draw the rectangle for this stack, if necessary
 	if (drawStackRect) {
-		var stackRectY1 = pixelY - (gridSpaceVertical * 0.5);
-		var stackRectX1 = wordLeftMargin;
-		var stackRectX2 = camWidth;				
-		var stackRectY2 = stackRectY1 + gridSpaceVertical;
 		draw_rectangle(stackRectX1, stackRectY1, stackRectX2, stackRectY2, false);
 	}
+	
+	if(obj_control.unitFlash > 0 and unitID == obj_control.unitToFlash){
+		obj_control.unitFlash--;
+		draw_set_color(merge_color(global.colorThemeGrid_colSelected1, c_white, 0.5));
+		draw_set_alpha(obj_control.unitFlash/obj_control.flashTime);
+		draw_rectangle(stackRectX1, stackRectY1, stackRectX2, stackRectY2, false);
+	}
+
 
 
 }
