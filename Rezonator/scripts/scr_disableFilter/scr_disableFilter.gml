@@ -29,7 +29,7 @@ function scr_disableFilter(){
 	
 	
 	discourseSubMap[? "displayUnitList"] = unitList;
-	scr_jumpToUnit(drawRangeUnit);
+	scr_jumpToUnitTop(drawRangeUnit);
 	scr_setValueForAllNodesInList(unitList, "active", true);
 	
 

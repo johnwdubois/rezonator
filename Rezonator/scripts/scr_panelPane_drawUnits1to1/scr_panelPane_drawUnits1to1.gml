@@ -107,7 +107,7 @@ function scr_panelPane_drawUnits1to1() {
 		            }
 					if (obj_control.doubleClickTimer > 2) {
 						// scroll to focused unit if the user double clicks
-						scr_jumpToUnit(currentUnitID);
+						scr_jumpToUnitTop(currentUnitID);
 					}
 					else {
 						obj_control.doubleClickTimer = 0;

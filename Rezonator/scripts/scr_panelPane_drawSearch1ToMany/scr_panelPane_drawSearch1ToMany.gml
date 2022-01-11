@@ -537,7 +537,7 @@ function scr_panelPane_drawSearch1ToMany(){
 			}
 			var newUnitID = newTokenSubMap[?"unit"];
 
-			scr_jumpToUnit(newUnitID);				
+			scr_jumpToUnitTop(newUnitID);				
 
 
 
@@ -571,7 +571,7 @@ function scr_panelPane_drawSearch1ToMany(){
 			}
 			var newUnitID = newTokenSubMap[?"unit"];
 
-			scr_jumpToUnit(newUnitID);
+			scr_jumpToUnitTop(newUnitID);
 					
 			
 

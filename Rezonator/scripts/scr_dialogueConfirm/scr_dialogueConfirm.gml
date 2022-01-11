@@ -79,7 +79,7 @@ function scr_dialogueConfirm(){
 				var strDigits = string_digits(obj_control.inputText);
 				if (string_length(strDigits) > 0) {
 					var realDigits = real(strDigits);
-					scr_jumpToUnit(realDigits);
+					scr_jumpToUnitTop(realDigits);
 				}
 			}
 			

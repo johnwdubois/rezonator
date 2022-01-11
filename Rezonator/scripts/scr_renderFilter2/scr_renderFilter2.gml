@@ -188,6 +188,6 @@ function scr_renderFilter2(){
 	}
 	
 	// if there is a focused chain, let's jump back to the first thing in that chain
-	if (obj_chain.currentFocusedChainID != "") scr_jumpToUnit(scr_getFirstUnitOfChain(obj_chain.currentFocusedChainID));
+	if (obj_chain.currentFocusedChainID != "") scr_jumpToUnitTop(scr_getFirstUnitOfChain(obj_chain.currentFocusedChainID));
 
 }
