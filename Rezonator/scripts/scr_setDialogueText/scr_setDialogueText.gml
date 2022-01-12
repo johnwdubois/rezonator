@@ -3,9 +3,8 @@
 function scr_setDialogueText(){
 	
 	if (room == rm_openingScreen && descriptionText == "") {
-		titleText = "";
-		var newVersionNum = instance_exists(obj_DBcontrol) ? obj_DBcontrol.newestVersionNum : "";
-		descriptionText = "A new version of Rezonator (version " + string(newVersionNum) + ") is available! Would you like to download it?";
+		titleText = instance_exists(obj_firestore) ? obj_firestore.newVersionStr : "";
+		descriptionText = scr_get_translation("msg_new-version-available");
 		exit;
 	}
 
