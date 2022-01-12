@@ -821,6 +821,8 @@ unitToFlash = "";
 offIndex = false;
 multiWordTag = false;
 
+updateScroll = false;
+
 global.inputBoxDefStr = "";
 //set up tags from schema a frame after loading
 with(obj_alarm){

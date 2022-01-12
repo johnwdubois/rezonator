@@ -441,21 +441,125 @@ function scr_panelPane_drawTree1ToMany(){
 	draw_set_color(global.colorThemeBG);
 	//draw_text(floor(x + spaceWidth), leafTextY, "Leaf");
 	
-
+	
 
 	scr_scrollMouseControls(strHeight);
+	var focusedEntrySubMap = global.treeMap[?obj_chain.currentFocusedEntryID];
 	
-	/*
 	if (clickedIn) {
-		if (keyboard_check(vk_left)) {
-			scrollHorPlusX += 8;
-		}
-		if (keyboard_check(vk_right)) {
-			scrollHorPlusX -= 8;
+		//if (keyboard_check(vk_left)) {
+		//	scrollHorPlusXDest += 8;
+		//}
+		//if (keyboard_check(vk_right)) {
+		//	scrollHorPlusXDest -= 8;
+		//}
+
+		if(scr_isNumericAndExists(focusedEntrySubMap, ds_type_map)){
+			var focusedEntryLevel = focusedEntrySubMap[?"level"];
+			var focusedEntryOrder = focusedEntrySubMap[?"order"];
+			
+			if (keyboard_check_released(vk_left)) {
+				var newEntryToFocus = "";
+				var sameLevelList = ds_list_create();
+				var entryList = treeSubMap[?"setIDList"];
+				var entryListSize = ds_list_size(entryList);
+				for(var i = 0 ; i < entryListSize; i++){
+					var currentEntry = entryList[|i];
+					var entrySubMap = global.treeMap[?currentEntry];
+					var entryLevel = entrySubMap[?"level"];
+					if(entryLevel == focusedEntryLevel){
+						scr_addToListOnce(sameLevelList,currentEntry)
+					}
+				}
+				var sameLevelListSize = ds_list_size(sameLevelList);
+				var maxEntryLevel = -1;
+				var closestNode = "";
+				for(var i  = 0; i < sameLevelListSize; i++){
+					var currentEntry = sameLevelList[|i];
+					var entrySubMap = global.treeMap[?currentEntry];
+					var entryOrder = entrySubMap[?"order"];
+					if( entryOrder < focusedEntryOrder && entryOrder > maxEntryLevel){
+							closestNode = currentEntry;
+							maxEntryLevel = entryOrder;
+					}			
+				}
+				ds_list_destroy(sameLevelList);
+				if(closestNode != "" && is_string(closestNode)){
+					obj_chain.currentFocusedEntryID = closestNode;
+					obj_control.updateScroll = true;
+				}
+			
+			}
+			
+			if (keyboard_check_released(vk_right)) {
+				var newEntryToFocus = "";
+				var sameLevelList = ds_list_create();
+				var entryList = treeSubMap[?"setIDList"];
+				var entryListSize = ds_list_size(entryList);
+				for(var i = 0 ; i < entryListSize; i++){
+					var currentEntry = entryList[|i];
+					var entrySubMap = global.treeMap[?currentEntry];
+					var entryLevel = entrySubMap[?"level"];
+					if(entryLevel == focusedEntryLevel){
+						scr_addToListOnce(sameLevelList,currentEntry)
+					}
+				}
+				var sameLevelListSize = ds_list_size(sameLevelList);
+				var maxEntryLevel = 99999999999999999;
+				var closestNode = "";
+				for(var i  = 0; i < sameLevelListSize; i++){
+					var currentEntry = sameLevelList[|i];
+					var entrySubMap = global.treeMap[?currentEntry];
+					var entryOrder = entrySubMap[?"order"];
+					if( entryOrder > focusedEntryOrder && entryOrder < maxEntryLevel){
+							closestNode = currentEntry;
+							maxEntryLevel = entryOrder;
+					}			
+				}
+				ds_list_destroy(sameLevelList);
+				if(closestNode != "" && is_string(closestNode)){
+					obj_chain.currentFocusedEntryID = closestNode;
+					obj_control.updateScroll = true;
+				}
+
+			}
+			
+			if (keyboard_check_released(vk_up)) {
+				var sourceLinkID = focusedEntrySubMap[?"sourceLink"];
+				if(sourceLinkID != "" && is_string(sourceLinkID)){
+					var linkSubMap = global.treeMap[?sourceLinkID];
+					obj_chain.currentFocusedEntryID = linkSubMap[?"source"];
+					
+				}
+			}
+			if (keyboard_check_released(vk_down)) {
+				var goalLinkID = focusedEntrySubMap[?"goalLinkList"][|0];
+				if(goalLinkID != "" && is_string(goalLinkID)){
+					var linkSubMap = global.treeMap[?goalLinkID];
+					obj_chain.currentFocusedEntryID = linkSubMap[?"goal"];
+				}
+			}
 		}
 	}
-	scrollHorPlusX = clamp(scrollHorPlusX, -maxPlusX + windowWidth, 0);
-	*/
+	
+	if(obj_control.updateScroll){
+		if(obj_chain.currentFocusedEntryID != ""){
+			var entrySubMap =  global.treeMap[?obj_chain.currentFocusedEntryID];
+			var entryX = mean(entrySubMap[?"entryX1"],entrySubMap[?"entryX2"]);
+			if(entryX< x + originalPlusX + 50){
+				scrollHorPlusXDest += 50;
+			}
+			else if(entryX>  x + windowWidth - global.scrollBarWidth - 50){
+				scrollHorPlusXDest -= 50;
+			}
+			
+			if(x + originalPlusX + 50 < entryX and entryX < x + windowWidth - global.scrollBarWidth - 50){
+				obj_control.updateScroll = false;
+			}
+		}
+		
+	}
+	
 
 	
 	if(keyboard_check_released(vk_escape)){
