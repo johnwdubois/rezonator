@@ -43,8 +43,8 @@ function scr_drawStack(unitID, unitSubMap, camWidth, pixelY){
 				}
 			}
 		}
-		else if (unitInRect) {
-			draw_set_color(c_blue);
+		else if (unitInRect && obj_toolPane.currentMode != obj_toolPane.modeRead) {
+			draw_set_color(global.colorThemeGrid_colSelected1);
 			draw_set_alpha(0.15);
 			drawStackRect = true;
 		}
@@ -56,7 +56,7 @@ function scr_drawStack(unitID, unitSubMap, camWidth, pixelY){
 
 	// draw the rectangle for this stack, if necessary
 	if (drawStackRect) {
-		draw_rectangle(stackRectX1, stackRectY1, stackRectX2, stackRectY2, false);
+		draw_rectangle(stackRectX1, stackRectY1-1, stackRectX2, stackRectY2-2, false);
 	}
 	
 	if(obj_control.unitFlash > 0 and unitID == obj_control.unitToFlash){

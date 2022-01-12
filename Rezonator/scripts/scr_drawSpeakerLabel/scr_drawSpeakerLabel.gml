@@ -46,7 +46,7 @@ function scr_drawSpeakerLabel(unitID, unitSubMap, pixelY) {
 		
 		// draw rectangle
 		draw_set_color(sectionColor);
-		draw_rectangle(sectionRectX1, sectionRectY1, sectionRectX2, sectionRectY2, false);
+		draw_rectangle(sectionRectX1, sectionRectY1-1, sectionRectX2, sectionRectY2, false);
 		
 
 		
@@ -138,6 +138,8 @@ function scr_drawSpeakerLabel(unitID, unitSubMap, pixelY) {
 		}
 
 	}
+	
+
 	
 	
 }

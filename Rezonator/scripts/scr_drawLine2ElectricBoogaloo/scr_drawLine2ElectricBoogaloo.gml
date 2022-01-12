@@ -184,9 +184,22 @@ function scr_drawLine2ElectricBoogaloo(){
 	var speakerLabelColXListSize = ds_list_size(speakerLabelColXList);
 	for (var i = 0; i < speakerLabelColXListSize; i++) {
 		var currentSectionX2 = speakerLabelColXList[| i];
+		if( i == 0 ){
+			currentSectionX2 -= 1;
+		}
 		draw_set_color(global.colorThemeBG);
 		draw_line(currentSectionX2, wordTopMargin, currentSectionX2, camHeight);
 	}
+	
+	
+	if(is_string(obj_control.hoverUnitID) && obj_control.hoverUnitID != "" && !mouse_check_button(mb_left) && obj_toolPane.currentMode != obj_toolPane.modeRead){
+		var currentUnitSubMap = global.nodeMap[? obj_control.hoverUnitID];
+		var unitY1 = floor(currentUnitSubMap[? "pixelY"] - gridSpaceVertical/2 -1);
+		var unitY2 = floor(currentUnitSubMap[? "pixelY"] + gridSpaceVertical/2 -3);
+		draw_set_color(merge_color(global.colorThemeGrid_colSelected1, c_white, 0.5));
+		draw_rectangle(0,unitY1,obj_toolPane.x , unitY2, true);
+	}
+
 	
 	// set wordLeftMargin
 	wordLeftMargin = speakerLabelColXList[| speakerLabelColXListSize - 1];
