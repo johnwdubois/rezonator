@@ -1,4 +1,7 @@
 function scr_entryTagMapOptions(optionSelected) {
+	
+	// check if user is clearing tag
+	var clearTag = (optionSelected == "menu_clear");
 
 	if (optionSelected == "option_add-to-tag-set"){
 
@@ -40,7 +43,8 @@ function scr_entryTagMapOptions(optionSelected) {
 						if(entryTokenID == obj_control.rightClickID){
 							var tagMap = entrySubMap[?"tagMap"];
 							if(scr_isNumericAndExists(tagMap,ds_type_map)){
-								tagMap[?obj_control.tokenFieldToChange] = optionSelected;
+								var newTagValue = clearTag ? "" : optionSelected;
+								tagMap[?obj_control.tokenFieldToChange] = newTagValue;
 							}	
 						}
 					}
@@ -48,9 +52,11 @@ function scr_entryTagMapOptions(optionSelected) {
 			}
 		}
 		
-		with(obj_panelPane){
-			functionField_entryTagSelected = optionSelected;
-			functionField_entryFieldSelected = obj_control.tokenFieldToChange;
+		if (!clearTag) {
+			with(obj_panelPane){
+				functionField_entryTagSelected = optionSelected;
+				functionField_entryFieldSelected = obj_control.tokenFieldToChange;
+			}
 		}
 		
 		obj_control.tokenFieldToChange = "";

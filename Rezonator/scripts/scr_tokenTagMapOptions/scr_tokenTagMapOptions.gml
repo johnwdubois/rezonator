@@ -1,4 +1,7 @@
 function scr_tokenTagMapOptions(optionSelected) {
+	
+	// check if user is clearing tag
+	var clearTag = (optionSelected == "menu_clear");
 
 	if (optionSelected == "option_add-to-tag-set"){
 
@@ -42,17 +45,20 @@ function scr_tokenTagMapOptions(optionSelected) {
 						steam_set_achievement("SA_tag-token");
 					}
 				}
-				tokenTagMap[? obj_control.tokenFieldToChange] = optionSelected;
+				var newTagValue = clearTag ? "" : optionSelected;
+				tokenTagMap[? obj_control.tokenFieldToChange] = newTagValue;
 			}
-		
-			with(obj_panelPane){
-				if(type == "token"){
-					functionField_tokenTagSelected = optionSelected;
-					functionField_tokenFieldSelected = obj_control.tokenFieldToChange;
-				}
-				else{
-					functionField_chunkTagSelected = optionSelected;
-					functionField_chunkFieldSelected = obj_control.tokenFieldToChange;
+			
+			if (!clearTag) {
+				with(obj_panelPane){
+					if(type == "token"){
+						functionField_tokenTagSelected = optionSelected;
+						functionField_tokenFieldSelected = obj_control.tokenFieldToChange;
+					}
+					else{
+						functionField_chunkTagSelected = optionSelected;
+						functionField_chunkFieldSelected = obj_control.tokenFieldToChange;
+					}
 				}
 			}
 			repeatCounter++;

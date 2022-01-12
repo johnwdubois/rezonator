@@ -2,7 +2,10 @@
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
 function scr_chunk1To1TagOptions(optionSelected){
 	
-		// check to see if the user is trying to create a new tag
+	// check if user is clearing tag
+	var clearTag = (optionSelected == "menu_clear");
+	
+	// check to see if the user is trying to create a new tag
 	if (optionSelected == "option_add-to-tag-set") {
 		obj_control.newCustomTagChunk = true;
 		obj_control.dialogueBoxActive = true;
@@ -24,11 +27,14 @@ function scr_chunk1To1TagOptions(optionSelected){
 	if (!scr_isNumericAndExists(chunkTagMap, ds_type_map)) exit;
 	
 	// set the chunk tag
-	chunkTagMap[? obj_control.chunk1to1FieldToChange] = optionSelected;
+	var newTagValue = clearTag ? "" : optionSelected;
+	chunkTagMap[? obj_control.chunk1to1FieldToChange] = newTagValue;
 	
-	with(obj_panelPane){
-		functionField_chunkTagSelected = optionSelected;
-		functionField_chunkFieldSelected = obj_control.chunk1to1FieldToChange;
+	if (!clearTag) {
+		with(obj_panelPane){
+			functionField_chunkTagSelected = optionSelected;
+			functionField_chunkFieldSelected = obj_control.chunk1to1FieldToChange;
+		}
 	}
 	
 }

@@ -1,6 +1,9 @@
 // Script assets have changed for v2.3.0 see
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
 function scr_linkTagOptions(optionSelected){
+	
+	// check if user is clearing tag
+	var clearTag = (optionSelected == "menu_clear");
 
 	if(optionSelected == "msg_create_tag"){
 		obj_control.newCustomTagLink = true;
@@ -17,10 +20,13 @@ function scr_linkTagOptions(optionSelected){
 		if (!scr_isNumericAndExists(linkSubMap, ds_type_map)) exit;
 		var linkTagMap = linkSubMap[? "tagMap"];
 		if (!scr_isNumericAndExists(linkTagMap, ds_type_map)) exit;
-		linkTagMap[? obj_control.linkFieldSelected] = optionSelected;
-		with(obj_panelPane){
-			functionField_linkFieldSelected = obj_control.linkFieldSelected;
-			functionField_linkTagSelected = optionSelected;
+		var newTagValue = clearTag ? "" : optionSelected;
+		linkTagMap[? obj_control.linkFieldSelected] = newTagValue;
+		if (!clearTag) {
+			with(obj_panelPane){
+				functionField_linkFieldSelected = obj_control.linkFieldSelected;
+				functionField_linkTagSelected = optionSelected;
+			}
 		}
 	}
 	with (obj_dropDown) instance_destroy();

@@ -9,6 +9,11 @@ function scr_dialogueBoxNewCustomTagLink() {
 		show_debug_message("scr_dialogueBoxNewCustomTagLink ... fieldSubMap does not exist");
 		exit;
 	}
+	var newTag = string(obj_control.inputText);
+	if (!is_string(newTag) || string_length(string(newTag)) < 1) {
+		show_debug_message("new tag is invalid or blank string, exiting...");
+		exit;
+	}
 	
 	// get the tagset for this field
 	var tagSet = fieldSubMap[? "tagSet"];
@@ -18,7 +23,7 @@ function scr_dialogueBoxNewCustomTagLink() {
 	}
 	
 	// add new tag to this field's tagSet
-	scr_addToListOnce(tagSet, obj_control.inputText);
+	scr_addToListOnce(tagSet, newTag);
 	
 	
 	
@@ -29,12 +34,12 @@ function scr_dialogueBoxNewCustomTagLink() {
 		if(scr_isNumericAndExists(linkSubMap, ds_type_map)){
 			var linkTagMap = linkSubMap[? "tagMap"];
 			// set the new value in this unit's tagmap
-			linkTagMap[? obj_control.tokenFieldToChange] = obj_control.inputText;
+			linkTagMap[? obj_control.tokenFieldToChange] = newTag;
 		}
 		with(obj_panelPane){ functionTree_treeLinkSelected = ""; }
 		with(obj_panelPane){
 			functionField_linkFieldSelected = obj_control.tokenFieldToChange;
-			functionField_linkTagSelected = obj_control.inputText;
+			functionField_linkTagSelected = newTag;
 		}
 		
 	}

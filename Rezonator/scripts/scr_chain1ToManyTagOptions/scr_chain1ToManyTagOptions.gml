@@ -14,18 +14,19 @@ function scr_chain1ToManyTagOptions(optionSelected){
 		exit;
 	}
 	
+	// check if user is clearing tag
+	var clearTag = (optionSelected == "menu_clear");
+	
 	// make sure entry exists in nodeMap and get its submap
 	var entryToChange = obj_control.chain1toManyEntryToChange;
 	var fieldToChange = obj_control.chain1toManyFieldToChange;
 	show_debug_message("scr_chain1ToManyTagOptions() ... changing entry: " + string(entryToChange) + " field: " + string(fieldToChange) + " to option: " + string(optionSelected));
 	var entrySubMap = ds_map_find_value(global.nodeMap, entryToChange);
-	if (!is_numeric(entrySubMap)) exit;
-	if (!ds_exists(entrySubMap, ds_type_map)) exit;
+	if (!scr_isNumericAndExists(entrySubMap, ds_type_map)) exit;
 	
 	// get this entry's tagmap
 	var entryTagMap = ds_map_find_value(entrySubMap, "tagMap");
-	if (!is_numeric(entryTagMap)) exit;
-	if (!ds_exists(entryTagMap, ds_type_map)) exit;
+	if (!scr_isNumericAndExists(entryTagMap, ds_type_map)) exit;
 	
 	if (optionSelected == "option-remove-tag-set") {
 		// if user selected "Remove from tag set" then we delete the tag from this entry's tagmap
@@ -33,10 +34,13 @@ function scr_chain1ToManyTagOptions(optionSelected){
 	}
 	else {
 		// set the selected tag in this entry's tagmap
-		scr_setMap(entryTagMap, fieldToChange, optionSelected);
-		with(obj_panelPane){
-			functionField_entryTagSelected = optionSelected;
-			functionField_entryFieldSelected = fieldToChange;
+		var newTagValue = clearTag ? "" : optionSelected;
+		scr_setMap(entryTagMap, fieldToChange, newTagValue);
+		if (!clearTag) {
+			with(obj_panelPane){
+				functionField_entryTagSelected = optionSelected;
+				functionField_entryFieldSelected = fieldToChange;
+			}
 		}
 	}
 	

@@ -1,5 +1,7 @@
-function scr_unitTagMapOptions() {
-	var optionSelected = argument[0];
+function scr_unitTagMapOptions(optionSelected) {
+	
+	// check if user is clearing tag
+	var clearTag = (optionSelected == "menu_clear");
 
 	if (optionSelected == "option_add-to-tag-set") {
 
@@ -22,12 +24,15 @@ function scr_unitTagMapOptions() {
 			var unitTagMap = unitSubMap[? "tagMap"];
 			show_debug_message("unitFieldToChange:  " +  string(obj_control.unitFieldToChange));
 			// set the new value in this token's tagmap
-			unitTagMap[? obj_control.unitFieldToChange] = optionSelected;
+			var newTagValue = clearTag ? "" : optionSelected;
+			unitTagMap[? obj_control.unitFieldToChange] = newTagValue;
 		}
 		
-		with(obj_panelPane){
-			functionField_unitTagSelected = optionSelected;
-			functionField_unitFieldSelected = obj_control.unitFieldToChange;
+		if (!clearTag) {
+			with(obj_panelPane){
+				functionField_unitTagSelected = optionSelected;
+				functionField_unitFieldSelected = obj_control.unitFieldToChange;
+			}
 		}
 		
 		obj_control.unitFieldToChange = "";

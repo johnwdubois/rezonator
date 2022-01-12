@@ -13,6 +13,11 @@ function scr_dialogueBoxNewCustomTagToken() {
 		var fieldSubMap = tokenTagMap[? obj_control.tokenFieldToChange];
 	}
 	
+	var newTag = string(obj_control.inputText);
+	if (!is_string(newTag) || string_length(string(newTag)) < 1) {
+		show_debug_message("new tag is invalid or blank string, exiting...");
+		exit;
+	}
 	
 	
 	
@@ -29,7 +34,7 @@ function scr_dialogueBoxNewCustomTagToken() {
 	}
 	
 	// add new tag to this field's tagSet
-	scr_addToListOnce(tagSet, obj_control.inputText);
+	scr_addToListOnce(tagSet, newTag);
 	
 	//add this to selected token if not in tag pane
 	if(obj_panelPane.functionChainList_currentTab != obj_panelPane.functionChainList_tabField){
@@ -39,7 +44,7 @@ function scr_dialogueBoxNewCustomTagToken() {
 			if(scr_isNumericAndExists(chunkSubMap, ds_type_map)){
 				var chunkTagMap = chunkSubMap[? "tagMap"];
 				// set the new value in this token's tagmap
-				chunkTagMap[? obj_control.chunk1to1FieldToChange] = obj_control.inputText;
+				chunkTagMap[? obj_control.chunk1to1FieldToChange] = newTag;
 			}
 			obj_control.chunk1to1ChunkToChange = "";
 		}
@@ -55,7 +60,7 @@ function scr_dialogueBoxNewCustomTagToken() {
 					}
 				}
 
-				tokenTagMap[? obj_control.tokenFieldToChange] = obj_control.inputText;
+				tokenTagMap[? obj_control.tokenFieldToChange] = newTag;
 			}
 			obj_control.tokenToChange = "";
 		}

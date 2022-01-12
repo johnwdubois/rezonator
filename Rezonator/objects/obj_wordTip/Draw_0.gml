@@ -153,6 +153,15 @@ if ((obj_control.hoverTokenID != "" or obj_control.hoverUnitID != "" or obj_cont
 			var rectY2 = rectY1 + lineHeight;
 			draw_set_color(merge_color(c_yellow, global.colorThemeBG, 0.4));
 			draw_rectangle(boxX1, rectY1, boxX2, rectY2, false);
+			
+			if (obj_toolPane.currentMode == obj_toolPane.modeRead) {
+				var selectedTag = obj_panelPane.functionField_tokenTagSelected;
+				if (IDType == "token") {
+					if (is_string(selectedTag) && selectedTag != "" && selectedTag != fieldValue) {
+						scr_createTooltip(boxX2, mean(rectY1, rectY2), "Quick tag: " + string(selectedTag), obj_tooltip.arrowFaceLeft);
+					}
+				}
+			}
 		}
 		
 

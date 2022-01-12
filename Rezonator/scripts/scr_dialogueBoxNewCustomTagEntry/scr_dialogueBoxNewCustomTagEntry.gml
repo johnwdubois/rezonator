@@ -7,6 +7,10 @@ function scr_dialogueBoxNewCustomTagEntry(){
 	var fieldSubMap = global.entryFieldMap[? fieldToChange];
 	if (!scr_isNumericAndExists(fieldSubMap, ds_type_map)) exit;
 	var newTag = string(obj_control.inputText);
+	if (!is_string(newTag) || string_length(string(newTag)) < 1) {
+		show_debug_message("new tag is invalid or blank string, exiting...");
+		exit;
+	}
 	
 	show_debug_message("scr_dialogueBoxNewCustomTagEntry() ... fieldToChange: " + string(fieldToChange) + ", newTag: " + string(newTag));
 	
@@ -24,7 +28,7 @@ function scr_dialogueBoxNewCustomTagEntry(){
 		if(scr_isNumericAndExists(entrySubMap, ds_type_map)){
 			var entryTagMap = entrySubMap[? "tagMap"];
 			// set the new value in this entry's tagmap
-			entryTagMap[? obj_control.chain1toManyFieldToChange] = obj_control.inputText;
+			entryTagMap[? obj_control.chain1toManyFieldToChange] = newTag;
 		}
 		obj_control.chain1toManyEntryToChange = "";
 	}

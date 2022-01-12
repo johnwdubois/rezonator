@@ -117,6 +117,7 @@ function scr_panelPane_drawUnits1toManyInnerLoop(tokenID, drawDropDowns, strHeig
 						var dropDownOptionList = ds_list_create();
 						ds_list_copy(dropDownOptionList, tagSet);
 						ds_list_insert(dropDownOptionList, 0, "option_add-to-tag-set");
+						ds_list_insert(dropDownOptionList, 1, "menu_clear");
 
 						obj_control.tokenToChange = tokenID;
 						obj_control.tokenFieldToChange = currentField;

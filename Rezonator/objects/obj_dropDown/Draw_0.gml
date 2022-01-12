@@ -242,8 +242,11 @@ for (var i = 0; i < optionListSize; i++) {
 	
 	// draw BG rectangle for each option
 	var optionBGColor = global.colorThemeBG;
-	if (optionText == "option-remove-tag-set") {
+	if (optionText == "option-remove-tag-set" || optionText == "menu_clear") {
 		optionBGColor = merge_color(global.colorThemeBG, make_color_rgb(247, 129, 148), 0.5);
+	}
+	else if (optionText == "option_add-to-tag-set") {
+		optionBGColor = merge_color(global.colorThemeBG, make_color_rgb(114, 230, 110), 0.5);
 	}
 	if (mouseoverCurrentOption or (optionCurrent == i && !mouseOverDropDown)) {
 		optionBGColor = c_ltblue;
