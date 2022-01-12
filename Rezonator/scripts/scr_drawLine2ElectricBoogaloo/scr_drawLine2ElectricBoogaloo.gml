@@ -191,8 +191,9 @@ function scr_drawLine2ElectricBoogaloo(){
 		draw_line(currentSectionX2, wordTopMargin, currentSectionX2, camHeight);
 	}
 	
-	
-	if(is_string(obj_control.hoverUnitID) && obj_control.hoverUnitID != "" && !mouse_check_button(mb_left) && obj_toolPane.currentMode != obj_toolPane.modeRead){
+	//draw the hover lines for each unit
+	if(is_string(obj_control.hoverUnitID) && obj_control.hoverUnitID != "" && !mouse_check_button(mb_left)
+		&& obj_toolPane.currentMode != obj_toolPane.modeRead && !instance_exists(obj_dropDown) && !instance_exists(obj_dialogueBox)){
 		var currentUnitSubMap = global.nodeMap[? obj_control.hoverUnitID];
 		var unitY1 = floor(currentUnitSubMap[? "pixelY"] - gridSpaceVertical/2 -1);
 		var unitY2 = floor(currentUnitSubMap[? "pixelY"] + gridSpaceVertical/2 -3);
