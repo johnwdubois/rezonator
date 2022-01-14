@@ -190,10 +190,21 @@ function scr_drawLine2ElectricBoogaloo(){
 		draw_set_color(global.colorThemeBG);
 		draw_line(currentSectionX2, wordTopMargin, currentSectionX2, camHeight);
 	}
+	var hoverLine = false;
+	if (instance_exists(obj_audioUI)) {
+		if (obj_audioUI.audioJumpOnWordClick && unitClosestToMouse != "" && !obj_control.mouseoverPanelPane && !obj_toolPane.mouseOverToolPane && !instance_exists(obj_dropDown) && !instance_exists(obj_dialogueBox)) {
+			hoverLine = true;
+			obj_control.hoverUnitID = unitClosestToMouse;
+			if(keyboard_check_released(vk_space)){
+				scr_audioJumpToUnit(unitClosestToMouse)
+			}
+		}
+	}
+	
 	
 	//draw the hover lines for each unit
-	if(is_string(obj_control.hoverUnitID) && obj_control.hoverUnitID != "" && !mouse_check_button(mb_left)
-		&& obj_toolPane.currentMode != obj_toolPane.modeRead && !instance_exists(obj_dropDown) && !instance_exists(obj_dialogueBox)){
+	if(hoverLine or (is_string(obj_control.hoverUnitID) && obj_control.hoverUnitID != "" && !mouse_check_button(mb_left)
+		&& obj_toolPane.currentMode != obj_toolPane.modeRead && !instance_exists(obj_dropDown) && !instance_exists(obj_dialogueBox))){
 		var currentUnitSubMap = global.nodeMap[? obj_control.hoverUnitID];
 		var unitY1 = floor(currentUnitSubMap[? "pixelY"] - gridSpaceVertical/2 -1);
 		var unitY2 = floor(currentUnitSubMap[? "pixelY"] + gridSpaceVertical/2 -3);
