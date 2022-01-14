@@ -58,14 +58,17 @@ function scr_panelPane_drawChainsList() {
 	with (obj_panelPane) leftPaneStrHeight = strHeight;
 	
 
+
 	// Set text margin area
 	var filterRectMargin = 8;
 	var filterRectSize = (strHeight / 2) + 5;
-	var checkboxColX = x;
+	
 	var checkboxColWidth = filterRectMargin + (filterRectSize * 2);
 	var checkboxSize = checkboxColWidth * 0.35;
-	var optionsColX = checkboxColX + checkboxColWidth;
-	var optionsColWidth = windowWidth * 0.14;
+	
+	var optionsColX = x;
+	var optionsColWidth = checkboxColWidth/1.3 * 3;
+
 	var numColX = optionsColX + optionsColWidth;
 	var numColWidth = windowWidth * 0.07;
 	var nameColX = numColX + numColWidth;
@@ -73,8 +76,10 @@ function scr_panelPane_drawChainsList() {
 	var textColX = nameColX + nameColWidth;
 	
 	
-	var filterChainX = optionsColX + (optionsColWidth * 0.33);
-	var visibleChainX = optionsColX + (optionsColWidth * 0.66);
+
+	
+	var filterChainX = optionsColX + (optionsColWidth * 0.50);
+	var visibleChainX = optionsColX + (optionsColWidth * 0.75);
 	var alignChainX = optionsColX + (optionsColWidth * 0.75); // alignChain button will be out of commission temporarily(?)
 	
 
@@ -174,7 +179,7 @@ function scr_panelPane_drawChainsList() {
 
 					
 					// get dimensions of checkbox rect
-					var checkboxRectX1 = checkboxColX + (checkboxColWidth / 2) - (checkboxSize / 2);
+					var checkboxRectX1 = optionsColX + (optionsColWidth *0.25) - (checkboxSize / 2);
 					var checkboxRectY1 = mean(chainNameRectY1, chainNameRectY2) - (checkboxSize / 2);
 					var checkboxRectX2 = checkboxRectX1 + checkboxSize;
 					var checkboxRectY2 = checkboxRectY1 + checkboxSize;
@@ -561,34 +566,29 @@ function scr_panelPane_drawChainsList() {
 		//if (functionChainList_currentTab != functionChainList_tabStackBrush && i == 0) continue;
 		
 		// skip text column unless this is a stack
-		if (i == 4 && functionChainList_currentTab != functionChainList_tabStackBrush) continue;
+		if (i == 3 && functionChainList_currentTab != functionChainList_tabStackBrush) continue;
 		
 		// get column data
 		var headerRectX1 = 0;
 		var colWidth = 0;
 		var colText = "";
 		if (i == 0) {
-			headerRectX1 = checkboxColX;
-			colWidth = checkboxColWidth;
-			colText = "";
-		}
-		else if (i == 1) {
 			headerRectX1 = optionsColX;
 			colWidth = optionsColWidth;
 			colText = "";
 		}
-		else if (i == 2) {
+		else if (i == 1) {
 			headerRectX1 = numColX;
 			colWidth = numColWidth;
 			colText = "#";
 		}
-		else if (i == 3) {
+		else if (i == 2) {
 			headerRectX1 = nameColX;
 			colWidth = nameColWidth;
 			if (functionChainList_currentTab != functionChainList_tabStackBrush) colWidth = windowWidth - headerRectX1;
 			colText = "name";
 		}
-		else if (i == 4) {
+		else if (i == 3) {
 			headerRectX1 = textColX;
 			colWidth = windowWidth - headerRectX1;
 			colText = "tag_text";
@@ -611,7 +611,7 @@ function scr_panelPane_drawChainsList() {
 		if (i == 0) {
 			var allChainsSelected = (ds_list_size(listOfChains) == ds_list_size(selectedList) && ds_list_size(listOfChains) > 0);
 			var someChainsSelected = (ds_list_size(listOfChains) > ds_list_size(selectedList) && ds_list_size(selectedList) > 0 && ds_list_size(listOfChains) > 0);
-			var headerCheckboxX1 = mean(headerRectX1, headerRectX2) - (checkboxSize / 2);
+			var headerCheckboxX1 = optionsColX + (optionsColWidth* 0.25) - (checkboxSize / 2);
 			var headerCheckboxY1 = mean(headerRectY1, headerRectY2) - (checkboxSize / 2);
 			var headerCheckboxX2 = headerCheckboxX1 + checkboxSize;
 			var headerCheckboxY2 = headerCheckboxY1 + checkboxSize;
@@ -697,7 +697,7 @@ function scr_panelPane_drawChainsList() {
 		
 		
 		// more options button
-		if ((i == 4 && functionChainList_currentTab == functionChainList_tabStackBrush) or (i == 3 && functionChainList_currentTab != functionChainList_tabStackBrush)) {
+		if ((i == 3 && functionChainList_currentTab == functionChainList_tabStackBrush) or (i == 2 && functionChainList_currentTab != functionChainList_tabStackBrush)) {
 			var moreOptionsX = x + windowWidth - sprite_get_width(spr_moreOptions);
 			var moreOptionsY = mean(headerRectY1, headerRectY2);
 			var moreOptionsClickable = (ds_list_size(selectedList) >= 1);
