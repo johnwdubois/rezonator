@@ -184,7 +184,7 @@ function scr_getSearchLists(searchTermList){
 			}
 		}
 	}
-	obj_control.regExCheck = false;
+
 
 	
 	ds_list_add(listOfResultLists,searchUnitList);

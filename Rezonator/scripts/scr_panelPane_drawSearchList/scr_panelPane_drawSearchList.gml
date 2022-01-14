@@ -5,11 +5,19 @@ function scr_panelPane_drawSearchList(){
 		
 	var strHeight = string_height("0") * 1.5;
 	var numColX = x;
-	var numColWidth = windowWidth * 0.1;
+	var numColWidth = windowWidth * 0.08;
 	var nameColX = numColX + numColWidth;
-	var nameColWidth = windowWidth * 0.3;
+	var nameColWidth = windowWidth * 0.2;
 	var termColX = nameColX + nameColWidth;
-	
+	var termColWidth = windowWidth * 0.17
+	var fieldColWidth = windowWidth * 0.1;
+	var fieldColX = termColX + termColWidth;
+	var rangeColWidth = windowWidth * 0.1;
+	var rangeColX = fieldColX + fieldColWidth;
+	var regExColWidth = windowWidth * 0.1;
+	var regExColX = rangeColX + rangeColWidth;
+	var caseSensitiveColWidth = windowWidth * 0.1;
+	var caseSensitiveColX = regExColX + regExColWidth;
 	
 	var deleteColWidth = clamp(windowWidth * 0.15, sprite_get_width(spr_trash), sprite_get_width(spr_trash) * 2);
 	var deleteColX = x + windowWidth - deleteColWidth - global.scrollBarWidth;
@@ -76,6 +84,10 @@ function scr_panelPane_drawSearchList(){
 		
 		var currentSearchName = currentSearchSubMap[? "name"];
 		var currentSearchTermList = currentSearchSubMap[? "searchTermList"];
+		var searchField = currentSearchSubMap[?"field"];
+		var searchRange = currentSearchSubMap[?"range"];
+		var searchRegEX = currentSearchSubMap[?"regex"];
+		var searchCaseSensitive = currentSearchSubMap[?"caseSensitive"];
 		var currentSearchSelected = (functionSearchList_searchSelected == currentSearch);
 		if(currentSearchSelected){
 			currentSelectedSearchIndex = i;
@@ -135,7 +147,33 @@ function scr_panelPane_drawSearchList(){
 		draw_set_color(textColor);
 		scr_adaptFont(scr_getStringOfList(currentSearchTermList), "M");
 		draw_text(floor(termColX + textBuffer) - clipX, textY - clipY, scr_getStringOfList(currentSearchTermList));
+		
+		
+		// parameter columns
+		draw_set_color(rectColor);
+		draw_rectangle(fieldColX - clipX, searchRectY1 - clipY, rangeColX - clipX, searchRectY2 - clipY, false);
+		draw_set_color(textColor);
+		draw_text(floor(fieldColX + textBuffer) - clipX, textY - clipY, string(searchField));
+		
+		draw_set_color(rectColor);
+		draw_rectangle(rangeColX - clipX, searchRectY1 - clipY, regExColX - clipX, searchRectY2 - clipY, false);
+		draw_set_color(textColor);
+		draw_text(floor(rangeColX + textBuffer) - clipX, textY - clipY, string(scr_get_translation(searchRange)));
+		
+		draw_set_color(rectColor);
+		draw_rectangle(regExColX - clipX, searchRectY1 - clipY, caseSensitiveColX - clipX, searchRectY2 - clipY, false);
+		draw_set_color(textColor);
+		if(searchRegEX){
+			draw_sprite_ext(spr_checkmark, 0, mean(regExColX, regExColX+ regExColWidth)- clipX, mean(searchRectY1,searchRectY2) - clipY,1,1,0,global.colorThemeBorders,1);
+		}
 
+		
+		draw_set_color(rectColor);
+		draw_rectangle(caseSensitiveColX - clipX, searchRectY1 - clipY, deleteColX - clipX, searchRectY2 - clipY, false);
+		draw_set_color(textColor);
+		if(searchCaseSensitive){
+			draw_sprite_ext(spr_checkmark, 0, mean(caseSensitiveColX, caseSensitiveColX+ caseSensitiveColWidth)- clipX, mean(searchRectY1,searchRectY2) - clipY,1,1,0,global.colorThemeBorders,1);
+		}
 
 
 	
@@ -237,7 +275,7 @@ function scr_panelPane_drawSearchList(){
 	
 	// draw column headers
 	var headerPlusX = 0;
-	for (var i = 0; i < 3; i++) {
+	for (var i = 0; i <= 6; i++) {
 		
 		// get column data
 		var colWidth = 0;
@@ -251,9 +289,26 @@ function scr_panelPane_drawSearchList(){
 			colText = "name";
 		}
 		else if (i == 2) {
-			colWidth = windowWidth - termColX;
+			colWidth = termColWidth;
 			colText = "searched_words";
 		}
+		else if (i == 3) {
+			colWidth = fieldColWidth;
+			colText = "option_field";
+		}
+		else if (i == 4) {
+			colWidth = rangeColWidth;
+			colText = "option_range";
+		}
+		else if (i == 5) {
+			colWidth = regExColWidth;
+			colText = "(.*)";
+		}
+		else if (i == 6) {
+			colWidth = rangeColWidth;
+			colText = "Aa";
+		}
+
 		
 		// get header coordinates
 		var headerRectX1 = x + headerPlusX;
@@ -265,12 +320,10 @@ function scr_panelPane_drawSearchList(){
 		draw_set_color(global.colorThemeBG);;
 		draw_rectangle(headerRectX1, headerRectY1, headerRectX2, headerRectY2, false);
 		draw_set_color(global.colorThemeBorders);
-		if(i == 0){
-			draw_line(headerRectX2, headerRectY1, headerRectX2, headerRectY2);
-		}
-		else{
-			draw_rectangle(headerRectX1, headerRectY1, headerRectX2, headerRectY2, true);
-		}
+		//draw vertical dividing line
+		draw_line(headerRectX1, headerRectY1, headerRectX1, headerRectY2)
+		//draw horizontal diving line
+		draw_line(x, headerRectY2, x+windowWidth, headerRectY2);
 		// draw header text
 		var headerTextX = floor(headerRectX1 + textBuffer);
 		var headerTextY = floor(mean(headerRectY1, headerRectY2));

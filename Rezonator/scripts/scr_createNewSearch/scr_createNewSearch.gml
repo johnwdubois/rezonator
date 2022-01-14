@@ -61,9 +61,13 @@ function scr_createNewSearch(searchTermList){
 					ds_map_add(subMap, "name", searchName);
 	
 					// add range settings to subMap
+					show_debug_message("field:  "+ string(obj_control.searchField))
 					ds_map_add(subMap, "field", obj_control.searchField);
+					show_debug_message("range:  "+ string(scr_get_translation(obj_control.searchRange)))
 					ds_map_add(subMap, "range", obj_control.searchRange);
+					show_debug_message("regex:  "+ string(obj_control.regExCheck))
 					ds_map_add(subMap, "regex", obj_control.regExCheck);
+					show_debug_message("caseSensitive:  "+ string(obj_control.caseSensitive))
 					ds_map_add(subMap, "caseSensitive", obj_control.caseSensitive);
 					
 					
