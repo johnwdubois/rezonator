@@ -67,7 +67,8 @@ function scr_panelPane_drawChainsList() {
 	var checkboxSize = checkboxColWidth * 0.35;
 	
 	var optionsColX = x;
-	var optionsColWidth = checkboxColWidth/1.3 * 3;
+	var optionsColWidth = checkboxColWidth/1.3 * 4;
+	var moreOptionsX = optionsColX + (optionsColWidth * 0.8);
 
 	var numColX = optionsColX + optionsColWidth;
 	var numColWidth = windowWidth * 0.07;
@@ -78,8 +79,8 @@ function scr_panelPane_drawChainsList() {
 	
 
 	
-	var filterChainX = optionsColX + (optionsColWidth * 0.50);
-	var visibleChainX = optionsColX + (optionsColWidth * 0.75);
+	var filterChainX = optionsColX + (optionsColWidth * 0.4);
+	var visibleChainX = optionsColX + (optionsColWidth * 0.6);
 	var alignChainX = optionsColX + (optionsColWidth * 0.75); // alignChain button will be out of commission temporarily(?)
 	
 
@@ -175,11 +176,12 @@ function scr_panelPane_drawChainsList() {
 					var optionsChainY = floor(mean(chainNameRectY1, chainNameRectY2));
 					var mouseoverFilterChain = scr_pointInCircleClippedWindow(mouse_x, mouse_y, filterChainX, optionsChainY, optionsIconRad) && !mouseoverCancel && ableToMouseoverOption && !mouseoverHeaderRegion;
 					var mouseoverVisibleChain = scr_pointInCircleClippedWindow(mouse_x, mouse_y, visibleChainX, optionsChainY, optionsIconRad) && !mouseoverCancel && !mouseoverFilterChain && ableToMouseoverOption && !mouseoverHeaderRegion;
+					var mouseoverMoreChain = scr_pointInCircleClippedWindow(mouse_x, mouse_y, moreOptionsX, optionsChainY, optionsIconRad) && !mouseoverCancel && !mouseoverFilterChain && ableToMouseoverOption && !mouseoverVisibleChain && !mouseoverHeaderRegion;
 					var mouseoverChainNameRect = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, chainNameRectX1, chainNameRectY1, chainNameRectX2, chainNameRectY2) && !mouseoverHeaderRegion && !mouseoverScrollBar && !mouseoverFilterChain && !mouseoverVisibleChain;
 
 					
 					// get dimensions of checkbox rect
-					var checkboxRectX1 = optionsColX + (optionsColWidth *0.25) - (checkboxSize / 2);
+					var checkboxRectX1 = optionsColX + (optionsColWidth *0.2) - (checkboxSize / 2);
 					var checkboxRectY1 = mean(chainNameRectY1, chainNameRectY2) - (checkboxSize / 2);
 					var checkboxRectX2 = checkboxRectX1 + checkboxSize;
 					var checkboxRectY2 = checkboxRectY1 + checkboxSize;
@@ -380,10 +382,48 @@ function scr_panelPane_drawChainsList() {
 						}
 						scr_createTooltip(alignChainX, optionsChainY + optionsIconRad, scr_get_translation("help_label_align"), obj_tooltip.arrowFaceUp);
 					}
+					// mouseover & click on more
+					if (mouseoverMoreChain) {
+						ableToMouseoverOption = false;
+						draw_circle(moreOptionsX - clipX, optionsChainY - clipY, optionsIconRad, false);
+						if (mouse_check_button_released(mb_left)) {
+							
+							
+							// simulate right-click
+							scr_setValueForAllChains(tabChainType, "selected", false);
+							currentChainSubMap[? "selected"] = true;
+							currentChainSelected = true;
+							scr_addToListOnce(selectedList, currentChainID);
+
+							obj_chain.currentFocusedChainID = currentChainID;
+							obj_control.selectedChainID = obj_chain.currentFocusedChainID 
+							obj_control.rightClicked = true;
+						
+						
+							var dropDownOptionList = ds_list_create();
+							if (functionChainList_currentTab == functionChainList_tabStackBrush) {
+
+								ds_list_add(dropDownOptionList, "help_label_rename", "option_recolor", "help_label_delete_plain", "help_label_caption", "option_clip", "option_create-tree", "option_add-to-show");
+							
+								ds_list_add(dropDownOptionList, "Set Rez Map");
+							}
+							else {
+								ds_list_add(dropDownOptionList, "help_label_rename", "option_recolor", "help_label_delete_plain");
+							}
+							if (ds_list_size(dropDownOptionList) > 0 and obj_control.ableToCreateDropDown) {
+								scr_createDropDown(moreOptionsX, optionsChainY, dropDownOptionList, global.optionListTypeChainList);
+							}
+							
+							
+							
+						}
+						scr_createTooltip(moreOptionsX, optionsChainY + optionsIconRad, "More", obj_tooltip.arrowFaceUp);
+					}
 					
 					// draw filter/align/visible buttons
 					draw_sprite_ext(spr_filterIcons, !currentChainFiltered, filterChainX - clipX, optionsChainY - clipY, 1, 1, 0, global.colorThemeText, 1);
 					draw_sprite_ext(spr_toggleDraw, currentChainVisible, visibleChainX - clipX, optionsChainY - clipY, 1, 1, 0, global.colorThemeText, 1);
+					draw_sprite_ext(spr_dropDown, 0, moreOptionsX - clipX, optionsChainY - clipY, 1, 1, 0, global.colorThemeText, 1);
 					//if (functionChainList_currentTab == functionChainList_tabRezBrush) draw_sprite_ext(spr_align, !currentChainAlign, alignChainX - clipX, optionsChainY - clipY, 1, 1, 0, global.colorThemeText, 1);
 					
 					
@@ -611,7 +651,7 @@ function scr_panelPane_drawChainsList() {
 		if (i == 0) {
 			var allChainsSelected = (ds_list_size(listOfChains) == ds_list_size(selectedList) && ds_list_size(listOfChains) > 0);
 			var someChainsSelected = (ds_list_size(listOfChains) > ds_list_size(selectedList) && ds_list_size(selectedList) > 0 && ds_list_size(listOfChains) > 0);
-			var headerCheckboxX1 = optionsColX + (optionsColWidth* 0.25) - (checkboxSize / 2);
+			var headerCheckboxX1 = optionsColX + (optionsColWidth* 0.2) - (checkboxSize / 2);
 			var headerCheckboxY1 = mean(headerRectY1, headerRectY2) - (checkboxSize / 2);
 			var headerCheckboxX2 = headerCheckboxX1 + checkboxSize;
 			var headerCheckboxY2 = headerCheckboxY1 + checkboxSize;
@@ -698,7 +738,7 @@ function scr_panelPane_drawChainsList() {
 		
 		// more options button
 		if ((i == 3 && functionChainList_currentTab == functionChainList_tabStackBrush) or (i == 2 && functionChainList_currentTab != functionChainList_tabStackBrush)) {
-			var moreOptionsX = x + windowWidth - sprite_get_width(spr_moreOptions);
+			//x + windowWidth - sprite_get_width(spr_moreOptions);
 			var moreOptionsY = mean(headerRectY1, headerRectY2);
 			var moreOptionsClickable = (ds_list_size(selectedList) >= 1);
 			var mouseoverMoreOptions = point_in_circle(mouse_x, mouse_y, moreOptionsX, moreOptionsY, optionsIconRad) && moreOptionsClickable && !mouseoverCancel;
