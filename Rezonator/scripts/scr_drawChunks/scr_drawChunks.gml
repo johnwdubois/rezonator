@@ -124,17 +124,20 @@ function scr_drawChunks(){
 			currentChunkSubMap[? "y1"] = chunkRectY1;
 			currentChunkSubMap[? "x2"] = chunkRectX2;
 			currentChunkSubMap[? "y2"] = chunkRectY2;
-		
+			
+			var currentChunkInChainsListSize = ds_list_size(currentChunkInChainsList);
 		
 			// draw BG rect
 			draw_set_color(global.colorThemeBG);
 			draw_set_alpha(1);
-			draw_rectangle(chunkRectX1, chunkRectY1, chunkRectX2, chunkRectY2, false);
+			if(!obj_control.hideChunks or currentChunkInChainsListSize != 0 ){
+				draw_rectangle(chunkRectX1, chunkRectY1, chunkRectX2, chunkRectY2, false);
+			}
 		
 			// check whether this chunk is in a focused chain
 			var chunkInFocusedChain = false;
 			if (obj_chain.currentFocusedChainID != "") {
-				for (var k = 0; k < ds_list_size(currentChunkInChainsList); k++) {
+				for (var k = 0; k < currentChunkInChainsListSize; k++) {
 					if (obj_chain.currentFocusedChainID == currentChunkInChainsList[| k]) chunkInFocusedChain = true;
 				}
 			}

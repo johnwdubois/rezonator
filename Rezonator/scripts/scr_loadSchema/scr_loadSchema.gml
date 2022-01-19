@@ -12,7 +12,7 @@ function scr_loadSchema(autoload) {
 				fileName = global.rezonatorDirString + "/Schemas/Import/igt_schema.json";
 			}
 			else {
-				fileName = global.rezonatorDirString + "\\Schemas\\Import\\IGT Schema.json";
+				fileName = global.rezonatorDirString + "\\Schemas\\Import\\igt_scription.json";
 			}
 		}
 		else if (global.importType == global.importType_CSV) {
@@ -25,10 +25,10 @@ function scr_loadSchema(autoload) {
 		}
 		else if (global.importType == global.importType_CoNLLU) {
 			if (os_type == os_macosx) {
-				fileName = global.rezonatorDirString + "/Schemas/Import/conll-u_schema.json";
+				fileName = global.rezonatorDirString + "/Schemas/Import/conll_u.json";
 			}
 			else {
-				fileName = global.rezonatorDirString + "\\Schemas\\Import\\CoNLL-U Schema.json";
+				fileName = global.rezonatorDirString + "\\Schemas\\Import\\conll_u.json";
 			}
 		}
 		else {
