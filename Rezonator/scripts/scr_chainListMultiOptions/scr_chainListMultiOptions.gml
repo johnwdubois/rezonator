@@ -46,13 +46,8 @@ function scr_chainListMultiOptions(optionSelected){
 		for(var i = 0 ; i < currentSelectedChainListSize; i++){
 			var currentChain = currentSelectedChainList[|i];
 			var currentChainSubMap = global.nodeMap[?currentChain];
-			currentChainSubMap[?"filter"] = !currentChainSubMap[?"filter"];
-			if(!currentChainSubMap[?"filter"]){
-				scr_deleteFromList(filterList, currentChain);
-			}
-			else{
-				scr_addToListOnce(filterList,currentChain);
-			}
+			currentChainSubMap[? "filter"] = true;
+			scr_addToListOnce(filterList,currentChain);
 		}
 		with (obj_dropDown)  instance_destroy();
 	}
@@ -60,24 +55,18 @@ function scr_chainListMultiOptions(optionSelected){
 		for(var i = 0 ; i < currentSelectedChainListSize; i++){
 			var currentChain = currentSelectedChainList[|i];
 			var currentChainSubMap = global.nodeMap[?currentChain];
-			currentChainSubMap[?"visible"] = !currentChainSubMap[?"visible"];
-			if(currentChainSubMap[?"visible"]){
-				scr_deleteFromList(visibleList, currentChain);
-			}
-			else{
-				scr_addToListOnce(visibleList,currentChain);
-			}
+			currentChainSubMap[?"visible"] = false;
+			scr_addToListOnce(visibleList,currentChain);
 		}
 		with (obj_dropDown)  instance_destroy();
 	}
-	
-	if ( optionSelected == "option_clip" ){					
+	else if ( optionSelected == "option_clip" ){					
 		// Create a clip file based on that Stack
 		scr_clipAllStacks(obj_control.selectedStackChainList);			
 		// Destory the Dropdown
 		instance_destroy(obj_dropDown);
 	}
-	if ( optionSelected == "option_create-tree"){
+	else if ( optionSelected == "option_create-tree"){
 		scr_treeAllStacks(obj_control.selectedStackChainList);
 	
 		// Destory the Dropdown

@@ -128,11 +128,11 @@ for (var i = 0; i < optionListSize; i++) {
 		else if (currentOptionStrOriginal == "menu_nav" && ds_list_size(optionList) == 5) {
 			isExpandable = false;
 		}
+		else if (currentOptionStrOriginal == "menu_hide" && optionListType != global.optionListTypeView) {
+			isExpandable = false;
+		}
 		if (optionListType == global.optionListTypeLinkFields) {
 			if (ds_list_find_index(global.linkFieldList, currentOptionStrOriginal) >= 0) isExpandable = true;
-		}
-		if (currentOptionStrOriginal == "menu_hide" && optionListType == global.optionListTypeChainListMulti) {
-			isExpandable = false;
 		}
 		if (optionListType == global.optionListTypeTokenFields || optionListType == global.optionListTypeUnitFields
 		|| optionListType == global.optionListTypeEntryFields || optionListType == global.optionListTypeChainFields
@@ -242,7 +242,7 @@ for (var i = 0; i < optionListSize; i++) {
 	
 	// draw BG rectangle for each option
 	var optionBGColor = global.colorThemeBG;
-	if (optionText == "option-remove-tag-set" || optionText == "menu_clear") {
+	if (optionText == "option-remove-tag-set" || optionText == "menu_clear" && optionListType != global.optionListTypeFilter) {
 		optionBGColor = merge_color(global.colorThemeBG, make_color_rgb(247, 129, 148), 0.5);
 	}
 	else if (optionText == "option_add-to-tag-set") {
@@ -278,7 +278,7 @@ for (var i = 0; i < optionListSize; i++) {
 		if (optionListType == global.optionListTypeLinkFields) {
 			if (ds_list_find_index(global.linkFieldList, optionText) >= 0) isExpandable = true;
 		}
-		if (currentOptionStrOriginal == "menu_hide" && optionListType == global.optionListTypeChainListMulti) {
+		if (optionText == "menu_hide" && optionListType != global.optionListTypeView) {
 			isExpandable = false;
 		}
 		if (optionListType == global.optionListTypeTokenFields || optionListType == global.optionListTypeUnitFields

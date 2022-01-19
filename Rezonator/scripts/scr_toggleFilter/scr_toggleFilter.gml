@@ -1,5 +1,3 @@
-
-
 function scr_toggleFilter(){
 	
 	show_debug_message("scr_toggleFilter");
