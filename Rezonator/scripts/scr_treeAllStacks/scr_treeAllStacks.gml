@@ -1,7 +1,6 @@
 // Script assets have changed for v2.3.0 see
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
-function scr_treeAllStacks(){
-	var stackChainList = global.nodeMap[?"stackList"];
+function scr_treeAllStacks(stackChainList){
 	var stackChainListSize = ds_list_size(stackChainList);
 	
 	for(var i = 0; i < stackChainListSize; i++){

@@ -1,5 +1,6 @@
 function scr_toolsOptions(optionSelected) {
 	//toolsOptions
+	var optionIndex = ds_list_find_index(optionList, optionSelected);
 
 	switch (optionSelected)
 	{
@@ -66,15 +67,15 @@ function scr_toolsOptions(optionSelected) {
 				instance_destroy();	
 			}
 			break;
-		case "menu_stack":
-			scr_destroyAllDropDownsOtherThanSelf();
+		case "menu_stacker":
 			var dropDownOptionList = ds_list_create();
-			ds_list_add(dropDownOptionList, "menu_stacker", "menu_clip-all", "menu_tree-all");
-						
+			//, "Unit Label"
+			ds_list_add(dropDownOptionList,  "menu_turn", "menu_random","Unit Label", "menu_clique");
 			if (ds_list_size(dropDownOptionList) > 0) {
-				scr_createDropDown(obj_dropDown.x + obj_dropDown.windowWidth, obj_dropDown.y + (obj_dropDown.optionSpacing * 4), dropDownOptionList, global.optionListTypeStack);
+				scr_createDropDown(x + windowWidth, y + (optionSpacing * optionIndex), dropDownOptionList, global.optionListTypeCreateStack);
 			}
 			break;
+
 		default:
 			break;
 	}

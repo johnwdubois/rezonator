@@ -72,5 +72,18 @@ function scr_chainListMultiOptions(optionSelected){
 		}
 		with (obj_dropDown)  instance_destroy();
 	}
+	
+	if ( optionSelected == "option_clip" ){					
+		// Create a clip file based on that Stack
+		scr_clipAllStacks(obj_control.selectedStackChainList);			
+		// Destory the Dropdown
+		instance_destroy(obj_dropDown);
+	}
+	if ( optionSelected == "option_create-tree"){
+		scr_treeAllStacks(obj_control.selectedStackChainList);
+	
+		// Destory the Dropdown
+		instance_destroy(obj_dropDown);
+	}
 
 }

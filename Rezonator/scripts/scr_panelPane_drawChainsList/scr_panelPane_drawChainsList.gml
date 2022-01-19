@@ -757,7 +757,7 @@ function scr_panelPane_drawChainsList() {
 					if(obj_panelPane.functionChainList_currentTab == obj_panelPane.functionChainList_tabStackBrush){
 						ds_list_add(dropDownOptionList, "option_add-to-show");
 					}
-					ds_list_add(dropDownOptionList, "help_label_delete_plain", "menu_filter", "menu_hide");
+					ds_list_add(dropDownOptionList, "help_label_delete_plain", "menu_filter", "menu_hide", "option_clip", "option_create-tree");
 					scr_createDropDown(moreOptionsX - (optionsIconRad * 0.4), moreOptionsY + (optionsIconRad * 0.8), dropDownOptionList, global.optionListTypeChainListMulti);
 				}
 			}
