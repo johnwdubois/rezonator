@@ -1,5 +1,3 @@
-
-
 function scr_refreshPrevTokenUnit(unitID){
 	
 	var unitSubMap = global.nodeMap[? unitID];

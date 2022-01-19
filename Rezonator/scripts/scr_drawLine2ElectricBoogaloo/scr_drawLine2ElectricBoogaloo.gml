@@ -232,6 +232,9 @@ function scr_drawLine2ElectricBoogaloo(){
 	
 	
 	// merge units list (temp?)
+	if (keyboard_check_released(ord("U"))) {
+		scr_mergeUnit();
+	}
 	if (mouse_check_button_released(mb_left)) {
 		scr_addToListOnce(mergeUnitList, unitClosestToMouse, true);
 		if (ds_list_size(mergeUnitList) > 2) {
