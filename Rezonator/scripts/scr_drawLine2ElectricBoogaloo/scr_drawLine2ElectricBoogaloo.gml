@@ -192,11 +192,11 @@ function scr_drawLine2ElectricBoogaloo(){
 	}
 	var hoverLine = false;
 	if (instance_exists(obj_audioUI)) {
-		if (obj_audioUI.audioJumpOnWordClick && unitClosestToMouse != "" && !obj_control.mouseoverPanelPane && !obj_toolPane.mouseOverToolPane && !instance_exists(obj_dropDown) && !instance_exists(obj_dialogueBox)) {
+		if (obj_audioUI.audioJumpOnWordClick && unitClosestToMouse != "" && !obj_control.mouseoverPanelPane && !obj_toolPane.mouseOverToolPane && !obj_audioUI.mouseOverAudioUI && !instance_exists(obj_dropDown) && !instance_exists(obj_dialogueBox)) {
 			hoverLine = true;
 			obj_control.hoverUnitID = unitClosestToMouse;
 			
-			if(mouse_check_button_released(mb_left) && obj_audioUI.audioSound != -1 && file_exists(obj_audioUI.audioFile)){
+			if(mouse_check_button_released(mb_left) && obj_audioUI.audioSound != -1 && file_exists(obj_audioUI.audioFile) ){
 				
 				scr_audioJumpToUnit(unitClosestToMouse);
 				obj_audioUI.audioPaused = false;
