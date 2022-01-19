@@ -1,5 +1,5 @@
-// Script assets have changed for v2.3.0 see
-// https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
+
+
 function scr_saveTagJson(){
 	
 	var fileName = get_save_filename_ext("Tag file|*.json", "tag", global.rezonatorSchemaDirString, "Save Tag JSON");

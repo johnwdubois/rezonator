@@ -1,5 +1,5 @@
-// Script assets have changed for v2.3.0 see
-// https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
+
+
 function scr_panelPane_drawTree1ToMany(){
 	var ltr = (obj_control.drawLineState == obj_control.lineState_ltr);
 	ds_list_clear(obj_control.inRectEntryIDList);

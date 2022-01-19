@@ -1,5 +1,5 @@
-// Script assets have changed for v2.3.0 see
-// https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
+
+
 function scr_quickStackCreation(){
 	
 	// make sure the first unit clicked on is the first unit in the list

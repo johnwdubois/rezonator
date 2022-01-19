@@ -334,6 +334,7 @@
     {"id":{"name":"scr_panelPane_drawChains1ToMany","path":"scripts/scr_panelPane_drawChains1ToMany/scr_panelPane_drawChains1ToMany.yy",},"order":1,},
     {"id":{"name":"scr_panelPane_drawChainsList","path":"scripts/scr_panelPane_drawChainsList/scr_panelPane_drawChainsList.yy",},"order":2,},
     {"id":{"name":"scr_panelPane_drawUnits1toMany","path":"scripts/scr_panelPane_drawUnits1toMany/scr_panelPane_drawUnits1toMany.yy",},"order":3,},
+    {"id":{"name":"scr_mergeUnit","path":"scripts/scr_mergeUnit/scr_mergeUnit.yy",},"order":31,},
     {"id":{"name":"spr_openingMenuImport","path":"sprites/spr_openingMenuImport/spr_openingMenuImport.yy",},"order":24,},
     {"id":{"name":"scr_panelPane_drawUnitsList","path":"scripts/scr_panelPane_drawUnitsList/scr_panelPane_drawUnitsList.yy",},"order":4,},
     {"id":{"name":"scr_panelPane_drawHelp","path":"scripts/scr_panelPane_drawHelp/scr_panelPane_drawHelp.yy",},"order":5,},

@@ -1,5 +1,5 @@
-// Script assets have changed for v2.3.0 see
-// https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
+
+
 function scr_drawLine2ElectricBoogaloo(){
 	
 	
@@ -228,5 +228,15 @@ function scr_drawLine2ElectricBoogaloo(){
 	
 	
 	updateChainShowMap = false;
+	
+	
+	
+	// merge units list (temp?)
+	if (mouse_check_button_released(mb_left)) {
+		scr_addToListOnce(mergeUnitList, unitClosestToMouse, true);
+		if (ds_list_size(mergeUnitList) > 2) {
+			ds_list_delete(mergeUnitList, 2);
+		}
+	}
 	
 }

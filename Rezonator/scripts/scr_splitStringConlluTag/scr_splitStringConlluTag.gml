@@ -1,5 +1,5 @@
-// Script assets have changed for v2.3.0 see
-// https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
+
+
 function scr_splitStringConlluTag(key, keyList){
   var str = string_copy(key, 1, string_length(key));
   var strLength = string_length(key);

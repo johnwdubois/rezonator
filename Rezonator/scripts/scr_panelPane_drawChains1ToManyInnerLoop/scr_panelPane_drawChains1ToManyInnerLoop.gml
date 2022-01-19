@@ -1,5 +1,5 @@
-// Script assets have changed for v2.3.0 see
-// https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
+
+
 function scr_panelPane_drawChains1ToManyInnerLoop(chain1toManyColFieldList, entry, ID, currentTagMap, textPlusY, rectY1, rectY2, highlight, mouseoverHeader, mouseoverScrollBar){
 
 	// NOTE: for stacks, the ID variable will be a unitID
