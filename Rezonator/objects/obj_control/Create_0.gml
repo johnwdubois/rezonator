@@ -366,7 +366,7 @@ canPressMinus = true;
 //lightThemeTextColor = c_black;
 
 // Set global font info
-global.fontSize = 0;
+//global.fontSize = 0;
 
 // UNused variable
 //scrollFast = 0;
@@ -830,3 +830,4 @@ global.inputBoxDefStr = "";
 with(obj_alarm){
 	alarm[0] = 1;
 }
+scr_loadINI();

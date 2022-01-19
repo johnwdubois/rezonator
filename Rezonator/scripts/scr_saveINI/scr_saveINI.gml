@@ -1,5 +1,5 @@
 function scr_saveINI() {
-
+	var map = -1;
 
 
 	if (os_type == os_macosx) {
@@ -15,33 +15,41 @@ function scr_saveINI() {
 	}
 
 
-
+	if(file_exists(fileName)){
+		var wrapper = scr_loadJSONBuffer(fileName);
+		var list = ds_map_find_value(wrapper, "ROOT");
+		if(scr_isNumericAndExists(list, ds_type_list)){
+			map = list[|0];
+		}
+	}
 
 
 	var rootList = ds_list_create();
 
-	var map = ds_map_create();
+	if(!scr_isNumericAndExists(map,ds_type_map)) map = ds_map_create();
 	ds_list_add(rootList, map);
 	ds_list_mark_as_map(rootList, ds_list_size(rootList) - 1);
+
 	
 	
 	// create maps to hold copies of other maps we want in the REZ file
 	var recentFilesMapCopy = ds_map_create();
 
-
-	ds_map_add(map,"rememberMe",global.rememberMe);
-	ds_map_add(map,"importType",global.importType);
-	ds_map_add(map,"readHintHide",global.readHintHide)
-	ds_map_add(map,"userName", global.userName);
-	ds_map_add(map,"autosaveTimerFull", global.autosaveTimerFull);
-	ds_map_add(map,"lineHeight", obj_control.gridSpaceVertical);
-	ds_map_add(map,"fontSize", global.fontSize);
-	ds_map_add(map,"columnWidth", obj_control.gridSpaceHorizontal);
-	ds_map_add(map,"proseWidth", obj_control.proseSpaceHorizontal);
-	ds_map_add(map,"showNav", obj_panelPane.showNav);
-	ds_map_add(map,"showNavLeft", obj_panelPane.showNavLeft);
-	ds_map_add(map,"showNavRight", obj_panelPane.showNavRight);
-
+	scr_setMap(map,"rememberMe",global.rememberMe)
+	
+	scr_setMap(map,"importType",global.importType);
+	scr_setMap(map,"readHintHide",global.readHintHide)
+	scr_setMap(map,"userName", global.userName);
+	scr_setMap(map,"autosaveTimerFull", global.autosaveTimerFull);
+	scr_setMap(map,"fontSize", global.fontSize);
+	if(room == rm_mainScreen){
+		scr_setMap(map,"lineHeight", obj_control.gridSpaceVertical);
+		scr_setMap(map,"columnWidth", obj_control.gridSpaceHorizontal);
+		scr_setMap(map,"proseWidth", obj_control.proseSpaceHorizontal);
+		scr_setMap(map,"showNav", obj_panelPane.showNav);
+		scr_setMap(map,"showNavLeft", obj_panelPane.showNavLeft);
+		scr_setMap(map,"showNavRight", obj_panelPane.showNavRight);
+	}
 	
 	
 
@@ -49,36 +57,64 @@ function scr_saveINI() {
 	if (global.previousLevelEstimates != undefined) {
 		ds_list_copy(tempList, global.previousLevelEstimates);
 	}
-	ds_map_add_list(map, "previousLevelEstimates", tempList);
-
+	if(ds_map_exists(map,"previousLevelEstimates")){
+		ds_map_replace_list(map, "previousLevelEstimates", tempList);
+	}
+	else{
+		ds_map_add_list(map, "previousLevelEstimates", tempList);
+	}
 	
 	var tempList2 = ds_list_create();
 	if (global.previousSpecialFields  != undefined) {
 		ds_list_copy(tempList2, global.previousSpecialFields);
 	}
-	ds_map_add_list(map, "previousSpecialFields", tempList2);
+	if(ds_map_exists(map,"previousSpecialFields")){
+		ds_map_replace_list(map, "previousSpecialFields", tempList2);
+	}
+	else{
+		ds_map_add_list(map, "previousSpecialFields", tempList2);
+	}
+
 	
-	ds_map_add(map, "previousRezDirectory", global.previousRezDirectory);
-	ds_map_add(map, "previousImportDirectory", global.previousImportDirectory);
-	ds_map_add(map, "previousSaveDirectory", global.previousSaveDirectory);
+	scr_setMap(map, "previousRezDirectory", global.previousRezDirectory);
+	scr_setMap(map, "previousImportDirectory", global.previousImportDirectory);
+	scr_setMap(map, "previousSaveDirectory", global.previousSaveDirectory);
 		
 
 	var tempList3 = ds_list_create();
 	if (global.recentFilesList != undefined) {
 		ds_list_copy(tempList3, global.recentFilesList);
 	}
-	ds_map_add_list(map, "recentFilesList", tempList3);
+	if(ds_map_exists(map,"recentFilesList")){
+		ds_map_replace_list(map, "recentFilesList", tempList3);
+	}
+	else{
+		ds_map_add_list(map, "recentFilesList", tempList3);
+	}
+
 	
 	var tempList4 = ds_list_create();
 	if (global.usedImports != undefined) {
 		ds_list_copy(tempList4, global.usedImports);
 	}
 	ds_map_add_list(map, "usedImports", tempList4);
-
-
+	
+	if(ds_map_exists(map,"usedImports")){
+		ds_map_replace_list(map, "usedImports", tempList4);
+	}
+	else{
+		ds_map_add_list(map, "usedImports", tempList4);
+	}
+	
 
 	recentFilesMapCopy = json_decode(json_encode(global.recentFilesMap));
-	ds_map_add_map(map,"recentFilesMap", recentFilesMapCopy);
+	
+	if(ds_map_exists(map,"recentFilesMap")){
+		ds_map_replace_map(map, "recentFilesMap", recentFilesMapCopy);
+	}
+	else{
+		ds_map_add_map(map, "recentFilesMap", recentFilesMapCopy);
+	}
 
 	var wrapper = ds_map_create();
 	ds_map_add_list(wrapper, "ROOT", rootList);
