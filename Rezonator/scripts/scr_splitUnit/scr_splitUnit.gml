@@ -54,8 +54,8 @@ function scr_splitUnit(currentToken, lastToken){
 	ds_map_add(newUnitSubMap, "filter", false);
 	ds_map_add(newUnitSubMap, "active", true);
 	ds_map_add(newUnitSubMap, "doc", global.discourseNode);
-	if (!ds_map_exists(newUnitSubMap, "unitStart")) ds_map_add(newUnitSubMap, "unitStart", "");
-	if (!ds_map_exists(newUnitSubMap, "unitEnd")) ds_map_add(newUnitSubMap, "unitEnd", "");
+	ds_map_add(newUnitSubMap, "unitStart", oldUnitSubMap[?"unitStart"]);
+	ds_map_add(newUnitSubMap, "unitEnd",  oldUnitSubMap[?"unitEnd"]);
 	show_debug_message("indexOfNewUnit:  "+ string(indexOfNewUnit));
 	//update unit seq for all values after this unit
 	var unitListSize =ds_list_size(unitList);

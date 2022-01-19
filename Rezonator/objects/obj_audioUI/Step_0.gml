@@ -25,4 +25,5 @@ if (keyboard_check(vk_alt) and keyboard_check(vk_shift) and keyboard_check_press
 
 if (visible and file_exists(audioFile) and audioSound != -1) {
 	scr_audioStep();
+	
 }

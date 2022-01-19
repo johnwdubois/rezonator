@@ -17,11 +17,18 @@ seekBarY2 = 0;
 
 playheadX = 0;
 playheadY = 0;
+
+volumeSliderX = 0;
+volumeSliderY = 0;
+
 playheadRadBig = 10;
 playheadRadSmall = 6;
 playheadRad = playheadRadSmall;
 playheadRadDest = playheadRadSmall;
+volumeRad = playheadRadSmall;
+volumeDest = playheadRadSmall;
 playheadHolding = false;
+volumeHolding = false;
 
 audioFile = "";
 audioStream = -1;
@@ -29,6 +36,7 @@ audioSound = -1;
 audioLength = 0;
 audioPos = 0;
 audioPosTemp = 0;
+audioVolume = 1;
 
 bookmarkX = 0;
 bookmarkY = 0;

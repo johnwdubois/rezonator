@@ -100,7 +100,7 @@ function scr_audioDraw() {
 	}
 	
 	// Check for Spacebar to toggle play/pause and set Bookmark
-	if (keyboard_check_pressed(vk_space) and !instance_exists(obj_dialogueBox) && audioSound != -1) {
+	if (keyboard_check_released(vk_space) and !instance_exists(obj_dialogueBox) && audioSound != -1) {
 		//var stackSelected = 
 		if (selectedStackChain > -1) {
 			if (audioPaused) {
@@ -246,9 +246,11 @@ function scr_audioDraw() {
 	draw_set_valign(fa_middle);
 	var timeXBuffer = 20;
 	draw_set_halign(fa_left);
-	draw_text(seekBarX2 + timeXBuffer, mean(seekBarY1, seekBarY2), string_hash_to_newline(strTotalMinutes + ":" + strTotalSeconds));
+	var timeRemaining = string_hash_to_newline(strTotalMinutes + ":" + strTotalSeconds);
+	draw_text(seekBarX2 + timeXBuffer, mean(seekBarY1, seekBarY2), timeRemaining);
 	draw_set_halign(fa_right);
-	draw_text(seekBarX1 - timeXBuffer, mean(seekBarY1, seekBarY2), string_hash_to_newline(strCurrentMinutes + ":" + strCurrentSeconds));
+	var timePassed = string_hash_to_newline(strCurrentMinutes + ":" + strCurrentSeconds);
+	draw_text(seekBarX1 - timeXBuffer, mean(seekBarY1, seekBarY2), timePassed);
 
 
 	// draw jumpToUnit toggle
@@ -256,9 +258,9 @@ function scr_audioDraw() {
 	draw_set_valign(fa_middle);
 	var jumpUnitStartTextX = x + windowWidth - string_width("A");
 	var jumpUnitStartTextY = y + (windowHeight * 0.25);
-	var jumpUnitText = scr_get_translation("msg_audio-update");
+	var jumpUnitText = "Click to Play Audio"//scr_get_translation("msg_audio-update");
 
-	var jumpUnitStartRectX1 = jumpUnitStartTextX - string_width(jumpUnitText);
+	var jumpUnitStartRectX1 = jumpUnitStartTextX - string_width(jumpUnitText) - string_width("A");
 	var jumpUnitStartRectY1 = max(y, jumpUnitStartTextY - strHeight * 0.55);
 	var jumpUnitStartRectX2 = jumpUnitStartRectX1 - strHeight;
 	var jumpUnitStartRectY2 = jumpUnitStartTextY + strHeight * 0.55;
@@ -310,6 +312,7 @@ function scr_audioDraw() {
 			audioPaused = true;
 			
 			
+			
 			var getAudioFile = get_open_filename_ext("ogg file|*.ogg", "", working_directory, scr_get_translation("msg_file_audio"));
 			if (getAudioFile != "" and file_exists(getAudioFile)) {
 				if(global.steamAPI){
@@ -324,5 +327,55 @@ function scr_audioDraw() {
 			}
 		}
 	}
+	var maxSpace  = x+windowWidth - (seekBarX2 + timeXBuffer*2 +string_width(timeRemaining));
+	
+	//draw volume control
+	var fillInColor = c_white;
+	var volumeBarWidth = min(display_get_width()* 0.07, maxSpace);
+	var volumeBarX1 = x+windowWidth - (volumeBarWidth) - string_width("A");
+	var volumeBarY1 = y + (windowHeight * 0.75) - (seekBarHeight / 2);
+	var volumeBarX2 = volumeBarX1 + volumeBarWidth;
+	var volumeBarY2 = volumeBarY1 + seekBarHeight;
+	
+	var mouseoverVolumebar = point_in_rectangle(mouse_x, mouse_y, volumeBarX1 - (volumeRad * 2), volumeBarY1 - (volumeRad * 2), volumeBarX2 + (volumeRad * 2), volumeBarY2 + (volumeRad * 2));
+	draw_set_color(global.colorThemeSelected1);
+	draw_roundrect(volumeBarX1, volumeBarY1, volumeBarX2, volumeBarY2, false);
+	draw_set_color(fillInColor);
+	draw_roundrect(volumeBarX1, volumeBarY1, volumeSliderX, volumeBarY2, false);
+
+	// draw playhead circle
+	if (!volumeHolding) volumeSliderX = (audioVolume * volumeBarWidth) + volumeBarX1;
+	volumeSliderY = mean(volumeBarY1, volumeBarY2);
+
+	if(volumeHolding or mouseoverVolumebar){
+		draw_set_color(fillInColor);
+		draw_set_circle_precision(64);
+		draw_circle(volumeSliderX, volumeSliderY, volumeRad, false);
+		draw_set_alpha(1);
+	}
+	var audioScale = 0.25;
+	if((volumeBarWidth + sprite_get_width(spr_audioTool)*audioScale) <= maxSpace){
+		draw_sprite_ext(spr_audioTool,0,volumeBarX1 - sprite_get_width(spr_audioTool)*audioScale, floor(mean(volumeBarY1, volumeBarY2)), audioScale,audioScale,0,c_white,1)
+	}
+	
+	if(mouseoverVolumebar){
+		if(mouse_check_button(mb_left)){
+			volumeHolding = true;
+		}
+	}
+	if(!mouse_check_button(mb_left)){
+		volumeHolding = false;
+	}
+	
+	if(volumeHolding){
+		volumeSliderX = clamp(mouse_x,volumeBarX1,volumeBarX2);
+		audioVolume = (volumeSliderX - volumeBarX1) / volumeBarWidth;
+	}
+	
+	if(audioSound != -1 && file_exists(audioFile)){
+		audio_sound_gain(audioSound, audioVolume, 0);
+	}
+	
+	
 
 }
