@@ -345,7 +345,7 @@ function scr_importMappingTagInfo() {
 							var dropDownOptionList = ds_list_create();
 						
 							if (currentLevel == global.levelUnit) {
-								ds_list_add(dropDownOptionList, "participant", "turn_delim", "option_translation");
+								ds_list_add(dropDownOptionList, "participant", "turn_delim","psent_delim", "option_translation");
 								if (global.importType != global.importType_TabDelimited) {
 									ds_list_add(dropDownOptionList, "unit_start", "unit_end");
 								}

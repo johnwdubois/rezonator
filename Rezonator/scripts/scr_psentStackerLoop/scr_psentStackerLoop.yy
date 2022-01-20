@@ -6,7 +6,7 @@
     "path": "folders/Scripts/chains/stacker.yy",
   },
   "resourceVersion": "1.0",
-  "name": "scr_randomStackerLoop",
+  "name": "scr_psentStackerLoop",
   "tags": [],
   "resourceType": "GMScript",
 }

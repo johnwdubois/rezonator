@@ -457,7 +457,6 @@ currentCenterDisplayRow = max(currentCenterDisplayRow, 0);
 currentCenterDisplayRow = min(currentCenterDisplayRow, ds_grid_height(currentActiveLineGrid) - 1);
 
 
-
 // hide participant names
 if (!gridView) {
 	if (global.ctrlHold and keyboard_check_pressed(ord("H"))) {

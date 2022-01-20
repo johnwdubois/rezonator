@@ -271,6 +271,7 @@ global.unitImportUnitStartColName = "";
 global.unitImportUnitEndColName = "";
 global.unitDelimField = "";
 global.unitImportTurnDelimColName = "";
+global.psentDelimField = "";
 global.wordDelimField = "";
 global.currentTranslation = "";
 global.unitImportSpeakerColName = "";

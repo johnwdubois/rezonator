@@ -75,6 +75,16 @@ function scr_specialFieldsOptions(optionSelected) {
 			ds_grid_set(global.tagInfoGrid, obj_importMapping.colToChange, obj_importMapping.rowToChange, "turn_delim");
 			global.unitImportTurnDelimColName = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colMarker, obj_importMapping.rowToChange);
 			break;
+		case "psent_delim":
+		global.unitImportTurnDelimColName = "";
+			for (var i = 0; i < tagInfoGridHeight; i++) {
+				if (ds_grid_get(global.tagInfoGrid, obj_importMapping.colToChange, i) == "psent_delim") {
+					ds_grid_set(global.tagInfoGrid, obj_importMapping.colToChange, i, 0);
+				}
+			}
+			ds_grid_set(global.tagInfoGrid, obj_importMapping.colToChange, obj_importMapping.rowToChange, "psent_delim");
+			global.unitImportTurnDelimColName = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colMarker, obj_importMapping.rowToChange);
+			break;
 		case "option_word-delimiter":
 		global.wordDelimField = "";
 			for (var i = 0; i < tagInfoGridHeight; i++) {

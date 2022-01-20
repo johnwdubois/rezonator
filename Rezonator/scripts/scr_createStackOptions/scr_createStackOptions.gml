@@ -65,6 +65,17 @@ function scr_createStackOptions(optionSelected) {
 			obj_stacker.createStacksSentence = true;
 			instance_destroy(obj_dropDown);
 			break;
+		case "Prosodic Sentence":
+			if (doStacksExist) {
+				confirmStack = true;
+			}
+			else {
+				obj_stacker.splitSave = true;
+				obj_stacker.alarm[10] = 1;
+			}
+			obj_stacker.createStacksPsent = true;
+			instance_destroy(obj_dropDown);
+			break;
 		case "menu_clique":
 			if (doStacksExist) {
 				confirmStack = true;

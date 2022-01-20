@@ -91,6 +91,7 @@ function scr_updateTagInfoErrorCol(){
 		   || (currentSpecialFields == "participant" && currentLevel != global.levelUnit)
 		   || (currentSpecialFields == "unit_delim" && currentLevel != global.levelUnit)
 		   || (currentSpecialFields == "turn_delim" && currentLevel != global.levelUnit)
+		   || (currentSpecialFields == "psent_delim" && currentLevel != global.levelUnit)
 		   || (currentSpecialFields == "option_translation" && currentLevel != global.levelUnit)
 		   || (currentSpecialFields == "option_display-token" && currentLevel != global.levelToken)
 		   || (currentSpecialFields == "msg_transcript" && currentLevel != global.levelToken)

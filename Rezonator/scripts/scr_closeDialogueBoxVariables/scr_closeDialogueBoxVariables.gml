@@ -81,6 +81,7 @@ function scr_closeDialogueBoxVariables(){
 			createStacksTurn = false;
 			createStacksSentence = false;
 			createStacksClique = false;
+			createStacksPsent = false;
 		}
 	}
 	if (alertWindowActive) {
