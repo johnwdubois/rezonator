@@ -118,7 +118,7 @@ for (var i = 0; i < fileKeyListSize; i++) {
 	draw_set_color(global.colorThemeText);
 	draw_set_halign(fa_left);
 	
-	draw_sprite_ext(spr_xButton,0,mean(removeButtonX1, removeButtonX2)- clipX,mean(removeButtonY1, removeButtonY2)- clipY,removeScale,removeScale,0,global.colorThemeText,1);
+	if(mouseOverRow)draw_sprite_ext(spr_xButton,0,mean(removeButtonX1, removeButtonX2)- clipX,mean(removeButtonY1, removeButtonY2)- clipY,removeScale,removeScale,0,global.colorThemeText,1);
 
 	scr_adaptFont(scr_get_translation(fileName), "L");
 	draw_text(fileTextX - clipX, floor(textY- stringHeight/2 - clipY), scr_get_translation(string(fileName)));

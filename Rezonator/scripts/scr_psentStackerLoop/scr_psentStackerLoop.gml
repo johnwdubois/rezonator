@@ -8,7 +8,7 @@ function scr_psentStackerLoop(){
 	if (global.psentDelimField == "" or is_undefined(global.psentDelimField)) {
 		var inst = instance_create_layer(0, 0, "InstancesDialogue", obj_dialogueBox);
 		inst.alertWindowActive = true;
-		obj_control.noTurnFound = true;
+		obj_control.noPsentFound = true;
 		splitSave = false;
 		exit;	
 	}

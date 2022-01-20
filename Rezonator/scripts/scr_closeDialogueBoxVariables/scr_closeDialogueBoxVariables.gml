@@ -88,6 +88,7 @@ function scr_closeDialogueBoxVariables(){
 		with (obj_control) {
 			noResultsFound = false;
 			noTurnFound = false;
+			noPsentFound = false;
 			insertAnyNumber = false;
 		}
 	}

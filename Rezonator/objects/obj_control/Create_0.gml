@@ -497,6 +497,7 @@ inputText = "";
 cursorTimer = 20;
 noResultsFound = false;
 noTurnFound = false;
+noPsentFound = false;
 saveBeforeExiting = false;
 saveBeforeImporting = false;
 saveBeforeGameEnd = false;
