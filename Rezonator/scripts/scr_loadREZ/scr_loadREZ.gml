@@ -93,6 +93,7 @@ function scr_loadREZ() {
 				
 					global.unitDelimField = ds_map_find_value(map, "unitDelimField");
 					global.unitImportTurnDelimColName = ds_map_find_value(map, "unitImportTurnDelimColName");
+					global.psentDelimField = ds_map_find_value(map, "psentDelimField");
 					global.wordDelimField = ds_map_find_value(map, "wordImportWordDelimColName");
 					global.currentTranslation = ds_map_find_value(map, "currentTranslation");
 					global.unitImportSpeakerColName = ds_map_find_value(map, "unitImportSpeakerColName");
