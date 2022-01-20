@@ -1,5 +1,3 @@
-
-
 function scr_inputBoxCreate(strDefault){
 	
 	// get dimensions for input window (windowHeight will adjust based on font size)
@@ -45,5 +43,7 @@ function scr_inputBoxCreate(strDefault){
 	doubleClickTimer = 0;
 	doubleClick = false;
 	
+	navWindowTagging = false;
+
 
 }

@@ -52,8 +52,8 @@ function scr_drawDevVars(){
 	draw_text(devVarX, wordTopMargin + (strHeight * 15), "focusedChain's vizSetIDList: " + ((ds_exists(focusedChainVizSetIDList, ds_type_list)) ? scr_getStringOfList(focusedChainVizSetIDList) : ""));
 	draw_text(devVarX, wordTopMargin + (strHeight * 16), "focusedChainEntry: " + string(focusedChainFocused));
 	draw_text(devVarX, wordTopMargin + (strHeight * 17), "showSpeakerName: " + string(showSpeakerName));
-	draw_text(devVarX, wordTopMargin + (strHeight * 18), "tokenFieldList: " + scr_getStringOfList(tokenFieldList));
-	draw_text(devVarX, wordTopMargin + (strHeight * 19), "chain1toManyColFieldListTrack: " + scr_getStringOfList(obj_control.chain1toManyColFieldListTrack));
+	draw_text(devVarX, wordTopMargin + (strHeight * 18), "shortcutsEnabled: " + string(shortcutsEnabled));
+	draw_text(devVarX, wordTopMargin + (strHeight * 19), "mouseoverTagCell: " + string(mouseoverTagCell));
 	draw_text(devVarX, wordTopMargin + (strHeight * 20), "displayTokenList: " + scr_getStringOfList(obj_control.displayTokenList));
 	draw_text(devVarX, wordTopMargin + (strHeight * 21), "nodeMap size: " + string(ds_map_size(global.nodeMap)));
 	draw_text(devVarX, wordTopMargin + (strHeight * 22), "dragStartOriginalUnit: " + string(obj_chain.dragStartOriginalUnit));
@@ -86,6 +86,8 @@ function scr_drawDevVars(){
 	draw_text(devVarX - 580, wordTopMargin + (strHeight * 13), "endRangeMin: " + string(obj_control.drawRangeEndMin));
 	draw_text(devVarX - 580, wordTopMargin + (strHeight * 14), "quickPickedChainID: " + string(obj_control.quickPickedChainID));
 	draw_text(devVarX - 580, wordTopMargin + (strHeight * 15), "mergeUnitList: " + scr_getStringOfList(mergeUnitList));
+	draw_text(devVarX - 580, wordTopMargin + (strHeight * 16), "navWindowTaggingField: " + string(navWindowTaggingField));
+	draw_text(devVarX - 580, wordTopMargin + (strHeight * 17), "navWindowTaggingID: " + string(navWindowTaggingID));
 
 	
 	// reset halign to left

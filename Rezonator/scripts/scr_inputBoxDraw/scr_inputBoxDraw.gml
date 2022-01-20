@@ -1,13 +1,17 @@
-
-
 function scr_inputBoxDraw(){
 	
 	// set text positions and window height
-	scr_adaptFont(str, "M");
+	var fontSize = navWindowTagging ? "S" : "M";
+	scr_adaptFont(str, fontSize);
 	var strLen = string_length(str);
 	var strHeight = string_height("A");
 	var textMarginX = 10;
 	var textMarginY = 10;
+	if (navWindowTagging) {
+		textMarginX *= 0.5;
+		textMarginY = 0;
+	}
+	
 	textX = floor(textBoxX + textMarginX + xOffset);
 	textY = floor(textBoxY + textMarginY);
 	windowHeight = strHeight + (textMarginY * 2);
@@ -25,6 +29,8 @@ function scr_inputBoxDraw(){
 				windowFocused = false;
 			}
 		}
+		
+		if (navWindowTagging && !mouseoverWindow) instance_destroy();
 	}
 	
 	if (instance_exists(obj_openingScreen)) {
@@ -83,7 +89,7 @@ function scr_inputBoxDraw(){
 	scr_miniSurfaceStart();
 
 	// draw text
-	scr_adaptFont(str, "M");
+	scr_adaptFont(str, fontSize);
 	draw_set_color(global.colorThemeText);
 	draw_set_alpha(1);
 	draw_set_halign(fa_left);

@@ -1,2 +1,4 @@
 ///@description Activate Search
-scr_triggerSearch();
+if (shortcutsEnabled) {
+	scr_triggerSearch();
+}

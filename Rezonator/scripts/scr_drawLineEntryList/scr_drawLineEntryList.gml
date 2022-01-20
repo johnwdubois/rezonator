@@ -173,7 +173,7 @@ function scr_drawLineEntryList(unitID, unitSubMap, entryList, pixelY, OOBCheck){
 				
 					scr_tokenClicked(currentToken);
 				}
-				if(keyboard_check_pressed(ord("S")) && !global.ctrlHold){
+				if(keyboard_check_pressed(ord("S")) && !global.ctrlHold && obj_control.shortcutsEnabled){
 					var lastToken = true;
 					if(keyboard_check(vk_shift)){
 						lastToken = false;

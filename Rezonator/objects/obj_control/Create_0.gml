@@ -525,6 +525,7 @@ alarm[9] = 10;
 
 
 mouseoverPanelPane = false;
+mouseoverTagCell = false;
 rectNotInPanelPane = false;
 mouseoverDialogueBox = false;
 mouseoverSpeakerLabel = false;
@@ -835,3 +836,6 @@ with(obj_alarm){
 	alarm[0] = 1;
 }
 scr_loadINI();
+
+navWindowTaggingField = "";
+navWindowTaggingID = "";

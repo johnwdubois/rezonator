@@ -1,9 +1,8 @@
-
-
 function scr_inputBoxStep(){
 	
-	if(!instance_exists(obj_dialogueBox) && room != rm_openingScreen) instance_destroy();
-	
+	if(!instance_exists(obj_dialogueBox) && room != rm_openingScreen && !navWindowTagging) instance_destroy();
+	if (room == rm_mainScreen) with (obj_control) shortcutsEnabled = false;
+	var fontSize = navWindowTagging ? "S" : "M";
 	
 	// check important keys
 	var ctrlCheck = global.ctrlHold;
@@ -16,6 +15,7 @@ function scr_inputBoxStep(){
 	var keyRight = keyboard_check(vk_right) && windowFocused;
 	var keyLeftPressed = keyboard_check_pressed(vk_left) && windowFocused;
 	var keyRightPressed = keyboard_check_pressed(vk_right) && windowFocused;
+	var keyEnterPressed = keyboard_check_pressed(vk_enter) && windowFocused;
 	
 	// check shortcuts
 	var shortcutPaste = ctrlCheck && keyboard_check_pressed(ord("V"));
@@ -26,7 +26,7 @@ function scr_inputBoxStep(){
 	var shortcutJumpLeft = ctrlCheck && keyLeftPressed;
 	
 	// set font here so that string width/height checks are accurate
-	scr_adaptFont(str, "M");
+	scr_adaptFont(str, fontSize);
 
 	// make sure we don't get multiple keys inputting at once
 	if (string_length(keyboard_string) > 1) {
@@ -235,5 +235,8 @@ function scr_inputBoxStep(){
 	// decrease doubleClickTimer
 	doubleClickTimer = max(doubleClickTimer - 1, 0);
 	
+	if (keyEnterPressed && navWindowTagging) {
+		instance_destroy();
+	}
 	
 }
