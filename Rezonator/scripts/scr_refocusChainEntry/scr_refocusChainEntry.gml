@@ -105,7 +105,12 @@ function scr_refocusChainEntry(ID){
 			chainListTab = obj_panelPane.functionChainList_tabStackBrush;
 			chainMode = obj_toolPane.modeRez;
 		}
-		scr_scrollNavToID(chainListTab, obj_chain.currentFocusedChainID);
+		
+		// scroll the nav window to view this chain & entry
+		scr_scrollNavToID(chainListTab, obj_chain.currentFocusedChainID, true);
+		obj_control.entryToScrollTo = entryToFocus;
+		obj_control.entryToScrollToTab = chainListTab;
+		with (obj_alarm2) alarm[10] = 1;
 	}
 	
 	

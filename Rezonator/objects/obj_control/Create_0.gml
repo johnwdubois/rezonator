@@ -824,6 +824,9 @@ multiWordTag = false;
 
 updateScroll = false;
 
+entryToScrollTo = "";
+entryToScrollToTab = "";
+
 mergeUnitList = ds_list_create();
 
 global.inputBoxDefStr = "";

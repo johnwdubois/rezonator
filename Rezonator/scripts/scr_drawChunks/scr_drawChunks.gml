@@ -243,7 +243,7 @@ function scr_drawChunks(){
 			with (obj_panelPane) {
 				functionChainList_chunkSelected = obj_control.hoverChunkID;
 				if (currentFunction == functionChainList) {
-					scr_scrollNavToID(functionChainList_tabChunk, obj_control.hoverChunkID);
+					scr_scrollNavToID(functionChainList_tabChunk, obj_control.hoverChunkID, true);
 				}
 			}
 			

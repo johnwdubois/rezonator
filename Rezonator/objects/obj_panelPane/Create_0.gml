@@ -252,6 +252,7 @@ cliquePaneSwitchButton = "option_chain";
 scrollPlusX = 0;
 
 leftPaneStrHeight = 0;
+rightPaneStrHeight = 0;
 
 selectListPrevIndex = -1;
 
