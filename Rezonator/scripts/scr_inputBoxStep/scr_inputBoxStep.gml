@@ -28,14 +28,10 @@ function scr_inputBoxStep(){
 	// set font here so that string width/height checks are accurate
 	scr_adaptFont(str, fontSize);
 
-	// make sure we don't get multiple keys inputting at once
-	if (string_length(keyboard_string) > 1) {
-		keyboard_string = string_char_at(keyboard_string, 1);
-	}
-
 	// get keyboard input
 	var input = "";
 	if (string_length(keyboard_string) > 0 && windowFocused) input = keyboard_string;
+	
 	
 	// CTRL+V (paste)
 	var paste = false;
@@ -47,7 +43,7 @@ function scr_inputBoxStep(){
 	}
 
 	// get keyboard input for typing in
-	if (string_length(keyboard_string) == 1 || shortcutPaste) {
+	if (string_length(keyboard_string) >= 1 || shortcutPaste) {
 	
 		// delete highlighted text if there is any
 		if (cursorIndex != highlightIndex) {
