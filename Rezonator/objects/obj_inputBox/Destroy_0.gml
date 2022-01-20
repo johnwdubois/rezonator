@@ -13,3 +13,4 @@ if (scr_isNumericAndExists(idSubMap, ds_type_map)) {
 		tagMap[? field] = tag;
 	}
 }
+global.inputBoxDefStr = "";

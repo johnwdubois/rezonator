@@ -94,7 +94,7 @@ function scr_inputBoxDraw(){
 	draw_set_alpha(1);
 	draw_set_halign(fa_left);
 	draw_set_valign(fa_top);
-	draw_text(textX - clipX, textY - clipY, str);
+	draw_text(floor(textX - clipX), floor(textY - clipY), str);
 
 	// draw cursor
 	cursorX = textX + string_width(strToCursor);

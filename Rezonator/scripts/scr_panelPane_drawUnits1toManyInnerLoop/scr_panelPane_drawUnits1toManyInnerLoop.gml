@@ -80,19 +80,19 @@ function scr_panelPane_drawUnits1toManyInnerLoop(tokenID, drawDropDowns, strHeig
 		var dropDownRectY1 = mean(cellRectY1, cellRectY2) - (dropDownButtonHeight / 2);
 		var dropDownRectX2 = dropDownRectX1 + dropDownButtonWidth;
 		var dropDownRectY2 = dropDownRectY1 + dropDownButtonHeight;
-		var mouseoverDropDown = (point_in_rectangle(mouse_x, mouse_y, dropDownRectX1, dropDownRectY1, dropDownRectX2, dropDownRectY2) && !mouseoverCancel);
+		var mouseoverDropDown = (point_in_rectangle(mouse_x, mouse_y, dropDownRectX1, dropDownRectY1, dropDownRectX2, dropDownRectY2) && !mouseoverCancel && !instance_exists(obj_inputBox));
 		
 		// draw dropdown sprite if mouseover on this cell
 		if (mouseoverCell && !isTildaField) {
 			draw_sprite_ext(spr_dropDown, 0, mean(dropDownRectX1, dropDownRectX2) - clipX, mean(dropDownRectY1, dropDownRectY2) - clipY, 1, 1, 0, global.colorThemeText, 1);
 		}
-	
 		// create input box for tagging if user clicks on cell
 		if(mouseoverCell){
 			obj_control.hoverTextCopy = currentStr;
 			obj_control.mouseoverTagCell = true;
-			if (mouse_check_button_released(mb_left)) {
+			if (mouse_check_button_released(mb_left) && !mouseoverDropDown) {
 				scr_spawnTagInputBox(tokenID, currentField, currentStr);
+
 			}
 		}
 		
@@ -110,7 +110,6 @@ function scr_panelPane_drawUnits1toManyInnerLoop(tokenID, drawDropDowns, strHeig
 				if (mouse_check_button_released(mb_left)) {
 					
 					
-					/*
 					// get submap for this field
 					var tokenTagMap = global.nodeMap[? "tokenTagMap"];
 					var fieldSubMap = tokenTagMap[? currentField];
@@ -132,7 +131,6 @@ function scr_panelPane_drawUnits1toManyInnerLoop(tokenID, drawDropDowns, strHeig
 						scr_createDropDown(dropDownX, dropDownY, dropDownOptionList, global.optionListTypeTokenTagMap);
 
 					}
-					*/
 				}
 			}
 		}
