@@ -12,6 +12,12 @@ function scr_getDropDownOptionStr(optionStr){
 			fullOptionStr = chainName;
 		}
 	}
+	else if(optionListType == global.optionListTypeAddToShow){
+		//get name of chain instead
+		var chainSubMap = global.nodeMap[?optionStr];
+		var chainName = chainSubMap[?"name"];
+		fullOptionStr = chainName;
+	}
 	else if(optionListType == global.optionListTypeTagSchema){
 		//get name of file instead
 		if(optionStr != "Custom tag schema"){
