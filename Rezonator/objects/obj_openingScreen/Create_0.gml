@@ -306,38 +306,7 @@ alarm[2] = 1;
 global.exitOut = false;
 
 
-// this map tells Rezonator what dropdowns expand to further dropdowns
-// so we can look up the strings in this map to know whether or not to draw the expand arrow
-global.expandableDropDownMap = ds_map_create();
-ds_map_add(global.expandableDropDownMap, "menu_delete-all", true);
-ds_map_add(global.expandableDropDownMap, "menu_window", true);
-ds_map_add(global.expandableDropDownMap, "menu_nav", true);
-ds_map_add(global.expandableDropDownMap, "menu_justify", true);
-ds_map_add(global.expandableDropDownMap, "menu_prose", true);
-ds_map_add(global.expandableDropDownMap, "menu_hide", true);
-ds_map_add(global.expandableDropDownMap, "menu_pick", true);
-ds_map_add(global.expandableDropDownMap, "menu_filter-context", true);
-ds_map_add(global.expandableDropDownMap, "menu_search", true);
-ds_map_add(global.expandableDropDownMap, "menu_stack", true);
-ds_map_add(global.expandableDropDownMap, "menu_stacker", true);
-ds_map_add(global.expandableDropDownMap, "menu_zoom", true);
-ds_map_add(global.expandableDropDownMap, "menu_autosave", true);
-ds_map_add(global.expandableDropDownMap, "menu_advanced", true);
-ds_map_add(global.expandableDropDownMap, "menu_language", true);
-ds_map_add(global.expandableDropDownMap, "option_recolor", true);
-ds_map_add(global.expandableDropDownMap, "text_dir", true);
-ds_map_add(global.expandableDropDownMap, "option_select-field", true);
-ds_map_add(global.expandableDropDownMap, "option-remove-tag-set", true);
-ds_map_add(global.expandableDropDownMap, "arrheads", true);
-ds_map_add(global.expandableDropDownMap, "tab_name_tag", true);
-ds_map_add(global.expandableDropDownMap, "Tag Token", true);
-ds_map_add(global.expandableDropDownMap, "Tag Chain", true);
-ds_map_add(global.expandableDropDownMap, "Tag Entry", true);
-ds_map_add(global.expandableDropDownMap, "Tag Chunk", true);
-ds_map_add(global.expandableDropDownMap, "Tag Unit", true);
-ds_map_add(global.expandableDropDownMap, "option_new-token", true);
-ds_map_add(global.expandableDropDownMap, "option_add-to-show", true);
-ds_map_add(global.expandableDropDownMap, "Tag Link", true);
+scr_expandableDropDownInit();
 
 global.openingScreenDropDownMap = ds_map_create();
 ds_map_add(global.openingScreenDropDownMap, "menu_import", true);
