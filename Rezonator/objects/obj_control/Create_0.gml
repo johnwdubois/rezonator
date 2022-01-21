@@ -839,3 +839,4 @@ scr_loadINI();
 
 navWindowTaggingField = "";
 navWindowTaggingID = "";
+navWindowTaggingPaneInst = -1;

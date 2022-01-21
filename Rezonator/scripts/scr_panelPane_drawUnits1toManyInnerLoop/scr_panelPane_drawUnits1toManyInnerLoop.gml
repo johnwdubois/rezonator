@@ -10,8 +10,11 @@ function scr_panelPane_drawUnits1toManyInnerLoop(tokenID, drawDropDowns, strHeig
 	var fieldListSize = ds_list_size(fieldList);
 	var lineStateLTR = (obj_control.drawLineState == obj_control.lineState_ltr);
 	var spaceWidth = string_width(" ");
+	var mouseoverWindow = point_in_rectangle(mouse_x, mouse_y, x, y + functionTabs_tabHeight, x + windowWidth, y + windowHeight);
 	var mouseoverCancel = (instance_exists(obj_dropDown) || instance_exists(obj_dialogueBox)
 	|| mouseoverHorScrollBar || scrollBarHorHolding || mouseoverScrollBar || scrollBarHolding);
+	if (!mouseoverWindow) mouseoverCancel = true;
+	
 	
 	// draw BG highlight for the entire windowWidth (if we have less than 6 columns)
 	if (highlight && fieldListSize < 6) {
@@ -80,7 +83,7 @@ function scr_panelPane_drawUnits1toManyInnerLoop(tokenID, drawDropDowns, strHeig
 		var dropDownRectY1 = mean(cellRectY1, cellRectY2) - (dropDownButtonHeight / 2);
 		var dropDownRectX2 = dropDownRectX1 + dropDownButtonWidth;
 		var dropDownRectY2 = dropDownRectY1 + dropDownButtonHeight;
-		var mouseoverDropDown = (point_in_rectangle(mouse_x, mouse_y, dropDownRectX1, dropDownRectY1, dropDownRectX2, dropDownRectY2) && !mouseoverCancel && !instance_exists(obj_inputBox));
+		var mouseoverDropDown = (point_in_rectangle(mouse_x, mouse_y, dropDownRectX1, dropDownRectY1, dropDownRectX2, dropDownRectY2) && !mouseoverCancel && !instance_exists(obj_inputBox) && mouseoverWindow);
 		
 		// draw dropdown sprite if mouseover on this cell
 		if (mouseoverCell && !isTildaField) {
@@ -91,7 +94,14 @@ function scr_panelPane_drawUnits1toManyInnerLoop(tokenID, drawDropDowns, strHeig
 			obj_control.hoverTextCopy = currentStr;
 			obj_control.mouseoverTagCell = true;
 			if (mouse_check_button_released(mb_left) && !mouseoverDropDown) {
-				scr_spawnTagInputBox(tokenID, currentField, currentStr);
+				if (cellRectX1 < x) {
+					scrollHorPlusXDest += abs(cellRectX1 - x);
+				}
+				else if (cellRectX2 > x + windowWidth) {
+					scrollHorPlusXDest -= abs(cellRectX2 - (x + windowWidth));
+				}
+				
+				scr_spawnTagInputBox(tokenID, currentField, currentStr, self.id);
 
 			}
 		}
