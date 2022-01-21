@@ -126,6 +126,7 @@ function scr_audioDraw() {
 		}
 	}
 	
+	/*
 	// Check for Enter to set bookmark
 	if (keyboard_check_pressed(vk_enter) and !instance_exists(obj_dialogueBox) && audioSound != -1) {
 		if(selectedStackChain == -1) {
@@ -144,7 +145,7 @@ function scr_audioDraw() {
 			}
 		}
 	}
-	
+	*/
 
 	// draw seekbar
 	seekBarWidth = camera_get_view_width(camera_get_active()) / 2;
@@ -371,7 +372,6 @@ function scr_audioDraw() {
 		volumeSliderX = clamp(mouse_x,volumeBarX1,volumeBarX2);
 		audioVolume = (volumeSliderX - volumeBarX1) / volumeBarWidth;
 	}
-	
 	if(audioSound != -1 && file_exists(audioFile)){
 		audio_sound_gain(audioSound, audioVolume, 0);
 	}

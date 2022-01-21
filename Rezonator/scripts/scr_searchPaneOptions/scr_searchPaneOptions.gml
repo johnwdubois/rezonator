@@ -3,6 +3,7 @@ function scr_searchPaneOptions(optionSelected){
 	var optionIndex = ds_list_find_index(optionList, optionSelected);
 //"Add to Trail", "Add to Resonance", "Add to Stack", "Remove from Search"
 	if(optionSelected == "Add to Trail"){
+		scr_destroyAllDropDownsOtherThanSelf();
 		var dropDownOptionList = ds_list_create();
 		ds_list_add(dropDownOptionList, "Create New Chain");
 		var currentTrackList = global.nodeMap[?"trailList"];
@@ -17,6 +18,7 @@ function scr_searchPaneOptions(optionSelected){
 
 	}
 	else if(optionSelected == "Add to Resonance"){
+		scr_destroyAllDropDownsOtherThanSelf();
 		var dropDownOptionList = ds_list_create();
 		ds_list_add(dropDownOptionList, "Create New Chain");
 		var currentRezList = global.nodeMap[?"resonanceList"];

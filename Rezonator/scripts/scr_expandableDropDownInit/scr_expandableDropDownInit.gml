@@ -86,7 +86,7 @@ function scr_expandableDropDownInit(){
 	ds_map_add_list(global.expandableDropDownMap, "tab_name_tag", tabNameTagList);
 	
 	var tagTokenList = ds_list_create();
-	ds_list_add(tagTokenList, global.optionListTypeTag);
+	ds_list_add(tagTokenList, global.optionListTypeTag,global.optionListTypeSearchPane);
 	ds_map_add_list(global.expandableDropDownMap, "Tag Token", tagTokenList);
 	
 	var tagChainList = ds_list_create();
@@ -117,4 +117,13 @@ function scr_expandableDropDownInit(){
 	ds_list_add(tagLinkList, global.optionListTypeTreeRightClick);
 	ds_map_add_list(global.expandableDropDownMap, "Tag Link", tagLinkList);
 	
+	var addtotrailList = ds_list_create();
+	ds_list_add(addtotrailList, global.optionListTypeSearchPane);
+	ds_map_add_list(global.expandableDropDownMap, "Add to Trail", addtotrailList);
+	
+	var addtoRezList = ds_list_create();
+	ds_list_add(addtoRezList, global.optionListTypeSearchPane);
+	ds_map_add_list(global.expandableDropDownMap, "Add to Resonance", addtoRezList);
+	
+
 }

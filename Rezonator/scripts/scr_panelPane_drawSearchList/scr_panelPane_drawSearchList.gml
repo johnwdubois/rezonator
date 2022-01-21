@@ -305,7 +305,7 @@ function scr_panelPane_drawSearchList(){
 			colText = "(.*)";
 		}
 		else if (i == 6) {
-			colWidth = rangeColWidth;
+			colWidth = windowWidth-headerPlusX;
 			colText = "Aa";
 		}
 
