@@ -130,19 +130,15 @@ function scr_importConlluAutotag(){
 			if(ds_list_size(currentEntitySubList) > 1){
 				//this is the condition for creating chunks, might have to put this if statement somewhere else
 				var currentEntitySubListSize = ds_list_size(currentEntitySubList);
-				obj_control.inRectTokenIDList = currentEntitySubList;
+				ds_list_copy(obj_control.inRectTokenIDList, currentEntitySubList);
 				var unitList = ds_list_create();
 				ds_list_add(unitList, currentUnit);
-				obj_control.inRectUnitIDList = unitList;
+				ds_list_copy(obj_control.inRectUnitIDList, unitList);
 				global.delayInput = 0;
 				scr_createChunk();
 			}
 			else{
-				var inChunkList = currentFirstTokenSubMap[?"inChunkList"];
 				scr_newLink(currentFirstTokenID);
-				//if(ds_list_size(inChunkList) == 0){
-				//	scr_newLink(currentFirstTokenID);
-				//}
 			}
 			
 		}
@@ -150,6 +146,29 @@ function scr_importConlluAutotag(){
 		key = ds_map_find_next(entityMap, key);
 	}
 	show_debug_message(string(entityMapSize));
+	
+	//destroy map because you don't need it anymore
+	var entityMapSize = ds_map_size(entityMap);
+	var key = ds_map_find_first(entityMap);
+	for(var i = 0; i < entityMapSize; i++){
+		currentEntityList = entityMap[?key];
+		for(var j = 0; j < ds_list_size(currentEntityList); j++){
+			//show_debug_message("sublist before destroy: " + string(ds_exists(currentEntityList[|j], ds_type_list)));
+			
+			ds_list_destroy(currentEntityList[|j]);
+			
+			//show_debug_message("sublist after destroy: " + string(ds_exists(currentEntityList[|j], ds_type_list)));
+		}
+		//show_debug_message("list before destroy: " + string(ds_exists(currentEntityList, ds_type_list)));
+		
+		ds_list_destroy(currentEntityList);
+		
+		//show_debug_message("list after destroy: " + string(ds_exists(currentEntityList, ds_type_list)));
+
+		key = ds_map_find_next(entityMap,key);
+	}
+	
+	ds_map_destroy(entityMap);
 	
 	global.delayInput = 8;
 }
