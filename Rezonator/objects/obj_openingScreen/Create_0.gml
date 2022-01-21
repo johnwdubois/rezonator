@@ -306,6 +306,8 @@ alarm[2] = 1;
 global.exitOut = false;
 
 
+scr_dropDownOptionListTypeInit();
+
 scr_expandableDropDownInit();
 
 global.openingScreenDropDownMap = ds_map_create();
@@ -333,7 +335,7 @@ ds_map_add(global.openingScreenDropDownMap, "menu_language-ru", true);
 
 
 
-scr_dropDownOptionListTypeInit();
+
 
 
 

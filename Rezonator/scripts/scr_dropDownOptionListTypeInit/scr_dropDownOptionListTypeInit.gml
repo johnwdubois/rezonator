@@ -1,5 +1,3 @@
-
-
 function scr_dropDownOptionListTypeInit(){
 	
 	global.optionListTypeSort = 0;

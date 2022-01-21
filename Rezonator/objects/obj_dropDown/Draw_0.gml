@@ -35,7 +35,7 @@ if (y + windowHeight > camHeight) {
 	showScrollBar = true;
 }
 
-
+var ascendWidth = sprite_get_width(spr_ascend);
 // loop through list to get windowWidth
 var optionListSize = ds_list_size(optionList);
 var maxWidth = scr_getDropDownWidth();
@@ -172,7 +172,7 @@ for (var i = 0; i < optionListSize; i++) {
 	var shortcutTextX = (global.lang_codes[| global.lang_index] == "he") ? floor(optionRectX1 + textBuffer) : floor(optionRectX2 - textBuffer);
 	scr_adaptFont(scr_get_translation(currentOptionTranslated), "M");
 	if(global.lang_codes[| global.lang_index] == "he") draw_set_halign(fa_right);
-	
+
 	// draw text for current option
 	draw_text(optionTextX - clipX, floor(optionTextY - clipY), currentOptionTranslated);
 	
@@ -182,11 +182,16 @@ for (var i = 0; i < optionListSize; i++) {
 		scr_adaptFont(scr_get_translation(currentOptionShortcut), "S");
 		if(isExpandable){
 			if(global.lang_codes[| global.lang_index] == "he"){
-				draw_text(shortcutTextX - clipX + sprite_get_width(spr_ascend), optionTextY - clipY, currentOptionShortcut);
+				
+				shortcutTextX += ascendWidth;
+				
 			}
-			else{	
-				draw_text(shortcutTextX - clipX - sprite_get_width(spr_ascend), optionTextY - clipY, currentOptionShortcut);
+			else{
+				shortcutTextX -= ascendWidth;
+				
 			}
+			
+			draw_text(shortcutTextX - clipX, optionTextY - clipY, currentOptionShortcut);
 		}
 		else{
 			draw_text(shortcutTextX - clipX, optionTextY - clipY, currentOptionShortcut);
@@ -215,6 +220,15 @@ for (var i = 0; i < optionListSize; i++) {
 	
 	//add tag info to option
 	if (currentOptionTag != "") {
+			if(global.lang_codes[| global.lang_index] == "he"){
+				
+				shortcutTextX += ascendWidth/2;
+				
+			}
+			else{
+				shortcutTextX -= ascendWidth/2;
+				
+			}
 		draw_set_color(merge_color(global.colorThemeText, global.colorThemeBG, 0.3));
 		draw_text(shortcutTextX - clipX, optionTextY - clipY, currentOptionTag);	
 	}

@@ -68,6 +68,7 @@ function scr_toolsOptions(optionSelected) {
 			}
 			break;
 		case "menu_stacker":
+			scr_destroyAllDropDownsOtherThanSelf();
 			var dropDownOptionList = ds_list_create();
 			//, "Unit Label"
 			ds_list_add(dropDownOptionList,  "menu_turn", "menu_random","Unit Label", "menu_clique","Prosodic Sentence");

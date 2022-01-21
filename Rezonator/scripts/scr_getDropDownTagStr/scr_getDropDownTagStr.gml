@@ -14,19 +14,19 @@ function scr_getDropDownTagStr(option){
 	
 		var tagText = "";
 		if(isTokenOption){
-			tagText =  "   (" + string(obj_panelPane.functionField_tokenTagSelected) + " : " + string(obj_panelPane.functionField_tokenFieldSelected) + ")";
+			tagText =  "   (" + string(obj_panelPane.functionField_tokenFieldSelected) + " : " + string(obj_panelPane.functionField_tokenTagSelected) + ")";
 		}
 		else if(isUnitOption){
-			tagText =  "   (" + string(obj_panelPane.functionField_unitTagSelected) + " : " + string(obj_panelPane.functionField_unitFieldSelected) + ")";
+			tagText =  "   (" + string(obj_panelPane.functionField_unitFieldSelected) + " : " + string(obj_panelPane.functionField_unitTagSelected) + ")";
 		}
 		else if(isChainOption){
-			tagText =  "   (" + string(obj_panelPane.functionField_chainTagSelected) + " : " + string(obj_panelPane.functionField_chainFieldSelected) + ")";
+			tagText =  "   (" + string(obj_panelPane.functionField_chainFieldSelected) + " : " + string(obj_panelPane.functionField_chainTagSelected) + ")";
 		}
 		else if(isEntryOption){
-			tagText =  "   (" + string(obj_panelPane.functionField_entryTagSelected) + " : " + string(obj_panelPane.functionField_entryFieldSelected) + ")";
+			tagText =  "   (" + string(obj_panelPane.functionField_entryFieldSelected) + " : " + string(obj_panelPane.functionField_entryTagSelected) + ")";
 		}
 		else if(isChunkOption){
-			tagText =  "   (" + string(obj_panelPane.functionField_chunkTagSelected) + " : " + string(obj_panelPane.functionField_chunkFieldSelected) + ")";
+			tagText =  "   (" + string(obj_panelPane.functionField_chunkFieldSelected) + " : " + string(obj_panelPane.functionField_chunkTagSelected) + ")";
 		}
 		else if(isTreeLinkOption){
 			tagText =  "   (" + string(obj_panelPane.functionField_linkFieldSelected) + " : " + string(obj_panelPane.functionField_linkTagSelected) + ")";
