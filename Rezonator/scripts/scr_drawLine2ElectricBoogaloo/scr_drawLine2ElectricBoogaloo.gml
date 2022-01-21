@@ -146,6 +146,7 @@ function scr_drawLine2ElectricBoogaloo(){
 		// check if this unit should be added to unitRectList
 		if (makingRect && mouse_check_button(mb_left)) {
 			var inMouseHoldRect = (min(mouse_y, mouseHoldRectY1) < currentPixelY + (gridSpaceVertical * 0.5) && max(mouse_y, mouseHoldRectY1) > currentPixelY - (gridSpaceVertical * 0.5));
+			if (instance_exists(obj_dialogueBox) || instance_exists(obj_dropDown)) inMouseHoldRect = true;
 			if (inMouseHoldRect) {
 				scr_addToListOnce(inRectUnitIDList, currentUnit);
 			}
