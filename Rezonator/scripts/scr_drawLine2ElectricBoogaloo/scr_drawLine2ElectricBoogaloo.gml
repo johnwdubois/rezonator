@@ -233,7 +233,7 @@ function scr_drawLine2ElectricBoogaloo(){
 	
 	
 	// merge units list (temp?)
-	if (keyboard_check_released(ord("U")) && obj_control.shortcutsEnabled) {
+	if (keyboard_check(vk_alt) && keyboard_check(vk_shift) &&keyboard_check_released(ord("U")) && obj_control.shortcutsEnabled) {
 		scr_mergeUnit();
 	}
 	if (mouse_check_button_released(mb_left)) {
