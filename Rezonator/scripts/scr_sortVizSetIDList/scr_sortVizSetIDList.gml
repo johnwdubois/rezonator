@@ -62,7 +62,9 @@ function scr_sortVizSetIDList(chainID){
 		else if (chainType == "stack") {
 			var unitID = currentEntrySubMap[? "unit"];
 			var unitSubMap = global.nodeMap[?unitID];
-			currentUnitSeq = unitSubMap[?"unitSeq"];
+			if(scr_isNumericAndExists(unitSubMap, ds_type_map)){
+				currentUnitSeq = unitSubMap[?"unitSeq"];
+			}
 		}
 		
 		// set values in tempGrid

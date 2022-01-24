@@ -141,6 +141,14 @@ function scr_drawLine2ElectricBoogaloo(){
 			drawRangeEnd += 2;
 		}
 		
+		//draw unit if selected for merge
+		var inMergeUnitList = (ds_list_find_index(mergeUnitList,currentUnit)>-1);
+		if(keyboard_check(vk_alt) && inMergeUnitList){
+					var unitY1 = floor(currentUnitSubMap[? "pixelY"] - gridSpaceVertical/2 -1);
+		var unitY2 = floor(currentUnitSubMap[? "pixelY"] + gridSpaceVertical/2 -3);
+		draw_set_color(merge_color(global.colorThemeGrid_colSelected1, c_white, 0.8));
+		draw_rectangle(0,unitY1,obj_toolPane.x , unitY2, false);
+		}
 		
 		
 		// check if this unit should be added to unitRectList
@@ -216,6 +224,7 @@ function scr_drawLine2ElectricBoogaloo(){
 		draw_rectangle(0,unitY1,obj_toolPane.x , unitY2, true);
 	}
 
+
 	
 	// set wordLeftMargin
 	wordLeftMargin = speakerLabelColXList[| speakerLabelColXListSize - 1];
@@ -233,7 +242,7 @@ function scr_drawLine2ElectricBoogaloo(){
 	
 	
 	// merge units list (temp?)
-	if (keyboard_check(vk_alt) && keyboard_check(vk_shift) &&keyboard_check_released(ord("U")) && obj_control.shortcutsEnabled) {
+	if (keyboard_check(vk_alt) && keyboard_check_released(ord("U")) && obj_control.shortcutsEnabled) {
 		scr_mergeUnit();
 	}
 	if (mouse_check_button_released(mb_left)) {

@@ -3,6 +3,7 @@ function scr_splitUnit(currentToken, lastToken){
 	var unitToSplit = tokenSubMap[?"unit"];
 	var oldUnitSubMap = global.nodeMap[?unitToSplit];
 	var entryList = oldUnitSubMap[?"entryList"];
+	var inChainsList = oldUnitSubMap[?"inChainsList"];
 	var entryListSize = ds_list_size(entryList)
 	for(var i = 0 ; i < entryListSize; i++){
 		var currentEntry = entryList[|i];
@@ -71,6 +72,11 @@ function scr_splitUnit(currentToken, lastToken){
 		var tokenSubMap = global.nodeMap[?tokenID];
 		tokenSubMap[?"unit"] = newUnitNode;
 		currentEntrySubMap[?"unit"] = newUnitNode;
+	}
+	if(ds_list_size(inChainsList)> 0){
+		var chainToFocus = inChainsList[|0];
+		obj_chain.currentFocusedChainID = chainToFocus;
+		scr_unitClicked(newUnitNode);
 	}
 
 	discourseSubMap[? "displayUnitList"] = unitList;
