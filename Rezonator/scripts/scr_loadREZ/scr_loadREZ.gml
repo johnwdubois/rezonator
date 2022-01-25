@@ -252,6 +252,15 @@ function scr_loadREZ() {
 						var stackCounter = map[? "stackCounter"];
 						if (is_numeric(stackCounter)) obj_chain.stackChainNameCounter = stackCounter;
 					}
+					// get audioFile
+					if (ds_map_exists(map, "audioFile")) {
+						var audioFile = map[? "audioFile"];
+						show_debug_message("audioFile: " + string(audioFile))
+						if (file_exists(audioFile)){
+							obj_fileLoader.importedAudioFile = audioFile;
+							show_debug_message("obj_fileLoader.importedAudioFile:  "+string(obj_fileLoader.importedAudioFile));
+						}
+					}
 				}
 			}		
 		}

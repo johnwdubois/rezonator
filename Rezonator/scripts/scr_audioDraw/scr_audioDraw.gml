@@ -273,25 +273,26 @@ function scr_audioDraw() {
 	
 	if (mouseoverLoadAudio) {
 		if (mouse_check_button_released(mb_left)) {
+			87789		
+			var fileFolder = (global.previousAudioDirectory != "") ? global.previousAudioDirectory : working_directory;
 			
-			audio_stop_all();
-			audioFile = "";
-			audioStream = -1;
-			audioSound = -1;
-			audioLength = 0;
-			audioPos = 0;
-			audioPaused = true;
-			
-			
-			
-			var getAudioFile = get_open_filename_ext("ogg file|*.ogg", "", working_directory, scr_get_translation("msg_file_audio"));
+			var getAudioFile = get_open_filename_ext("ogg file|*.ogg", "", fileFolder, scr_get_translation("msg_file_audio"));
 			if (getAudioFile != "" and file_exists(getAudioFile)) {
+				audio_stop_all();
+				audioFile = "";
+				audioStream = -1;
+				audioSound = -1;
+				audioLength = 0;
+				audioPos = 0;
+				audioPaused = true;
+				
 				if(global.steamAPI){
 					if(!steam_get_achievement("SA_play-audio")){
 						steam_set_achievement("SA_play-audio");
 					}
 				}
 				audioFile = getAudioFile;
+				global.previousAudioDirectory = filename_path(audioFile);
 				audioStream = audio_create_stream(audioFile);
 				audioSound = audio_play_sound(audioStream, 100, false);
 				visible = true;

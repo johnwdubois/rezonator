@@ -9,6 +9,7 @@ global.autosaveTimer = global.autosaveTimerFull;
 global.previousRezDirectory = "";
 global.previousImportDirectory = "";
 global.previousSaveDirectory = "";
+global.previousAudioDirectory = "";
 global.previousLevelEstimates = ds_list_create();
 global.previousSpecialFields = ds_list_create();
 ds_list_clear(global.previousLevelEstimates);

@@ -79,6 +79,7 @@ function scr_saveINI() {
 	scr_setMap(map, "previousRezDirectory", global.previousRezDirectory);
 	scr_setMap(map, "previousImportDirectory", global.previousImportDirectory);
 	scr_setMap(map, "previousSaveDirectory", global.previousSaveDirectory);
+	scr_setMap(map, "previousAudioDirectory", global.previousAudioDirectory);
 		
 
 	var tempList3 = ds_list_create();

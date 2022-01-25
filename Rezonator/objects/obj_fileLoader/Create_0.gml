@@ -1,3 +1,4 @@
+importedAudioFile = "";
 if (global.openProject) {
 	show_debug_message("obj_loadingControl Create ... loading REZ");
 	scr_loadREZ();
@@ -76,6 +77,8 @@ if (ds_grid_height(global.importCSVGrid) > 0) {
 currentRowWordGrid = 0;
 currentRowUnitGrid = 0;
 loadLineGridSectionCounter = 0;
+
+
 
 global.importedSpecialFields = false;
 global.unitTagMapFilled = false;
