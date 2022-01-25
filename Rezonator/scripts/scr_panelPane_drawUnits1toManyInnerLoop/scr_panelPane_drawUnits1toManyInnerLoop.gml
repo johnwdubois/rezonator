@@ -112,6 +112,7 @@ function scr_panelPane_drawUnits1toManyInnerLoop(tokenID, drawDropDowns, strHeig
 					scrollHorPlusXDest -= abs(cellRectX2 - (x + windowWidth));
 				}
 				if(obj_control.doubleClickTimer > 0 ){
+					obj_control.navWindowTaggingFocusHeavy = true;
 					scr_spawnTagInputBox(tokenID, currentField, currentStr, self.id);
 				}
 				

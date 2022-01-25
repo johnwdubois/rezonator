@@ -11,7 +11,7 @@ function scr_tagInputBoxSetPos(ID, field, x1, y1, x2, y2){
 					
 					var paneInst = obj_control.navWindowTaggingPaneInst;
 					if (instance_exists(paneInst)) {
-						if (textBoxY < paneInst.y + paneInst.functionTabs_tabHeight
+						if (textBoxY < paneInst.y + paneInst.functionTabs_tabHeight - 2
 						|| textBoxY + windowHeight > paneInst.y + paneInst.windowHeight) {
 							instance_destroy();
 						}

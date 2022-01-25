@@ -845,3 +845,7 @@ navWindowTaggingCellY1 = -1;
 navWindowTaggingCellX2 = -1;
 navWindowTaggingCellY2 = -1;
 navWindowTaggingUpdateScroll = false;
+navWindowTaggingFocusHeavy = false;
+navWindowTaggingEnterPress = false;
+navWindowTaggingDisableSpawn = false;
+navWindowTaggingNextRow = false;

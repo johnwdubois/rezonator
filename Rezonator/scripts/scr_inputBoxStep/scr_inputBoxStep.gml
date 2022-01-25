@@ -232,6 +232,13 @@ function scr_inputBoxStep(){
 	doubleClickTimer = max(doubleClickTimer - 1, 0);
 	
 	if (keyEnterPressed && navWindowTagging) {
+		if (instance_exists(obj_control) && instance_exists(obj_alarm2)) {
+			with (obj_control) {
+				navWindowTaggingDisableSpawn = true;
+				navWindowTaggingNextRow = true;
+			}
+			with (obj_alarm2) alarm[11] = 1;
+		}
 		instance_destroy();
 	}
 	

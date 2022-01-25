@@ -23,6 +23,9 @@ if (scr_isNumericAndExists(idSubMap, ds_type_map)) {
 
 // clear the navWindowTagging variables
 global.inputBoxDefStr = "";
-obj_control.navWindowTaggingID = "";
-obj_control.navWindowTaggingField = "";
+if (!keyboard_check_pressed(vk_left) && !keyboard_check_pressed(vk_right) && !keyboard_check_pressed(vk_up) && !keyboard_check_pressed(vk_down) && !keyboard_check_pressed(vk_enter)) {
+	obj_control.navWindowTaggingID = "";
+	obj_control.navWindowTaggingField = "";
+}
 keyboard_lastchar = "";
+obj_control.navWindowTaggingFocusHeavy = false;

@@ -11,6 +11,13 @@ function scr_inputBoxCreate(strDefault){
 	str = strDefault;
 	cursorIndex = string_length(str);
 	highlightIndex = 0;
+	if (instance_exists(obj_control)) {
+		if (obj_control.navWindowTaggingID != "") highlightIndex = cursorIndex;
+		if (obj_control.navWindowTaggingEnterPress) {
+			obj_control.navWindowTaggingEnterPress = false;
+			highlightIndex = cursorIndex;
+		}
+	}
 	strToCursor = "";
 	strToHighlight = "";
 
