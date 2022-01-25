@@ -52,6 +52,7 @@ removeFieldChunk = false;
 removeFieldLink = false;
 removeSearch = false;
 removeTree = false;
+mergeUnit = false;
 stringToBeRemoved = "";
 searchToBeRemoved = "";
 

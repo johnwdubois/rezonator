@@ -260,9 +260,10 @@ function scr_dialogueConfirm(){
 		}
 		
 		
-			
-		
-
+		if(mergeUnit){
+			scr_mergeUnit();
+		}
+	
 		if (clearChain) {
 			scr_deleteChain(obj_control.selectedChainID);
 		}

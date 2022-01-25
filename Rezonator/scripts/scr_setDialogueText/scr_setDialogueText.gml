@@ -35,6 +35,26 @@ function scr_setDialogueText(){
 			titleText = scr_get_translation("Clear Current Chain");
 			descriptionText = scr_get_translation("msg_warning_clear_focused_chain");
 		}
+		if(mergeUnit){
+			var unitSeq1 = 0;
+			var unitSeq2 = 0;
+			for(var i = 0; i <= ds_list_size(obj_control.mergeUnitList)-1; i++){
+				var currentUnitID = obj_control.mergeUnitList[|i];
+				var currentUnitSubMap = global.nodeMap[?currentUnitID];
+				if(scr_isNumericAndExists(currentUnitSubMap,ds_type_map)){
+					if(i == 0){
+						unitSeq1 = currentUnitSubMap[?"unitSeq"];
+					}
+					else{
+						unitSeq2 = currentUnitSubMap[?"unitSeq"];
+					}
+				}
+				
+			}
+			titleText = scr_get_translation("Merge Units");
+			descriptionText = scr_get_translation("This will merge Unit "+string(unitSeq1)+" , with Unit "+string(unitSeq2));
+		}
+
 		if (clearShow) {
 			titleText = scr_get_translation("help_label_delete_plain")+ " "+ scr_get_translation("menu_show");
 			descriptionText =  scr_get_translation("You are about to delete this show");
