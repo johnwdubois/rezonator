@@ -17,6 +17,7 @@ function scr_audioJumpToUnit(unitID) {
 				if (unitStart != undefined and unitStart > 0) {
 					with (obj_audioUI) {
 						audioPos = unitStart;
+						bookmarkStartTime = audioPos;
 						if (audioPos >= 0 and audioPos <= audioLength) {
 							audio_sound_set_track_position(audioSound, audioPos);
 						}
@@ -30,6 +31,6 @@ function scr_audioJumpToUnit(unitID) {
 			}
 		}
 	}
-
+	
 
 }

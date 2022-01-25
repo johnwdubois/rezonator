@@ -39,12 +39,13 @@ function scr_audioDraw() {
 	
 	playheadRadSmall = strHeight * 0.2;
 	playheadRadBig = strHeight * 0.3;
-
+	
 
 
 	// draw seekbar BG
 	draw_set_color(bgColor);
 	draw_rectangle(seekBarX1 - string_width("AAAAAAA"), y, seekBarX2 + string_width("AAAAAAA"), y + windowHeight, false);
+
 	
 	// draw play/pause button
 	var playTriangleWidth = strHeight * 0.9;
@@ -87,32 +88,14 @@ function scr_audioDraw() {
 	// Check for mouseClick on play/pause button
 	if (mouseOverPlayPause) {
 		if (mouse_check_button_pressed(mb_left)) {
-			if (selectedStackChain > -1) {
-				if (audioPaused) {
-					if(audioPos >= bookmarkEndTime) {
-						scr_audioJumpToUnit(stackStartUnit);
-						audioPaused = !audioPaused;
-					}
-				}
-			}
 			audioPaused = !audioPaused;
 		}
 	}
 	
 	// Check for Spacebar to toggle play/pause and set Bookmark
 	if (keyboard_check_released(vk_space) and !instance_exists(obj_dialogueBox) && audioSound != -1) {
-		//var stackSelected = 
-		if (selectedStackChain > -1) {
-			if (audioPaused) {
-				audioPaused = !audioPaused;
-			}
-			else {
-				audio_sound_set_track_position(audioSound, bookmarkStartTime);
-				stackUnitListPosition = 0;	
-				audioPaused = !audioPaused;
-			}
-		}
-		else if (bookmarkStartTime > -1) {
+
+		if (bookmarkStartTime > -1) {
 			if (audioPaused) {
 				audio_sound_set_track_position(audioSound, bookmarkStartTime);
 				audioPaused = !audioPaused;
@@ -126,26 +109,19 @@ function scr_audioDraw() {
 		}
 	}
 	
-	/*
+	
 	// Check for Enter to set bookmark
 	if (keyboard_check_pressed(vk_enter) and !instance_exists(obj_dialogueBox) && audioSound != -1) {
-		if(selectedStackChain == -1) {
-			if(audioPaused) {
-				var currentFocusUnit = scr_currentTopLine();
-				var currentFocusUnitStartTime = ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colUnitStart, currentFocusUnit - 1);
-				bookmarkStartTime = currentFocusUnitStartTime;
-				audio_sound_set_track_position(audioSound, bookmarkStartTime);
-				bookmarkEndTime = -1;
-			}
-			else{
-				bookmarkStartTime = audioPos;
-				audio_sound_set_track_position(audioSound, bookmarkStartTime);
-				bookmarkEndTime = -1;
-				audioPaused = !audioPaused;
-			}
+
+		bookmarkStartTime = audioPos;
+		audio_sound_set_track_position(audioSound, bookmarkStartTime);
+		bookmarkEndTime = -1;
+		if(audioPaused) {
+			audioPaused = !audioPaused;
 		}
+
 	}
-	*/
+	
 
 	// draw seekbar
 	seekBarWidth = camera_get_view_width(camera_get_active()) / 2;
@@ -157,6 +133,20 @@ function scr_audioDraw() {
 	draw_rectangle(seekBarX1, seekBarY1, seekBarX2, seekBarY2, false);
 	draw_set_color(progressColor);
 	draw_rectangle(seekBarX1, seekBarY1, playheadX, seekBarY2, false);
+	
+		// Draw audio Bookmark
+	if(bookmarkStartTime > -1) {
+		
+		//Draw bookmarks
+		bookmarkX = ((real(bookmarkStartTime) * real(seekBarWidth)) / audioLength) + seekBarX1;
+		bookmarkY = seekBarY1 - (playheadRad*1.5);
+		var bookmarkWidth = windowWidth*0.001;
+		draw_set_halign(fa_right);
+		draw_set_color(c_white);
+		draw_rectangle(bookmarkX - bookmarkWidth, bookmarkY ,bookmarkX + bookmarkWidth, bookmarkY + playheadRad*4, false);
+		//draw_sprite_ext(spr_linkArrow, 0, bookmarkX, bookmarkY, 0.4, 0.4, 270, c_white, 1);
+	}
+
 
 
 	// draw playhead circle
@@ -180,6 +170,7 @@ function scr_audioDraw() {
 		playheadRadDest = playheadRadBig;
 		if (mouse_check_button_pressed(mb_left)) {
 			playheadHolding = true;
+			bookmarkStartTime = -1;
 		}
 	}
 	else {
@@ -202,27 +193,6 @@ function scr_audioDraw() {
 	}
 	else {
 		audioPosTemp = audioPos;
-	}
-	
-	// Draw audio Bookmark
-	if(bookmarkStartTime > -1) {
-		
-		//Draw bookmarks
-		bookmarkX = ((real(bookmarkStartTime) * real(seekBarWidth)) / audioLength) + seekBarX1;
-		bookmarkY = seekBarY1 - (playheadRad * 2);
-	
-		draw_set_halign(fa_right);
-		draw_sprite_ext(spr_linkArrow, 0, bookmarkX, bookmarkY, 0.5, 0.5, 30, c_green, 1);
-		
-		if(bookmarkEndTime > -1) {
-		
-			//Draw bookmarks
-			endmarkX = ((real(bookmarkEndTime) * real(seekBarWidth)) / audioLength) + seekBarX1;
-			endmarkY = seekBarY2 + (playheadRad * 2);
-			
-			draw_set_halign(fa_left);
-			draw_sprite_ext(spr_linkArrow, 0, endmarkX, endmarkY, 0.5, 0.5, 210, c_red, 1);
-		}
 	}
 
 	// draw time lengths
