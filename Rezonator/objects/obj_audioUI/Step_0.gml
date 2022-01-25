@@ -8,7 +8,7 @@ y = camera_get_view_height(camera_get_active()) - windowHeight;
 
 
 if (keyboard_check(vk_alt) and keyboard_check(vk_shift) and keyboard_check_pressed(ord("A"))) {
-	var fileFolder = (global.previousAudioDirectory != "") ? global.previousAudioDirectory : working_directory;
+	var fileFolder = (directory_exists(string(global.previousAudioDirectory)) && global.previousAudioDirectory != "") ? global.previousAudioDirectory : working_directory;
 	var getAudioFile = get_open_filename_ext("ogg file|*.ogg", "", fileFolder, scr_get_translation("msg_file_audio"));
 	if (getAudioFile != "" and file_exists(getAudioFile)) {
 		if(global.steamAPI){

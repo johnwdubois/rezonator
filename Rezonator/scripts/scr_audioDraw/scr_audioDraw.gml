@@ -273,8 +273,7 @@ function scr_audioDraw() {
 	
 	if (mouseoverLoadAudio) {
 		if (mouse_check_button_released(mb_left)) {
-			87789		
-			var fileFolder = (global.previousAudioDirectory != "") ? global.previousAudioDirectory : working_directory;
+			var fileFolder = (directory_exists(string(global.previousAudioDirectory)) && global.previousAudioDirectory != "") ? global.previousAudioDirectory : working_directory;
 			
 			var getAudioFile = get_open_filename_ext("ogg file|*.ogg", "", fileFolder, scr_get_translation("msg_file_audio"));
 			if (getAudioFile != "" and file_exists(getAudioFile)) {

@@ -85,7 +85,7 @@ function scr_fileOptions(optionSelected) {
 		case "menu_media":
 
 			with( obj_audioUI ){
-				var fileFolder = (global.previousAudioDirectory != "") ? global.previousAudioDirectory : working_directory;
+				var fileFolder = (directory_exists(string(global.previousAudioDirectory)) && global.previousAudioDirectory != "") ? global.previousAudioDirectory : working_directory;
 				var getAudioFile = get_open_filename_ext("ogg file|*.ogg", "", fileFolder, scr_get_translation("msg_file_audio"));
 					if (getAudioFile != "" and file_exists(getAudioFile)) {
 						if(global.steamAPI){
