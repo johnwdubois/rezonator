@@ -34,18 +34,40 @@ function scr_navWindowTaggingSelection(fieldList, idList){
 			keyboard_lastchar = "";
 		}
 		
-		
+	
 		
 		// create input box if user presses enter or types a letter on keyboard
 		if (!inputBoxExists && !obj_control.navWindowTaggingDisableSpawn && !global.ctrlHold && !instance_exists(obj_dropDown)) {
+			
+			if(keyboard_check_pressed(vk_enter) || scr_isCharLetter(keyboard_lastchar)){
+			
+				// get submap for this field
+				var tokenTagMap = global.nodeMap[? "tokenTagMap"];
+				var fieldSubMap = tokenTagMap[? obj_control.navWindowTaggingField];
+					
+				// get the tagSet for this field
+				var tagSet = fieldSubMap[? "tagSet"];
+				show_debug_message(scr_getStringOfList(tagSet))
+				// create dropdown
+				var dropDownOptionList = ds_list_create();
+				ds_list_copy(dropDownOptionList, tagSet);
+				ds_list_add(dropDownOptionList,"option_add-to-tag-set");
+				ds_list_add(dropDownOptionList, "menu_clear");
+				show_debug_message(scr_getStringOfList(dropDownOptionList));
+				obj_control.tokenToChange = obj_control.navWindowTaggingID;
+				obj_control.tokenFieldToChange = obj_control.navWindowTaggingField;
+			}
+			
+			
+			
 			if (keyboard_check_pressed(vk_enter)) {
 				obj_control.navWindowTaggingEnterPress = true;
 				var currentTagValue = scr_navWindowGetTagValue();
-				scr_spawnTagInputBox(obj_control.navWindowTaggingID, obj_control.navWindowTaggingField, currentTagValue, self.id);
+				scr_spawnTagInputBox(obj_control.navWindowTaggingID, obj_control.navWindowTaggingField, currentTagValue, self.id, dropDownOptionList, global.optionListTypeTokenTagMap);
 				obj_control.navWindowTaggingFocusHeavy = true;
 			}
 			else if (scr_isCharLetter(keyboard_lastchar)) {
-				scr_spawnTagInputBox(obj_control.navWindowTaggingID, obj_control.navWindowTaggingField, keyboard_lastchar, self.id);
+				scr_spawnTagInputBox(obj_control.navWindowTaggingID, obj_control.navWindowTaggingField, keyboard_lastchar, self.id, dropDownOptionList, global.optionListTypeTokenTagMap);
 				obj_control.navWindowTaggingFocusHeavy = false;
 				keyboard_lastchar = "";
 			}
@@ -97,6 +119,7 @@ function scr_navWindowTaggingSelection(fieldList, idList){
 		}
 	
 		if (selectNextRow) {
+			
 			var nextID = "";
 			var idFound = false;
 			for (var i = 0; i < idListSize; i++) {

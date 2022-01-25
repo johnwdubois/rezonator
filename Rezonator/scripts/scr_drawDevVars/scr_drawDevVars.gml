@@ -88,6 +88,7 @@ function scr_drawDevVars(){
 	draw_text(devVarX - 580, wordTopMargin + (strHeight * 15), "mergeUnitList: " + scr_getStringOfList(mergeUnitList));
 	draw_text(devVarX - 580, wordTopMargin + (strHeight * 16), "navWindowTaggingField: " + string(navWindowTaggingField));
 	draw_text(devVarX - 580, wordTopMargin + (strHeight * 17), "navWindowTaggingID: " + string(navWindowTaggingID));
+	draw_text(devVarX - 580, wordTopMargin + (strHeight * 18), "navWindowTaggingFocusHeavy: " + string(navWindowTaggingFocusHeavy));
 
 	
 	// reset halign to left

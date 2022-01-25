@@ -30,7 +30,10 @@ function scr_inputBoxStep(){
 
 	// get keyboard input
 	var input = "";
-	if (string_length(keyboard_string) > 0 && windowFocused) input = keyboard_string;
+	if (string_length(keyboard_string) > 0 && windowFocused) {
+		input = keyboard_string;
+		with (obj_dropDown) optionCurrent = -1;
+	}
 	
 	
 	// CTRL+V (paste)

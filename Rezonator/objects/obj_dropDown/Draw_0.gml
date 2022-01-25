@@ -241,7 +241,13 @@ for (var i = 0; i < optionListSize; i++) {
 	// click on option
 	var click = mouse_check_button_released(mb_left) || keyboard_check_released(vk_enter);
 	var clickCurrentOption = (mouseoverCurrentOption && ableToClick && click);
-	if (arrowKeySelection && click && i == optionCurrent) clickCurrentOption = true;
+	show_debug_message("i: " + string(i) + ", optionCurrent: "+ string(optionCurrent) + ", enter releaseD: " + string( keyboard_check_released(vk_enter)))
+	if (arrowKeySelection && click && i == optionCurrent) {
+		show_debug_message("ARROW KEY SELECTION!");
+		prevOptionClicked = -1;
+		clickCurrentOption = true;
+		isExpandable = false;
+	}
 	if (isExpandable && expandableTimer >= expandableTimerFull && ableToClick && mouseoverCurrentOption && !expandableTimerClicked) {
 		expandableTimerClicked = true;
 		clickCurrentOption = true;

@@ -113,7 +113,23 @@ function scr_panelPane_drawUnits1toManyInnerLoop(tokenID, drawDropDowns, strHeig
 				}
 				if(obj_control.doubleClickTimer > 0 ){
 					obj_control.navWindowTaggingFocusHeavy = true;
-					scr_spawnTagInputBox(tokenID, currentField, currentStr, self.id);
+					
+					// get submap for this field
+					var tokenTagMap = global.nodeMap[? "tokenTagMap"];
+					var fieldSubMap = tokenTagMap[? currentField];
+					
+					// get the tagSet for this field
+					var tagSet = fieldSubMap[? "tagSet"];
+					// create dropdown
+					var dropDownOptionList = ds_list_create();
+					ds_list_copy(dropDownOptionList, tagSet);
+					ds_list_add(dropDownOptionList,"option_add-to-tag-set");
+					ds_list_add(dropDownOptionList, "menu_clear");
+
+					obj_control.tokenToChange = tokenID;
+					obj_control.tokenFieldToChange = currentField;
+					
+					scr_spawnTagInputBox(tokenID, currentField, currentStr, self.id,dropDownOptionList, global.optionListTypeTokenTagMap);
 				}
 				
 
@@ -145,8 +161,8 @@ function scr_panelPane_drawUnits1toManyInnerLoop(tokenID, drawDropDowns, strHeig
 						// create dropdown
 						var dropDownOptionList = ds_list_create();
 						ds_list_copy(dropDownOptionList, tagSet);
-						ds_list_insert(dropDownOptionList, 0, "option_add-to-tag-set");
-						ds_list_insert(dropDownOptionList, 1, "menu_clear");
+						ds_list_add(dropDownOptionList,"option_add-to-tag-set");
+						ds_list_add(dropDownOptionList, "menu_clear");
 
 						obj_control.tokenToChange = tokenID;
 						obj_control.tokenFieldToChange = currentField;

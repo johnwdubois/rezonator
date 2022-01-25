@@ -1,6 +1,13 @@
 /// @description set nav window tag
 if (!instance_exists(obj_control)) exit;
 
+with (obj_dropDown) {
+	if (optionCurrent == -1) instance_destroy();
+}
+
+obj_control.navWindowTaggingFocusHeavy = false;
+
+
 // get navWindowTagging vars, check if they have any actual values
 var setID = obj_control.navWindowTaggingID;
 var field = obj_control.navWindowTaggingField;
@@ -11,6 +18,7 @@ if (setID == "" || field == "" || !is_string(setID) || !is_string(field)) {
 show_debug_message("obj_inputbox destroy, ID: " + string(setID));
 show_debug_message("obj_inputbox destroy, field: " + string(field));
 show_debug_message("obj_inputbox destroy, tag: " + string(tag));
+
 
 // set tag value in map
 var idSubMap = global.nodeMap[? setID];
@@ -28,4 +36,3 @@ if (!keyboard_check_pressed(vk_left) && !keyboard_check_pressed(vk_right) && !ke
 	obj_control.navWindowTaggingField = "";
 }
 keyboard_lastchar = "";
-obj_control.navWindowTaggingFocusHeavy = false;

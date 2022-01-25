@@ -111,7 +111,7 @@ function scr_audioDraw() {
 	
 	
 	// Check for Enter to set bookmark
-	if (keyboard_check_pressed(vk_enter) and !instance_exists(obj_dialogueBox) && audioSound != -1) {
+	if (keyboard_check_pressed(vk_enter) and !instance_exists(obj_dialogueBox) && audioSound != -1 && !instance_exists(obj_inputBox) && obj_control.navWindowTaggingID == "") {
 
 		bookmarkStartTime = audioPos;
 		audio_sound_set_track_position(audioSound, bookmarkStartTime);
