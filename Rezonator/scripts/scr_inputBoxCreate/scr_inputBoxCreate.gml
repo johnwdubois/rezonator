@@ -1,8 +1,8 @@
 function scr_inputBoxCreate(strDefault){
 	
 	// get dimensions for input window (windowHeight will adjust based on font size)
-	textBoxX = 0;
-	textBoxY = 0;
+	textBoxX = -200;
+	textBoxY = -200;
 	windowWidth = 100;
 	windowHeight = 100;
 	windowFocused = true;

@@ -1,5 +1,5 @@
 function scr_spawnTagInputBox(ID, field, defStr, paneInst){
-	
+
 	with (obj_inputBox) {
 		if (navWindowTagging) {
 			if (obj_control.navWindowTaggingField != field || obj_control.navWindowTaggingID != ID) {

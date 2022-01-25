@@ -12,6 +12,14 @@ function scr_navWindowTaggingSelection(fieldList, idList){
 		
 		var idListSize = ds_list_size(idList);
 		
+		
+		if(scr_isCharLetter(keyboard_lastchar) && keyboard_lastchar != "" && !instance_exists(obj_inputBox)){
+			show_debug_message(keyboard_lastchar);
+			
+			scr_spawnTagInputBox(obj_control.navWindowTaggingID,obj_control.navWindowTaggingField,keyboard_lastchar,self.id);
+			keyboard_lastchar = "";
+		}
+		
 		if (keyboard_check_pressed(vk_left)) {
 			var fieldIndex = ds_list_find_index(fieldList, obj_control.navWindowTaggingField);
 			fieldIndex = max(fieldIndex - 1, 0);

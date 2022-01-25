@@ -1,7 +1,6 @@
 /*
 	Purpose: Check for user key inputs and navigate accordingly, update the center display row based on positioning, change the font size, and check for panel pane mouse over
 */
-
 #macro vk_rcommand 91
 #macro vk_lcommand 92
 

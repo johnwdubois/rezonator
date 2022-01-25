@@ -94,6 +94,9 @@ function scr_panelPane_drawUnits1toManyInnerLoop(tokenID, drawDropDowns, strHeig
 			obj_control.hoverTextCopy = currentStr;
 			obj_control.mouseoverTagCell = true;
 			if (mouse_check_button_released(mb_left) && !mouseoverDropDown) {
+				if(obj_control.navWindowTaggingID != tokenID or obj_control.navWindowTaggingField != currentField){
+					obj_control.doubleClickTimer = 0;
+				}
 				with (obj_control) {
 					navWindowTaggingID = tokenID;
 					navWindowTaggingField = currentField;
@@ -108,8 +111,10 @@ function scr_panelPane_drawUnits1toManyInnerLoop(tokenID, drawDropDowns, strHeig
 				else if (cellRectX2 > x + windowWidth) {
 					scrollHorPlusXDest -= abs(cellRectX2 - (x + windowWidth));
 				}
+				if(obj_control.doubleClickTimer > 0 ){
+					scr_spawnTagInputBox(tokenID, currentField, currentStr, self.id);
+				}
 				
-				//scr_spawnTagInputBox(tokenID, currentField, currentStr, self.id);
 
 			}
 		}

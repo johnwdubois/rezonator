@@ -25,3 +25,4 @@ if (scr_isNumericAndExists(idSubMap, ds_type_map)) {
 global.inputBoxDefStr = "";
 obj_control.navWindowTaggingID = "";
 obj_control.navWindowTaggingField = "";
+keyboard_lastchar = "";
