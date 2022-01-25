@@ -31,6 +31,7 @@ if (!scr_isNumericAndExists(displayUnitList, ds_type_list)) {
 
 
 shortcutsEnabled = true;
+if (navWindowTaggingID != "") shortcutsEnabled = false;
 cameraBottomLine = camera_get_view_height(view_get_camera(0));
 
 global.delayInput = max(global.delayInput - 1, 0);

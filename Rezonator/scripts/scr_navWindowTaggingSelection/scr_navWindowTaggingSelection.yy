@@ -6,7 +6,7 @@
     "path": "folders/Scripts/UI/inputBox/tagInputBox.yy",
   },
   "resourceVersion": "1.0",
-  "name": "scr_tagInputBoxSetPos",
+  "name": "scr_navWindowTaggingSelection",
   "tags": [],
   "resourceType": "GMScript",
 }
