@@ -5,6 +5,8 @@
 myAlpha += 0.15;
 if (myAlpha > 1) myAlpha = 1;
 
+arrowKeySelection = (optionListType == global.optionListTypeTokenTagMap);
+
 if (instance_exists(prevDropDown) && prevDropDown != -1) {
 	x = prevDropDown.x + prevDropDown.windowWidth;
 }
@@ -239,6 +241,7 @@ for (var i = 0; i < optionListSize; i++) {
 	// click on option
 	var click = mouse_check_button_released(mb_left) || keyboard_check_released(vk_enter);
 	var clickCurrentOption = (mouseoverCurrentOption && ableToClick && click);
+	if (arrowKeySelection && click && i == optionCurrent) clickCurrentOption = true;
 	if (isExpandable && expandableTimer >= expandableTimerFull && ableToClick && mouseoverCurrentOption && !expandableTimerClicked) {
 		expandableTimerClicked = true;
 		clickCurrentOption = true;
@@ -322,6 +325,17 @@ scrollBarHoldingDelay = scrollBarHolding;
 // press escape to destroy
 if (keyboard_check_released(vk_escape)) {
 	instance_destroy();
+}
+
+if (arrowKeySelection) {
+	if (keyboard_check_pressed(vk_up)) {
+		if (optionCurrent > 0) optionCurrent--;
+		else optionCurrent = ds_list_size(optionList) - 1;
+	}
+	else if (keyboard_check_pressed(vk_down)) {
+		if (optionCurrent < ds_list_size(optionList) - 1) optionCurrent++;
+		else optionCurrent = 0;
+	}
 }
 
 

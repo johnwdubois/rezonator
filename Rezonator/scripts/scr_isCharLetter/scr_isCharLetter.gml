@@ -6,6 +6,6 @@ function scr_isCharLetter(char){
 	return (char != " " && char != "	" && char != "." && char != "," && char != ":" && char != ";" && char != "<" && char != ">"
 			&& char != "?" && char != "!" && char != "/" && char != "\\" && char != "@" && char != "#" && char != "$" && char != "%"
 			&& char != "^" && char != "&" && char != "*" && char != "(" && char != ")" && char != "[" && char != "]" && char != "{"
-			&& char != "}" && char != "-" && char != "=" && char != "+" && char != "|");
+			&& char != "}" && char != "-" && char != "=" && char != "+" && char != "|" && ord(char) != 13 && char != "" && char != "\n" && char != "\r\n" && char != "\n\r" && char != "\r");
 	
 }

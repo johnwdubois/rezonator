@@ -48,3 +48,5 @@ prevMouseoverOption = -2;
 prevOptionClicked = -1;
 currentMouseoverOption = -1;
 myAlpha = 0;
+
+arrowKeySelection = false;

@@ -37,16 +37,14 @@ function scr_navWindowTaggingSelection(fieldList, idList){
 		
 		
 		// create input box if user presses enter or types a letter on keyboard
-		if (!inputBoxExists && !obj_control.navWindowTaggingDisableSpawn && !global.ctrlHold) {
+		if (!inputBoxExists && !obj_control.navWindowTaggingDisableSpawn && !global.ctrlHold && !instance_exists(obj_dropDown)) {
 			if (keyboard_check_pressed(vk_enter)) {
-				show_debug_message("enter!");
 				obj_control.navWindowTaggingEnterPress = true;
 				var currentTagValue = scr_navWindowGetTagValue();
 				scr_spawnTagInputBox(obj_control.navWindowTaggingID, obj_control.navWindowTaggingField, currentTagValue, self.id);
 				obj_control.navWindowTaggingFocusHeavy = true;
 			}
-			else if (scr_isCharLetter(keyboard_lastchar) && keyboard_lastchar != "") {
-				show_debug_message("keyboard_lastchar: " + string(keyboard_lastchar));
+			else if (scr_isCharLetter(keyboard_lastchar)) {
 				scr_spawnTagInputBox(obj_control.navWindowTaggingID, obj_control.navWindowTaggingField, keyboard_lastchar, self.id);
 				obj_control.navWindowTaggingFocusHeavy = false;
 				keyboard_lastchar = "";
@@ -55,7 +53,7 @@ function scr_navWindowTaggingSelection(fieldList, idList){
 		
 		// arrow key movement around nav window
 		var selectNextRow = false;
-		if (!obj_control.navWindowTaggingFocusHeavy) {
+		if (!obj_control.navWindowTaggingFocusHeavy && !instance_exists(obj_dropDown)) {
 			if (keyboard_check_pressed(vk_left)) {
 				with (obj_inputBox) instance_destroy();
 				var fieldIndex = ds_list_find_index(fieldList, obj_control.navWindowTaggingField);
