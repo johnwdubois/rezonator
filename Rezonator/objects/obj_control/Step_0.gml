@@ -103,7 +103,7 @@ if (!gridView) {
 	
 		var scrollSpeed = 0;
 		// Single press of arrow keys now moves screen by one line
-		if ((keyboard_check(vk_down) or mouse_wheel_down())) {
+		if ((keyboard_check(vk_down) && navWindowTaggingID == "") or mouse_wheel_down()) {
 			if(holdDownArrowKey == 0 and not mouse_wheel_down()) {
 
 				scrollSpeed = -gridSpaceVertical;
@@ -131,7 +131,7 @@ if (!gridView) {
 				holdDownArrowKey = 31;
 			} 
 		}
-		if (keyboard_check(vk_up) or mouse_wheel_up()) {
+		if ((keyboard_check(vk_up) && navWindowTaggingID == "") or mouse_wheel_up()) {
 			if(holdUpArrowKey == 0 and not mouse_wheel_up()) {
 			
 				scrollSpeed = gridSpaceVertical;
@@ -275,13 +275,13 @@ if (!gridView) {
 				with (obj_alarm2) alarm[9] = 2;
 			}
 		
-			if (keyboard_check_pressed(vk_right) and !global.ctrlHold and not dialogueBoxActive) {
+			if (keyboard_check_pressed(vk_right) and !global.ctrlHold and !dialogueBoxActive && navWindowTaggingID == "") {
 				scrollPlusXDest -= gridSpaceHorizontal;
 			}
 
 
 
-			if (keyboard_check_pressed(vk_left) and !global.ctrlHold and not dialogueBoxActive) {
+			if (keyboard_check_pressed(vk_left) and !global.ctrlHold and !dialogueBoxActive && navWindowTaggingID == "") {
 				scrollPlusXDest += gridSpaceHorizontal;
 			}
 

@@ -22,6 +22,7 @@ function scr_panelPane_unitScroll(focusedElementY, strHeight) {
 
 				//Allow for arrow keys to shift focus down the list of lines
 				with (obj_panelPane) functionChainList_focusedUnitIndex--;
+				scr_clearNavWindowTagging();
 			
 				if (focusedElementY <= y + headerHeight + strHeight) {
 					with (instToScroll) {
@@ -42,6 +43,7 @@ function scr_panelPane_unitScroll(focusedElementY, strHeight) {
 
 				//Allow for arrow keys to shift focus down the list of lines
 				with (obj_panelPane) functionChainList_focusedUnitIndex++;
+				scr_clearNavWindowTagging();
 
 				if (focusedElementY >= y + windowHeight - strHeight) {
 					with (instToScroll) {

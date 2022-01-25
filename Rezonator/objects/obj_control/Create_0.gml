@@ -840,3 +840,8 @@ scr_loadINI();
 navWindowTaggingField = "";
 navWindowTaggingID = "";
 navWindowTaggingPaneInst = -1;
+navWindowTaggingCellX1 = -1;
+navWindowTaggingCellY1 = -1;
+navWindowTaggingCellX2 = -1;
+navWindowTaggingCellY2 = -1;
+navWindowTaggingUpdateScroll = false;

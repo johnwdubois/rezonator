@@ -224,6 +224,7 @@
     {"id":{"name":"FirebaseREST_Firestore_getURL","path":"scripts/FirebaseREST_Firestore_getURL/FirebaseREST_Firestore_getURL.yy",},"order":10,},
     {"id":{"name":"obj_alarm2","path":"objects/obj_alarm2/obj_alarm2.yy",},"order":1,},
     {"id":{"name":"scr_exportGrids","path":"scripts/scr_exportGrids/scr_exportGrids.yy",},"order":2,},
+    {"id":{"name":"scr_clearNavWindowTagging","path":"scripts/scr_clearNavWindowTagging/scr_clearNavWindowTagging.yy",},"order":6,},
     {"id":{"name":"scr_refreshPrevTokenUnit","path":"scripts/scr_refreshPrevTokenUnit/scr_refreshPrevTokenUnit.yy",},"order":7,},
     {"id":{"name":"scr_refreshDisplayCol","path":"scripts/scr_refreshDisplayCol/scr_refreshDisplayCol.yy",},"order":2,},
     {"id":{"name":"scr_createRezDirectory","path":"scripts/scr_createRezDirectory/scr_createRezDirectory.yy",},"order":9,},
