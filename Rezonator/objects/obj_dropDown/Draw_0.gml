@@ -124,7 +124,13 @@ for (var i = 0; i < optionListSize; i++) {
 		}
 	}
 	if (multiDropDownCancel) mouseoverCurrentOption = false;
+	if (!mouseMoved) mouseoverCurrentOption = false;
+	
 	if(mouseoverCurrentOption){
+		if(optionCurrent != i){
+			scr_destroyAllDropDownsOtherThanSelf();
+		}
+		optionCurrent = i;
 		with(obj_control){
 			mouseoverDropDownOption = currentOptionRaw;
 		}
@@ -132,7 +138,7 @@ for (var i = 0; i < optionListSize; i++) {
 	
 	
 	// handle expandable timer
-	if (mouseoverCurrentOption) {
+	if (mouseoverCurrentOption or optionCurrent == i) {
 		currentMouseoverOption = i;
 		if (expandableTimer < expandableTimerFull) expandableTimer++;
 		if (prevMouseoverOption != currentMouseoverOption) {
@@ -151,7 +157,7 @@ for (var i = 0; i < optionListSize; i++) {
 	else if (currentOptionRaw == "option_add-to-tag-set") {
 		optionBGColor = merge_color(global.colorThemeBG, make_color_rgb(114, 230, 110), 0.5);
 	}
-	if (mouseoverCurrentOption or (optionCurrent == i && !mouseOverDropDown)) {
+	if (mouseoverCurrentOption or (optionCurrent == i)) {
 		optionBGColor = c_ltblue;
 	}
 	if (mouseoverCurrentOption) optionMouseover = currentOptionRaw;
@@ -246,15 +252,17 @@ for (var i = 0; i < optionListSize; i++) {
 	
 	// click on option
 	var click = mouse_check_button_released(mb_left) || keyboard_check_pressed(vk_enter);
-	var clickCurrentOption = (mouseoverCurrentOption && ableToClick && click);
+	var clickCurrentOption = (i == optionCurrent && ableToClick && click);
 	if (arrowKeySelection && click && i == optionCurrent) {
 		prevOptionClicked = -1;
 		clickCurrentOption = true;
 		isExpandable = false;
 	}
-	if (isExpandable && expandableTimer >= expandableTimerFull && ableToClick && mouseoverCurrentOption && !expandableTimerClicked) {
+
+	if (isExpandable && expandableTimer >= expandableTimerFull && ableToClick && i == optionCurrent && !expandableTimerClicked) {
 		expandableTimerClicked = true;
 		clickCurrentOption = true;
+
 	}
 	if (clickCurrentOption && (prevOptionClicked != i || !isExpandable)) {
 		prevOptionClicked = i;
@@ -324,14 +332,25 @@ with(obj_control){
 
 if (ableToMouseover and ableToClick and mouse_check_button_pressed(mb_left) 
 and !mouseInDropDown and !scrollBarHoldingDelay) {
+	var destroyDropDown = true;
 	if (room == rm_mainScreen) {
 		obj_menuBar.menuClickedIn = false;
 	} 
 	else if (room == rm_importScreen) {
 		obj_fieldSummaryWindow.clickedIn = false;
 	}
-	if(!obj_control.mouseoverInputBox){	
-		show_debug_message("obj_dropDown Draw ... destroying dropdowns");
+	else if (room == rm_importScreen) {
+		obj_fieldSummaryWindow.clickedIn = false;
+	}
+	
+	with(obj_control){
+		if(mouseoverInputBox){	
+			destroyDropDown = false;
+			show_debug_message("obj_dropDown Draw ... destroying dropdowns");
+
+		}
+	}
+	if(destroyDropDown){
 		with (obj_dropDown) {
 			instance_destroy();
 		}

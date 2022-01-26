@@ -47,3 +47,8 @@ currentMouseoverOption = -1;
 myAlpha = 0;
 
 arrowKeySelection = false;
+
+lastMouseX = 0;
+lastMouseY = 0;
+mouseMoved = false;
+alarm[3] = 1;
