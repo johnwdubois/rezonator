@@ -22,7 +22,7 @@ function scr_panelPane_mouseOnLine(rectX1, rectY1, rectX2, rectY2, unitID, i, li
 					functionChainList_focusedUnit = unitID;
 					functionChainContents_BGColor = lineColor;
 					functionChainContents_lineGridRowFocused = -1;
-					scr_clearNavWindowTagging();
+					scr_clearNavWindowTagging(true);
 				}
 			}
 			scr_jumpToUnitDoubleClick(unitID);

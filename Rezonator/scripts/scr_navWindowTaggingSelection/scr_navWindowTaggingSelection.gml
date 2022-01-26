@@ -5,7 +5,7 @@ function scr_navWindowTaggingSelection(fieldList, idList){
 	if (obj_control.navWindowTaggingField != "" && obj_control.navWindowTaggingID != "") {
 		
 		if (mouse_check_button_pressed(mb_left) && !obj_control.mouseoverTagCell) {
-			scr_clearNavWindowTagging();
+			scr_clearNavWindowTagging(true);
 		}
 		
 		draw_set_alpha(1);
@@ -75,7 +75,7 @@ function scr_navWindowTaggingSelection(fieldList, idList){
 		
 		// arrow key movement around nav window
 		var selectNextRow = false;
-		if (!obj_control.navWindowTaggingFocusHeavy && !instance_exists(obj_dropDown)) {
+		if (!obj_control.navWindowTaggingFocusHeavy) {
 			if (keyboard_check_pressed(vk_left)) {
 				with (obj_inputBox) instance_destroy();
 				var fieldIndex = ds_list_find_index(fieldList, obj_control.navWindowTaggingField);

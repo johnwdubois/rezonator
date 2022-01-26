@@ -26,6 +26,8 @@ function scr_createDropDown(dropDownX, dropDownY, dropDownOptionList, dropDownOp
 	if (instance_exists(obj_control)) dropDownDepth = obj_control.menuDepth;
 	var dropDownInst = instance_create_depth(dropDownX, dropDownY, dropDownDepth, obj_dropDown);
 	dropDownInst.optionList = dropDownOptionList;
+	dropDownInst.originalOptionList = ds_list_create();
+	ds_list_copy(dropDownInst.originalOptionList, dropDownOptionList);
 	dropDownInst.optionListType = dropDownOptionListType;
 	dropDownInst.level = instance_number(obj_dropDown);
 	with(obj_dropDown){

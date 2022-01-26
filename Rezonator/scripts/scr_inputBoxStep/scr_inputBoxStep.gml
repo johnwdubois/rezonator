@@ -32,7 +32,11 @@ function scr_inputBoxStep(){
 	var input = "";
 	if (string_length(keyboard_string) > 0 && windowFocused) {
 		input = keyboard_string;
-		with (obj_dropDown) optionCurrent = -1;
+		with (obj_dropDown) {
+			if (!keyboard_check(vk_enter) && !keyboard_check_pressed(vk_enter) && !keyboard_check_released(vk_enter)) {
+				optionCurrent = -1;
+			}
+		}
 	}
 	
 	

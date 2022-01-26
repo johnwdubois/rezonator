@@ -8,7 +8,7 @@ if (functionChainList_focusedUnitIndex < 0) {
 				with (obj_panelPane) {
 					functionChainList_focusedUnitIndex = 0;
 					functionChainList_focusedUnit = displayUnitList[| functionChainList_focusedUnitIndex];
-					scr_clearNavWindowTagging();
+					scr_clearNavWindowTagging(true);
 				}
 			}
 		}

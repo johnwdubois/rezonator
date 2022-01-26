@@ -3,6 +3,7 @@ function scr_spawnTagInputBox(ID, field, defStr, paneInst, dropDownList, dropDow
 	with (obj_inputBox) {
 		if (navWindowTagging) {
 			if (obj_control.navWindowTaggingField != field || obj_control.navWindowTaggingID != ID) {
+				show_debug_message("scr_spawnTagInputBox, destroy inputBox");
 				instance_destroy();
 			}
 		}

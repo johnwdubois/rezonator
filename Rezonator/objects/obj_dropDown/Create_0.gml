@@ -15,9 +15,6 @@ if (room == rm_mainScreen) {
 			originalWindowWidth = 150;
 		}
 	}
-	if (!obj_menuBar.menuClickedIn && !obj_control.wideDropDown) {
-		alarm[1] = 1;
-	}
 }
 windowWidth = originalWindowWidth;
 windowHeight = 100;

@@ -2,7 +2,10 @@
 if (!instance_exists(obj_control)) exit;
 
 with (obj_dropDown) {
-	if (optionCurrent == -1) instance_destroy();
+	if (optionCurrent == -1) {
+		show_debug_message("inputBox destroy: destroying dropDown");
+		instance_destroy();
+	}
 }
 
 obj_control.navWindowTaggingFocusHeavy = false;

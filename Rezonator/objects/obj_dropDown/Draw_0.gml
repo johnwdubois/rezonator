@@ -6,6 +6,8 @@ myAlpha += 0.15;
 if (myAlpha > 1) myAlpha = 1;
 
 arrowKeySelection = (optionListType == global.optionListTypeTokenTagMap);
+var filterOptionList = arrowKeySelection && instance_exists(obj_inputBox);
+if (filterOptionList) scr_filterDropDownList(originalOptionList, optionList, obj_inputBox.str);
 
 if (instance_exists(prevDropDown) && prevDropDown != -1) {
 	x = prevDropDown.x + prevDropDown.windowWidth;
@@ -239,11 +241,9 @@ for (var i = 0; i < optionListSize; i++) {
 
 	
 	// click on option
-	var click = mouse_check_button_released(mb_left) || keyboard_check_released(vk_enter);
+	var click = mouse_check_button_released(mb_left) || keyboard_check_pressed(vk_enter);
 	var clickCurrentOption = (mouseoverCurrentOption && ableToClick && click);
-	show_debug_message("i: " + string(i) + ", optionCurrent: "+ string(optionCurrent) + ", enter releaseD: " + string( keyboard_check_released(vk_enter)))
 	if (arrowKeySelection && click && i == optionCurrent) {
-		show_debug_message("ARROW KEY SELECTION!");
 		prevOptionClicked = -1;
 		clickCurrentOption = true;
 		isExpandable = false;
