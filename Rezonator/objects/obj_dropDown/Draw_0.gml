@@ -124,7 +124,11 @@ for (var i = 0; i < optionListSize; i++) {
 		}
 	}
 	if (multiDropDownCancel) mouseoverCurrentOption = false;
-	
+	if(mouseoverCurrentOption){
+		with(obj_control){
+			mouseoverDropDownOption = currentOptionRaw;
+		}
+	}
 	
 	
 	// handle expandable timer
@@ -260,6 +264,7 @@ for (var i = 0; i < optionListSize; i++) {
 			scr_dropDownSelect(optionSelected);
 		}
 	}
+
 	
 	
 	// draw arrow if expandable
@@ -313,6 +318,10 @@ for (var i = 0; i < dropDownInstanceNumber; i++) {
 	}
 }
 
+with(obj_control){
+	mouseoverDropDown = mouseInDropDown;
+}
+
 if (ableToMouseover and ableToClick and mouse_check_button_pressed(mb_left) 
 and !mouseInDropDown and !scrollBarHoldingDelay) {
 	if (room == rm_mainScreen) {
@@ -321,9 +330,11 @@ and !mouseInDropDown and !scrollBarHoldingDelay) {
 	else if (room == rm_importScreen) {
 		obj_fieldSummaryWindow.clickedIn = false;
 	}
-	show_debug_message("obj_dropDown Draw ... destroying dropdowns");
-	with (obj_dropDown) {
-		instance_destroy();
+	if(!obj_control.mouseoverInputBox){	
+		show_debug_message("obj_dropDown Draw ... destroying dropdowns");
+		with (obj_dropDown) {
+			instance_destroy();
+		}
 	}
 }
 scrollBarHoldingDelay = scrollBarHolding;
@@ -348,3 +359,4 @@ if (arrowKeySelection) {
 draw_set_color(c_ltgray);
 draw_rectangle(x, y, x + windowWidth - 1, y + windowHeight, true);
 draw_set_alpha(1);
+

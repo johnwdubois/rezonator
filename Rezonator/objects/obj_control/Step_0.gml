@@ -607,7 +607,7 @@ window_set_caption(captionString);
 
 scr_fontSizeControl();
 
-if (mouse_check_button_released(mb_left) && !mouseoverTagCell) {
+if (mouse_check_button_released(mb_left) && !mouseoverTagCell && !obj_control.mouseoverInputBox && !obj_control.mouseoverDropDown) {
 	with (obj_inputBox) {
 		if (navWindowTagging) {
 			instance_destroy();

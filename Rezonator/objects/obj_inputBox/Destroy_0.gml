@@ -1,6 +1,8 @@
 /// @description set nav window tag
 if (!instance_exists(obj_control)) exit;
-
+with(obj_control){
+	mouseoverInputBox = false;
+}
 with (obj_dropDown) {
 	if (optionCurrent == -1) {
 		show_debug_message("inputBox destroy: destroying dropDown");

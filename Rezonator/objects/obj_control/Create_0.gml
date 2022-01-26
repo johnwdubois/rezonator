@@ -531,6 +531,9 @@ mouseoverDialogueBox = false;
 mouseoverSpeakerLabel = false;
 mouseoverHelpPane = false;
 mouseoverTagShortcut = "";
+mouseoverDropDownOption = "";
+mouseoverInputBox = false;
+mouseoverDropDown = false;
 
 gridInDelete = undefined;
 

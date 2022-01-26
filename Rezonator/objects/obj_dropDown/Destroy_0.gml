@@ -18,3 +18,7 @@ if(!object_exists(obj_dropDown)){
 if (scr_isNumericAndExists(originalOptionList, ds_type_list)) {
 	ds_list_destroy(originalOptionList);
 }
+with(obj_control){
+	mouseoverDropDown = false;
+	with(obj_alarm){alarm[5] =1}
+}

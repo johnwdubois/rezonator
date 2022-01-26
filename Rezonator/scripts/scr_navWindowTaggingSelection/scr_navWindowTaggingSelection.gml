@@ -1,10 +1,9 @@
 function scr_navWindowTaggingSelection(fieldList, idList){
 	
 	var inputBoxExists = instance_exists(obj_inputBox);
-
 	if (obj_control.navWindowTaggingField != "" && obj_control.navWindowTaggingID != "") {
-		
-		if (mouse_check_button_pressed(mb_left) && !obj_control.mouseoverTagCell) {
+		if (mouse_check_button_pressed(mb_left) && !obj_control.mouseoverTagCell && !obj_control.mouseoverInputBox && !obj_control.mouseoverDropDown) {
+			show_debug_message("scr_navWindowTaggingSelection DElete inputboxes");
 			scr_clearNavWindowTagging(true);
 		}
 		
@@ -120,7 +119,9 @@ function scr_navWindowTaggingSelection(fieldList, idList){
 		
 		if (obj_control.navWindowTaggingNextRow) {
 			obj_control.navWindowTaggingNextRow = false;
-			selectNextRow = true;
+			if(!instance_exists(obj_dialogueBox) && obj_control.mouseoverDropDownOption != "option_add-to-tag-set"){
+				selectNextRow = true;
+			}
 		}
 	
 		if (selectNextRow) {
