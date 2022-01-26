@@ -90,7 +90,11 @@ function scr_navWindowTaggingSelection(fieldList, idList){
 				obj_control.navWindowTaggingField = fieldList[| fieldIndex];
 				obj_control.navWindowTaggingUpdateScroll = true;
 			}
-			else if (keyboard_check_pressed(vk_up)) {
+		}
+		
+		
+		if (!instance_exists(obj_dropDown)) {
+			if (keyboard_check_pressed(vk_up)) {
 				var prevID = "";
 				var idFound = false;
 				for (var i = idListSize - 1; i >= 0; i--) {
@@ -110,6 +114,7 @@ function scr_navWindowTaggingSelection(fieldList, idList){
 				selectNextRow = true;
 			}
 		}
+
 		
 		
 		
