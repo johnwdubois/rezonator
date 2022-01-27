@@ -387,6 +387,7 @@ and !mouseInDropDown and !scrollBarHoldingDelay) {
 	}
 	if(destroyDropDown){
 		with (obj_dropDown) {
+			show_debug_message("BUHHHHHH")
 			instance_destroy();
 		}
 	}

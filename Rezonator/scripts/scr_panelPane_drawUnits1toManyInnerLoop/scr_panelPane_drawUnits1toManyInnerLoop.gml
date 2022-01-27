@@ -1,4 +1,4 @@
-function scr_panelPane_drawUnits1toManyInnerLoop(tokenID, drawDropDowns, strHeight, textPlusY, cellRectY1, cellRectY2, highlight){
+ function scr_panelPane_drawUnits1toManyInnerLoop(tokenID, drawDropDowns, strHeight, textPlusY, cellRectY1, cellRectY2, highlight){
 
 	var tokenSubMap = global.nodeMap[? tokenID];
 	var tagMap = tokenSubMap[? "tagMap"];
@@ -89,11 +89,20 @@ function scr_panelPane_drawUnits1toManyInnerLoop(tokenID, drawDropDowns, strHeig
 		if (mouseoverCell && !isTildaField) {
 			draw_sprite_ext(spr_dropDown, 0, mean(dropDownRectX1, dropDownRectX2) - clipX, mean(dropDownRectY1, dropDownRectY2) - clipY, 1, 1, 0, global.colorThemeText, 1);
 		}
+		var isHolding = false;
+		with(obj_control){
+			if(isDragging){
+				//isHolding = true;
+			}	
+		}
 		// create input box for tagging if user clicks on cell
 		if(mouseoverCell){
 			obj_control.hoverTextCopy = currentStr;
 			obj_control.mouseoverTagCell = true;
-			if (mouse_check_button_released(mb_left) && !mouseoverDropDown) {
+	
+			//show_debug_message("isHolding: "+ string(isHolding));
+			if (mouse_check_button_released(mb_left) && !mouseoverDropDown && !isHolding) {
+				show_debug_message("CMON YA BUNGLE");
 				
 				if(obj_control.navWindowTaggingID != tokenID or obj_control.navWindowTaggingField != currentField){
 					obj_control.doubleClickTimer = 0;

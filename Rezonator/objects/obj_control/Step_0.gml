@@ -607,10 +607,24 @@ window_set_caption(captionString);
 
 scr_fontSizeControl();
 
-if (mouse_check_button_released(mb_left) && !mouseoverTagCell && !obj_control.mouseoverInputBox && !obj_control.mouseoverDropDown) {
+
+	
+if (mouse_check_button(mb_left)) {
+	isDragging = true;
+}
+
+if (mouse_check_button_released(mb_left) && !mouseoverTagCell 
+&& !obj_control.mouseoverInputBox && !obj_control.mouseoverDropDown
+&& !obj_control.isDragging) {
+	alarm[1] = 1;
 	with (obj_inputBox) {
 		if (navWindowTagging) {
+			show_debug_message("obj_control kills input box 4 fun");
 			instance_destroy();
 		}
 	}
+}
+
+if (mouse_check_button_pressed(mb_right)) {
+	scr_clearNavWindowTagging();
 }

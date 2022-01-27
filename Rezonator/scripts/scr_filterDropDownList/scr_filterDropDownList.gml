@@ -1,4 +1,6 @@
 function scr_filterDropDownList(fullList, subList, str){
+	
+
 
 	str = string_lower(str);
 	ds_list_clear(subList);

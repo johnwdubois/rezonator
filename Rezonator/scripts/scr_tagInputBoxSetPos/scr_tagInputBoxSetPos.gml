@@ -13,6 +13,7 @@ function scr_tagInputBoxSetPos(ID, field, x1, y1, x2, y2){
 					if (instance_exists(paneInst)) {
 						if (textBoxY < paneInst.y + paneInst.functionTabs_tabHeight - 2
 						|| textBoxY + windowHeight > paneInst.y + paneInst.windowHeight) {
+							show_debug_message("WE KILLIN IT HERE WUUUUUHHHHH????");
 							instance_destroy();
 						}
 					}

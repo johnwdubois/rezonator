@@ -15,6 +15,10 @@ function scr_inputBoxDraw(){
 	textX = floor(textBoxX + textMarginX + xOffset);
 	textY = floor(textBoxY + textMarginY);
 	windowHeight = strHeight + (textMarginY * 2);
+	
+
+
+	
 
 	// click in window to focus it
 	var mouseoverWindow = point_in_rectangle(mouse_x, mouse_y, textBoxX, textBoxY, textBoxX + windowWidth, textBoxY + windowHeight);
@@ -35,6 +39,7 @@ function scr_inputBoxDraw(){
 		
 		if (navWindowTagging && !mouseoverWindow && instance_exists(obj_control)) {
 			if(!obj_control.mouseoverDropDown){
+				show_debug_message("KILLING INPUT BOX WITH SEPUKUUU");
 				instance_destroy();
 			}
 		}
@@ -61,11 +66,16 @@ function scr_inputBoxDraw(){
 			}
 		}
 		
+		
 		// check to move cursor/highlight index
 		if (mouse_check_button_pressed(mb_left)) {
 			validDrag = mouseoverWindow;
 			if (validDrag) highlightIndex = closestCharToMouse;
+			
 		}
+
+
+
 		if (validDrag) cursorIndex = closestCharToMouse;
 		
 		// check if double-clicking
@@ -77,6 +87,8 @@ function scr_inputBoxDraw(){
 
 	if (mouse_check_button_released(mb_left)) {
 		validDrag = true;
+		
+		//with(obj_control){alarm[1] = 1;}
 		
 		// double click to select word
 		if (doubleClick) {
