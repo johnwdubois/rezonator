@@ -65,6 +65,17 @@ for (var i = 0; i < dropDownInstanceNumber; i++) {
 	}
 }
 
+// make sure this dropDown contains at least 1 value
+if (ds_list_size(optionList) <= 0) {
+	if (arrowKeySelection) {
+		exit;
+	}
+	else {
+		show_debug_message("obj_dropDown Draw ... ds_list_size(optionList) <= 0, destroying");
+		instance_destroy();
+	}
+}
+
 // surface stuff
 windowX = x;
 windowY = y;
@@ -83,11 +94,6 @@ surface_set_target(clipSurface);
 draw_clear_alpha(c_black, 0);
 draw_set_alpha(myAlpha);
 
-// make sure this dropDown contains at least 1 value
-if (ds_list_size(optionList) <= 0) {
-	show_debug_message("obj_dropDown Draw ... ds_list_size(optionList) <= 0");
-	instance_destroy();
-}
 
 mouseOverDropDown = point_in_rectangle(mouse_x, mouse_y, x, y, x + windowWidth, y + windowHeight);
 
