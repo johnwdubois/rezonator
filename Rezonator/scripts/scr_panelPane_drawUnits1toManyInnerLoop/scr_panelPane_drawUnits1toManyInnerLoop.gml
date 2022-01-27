@@ -152,6 +152,8 @@ function scr_panelPane_drawUnits1toManyInnerLoop(tokenID, drawDropDowns, strHeig
 
 				if (mouse_check_button_released(mb_left)) {
 					
+					obj_control.navWindowTaggingID = tokenID;
+					obj_control.navWindowTaggingField = currentField;
 					
 					// get submap for this field
 					var tokenTagMap = global.nodeMap[? "tokenTagMap"];

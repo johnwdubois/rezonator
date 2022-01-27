@@ -52,3 +52,5 @@ lastMouseX = 0;
 lastMouseY = 0;
 mouseMoved = false;
 alarm[3] = 1;
+
+prevOptionClickedIndex = -1;

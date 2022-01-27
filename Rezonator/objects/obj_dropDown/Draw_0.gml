@@ -52,6 +52,19 @@ if( x + windowWidth > camWidth and !(global.lang_codes[| global.lang_index] == "
 
 scr_dropShadow(x, y, x + windowWidth, y + windowHeight);
 
+
+// check mouseover for dropdown
+var mouseoverThisDropDown = false
+var mouseInDropDown = false;
+var dropDownInstanceNumber = instance_number(obj_dropDown);
+for (var i = 0; i < dropDownInstanceNumber; i++) {
+	var currentDropDown = instance_find(obj_dropDown, i);
+	if (point_in_rectangle(mouse_x, mouse_y, currentDropDown.x, currentDropDown.y, currentDropDown.x + currentDropDown.windowWidth, currentDropDown.y + currentDropDown.windowHeight)) {
+		mouseInDropDown = true;
+		if (currentDropDown == self.id) mouseoverThisDropDown = true;
+	}
+}
+
 // surface stuff
 windowX = x;
 windowY = y;
@@ -128,6 +141,17 @@ for (var i = 0; i < optionListSize; i++) {
 	
 	if(mouseoverCurrentOption){
 		if(optionCurrent != i){
+			var dropDownsWithGreaterLevelExists = false;
+			var myLevel = level;
+			with (obj_dropDown) {
+				if (level > myLevel) dropDownsWithGreaterLevelExists = true;
+			}
+			if (dropDownsWithGreaterLevelExists) {				
+				// check if prevoption is expandable
+				var isPrevOptionExpandale = scr_checkExpandable(optionList[| prevOptionClicked], optionListType);
+				if (!isPrevOptionExpandale) prevOptionClicked = i;
+			}
+			
 			scr_destroyAllDropDownsOtherThanSelf();
 		}
 		optionCurrent = i;
@@ -251,7 +275,7 @@ for (var i = 0; i < optionListSize; i++) {
 
 	
 	// click on option
-	var click = mouse_check_button_released(mb_left) || keyboard_check_pressed(vk_enter);
+	var click = (mouse_check_button_released(mb_left) && mouseoverThisDropDown && prevOptionClicked != i) || keyboard_check_pressed(vk_enter);
 	var clickCurrentOption = (i == optionCurrent && ableToClick && click);
 	if (arrowKeySelection && click && i == optionCurrent) {
 		prevOptionClicked = -1;
@@ -259,12 +283,13 @@ for (var i = 0; i < optionListSize; i++) {
 		isExpandable = false;
 	}
 
+
 	if (isExpandable && expandableTimer >= expandableTimerFull && ableToClick && i == optionCurrent && !expandableTimerClicked) {
 		expandableTimerClicked = true;
 		clickCurrentOption = true;
-
 	}
-	if (clickCurrentOption && (prevOptionClicked != i || !isExpandable)) {
+	
+	if (clickCurrentOption) {
 		prevOptionClicked = i;
 		if(!unClickable){
 			optionCurrent = i;
@@ -316,15 +341,6 @@ if (scrollBarHolding) {
 }
 
 
-
-var mouseInDropDown = false;
-var dropDownInstanceNumber = instance_number(obj_dropDown);
-for (var i = 0; i < dropDownInstanceNumber; i++) {
-	var currentDropDown = instance_find(obj_dropDown, i);
-	if (point_in_rectangle(mouse_x, mouse_y, currentDropDown.x, currentDropDown.y, currentDropDown.x + currentDropDown.windowWidth, currentDropDown.y + currentDropDown.windowHeight)) {
-		mouseInDropDown = true;
-	}
-}
 
 with(obj_control){
 	mouseoverDropDown = mouseInDropDown;

@@ -75,19 +75,26 @@ function scr_navWindowTaggingSelection(fieldList, idList){
 		// arrow key movement around nav window
 		var selectNextRow = false;
 		if (!obj_control.navWindowTaggingFocusHeavy) {
-			if (keyboard_check_pressed(vk_left)) {
-				with (obj_inputBox) instance_destroy();
-				var fieldIndex = ds_list_find_index(fieldList, obj_control.navWindowTaggingField);
-				fieldIndex = max(fieldIndex - 1, 0);
-				obj_control.navWindowTaggingField = fieldList[| fieldIndex];
-				obj_control.navWindowTaggingUpdateScroll = true;
+			var cancelHorizontalMove = false;
+			if (instance_exists(obj_dropDown)) {
+				if (obj_dropDown.optionCurrent >= 0) cancelHorizontalMove = true;
 			}
-			else if (keyboard_check_pressed(vk_right)) {
-				with (obj_inputBox) instance_destroy();
-				var fieldIndex = ds_list_find_index(fieldList, obj_control.navWindowTaggingField);
-				fieldIndex = min(fieldIndex + 1, ds_list_size(fieldList) - 1);
-				obj_control.navWindowTaggingField = fieldList[| fieldIndex];
-				obj_control.navWindowTaggingUpdateScroll = true;
+			
+			if (!cancelHorizontalMove) {
+				if (keyboard_check_pressed(vk_left)) {
+					with (obj_inputBox) instance_destroy();
+					var fieldIndex = ds_list_find_index(fieldList, obj_control.navWindowTaggingField);
+					fieldIndex = max(fieldIndex - 1, 0);
+					obj_control.navWindowTaggingField = fieldList[| fieldIndex];
+					obj_control.navWindowTaggingUpdateScroll = true;
+				}
+				else if (keyboard_check_pressed(vk_right)) {
+					with (obj_inputBox) instance_destroy();
+					var fieldIndex = ds_list_find_index(fieldList, obj_control.navWindowTaggingField);
+					fieldIndex = min(fieldIndex + 1, ds_list_size(fieldList) - 1);
+					obj_control.navWindowTaggingField = fieldList[| fieldIndex];
+					obj_control.navWindowTaggingUpdateScroll = true;
+				}
 			}
 		}
 		

@@ -17,6 +17,14 @@ function scr_inputBoxStep(){
 	var keyRightPressed = keyboard_check_pressed(vk_right) && windowFocused;
 	var keyEnterPressed = keyboard_check_pressed(vk_enter) && windowFocused;
 	
+	// cancel horizontal movement if in dropdown
+	if (instance_exists(obj_dropDown)) {
+		if (obj_dropDown.optionCurrent >= 0) {
+			keyLeft = false;
+			keyRight = false;
+		}
+	}
+	
 	// check shortcuts
 	var shortcutPaste = ctrlCheck && keyboard_check_pressed(ord("V"));
 	var shortcutCopy = ctrlCheck && keyboard_check_pressed(ord("C"));
