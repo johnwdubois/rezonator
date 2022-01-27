@@ -50,8 +50,6 @@ function scr_navWindowTaggingSelection(fieldList, idList){
 				// create dropdown
 				var dropDownOptionList = ds_list_create();
 				ds_list_copy(dropDownOptionList, tagSet);
-				ds_list_add(dropDownOptionList,"option_add-to-tag-set");
-				ds_list_add(dropDownOptionList, "menu_clear");
 				show_debug_message(scr_getStringOfList(dropDownOptionList));
 				obj_control.tokenToChange = obj_control.navWindowTaggingID;
 				obj_control.tokenFieldToChange = obj_control.navWindowTaggingField;
