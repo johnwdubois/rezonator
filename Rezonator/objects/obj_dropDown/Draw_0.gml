@@ -121,6 +121,19 @@ for (var i = 0; i < optionListSize; i++) {
 	var optionRectY2 = optionRectY1 + optionSpacing;
 	var mouseoverRectX2 = (showScrollBar) ? optionRectX2 - global.scrollBarWidth : optionRectX2;
 	
+	// check update scroll
+	if (updateScroll && optionCurrent == i) {
+		show_debug_message("obj_dropDown, updateScroll!");
+		updateScroll = false;
+		if (optionRectY1 < y) {
+			
+			scrollPlusYDest += abs(optionRectY1 - y);
+		}
+		else if (optionRectY2 > y + windowHeight) {
+			scrollPlusYDest -= abs(optionRectY2 - (y + windowHeight));
+		}
+	}
+	
 	// check mouseover
 	var mouseoverCurrentOption = false;
 	if (instance_exists(obj_panelPane)) {
@@ -389,11 +402,13 @@ if (arrowKeySelection) {
 	if (keyboard_check(vk_up) && canPressUp) {
 		canPressUp = false;
 		alarm[5] = 7;
+		updateScroll = true;
 		if (optionCurrent > 0) optionCurrent--;
 		else optionCurrent = ds_list_size(optionList) - 1;
 	}
 	else if (keyboard_check(vk_down) && canPressDown) {
 		canPressDown = false;
+		updateScroll = true;
 		alarm[4] = 7;
 		if (optionCurrent < ds_list_size(optionList) - 1) optionCurrent++;
 		else optionCurrent = 0;

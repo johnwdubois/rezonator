@@ -852,3 +852,7 @@ navWindowTaggingFocusHeavy = false;
 navWindowTaggingEnterPress = false;
 navWindowTaggingDisableSpawn = false;
 navWindowTaggingNextRow = false;
+navWindowTaggingCanPressUp = true;
+navWindowTaggingCanPressDown = true;
+navWindowTaggingCanPressLeft = true;
+navWindowTaggingCanPressRight = true;

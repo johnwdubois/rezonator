@@ -574,6 +574,7 @@
     {"id":{"name":"scr_setValueForAllChains","path":"scripts/scr_setValueForAllChains/scr_setValueForAllChains.yy",},"order":28,},
     {"id":{"name":"scr_expandableDropDownInit","path":"scripts/scr_expandableDropDownInit/scr_expandableDropDownInit.yy",},"order":1,},
     {"id":{"name":"FirebaseREST_firestore_value","path":"scripts/FirebaseREST_firestore_value/FirebaseREST_firestore_value.yy",},"order":16,},
+    {"id":{"name":"obj_alarm3","path":"objects/obj_alarm3/obj_alarm3.yy",},"order":8,},
     {"id":{"name":"obj_regular_expression_node","path":"objects/obj_regular_expression_node/obj_regular_expression_node.yy",},"order":1,},
     {"id":{"name":"obj_alarm","path":"objects/obj_alarm/obj_alarm.yy",},"order":0,},
     {"id":{"name":"scr_fieldChains1ToManyOptions","path":"scripts/scr_fieldChains1ToManyOptions/scr_fieldChains1ToManyOptions.yy",},"order":64,},

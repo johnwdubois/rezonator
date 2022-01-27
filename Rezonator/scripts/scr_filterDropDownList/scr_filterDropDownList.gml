@@ -14,5 +14,5 @@ function scr_filterDropDownList(fullList, subList, str){
 		}
 	}
 	
-	
+	ds_list_sort(subList, true);
 }

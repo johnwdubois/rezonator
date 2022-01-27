@@ -57,3 +57,4 @@ prevOptionClickedIndex = -1;
 
 canPressUp = true;
 canPressDown = true;
+updateScroll = false;

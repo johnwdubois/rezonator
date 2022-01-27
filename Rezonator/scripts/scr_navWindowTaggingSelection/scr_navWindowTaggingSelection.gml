@@ -1,5 +1,7 @@
 function scr_navWindowTaggingSelection(fieldList, idList){
 	
+	var canPressArrowKeyAlarm = 12;
+	
 	var inputBoxExists = instance_exists(obj_inputBox);
 	if (obj_control.navWindowTaggingField != "" && obj_control.navWindowTaggingID != "") {
 		if (mouse_check_button_pressed(mb_left) && !obj_control.mouseoverTagCell && !obj_control.mouseoverInputBox && !obj_control.mouseoverDropDown) {
@@ -79,14 +81,18 @@ function scr_navWindowTaggingSelection(fieldList, idList){
 			}
 			
 			if (!cancelHorizontalMove) {
-				if (keyboard_check_pressed(vk_left)) {
+				if (keyboard_check(vk_left) && obj_control.navWindowTaggingCanPressLeft) {
+					obj_control.navWindowTaggingCanPressLeft = false;
+					with (obj_alarm3) alarm[2] = canPressArrowKeyAlarm;
 					with (obj_inputBox) instance_destroy();
 					var fieldIndex = ds_list_find_index(fieldList, obj_control.navWindowTaggingField);
 					fieldIndex = max(fieldIndex - 1, 0);
 					obj_control.navWindowTaggingField = fieldList[| fieldIndex];
 					obj_control.navWindowTaggingUpdateScroll = true;
 				}
-				else if (keyboard_check_pressed(vk_right)) {
+				else if (keyboard_check(vk_right) && obj_control.navWindowTaggingCanPressRight) {
+					obj_control.navWindowTaggingCanPressRight = false;
+					with (obj_alarm3) alarm[3] = canPressArrowKeyAlarm;
 					with (obj_inputBox) instance_destroy();
 					var fieldIndex = ds_list_find_index(fieldList, obj_control.navWindowTaggingField);
 					fieldIndex = min(fieldIndex + 1, ds_list_size(fieldList) - 1);
@@ -98,7 +104,7 @@ function scr_navWindowTaggingSelection(fieldList, idList){
 		
 		
 		if (!instance_exists(obj_dropDown)) {
-			if (keyboard_check_pressed(vk_up)) {
+			if (keyboard_check(vk_up) && obj_control.navWindowTaggingCanPressUp) {
 				var prevID = "";
 				var idFound = false;
 				for (var i = idListSize - 1; i >= 0; i--) {
@@ -109,12 +115,16 @@ function scr_navWindowTaggingSelection(fieldList, idList){
 					else if (idFound && prevID == "") prevID = currentToken;
 				}
 				if (prevID != "") {
+					obj_control.navWindowTaggingCanPressUp = false;
+					with (obj_alarm3) alarm[0] = canPressArrowKeyAlarm;
 					with (obj_inputBox) instance_destroy();
 					obj_control.navWindowTaggingID = prevID;
 					obj_control.navWindowTaggingUpdateScroll = true;
 				}
 			}
-			else if (keyboard_check_pressed(vk_down)) {
+			else if (keyboard_check(vk_down) && obj_control.navWindowTaggingCanPressDown) {
+				obj_control.navWindowTaggingCanPressDown = false;
+				with (obj_alarm3) alarm[1] = canPressArrowKeyAlarm;
 				selectNextRow = true;
 			}
 		}
