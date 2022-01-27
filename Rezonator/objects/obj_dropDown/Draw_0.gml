@@ -386,11 +386,15 @@ if (keyboard_check_released(vk_escape)) {
 }
 
 if (arrowKeySelection) {
-	if (keyboard_check_pressed(vk_up)) {
+	if (keyboard_check(vk_up) && canPressUp) {
+		canPressUp = false;
+		alarm[5] = 7;
 		if (optionCurrent > 0) optionCurrent--;
 		else optionCurrent = ds_list_size(optionList) - 1;
 	}
-	else if (keyboard_check_pressed(vk_down)) {
+	else if (keyboard_check(vk_down) && canPressDown) {
+		canPressDown = false;
+		alarm[4] = 7;
 		if (optionCurrent < ds_list_size(optionList) - 1) optionCurrent++;
 		else optionCurrent = 0;
 	}

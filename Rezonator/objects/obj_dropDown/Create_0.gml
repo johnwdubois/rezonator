@@ -54,3 +54,6 @@ mouseMoved = false;
 alarm[3] = 1;
 
 prevOptionClickedIndex = -1;
+
+canPressUp = true;
+canPressDown = true;
