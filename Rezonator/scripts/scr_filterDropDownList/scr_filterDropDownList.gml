@@ -46,4 +46,15 @@ function scr_filterDropDownList(fullList, subList, filterStr){
 			keyboard_lastchar = "";
 		}
 	}
+	else if (optionCurrent >= 0 && (keyboard_check(vk_up) || keyboard_check(vk_down))) {
+		if (ds_list_size(subList) > 0) {
+			var hoverValue = subList[| optionCurrent];
+			with (obj_inputBox) {
+				str = hoverValue;
+				cursorIndex = string_length(filterStr);
+				highlightIndex = string_length(str);
+			}
+		}
+	}
+	
 }
