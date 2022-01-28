@@ -89,65 +89,9 @@
 		if (mouseoverCell && !isTildaField) {
 			draw_sprite_ext(spr_dropDown, 0, mean(dropDownRectX1, dropDownRectX2) - clipX, mean(dropDownRectY1, dropDownRectY2) - clipY, 1, 1, 0, global.colorThemeText, 1);
 		}
-		var isHolding = false;
-		with(obj_control){
-			if(isDragging){
-				//isHolding = true;
-			}	
-		}
-		// create input box for tagging if user clicks on cell
-		if(mouseoverCell){
-			obj_control.hoverTextCopy = currentStr;
-			obj_control.mouseoverTagCell = true;
-	
-			//show_debug_message("isHolding: "+ string(isHolding));
-			if (mouse_check_button_released(mb_left) && !mouseoverDropDown && !isHolding) {
-				show_debug_message("CMON YA BUNGLE");
-				
-				if(obj_control.navWindowTaggingID != tokenID or obj_control.navWindowTaggingField != currentField){
-					obj_control.doubleClickTimer = 0;
-				}
-				with (obj_control) {
-					navWindowTaggingID = tokenID;
-					navWindowTaggingField = currentField;
-					navWindowTaggingCellX1 = cellRectX1;
-					navWindowTaggingCellY1 = cellRectY1;
-					navWindowTaggingCellX2 = cellRectX2;
-					navWindowTaggingCellY2 = cellRectY2;
-				}
-				if (cellRectX1 < x) {
-					scrollHorPlusXDest += abs(cellRectX1 - x);
-				}
-				else if (cellRectX2 > x + windowWidth) {
-					scrollHorPlusXDest -= abs(cellRectX2 - (x + windowWidth));
-				}
-				if(obj_control.doubleClickTimer > 0 ){
-					obj_control.navWindowTaggingFocusHeavy = true;
-					
-					// get submap for this field
-					var tokenTagMap = global.nodeMap[? "tokenTagMap"];
-					var fieldSubMap = tokenTagMap[? currentField];
-					
-					// get the tagSet for this field
-					var tagSet = fieldSubMap[? "tagSet"];
-					// create dropdown
-					var dropDownOptionList = ds_list_create();
-					ds_list_copy(dropDownOptionList, tagSet);
-
-					obj_control.tokenToChange = tokenID;
-					obj_control.tokenFieldToChange = currentField;
-					
-
-					scr_spawnTagInputBox(tokenID, currentField, currentStr, self.id,dropDownOptionList, global.optionListTypeTokenTagMap);
-
-				}
-				
-
-			}
-		}
 		
-		scr_tagInputBoxSetPos(tokenID, currentField, cellRectX1, cellRectY1, cellRectX2, cellRectY2);
-			
+		scr_cellEdit(tokenID, currentField, mouseoverCell, mouseoverDropDown, cellRectX1, cellRectY1, cellRectX2, cellRectY2, currentStr, "token");
+
 
 		if (drawDropDowns && !isTildaField) {
 				

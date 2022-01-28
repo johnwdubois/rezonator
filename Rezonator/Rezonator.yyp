@@ -1,6 +1,7 @@
 {
   "resources": [
     {"id":{"name":"spr_toggleDraw","path":"sprites/spr_toggleDraw/spr_toggleDraw.yy",},"order":0,},
+    {"id":{"name":"scr_cellEdit","path":"scripts/scr_cellEdit/scr_cellEdit.yy",},"order":6,},
     {"id":{"name":"spr_filterArrows","path":"sprites/spr_filterArrows/spr_filterArrows.yy",},"order":1,},
     {"id":{"name":"FirebasePathsUserFunctions","path":"scripts/FirebasePathsUserFunctions/FirebasePathsUserFunctions.yy",},"order":3,},
     {"id":{"name":"scr_getChainTempList","path":"scripts/scr_getChainTempList/scr_getChainTempList.yy",},"order":31,},
