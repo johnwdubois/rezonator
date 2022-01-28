@@ -1,15 +1,18 @@
-function scr_filterDropDownList(fullList, subList, str){
+function scr_filterDropDownList(fullList, subList, filterStr){
+	
+	var curIndex = -1;
+	with (obj_inputBox) curIndex = cursorIndex;
+	if (curIndex >= 0) filterStr = string_copy(filterStr, 1, curIndex);
 	
 
-
-	str = string_lower(str);
+	filterStr = string_lower(filterStr);
 	ds_list_clear(subList);
 	
 	var optionListSize = ds_list_size(fullList);
 	for (var i = 0; i < optionListSize; i++) {
 		var currentOption = fullList[| i];
 		var currentOptionLower = string_lower(currentOption);
-		var strMatch = (string_pos(str, currentOptionLower) == 1) || str == "";
+		var strMatch = (string_pos(filterStr, currentOptionLower) == 1) || filterStr == "";
 		
 		if (strMatch) {
 			ds_list_add(subList, currentOption);
@@ -17,4 +20,30 @@ function scr_filterDropDownList(fullList, subList, str){
 	}
 	
 	ds_list_sort(subList, true);
+	
+	
+	var navWindowTaggingLastChar = "";
+	with (obj_control) {
+		if (navWindowTaggingKeyboardLastChar != "") {
+			show_debug_message("here, navWindowTaggingKeyboardLastChar: " + string(navWindowTaggingKeyboardLastChar));
+			navWindowTaggingLastChar = navWindowTaggingKeyboardLastChar;
+			navWindowTaggingKeyboardLastChar = "";
+		}
+	}
+	
+	// grab the first item in the list and set inputBox str to that value
+	if (keyboard_check_pressed(vk_anykey) || navWindowTaggingLastChar != "") {
+		var lastChar = (navWindowTaggingLastChar == "") ? keyboard_lastchar : navWindowTaggingLastChar;
+
+		show_debug_message("lastChar: " + string(lastChar));
+		if (ds_list_size(subList) > 0 && filterStr != "" && scr_isCharLetter(lastChar) && !keyboard_check_pressed(vk_backspace)) {
+			var firstValue = subList[| 0];
+			with (obj_inputBox) {
+				str = firstValue;
+				cursorIndex = string_length(filterStr);
+				highlightIndex = string_length(str);
+			}
+			keyboard_lastchar = "";
+		}
+	}
 }

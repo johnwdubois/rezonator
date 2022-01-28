@@ -628,3 +628,7 @@ if (mouse_check_button_released(mb_left) && !mouseoverTagCell
 if (mouse_check_button_pressed(mb_right)) {
 	scr_clearNavWindowTagging();
 }
+if (keyboard_check_released(vk_up)) navWindowTaggingCanPressUp = true;
+if (keyboard_check_released(vk_down)) navWindowTaggingCanPressDown = true;
+if (keyboard_check_released(vk_left)) navWindowTaggingCanPressLeft = true;
+if (keyboard_check_released(vk_right)) navWindowTaggingCanPressRight = true;

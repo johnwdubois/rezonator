@@ -856,4 +856,5 @@ navWindowTaggingCanPressUp = true;
 navWindowTaggingCanPressDown = true;
 navWindowTaggingCanPressLeft = true;
 navWindowTaggingCanPressRight = true;
+navWindowTaggingKeyboardLastChar = "";
 isDragging = false;

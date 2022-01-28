@@ -35,7 +35,17 @@ function scr_navWindowTaggingSelection(fieldList, idList){
 			keyboard_lastchar = "";
 		}
 		
-	
+		// backspace & delete
+		if ((keyboard_check_pressed(vk_backspace) || keyboard_check_pressed(vk_delete)) && !inputBoxExists) {
+			var idSubMap = global.nodeMap[? obj_control.navWindowTaggingID];
+			if (scr_isNumericAndExists(idSubMap, ds_type_map)) {
+				var idTagMap = idSubMap[? "tagMap"];
+				if (scr_isNumericAndExists(idTagMap, ds_type_map)) {
+					idTagMap[? obj_control.navWindowTaggingField] = "";
+				}
+			}
+			show_debug_message("scr_navWindowTaggingSelection, backspace/delete");
+		}
 		
 		// create input box if user presses enter or types a letter on keyboard
 		if (!inputBoxExists && !obj_control.navWindowTaggingDisableSpawn && !global.ctrlHold && !instance_exists(obj_dropDown)) {
@@ -68,6 +78,7 @@ function scr_navWindowTaggingSelection(fieldList, idList){
 			else if (scr_isCharLetter(keyboard_lastchar)) {
 				scr_spawnTagInputBox(obj_control.navWindowTaggingID, obj_control.navWindowTaggingField, keyboard_lastchar, self.id, dropDownOptionList, global.optionListTypeTokenTagMap);
 				obj_control.navWindowTaggingFocusHeavy = false;
+				obj_control.navWindowTaggingKeyboardLastChar = keyboard_lastchar;
 				keyboard_lastchar = "";
 			}
 		}
