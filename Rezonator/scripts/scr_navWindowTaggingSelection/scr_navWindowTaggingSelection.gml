@@ -57,14 +57,18 @@ function scr_navWindowTaggingSelection(fieldList, idList){
 				var fieldSubMap = tokenTagMap[? obj_control.navWindowTaggingField];
 					
 				// get the tagSet for this field
-				var tagSet = fieldSubMap[? "tagSet"];
-				show_debug_message(scr_getStringOfList(tagSet))
-				// create dropdown
 				var dropDownOptionList = ds_list_create();
-				ds_list_copy(dropDownOptionList, tagSet);
-				show_debug_message(scr_getStringOfList(dropDownOptionList));
+				if(scr_isNumericAndExists(fieldSubMap,ds_type_map)){
+					var tagSet = fieldSubMap[? "tagSet"];
+					show_debug_message(scr_getStringOfList(tagSet))
+					// create dropdown
+				
+					ds_list_copy(dropDownOptionList, tagSet);
+					show_debug_message(scr_getStringOfList(dropDownOptionList));
+				}
 				obj_control.tokenToChange = obj_control.navWindowTaggingID;
 				obj_control.tokenFieldToChange = obj_control.navWindowTaggingField;
+				
 			}
 			
 			
