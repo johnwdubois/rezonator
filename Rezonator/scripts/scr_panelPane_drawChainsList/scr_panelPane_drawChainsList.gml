@@ -140,8 +140,8 @@ function scr_panelPane_drawChainsList() {
 			
 			if (!is_numeric(currentChainSelected)) currentChainSelected = false;
 			
-			if (is_numeric(setIDList) || is_numeric(vizSetIDList)) {
-				if (ds_exists(setIDList, ds_type_list) || ds_exists(vizSetIDList, ds_type_list)) {
+			if (is_numeric(setIDList) && is_numeric(vizSetIDList)) {
+				if (ds_exists(setIDList, ds_type_list) && ds_exists(vizSetIDList, ds_type_list)) {
 					var setIDListSize = ds_list_size(setIDList);
 					
 					// chain captions!

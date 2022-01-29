@@ -47,7 +47,7 @@ function scr_psentStackerLoop(){
 		for(var j = 0; j < unitToStackListSize; j++){
 			scr_unitClicked(unitToStackList[|j]);
 		}
-		ds_list_destroy(unitToStackList);
+
 		scr_chainDeselect();
 	}
 	ds_list_destroy(listOfKeys);
