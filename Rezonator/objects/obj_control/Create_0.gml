@@ -860,6 +860,7 @@ navWindowTaggingKeyboardLastChar = "";
 isDragging = false;
 navWindowTaggingOldValue = "";
 navWindowTaggingEscape = false;
+navWindowTaggingSingleOptionSelect = false;
 
 //lock fields
 with (obj_alarm3) alarm[4] = 2;

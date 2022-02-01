@@ -4,6 +4,7 @@ function scr_tokenTagMapOptions(optionSelected) {
 		show_debug_message("destroying input box from dd select");
 		instance_destroy();
 	}
+	
 	// check if user is clearing tag
 	var clearTag = (optionSelected == "menu_clear");
 

@@ -10,6 +10,7 @@ function scr_clearNavWindowTagging(destroyInputBox){
 	
 	
 	with (obj_control) {
+		show_debug_message("scr_clearNavWindowTagging, clearing values");
 		navWindowTaggingID = "";
 		navWindowTaggingField = "";
 		navWindowTaggingFocusHeavy = false;

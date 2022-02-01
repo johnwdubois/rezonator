@@ -311,12 +311,26 @@ for (var i = 0; i < optionListSize; i++) {
 		clickCurrentOption = true;
 	}
 	
+	if (arrowKeySingleOptionSelect && ds_list_size(optionList) == 1) {
+		arrowKeySingleOptionSelect = false;
+		
+		clickCurrentOption = true;
+		with (obj_control) {
+			navWindowTaggingNextRow = true;
+			navWindowTaggingSingleOptionSelect = true;
+		}
+	}
+	
 	if (clickCurrentOption) {
 		prevOptionClicked = i;
 		if(!unClickable){
 			optionCurrent = i;
 			var optionSelected = optionList[| i];
 			scr_dropDownSelect(optionSelected);
+		}
+		
+		if (!arrowKeySingleOptionSelect) {
+			with (obj_control) navWindowTaggingSingleOptionSelect = false;
 		}
 	}
 
@@ -416,6 +430,10 @@ if (arrowKeySelection) {
 		alarm[4] = 7;
 		if (optionCurrent < ds_list_size(optionList) - 1) optionCurrent++;
 		else optionCurrent = 0;
+		
+		if (ds_list_size(optionList) == 1) {
+			arrowKeySingleOptionSelect = true;
+		}
 	}
 }
 
