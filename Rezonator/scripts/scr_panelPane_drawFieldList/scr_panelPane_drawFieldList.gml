@@ -235,7 +235,7 @@ function scr_panelPane_drawFieldList(){
 				var lockButtonX = mean(lockColX, lockColX + lockColWidth);
 				var lockButtonY = currentRowY1 + (strHeight * 0.5);
 				var mouseOverLock = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, lockColX, currentRowY1, lockColX + lockColWidth, currentRowY2) && mouseoverRow;
-				var fieldLocked = false;
+				var fieldLocked = currentFieldSubMap[?"locked"];
 
 								
 				// mouseover & click on delete button
@@ -264,6 +264,7 @@ function scr_panelPane_drawFieldList(){
 					draw_set_color(global.colorThemeSelected1);
 					draw_rectangle(lockColX - clipX, currentRowY1 - clipY, lockColX + lockColWidth - clipX, currentRowY2 - clipY, false);
 					if (mouse_check_button_released(mb_left)) {
+						currentFieldSubMap[?"locked"] = !currentFieldSubMap[?"locked"]
 					
 					}
 					scr_createTooltip(lockButtonX, currentRowY2, fieldLocked ? "Unlock tags" : "Lock tags", obj_tooltip.arrowFaceUp);
@@ -272,6 +273,9 @@ function scr_panelPane_drawFieldList(){
 
 				if(mouseoverRow || fieldSelected){
 					draw_sprite_ext(spr_trash, 0, delButtonX - clipX, delButtonY - clipY, .7, .7, 0, global.colorThemeText, trashAlpha);
+					draw_sprite_ext(spr_lock, !fieldLocked, lockButtonX - clipX, lockButtonY - clipY, .7, .7, 0, global.colorThemeText, 1);
+				}
+				if(fieldLocked){
 					draw_sprite_ext(spr_lock, !fieldLocked, lockButtonX - clipX, lockButtonY - clipY, .7, .7, 0, global.colorThemeText, 1);
 				}
 		
