@@ -263,7 +263,7 @@ function scr_inputBoxStep(){
 		}
 		else if (keyEscapePressed) {
 			// set old tag back
-			if (obj_control.navWindowTaggingID != "" && obj_control.navWindowTaggingField != "" && obj_control.navWindowTaggingOldValue != "") {
+			if (obj_control.navWindowTaggingID != "" && obj_control.navWindowTaggingField != "") {
 				
 				obj_control.navWindowTaggingEscape = true;
 				instance_destroy();
