@@ -16,6 +16,7 @@ function scr_inputBoxStep(){
 	var keyLeftPressed = keyboard_check_pressed(vk_left) && windowFocused;
 	var keyRightPressed = keyboard_check_pressed(vk_right) && windowFocused;
 	var keyEnterPressed = keyboard_check_pressed(vk_enter) && windowFocused;
+	var keyEscapePressed = keyboard_check_pressed(vk_escape) && windowFocused;
 	
 	// cancel horizontal movement if in dropdown
 	if (instance_exists(obj_dropDown)) {
@@ -246,16 +247,28 @@ function scr_inputBoxStep(){
 	// decrease doubleClickTimer
 	doubleClickTimer = max(doubleClickTimer - 1, 0);
 	
-	if (keyEnterPressed && navWindowTagging) {
-		if (instance_exists(obj_control) && instance_exists(obj_alarm2)) {
-			with (obj_control) {
-				navWindowTaggingDisableSpawn = true;
-				navWindowTaggingNextRow = true;
+	
+	if (navWindowTagging && instance_exists(obj_control)) {
+		
+		if (keyEnterPressed) {
+			if (instance_exists(obj_alarm2)) {
+				with (obj_control) {
+					navWindowTaggingDisableSpawn = true;
+					navWindowTaggingNextRow = true;
+				}
+				with (obj_alarm2) alarm[11] = 1;
 			}
-			with (obj_alarm2) alarm[11] = 1;
+			show_debug_message("DESTROYING INPUT BOX FROM ENTER PRESSED");
+			instance_destroy();
 		}
-		show_debug_message("DESTROYING INPUT BOX FROM ENTER PRESSED");
-		instance_destroy();
+		else if (keyEscapePressed) {
+			// set old tag back
+			if (obj_control.navWindowTaggingID != "" && obj_control.navWindowTaggingField != "" && obj_control.navWindowTaggingOldValue != "") {
+				
+				obj_control.navWindowTaggingEscape = true;
+				instance_destroy();
+			}
+		}
 	}
 	
 }

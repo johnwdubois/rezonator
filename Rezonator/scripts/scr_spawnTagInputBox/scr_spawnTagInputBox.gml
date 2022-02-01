@@ -22,4 +22,13 @@ function scr_spawnTagInputBox(ID, field, defStr, paneInst, dropDownList, dropDow
 	obj_control.navWindowTaggingID = ID;
 	obj_control.navWindowTaggingPaneInst = paneInst;
 	
+	// get old value
+	var idSubMap = global.nodeMap[? ID];
+	if (scr_isNumericAndExists(idSubMap, ds_type_map)) {
+		var idTagMap = idSubMap[? "tagMap"];
+		if (scr_isNumericAndExists(idTagMap, ds_type_map)) {
+			obj_control.navWindowTaggingOldValue = idTagMap[? field];
+		}
+	}
+	
 }

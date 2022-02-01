@@ -1,5 +1,6 @@
 /// @description set nav window tag
 if (!instance_exists(obj_control)) exit;
+
 with(obj_control){
 	mouseoverInputBox = false;
 }
@@ -17,6 +18,14 @@ obj_control.navWindowTaggingFocusHeavy = false;
 var setID = obj_control.navWindowTaggingID;
 var field = obj_control.navWindowTaggingField;
 var tag = str;
+
+// check if we're reverting back to an old tag
+if (obj_control.navWindowTaggingEscape) {
+	tag = obj_control.navWindowTaggingOldValue;
+	obj_control.navWindowTaggingEscape = false;
+	obj_control.navWindowTaggingOldValue = "";
+}
+
 if (setID == "" || field == "" || !is_string(setID) || !is_string(field)) {
 	exit;
 }
@@ -36,7 +45,7 @@ if (scr_isNumericAndExists(idSubMap, ds_type_map)) {
 
 // clear the navWindowTagging variables
 global.inputBoxDefStr = "";
-if (!keyboard_check_pressed(vk_left) && !keyboard_check_pressed(vk_right) && !keyboard_check_pressed(vk_up) && !keyboard_check_pressed(vk_down) && !keyboard_check_pressed(vk_enter)) {
+if (!keyboard_check_pressed(vk_left) && !keyboard_check_pressed(vk_right) && !keyboard_check_pressed(vk_up) && !keyboard_check_pressed(vk_down) && !keyboard_check_pressed(vk_enter) && !keyboard_check_pressed(vk_escape)) {
 	obj_control.navWindowTaggingID = "";
 	obj_control.navWindowTaggingField = "";
 }

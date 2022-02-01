@@ -89,7 +89,7 @@ function scr_drawDevVars(){
 	draw_text(devVarX - 580, wordTopMargin + (strHeight * 16), "navWindowTaggingField: " + string(navWindowTaggingField));
 	draw_text(devVarX - 580, wordTopMargin + (strHeight * 17), "navWindowTaggingID: " + string(navWindowTaggingID));
 	draw_text(devVarX - 580, wordTopMargin + (strHeight * 18), "navWindowTaggingFocusHeavy: " + string(navWindowTaggingFocusHeavy));
-	draw_text(devVarX - 580, obj_control.wordTopMargin + (strHeight * 19), "isDragging : " + string(obj_control.isDragging));
+	draw_text(devVarX - 580, wordTopMargin + (strHeight * 19), "navWindowTaggingOldValue : " + string(obj_control.navWindowTaggingOldValue));
 
 	
 	// reset halign to left
