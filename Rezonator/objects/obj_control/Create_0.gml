@@ -858,3 +858,5 @@ navWindowTaggingCanPressLeft = true;
 navWindowTaggingCanPressRight = true;
 navWindowTaggingKeyboardLastChar = "";
 isDragging = false;
+
+with (obj_alarm3) alarm[4] = 2;
