@@ -30,6 +30,10 @@ function scr_cellEdit(ID, field, mouseoverCell, mouseoverDropDown, x1, y1, x2, y
 					nodeMapKey = "tokenTagMap";
 					optionListType = global.optionListTypeTokenTagMap;
 				}
+				if (type == "entry") {
+					nodeMapKey = "entryTagMap";
+					optionListType = global.optionListTypeEntryTagMap;
+				}
 				
 				if (nodeMapKey != "" && optionListType != -1) {
 					
@@ -37,16 +41,23 @@ function scr_cellEdit(ID, field, mouseoverCell, mouseoverDropDown, x1, y1, x2, y
 					var tokenTagMap = global.nodeMap[? nodeMapKey];
 					var fieldSubMap = tokenTagMap[? field];
 					
-					// get the tagSet for this field
-					var tagSet = fieldSubMap[? "tagSet"];
-					// create dropdown
-					var dropDownOptionList = ds_list_create();
-					ds_list_copy(dropDownOptionList, tagSet);
+					var fieldHasTagSet = scr_checkForTagSet(fieldSubMap);
 
-					obj_control.tokenToChange = ID;
-					obj_control.tokenFieldToChange = field;
 
-					scr_spawnTagInputBox(ID, field, str, self.id,dropDownOptionList, optionListType);
+					
+					if(fieldHasTagSet){
+						// get the tagSet for this field
+						var tagSet = fieldSubMap[? "tagSet"];
+						// create dropdown
+						var dropDownOptionList = ds_list_create();
+						ds_list_copy(dropDownOptionList, tagSet);
+
+						obj_control.tokenToChange = ID;
+						obj_control.tokenFieldToChange = field;
+
+
+						scr_spawnTagInputBox(ID, field, str, self.id,dropDownOptionList, optionListType);
+					}
 				}
 			}
 		}

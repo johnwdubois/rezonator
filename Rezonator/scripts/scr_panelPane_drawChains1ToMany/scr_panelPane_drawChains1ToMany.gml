@@ -204,7 +204,7 @@ function scr_panelPane_drawChains1ToMany() {
 	}
 	
 	
-	
+	scr_navWindowTaggingSelection(chain1toManyColFieldList, functionChainContents_IDList,"entry");
 
 	var scrollBarListSize = 0;
 	if (scr_isNumericAndExists(functionChainContents_IDList, ds_type_list)) {

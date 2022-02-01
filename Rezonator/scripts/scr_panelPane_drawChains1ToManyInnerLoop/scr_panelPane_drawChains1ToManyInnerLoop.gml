@@ -109,6 +109,7 @@ function scr_panelPane_drawChains1ToManyInnerLoop(chain1toManyColFieldList, entr
 					}
 				}
 				break;
+					scr_cellEdit(ID, currentField, mouseoverCell, false, cellRectX1, cellRectY1, cellRectX2, cellRectY2, cellText, "entry");
 		}
 		
 		
@@ -126,7 +127,7 @@ function scr_panelPane_drawChains1ToManyInnerLoop(chain1toManyColFieldList, entr
 				}
 			}
 			
-			scr_chainTagDropDown(global.entryFieldMap, currentField, entry, cellRectX1, cellRectY1, cellRectX2, cellRectY2, mouseoverCell, (i == colAmount - 1));
+			scr_chainTagDropDown(global.entryFieldMap, currentField, entry, cellRectX1, cellRectY1, cellRectX2, cellRectY2, mouseoverCell, (i == colAmount - 1),cellText);
 		}
 		
 		// get coordinates for text

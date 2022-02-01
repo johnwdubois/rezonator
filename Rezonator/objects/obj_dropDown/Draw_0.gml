@@ -5,7 +5,8 @@
 myAlpha += 0.15;
 if (myAlpha > 1) myAlpha = 1;
 
-arrowKeySelection = (optionListType == global.optionListTypeTokenTagMap);
+arrowKeySelection = (optionListType == global.optionListTypeTokenTagMap)
+					or (optionListType == global.optionListTypeEntryTagMap);
 var filterOptionList = arrowKeySelection && instance_exists(obj_inputBox);
 if (filterOptionList) scr_filterDropDownList(originalOptionList, optionList, obj_inputBox.str);
 
@@ -50,7 +51,7 @@ if( x + windowWidth > camWidth and !(global.lang_codes[| global.lang_index] == "
 	x = camWidth - windowWidth;
 }
 
-scr_dropShadow(x, y, x + windowWidth, y + windowHeight);
+
 
 
 // check mouseover for dropdown
@@ -74,7 +75,9 @@ if (ds_list_size(optionList) <= 0) {
 		show_debug_message("obj_dropDown Draw ... ds_list_size(optionList) <= 0, destroying");
 		instance_destroy();
 	}
+
 }
+scr_dropShadow(x, y, x + windowWidth, y + windowHeight);
 
 // surface stuff
 windowX = x;

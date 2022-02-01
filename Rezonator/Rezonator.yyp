@@ -202,6 +202,7 @@
     {"id":{"name":"spr_saveIcon","path":"sprites/spr_saveIcon/spr_saveIcon.yy",},"order":29,},
     {"id":{"name":"scr_chunkRightClicked","path":"scripts/scr_chunkRightClicked/scr_chunkRightClicked.yy",},"order":6,},
     {"id":{"name":"scr_clearCliqueMap","path":"scripts/scr_clearCliqueMap/scr_clearCliqueMap.yy",},"order":0,},
+    {"id":{"name":"scr_checkForTagSet","path":"scripts/scr_checkForTagSet/scr_checkForTagSet.yy",},"order":7,},
     {"id":{"name":"scr_loadREZ","path":"scripts/scr_loadREZ/scr_loadREZ.yy",},"order":2,},
     {"id":{"name":"scr_setNavFieldListsFromSchemaPart","path":"scripts/scr_setNavFieldListsFromSchemaPart/scr_setNavFieldListsFromSchemaPart.yy",},"order":39,},
     {"id":{"name":"scr_translationOptions","path":"scripts/scr_translationOptions/scr_translationOptions.yy",},"order":60,},

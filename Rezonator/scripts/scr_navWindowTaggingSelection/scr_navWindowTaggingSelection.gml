@@ -1,4 +1,4 @@
-function scr_navWindowTaggingSelection(fieldList, idList){
+function scr_navWindowTaggingSelection(fieldList, idList, type){
 	
 	var canPressArrowKeyAlarm = 12;
 	
@@ -47,15 +47,22 @@ function scr_navWindowTaggingSelection(fieldList, idList){
 			show_debug_message("scr_navWindowTaggingSelection, backspace/delete");
 		}
 		
+		var fieldSubMap = "";
+		// get submap for this field
+		if(type == "token"){
+			var tokenTagMap = global.nodeMap[? "tokenTagMap"];
+			fieldSubMap = tokenTagMap[? obj_control.navWindowTaggingField];
+		}
+		else if(type == "entry"){
+			var entryTagMap = global.nodeMap[? "entryTagMap"];
+			fieldSubMap = entryTagMap[? obj_control.navWindowTaggingField];
+		}
+		var fieldHasTagSet = scr_checkForTagSet(fieldSubMap);
 		// create input box if user presses enter or types a letter on keyboard
-		if (!inputBoxExists && !obj_control.navWindowTaggingDisableSpawn && !global.ctrlHold && !instance_exists(obj_dropDown)) {
+		if (!inputBoxExists && !obj_control.navWindowTaggingDisableSpawn && !global.ctrlHold && !instance_exists(obj_dropDown) && fieldHasTagSet) {
 			
 			if(keyboard_check_pressed(vk_enter) || scr_isCharLetter(keyboard_lastchar)){
-			
-				// get submap for this field
-				var tokenTagMap = global.nodeMap[? "tokenTagMap"];
-				var fieldSubMap = tokenTagMap[? obj_control.navWindowTaggingField];
-					
+
 				// get the tagSet for this field
 				var dropDownOptionList = ds_list_create();
 				if(scr_isNumericAndExists(fieldSubMap,ds_type_map)){
@@ -71,16 +78,23 @@ function scr_navWindowTaggingSelection(fieldList, idList){
 				
 			}
 			
+			var currentDropDownType = 0;
+			if(type == "token"){
+				currentDropDownType = global.optionListTypeTokenTagMap;
+			}
+			else if(type == "entry"){
+				currentDropDownType = global.optionListTypeEntryTagMap;
+			}
 			
 			
 			if (keyboard_check_pressed(vk_enter)) {
 				obj_control.navWindowTaggingEnterPress = true;
 				var currentTagValue = scr_navWindowGetTagValue();
-				scr_spawnTagInputBox(obj_control.navWindowTaggingID, obj_control.navWindowTaggingField, currentTagValue, self.id, dropDownOptionList, global.optionListTypeTokenTagMap);
+				scr_spawnTagInputBox(obj_control.navWindowTaggingID, obj_control.navWindowTaggingField, currentTagValue, self.id, dropDownOptionList, currentDropDownType);
 				obj_control.navWindowTaggingFocusHeavy = true;
 			}
 			else if (scr_isCharLetter(keyboard_lastchar)) {
-				scr_spawnTagInputBox(obj_control.navWindowTaggingID, obj_control.navWindowTaggingField, keyboard_lastchar, self.id, dropDownOptionList, global.optionListTypeTokenTagMap);
+				scr_spawnTagInputBox(obj_control.navWindowTaggingID, obj_control.navWindowTaggingField, keyboard_lastchar, self.id, dropDownOptionList, currentDropDownType);
 				obj_control.navWindowTaggingFocusHeavy = false;
 				obj_control.navWindowTaggingKeyboardLastChar = keyboard_lastchar;
 				keyboard_lastchar = "";
@@ -101,15 +115,18 @@ function scr_navWindowTaggingSelection(fieldList, idList){
 					with (obj_alarm3) alarm[2] = canPressArrowKeyAlarm;
 					with (obj_inputBox) instance_destroy();
 					var fieldIndex = ds_list_find_index(fieldList, obj_control.navWindowTaggingField);
+					show_debug_message("left key, fieldList: " + scr_getStringOfList(fieldList) + ", field: " + string(obj_control.navWindowTaggingField) + ", index: " + string(fieldIndex));
 					fieldIndex = max(fieldIndex - 1, 0);
 					obj_control.navWindowTaggingField = fieldList[| fieldIndex];
 					obj_control.navWindowTaggingUpdateScroll = true;
 				}
 				else if (keyboard_check(vk_right) && obj_control.navWindowTaggingCanPressRight) {
+					
 					obj_control.navWindowTaggingCanPressRight = false;
 					with (obj_alarm3) alarm[3] = canPressArrowKeyAlarm;
 					with (obj_inputBox) instance_destroy();
 					var fieldIndex = ds_list_find_index(fieldList, obj_control.navWindowTaggingField);
+					show_debug_message("right key, fieldList: " + scr_getStringOfList(fieldList) + ", field: " + string(obj_control.navWindowTaggingField) + ", index: " + string(fieldIndex));
 					fieldIndex = min(fieldIndex + 1, ds_list_size(fieldList) - 1);
 					obj_control.navWindowTaggingField = fieldList[| fieldIndex];
 					obj_control.navWindowTaggingUpdateScroll = true;
@@ -120,21 +137,36 @@ function scr_navWindowTaggingSelection(fieldList, idList){
 		
 		if (!instance_exists(obj_dropDown)) {
 			if (keyboard_check(vk_up) && obj_control.navWindowTaggingCanPressUp) {
-				var prevID = "";
-				var idFound = false;
-				for (var i = idListSize - 1; i >= 0; i--) {
-					var currentID = idList[| i];
-					var currentIDSubMap = global.nodeMap[? currentID];
-					var currentToken = currentIDSubMap[? "token"];
-					if (!idFound && currentToken == obj_control.navWindowTaggingID) idFound = true;
-					else if (idFound && prevID == "") prevID = currentToken;
+				if(type == "token"){
+					var prevID = "";
+					var idFound = false;
+					for (var i = idListSize - 1; i >= 0; i--) {
+						var currentID = idList[| i];
+						var currentIDSubMap = global.nodeMap[? currentID];
+						var currentToken = currentIDSubMap[? "token"];
+						if (!idFound && currentToken == obj_control.navWindowTaggingID) idFound = true;
+						else if (idFound && prevID == "") prevID = currentToken;
+					}
+					if (prevID != "") {
+						obj_control.navWindowTaggingCanPressUp = false;
+						with (obj_alarm3) alarm[0] = canPressArrowKeyAlarm;
+						with (obj_inputBox) instance_destroy();
+						obj_control.navWindowTaggingID = prevID;
+						obj_control.navWindowTaggingUpdateScroll = true;
+					}
 				}
-				if (prevID != "") {
+				else if(type == "entry"){
+					var entrySubMap = global.nodeMap[?obj_control.navWindowTaggingID];
+					var chainID = entrySubMap[? "chain"];
+					var chainSubMap = global.nodeMap[?chainID];
+					var IDList = (obj_control.chain1toManyCustomSortColIndex == -1) ? chainSubMap[?"vizSetIDList"] : chainSubMap[?"customSetIDList"];
+					var IDListIndex = ds_list_find_index(IDList, obj_control.navWindowTaggingID);
+					if(IDListIndex > 0 ){
+						with (obj_alarm3) alarm[0] = canPressArrowKeyAlarm;
+						obj_control.navWindowTaggingID = IDList[|IDListIndex -1];
+						obj_control.navWindowTaggingUpdateScroll = true;
+					}
 					obj_control.navWindowTaggingCanPressUp = false;
-					with (obj_alarm3) alarm[0] = canPressArrowKeyAlarm;
-					with (obj_inputBox) instance_destroy();
-					obj_control.navWindowTaggingID = prevID;
-					obj_control.navWindowTaggingUpdateScroll = true;
 				}
 			}
 			else if (keyboard_check(vk_down) && obj_control.navWindowTaggingCanPressDown) {
@@ -155,20 +187,32 @@ function scr_navWindowTaggingSelection(fieldList, idList){
 		}
 	
 		if (selectNextRow) {
-			
-			var nextID = "";
-			var idFound = false;
-			for (var i = 0; i < idListSize; i++) {
-				var currentID = idList[| i];
-				var currentIDSubMap = global.nodeMap[? currentID];
-				var currentToken = currentIDSubMap[? "token"];
-				if (!idFound && currentToken == obj_control.navWindowTaggingID) idFound = true;
-				else if (idFound && nextID == "") nextID = currentToken;
+			if(type == "token"){
+				var nextID = "";
+				var idFound = false;
+				for (var i = 0; i < idListSize; i++) {
+					var currentID = idList[| i];
+					var currentIDSubMap = global.nodeMap[? currentID];
+					var currentToken = currentIDSubMap[? "token"];
+					if (!idFound && currentToken == obj_control.navWindowTaggingID) idFound = true;
+					else if (idFound && nextID == "") nextID = currentToken;
+				}
+				if (nextID != "") {
+					with (obj_inputBox) instance_destroy();
+					obj_control.navWindowTaggingID = nextID;
+					obj_control.navWindowTaggingUpdateScroll = true;
+				}
 			}
-			if (nextID != "") {
-				with (obj_inputBox) instance_destroy();
-				obj_control.navWindowTaggingID = nextID;
-				obj_control.navWindowTaggingUpdateScroll = true;
+			else if(type == "entry"){
+				var entrySubMap = global.nodeMap[?obj_control.navWindowTaggingID];
+				var chainID = entrySubMap[? "chain"];
+				var chainSubMap = global.nodeMap[?chainID];
+				var IDList = (obj_control.chain1toManyCustomSortColIndex == -1) ? chainSubMap[?"vizSetIDList"] : chainSubMap[?"customSetIDList"];
+				var IDListIndex = ds_list_find_index(IDList, obj_control.navWindowTaggingID);
+				if(IDListIndex < ds_list_size(IDList)-1){
+					obj_control.navWindowTaggingID = IDList[|IDListIndex +1];
+					obj_control.navWindowTaggingUpdateScroll = true;
+				}
 			}
 		}
 	}

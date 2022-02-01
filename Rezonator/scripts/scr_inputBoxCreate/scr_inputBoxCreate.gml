@@ -51,6 +51,6 @@ function scr_inputBoxCreate(strDefault){
 	doubleClick = false;
 	
 	navWindowTagging = false;
-
+	inputBoxCancel = 0;
 
 }

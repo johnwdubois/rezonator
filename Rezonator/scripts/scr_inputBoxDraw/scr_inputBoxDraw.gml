@@ -39,11 +39,22 @@ function scr_inputBoxDraw(){
 		
 		if (navWindowTagging && !mouseoverWindow && instance_exists(obj_control)) {
 			if(!obj_control.mouseoverDropDown){
-				show_debug_message("KILLING INPUT BOX WITH SEPUKUUU");
 				instance_destroy();
 			}
 		}
 	}
+	if(!windowFocused && navWindowTagging && !mouse_check_button(mb_left)){
+		inputBoxCancel += 1;
+		if(inputBoxCancel > 10){
+			show_debug_message("NO FOCUS MUST DESTROY")
+			instance_destroy();
+		}
+	}
+	else{
+		inputBoxCancel = 0;
+	}
+
+	
 	
 	if (instance_exists(obj_openingScreen)) {
 		windowFocused = !obj_openingScreen.showPreImportScreen;
