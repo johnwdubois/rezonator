@@ -16,9 +16,14 @@ function scr_inputBoxDraw(){
 	textY = floor(textBoxY + textMarginY);
 	windowHeight = strHeight + (textMarginY * 2);
 	
-
-
-	
+	var isLockedField = false;
+	if(instance_exists(obj_control)){
+		var fieldTagMap = scr_getFieldMap();
+		var currentFieldSubMap = fieldTagMap[?obj_control.navWindowTaggingField];
+		if(scr_isNumericAndExists(currentFieldSubMap,ds_type_map)){
+			isLockedField = currentFieldSubMap[?"locked"];
+		}
+	}
 
 	// click in window to focus it
 	var mouseoverWindow = point_in_rectangle(mouse_x, mouse_y, textBoxX, textBoxY, textBoxX + windowWidth, textBoxY + windowHeight);
@@ -154,10 +159,13 @@ function scr_inputBoxDraw(){
 		draw_rectangle(highlightRectX1 - clipX, highlightRectY1 - clipY, highlightRectX2 - clipX, highlightRectY2 - clipY, false);
 		draw_set_alpha(1);
 	}
-
+	
 	// end clipping for text
 	scr_surfaceEnd();
-
+	
+	if(isLockedField){
+		draw_sprite_ext(spr_lock,0,textBoxX+windowWidth - sprite_get_width(spr_lock)/2, textBoxY+windowHeight/2,.8,.8,0,global.colorThemeText,.5);
+	}
 	// outline rect
 	draw_set_color(global.colorThemeBorders);
 	if (windowFocused) {

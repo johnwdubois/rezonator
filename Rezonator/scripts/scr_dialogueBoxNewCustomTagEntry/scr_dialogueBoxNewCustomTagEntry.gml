@@ -20,6 +20,7 @@ function scr_dialogueBoxNewCustomTagEntry(){
 	
 	// add the new tag to the tagSet
 	scr_addToListOnce(tagSet, newTag);
+	scr_sortList(tagSet);
 	
 		//add this to selected entry if not in tag pane
 	if(obj_panelPane.functionChainList_currentTab != obj_panelPane.functionChainList_tabField){

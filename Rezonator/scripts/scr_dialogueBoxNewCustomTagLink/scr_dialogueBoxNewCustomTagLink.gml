@@ -24,7 +24,7 @@ function scr_dialogueBoxNewCustomTagLink() {
 	
 	// add new tag to this field's tagSet
 	scr_addToListOnce(tagSet, newTag);
-	
+	scr_sortList(tagSet);
 	
 	
 	//add this to selected unit if not in tag pane

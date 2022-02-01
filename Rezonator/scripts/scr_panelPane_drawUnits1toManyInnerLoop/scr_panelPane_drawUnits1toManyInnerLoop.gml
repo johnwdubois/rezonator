@@ -27,7 +27,7 @@
 	// get size of dropdown buttons
 	var dropDownButtonWidth = sprite_get_width(spr_dropDown);
 	var dropDownButtonHeight = (tabHeight / 2);
-	
+
 	// Set collected info into respective columns
 	var plusX = x;
 	repeat(fieldListSize) {
@@ -35,11 +35,9 @@
 		var currentField = fieldList[| i];
 		var currentStr = "";
 
-
-		
 		// draw tag selection
 		var isTildaField = (string_char_at(string(currentField), 1) == "~");
-		
+
 		// get BG rect coordinates
 		var colWidth = windowWidth/obj_panelPane.unit1toMColAmount;
 		var cellRectX1 = plusX + scrollHorPlusX;
@@ -117,7 +115,6 @@
 						// create dropdown
 						var dropDownOptionList = ds_list_create();
 						ds_list_copy(dropDownOptionList, tagSet);
-						ds_list_add(dropDownOptionList,"option_add-to-tag-set");
 						ds_list_add(dropDownOptionList, "menu_clear");
 
 						obj_control.tokenToChange = tokenID;

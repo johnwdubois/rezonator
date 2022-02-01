@@ -35,6 +35,7 @@ function scr_dialogueBoxNewCustomTagToken() {
 	
 	// add new tag to this field's tagSet
 	scr_addToListOnce(tagSet, newTag);
+	scr_sortList(tagSet);
 	
 	//add this to selected token if not in tag pane
 	if(obj_panelPane.functionChainList_currentTab != obj_panelPane.functionChainList_tabField){

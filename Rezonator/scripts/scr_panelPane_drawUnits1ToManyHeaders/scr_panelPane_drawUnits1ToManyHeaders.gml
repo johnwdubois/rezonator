@@ -1,5 +1,3 @@
-
-
 function scr_panelPane_drawUnits1ToManyHeaders(){
 	
 	var headerList = obj_control.navTokenFieldList;
@@ -14,7 +12,6 @@ function scr_panelPane_drawUnits1ToManyHeaders(){
 	scr_surfaceStart();
 	
 	
-	
 	for (var i = 0; i < headerListSize; i++) {
 		
 		// get header coordinates
@@ -25,6 +22,7 @@ function scr_panelPane_drawUnits1ToManyHeaders(){
 		
 		// get column name/current field
 		var currentField = headerList[| i];
+		
 	
 		// draw BG rects & lines to separate columns
 		draw_set_alpha(1);
@@ -50,7 +48,8 @@ function scr_panelPane_drawUnits1ToManyHeaders(){
 			headerTextX = headerRectX2 - (textMarginLeft) - dropDownButtonSize - (textMarginLeft * 2);
 		}
 		draw_text(headerTextX- clipX, headerTextY- clipY, currentField);
-	
+		draw_set_alpha(1);
+		
 		// draw displayToken button
 		var displayTokenButtonSize = (headerHeight / 4);
 		var displayTokenButtonX = headerRectX1 + (displayTokenButtonSize) + (textMarginLeft);

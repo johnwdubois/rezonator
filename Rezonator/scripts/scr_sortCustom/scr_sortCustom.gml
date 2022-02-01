@@ -1,5 +1,3 @@
-
-
 function scr_sortCustom(chainID){
 	
 	show_debug_message("scr_sortCustom, chainID: " + string(chainID));

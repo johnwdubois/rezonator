@@ -17,10 +17,7 @@ function scr_filterDropDownList(fullList, subList, filterStr){
 		if (strMatch) {
 			ds_list_add(subList, currentOption);
 		}
-	}
-	
-	ds_list_sort(subList, true);
-	
+	}	
 	
 	var navWindowTaggingLastChar = "";
 	with (obj_control) {

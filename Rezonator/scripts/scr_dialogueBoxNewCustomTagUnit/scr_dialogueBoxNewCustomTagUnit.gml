@@ -19,7 +19,8 @@ function scr_dialogueBoxNewCustomTagUnit() {
 	
 	// add new tag to this field's tagSet
 	scr_addToListOnce(tagSet, newTag);
-
+	scr_sortList(tagSet);
+	
 	//add this to selected unit if not in tag pane
 	if(obj_panelPane.functionChainList_currentTab != obj_panelPane.functionChainList_tabField){
 		// get the unitToChange's submap, and that unit's tagmap

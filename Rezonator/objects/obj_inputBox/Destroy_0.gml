@@ -33,16 +33,35 @@ show_debug_message("obj_inputbox destroy, ID: " + string(setID));
 show_debug_message("obj_inputbox destroy, field: " + string(field));
 show_debug_message("obj_inputbox destroy, tag: " + string(tag));
 
-
-// set tag value in map
-var idSubMap = global.nodeMap[? setID];
-if (scr_isNumericAndExists(idSubMap, ds_type_map)) {
-	var tagMap = idSubMap[? "tagMap"];
-	if (scr_isNumericAndExists(tagMap, ds_type_map)) {
-		tagMap[? field] = tag;
+//find tagMap
+var fieldTagMap = scr_getFieldMap();
+var currentFieldSubMap = fieldTagMap[?field];
+var isLockedField = false;
+var tagSet = "";
+if(scr_isNumericAndExists(currentFieldSubMap,ds_type_map)){
+	isLockedField = currentFieldSubMap[?"locked"];
+	tagSet = currentFieldSubMap[?"tagSet"]
+}
+var allowSetString = true;
+show_debug_message("lockedField = "+ string(isLockedField));
+if(isLockedField){
+	if(scr_isNumericAndExists(tagSet, ds_type_list)){
+		if(ds_list_find_index(tagSet,tag) == -1 && tag != ""){
+			allowSetString = false;
+		}
 	}
 }
-
+show_debug_message("allowSetString = "+ string(allowSetString));
+// set tag value in map
+if(allowSetString){
+	var idSubMap = global.nodeMap[? setID];
+	if (scr_isNumericAndExists(idSubMap, ds_type_map)) {
+		var tagMap = idSubMap[? "tagMap"];
+		if (scr_isNumericAndExists(tagMap, ds_type_map)) {
+			tagMap[? field] = tag;
+		}
+	}
+}
 // clear the navWindowTagging variables
 global.inputBoxDefStr = "";
 if (!keyboard_check_pressed(vk_left) && !keyboard_check_pressed(vk_right) && !keyboard_check_pressed(vk_up) && !keyboard_check_pressed(vk_down)

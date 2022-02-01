@@ -11,6 +11,8 @@ function scr_lockFields(){
 		if(!ds_map_exists(currentFieldMap, "locked")){
 			currentFieldMap[?"locked"] = false;
 		}
+		var tagSet = currentFieldMap[?"tagSet"];
+		scr_sortList(tagSet);
 	}
 	
 	show_debug_message("scr_lockFields, unitFieldList: " + scr_getStringOfList(obj_control.unitFieldList));
@@ -23,6 +25,8 @@ function scr_lockFields(){
 		if(!ds_map_exists(currentFieldMap, "locked")){
 			currentFieldMap[?"locked"] = false;
 		}
+		var tagSet = currentFieldMap[?"tagSet"];
+		scr_sortList(tagSet);
 	}
 	
 	show_debug_message("scr_lockFields, entryFieldList: " + scr_getStringOfList(global.chainEntryFieldList));
@@ -35,6 +39,8 @@ function scr_lockFields(){
 		if(!ds_map_exists(currentFieldMap, "locked")){
 			currentFieldMap[?"locked"] = false;
 		}
+		var tagSet = currentFieldMap[?"tagSet"];
+		scr_sortList(tagSet);
 	}
 	
 	show_debug_message("scr_lockFields, chainFieldList: " + scr_getStringOfList(global.chainFieldList));
@@ -47,6 +53,8 @@ function scr_lockFields(){
 		if(!ds_map_exists(currentFieldMap, "locked")){
 			currentFieldMap[?"locked"] = false;
 		}
+		var tagSet = currentFieldMap[?"tagSet"];
+		scr_sortList(tagSet);
 	}
 	
 	show_debug_message("scr_lockFields, chunkFieldList: " + scr_getStringOfList(obj_control.chunkFieldList));
@@ -59,6 +67,8 @@ function scr_lockFields(){
 		if(!ds_map_exists(currentFieldMap, "locked")){
 			currentFieldMap[?"locked"] = false;
 		}
+		var tagSet = currentFieldMap[?"tagSet"];
+		scr_sortList(tagSet);
 	}
 	
 	show_debug_message("scr_lockFields, linkFieldList: " + scr_getStringOfList(global.linkFieldList));
@@ -71,6 +81,8 @@ function scr_lockFields(){
 		if(!ds_map_exists(currentFieldMap, "locked")){
 			currentFieldMap[?"locked"] = false;
 		}
+		var tagSet = currentFieldMap[?"tagSet"];
+		scr_sortList(tagSet);
 	}
 
 }
