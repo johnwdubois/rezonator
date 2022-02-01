@@ -5,7 +5,7 @@ function scr_objControlKeyDelete(){
 	// putting this stuff in its own script so that it's the same for Windows & Mac
 	
 
-	if (obj_control.gridView || instance_exists(obj_dialogueBox)|| instance_exists(obj_inputBox)) {
+	if (obj_control.gridView || instance_exists(obj_dialogueBox)|| instance_exists(obj_inputBox) || obj_control.navWindowTaggingID != "") {
 		exit;	
 	}
 

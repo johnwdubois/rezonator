@@ -1,7 +1,12 @@
 function scr_entryTagMapOptions(optionSelected) {
+	if(obj_control.navWindowTaggingDisableSpawn) {
+		with(obj_dropDown){
+			instance_destroy();
+		}
+		exit;
+	}
 	var tagID = obj_control.navWindowTaggingID;
 	with(obj_inputBox) {
-		show_debug_message("scr_entryTagMapOptions destroying input box from dd select");
 		instance_destroy();
 	}
 	// check if user is clearing tag
@@ -20,7 +25,6 @@ function scr_entryTagMapOptions(optionSelected) {
 	}
 	else {
 		obj_control.navWindowTaggingID = tagID;
-		show_debug_message("navWindowTaggingID: "+ string(obj_control.navWindowTaggingID));
 		//tagging from nav window vs tagging from right click
 		if(obj_control.navWindowTaggingID != ""){
 			
@@ -30,7 +34,6 @@ function scr_entryTagMapOptions(optionSelected) {
 				if(scr_isNumericAndExists(tagMap,ds_type_map)){
 					var newTagValue = clearTag ? "" : optionSelected;
 					tagMap[?obj_control.tokenFieldToChange] = newTagValue;
-					show_debug_message("newTagValue: "+ string(newTagValue));
 				}	
 			}
 		}

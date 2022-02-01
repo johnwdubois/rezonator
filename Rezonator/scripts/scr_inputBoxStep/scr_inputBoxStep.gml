@@ -254,6 +254,7 @@ function scr_inputBoxStep(){
 			}
 			with (obj_alarm2) alarm[11] = 1;
 		}
+		show_debug_message("DESTROYING INPUT BOX FROM ENTER PRESSED");
 		instance_destroy();
 	}
 	
