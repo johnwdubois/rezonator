@@ -163,11 +163,9 @@ global.tagInfoGrid_colMarker = 0;
 global.tagInfoGrid_colLevel = 1;
 global.tagInfoGrid_colKey = 2;
 global.tagInfoGrid_colSpecialFields = 3;
-
-global.tagInfoGrid_colError = 4;
-global.tagInfoGrid_colLevelSchema = 5;
+global.tagInfoGrid_colLevelSchema = 4;
+global.tagInfoGrid_colError = 5;
 global.tagInfoGrid_colLevelPredict = 6;
-
 global.tagInfoGrid_colTokenCount = 7;
 global.tagInfoGrid_colMarkerPercent = 8;
 global.tagInfoGrid_colSingleTokenMarker = 9;
@@ -439,3 +437,4 @@ global.includedTagSchemaFileList = ds_list_create();
 scr_addtoTagSchemaList();
 global.selectedTagSchemaFileList = ds_list_create();
 
+global.importFieldTagList = ds_list_create();

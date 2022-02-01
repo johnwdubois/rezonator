@@ -1,13 +1,13 @@
-
-
-function scr_addAutoTag(field, tag, fieldmap){
-	
+function scr_addAutoTag(field, tag, fieldmap){	
 	// add auto-tags for first 50 values for this field
 	var currentFieldSubMap = fieldmap[? field];
 	var currentFieldTagSet = currentFieldSubMap[? "tagSet"];
 	if (scr_isNumericAndExists(currentFieldTagSet, ds_type_list)) {
 		if (ds_list_size(currentFieldTagSet) < 50 && tag != "") {
-			scr_addToListOnce(currentFieldTagSet, tag);
+			if(ds_list_find_index(global.importFieldTagList,field) != -1){
+				show_debug_message("adding tag for field: "+ string(field))
+				scr_addToListOnce(currentFieldTagSet, tag);
+			}
 		}
 	}
 
