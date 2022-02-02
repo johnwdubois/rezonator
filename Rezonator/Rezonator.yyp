@@ -29,6 +29,7 @@
     {"id":{"name":"scr_deleteToken","path":"scripts/scr_deleteToken/scr_deleteToken.yy",},"order":7,},
     {"id":{"name":"scr_removeSearch","path":"scripts/scr_removeSearch/scr_removeSearch.yy",},"order":6,},
     {"id":{"name":"scr_setChainAutoTags","path":"scripts/scr_setChainAutoTags/scr_setChainAutoTags.yy",},"order":40,},
+    {"id":{"name":"scr_checkLockedField","path":"scripts/scr_checkLockedField/scr_checkLockedField.yy",},"order":9,},
     {"id":{"name":"spr_playPause","path":"sprites/spr_playPause/spr_playPause.yy",},"order":27,},
     {"id":{"name":"scr_tokenCalculateVoid","path":"scripts/scr_tokenCalculateVoid/scr_tokenCalculateVoid.yy",},"order":3,},
     {"id":{"name":"scr_searchFieldOptions","path":"scripts/scr_searchFieldOptions/scr_searchFieldOptions.yy",},"order":67,},

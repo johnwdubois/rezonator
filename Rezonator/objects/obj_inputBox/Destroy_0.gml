@@ -36,10 +36,9 @@ show_debug_message("obj_inputbox destroy, tag: " + string(tag));
 //find tagMap
 var fieldTagMap = scr_getFieldMap();
 var currentFieldSubMap = fieldTagMap[?field];
-var isLockedField = false;
+var isLockedField = scr_checkLockedField(field);
 var tagSet = "";
-if(scr_isNumericAndExists(currentFieldSubMap,ds_type_map)){
-	isLockedField = currentFieldSubMap[?"locked"];
+if (scr_isNumericAndExists(currentFieldSubMap,ds_type_map)) {
 	tagSet = currentFieldSubMap[?"tagSet"]
 }
 var allowSetString = true;
@@ -52,6 +51,7 @@ if(isLockedField){
 	}
 }
 show_debug_message("allowSetString = "+ string(allowSetString));
+
 // set tag value in map
 if(allowSetString){
 	var idSubMap = global.nodeMap[? setID];

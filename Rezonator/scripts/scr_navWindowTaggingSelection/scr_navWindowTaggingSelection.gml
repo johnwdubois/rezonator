@@ -15,40 +15,8 @@ function scr_navWindowTaggingSelection(fieldList, idList, type){
 		
 		var idListSize = ds_list_size(idList);
 		
-		// copy & paste
-		if (global.ctrlHold && !inputBoxExists) {
-			if (keyboard_check_pressed(ord("C"))) {
-				var currentTagValue = scr_navWindowGetTagValue();
-				if (currentTagValue != "") clipboard_set_text(currentTagValue);
-				show_debug_message("scr_navWindowTaggingSelection, copied to clipboard: " + string(clipboard_get_text()));
-			}
-			else if (keyboard_check_pressed(ord("V"))) {
-				var idSubMap = global.nodeMap[? obj_control.navWindowTaggingID];
-				if (scr_isNumericAndExists(idSubMap, ds_type_map)) {
-					var idTagMap = idSubMap[? "tagMap"];
-					if (scr_isNumericAndExists(idTagMap, ds_type_map)) {
-						idTagMap[? obj_control.navWindowTaggingField] = clipboard_get_text();
-					}
-				}
-				show_debug_message("scr_navWindowTaggingSelection, pasted from clipboard: " + string(clipboard_get_text()));
-			}
-			keyboard_lastchar = "";
-		}
-		
-		// backspace & delete
-		if ((keyboard_check_pressed(vk_backspace) || keyboard_check_pressed(vk_delete)) && !inputBoxExists) {
-			var idSubMap = global.nodeMap[? obj_control.navWindowTaggingID];
-			if (scr_isNumericAndExists(idSubMap, ds_type_map)) {
-				var idTagMap = idSubMap[? "tagMap"];
-				if (scr_isNumericAndExists(idTagMap, ds_type_map)) {
-					idTagMap[? obj_control.navWindowTaggingField] = "";
-				}
-			}
-			show_debug_message("scr_navWindowTaggingSelection, backspace/delete");
-		}
-		
-		var fieldSubMap = "";
 		// get submap for this field
+		var fieldSubMap = "";
 		if(type == "token"){
 			var tokenTagMap = global.nodeMap[? "tokenTagMap"];
 			fieldSubMap = tokenTagMap[? obj_control.navWindowTaggingField];
@@ -58,6 +26,63 @@ function scr_navWindowTaggingSelection(fieldList, idList, type){
 			fieldSubMap = entryTagMap[? obj_control.navWindowTaggingField];
 		}
 		var fieldHasTagSet = scr_checkForTagSet(fieldSubMap);
+		
+		
+		
+		if (global.ctrlHold && !inputBoxExists) {
+			// copy
+			if (keyboard_check_pressed(ord("C"))) {
+				var currentTagValue = scr_navWindowGetTagValue();
+				if (currentTagValue != "") clipboard_set_text(currentTagValue);
+				show_debug_message("scr_navWindowTaggingSelection, copied to clipboard: " + string(clipboard_get_text()));
+			}
+			
+			if (fieldHasTagSet) {
+				// paste
+				if (keyboard_check_pressed(ord("V"))) {
+					
+					// check if this field is locked, if it is check if the pasted value is in the tag set
+					var pasteValue = clipboard_get_text()
+					var preventPaste = false;
+					if (scr_checkLockedField(obj_control.navWindowTaggingField)) {
+						var tagSet = fieldSubMap[? "tagSet"];
+						preventPaste = ds_list_find_index(tagSet, pasteValue) == -1;
+					}
+					
+					// paste!
+					if (!preventPaste) {
+						var idSubMap = global.nodeMap[? obj_control.navWindowTaggingID];
+						if (scr_isNumericAndExists(idSubMap, ds_type_map)) {
+							var idTagMap = idSubMap[? "tagMap"];
+							if (scr_isNumericAndExists(idTagMap, ds_type_map)) {
+								idTagMap[? obj_control.navWindowTaggingField] = pasteValue;
+							}
+						}
+						show_debug_message("scr_navWindowTaggingSelection, pasted from clipboard: " + string(clipboard_get_text()));
+					}
+				}
+				keyboard_lastchar = "";
+			}
+		}
+		
+		// backspace & delete
+		if (fieldHasTagSet) {
+			if ((keyboard_check_pressed(vk_backspace) || keyboard_check_pressed(vk_delete)) && !inputBoxExists) {
+				var idSubMap = global.nodeMap[? obj_control.navWindowTaggingID];
+				if (scr_isNumericAndExists(idSubMap, ds_type_map)) {
+					var idTagMap = idSubMap[? "tagMap"];
+					if (scr_isNumericAndExists(idTagMap, ds_type_map)) {
+						idTagMap[? obj_control.navWindowTaggingField] = "";
+					}
+				}
+				show_debug_message("scr_navWindowTaggingSelection, backspace/delete");
+			}
+		}
+		
+
+		
+		
+		
 		// create input box if user presses enter or types a letter on keyboard
 		if (!inputBoxExists && !obj_control.navWindowTaggingDisableSpawn && !global.ctrlHold && !instance_exists(obj_dropDown) && fieldHasTagSet) {
 			
