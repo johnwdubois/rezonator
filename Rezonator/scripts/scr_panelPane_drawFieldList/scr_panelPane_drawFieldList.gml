@@ -112,6 +112,8 @@ function scr_panelPane_drawFieldList(){
 					draw_set_color(merge_color(global.colorThemeSelected1, global.colorThemeBG, 0.5));
 					draw_rectangle(x - clipX, currentRowY1 - clipY, x + windowWidth - clipX, currentRowY2 - clipY, false);
 					if (mouse_check_button_released(mb_left)) {
+						
+						ds_list_clear(obj_control.selectedTagList);
 				
 						// set field to be selected when clicked
 						if (chainViewOneToMany) {

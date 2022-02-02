@@ -73,7 +73,7 @@ function scr_drawDevVars(){
 	
 	draw_text(devVarX - 580, wordTopMargin + (strHeight * 1), "showNav: " + string(obj_panelPane.showNav));
 	draw_text(devVarX - 580, wordTopMargin + (strHeight * 2), "showNavLeft: " + string(obj_panelPane.showNavLeft));
-	draw_text(devVarX - 580, wordTopMargin + (strHeight * 3), "inChain: " + string(inChain));
+	draw_text(devVarX - 580, wordTopMargin + (strHeight * 3), "selectedTagList: " + scr_getStringOfList(selectedTagList));
 	draw_text(devVarX - 580, wordTopMargin + (strHeight * 4), "inChunk: " + string(inChunk));
 	draw_text(devVarX - 580, wordTopMargin + (strHeight * 5), "displayTokenField: " + string(global.displayTokenField));
 	draw_text(devVarX - 580, wordTopMargin + (strHeight * 6), "participantField: " + string(global.participantField));
