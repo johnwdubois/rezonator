@@ -754,6 +754,7 @@ global.delayInput = 10;
 selectedRezChainList = ds_list_create();
 selectedTrackChainList = ds_list_create();
 selectedStackChainList = ds_list_create();
+selectedTagList = ds_list_create();
 
 hiddenRezChainList = ds_list_create();
 hiddenTrackChainList = ds_list_create();

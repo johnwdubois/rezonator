@@ -16,7 +16,7 @@ function scr_panelPane_drawFieldTags(){
 	var checkboxSize = checkboxColWidth * 0.35;
 	var checkBoxScale = (checkboxColWidth* 0.5)/checkboxColWidth;
 	var focusedElementY = -1;
-	var numColX = x;
+	var numColX = checkboxColX+checkboxColWidth;
 	var numColWidth = windowWidth * 0.1;
 	var tagNameColX = numColX + numColWidth;
 	var tagNameColWidth = windowWidth * 0.7;
@@ -109,8 +109,8 @@ function scr_panelPane_drawFieldTags(){
 
 						
 					if(i < tagListSize){
-				
-				
+						
+					var currentTag = tagList[| i];
 				
 						// mouseover & click
 						if (mouseoverRow) {
@@ -120,28 +120,28 @@ function scr_panelPane_drawFieldTags(){
 								if(fieldPaneSwitchButton == fieldPaneDocMode){
 									if(chainViewOneToMany){
 										with(obj_panelPane){
-											functionField_tokenTagSelected = tagList[| i];
+											functionField_tokenTagSelected = currentTag;
 										}
 									}
 									else{
 										with(obj_panelPane){
-											functionField_unitTagSelected = tagList[| i];
+											functionField_unitTagSelected = currentTag;
 										}
 									}
 								}
 								else if(fieldPaneSwitchButton == fieldPaneChainMode){
 									if (chainViewOneToMany) {
-										with(obj_panelPane) functionField_entryTagSelected = tagList[| i];
+										with(obj_panelPane) functionField_entryTagSelected = currentTag;
 									}
 									else{
-										with(obj_panelPane)	functionField_chainTagSelected = tagList[| i];
+										with(obj_panelPane)	functionField_chainTagSelected = currentTag;
 									}
 								}
 								else if(fieldPaneSwitchButton == fieldPaneChunkMode){
-									with(obj_panelPane)	functionField_chunkTagSelected = tagList[| i];
+									with(obj_panelPane)	functionField_chunkTagSelected = currentTag;
 								}
 								else if(fieldPaneSwitchButton == fieldPaneLinkMode){
-									with(obj_panelPane)	functionField_linkTagSelected = tagList[| i];
+									with(obj_panelPane)	functionField_linkTagSelected = currentTag;
 								}
 							}
 						}
@@ -153,14 +153,14 @@ function scr_panelPane_drawFieldTags(){
 						if(fieldPaneSwitchButton == fieldPaneDocMode){
 						
 							if(chainViewOneToMany){
-								if (functionField_tokenTagSelected == tagList[| i]) {
+								if (functionField_tokenTagSelected == currentTag) {
 									tagSelected = true;
 									draw_set_color(global.colorThemeSelected2);
 									draw_rectangle(x - clipX, currentRowY1 - clipY, x + windowWidth - clipX, currentRowY2 - clipY, false);
 								}
 							}
 							else{
-								if (functionField_unitTagSelected == tagList[| i]) {
+								if (functionField_unitTagSelected == currentTag) {
 									tagSelected = true;
 									draw_set_color(global.colorThemeSelected2);
 									draw_rectangle(x - clipX, currentRowY1 - clipY, x + windowWidth - clipX, currentRowY2 - clipY, false);
@@ -170,14 +170,14 @@ function scr_panelPane_drawFieldTags(){
 					
 						else if(fieldPaneSwitchButton == fieldPaneChainMode){
 							if(chainViewOneToMany){
-								if (functionField_entryTagSelected == tagList[| i]) {
+								if (functionField_entryTagSelected == currentTag) {
 									tagSelected = true;
 									draw_set_color(global.colorThemeSelected2);
 									draw_rectangle(x - clipX, currentRowY1 - clipY, x + windowWidth - clipX, currentRowY2 - clipY, false);
 								}
 							}
 							else {
-								if (functionField_chainTagSelected == tagList[| i]) {
+								if (functionField_chainTagSelected == currentTag) {
 									tagSelected = true;
 									draw_set_color(global.colorThemeSelected2);
 									draw_rectangle(x - clipX, currentRowY1 - clipY, x + windowWidth - clipX, currentRowY2 - clipY, false);
@@ -186,7 +186,7 @@ function scr_panelPane_drawFieldTags(){
 						}
 					
 						else if(fieldPaneSwitchButton == fieldPaneChunkMode){
-							if (functionField_chunkTagSelected == tagList[| i]) {
+							if (functionField_chunkTagSelected == currentTag) {
 								tagSelected = true;
 								draw_set_color(global.colorThemeSelected2);
 								draw_rectangle(x - clipX, currentRowY1 - clipY, x + windowWidth - clipX, currentRowY2 - clipY, false);
@@ -194,7 +194,7 @@ function scr_panelPane_drawFieldTags(){
 						}
 					
 						else if(fieldPaneSwitchButton == fieldPaneLinkMode){
-							if (functionField_linkTagSelected == tagList[| i]) {
+							if (functionField_linkTagSelected == currentTag) {
 								tagSelected = true;
 								draw_set_color(global.colorThemeSelected2);
 								draw_rectangle(x - clipX, currentRowY1 - clipY, x + windowWidth - clipX, currentRowY2 - clipY, false);
@@ -207,19 +207,33 @@ function scr_panelPane_drawFieldTags(){
 						}
 						var textColor = tagSelected ? global.colorThemeBG : global.colorThemeText;
 				
-						/*
+						var isSelected = (ds_list_find_index(obj_control.selectedTagList,currentTag))
 						// draw checkbox
 						var checkboxY1 = mean(currentRowY1, currentRowY2) - (checkboxSize * 0.5);
 						var checkboxY2 = checkboxY1 + checkboxSize;
-						if (tagSelected) {
+						if (isSelected) {
 							draw_set_color(global.colorThemeBG);
 							draw_rectangle(checkboxX1 - clipX, checkboxY1 - clipY, checkboxX2 - clipX, checkboxY2 - clipY, false);
 							draw_sprite_ext(spr_checkmark, 0, mean(checkboxX1, checkboxX2) - clipX, mean(checkboxY1, checkboxY2) - clipY, checkBoxScale, checkBoxScale, 0, global.colorThemeText, 1);
 						}
 						draw_set_color(global.colorThemeBorders);
 						scr_drawRectWidth(checkboxX1 - clipX, checkboxY1 - clipY, checkboxX2 - clipX, checkboxY2 - clipY, 2, false);
-						*/
-		
+						
+						var mouseoverCheckBox = scr_pointInRectangleClippedWindow(mouse_x,mouse_y,checkboxX1,checkboxY1,checkboxX2,checkboxY2);
+						
+						if(mouseoverCheckBox){
+							scr_createTooltip(mean(checkboxX1, checkboxX2), checkboxY2, scr_get_translation("option_select"), obj_tooltip.arrowFaceUp);
+							if (mouse_check_button_released(mb_left)) {
+								if (ds_list_find_index(obj_control.selectedTagList, currentTag) == -1) {
+									scr_addToListOnce(obj_control.selectedTagList, currentTag);
+								}
+								else {
+									scr_deleteFromList(obj_control.selectedTagList, currentTag);
+								}
+							}
+						}
+
+						
 						var delButtonX = mean(deleteColX, deleteColX + deleteColWidth);
 						var delButtonY = currentRowY1 + (strHeight * 0.5);
 						var mouseOverDel = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, deleteColX, currentRowY1, deleteColX + deleteColWidth, currentRowY2) && mouseoverRow;
@@ -238,7 +252,7 @@ function scr_panelPane_drawFieldTags(){
 									else {
 										obj_control.unitFieldToChange = functionField_unitFieldSelected;
 									}
-									scr_removeFieldTagQuestionPrompt("tag", "unit", chainViewOneToMany ? "1toMany" : "1to1", tagList[| i]);
+									scr_removeFieldTagQuestionPrompt("tag", "unit", chainViewOneToMany ? "1toMany" : "1to1", currentTag);
 								}
 								else if(fieldPaneSwitchButton == fieldPaneChainMode){
 									if (chainViewOneToMany) {
@@ -247,21 +261,21 @@ function scr_panelPane_drawFieldTags(){
 									else {
 										obj_control.chain1to1FieldToChange = functionField_chainFieldSelected;
 									}
-									scr_removeFieldTagQuestionPrompt("tag", "chain", chainViewOneToMany ? "1toMany" : "1to1", tagList[| i]);
+									scr_removeFieldTagQuestionPrompt("tag", "chain", chainViewOneToMany ? "1toMany" : "1to1", currentTag);
 								}
 
 								else if(fieldPaneSwitchButton == fieldPaneChunkMode){
 
 									obj_control.tokenFieldToChange = functionField_chunkFieldSelected;
 
-									scr_removeFieldTagQuestionPrompt("tag", "chunk", chainViewOneToMany ? "1toMany" : "1to1", tagList[| i]);
+									scr_removeFieldTagQuestionPrompt("tag", "chunk", chainViewOneToMany ? "1toMany" : "1to1", currentTag);
 								}
 							
 								else if(fieldPaneSwitchButton == fieldPaneLinkMode){
 
 									obj_control.tokenFieldToChange = functionField_linkFieldSelected;
 
-									scr_removeFieldTagQuestionPrompt("tag", "link", chainViewOneToMany ? "1toMany" : "1to1", tagList[| i]);
+									scr_removeFieldTagQuestionPrompt("tag", "link", chainViewOneToMany ? "1toMany" : "1to1", currentTag);
 								}
 
 							}
@@ -280,7 +294,7 @@ function scr_panelPane_drawFieldTags(){
 						draw_text(floor(numColX + textBuffer) - clipX, textY - clipY, string(i + 1));
 		
 						// draw field name
-						draw_text(floor(tagNameColX + textBuffer) - clipX, textY - clipY, string(tagList[| i]));
+						draw_text(floor(tagNameColX + textBuffer) - clipX, textY - clipY, string(currentTag));
 					}
 					else{
 					
