@@ -1,5 +1,3 @@
-
-
 function scr_panelPane_drawChains1ToManyHeaders(){
 	
 	var lineStateLTR = (obj_control.drawLineState == obj_control.lineState_ltr);

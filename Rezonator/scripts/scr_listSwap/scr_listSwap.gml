@@ -1,5 +1,3 @@
-
-
 function scr_listSwap(list, indexA, indexB){
 	
 	// takes a list and swaps the positions of indexA and indexB

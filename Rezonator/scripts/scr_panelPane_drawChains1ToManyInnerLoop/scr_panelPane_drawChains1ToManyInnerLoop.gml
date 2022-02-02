@@ -1,5 +1,3 @@
-
-
 function scr_panelPane_drawChains1ToManyInnerLoop(chain1toManyColFieldList, entry, ID, currentTagMap, textPlusY, rectY1, rectY2, highlight, mouseoverHeader, mouseoverScrollBar){
 
 	// NOTE: for stacks, the ID variable will be a unitID
@@ -45,6 +43,7 @@ function scr_panelPane_drawChains1ToManyInnerLoop(chain1toManyColFieldList, entr
 	var colWidth = windowWidth / chain1toMColAmount;
 
 	var chunkSubMap = isChunk ? global.nodeMap[? ID] : -1;
+	var entryTagMap = global.nodeMap[? "entryTagMap"];
 	
 	// loop across horizontally along the chainContents window, getting each field for each entry
 	var chainContents1toManyFieldListSize = ds_list_size(chain1toManyColFieldList);
@@ -66,6 +65,18 @@ function scr_panelPane_drawChains1ToManyInnerLoop(chain1toManyColFieldList, entr
 		else{
 			if(!scr_isNumericAndExists(tokenSubMap,ds_type_map)) continue;
 				var tagMap = tokenSubMap[?"tagMap"];
+		}
+		
+		// check if this field is read only
+		var currentField = "";
+		var readOnlyField = false;
+		if (i < 3) readOnlyField = true;
+		else {
+			currentField = chain1toManyColFieldList[| i - 3];
+			var currentFieldSubMap = entryTagMap[? currentField];
+			if (scr_isNumericAndExists(currentFieldSubMap, ds_type_map)) {
+				if (!ds_map_exists(currentFieldSubMap, "tagSet")) readOnlyField = true;
+			}
 		}
 		
 		// get string of data
@@ -109,15 +120,12 @@ function scr_panelPane_drawChains1ToManyInnerLoop(chain1toManyColFieldList, entr
 					}
 				}
 				break;
-					scr_cellEdit(ID, currentField, mouseoverCell, false, cellRectX1, cellRectY1, cellRectX2, cellRectY2, cellText, "entry");
 		}
 		
 		
 		// dynamic columns
 		if (i >= 3) {
-			
-			// get the current field and make sure its a string
-			var currentField = ds_list_find_value(chain1toManyColFieldList, i - 3);
+			// make sure field is a string
 			if (!is_string(currentField)) continue;
 		
 			// look up currentField in tagMap
@@ -158,7 +166,7 @@ function scr_panelPane_drawChains1ToManyInnerLoop(chain1toManyColFieldList, entr
 		
 		// finally, draw the string in the cell
 		draw_set_color(global.colorThemeText);
-		draw_set_alpha(1);
+		draw_set_alpha(readOnlyField ? 0.7 : 1);
 		draw_set_valign(fa_middle);
 		drawStr = scr_adaptFont(drawStr, "S");
 		draw_text(textX - clipX + 2, floor(textY - clipY + scrollPlusY), drawStr);

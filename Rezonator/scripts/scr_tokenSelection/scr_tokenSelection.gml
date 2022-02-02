@@ -17,11 +17,8 @@ function scr_tokenSelection(optionSelected) {
 	// change the field list
 	var colListIndex = obj_panelPane.chosenCol;
 	var optionSelectedPrevIndex = ds_list_find_index(navFieldList,optionSelected);
-	var overwrittenField = navFieldList[|colListIndex];
 	if(optionSelectedPrevIndex >= 0 && colListIndex != optionSelectedPrevIndex){
-		ds_list_set(navFieldList, colListIndex, optionSelected);
-		ds_list_set(navFieldList, optionSelectedPrevIndex, overwrittenField);
-		
+		scr_listSwap(navFieldList, colListIndex, optionSelectedPrevIndex);
 	}
 	
 	// update display token if need be
