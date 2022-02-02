@@ -194,10 +194,10 @@ function scr_drawLineEntryList(unitID, unitSubMap, entryList, pixelY, OOBCheck){
 
 			}
 
-
+			// token mouseover effect
 			if (drawTokenBorder) {
-				draw_set_color(global.colorThemeBorders);
-				draw_rectangle(tokenRectX1,tokenRectY1,tokenRectX2,tokenRectY2, true);
+				draw_set_color(merge_color(global.colorThemeSelected1, global.colorThemeBG, 0.4));
+				draw_roundrect(tokenRectX1,tokenRectY1,tokenRectX2,tokenRectY2, false);
 			}
 
 		
