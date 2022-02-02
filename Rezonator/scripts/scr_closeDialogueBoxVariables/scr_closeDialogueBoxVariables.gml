@@ -51,6 +51,7 @@ function scr_closeDialogueBoxVariables(){
 		clearChainMulti = false;
 		layerLink = false;
 		combineChains = false;
+		removeTags = false;
 		removeTagToken = false;
 		removeTagUnit = false;
 		removeTagEntry = false;

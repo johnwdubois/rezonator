@@ -589,6 +589,7 @@
     {"id":{"name":"obj_stacker","path":"objects/obj_stacker/obj_stacker.yy",},"order":2,},
     {"id":{"name":"FirebaseREST_asyncCall_Firestore","path":"scripts/FirebaseREST_asyncCall_Firestore/FirebaseREST_asyncCall_Firestore.yy",},"order":3,},
     {"id":{"name":"scr_tagInputBoxSetPos","path":"scripts/scr_tagInputBoxSetPos/scr_tagInputBoxSetPos.yy",},"order":1,},
+    {"id":{"name":"scr_removeFromTagSetMulti","path":"scripts/scr_removeFromTagSetMulti/scr_removeFromTagSetMulti.yy",},"order":28,},
     {"id":{"name":"rm_openingScreen","path":"rooms/rm_openingScreen/rm_openingScreen.yy",},"order":0,},
     {"id":{"name":"scr_treeEntryOptions","path":"scripts/scr_treeEntryOptions/scr_treeEntryOptions.yy",},"order":71,},
     {"id":{"name":"rm_mainScreen","path":"rooms/rm_mainScreen/rm_mainScreen.yy",},"order":1,},

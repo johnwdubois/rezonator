@@ -85,6 +85,10 @@ function scr_setDialogueText(){
 			titleText = scr_get_translation("msg_remove") + " " + scr_get_translation("option_field");
 			descriptionText =  scr_get_translation("msg_remove-field-tag") + " " + string(stringToBeRemoved);
 		}
+		if (removeTags) {
+			titleText = scr_get_translation("msg_remove") + " " + scr_get_translation("Tags");
+			descriptionText =  "This will permanently remove" + " " + string(ds_list_size(obj_control.selectedTagList)) + " tags from this tag set";
+		}
 		if (removeSearch) {
 			var searchSubMap = global.searchMap[?searchToBeRemoved];
 			var searchTermList = searchSubMap[?"searchTermList"];

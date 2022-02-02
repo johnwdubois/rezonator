@@ -5,6 +5,7 @@ function scr_panelPane_drawFieldTags(){
 	draw_set_halign(fa_left);
 	draw_set_valign(fa_middle);
 	
+	var mouseoverCancel = instance_exists(obj_dropDown) || instance_exists(obj_dialogueBox) || instance_exists(obj_flyout);
 	var strHeight = string_height("0") * 1.5;
 	var textBuffer = 8;
 	var spaceWidth = string_width(" ");
@@ -27,6 +28,7 @@ function scr_panelPane_drawFieldTags(){
 	var valid = true;
 	var allTagsSelected = false;
 	var tagList = -1;
+
 
 
 	scr_surfaceStart();
@@ -436,7 +438,7 @@ function scr_panelPane_drawFieldTags(){
 	draw_set_color(global.colorThemeBorders);
 	scr_drawRectWidth(checkboxX1, checkboxY1, checkboxX2, checkboxY2, 2, false);
 	
-	
+	var optionsIconRad = sprite_get_width(spr_trash) * 0.35;
 	
 	// num header
 	draw_set_color(global.colorThemeBG);
@@ -470,7 +472,9 @@ function scr_panelPane_drawFieldTags(){
 	var mouseOveroneToOne = point_in_rectangle(mouse_x,mouse_y,oneToOneRectX1,oneToOneRectY1,oneToOneRectX2,oneToOneRectY2)
 	
 	if(mouseOveroneToOne){
-		draw_rectangle(oneToOneRectX1,oneToOneRectY1,oneToOneRectX2,oneToOneRectY2, true);
+		draw_set_color(global.colorThemeSelected1);
+		draw_set_alpha(0.7)
+		draw_roundrect(mean(oneToOneRectX1,oneToOneRectX2)-optionsIconRad,mean(oneToOneRectY1,oneToOneRectY2)-optionsIconRad,mean(oneToOneRectX1,oneToOneRectX2)+optionsIconRad,mean(oneToOneRectY1,oneToOneRectY2)+optionsIconRad, false);
 		if(device_mouse_check_button_released(0,mb_left)){
 			if(obj_panelPane.chainViewOneToMany == true){
 				scr_1to1Options("option_one-to-one");
@@ -521,7 +525,9 @@ function scr_panelPane_drawFieldTags(){
 	var mouseOverSave = point_in_rectangle(mouse_x,mouse_y,saveRectX1,saveRectY1,saveRectX2,saveRectY2)
 	
 	if(mouseOverSave){
-		draw_rectangle(saveRectX1,saveRectY1,saveRectX2,saveRectY2, true);
+		draw_set_color(global.colorThemeSelected1);
+		draw_set_alpha(0.7);
+		draw_roundrect(mean(saveRectX1,saveRectX2)-optionsIconRad,mean(saveRectY1,saveRectY2)-optionsIconRad,mean(saveRectX1,saveRectX2)+optionsIconRad,mean(saveRectY1,saveRectY2)+optionsIconRad, false);
 		if(device_mouse_check_button_released(0,mb_left)){
 			scr_saveTagJson();
 		}
@@ -542,7 +548,9 @@ function scr_panelPane_drawFieldTags(){
 	var mouseOverload = point_in_rectangle(mouse_x,mouse_y,loadRectX1,loadRectY1,loadRectX2,loadRectY2)
 	
 	if(mouseOverload){
-		draw_rectangle(loadRectX1,loadRectY1,loadRectX2,loadRectY2, true);
+		draw_set_color(global.colorThemeSelected1);
+		draw_set_alpha(0.7)
+		draw_roundrect(mean(loadRectX1,loadRectX2)-optionsIconRad,mean(loadRectY1,loadRectY2)-optionsIconRad,mean(loadRectX1,loadRectX2)+optionsIconRad,mean(loadRectY1,loadRectY2)+optionsIconRad, false);
 		if(device_mouse_check_button_released(0,mb_left)){
 			scr_loadTagJson();
 		}
@@ -551,17 +559,46 @@ function scr_panelPane_drawFieldTags(){
 	draw_sprite_ext(spr_loadingIcon,0,loadSpriteX,loadSpriteY,1,1,0,global.colorThemeText, 1);
 	
 	
+
+	var deleteOptionsX = loadRectX1 - spaceWidth*4;
+	var deleteOptionsY = mean(y ,y + headerHeight);
+	var selectedListSize = ds_list_size(obj_control.selectedTagList);
+	var deleteOptionsClickable = (selectedListSize >= 1);
+	var mouseoverDeleteOptions = point_in_circle(mouse_x, mouse_y, deleteOptionsX, deleteOptionsY, optionsIconRad) && deleteOptionsClickable && !mouseoverCancel;
+
+	if (mouseoverDeleteOptions) {
+		draw_set_color(global.colorThemeSelected1);
+		draw_set_alpha(0.7)
+		draw_roundrect(deleteOptionsX-optionsIconRad, deleteOptionsY-optionsIconRad,deleteOptionsX+optionsIconRad,deleteOptionsY+optionsIconRad, false);
+		scr_createTooltip(deleteOptionsX, deleteOptionsY + optionsIconRad, "Remove Tags", obj_tooltip.arrowFaceUp);
+		
+		if (mouse_check_button_pressed(mb_left)) {
+			if (!instance_exists(obj_dialogueBox)) {
+				instance_create_layer(x, y, "InstancesDialogue", obj_dialogueBox);
+				obj_dialogueBox.removeTags = true;
+				obj_dialogueBox.questionWindowActive = true;
+			}
+		}
+	}
+	
+	var deleteOptionsAlpha = (deleteOptionsClickable) ? 0.8 : 0.4;
+	draw_sprite_ext(spr_trash, 0, deleteOptionsX, deleteOptionsY, .7, .7, 0, c_black, deleteOptionsAlpha);
+	draw_set_alpha(1);
+	
+	
 	// toggle DOC / Chains / chunk / link Button
 	
 	var switchPaneDocButtonSizeX = string_width(scr_get_translation("option_doc")) + spaceWidth*4;
 	var switchPaneDocButtonSizeY = string_height(scr_get_translation("option_doc"));
-	var switchPaneDocRectX2 = loadRectX1 - spaceWidth*3;
+	var switchPaneDocRectX2 = deleteOptionsX - spaceWidth*4;
 	var switchPaneDocRectX1 = switchPaneDocRectX2 - switchPaneDocButtonSizeX;
 	var switchPaneDocRectY1 =  mean(y ,y + headerHeight) - switchPaneDocButtonSizeY/2;
 	var switchPaneDocRectY2 = switchPaneDocRectY1 + switchPaneDocButtonSizeY;
 	
 	var mouseOverswitchPaneDoc = point_in_rectangle(mouse_x,mouse_y,switchPaneDocRectX1,switchPaneDocRectY1,switchPaneDocRectX2,switchPaneDocRectY2)
 	
+	draw_set_color(global.colorThemeBG);
+	draw_rectangle(switchPaneDocRectX1,switchPaneDocRectY1,switchPaneDocRectX2,switchPaneDocRectY2, false);
 	draw_set_color(global.colorThemeRezPurple);
 	draw_rectangle(switchPaneDocRectX1,switchPaneDocRectY1,switchPaneDocRectX2,switchPaneDocRectY2, true);
 	draw_rectangle(switchPaneDocRectX1,switchPaneDocRectY1,switchPaneDocRectX2,switchPaneDocRectY2, fieldPaneSwitchButton != fieldPaneDocMode);
@@ -590,6 +627,8 @@ function scr_panelPane_drawFieldTags(){
 	
 	var mouseOverswitchPaneChain = point_in_rectangle(mouse_x,mouse_y,switchPaneChainRectX1,switchPaneChainRectY1,switchPaneChainRectX2,switchPaneChainRectY2)
 	
+	draw_set_color(global.colorThemeBG);
+	draw_rectangle(switchPaneChainRectX1,switchPaneChainRectY1,switchPaneChainRectX2,switchPaneChainRectY2, false);
 	draw_set_color(global.colorThemeRezPurple);
 	draw_rectangle(switchPaneChainRectX1,switchPaneChainRectY1,switchPaneChainRectX2,switchPaneChainRectY2, true);
 	draw_rectangle(switchPaneChainRectX1,switchPaneChainRectY1,switchPaneChainRectX2,switchPaneChainRectY2, fieldPaneSwitchButton != fieldPaneChainMode);
@@ -618,6 +657,8 @@ function scr_panelPane_drawFieldTags(){
 	
 	var mouseOverswitchPaneChunk = point_in_rectangle(mouse_x,mouse_y,switchPaneChunkRectX1,switchPaneChunkRectY1,switchPaneChunkRectX2,switchPaneChunkRectY2)
 	
+	draw_set_color(global.colorThemeBG);
+	draw_rectangle(switchPaneChunkRectX1,switchPaneChunkRectY1,switchPaneChunkRectX2,switchPaneChunkRectY2, false);
 	draw_set_color(global.colorThemeRezPurple);
 	draw_rectangle(switchPaneChunkRectX1,switchPaneChunkRectY1,switchPaneChunkRectX2,switchPaneChunkRectY2, true);
 	draw_rectangle(switchPaneChunkRectX1,switchPaneChunkRectY1,switchPaneChunkRectX2,switchPaneChunkRectY2, fieldPaneSwitchButton != fieldPaneChunkMode);
@@ -646,6 +687,8 @@ function scr_panelPane_drawFieldTags(){
 	
 	var mouseOverswitchPaneLink = point_in_rectangle(mouse_x,mouse_y,switchPaneLinkRectX1,switchPaneLinkRectY1,switchPaneLinkRectX2,switchPaneLinkRectY2)
 	
+	draw_set_color(global.colorThemeBG);
+	draw_rectangle(switchPaneLinkRectX1,switchPaneLinkRectY1,switchPaneLinkRectX2,switchPaneLinkRectY2, false);
 	draw_set_color(global.colorThemeRezPurple);
 	draw_rectangle(switchPaneLinkRectX1,switchPaneLinkRectY1,switchPaneLinkRectX2,switchPaneLinkRectY2, true);
 	draw_rectangle(switchPaneLinkRectX1,switchPaneLinkRectY1,switchPaneLinkRectX2,switchPaneLinkRectY2, fieldPaneSwitchButton != fieldPaneLinkMode);
@@ -662,6 +705,7 @@ function scr_panelPane_drawFieldTags(){
 	draw_set_color((fieldPaneSwitchButton == fieldPaneLinkMode) ? global.colorThemeBG : global.colorThemeText);
 	draw_text(switchPaneLinkTextX,switchPaneLinkTextY,scr_get_translation("help_label_link"));
 	
+
 
 	
 }

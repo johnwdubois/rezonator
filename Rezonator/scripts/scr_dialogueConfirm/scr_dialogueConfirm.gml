@@ -245,6 +245,7 @@ function scr_dialogueConfirm(){
 		if (removeTagChain) scr_removeFromTagSetOptions(string(stringToBeRemoved), "chain");
 		if (removeTagChunk) scr_removeFromTagSetOptions(string(stringToBeRemoved), "chunk");
 		if (removeTagLink) scr_removeFromTagSetOptions(string(stringToBeRemoved), "link");
+		if (removeTags) scr_removeFromTagSetMulti();
 		
 		if (removeFieldToken || removeFieldUnit || removeFieldEntry || removeFieldChain || removeFieldChunk || removeFieldLink) {
 			// delete the field
