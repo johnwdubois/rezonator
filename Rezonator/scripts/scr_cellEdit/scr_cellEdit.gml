@@ -30,7 +30,11 @@ function scr_cellEdit(ID, field, mouseoverCell, mouseoverDropDown, x1, y1, x2, y
 					nodeMapKey = "tokenTagMap";
 					optionListType = global.optionListTypeTokenTagMap;
 				}
-				if (type == "entry") {
+				else if (type == "unit") {
+					nodeMapKey = "unitTagMap";
+					optionListType = global.optionListTypeUnitTagMap;
+				}
+				else if (type == "entry") {
 					nodeMapKey = "entryTagMap";
 					optionListType = global.optionListTypeEntryTagMap;
 				}
@@ -38,13 +42,10 @@ function scr_cellEdit(ID, field, mouseoverCell, mouseoverDropDown, x1, y1, x2, y
 				if (nodeMapKey != "" && optionListType != -1) {
 					
 					// get submap for this field
-					var tokenTagMap = global.nodeMap[? nodeMapKey];
-					var fieldSubMap = tokenTagMap[? field];
-					
+					var tagMap = global.nodeMap[? nodeMapKey];
+					var fieldSubMap = tagMap[? field];
 					var fieldHasTagSet = scr_checkForTagSet(fieldSubMap);
 
-
-					
 					if(fieldHasTagSet){
 						// get the tagSet for this field
 						var tagSet = fieldSubMap[? "tagSet"];
@@ -52,11 +53,16 @@ function scr_cellEdit(ID, field, mouseoverCell, mouseoverDropDown, x1, y1, x2, y
 						var dropDownOptionList = ds_list_create();
 						ds_list_copy(dropDownOptionList, tagSet);
 
-						obj_control.tokenToChange = ID;
-						obj_control.tokenFieldToChange = field;
+						if (type == "unit") {
+							obj_control.unitToChange = ID;
+							obj_control.unitFieldToChange = field;
+						}
+						else {
+							obj_control.tokenToChange = ID;
+							obj_control.tokenFieldToChange = field;
+						}
 
-
-						scr_spawnTagInputBox(ID, field, str, self.id,dropDownOptionList, optionListType);
+						scr_spawnTagInputBox(ID, field, str, self.id, dropDownOptionList, optionListType);
 					}
 				}
 			}

@@ -192,8 +192,14 @@ function scr_panelPane_drawUnits1to1() {
 			if(mouseOverCell){
 				draw_sprite_ext(spr_dropDown, 0, mean(dropDownButtonX1, dropDownButtonX2) - clipX, mean(unitRectY1, unitRectY2) - clipY, 1, 1, 0, global.colorThemeText, 1);
 				obj_control.hoverTextCopy = currentStr;
+				
+				if (mouse_check_button_released(mb_left)) {
+					obj_control.navWindowTaggingID = currentUnitID;
+					obj_control.navWindowTaggingField = currentField;
+				}
 			}
-
+			
+			scr_cellEdit(currentUnitID, currentField, mouseOverCell, mouseoverDropDownButton, colRectX1, unitRectY1, colRectX2, unitRectY2, currentStr, "unit");
     
 		    // Draw text of unit tags
 		    draw_set_halign(lineStateLTR ? fa_left : fa_right);
@@ -259,6 +265,8 @@ function scr_panelPane_drawUnits1to1() {
 	scr_surfaceEnd();
 	
 	scr_panelPane_drawUnits1To1Headers();
+	
+	scr_navWindowTaggingSelection(obj_control.navUnitFieldList, displayUnitList, "unit");
 	
 	
 
