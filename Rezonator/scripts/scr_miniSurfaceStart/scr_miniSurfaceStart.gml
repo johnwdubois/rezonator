@@ -1,8 +1,6 @@
-
-
-function scr_miniSurfaceStart(){
-	clipX = textBoxX;
-	clipY = textBoxY;
+function scr_miniSurfaceStart(cX, cY){
+	clipX = cX;
+	clipY = cY;
 	clipWidth = windowWidth;
 	clipHeight = windowHeight;
 	// create a surface if it doesn't exist:

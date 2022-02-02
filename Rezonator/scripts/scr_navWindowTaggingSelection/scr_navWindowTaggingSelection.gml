@@ -5,7 +5,7 @@ function scr_navWindowTaggingSelection(fieldList, idList, type){
 	var inputBoxExists = instance_exists(obj_inputBox);
 	if (obj_control.navWindowTaggingField != "" && obj_control.navWindowTaggingID != "") {
 		if (mouse_check_button_pressed(mb_left) && !obj_control.mouseoverTagCell && !obj_control.mouseoverInputBox && !obj_control.mouseoverDropDown) {
-			show_debug_message("scr_navWindowTaggingSelection DElete inputboxes");
+			show_debug_message("scr_navWindowTaggingSelection delete inputboxes");
 			scr_clearNavWindowTagging(true);
 		}
 		
@@ -140,7 +140,6 @@ function scr_navWindowTaggingSelection(fieldList, idList, type){
 					with (obj_alarm3) alarm[2] = canPressArrowKeyAlarm;
 					with (obj_inputBox) instance_destroy();
 					var fieldIndex = ds_list_find_index(fieldList, obj_control.navWindowTaggingField);
-					show_debug_message("left key, fieldList: " + scr_getStringOfList(fieldList) + ", field: " + string(obj_control.navWindowTaggingField) + ", index: " + string(fieldIndex));
 					fieldIndex = max(fieldIndex - 1, 0);
 					obj_control.navWindowTaggingField = fieldList[| fieldIndex];
 					obj_control.navWindowTaggingUpdateScroll = true;
@@ -151,7 +150,6 @@ function scr_navWindowTaggingSelection(fieldList, idList, type){
 					with (obj_alarm3) alarm[3] = canPressArrowKeyAlarm;
 					with (obj_inputBox) instance_destroy();
 					var fieldIndex = ds_list_find_index(fieldList, obj_control.navWindowTaggingField);
-					show_debug_message("right key, fieldList: " + scr_getStringOfList(fieldList) + ", field: " + string(obj_control.navWindowTaggingField) + ", index: " + string(fieldIndex));
 					fieldIndex = min(fieldIndex + 1, ds_list_size(fieldList) - 1);
 					obj_control.navWindowTaggingField = fieldList[| fieldIndex];
 					obj_control.navWindowTaggingUpdateScroll = true;

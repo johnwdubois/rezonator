@@ -9,7 +9,10 @@ scr_windowExit();
 sessionCurrentTime = (current_time - sessionStartTime) + current_time;
 
 scr_multiDropDownMouseover();
-
+if (!instance_exists(obj_dropDown)) {
+	inChain = false;
+	inChunk = false;
+}
 
 
 if (!scr_isNumericAndExists(displayUnitList, ds_type_list)) {

@@ -173,7 +173,7 @@ function scr_rightClickWordOptions(optionSelected) {
 			instance_destroy();
 			break;
 			
-			case "Tag Token":
+		case "Tag Token":
 			
 			// set field/tags
 			if (obj_control.rightClickID != "") {
@@ -198,17 +198,17 @@ function scr_rightClickWordOptions(optionSelected) {
 
 			instance_destroy(obj_dropDown);
 			break;
-			case "tab_name_tag":
+		case "tab_name_tag":
 			obj_control.tokenToChange =	obj_control.rightClickID;
 			scr_destroyAllDropDownsOtherThanSelf();
 			var dropDownOptionList = ds_list_create();
-			if(obj_control.inChunk == true){
+			if(obj_control.inChunk){
 				ds_list_add(dropDownOptionList, "Tag Chunk");
 			}
 			else{
 				ds_list_add(dropDownOptionList, "Tag Token");
 			}
-			if(obj_control.inChain == true){
+			if(obj_control.inChain){
 				ds_list_add(dropDownOptionList, "Tag Chain", "Tag Entry");
 			}
 			if (ds_list_size(dropDownOptionList) > 0) {
@@ -257,7 +257,6 @@ function scr_rightClickWordOptions(optionSelected) {
 			break;
 	}
 
-obj_control.rightClicked = false;
-obj_control.inChain = false;
-obj_control.inChunk = false;
+	obj_control.rightClicked = false;
+	
 }

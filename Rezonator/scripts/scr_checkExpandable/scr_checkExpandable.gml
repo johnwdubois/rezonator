@@ -7,6 +7,15 @@ function scr_checkExpandable(option, optionType){
 		if (ds_list_find_index(optionTypeList, optionType) >= 0) isExpandable = true;
 	}
 	
+	// every field in the tagging dropDowns should be expandable
+	if (optionType == global.optionListTypeTokenFields || optionType == global.optionListTypeChunkFields
+	|| optionType == global.optionListTypeUnitFields || optionType == global.optionListTypeEntryFields
+	|| optionType == global.optionListTypeChainFields) {
+		if (option != "option_create-new-field") {
+			isExpandable = true;
+		}
+	}
+	
 	return isExpandable;
 	
 }

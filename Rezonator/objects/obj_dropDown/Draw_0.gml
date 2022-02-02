@@ -2,15 +2,16 @@
 	Purpose: Create the visuals of any drop down menus
 */
 
-myAlpha += 0.15;
-if (myAlpha > 1) myAlpha = 1;
+myAlpha = min(myAlpha + 0.15, 1);
 
 arrowKeySelection = (optionListType == global.optionListTypeTokenTagMap)
 					or (optionListType == global.optionListTypeEntryTagMap);
 var filterOptionList = arrowKeySelection && instance_exists(obj_inputBox);
 if (filterOptionList) scr_filterDropDownList(originalOptionList, optionList, obj_inputBox.str);
 
-if (instance_exists(prevDropDown) && prevDropDown != -1) {
+var prevDropDownExists = (instance_exists(prevDropDown) && prevDropDown != -1);
+
+if (prevDropDownExists) {
 	x = prevDropDown.x + prevDropDown.windowWidth;
 }
 
@@ -36,21 +37,24 @@ var showScrollBar = false;
 var camHeight = camera_get_view_height(camera_get_active());
 var camWidth = camera_get_view_width(camera_get_active());
 if (y + windowHeight > camHeight) {
-	windowHeight = camHeight - y ;
+	windowHeight = camHeight - y;
 	showScrollBar = true;
 }
 
+// get windowWidth
 var ascendWidth = sprite_get_width(spr_ascend);
-// loop through list to get windowWidth
 var optionListSize = ds_list_size(optionList);
 var maxWidth = scr_getDropDownWidth();
 windowWidth = max(originalWindowWidth, maxWidth);
 
-
-if( x + windowWidth > camWidth and !(global.lang_codes[| global.lang_index] == "he") ){
-	x = camWidth - windowWidth;
+// force dropdown to stay on screen horizontally
+if (x + windowWidth > camWidth && !global.userLangRTL) {
+	var widthOffset = 0;
+	if (prevDropDownExists) {
+		widthOffset = prevDropDown.windowWidth;
+	}
+	x = camWidth - windowWidth - widthOffset;
 }
-
 
 
 
@@ -82,24 +86,10 @@ scr_dropShadow(x, y, x + windowWidth, y + windowHeight);
 // surface stuff
 windowX = x;
 windowY = y;
-clipX = x;
-clipY = y;
-clipWidth = windowWidth;
-clipHeight = windowHeight;
-if (!surface_exists(clipSurface)) {
-    clipSurface = surface_create(clipWidth, clipHeight);
-}
-if (surface_exists(clipSurface)) {
-	surface_resize(clipSurface, clipWidth, clipHeight);
-}
-scr_windowCameraAdjust();
-surface_set_target(clipSurface);
-draw_clear_alpha(c_black, 0);
+scr_miniSurfaceStart(x, y);
 draw_set_alpha(myAlpha);
 
-
 mouseOverDropDown = point_in_rectangle(mouse_x, mouse_y, x, y, x + windowWidth, y + windowHeight);
-
 
 
 scrollPlusY = min(scrollPlusY, 0);
@@ -128,8 +118,7 @@ for (var i = 0; i < optionListSize; i++) {
 	if (updateScroll && optionCurrent == i) {
 		show_debug_message("obj_dropDown, updateScroll!");
 		updateScroll = false;
-		if (optionRectY1 < y) {
-			
+		if (optionRectY1 < y) {		
 			scrollPlusYDest += abs(optionRectY1 - y);
 		}
 		else if (optionRectY2 > y + windowHeight) {
@@ -200,7 +189,7 @@ for (var i = 0; i < optionListSize; i++) {
 	if (currentOptionRaw == "option-remove-tag-set" || currentOptionRaw == "menu_clear" && optionListType != global.optionListTypeFilter) {
 		optionBGColor = merge_color(global.colorThemeBG, make_color_rgb(247, 129, 148), 0.5);
 	}
-	else if (currentOptionRaw == "option_add-to-tag-set") {
+	else if (currentOptionRaw == "option_add-to-tag-set" || currentOptionRaw == "option_create-new-field") {
 		optionBGColor = merge_color(global.colorThemeBG, make_color_rgb(114, 230, 110), 0.5);
 	}
 	if (mouseoverCurrentOption or (optionCurrent == i)) {
@@ -227,21 +216,21 @@ for (var i = 0; i < optionListSize; i++) {
 	
 
 	// get XY for text positioning
-	var optionTextX = (global.lang_codes[| global.lang_index] == "he") ? floor(optionRectX2 - textBuffer) : floor(optionRectX1 + textBuffer);
+	var optionTextX = (global.userLangRTL) ? floor(optionRectX2 - textBuffer) : floor(optionRectX1 + textBuffer);
 	var optionTextY = floor(mean(optionRectY1, optionRectY2));
-	var shortcutTextX = (global.lang_codes[| global.lang_index] == "he") ? floor(optionRectX1 + textBuffer) : floor(optionRectX2 - textBuffer);
+	var shortcutTextX = (global.userLangRTL) ? floor(optionRectX1 + textBuffer) : floor(optionRectX2 - textBuffer);
 	scr_adaptFont(scr_get_translation(currentOptionTranslated), "M");
-	if(global.lang_codes[| global.lang_index] == "he") draw_set_halign(fa_right);
+	if(global.userLangRTL) draw_set_halign(fa_right);
 
 	// draw text for current option
 	draw_text(optionTextX - clipX, floor(optionTextY - clipY), currentOptionTranslated);
 	
 	// draw shortcut text
-	draw_set_halign( (global.lang_codes[| global.lang_index] == "he") ? fa_left : fa_right);	
+	draw_set_halign( (global.userLangRTL) ? fa_left : fa_right);	
 	if(currentOptionShortcut != ""){
 		scr_adaptFont(scr_get_translation(currentOptionShortcut), "S");
 		if(isExpandable){
-			if(global.lang_codes[| global.lang_index] == "he"){
+			if(global.userLangRTL){
 				
 				shortcutTextX += ascendWidth;
 				
@@ -260,12 +249,12 @@ for (var i = 0; i < optionListSize; i++) {
 	
 	
 	// draw checkmark
-	var checkX = (global.lang_codes[| global.lang_index] == "he") ? 
+	var checkX = (global.userLangRTL) ? 
 				floor(optionRectX1 + (sprite_get_width(spr_checkmark) / 2)) : floor(optionRectX2 - (sprite_get_width(spr_checkmark) / 2));
 	var checkY = floor(mean(optionRectY1, optionRectY2));
 	if(hasCheck){
 		if(currentOptionShortcut != ""){
-			if(global.lang_codes[| global.lang_index] == "he"){
+			if(global.userLangRTL){
 				draw_sprite_ext(spr_checkmark, 0, checkX - clipX + string_width(currentOptionShortcut) + textBuffer, checkY - clipY, 0.8, 0.8, 0, c_black, 1);
 			}
 			else{
@@ -280,7 +269,7 @@ for (var i = 0; i < optionListSize; i++) {
 	
 	//add tag info to option
 	if (currentOptionTag != "") {
-			if(global.lang_codes[| global.lang_index] == "he"){
+			if(global.userLangRTL){
 				
 				shortcutTextX += ascendWidth/2;
 				
@@ -297,7 +286,8 @@ for (var i = 0; i < optionListSize; i++) {
 
 	
 	// click on option
-	var click = (mouse_check_button_released(mb_left) && mouseoverThisDropDown && prevOptionClicked != i) || keyboard_check_pressed(vk_enter);
+	var prevOptionExpandable = (prevOptionClicked == i && isExpandable);
+	var click = (mouse_check_button_released(mb_left) && mouseoverThisDropDown && !multiDropDownCancel && !prevOptionExpandable) || keyboard_check_pressed(vk_enter);
 	var clickCurrentOption = (i == optionCurrent && ableToClick && click);
 	if (arrowKeySelection && click && i == optionCurrent) {
 		prevOptionClicked = -1;
@@ -323,6 +313,7 @@ for (var i = 0; i < optionListSize; i++) {
 	
 	if (clickCurrentOption) {
 		prevOptionClicked = i;
+		
 		if(!unClickable){
 			optionCurrent = i;
 			var optionSelected = optionList[| i];
@@ -338,10 +329,10 @@ for (var i = 0; i < optionListSize; i++) {
 	
 	// draw arrow if expandable
 	if (isExpandable) {
-		var expandArrowX = (global.lang_codes[| global.lang_index] == "he") ? floor(optionRectX1 + (sprite_get_width(spr_ascend) / 2)) : floor(optionRectX2 - (sprite_get_width(spr_ascend) / 2));
+		var expandArrowX = (global.userLangRTL) ? floor(optionRectX1 + (sprite_get_width(spr_ascend) / 2)) : floor(optionRectX2 - (sprite_get_width(spr_ascend) / 2));
 		var expandArrowY = floor(mean(optionRectY1, optionRectY2));
 		var arrowColor = (unClickable)? global.colorThemeSelected1 : global.colorThemeText;
-		if(global.lang_codes[| global.lang_index] == "he"){
+		if(global.userLangRTL){
 			draw_sprite_ext(spr_linkArrow, 0, expandArrowX - clipX, expandArrowY - clipY, arrowScale, arrowScale, 180, arrowColor, 1);
 		}
 		else{
@@ -441,4 +432,3 @@ if (arrowKeySelection) {
 draw_set_color(c_ltgray);
 draw_rectangle(x, y, x + windowWidth - 1, y + windowHeight, true);
 draw_set_alpha(1);
-

@@ -6,7 +6,7 @@ boxWidth = 0;
 
 // Boolean for displaying wordtip
 wordTipDisplay = false;
-wordTipRTL = global.lang_codes[| global.lang_index] == "he";
+wordTipRTL = global.userLangRTL;
 
 // Current token whose attributes are being displayed
 currentID = -1;	

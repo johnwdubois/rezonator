@@ -1,5 +1,7 @@
 function scr_fontSizeControl() {
 	// Adjust the font size
+	
+	global.userLangRTL = (global.lang_codes[| global.lang_index] == "he");
 
 	if(os_type == os_macosx){
 			// Adjust the font size

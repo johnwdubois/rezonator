@@ -438,3 +438,5 @@ scr_addtoTagSchemaList();
 global.selectedTagSchemaFileList = ds_list_create();
 
 global.importFieldTagList = ds_list_create();
+
+global.userLangRTL = false;

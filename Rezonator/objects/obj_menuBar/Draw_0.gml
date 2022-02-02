@@ -32,8 +32,8 @@ mouseoverMenuBar = point_in_rectangle(mouse_x, mouse_y, -1, -1, camera_get_view_
 draw_set_colour(global.colorThemeBG);
 draw_set_halign(fa_center);
 draw_set_valign(fa_middle);
-var xBuffer = (global.lang_codes[| global.lang_index] == "he") ? camWidth : 0;
-var prevXBuffer = (global.lang_codes[| global.lang_index] == "he") ? camWidth : 0;
+var xBuffer = (global.userLangRTL) ? camWidth : 0;
+var prevXBuffer = (global.userLangRTL) ? camWidth : 0;
 
 
 
@@ -42,16 +42,16 @@ for (var menuHeaderLoop = 0; menuHeaderLoop < menuBarGridHeight; menuHeaderLoop+
 	scr_adaptFont(scr_get_translation(headerString),"M");
 	menuWidth = string_width(scr_get_translation(headerString))*1.5;
 	prevXBuffer = xBuffer;
-	if(global.lang_codes[| global.lang_index] == "he"){
+	if(global.userLangRTL){
 		xBuffer -= menuWidth;
 	}else{
 		xBuffer += menuWidth;
 	}
 	var currentOptionListType = ds_grid_get(menuBarGrid, menuBarGrid_colOptionListType, menuHeaderLoop);
 	
-	var menuHeaderRectX1 = (global.lang_codes[| global.lang_index] == "he") ? xBuffer : prevXBuffer;
+	var menuHeaderRectX1 = (global.userLangRTL) ? xBuffer : prevXBuffer;
 	var menuHeaderRectY1 = 0;
-	var menuHeaderRectX2 = (global.lang_codes[| global.lang_index] == "he") ? prevXBuffer : xBuffer;
+	var menuHeaderRectX2 = (global.userLangRTL) ? prevXBuffer : xBuffer;
 	var menuHeaderRectY2 = menuHeight;
 	if (point_in_rectangle(mouse_x, mouse_y, menuHeaderRectX1, menuHeaderRectY1, menuHeaderRectX2, menuHeaderRectY2)) {
 		var dropDownOptionList = ds_grid_get(menuBarGrid, menuBarGrid_colOptionList, menuHeaderLoop);
@@ -82,7 +82,7 @@ for (var menuHeaderLoop = 0; menuHeaderLoop < menuBarGridHeight; menuHeaderLoop+
 			
 			
 			if (ds_list_size(dropDownOptionList) > 0 and instance_number(obj_dropDown) == 0) {
-				if(global.lang_codes[| global.lang_index] == "he"){
+				if(global.userLangRTL){
 					scr_createDropDown(menuHeaderRectX2, menuHeight, dropDownOptionList, currentOptionListType, true);
 				}
 				else{
@@ -113,8 +113,8 @@ draw_set_valign(fa_middle);
 
 var sizeOfButtons = menuHeight * 0.6
 
-	var maximizeX2 = (global.lang_codes[| global.lang_index] == "he") ? string_width("0") : camera_get_view_width(camera_get_active()) - string_width("0");
-	var maximizeX1 = (global.lang_codes[| global.lang_index] == "he") ? maximizeX2 + sizeOfButtons :  maximizeX2 - sizeOfButtons;
+	var maximizeX2 = (global.userLangRTL) ? string_width("0") : camera_get_view_width(camera_get_active()) - string_width("0");
+	var maximizeX1 = (global.userLangRTL) ? maximizeX2 + sizeOfButtons :  maximizeX2 - sizeOfButtons;
 	var maximizeY2 = y + menuHeight *.66  +sizeOfButtons/2;
 	var maximizeY1 = maximizeY2 - sizeOfButtons;
 
@@ -141,7 +141,7 @@ if(instance_exists(obj_control)){
 		}
 	}
 
-	if(global.lang_codes[| global.lang_index] == "he"){
+	if(global.userLangRTL){
 		scr_drawRectWidth(maximizeX1 - sizeOfButtons/4,maximizeY1+sizeOfButtons/4,maximizeX2 + sizeOfButtons/4, maximizeY2-sizeOfButtons/4, 2 , false)
 	}else{
 		scr_drawRectWidth(maximizeX1 +sizeOfButtons/4,maximizeY1+sizeOfButtons/4,maximizeX2 - sizeOfButtons/4, maximizeY2-sizeOfButtons/4, 2 , false)
@@ -151,8 +151,8 @@ if(instance_exists(obj_control)){
 
 
 	var minimizeY1 = maximizeY1
-	var minimizeX2 = (global.lang_codes[| global.lang_index] == "he") ? maximizeX1 + sizeOfButtons/2 : maximizeX1 - sizeOfButtons/2;
-	var minimizeX1 = (global.lang_codes[| global.lang_index] == "he") ? minimizeX2 + sizeOfButtons : minimizeX2 - sizeOfButtons;
+	var minimizeX2 = (global.userLangRTL) ? maximizeX1 + sizeOfButtons/2 : maximizeX1 - sizeOfButtons/2;
+	var minimizeX1 = (global.userLangRTL) ? minimizeX2 + sizeOfButtons : minimizeX2 - sizeOfButtons;
 	var minimizeY2 = maximizeY2
 if(instance_exists(obj_control)){
 	draw_set_color(c_white);
@@ -186,16 +186,16 @@ var widthOfLang = string_width(langString);
 var fpsTextY = y+ menuHeight *.66 ;	
 
 
-var langTextX2 = (global.lang_codes[| global.lang_index] == "he") ?  minimizeX1 + sizeOfButtons/2 : minimizeX1 - sizeOfButtons/2;
-var langTextX1 = (global.lang_codes[| global.lang_index] == "he") ? langTextX2 + widthOfLang : langTextX2 - widthOfLang;
+var langTextX2 = (global.userLangRTL) ?  minimizeX1 + sizeOfButtons/2 : minimizeX1 - sizeOfButtons/2;
+var langTextX1 = (global.userLangRTL) ? langTextX2 + widthOfLang : langTextX2 - widthOfLang;
 var langTextY1 = fpsTextY - (sizeOfSave/2);
 var langTextY2 = fpsTextY + (sizeOfSave/2);
 draw_set_color(c_white);
-var mouseOverLang = (global.lang_codes[| global.lang_index] == "he") ? point_in_rectangle(mouse_x,mouse_y,langTextX2,langTextY1,langTextX1,langTextY2) : point_in_rectangle(mouse_x,mouse_y,langTextX1,langTextY1,langTextX2,langTextY2);
+var mouseOverLang = (global.userLangRTL) ? point_in_rectangle(mouse_x,mouse_y,langTextX2,langTextY1,langTextX1,langTextY2) : point_in_rectangle(mouse_x,mouse_y,langTextX1,langTextY1,langTextX2,langTextY2);
 if (instance_exists(obj_dropDown)) mouseOverLang = false;
 if(mouseOverLang){
 	//draw_set_color(global.colorThemeText);
-	if(global.lang_codes[| global.lang_index] == "he"){
+	if(global.userLangRTL){
 		scr_createTooltip(langTextX2, mean(langTextY1,langTextY2), scr_get_translation("menu_language"),obj_tooltip.arrowFaceLeft);
 	}else{
 		scr_createTooltip(langTextX1, mean(langTextY1,langTextY2), scr_get_translation("menu_language"),obj_tooltip.arrowFaceRight);
@@ -205,7 +205,7 @@ if(mouseOverLang){
 		ds_list_add(dropDownOptionList, "menu_language-en", "menu_language-ca", "menu_language-es", "menu_language-gu", "menu_language-he", "menu_language-hy", "menu_language-it", "menu_language-ja", "menu_language-kk", "menu_language-ru", "menu_language-vi", "menu_language-zh");
 						
 		if (ds_list_size(dropDownOptionList) > 0) {
-			if(global.lang_codes[| global.lang_index] == "he"){
+			if(global.userLangRTL){
 				scr_createDropDown(langTextX2, langTextY2, dropDownOptionList, global.optionListTypeLanguage);
 			}
 			else{
@@ -221,8 +221,8 @@ draw_text(floor(mean(langTextX1, langTextX2)),floor(mean(langTextY1, langTextY2)
 
 
 
-var saveIconX2 = (global.lang_codes[| global.lang_index] == "he") ? langTextX1 + sizeOfButtons/2 : langTextX1- sizeOfButtons/2;
-var saveIconX1 = (global.lang_codes[| global.lang_index] == "he") ? saveIconX2 + sizeOfSave : saveIconX2 - sizeOfSave;
+var saveIconX2 = (global.userLangRTL) ? langTextX1 + sizeOfButtons/2 : langTextX1- sizeOfButtons/2;
+var saveIconX1 = (global.userLangRTL) ? saveIconX2 + sizeOfSave : saveIconX2 - sizeOfSave;
 var saveIconY1 = fpsTextY - (sizeOfSave/2);
 var saveIconY2 = fpsTextY + (sizeOfSave/2);
 
@@ -251,14 +251,14 @@ if(instance_exists(obj_control)){
 		saveTextAlpha -= 0.01;
 		saveTextAlpha = clamp(saveTextAlpha,0 ,1);
 		draw_set_alpha(saveTextAlpha);	
-		if(global.lang_codes[| global.lang_index] == "he"){
+		if(global.userLangRTL){
 			draw_text(saveIconX1 + string_width("0"), fpsTextY, scr_get_translation("Saved!"));   // felt too close to lang button, so I added string_width("0")
 		}else{
 			draw_text(saveIconX2,fpsTextY, scr_get_translation("Saved!"));
 		}
 	}
 	else{
-		if(global.lang_codes[| global.lang_index] == "he") and point_in_rectangle(mouse_x, mouse_y,saveIconX2,saveIconY1,saveIconX1,saveIconY2 ){
+		if(global.userLangRTL) and point_in_rectangle(mouse_x, mouse_y,saveIconX2,saveIconY1,saveIconX1,saveIconY2 ){
 			scr_createTooltip(saveIconX1,fpsTextY, scr_get_translation("Unsaved Changes!"), obj_tooltip.arrowFaceLeft);
 		}else if (point_in_rectangle(mouse_x, mouse_y,saveIconX1,saveIconY1,saveIconX2,saveIconY2 )) {
 			scr_createTooltip(saveIconX1,fpsTextY, scr_get_translation("Unsaved Changes!"), obj_tooltip.arrowFaceRight);

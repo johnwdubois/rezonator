@@ -121,7 +121,7 @@ function scr_inputBoxDraw(){
 	draw_rectangle(textBoxX, textBoxY, textBoxX + windowWidth, textBoxY + windowHeight, false);
 
 	// start clipping for text
-	scr_miniSurfaceStart();
+	scr_miniSurfaceStart(textBoxX, textBoxY);
 
 	// draw text
 	scr_adaptFont(str, fontSize);
