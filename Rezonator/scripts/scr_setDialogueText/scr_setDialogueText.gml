@@ -35,6 +35,10 @@ function scr_setDialogueText(){
 			titleText = scr_get_translation("Clear Current Chain");
 			descriptionText = scr_get_translation("msg_warning_clear_focused_chain");
 		}
+		if (clearChainMulti) {
+			titleText = scr_get_translation("Clear Current Chains");
+			descriptionText = "You are about to clear these chains.";
+		}
 		if(mergeUnit){
 			var unitSeq1 = 0;
 			var unitSeq2 = 0;

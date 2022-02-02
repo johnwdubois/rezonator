@@ -37,10 +37,19 @@ function scr_chainListMultiOptions(optionSelected){
 		scr_createDropDown(obj_dropDown.x + obj_dropDown.windowWidth, obj_dropDown.y + (obj_dropDown.optionSpacing * optionIndex), dropDownOptionList, global.optionListTypeSelectShow);
 	}
 	else if (optionSelected == "help_label_delete_plain") {
+		
+		/*
 		while(ds_list_size(currentSelectedChainList) > 0){
 			scr_deleteChain(currentSelectedChainList[|0])
 		}
+		*/
+		if (!instance_exists(obj_dialogueBox)) {
+			instance_create_layer(x, y, "InstancesDialogue", obj_dialogueBox);
+			obj_dialogueBox.clearChainMulti = true;
+			obj_dialogueBox.questionWindowActive = true;
+		}
 		with (obj_dropDown)  instance_destroy();
+		
 	}
 	else if (optionSelected == "menu_filter") {
 		for(var i = 0 ; i < currentSelectedChainListSize; i++){

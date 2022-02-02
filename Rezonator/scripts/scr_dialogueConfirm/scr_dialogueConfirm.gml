@@ -267,6 +267,18 @@ function scr_dialogueConfirm(){
 		if (clearChain) {
 			scr_deleteChain(obj_control.selectedChainID);
 		}
+		if (clearChainMulti) {
+			var selectedChainList = -1;
+			if (obj_panelPane.functionChainList_currentTab == obj_panelPane.functionChainList_tabRezBrush) selectedChainList = obj_control.selectedRezChainList;
+			else if (obj_panelPane.functionChainList_currentTab == obj_panelPane.functionChainList_tabTrackBrush) selectedChainList = obj_control.selectedTrackChainList;
+			else if (obj_panelPane.functionChainList_currentTab == obj_panelPane.functionChainList_tabStackBrush) selectedChainList = obj_control.selectedStackChainList;
+			
+			if (scr_isNumericAndExists(selectedChainList, ds_type_list)) {
+				while(ds_list_size(selectedChainList) > 0){
+					scr_deleteChain(selectedChainList[| 0])
+				}
+			}
+		}
 		if (clearShow) {
 			scr_deleteShow(obj_control.selectedChainID);
 		}

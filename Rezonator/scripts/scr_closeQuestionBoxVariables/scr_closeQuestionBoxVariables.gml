@@ -1,5 +1,3 @@
-
-
 function scr_closeQuestionBoxVariables(){
 
 		
@@ -10,6 +8,7 @@ function scr_closeQuestionBoxVariables(){
 	clearAllRez = false;
 	clearAllLinks = false;
 	clearChain = false;
+	clearChainMulti = false;
 	layerLink = false;
 	combineChains = false;
 	removeTagToken = false;

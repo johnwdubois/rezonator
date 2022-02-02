@@ -185,7 +185,7 @@ function scr_panelPane_drawChainsList() {
 					var checkboxRectY1 = mean(chainNameRectY1, chainNameRectY2) - (checkboxSize / 2);
 					var checkboxRectX2 = checkboxRectX1 + checkboxSize;
 					var checkboxRectY2 = checkboxRectY1 + checkboxSize;
-					var mouseoverCheckbox = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, checkboxRectX1, checkboxRectY1, checkboxRectX2, checkboxRectY2) && !mouseoverHeaderRegion && !mouseoverScrollBar;
+					var mouseoverCheckbox = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, checkboxRectX1, checkboxRectY1, checkboxRectX2, checkboxRectY2) && !mouseoverHeaderRegion && !mouseoverScrollBar && !mouseoverCancel;
 					
 					// Check mouse clicks to focus a chain in the list
 					if (mouseoverChainNameRect) {
@@ -655,7 +655,7 @@ function scr_panelPane_drawChainsList() {
 			var headerCheckboxY1 = mean(headerRectY1, headerRectY2) - (checkboxSize / 2);
 			var headerCheckboxX2 = headerCheckboxX1 + checkboxSize;
 			var headerCheckboxY2 = headerCheckboxY1 + checkboxSize;
-			var mouseoverHeaderCheckbox = point_in_rectangle(mouse_x, mouse_y, headerCheckboxX1, headerCheckboxY1, headerCheckboxX2, headerCheckboxY2) && ds_list_size(listOfChains) > 0;
+			var mouseoverHeaderCheckbox = point_in_rectangle(mouse_x, mouse_y, headerCheckboxX1, headerCheckboxY1, headerCheckboxX2, headerCheckboxY2) && ds_list_size(listOfChains) > 0 && !mouseoverCancel;
 			if (mouseoverHeaderCheckbox) {
 				draw_set_color(merge_color(global.colorThemeSelected2, global.colorThemeBG, 0.4));
 				draw_roundrect(headerCheckboxX1 - (strHeight * 0.15), headerCheckboxY1 - (strHeight * 0.15), headerCheckboxX2 + (strHeight * 0.15), headerCheckboxY2 + (strHeight * 0.15), false);

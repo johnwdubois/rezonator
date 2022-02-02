@@ -35,6 +35,7 @@ clearAllChunks = false;
 clearAllRez = false;
 clearAllLinks = false;
 clearChain = false;
+clearChainMulti = false;
 clearShow = false;
 layerLink = false;
 combineChains = false;
