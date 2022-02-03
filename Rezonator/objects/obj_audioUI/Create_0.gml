@@ -58,3 +58,7 @@ if(obj_fileLoader.importedAudioFile != ""){
 	visible = true;
 }
 
+
+closestUnit = "";
+closestToken = "";
+closestTokenIndex = -1;

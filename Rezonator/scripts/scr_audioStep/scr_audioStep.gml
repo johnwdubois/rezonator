@@ -34,7 +34,34 @@ function scr_audioStep() {
 
 	audioLength = audio_sound_length(audioSound);
 	audioPos = audio_sound_get_track_position(audioSound);
-
+	
+	var disocurseSubMap = global.nodeMap[?global.discourseNode];
+	var unitList = disocurseSubMap[?"unitList"];
+	var tokenList = disocurseSubMap[?"tokenList"];
+	var unitListSize = ds_list_size(unitList);
+	var currentPos = audioPos;
+	for(var i = 0; i < unitListSize; i++){
+		var currentUnit = unitList[|i];
+		var unitSubMap = global.nodeMap[?currentUnit];
+		var unitStart = (scr_isStrNumeric(unitSubMap[? "unitStart"]))? real(unitSubMap[? "unitStart"]) : 0;
+		var unitEnd = (scr_isStrNumeric(unitSubMap[? "unitEnd"]))? real(unitSubMap[? "unitEnd"]) : 0;
+		if(is_real(unitStart) && is_real(unitEnd) && is_real(currentPos)){
+			if(unitStart <= currentPos && unitEnd >= currentPos){
+				closestUnit = currentUnit;
+				var unitLength = unitEnd - unitStart;
+				var amountPlayed = currentPos - unitStart;
+				var unitEntryList = unitSubMap[? "entryList"];
+				var indexOfToken = floor((amountPlayed/unitLength) * ds_list_size(unitEntryList));
+				var entrySubMap = global.nodeMap[?unitEntryList[|indexOfToken]];
+				if(scr_isNumericAndExists(entrySubMap, ds_type_map)){
+					closestToken = entrySubMap[?"token"];
+					closestTokenIndex = ds_list_find_index(tokenList,closestToken);
+				}
+			}
+		}
+	}
+	
+	
 	// Pause audio at end of track
 	if (audioPos >= audioLength - 1) {
 		audio_sound_set_track_position(audioSound, 0);

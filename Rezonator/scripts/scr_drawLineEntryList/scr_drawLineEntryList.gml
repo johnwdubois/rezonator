@@ -2,7 +2,7 @@ function scr_drawLineEntryList(unitID, unitSubMap, entryList, pixelY, OOBCheck){
 	if(OOBCheck){
 		if (pixelY + gridSpaceVertical < wordTopMargin || pixelY - gridSpaceVertical > camera_get_view_height(view_camera[0])) exit;
 	}
-	
+		
 	draw_set_color(global.colorThemeText);
 	draw_set_alpha(1);
 	draw_set_valign(fa_middle);
@@ -47,6 +47,15 @@ function scr_drawLineEntryList(unitID, unitSubMap, entryList, pixelY, OOBCheck){
 		if (!scr_isNumericAndExists(currentTokenSubMap, ds_type_map)) continue;
 		currentTokenSubMap[? "relativeOrder"] = k;
 		
+		var textBeenSaid = true;
+		var currentTokenDocSeq = currentTokenSubMap[?"docTokenSeq"];
+		if(instance_exists(obj_audioUI)){
+			with(obj_audioUI){
+				if(currentTokenDocSeq > closestTokenIndex && closestTokenIndex != -1){
+					textBeenSaid = false;
+				}
+			}
+		}
 		// get tag map for this token
 		var currentTagMap = currentTokenSubMap[? "tagMap"];
 		if (!scr_isNumericAndExists(currentTagMap, ds_type_map)) continue;
@@ -217,8 +226,8 @@ function scr_drawLineEntryList(unitID, unitSubMap, entryList, pixelY, OOBCheck){
 		
 
 			draw_set_color((wordFound) ? make_color_rgb(20, 146, 181) : global.colorThemeText );
-
-			draw_set_alpha(1);
+			var textAlpha = (textBeenSaid)? 1: .6;
+			draw_set_alpha(textAlpha);
 			draw_text(currentPixelX, pixelY, currentDisplayStr);
 		}
 		
