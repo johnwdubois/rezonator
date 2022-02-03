@@ -302,7 +302,7 @@ function scr_panelPane_drawChainsList() {
 					}
 	
 					// Color codes the chain lists for User
-					draw_set_color(merge_color(currentChainColor, global.colorThemeBG, (obj_chain.currentFocusedChainID == currentChainID) ? 0.65: 0.75)); //soften the color
+					draw_set_color(merge_color(currentChainColor, global.colorThemeBG, (obj_chain.currentFocusedChainID == currentChainID or mouseoverChainNameRect) ? 0.65: 0.8)); //soften the color
 					draw_rectangle(chainNameRectX1 - clipX, chainNameRectY1 - clipY, chainNameRectX2 - clipX, chainNameRectY2 - clipY, false);
 	
 					// Outline the rectangle in black
@@ -579,7 +579,7 @@ function scr_panelPane_drawChainsList() {
 	
 
 	// draw focus outline
-	if (focusedRowRectY1 > -1 and focusedRowRectY2 > -1) {
+	if (focusedRowRectY1 > -1 and focusedRowRectY2 > -1 && obj_panelPane.chainViewOneToMany) {
 		draw_set_color(global.colorThemeBorders);
 		draw_line_width(x - clipX, focusedRowRectY1 - clipY, x + windowWidth - clipX, focusedRowRectY1 - clipY, 4);
 		draw_line_width(x - clipX, focusedRowRectY2 - clipY, x + windowWidth - clipX, focusedRowRectY2 - clipY, 4);

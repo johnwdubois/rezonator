@@ -38,6 +38,10 @@ function scr_cellEdit(ID, field, mouseoverCell, mouseoverDropDown, x1, y1, x2, y
 					nodeMapKey = "entryTagMap";
 					optionListType = global.optionListTypeEntryTagMap;
 				}
+				else if (type == "chain") {
+					nodeMapKey = "chainTagMap";
+					optionListType = global.optionListTypeChainTagMap;
+				}
 				
 				if (nodeMapKey != "" && optionListType != -1) {
 					

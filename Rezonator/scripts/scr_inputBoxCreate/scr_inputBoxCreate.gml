@@ -8,7 +8,7 @@ function scr_inputBoxCreate(strDefault){
 	windowFocused = true;
 	
 	// str, cursor, & highlight
-	str = strDefault;
+	str = string(strDefault);
 	cursorIndex = string_length(str);
 	highlightIndex = 0;
 	if (instance_exists(obj_control)) {
