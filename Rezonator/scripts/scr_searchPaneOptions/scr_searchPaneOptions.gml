@@ -92,7 +92,7 @@ function scr_searchPaneOptions(optionSelected){
 		obj_control.multiWordTag = true;
 		var dropDownOptionList = ds_list_create();
 		ds_list_copy(dropDownOptionList, obj_control.tokenFieldList);
-		ds_list_insert(dropDownOptionList, 0, "option_create-new-field");
+		ds_list_add(dropDownOptionList, "option_create-new-field");
 		scr_createDropDown(x + windowWidth, y + (obj_dropDown.optionSpacing * optionIndex), dropDownOptionList, global.optionListTypeTokenFields);
 	
 

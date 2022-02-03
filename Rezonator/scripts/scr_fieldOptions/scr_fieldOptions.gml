@@ -62,8 +62,8 @@ function scr_fieldOptions(optionSelected, type) {
 				var dropDownOptionList = ds_list_create();
 				
 				ds_list_copy(dropDownOptionList, tokenTagSet);
-				ds_list_insert(dropDownOptionList, 0, "option_add-to-tag-set");
-				ds_list_insert(dropDownOptionList, 1, "menu_clear");
+				ds_list_add(dropDownOptionList, "option_add-to-tag-set");
+				ds_list_add(dropDownOptionList, "menu_clear");
 				
 				scr_createDropDown(x + obj_dropDown.windowWidth, y + (obj_dropDown.optionSpacing * optionIndex), dropDownOptionList, currentOptionListType);
 			}

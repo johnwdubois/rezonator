@@ -46,8 +46,8 @@ function scr_chunkTagDropDown(fieldMap, field, IDtoChange, cellRectX1, cellRectY
 							// create dropdown
 							var dropDownOptionList = ds_list_create();
 							ds_list_copy(dropDownOptionList, fieldTagSet);
-							ds_list_insert(dropDownOptionList, 0, "option_add-to-tag-set");
-							ds_list_insert(dropDownOptionList, 1, "menu_clear");
+							ds_list_add(dropDownOptionList, "option_add-to-tag-set");
+							ds_list_add(dropDownOptionList, "menu_clear");
 
 							scr_createDropDown(cellRectX1, cellRectY2, dropDownOptionList, global.optionListTypeChunk1To1Tag);
 						}
