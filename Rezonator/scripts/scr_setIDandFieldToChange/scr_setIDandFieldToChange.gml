@@ -4,10 +4,6 @@ function scr_setIDandFieldToChange(ID, field, type){
 		obj_control.unitToChange = ID;
 		obj_control.unitFieldToChange = field;
 	}
-	else if( type == "chain") {
-		obj_control.tokenToChange = ID;
-		obj_control.tokenFieldToChange = field;
-	}
 	else {
 		obj_control.tokenToChange = ID;
 		obj_control.tokenFieldToChange = field;

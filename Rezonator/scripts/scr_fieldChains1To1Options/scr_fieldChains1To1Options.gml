@@ -1,5 +1,3 @@
-
-
 function scr_fieldChains1To1Options(optionSelected){
 	
 	var optionSpacingMulti = ds_list_find_index(optionList, optionSelected);

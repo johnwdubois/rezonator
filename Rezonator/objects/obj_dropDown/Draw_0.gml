@@ -5,7 +5,7 @@
 myAlpha = min(myAlpha + 0.15, 1);
 
 arrowKeySelection = (optionListType == global.optionListTypeTokenTagMap || optionListType == global.optionListTypeUnitTagMap
-					|| optionListType == global.optionListTypeEntryTagMap);
+					|| optionListType == global.optionListTypeEntryTagMap || optionListType == global.optionListTypeChainTagMap);
 var filterOptionList = arrowKeySelection && instance_exists(obj_inputBox);
 if (filterOptionList) scr_filterDropDownList(originalOptionList, optionList, obj_inputBox.str);
 

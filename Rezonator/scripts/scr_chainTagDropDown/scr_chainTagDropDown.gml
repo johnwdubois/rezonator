@@ -1,5 +1,3 @@
-
-
 function scr_chainTagDropDown(fieldMap, field, IDtoChange, cellRectX1, cellRectY1, cellRectX2, cellRectY2, mouseoverCell, lastColumn,cellText) {
 	
 	var mouseoverDropDown = false;

@@ -1,5 +1,3 @@
-
-
 function scr_chain1To1FieldOptions(optionSelected){
 	
 	var chain1to1ColFieldList = -1;
@@ -12,8 +10,11 @@ function scr_chain1To1FieldOptions(optionSelected){
 	}
 	
 	if (ds_exists(chain1to1ColFieldList, ds_type_list)) {
+
 		var fieldToChange = obj_control.chain1To1ColFieldToChange;
-		ds_list_set(chain1to1ColFieldList, fieldToChange, optionSelected);
+		var optionSelectedPrevIndex = ds_list_find_index(chain1to1ColFieldList,optionSelected);
+		scr_listSwap(chain1to1ColFieldList, fieldToChange, optionSelectedPrevIndex);
+
 	}
 	
 

@@ -94,6 +94,12 @@ function scr_panelPane_drawChains1To1(){
 		
 		// get field/key for this column
 		var currentField = ds_list_find_value(chain1to1ColFieldList, j);
+		var currentFieldSubMap = global.chainFieldMap[? currentField];
+		var fieldHasTagSet = false;
+		if (scr_isNumericAndExists(currentFieldSubMap, ds_type_map)) {
+			fieldHasTagSet = ds_map_exists(currentFieldSubMap, "tagSet");
+		}
+		
 		
 		for (var i = 0; i < listOfChainsSize; i++) {
 			
@@ -178,7 +184,9 @@ function scr_panelPane_drawChains1To1(){
 				obj_control.hoverTextCopy = tagStr;
 			}
 			
+			draw_set_alpha(fieldHasTagSet ? 1 : 0.7);
 			draw_text(textX - clipX, y + headerHeight + scrollPlusY + textPlusY - clipY, string(tagStr));
+			draw_set_alpha(1);
 			
 			textPlusY += strHeight;
 								
@@ -213,8 +221,7 @@ function scr_panelPane_drawChains1To1(){
 	// Allows use of arrow keys, pgUp/pgDwn, and ctrl+key in chain list if clicked in chainList
 	var instToScroll = self.id;
 	if (clickedIn) {	
-		if ((mouse_wheel_up() or keyboard_check(vk_up)) and (holdUp < 2 or holdUp > 30)) {
-
+		if ((mouse_wheel_up() or (keyboard_check(vk_up) && obj_control.navWindowTaggingID == "")) and (holdUp < 2 or holdUp > 30)) {
 			if (functionChainList_focusedChainIndex > 0 and functionChainList_focusedChainIndex < listOfChainsSize) {
 				with (obj_panelPane) functionChainList_focusedChainIndex--;
 				var newFocusedChainID = ds_list_find_value(listOfChains, functionChainList_focusedChainIndex);
@@ -233,8 +240,7 @@ function scr_panelPane_drawChains1To1(){
 			}
 		}
 		
-		if ((mouse_wheel_down() || keyboard_check(vk_down)) and (holdDown < 2 || holdDown > 30)) {
-			
+		if ((mouse_wheel_down() || (keyboard_check(vk_down) && obj_control.navWindowTaggingID == "")) and (holdDown < 2 || holdDown > 30)) {	
 			if (functionChainList_focusedChainIndex < listOfChainsSize - 1 and functionChainList_focusedChainIndex >= 0) {
 				with (obj_panelPane) functionChainList_focusedChainIndex++;
 				var newFocusedChainID = ds_list_find_value(listOfChains, functionChainList_focusedChainIndex);

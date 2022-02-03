@@ -14,7 +14,6 @@ function scr_chain1ToManyFieldOptions(optionSelected) {
 		
 		var fieldToChange = obj_control.chain1ToManyColFieldToChange;
 		var optionSelectedPrevIndex = ds_list_find_index(chain1toManyColFieldList,optionSelected);
-		//ds_list_set(chain1toManyColFieldList, fieldToChange, optionSelected);
 		scr_listSwap(chain1toManyColFieldList, fieldToChange, optionSelectedPrevIndex);
 	}
 
