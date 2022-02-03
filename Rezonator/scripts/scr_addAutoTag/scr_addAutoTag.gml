@@ -5,7 +5,6 @@ function scr_addAutoTag(field, tag, fieldmap){
 	if (scr_isNumericAndExists(currentFieldTagSet, ds_type_list)) {
 		if (ds_list_size(currentFieldTagSet) < 50 && tag != "") {
 			if(ds_list_find_index(global.importFieldTagList,field) != -1){
-				show_debug_message("adding tag for field: "+ string(field))
 				scr_addToListOnce(currentFieldTagSet, tag);
 			}
 		}

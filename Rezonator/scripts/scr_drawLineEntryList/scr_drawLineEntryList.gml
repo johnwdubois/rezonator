@@ -115,7 +115,7 @@ function scr_drawLineEntryList(unitID, unitSubMap, entryList, pixelY, OOBCheck){
 			// draw background tokenRect
 			draw_set_color(global.colorThemeBG);
 			draw_set_alpha(1);
-			draw_rectangle(tokenRectX1, tokenRectY1, tokenRectX2, tokenRectY2, false);
+			draw_roundrect(tokenRectX1, tokenRectY1, tokenRectX2, tokenRectY2, false);
 		
 			// check if this token is in mouse rect
 			var mouseRectExists = makingRect;
@@ -206,7 +206,7 @@ function scr_drawLineEntryList(unitID, unitSubMap, entryList, pixelY, OOBCheck){
 			// token mouseover effect
 			if (drawTokenBorder) {
 				draw_set_color(merge_color(global.colorThemeSelected1, global.colorThemeBG, 0.4));
-				draw_roundrect(tokenRectX1,tokenRectY1,tokenRectX2,tokenRectY2, false);
+				draw_roundrect(tokenRectX1, tokenRectY1, tokenRectX2, tokenRectY2, false);
 			}
 
 		

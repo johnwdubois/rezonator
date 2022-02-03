@@ -9,16 +9,16 @@ function scr_sortList(list){
 	
 	for(var i = 0; i < listSize; i++){
 		var currentValue = list[|i];
-		var strDigit = string_digits(currentValue);
 		var currentModValue = "";
 
-		//is definitley a number
-		if(string_length(strDigit) > 0 && string_length(strDigit) == string_length(currentValue)){
+		// check if str is a number
+		if (scr_isStrNumeric(currentValue)) {
 			currentModValue =  real(currentValue);
 		}
-		else{
+		else {
 			currentModValue = string_lower(currentValue);
 		}
+		
 		// put the currentVal into either the tempStrGrid or tempDigitGrid
 		var grid = (is_string(currentModValue)) ? tempStrGrid : tempDigitGrid;
 		ds_grid_resize(grid, tempGridWidth, ds_grid_height(grid) + 1);

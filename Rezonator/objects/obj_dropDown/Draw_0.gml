@@ -288,6 +288,7 @@ for (var i = 0; i < optionListSize; i++) {
 	// click on option
 	var prevOptionExpandable = (prevOptionClicked == i && isExpandable);
 	var click = (mouse_check_button_released(mb_left) && mouseoverThisDropDown && !multiDropDownCancel && !prevOptionExpandable) || keyboard_check_pressed(vk_enter);
+	if (scrollBarHolding) click = false;
 	var clickCurrentOption = (i == optionCurrent && ableToClick && click);
 	if (arrowKeySelection && click && i == optionCurrent) {
 		prevOptionClicked = -1;
