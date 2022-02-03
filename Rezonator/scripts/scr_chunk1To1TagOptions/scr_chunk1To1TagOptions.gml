@@ -1,6 +1,9 @@
-
-
 function scr_chunk1To1TagOptions(optionSelected){
+	
+	with(obj_inputBox) {
+		show_debug_message("destroying input box from chunk dd select");
+		instance_destroy();
+	}
 	
 	// check if user is clearing tag
 	var clearTag = (optionSelected == "menu_clear");

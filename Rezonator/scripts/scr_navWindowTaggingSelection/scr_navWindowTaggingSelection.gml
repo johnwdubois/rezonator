@@ -18,7 +18,7 @@ function scr_navWindowTaggingSelection(fieldList, idList, type){
 		// get submap for this field
 		var fieldSubMap = "";
 		var tagMap = -1;
-		if (type == "token") {
+		if (type == "token" || type == "chunk") {
 			tagMap = global.nodeMap[? "tokenTagMap"];
 		}
 		else if (type == "unit") {
@@ -119,6 +119,9 @@ function scr_navWindowTaggingSelection(fieldList, idList, type){
 			else if (type == "chain"){
 				currentDropDownType = global.optionListTypeChainTagMap;
 			}
+			else if (type == "chunk"){
+				currentDropDownType = global.optionListTypeChunk1To1Tag;
+			}
 			
 			
 			if (keyboard_check_pressed(vk_enter)) {
@@ -193,7 +196,7 @@ function scr_navWindowTaggingSelection(fieldList, idList, type){
 						obj_control.navWindowTaggingUpdateScroll = true;
 					}
 				}
-				else if (type == "unit" or type == "chain") {
+				else if (type == "unit" or type == "chain" or type == "chunk") {
 					var IDListIndex = ds_list_find_index(idList, obj_control.navWindowTaggingID);
 					if (IDListIndex > 0) {
 						with (obj_alarm3) alarm[0] = canPressArrowKeyAlarm;
@@ -252,7 +255,7 @@ function scr_navWindowTaggingSelection(fieldList, idList, type){
 					obj_control.navWindowTaggingUpdateScroll = true;
 				}
 			}
-			else if (type == "unit" or type == "chain") {
+			else if (type == "unit" or type == "chain" or type == "chunk") {
 				var IDListIndex = ds_list_find_index(idList, obj_control.navWindowTaggingID);
 				if (IDListIndex < ds_list_size(idList) - 1) {
 					with (obj_inputBox) instance_destroy();

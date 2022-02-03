@@ -42,6 +42,10 @@ function scr_cellEdit(ID, field, mouseoverCell, mouseoverDropDown, x1, y1, x2, y
 					nodeMapKey = "chainTagMap";
 					optionListType = global.optionListTypeChainTagMap;
 				}
+				else if (type == "chunk") {
+					nodeMapKey = "tokenTagMap";
+					optionListType = global.optionListTypeChunk1To1Tag;
+				}
 				
 				if (nodeMapKey != "" && optionListType != -1) {
 					

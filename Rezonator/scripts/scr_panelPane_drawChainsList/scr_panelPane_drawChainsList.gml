@@ -177,7 +177,7 @@ function scr_panelPane_drawChainsList() {
 					var mouseoverFilterChain = scr_pointInCircleClippedWindow(mouse_x, mouse_y, filterChainX, optionsChainY, optionsIconRad) && !mouseoverCancel && ableToMouseoverOption && !mouseoverHeaderRegion;
 					var mouseoverVisibleChain = scr_pointInCircleClippedWindow(mouse_x, mouse_y, visibleChainX, optionsChainY, optionsIconRad) && !mouseoverCancel && !mouseoverFilterChain && ableToMouseoverOption && !mouseoverHeaderRegion;
 					var mouseoverMoreChain = scr_pointInCircleClippedWindow(mouse_x, mouse_y, moreOptionsX, optionsChainY, optionsIconRad) && !mouseoverCancel && !mouseoverFilterChain && ableToMouseoverOption && !mouseoverVisibleChain && !mouseoverHeaderRegion;
-					var mouseoverChainNameRect = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, chainNameRectX1, chainNameRectY1, chainNameRectX2, chainNameRectY2) && !mouseoverHeaderRegion && !mouseoverScrollBar && !mouseoverFilterChain && !mouseoverVisibleChain;
+					var mouseoverChainNameRect = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, chainNameRectX1, chainNameRectY1, chainNameRectX2, chainNameRectY2) && !mouseoverCancel && !mouseoverHeaderRegion && !mouseoverScrollBar && !mouseoverFilterChain && !mouseoverVisibleChain;
 
 					
 					// get dimensions of checkbox rect
