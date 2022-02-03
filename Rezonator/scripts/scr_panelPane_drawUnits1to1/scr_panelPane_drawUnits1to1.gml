@@ -17,6 +17,7 @@ function scr_panelPane_drawUnits1to1() {
 	var strHeight = leftPaneStrHeight;
 	var drawScrollbar = !chainViewOneToMany;
 	var relativeScrollPlusY = (drawScrollbar) ? scrollPlusY : lineListPanelPaneInst.scrollPlusY;
+	var mouseoverCancel = instance_exists(obj_dropDown) || instance_exists(obj_dialogueBox);
 	
 
 	// Set text margin area
@@ -97,7 +98,7 @@ function scr_panelPane_drawUnits1to1() {
 		    if (mouseoverunitRect && !instance_exists(obj_dialogueBox) && !instance_exists(obj_dropDown)) {
 				drawDropDowns = true;
 				with (obj_panelPane) {
-					unitTagsHighlightRow = j;
+					functionChainList_highlightUnit = currentUnitID;
 				}
         
 		        if (device_mouse_check_button_released(0, mb_left)) {
@@ -115,14 +116,11 @@ function scr_panelPane_drawUnits1to1() {
 		        }
 		    }
 			
-			if (unitTagsHighlightRow == j) {
+			if (functionChainList_highlightUnit == currentUnitID) {
 				
 				// highlight rect
 				draw_set_color(merge_color(global.colorThemeBG, global.colorThemeSelected1, 0.4));
 				draw_rectangle(colRectX1 - clipX, unitRectY1 - clipY, colRectX2 - clipX, unitRectY2 - clipY, false);
-				
-			
-
 
 			}
 			draw_set_alpha(1);
@@ -188,7 +186,7 @@ function scr_panelPane_drawUnits1to1() {
 			draw_set_color(global.colorThemeBG);
 			draw_rectangle(colRectX1 - clipX, colRectY1 - clipY, colRectX2 - clipX, colRectY2 - clipY, false);
 			
-			var mouseOverCell = scr_pointInRectangleClippedWindow(mouse_x,mouse_y, colRectX1, unitRectY1, colRectX2, unitRectY2);
+			var mouseOverCell = scr_pointInRectangleClippedWindow(mouse_x,mouse_y, colRectX1, unitRectY1, colRectX2, unitRectY2) && !mouseoverCancel;
 			if(mouseOverCell){
 				draw_sprite_ext(spr_dropDown, 0, mean(dropDownButtonX1, dropDownButtonX2) - clipX, mean(unitRectY1, unitRectY2) - clipY, 1, 1, 0, global.colorThemeText, 1);
 				obj_control.hoverTextCopy = currentStr;
@@ -240,11 +238,13 @@ function scr_panelPane_drawUnits1to1() {
 	
 	
 	// draw focus outline
+	/*
 	if (focusedRowRectY1 > -1 and focusedRowRectY2 > -1) {
 		draw_set_color(global.colorThemeBorders);
 		draw_line_width(x - clipX, focusedRowRectY1 - clipY, x + windowWidth - clipX, focusedRowRectY1 - clipY, 4);
 		draw_line_width(x - clipX, focusedRowRectY2 - clipY, x + windowWidth - clipX, focusedRowRectY2 - clipY, 4);
 	}
+	*/
 	
 
 
@@ -262,11 +262,13 @@ function scr_panelPane_drawUnits1to1() {
 		    global.colorThemeSelected1, global.colorThemeSelected2, spr_ascend, windowWidth, windowHeight);
 	}
 	
+	scr_navWindowTaggingSelection(obj_control.navUnitFieldList, displayUnitList, "unit");
+	
 	scr_surfaceEnd();
 	
 	scr_panelPane_drawUnits1To1Headers();
 	
-	scr_navWindowTaggingSelection(obj_control.navUnitFieldList, displayUnitList, "unit");
+
 	
 	
 

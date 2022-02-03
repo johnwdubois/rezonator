@@ -22,7 +22,6 @@ function scr_filterDropDownList(fullList, subList, filterStr){
 	var navWindowTaggingLastChar = "";
 	with (obj_control) {
 		if (navWindowTaggingKeyboardLastChar != "") {
-			show_debug_message("here, navWindowTaggingKeyboardLastChar: " + string(navWindowTaggingKeyboardLastChar));
 			navWindowTaggingLastChar = navWindowTaggingKeyboardLastChar;
 			navWindowTaggingKeyboardLastChar = "";
 		}
@@ -32,7 +31,7 @@ function scr_filterDropDownList(fullList, subList, filterStr){
 	if (keyboard_check_pressed(vk_anykey) || navWindowTaggingLastChar != "") {
 		var lastChar = (navWindowTaggingLastChar == "") ? keyboard_lastchar : navWindowTaggingLastChar;
 
-		show_debug_message("lastChar: " + string(lastChar));
+
 		if (ds_list_size(subList) > 0 && filterStr != "" && scr_isCharLetter(lastChar) && !keyboard_check_pressed(vk_backspace)) {
 			var firstValue = subList[| 0];
 			with (obj_inputBox) {

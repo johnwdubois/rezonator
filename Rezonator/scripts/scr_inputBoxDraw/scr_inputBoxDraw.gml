@@ -11,10 +11,17 @@ function scr_inputBoxDraw(){
 		textMarginX *= 0.5;
 		textMarginY = 0;
 	}
+	var valign = fa_top;
 	
 	textX = floor(textBoxX + textMarginX + xOffset);
 	textY = floor(textBoxY + textMarginY);
 	windowHeight = strHeight + (textMarginY * 2);
+	if (instance_exists(obj_panelPane) && instance_exists(obj_control) && navWindowTagging) {
+		if (!obj_panelPane.chainViewOneToMany) {
+			windowHeight = obj_control.navWindowTaggingCellY2 - obj_control.navWindowTaggingCellY1;
+			textY = floor(textBoxY + (windowHeight * 0.25));
+		}
+	}
 	
 	var isLockedField = false;
 	if(instance_exists(obj_control)){
@@ -128,7 +135,7 @@ function scr_inputBoxDraw(){
 	draw_set_color(global.colorThemeText);
 	draw_set_alpha(1);
 	draw_set_halign(fa_left);
-	draw_set_valign(fa_top);
+	draw_set_valign(valign);
 	draw_text(floor(textX - clipX), floor(textY - clipY), str);
 
 	// draw cursor

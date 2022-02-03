@@ -1,5 +1,3 @@
-
-
 function scr_panelPane_unitScroll(focusedElementY, strHeight) {
 	
 	var displayUnitListSize = ds_list_size(obj_control.displayUnitList);
@@ -15,8 +13,15 @@ function scr_panelPane_unitScroll(focusedElementY, strHeight) {
 	// Allows use of arrow keys, pgUp/pgDwn, and ctrl+key in chain list if clicked in chainList
 	var instToScroll = (chainViewOneToMany) ? leftNavInst : rightNavInst;
 	
+	var arrowKeyUp = keyboard_check(vk_up);
+	var arrowKeyDown = keyboard_check(vk_down);
+	if (!obj_panelPane.chainViewOneToMany && obj_control.navWindowTaggingID != "") {
+		arrowKeyUp = false;
+		arrowKeyDown = false;
+	}
+	
 	if (clickedIn && obj_control.mouseoverPanelPane) {	
-		if ((mouse_wheel_up() or keyboard_check(vk_up)) and (holdUp < 2 or holdUp > 30)) {
+		if ((mouse_wheel_up() or arrowKeyUp) and (holdUp < 2 or holdUp > 30)) {
 			
 			if (functionChainList_focusedUnitIndex > 0 and functionChainList_focusedUnitIndex < displayUnitListSize) {
 
@@ -37,7 +42,7 @@ function scr_panelPane_unitScroll(focusedElementY, strHeight) {
 			}
 		}
 		
-		if ((mouse_wheel_down() || keyboard_check(vk_down)) and (obj_panelPane.holdDown < 2 || obj_panelPane.holdDown > 30)) {
+		if ((mouse_wheel_down() || arrowKeyDown) and (obj_panelPane.holdDown < 2 || obj_panelPane.holdDown > 30)) {
 			
 			if (functionChainList_focusedUnitIndex < displayUnitListSize - 1 and functionChainList_focusedUnitIndex >= 0) {
 
@@ -63,11 +68,13 @@ function scr_panelPane_unitScroll(focusedElementY, strHeight) {
 			with (instToScroll) {
 				scrollPlusYDest = 100;
 			}
+			scr_clearNavWindowTagging(true);
 		}
 		if (global.ctrlHold && keyboard_check_pressed(vk_down)) {
 			with (instToScroll) {
 				scrollPlusYDest = -999999999999;
 			}
+			scr_clearNavWindowTagging(true);
 		}
 	
 		// PAGEUP and PAGEDOWN
@@ -75,11 +82,13 @@ function scr_panelPane_unitScroll(focusedElementY, strHeight) {
 			with (instToScroll) {
 				scrollPlusYDest += (windowHeight);
 			}
+			scr_clearNavWindowTagging(true);
 		}
 		if (keyboard_check_pressed(vk_pagedown)) {
 			with (instToScroll) {
 				scrollPlusYDest -= (windowHeight);
 			}
+			scr_clearNavWindowTagging(true);
 		}
 	}
 

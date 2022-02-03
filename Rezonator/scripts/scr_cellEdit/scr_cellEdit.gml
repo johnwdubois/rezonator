@@ -53,16 +53,8 @@ function scr_cellEdit(ID, field, mouseoverCell, mouseoverDropDown, x1, y1, x2, y
 						var dropDownOptionList = ds_list_create();
 						ds_list_copy(dropDownOptionList, tagSet);
 
-						if (type == "unit") {
-							obj_control.unitToChange = ID;
-							obj_control.unitFieldToChange = field;
-						}
-						else {
-							obj_control.tokenToChange = ID;
-							obj_control.tokenFieldToChange = field;
-						}
 
-						scr_spawnTagInputBox(ID, field, str, self.id, dropDownOptionList, optionListType);
+						scr_spawnTagInputBox(ID, field, type, str, self.id, dropDownOptionList, optionListType);
 					}
 				}
 			}

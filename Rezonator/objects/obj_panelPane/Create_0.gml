@@ -190,7 +190,6 @@ selectedColChain = 0;
 stackTagMapKey = "";
 
 lineContentsHighlightRow = -1;
-unitTagsHighlightRow = -1;
 chainTagsHighlightRow = -1;
 functionChainList_highlightUnit = "";
 

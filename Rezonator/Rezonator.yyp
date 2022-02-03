@@ -188,6 +188,7 @@
     {"id":{"name":"scr_refreshDisplayColAndPrevToken","path":"scripts/scr_refreshDisplayColAndPrevToken/scr_refreshDisplayColAndPrevToken.yy",},"order":8,},
     {"id":{"name":"scr_stackerBranch","path":"scripts/scr_stackerBranch/scr_stackerBranch.yy",},"order":5,},
     {"id":{"name":"scr_gridViewerDynamicWidth","path":"scripts/scr_gridViewerDynamicWidth/scr_gridViewerDynamicWidth.yy",},"order":4,},
+    {"id":{"name":"scr_setIDandFieldToChange","path":"scripts/scr_setIDandFieldToChange/scr_setIDandFieldToChange.yy",},"order":10,},
     {"id":{"name":"scr_deleteTreeBranch","path":"scripts/scr_deleteTreeBranch/scr_deleteTreeBranch.yy",},"order":10,},
     {"id":{"name":"scr_chainTagInit","path":"scripts/scr_chainTagInit/scr_chainTagInit.yy",},"order":36,},
     {"id":{"name":"scr_cycleDetection","path":"scripts/scr_cycleDetection/scr_cycleDetection.yy",},"order":5,},

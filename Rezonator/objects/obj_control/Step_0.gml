@@ -14,6 +14,10 @@ if (!instance_exists(obj_dropDown)) {
 	inChunk = false;
 }
 
+if (keyboard_check_pressed(vk_anykey)) {
+	navWindowTaggingKeyboardInput = (navWindowTaggingID != "" && navWindowTaggingField != "");
+}
+
 
 if (!scr_isNumericAndExists(displayUnitList, ds_type_list)) {
 	// set display unit list if it does not exist
@@ -631,6 +635,12 @@ if (mouse_check_button_released(mb_left) && !mouseoverTagCell
 if (mouse_check_button_pressed(mb_right)) {
 	scr_clearNavWindowTagging();
 }
+if (mouse_check_button_pressed(mb_left) && !mouseoverPanelPane && navWindowTaggingID != "") {
+	with (obj_inputBox) instance_destroy();
+	scr_clearNavWindowTagging();
+}
+
+
 if (keyboard_check_released(vk_up)) navWindowTaggingCanPressUp = true;
 if (keyboard_check_released(vk_down)) navWindowTaggingCanPressDown = true;
 if (keyboard_check_released(vk_left)) navWindowTaggingCanPressLeft = true;

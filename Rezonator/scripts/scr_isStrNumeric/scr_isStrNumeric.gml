@@ -1,5 +1,3 @@
-
-
 function scr_isStrNumeric(str){
 
 	// first let's make sure it's a string

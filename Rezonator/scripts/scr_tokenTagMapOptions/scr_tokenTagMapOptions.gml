@@ -1,7 +1,7 @@
 function scr_tokenTagMapOptions(optionSelected) {
 	
 	with(obj_inputBox) {
-		show_debug_message("destroying input box from dd select");
+		show_debug_message("destroying input box from token dd select");
 		instance_destroy();
 	}
 	

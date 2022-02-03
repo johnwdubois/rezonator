@@ -37,7 +37,7 @@ function scr_panelPane_drawUnitsList() {
 	}
 	
 	// if mouse is hovered on header region, or mouse is in another pane, make sure there is no line highlighted
-	if (mouseoverHeaderRegion || !obj_control.mouseoverPanelPane || !mouseoverLeftPane) {
+	if (mouseoverHeaderRegion || !obj_control.mouseoverPanelPane || (!mouseoverLeftPane && obj_panelPane.chainViewOneToMany)) {
 		with (obj_panelPane) {
 			functionChainList_highlightUnit = "";
 		}
@@ -107,8 +107,6 @@ function scr_panelPane_drawUnitsList() {
 	
 		scr_panelPane_mouseOnLine(currentUnitRectX1, currentUnitRectY1, currentUnitRectX2, currentUnitRectY2, currentUnitID, i, currentSpeakerColor, mouseoverHeaderRegion, mouseoverScrollBar,currentUnitText);
 		
-	
-	
 		// get position of focused rect
 		if (functionChainList_focusedUnitIndex == i) {
 			focusedRowRectY1 = currentUnitRectY1;
@@ -117,7 +115,10 @@ function scr_panelPane_drawUnitsList() {
 			with (obj_panelPane) {
 				functionChainList_focusedUnit = currentUnitID;
 			}
-		}
+			draw_set_color(merge_color(global.colorThemeBG, global.colorThemeSelected1, 0.5));
+			draw_rectangle(currentUnitRectX1 - clipX, currentUnitRectY1 - clipY, currentUnitRectX2 + scrollBarWidth - clipX, currentUnitRectY2 - clipY, false);
+		}	
+
 	
 		// get speaker rect coordinates
 		var speakerRectX1 = floor(currentUnitRectX1 + unitSeqRectWidth);
@@ -125,6 +126,7 @@ function scr_panelPane_drawUnitsList() {
 		if (ds_list_size(obj_control.speakerLabelColXList) > 1) {
 			speakerRectX2 = floor(speakerRectX1 + speakerRectWidth);
 		}
+		
 	
 		// get x position of text, and adjust for RTL if needed
 		var lineStateLTR = (obj_control.drawLineState == obj_control.lineState_ltr);
@@ -173,11 +175,13 @@ function scr_panelPane_drawUnitsList() {
 	
 	
 	// draw focus outline
+	/*
 	if (focusedRowRectY1 > -1 and focusedRowRectY2 > -1) {
 		draw_set_color(global.colorThemeBorders);
 		draw_line_width(x - clipX, focusedRowRectY1 - clipY, x + windowWidth - clipX, focusedRowRectY1 - clipY, 4);
 		draw_line_width(x - clipX, focusedRowRectY2 - clipY, x + windowWidth - clipX, focusedRowRectY2 - clipY, 4);
 	}
+	*/
 
 	// only show a scrollbar if we're in 1toMany
 	if (drawScrollbar) {
