@@ -68,7 +68,6 @@ function scr_addNewFieldToNodes(type, field){
 			
 			// add the new field to this tagmap, with the default value being ""
 			if (!ds_map_exists(currentTagMap, field)) {
-				show_debug_message("CMOOOONNNNN: "+ string(field));
 				ds_map_add(currentTagMap, field, "");
 			}
 		}
