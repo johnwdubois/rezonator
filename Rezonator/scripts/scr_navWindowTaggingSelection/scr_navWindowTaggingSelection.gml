@@ -167,6 +167,15 @@ function scr_navWindowTaggingSelection(fieldList, idList, type){
 					obj_control.navWindowTaggingUpdateScroll = true;
 				}
 			}
+			
+
+		}
+		if (keyboard_check_pressed(vk_tab)) {
+			with (obj_inputBox) instance_destroy();
+			var fieldIndex = ds_list_find_index(fieldList, obj_control.navWindowTaggingField);
+			fieldIndex = min(fieldIndex + 1, ds_list_size(fieldList) - 1);
+			obj_control.navWindowTaggingField = fieldList[| fieldIndex];
+			obj_control.navWindowTaggingUpdateScroll = true;
 		}
 		
 		var canArrowUpDown = false;

@@ -65,7 +65,7 @@ if(allowSetString){
 // clear the navWindowTagging variables
 global.inputBoxDefStr = "";
 if (!keyboard_check_pressed(vk_left) && !keyboard_check_pressed(vk_right) && !keyboard_check_pressed(vk_up) && !keyboard_check_pressed(vk_down)
-&& !keyboard_check_pressed(vk_enter) && !keyboard_check_pressed(vk_escape) && !obj_control.navWindowTaggingSingleOptionSelect) {
+&& !keyboard_check_pressed(vk_enter) && !keyboard_check_pressed(vk_escape) && !keyboard_check_pressed(vk_tab) && !obj_control.navWindowTaggingSingleOptionSelect) {
 	show_debug_message("inputBox destroy, clearing values");
 	obj_control.navWindowTaggingID = "";
 	obj_control.navWindowTaggingField = "";
