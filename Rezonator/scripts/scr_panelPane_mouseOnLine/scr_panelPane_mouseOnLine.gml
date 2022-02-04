@@ -22,9 +22,15 @@ function scr_panelPane_mouseOnLine(rectX1, rectY1, rectX2, rectY2, unitID, i, li
 					functionChainList_focusedUnit = unitID;
 					functionChainContents_BGColor = lineColor;
 					functionChainContents_lineGridRowFocused = -1;
+					scr_clearNavWindowTagging(true);
 				}
 			}
 			scr_jumpToUnitDoubleClick(unitID);
-		}
+		} 
+	}
+	
+	if(mouse_check_button_released(mb_left) && obj_audioUI.audioSound != -1 && file_exists(obj_audioUI.audioFile) && mouseoverLineName  && obj_audioUI.audioJumpOnWordClick){	
+		scr_audioJumpToUnit(obj_panelPane.functionChainList_highlightUnit);
+		obj_audioUI.audioPaused = false;
 	}
 }

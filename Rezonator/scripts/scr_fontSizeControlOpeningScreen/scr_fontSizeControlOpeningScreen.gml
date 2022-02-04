@@ -1,4 +1,7 @@
 function scr_fontSizeControlOpeningScreen() {
+	
+	global.userLangRTL = (global.lang_codes[| global.lang_index] == "he");
+	
 	// Adjust the font size in Opening Menu
 
 	var keyboardCheckPlusKey = (os_type == os_macosx) ? keyboard_check_direct(24) : keyboard_check_direct(187);

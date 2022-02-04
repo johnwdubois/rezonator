@@ -1,17 +1,21 @@
-// Script assets have changed for v2.3.0 see
-// https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
+
+
 function scr_scrollMouseControls(distance){
 	// Allows use of arrow keys, pgUp/pgDwn, and ctrl+key in chain list if clicked in chainContents
 	if (clickedIn) {
 	
 		// Scroll up with mouse/key
 		if ((mouse_wheel_up() || keyboard_check(vk_up)) and (obj_panelPane.holdUp < 2 || obj_panelPane.holdUp > 30)) {
-			scrollPlusYDest += distance;
+			if (obj_control.navWindowTaggingID == "") {
+				scrollPlusYDest += distance;
+			}
 		}
 	
 		// Scroll down with mouse/key
 		if ((mouse_wheel_down() || keyboard_check(vk_down)) and (obj_panelPane.holdDown < 2 || obj_panelPane.holdDown > 30)) {
-			scrollPlusYDest -= distance;
+			if (obj_control.navWindowTaggingID == "") {
+				scrollPlusYDest -= distance;
+			}
 		}
 	
 		// CTRL+UP and CTRL+DOWN

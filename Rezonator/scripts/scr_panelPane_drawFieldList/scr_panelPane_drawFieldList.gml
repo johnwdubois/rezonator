@@ -1,5 +1,3 @@
-// Script assets have changed for v2.3.0 see
-// https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
 function scr_panelPane_drawFieldList(){
 
 	
@@ -20,6 +18,8 @@ function scr_panelPane_drawFieldList(){
 	var fieldNameColWidth = windowWidth * 0.7;
 	var deleteColWidth = clamp(windowWidth * 0.15, sprite_get_width(spr_trash), sprite_get_width(spr_trash) * 2);
 	var deleteColX = x + windowWidth - deleteColWidth - global.scrollBarWidth;
+	var lockColWidth = deleteColWidth;
+	var lockColX = deleteColX - lockColWidth;
 	var focusedElementY = -1;
 
 	var mouseoverWindow = point_in_rectangle(mouse_x, mouse_y, x, y, x + windowWidth, y + windowHeight);
@@ -112,6 +112,8 @@ function scr_panelPane_drawFieldList(){
 					draw_set_color(merge_color(global.colorThemeSelected1, global.colorThemeBG, 0.5));
 					draw_rectangle(x - clipX, currentRowY1 - clipY, x + windowWidth - clipX, currentRowY2 - clipY, false);
 					if (mouse_check_button_released(mb_left)) {
+						
+						ds_list_clear(obj_control.selectedTagList);
 				
 						// set field to be selected when clicked
 						if (chainViewOneToMany) {
@@ -231,9 +233,14 @@ function scr_panelPane_drawFieldList(){
 				var mouseOverDel = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, deleteColX, currentRowY1, deleteColX + deleteColWidth, currentRowY2) && mouseoverRow && removable;
 				var trashAlpha = (removable) ? 1 : 0.5;
 				
+				// get coordinates for lock button
+				var lockButtonX = mean(lockColX, lockColX + lockColWidth);
+				var lockButtonY = currentRowY1 + (strHeight * 0.5);
+				var mouseOverLock = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, lockColX, currentRowY1, lockColX + lockColWidth, currentRowY2) && mouseoverRow;
+				var fieldLocked = currentFieldSubMap[?"locked"];
 
 								
-				// mouseover & click on sequence arrows
+				// mouseover & click on delete button
 				if (mouseOverDel) {
 					draw_set_color(global.colorThemeSelected1);
 					draw_rectangle(deleteColX - clipX, currentRowY1 - clipY, deleteColX + deleteColWidth - clipX, currentRowY2 - clipY, false);
@@ -251,16 +258,27 @@ function scr_panelPane_drawFieldList(){
 							obj_dialogueBox.questionWindowActive = true;
 							obj_dialogueBox.stringToBeRemoved = currentField;
 						}
-
+					}
+					scr_createTooltip(delButtonX, currentRowY2, scr_get_translation("msg_remove"), obj_tooltip.arrowFaceUp);
+				}
+				// mouseover & click on lock button
+				else if (mouseOverLock) {
+					draw_set_color(global.colorThemeSelected1);
+					draw_rectangle(lockColX - clipX, currentRowY1 - clipY, lockColX + lockColWidth - clipX, currentRowY2 - clipY, false);
+					if (mouse_check_button_released(mb_left)) {
+						currentFieldSubMap[?"locked"] = !currentFieldSubMap[?"locked"]
 					
 					}
-				
-					scr_createTooltip(delButtonX, currentRowY2, scr_get_translation("msg_remove"), obj_tooltip.arrowFaceUp);
+					scr_createTooltip(lockButtonX, currentRowY2, fieldLocked ? "Unlock tags" : "Lock tags", obj_tooltip.arrowFaceUp);
 				}
 			
 
 				if(mouseoverRow || fieldSelected){
 					draw_sprite_ext(spr_trash, 0, delButtonX - clipX, delButtonY - clipY, .7, .7, 0, global.colorThemeText, trashAlpha);
+					draw_sprite_ext(spr_lock, !fieldLocked, lockButtonX - clipX, lockButtonY - clipY, .7, .7, 0, global.colorThemeText, 1);
+				}
+				if(fieldLocked){
+					draw_sprite_ext(spr_lock, !fieldLocked, lockButtonX - clipX, lockButtonY - clipY, .7, .7, 0, global.colorThemeText, 1);
 				}
 		
 				// draw #

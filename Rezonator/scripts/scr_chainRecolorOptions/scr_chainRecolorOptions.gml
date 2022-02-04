@@ -9,7 +9,9 @@ function scr_chainRecolorOptions(optionSelected) {
 			var chainSubMap = global.nodeMap[? obj_control.selectedChainID];		
 			if (!scr_isNumericAndExists(chainSubMap, ds_type_map)) {
 				show_debug_message("scr_chainRecolorOptions, chain does not exist");
-				instance_destroy();
+				with(obj_dropDown){
+					instance_destroy();
+				}
 				exit;
 				
 			}
@@ -22,7 +24,9 @@ function scr_chainRecolorOptions(optionSelected) {
 				else if (optionSelected == "option_green") colorToSet = 65280;
 				else if (optionSelected == "option_gold") colorToSet = 4235000;
 				chainSubMap[? "chainColor"] = colorToSet;
-				instance_destroy();
+				with(obj_dropDown){
+					instance_destroy();
+				}
 			}
 			else if (optionSelected == "option_custom") {
 				if (!obj_control.dialogueBoxActive) {
@@ -31,7 +35,9 @@ function scr_chainRecolorOptions(optionSelected) {
 				}
 
 				obj_control.dialogueBoxActive = true;
-				instance_destroy();
+				with(obj_dropDown){
+					instance_destroy();
+				}
 				if (!instance_exists(obj_dialogueBox)) {
 					instance_create_layer(x, y, "InstancesDialogue", obj_dialogueBox);
 				}

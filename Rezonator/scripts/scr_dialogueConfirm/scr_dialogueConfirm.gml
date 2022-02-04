@@ -1,5 +1,5 @@
-// Script assets have changed for v2.3.0 see
-// https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
+
+
 function scr_dialogueConfirm(){
 	
 	// check if they are trying to download newest version of rezonator
@@ -79,7 +79,7 @@ function scr_dialogueConfirm(){
 				var strDigits = string_digits(obj_control.inputText);
 				if (string_length(strDigits) > 0) {
 					var realDigits = real(strDigits);
-					scr_jumpToUnit(realDigits);
+					scr_jumpToUnitTop(realDigits);
 				}
 			}
 			
@@ -245,6 +245,7 @@ function scr_dialogueConfirm(){
 		if (removeTagChain) scr_removeFromTagSetOptions(string(stringToBeRemoved), "chain");
 		if (removeTagChunk) scr_removeFromTagSetOptions(string(stringToBeRemoved), "chunk");
 		if (removeTagLink) scr_removeFromTagSetOptions(string(stringToBeRemoved), "link");
+		if (removeTags) scr_removeFromTagSetMulti();
 		
 		if (removeFieldToken || removeFieldUnit || removeFieldEntry || removeFieldChain || removeFieldChunk || removeFieldLink) {
 			// delete the field
@@ -260,11 +261,24 @@ function scr_dialogueConfirm(){
 		}
 		
 		
-			
-		
-
+		if(mergeUnit){
+			scr_mergeUnit();
+		}
+	
 		if (clearChain) {
 			scr_deleteChain(obj_control.selectedChainID);
+		}
+		if (clearChainMulti) {
+			var selectedChainList = -1;
+			if (obj_panelPane.functionChainList_currentTab == obj_panelPane.functionChainList_tabRezBrush) selectedChainList = obj_control.selectedRezChainList;
+			else if (obj_panelPane.functionChainList_currentTab == obj_panelPane.functionChainList_tabTrackBrush) selectedChainList = obj_control.selectedTrackChainList;
+			else if (obj_panelPane.functionChainList_currentTab == obj_panelPane.functionChainList_tabStackBrush) selectedChainList = obj_control.selectedStackChainList;
+			
+			if (scr_isNumericAndExists(selectedChainList, ds_type_list)) {
+				while(ds_list_size(selectedChainList) > 0){
+					scr_deleteChain(selectedChainList[| 0])
+				}
+			}
 		}
 		if (clearShow) {
 			scr_deleteShow(obj_control.selectedChainID);

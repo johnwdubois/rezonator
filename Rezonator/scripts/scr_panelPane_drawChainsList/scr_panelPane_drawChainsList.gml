@@ -58,14 +58,18 @@ function scr_panelPane_drawChainsList() {
 	with (obj_panelPane) leftPaneStrHeight = strHeight;
 	
 
+
 	// Set text margin area
 	var filterRectMargin = 8;
 	var filterRectSize = (strHeight / 2) + 5;
-	var checkboxColX = x;
+	
 	var checkboxColWidth = filterRectMargin + (filterRectSize * 2);
 	var checkboxSize = checkboxColWidth * 0.35;
-	var optionsColX = checkboxColX + checkboxColWidth;
-	var optionsColWidth = windowWidth * 0.14;
+	
+	var optionsColX = x;
+	var optionsColWidth = checkboxColWidth/1.3 * 4;
+	var moreOptionsX = optionsColX + (optionsColWidth * 0.8);
+
 	var numColX = optionsColX + optionsColWidth;
 	var numColWidth = windowWidth * 0.07;
 	var nameColX = numColX + numColWidth;
@@ -73,8 +77,10 @@ function scr_panelPane_drawChainsList() {
 	var textColX = nameColX + nameColWidth;
 	
 	
-	var filterChainX = optionsColX + (optionsColWidth * 0.33);
-	var visibleChainX = optionsColX + (optionsColWidth * 0.66);
+
+	
+	var filterChainX = optionsColX + (optionsColWidth * 0.4);
+	var visibleChainX = optionsColX + (optionsColWidth * 0.6);
 	var alignChainX = optionsColX + (optionsColWidth * 0.75); // alignChain button will be out of commission temporarily(?)
 	
 
@@ -134,8 +140,8 @@ function scr_panelPane_drawChainsList() {
 			
 			if (!is_numeric(currentChainSelected)) currentChainSelected = false;
 			
-			if (is_numeric(setIDList) || is_numeric(vizSetIDList)) {
-				if (ds_exists(setIDList, ds_type_list) || ds_exists(vizSetIDList, ds_type_list)) {
+			if (is_numeric(setIDList) && is_numeric(vizSetIDList)) {
+				if (ds_exists(setIDList, ds_type_list) && ds_exists(vizSetIDList, ds_type_list)) {
 					var setIDListSize = ds_list_size(setIDList);
 					
 					// chain captions!
@@ -170,15 +176,16 @@ function scr_panelPane_drawChainsList() {
 					var optionsChainY = floor(mean(chainNameRectY1, chainNameRectY2));
 					var mouseoverFilterChain = scr_pointInCircleClippedWindow(mouse_x, mouse_y, filterChainX, optionsChainY, optionsIconRad) && !mouseoverCancel && ableToMouseoverOption && !mouseoverHeaderRegion;
 					var mouseoverVisibleChain = scr_pointInCircleClippedWindow(mouse_x, mouse_y, visibleChainX, optionsChainY, optionsIconRad) && !mouseoverCancel && !mouseoverFilterChain && ableToMouseoverOption && !mouseoverHeaderRegion;
-					var mouseoverChainNameRect = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, chainNameRectX1, chainNameRectY1, chainNameRectX2, chainNameRectY2) && !mouseoverHeaderRegion && !mouseoverScrollBar && !mouseoverFilterChain && !mouseoverVisibleChain;
+					var mouseoverMoreChain = scr_pointInCircleClippedWindow(mouse_x, mouse_y, moreOptionsX, optionsChainY, optionsIconRad) && !mouseoverCancel && !mouseoverFilterChain && ableToMouseoverOption && !mouseoverVisibleChain && !mouseoverHeaderRegion;
+					var mouseoverChainNameRect = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, chainNameRectX1, chainNameRectY1, chainNameRectX2, chainNameRectY2) && !mouseoverCancel && !mouseoverHeaderRegion && !mouseoverScrollBar && !mouseoverFilterChain && !mouseoverVisibleChain;
 
 					
 					// get dimensions of checkbox rect
-					var checkboxRectX1 = checkboxColX + (checkboxColWidth / 2) - (checkboxSize / 2);
+					var checkboxRectX1 = optionsColX + (optionsColWidth *0.2) - (checkboxSize / 2);
 					var checkboxRectY1 = mean(chainNameRectY1, chainNameRectY2) - (checkboxSize / 2);
 					var checkboxRectX2 = checkboxRectX1 + checkboxSize;
 					var checkboxRectY2 = checkboxRectY1 + checkboxSize;
-					var mouseoverCheckbox = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, checkboxRectX1, checkboxRectY1, checkboxRectX2, checkboxRectY2) && !mouseoverHeaderRegion && !mouseoverScrollBar;
+					var mouseoverCheckbox = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, checkboxRectX1, checkboxRectY1, checkboxRectX2, checkboxRectY2) && !mouseoverHeaderRegion && !mouseoverScrollBar && !mouseoverCancel;
 					
 					// Check mouse clicks to focus a chain in the list
 					if (mouseoverChainNameRect) {
@@ -295,7 +302,7 @@ function scr_panelPane_drawChainsList() {
 					}
 	
 					// Color codes the chain lists for User
-					draw_set_color(merge_color(currentChainColor, global.colorThemeBG, (obj_chain.currentFocusedChainID == currentChainID) ? 0.65: 0.75)); //soften the color
+					draw_set_color(merge_color(currentChainColor, global.colorThemeBG, (obj_chain.currentFocusedChainID == currentChainID or mouseoverChainNameRect) ? 0.65: 0.8)); //soften the color
 					draw_rectangle(chainNameRectX1 - clipX, chainNameRectY1 - clipY, chainNameRectX2 - clipX, chainNameRectY2 - clipY, false);
 	
 					// Outline the rectangle in black
@@ -375,10 +382,48 @@ function scr_panelPane_drawChainsList() {
 						}
 						scr_createTooltip(alignChainX, optionsChainY + optionsIconRad, scr_get_translation("help_label_align"), obj_tooltip.arrowFaceUp);
 					}
+					// mouseover & click on more
+					if (mouseoverMoreChain) {
+						ableToMouseoverOption = false;
+						draw_circle(moreOptionsX - clipX, optionsChainY - clipY, optionsIconRad, false);
+						if (mouse_check_button_released(mb_left)) {
+							
+							
+							// simulate right-click
+							scr_setValueForAllChains(tabChainType, "selected", false);
+							currentChainSubMap[? "selected"] = true;
+							currentChainSelected = true;
+							scr_addToListOnce(selectedList, currentChainID);
+
+							obj_chain.currentFocusedChainID = currentChainID;
+							obj_control.selectedChainID = obj_chain.currentFocusedChainID 
+							obj_control.rightClicked = true;
+						
+						
+							var dropDownOptionList = ds_list_create();
+							if (functionChainList_currentTab == functionChainList_tabStackBrush) {
+
+								ds_list_add(dropDownOptionList, "help_label_rename", "option_recolor", "help_label_delete_plain", "help_label_caption", "option_clip", "option_create-tree", "option_add-to-show");
+							
+								ds_list_add(dropDownOptionList, "Set Rez Map");
+							}
+							else {
+								ds_list_add(dropDownOptionList, "help_label_rename", "option_recolor", "help_label_delete_plain");
+							}
+							if (ds_list_size(dropDownOptionList) > 0 and obj_control.ableToCreateDropDown) {
+								scr_createDropDown(moreOptionsX, optionsChainY, dropDownOptionList, global.optionListTypeChainList);
+							}
+							
+							
+							
+						}
+						scr_createTooltip(moreOptionsX, optionsChainY + optionsIconRad, "More", obj_tooltip.arrowFaceUp);
+					}
 					
 					// draw filter/align/visible buttons
 					draw_sprite_ext(spr_filterIcons, !currentChainFiltered, filterChainX - clipX, optionsChainY - clipY, 1, 1, 0, global.colorThemeText, 1);
 					draw_sprite_ext(spr_toggleDraw, currentChainVisible, visibleChainX - clipX, optionsChainY - clipY, 1, 1, 0, global.colorThemeText, 1);
+					draw_sprite_ext(spr_dropDown, 0, moreOptionsX - clipX, optionsChainY - clipY, 1, 1, 0, global.colorThemeText, 1);
 					//if (functionChainList_currentTab == functionChainList_tabRezBrush) draw_sprite_ext(spr_align, !currentChainAlign, alignChainX - clipX, optionsChainY - clipY, 1, 1, 0, global.colorThemeText, 1);
 					
 					
@@ -534,7 +579,7 @@ function scr_panelPane_drawChainsList() {
 	
 
 	// draw focus outline
-	if (focusedRowRectY1 > -1 and focusedRowRectY2 > -1) {
+	if (focusedRowRectY1 > -1 and focusedRowRectY2 > -1 && obj_panelPane.chainViewOneToMany) {
 		draw_set_color(global.colorThemeBorders);
 		draw_line_width(x - clipX, focusedRowRectY1 - clipY, x + windowWidth - clipX, focusedRowRectY1 - clipY, 4);
 		draw_line_width(x - clipX, focusedRowRectY2 - clipY, x + windowWidth - clipX, focusedRowRectY2 - clipY, 4);
@@ -561,34 +606,29 @@ function scr_panelPane_drawChainsList() {
 		//if (functionChainList_currentTab != functionChainList_tabStackBrush && i == 0) continue;
 		
 		// skip text column unless this is a stack
-		if (i == 4 && functionChainList_currentTab != functionChainList_tabStackBrush) continue;
+		if (i == 3 && functionChainList_currentTab != functionChainList_tabStackBrush) continue;
 		
 		// get column data
 		var headerRectX1 = 0;
 		var colWidth = 0;
 		var colText = "";
 		if (i == 0) {
-			headerRectX1 = checkboxColX;
-			colWidth = checkboxColWidth;
-			colText = "";
-		}
-		else if (i == 1) {
 			headerRectX1 = optionsColX;
 			colWidth = optionsColWidth;
 			colText = "";
 		}
-		else if (i == 2) {
+		else if (i == 1) {
 			headerRectX1 = numColX;
 			colWidth = numColWidth;
 			colText = "#";
 		}
-		else if (i == 3) {
+		else if (i == 2) {
 			headerRectX1 = nameColX;
 			colWidth = nameColWidth;
 			if (functionChainList_currentTab != functionChainList_tabStackBrush) colWidth = windowWidth - headerRectX1;
 			colText = "name";
 		}
-		else if (i == 4) {
+		else if (i == 3) {
 			headerRectX1 = textColX;
 			colWidth = windowWidth - headerRectX1;
 			colText = "tag_text";
@@ -611,11 +651,11 @@ function scr_panelPane_drawChainsList() {
 		if (i == 0) {
 			var allChainsSelected = (ds_list_size(listOfChains) == ds_list_size(selectedList) && ds_list_size(listOfChains) > 0);
 			var someChainsSelected = (ds_list_size(listOfChains) > ds_list_size(selectedList) && ds_list_size(selectedList) > 0 && ds_list_size(listOfChains) > 0);
-			var headerCheckboxX1 = mean(headerRectX1, headerRectX2) - (checkboxSize / 2);
+			var headerCheckboxX1 = optionsColX + (optionsColWidth* 0.2) - (checkboxSize / 2);
 			var headerCheckboxY1 = mean(headerRectY1, headerRectY2) - (checkboxSize / 2);
 			var headerCheckboxX2 = headerCheckboxX1 + checkboxSize;
 			var headerCheckboxY2 = headerCheckboxY1 + checkboxSize;
-			var mouseoverHeaderCheckbox = point_in_rectangle(mouse_x, mouse_y, headerCheckboxX1, headerCheckboxY1, headerCheckboxX2, headerCheckboxY2) && ds_list_size(listOfChains) > 0;
+			var mouseoverHeaderCheckbox = point_in_rectangle(mouse_x, mouse_y, headerCheckboxX1, headerCheckboxY1, headerCheckboxX2, headerCheckboxY2) && ds_list_size(listOfChains) > 0 && !mouseoverCancel;
 			if (mouseoverHeaderCheckbox) {
 				draw_set_color(merge_color(global.colorThemeSelected2, global.colorThemeBG, 0.4));
 				draw_roundrect(headerCheckboxX1 - (strHeight * 0.15), headerCheckboxY1 - (strHeight * 0.15), headerCheckboxX2 + (strHeight * 0.15), headerCheckboxY2 + (strHeight * 0.15), false);
@@ -697,8 +737,8 @@ function scr_panelPane_drawChainsList() {
 		
 		
 		// more options button
-		if ((i == 4 && functionChainList_currentTab == functionChainList_tabStackBrush) or (i == 3 && functionChainList_currentTab != functionChainList_tabStackBrush)) {
-			var moreOptionsX = x + windowWidth - sprite_get_width(spr_moreOptions);
+		if ((i == 3 && functionChainList_currentTab == functionChainList_tabStackBrush) or (i == 2 && functionChainList_currentTab != functionChainList_tabStackBrush)) {
+			//x + windowWidth - sprite_get_width(spr_moreOptions);
 			var moreOptionsY = mean(headerRectY1, headerRectY2);
 			var moreOptionsClickable = (ds_list_size(selectedList) >= 1);
 			var mouseoverMoreOptions = point_in_circle(mouse_x, mouse_y, moreOptionsX, moreOptionsY, optionsIconRad) && moreOptionsClickable && !mouseoverCancel;
@@ -717,7 +757,7 @@ function scr_panelPane_drawChainsList() {
 					if(obj_panelPane.functionChainList_currentTab == obj_panelPane.functionChainList_tabStackBrush){
 						ds_list_add(dropDownOptionList, "option_add-to-show");
 					}
-					ds_list_add(dropDownOptionList, "help_label_delete_plain", "menu_filter", "menu_hide");
+					ds_list_add(dropDownOptionList, "help_label_delete_plain", "menu_filter", "menu_hide", "option_clip", "option_create-tree");
 					scr_createDropDown(moreOptionsX - (optionsIconRad * 0.4), moreOptionsY + (optionsIconRad * 0.8), dropDownOptionList, global.optionListTypeChainListMulti);
 				}
 			}

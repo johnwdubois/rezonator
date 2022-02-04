@@ -1,5 +1,3 @@
-// Script assets have changed for v2.3.0 see
-// https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
 function scr_linkClickOptions(optionSelected){
 	var optionIndex = ds_list_find_index(optionList, optionSelected);
 	show_debug_message("scr_linkClickOptions, optionSelected: " + string(optionSelected));

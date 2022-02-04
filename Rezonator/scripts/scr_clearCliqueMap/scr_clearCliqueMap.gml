@@ -1,5 +1,5 @@
-// Script assets have changed for v2.3.0 see
-// https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
+
+
 function scr_clearCliqueMap(){
 	if(scr_isNumericAndExists(global.cliqueMap, ds_type_map)){
 		for(var i = 0; i < ds_list_size(obj_chain.cliqueList); i++){

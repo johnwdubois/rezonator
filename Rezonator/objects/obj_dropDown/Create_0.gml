@@ -15,9 +15,6 @@ if (room == rm_mainScreen) {
 			originalWindowWidth = 150;
 		}
 	}
-	if (!obj_menuBar.menuClickedIn && !obj_control.wideDropDown) {
-		alarm[1] = 1;
-	}
 }
 windowWidth = originalWindowWidth;
 windowHeight = 100;
@@ -48,3 +45,17 @@ prevMouseoverOption = -2;
 prevOptionClicked = -1;
 currentMouseoverOption = -1;
 myAlpha = 0;
+
+arrowKeySelection = false;
+
+lastMouseX = 0;
+lastMouseY = 0;
+mouseMoved = false;
+alarm[3] = 1;
+
+prevOptionClickedIndex = -1;
+
+canPressUp = true;
+canPressDown = true;
+updateScroll = false;
+arrowKeySingleOptionSelect = false;

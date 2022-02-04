@@ -63,7 +63,7 @@ ds_list_add(toolsOptionList,"menu_search",
 							"menu_track",
 							"menu_resonance",
 							"help_label_tag",
-							"menu_stack");
+							"menu_stacker");
 
 settingsOptionList = ds_list_create();
 ds_list_add(settingsOptionList, "menu_user", 

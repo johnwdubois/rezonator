@@ -34,38 +34,38 @@ function scr_audioStep() {
 
 	audioLength = audio_sound_length(audioSound);
 	audioPos = audio_sound_get_track_position(audioSound);
-
+	
+	var disocurseSubMap = global.nodeMap[?global.discourseNode];
+	var unitList = disocurseSubMap[?"unitList"];
+	var tokenList = disocurseSubMap[?"tokenList"];
+	var unitListSize = ds_list_size(unitList);
+	var currentPos = audioPos;
+	for(var i = 0; i < unitListSize; i++){
+		var currentUnit = unitList[|i];
+		var unitSubMap = global.nodeMap[?currentUnit];
+		var unitStart = (scr_isStrNumeric(unitSubMap[? "unitStart"]))? real(unitSubMap[? "unitStart"]) : 0;
+		var unitEnd = (scr_isStrNumeric(unitSubMap[? "unitEnd"]))? real(unitSubMap[? "unitEnd"]) : 0;
+		if(is_real(unitStart) && is_real(unitEnd) && is_real(currentPos)){
+			if(unitStart <= currentPos && unitEnd >= currentPos){
+				closestUnit = currentUnit;
+				var unitLength = unitEnd - unitStart;
+				var amountPlayed = currentPos - unitStart;
+				var unitEntryList = unitSubMap[? "entryList"];
+				var indexOfToken = floor((amountPlayed/unitLength) * ds_list_size(unitEntryList));
+				var entrySubMap = global.nodeMap[?unitEntryList[|indexOfToken]];
+				if(scr_isNumericAndExists(entrySubMap, ds_type_map)){
+					closestToken = entrySubMap[?"token"];
+					closestTokenIndex = ds_list_find_index(tokenList,closestToken);
+				}
+			}
+		}
+	}
+	
+	
 	// Pause audio at end of track
 	if (audioPos >= audioLength - 1) {
 		audio_sound_set_track_position(audioSound, 0);
 		audioPaused = true;
-	}
-	
-	//Play through audio of Stack with line interuptions
-	if(ds_map_exists(global.nodeMap,selectedStackChain)) { 
-		if(stackUnitListSize > -1) {
-			if(stackUnitListPosition <= stackUnitListSize - 1) {
-				var currentUnit = ds_list_find_value(stackUnitList, stackUnitListPosition);
-				var currentUnitEnd = ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colUnitEnd, currentUnit - 1);
-				var currentUnitStart = ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colUnitStart, currentUnit - 1);
-				
-				// Jump audio to next unit if necessary
-				if(audioPos >= currentUnitEnd) {
-					if (stackUnitListPosition < stackUnitListSize - 1) {
-						var nextUnit = ds_list_find_value(stackUnitList, stackUnitListPosition + 1);
-						if(currentUnit != nextUnit - 1) {
-							var nextUnitStartTime = ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colUnitStart, nextUnit - 1);
-							audio_sound_set_track_position(audioSound, nextUnitStartTime);
-							// Giorgia has requested a feature to wait 1 second before jumping to a non-sequetial unit
-						}
-					}
-					stackUnitListPosition++;
-				}
-			}
-			else if(stackUnitListPosition == stackUnitListSize) {
-				stackUnitListPosition = 0;	
-			}
-		}
 	}
 	
 	// Pause audio at Endmark
@@ -75,39 +75,4 @@ function scr_audioStep() {
 		}
 	}
 	
-	// Update the Stack audio Bookmark and endmark if the selected stack has changed
-	if(obj_panelPane.functionChainList_currentTab == obj_panelPane.functionChainList_tabStackBrush) {
-		var currentStackChain = obj_chain.currentFocusedChainID;
-		if(ds_map_exists(global.nodeMap,currentStackChain)) {
-
-				
-			scr_audioStackUpdate(currentStackChain);
-			
-			stackUnfocus = false;
-		}
-		else {
-			selectedStackChain = -1;	
-			stackUnitList = -1;
-			stackUnitListSize = -1;
-			stackUnitListPosition = -1;
-			selectedStackID = -1;
-			if(!stackUnfocus) {
-				bookmarkStartTime = -1;
-				bookmarkEndTime = -1;
-				stackUnfocus = true;
-			}
-		}
-	}
-	else {
-		selectedStackChain = -1;	
-		stackUnitList = -1;
-		stackUnitListSize = -1;
-		stackUnitListPosition = -1;
-		selectedStackID = -1;
-		if(!stackUnfocus) {
-			bookmarkStartTime = -1;
-			bookmarkEndTime = -1;
-			stackUnfocus = true;
-		}
-	}
 }

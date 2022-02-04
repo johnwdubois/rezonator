@@ -1,34 +1,27 @@
-/// @description Insert description here
-// You can write your code in this editor
+/// @description check version & prompt update
 show_debug_message("Async Social Called");
 
 if (async_load[? "type"] == "FirebaseFirestore_Document_Read") {
 	// DOC READ
 	if (async_load[?"status"] == 200) {
-		var value = async_load[? "value"];
+		var value = string(async_load[? "value"]);
 		show_debug_message("document read: " + string(value));
 		coolMap = json_decode(value);
 
 		newestVersionNum = coolMap[? "Version"];
+		show_debug_message("newestVersionNum: " + string(newestVersionNum));
 
+		if (is_string(newestVersionNum) && newestVersionNum != "") {
 			
-		if(is_string(newestVersionNum)){
-			if(string_length(newestVersionNum) > 0 ){
-			var newVersionString = "Version " + string(newestVersionNum);
-			show_debug_message("global.versionString: " + string(global.versionString) + " , newestVersionNum: " + newVersionString); 
+			newVersionStr = "Version " + string(newestVersionNum);
+			show_debug_message("global.versionString: " + string(global.versionString) + " , newestVersionStr: " + newVersionStr); 
 				
-				if(newVersionString != global.versionString){
-					//reccomend downloading new version
-					show_debug_message("CHECK OUT MY NEW REZONATOR PLEASE");
-							
-					with (obj_openingScreen) showDownloadDialogue = true;
-	
-				}
-				
+			if (newVersionStr != global.versionString) {
+				// recommend downloading new version
+				show_debug_message("CHECK OUT MY NEW REZONATOR PLEASE");
+				with (obj_openingScreen) showDownloadDialogue = true;
 			}
 		}
-		
-		
 	}
 	else{
 		show_debug_message("ERROR IN LOADING: " + string(async_load[? "errorMessage"]));

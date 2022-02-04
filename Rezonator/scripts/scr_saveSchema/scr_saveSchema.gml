@@ -29,12 +29,14 @@ function scr_saveSchema() {
 		var currentLevel = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colLevel, i);
 		var currentSpecialField = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colSpecialFields, i);
 		var currentKey = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colKey, i);
+		var currentTag = (ds_list_find_index(global.importFieldTagList, currentField) >= 0);
 		
 		// for every field, make a map that contains the level and special field
 		var currentFieldMap = ds_map_create();
 		ds_map_add(currentFieldMap, "level", currentLevel);
 		ds_map_add(currentFieldMap, "specialField", currentSpecialField);
 		ds_map_add(currentFieldMap, "key", currentKey);
+		ds_map_add(currentFieldMap, "collectTags", currentTag);
 		
 		// add currentFieldMap to the overall Map (with the key being the name of the field)
 		ds_map_add_map(map, currentField, currentFieldMap);

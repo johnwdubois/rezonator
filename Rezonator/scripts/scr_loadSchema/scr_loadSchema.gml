@@ -2,6 +2,7 @@ function scr_loadSchema(autoload) {
 
 
 	var fileName = global.schemaFileName;
+	ds_list_clear(global.importFieldTagList);
 	
 	// if this is an autoload, Rezonator will try to get the schema file from the program directory, otherwise prompt the user to select a file
 	if (autoload) {
@@ -12,7 +13,7 @@ function scr_loadSchema(autoload) {
 				fileName = global.rezonatorDirString + "/Schemas/Import/igt_schema.json";
 			}
 			else {
-				fileName = global.rezonatorDirString + "\\Schemas\\Import\\IGT Schema.json";
+				fileName = global.rezonatorDirString + "\\Schemas\\Import\\igt_scription.json";
 			}
 		}
 		else if (global.importType == global.importType_CSV) {
@@ -25,10 +26,10 @@ function scr_loadSchema(autoload) {
 		}
 		else if (global.importType == global.importType_CoNLLU) {
 			if (os_type == os_macosx) {
-				fileName = global.rezonatorDirString + "/Schemas/Import/conll-u_schema.json";
+				fileName = global.rezonatorDirString + "/Schemas/Import/conll_u.json";
 			}
 			else {
-				fileName = global.rezonatorDirString + "\\Schemas\\Import\\CoNLL-U Schema.json";
+				fileName = global.rezonatorDirString + "\\Schemas\\Import\\conll_u.json";
 			}
 		}
 		else {
@@ -89,10 +90,11 @@ function scr_loadSchema(autoload) {
 			var currentFieldMap = ds_map_find_value(map, currentField);
 			
 			// get this field's level & special field from this field's map
-			var levelFromMap = ds_map_find_value(currentFieldMap, "level");
-			var specialFieldFromMap = ds_map_find_value(currentFieldMap, "specialField");
-			var keyFromMap = ds_map_find_value(currentFieldMap, "key");
-			show_debug_message("scr_loadSchema ... currentField: " + string(currentField) + ", levelFromMap: " + string(levelFromMap) + ", specialFieldFromMap: " + string(specialFieldFromMap) + ", keyFromMap: " + string(keyFromMap));
+			var levelFromMap = currentFieldMap[? "level"];
+			var specialFieldFromMap = currentFieldMap[? "specialField"];
+			var keyFromMap = currentFieldMap[? "key"];
+			var collectTagsFromMap = currentFieldMap[? "collectTags"];
+			show_debug_message("scr_loadSchema ... currentField: " + string(currentField) + ", levelFromMap: " + string(levelFromMap) + ", specialFieldFromMap: " + string(specialFieldFromMap) + ", keyFromMap: " + string(keyFromMap) + ", collectTagsFromMap: " + string(collectTagsFromMap));
 			
 			// set level & special field (if they were found in this field's map)
 			if (!is_undefined(levelFromMap)) {
@@ -107,6 +109,9 @@ function scr_loadSchema(autoload) {
 			}
 			if (!is_undefined(keyFromMap)) {
 				ds_grid_set(global.tagInfoGrid, global.tagInfoGrid_colKey, i, keyFromMap);
+			}
+			if (!is_undefined(collectTagsFromMap) && collectTagsFromMap) {
+				scr_addToListOnce(global.importFieldTagList, currentField);
 			}
 		}
 	}

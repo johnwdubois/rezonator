@@ -23,6 +23,11 @@ switch (currentStackerFuntion) {
 		scr_groupStackerLoop();
 		break;
 		
+	case stackerFunctionPsent:
+		obj_control.activeStackType = "pSent";
+		scr_psentStackerLoop();
+		break;
+		
 	case stackerFunctionConllu:
 		scr_importConlluAutotag();
 		break;

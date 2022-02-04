@@ -1,5 +1,5 @@
-// Script assets have changed for v2.3.0 see
-// https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
+
+
 function scr_drawDevVars(){
 	
 	// drawing settings
@@ -52,8 +52,8 @@ function scr_drawDevVars(){
 	draw_text(devVarX, wordTopMargin + (strHeight * 15), "focusedChain's vizSetIDList: " + ((ds_exists(focusedChainVizSetIDList, ds_type_list)) ? scr_getStringOfList(focusedChainVizSetIDList) : ""));
 	draw_text(devVarX, wordTopMargin + (strHeight * 16), "focusedChainEntry: " + string(focusedChainFocused));
 	draw_text(devVarX, wordTopMargin + (strHeight * 17), "showSpeakerName: " + string(showSpeakerName));
-	draw_text(devVarX, wordTopMargin + (strHeight * 18), "tokenFieldList: " + scr_getStringOfList(tokenFieldList));
-	draw_text(devVarX, wordTopMargin + (strHeight * 19), "chain1toManyColFieldListTrack: " + scr_getStringOfList(obj_control.chain1toManyColFieldListTrack));
+	draw_text(devVarX, wordTopMargin + (strHeight * 18), "shortcutsEnabled: " + string(shortcutsEnabled));
+	draw_text(devVarX, wordTopMargin + (strHeight * 19), "mouseoverTagCell: " + string(mouseoverTagCell));
 	draw_text(devVarX, wordTopMargin + (strHeight * 20), "displayTokenList: " + scr_getStringOfList(obj_control.displayTokenList));
 	draw_text(devVarX, wordTopMargin + (strHeight * 21), "nodeMap size: " + string(ds_map_size(global.nodeMap)));
 	draw_text(devVarX, wordTopMargin + (strHeight * 22), "dragStartOriginalUnit: " + string(obj_chain.dragStartOriginalUnit));
@@ -73,8 +73,8 @@ function scr_drawDevVars(){
 	
 	draw_text(devVarX - 580, wordTopMargin + (strHeight * 1), "showNav: " + string(obj_panelPane.showNav));
 	draw_text(devVarX - 580, wordTopMargin + (strHeight * 2), "showNavLeft: " + string(obj_panelPane.showNavLeft));
-	draw_text(devVarX - 580, wordTopMargin + (strHeight * 3), "showNavRight: " + string(obj_panelPane.showNavRight));
-	draw_text(devVarX - 580, wordTopMargin + (strHeight * 4), "showTool: " + string(obj_toolPane.showTool));
+	draw_text(devVarX - 580, wordTopMargin + (strHeight * 3), "selectedTagList: " + scr_getStringOfList(selectedTagList));
+	draw_text(devVarX - 580, wordTopMargin + (strHeight * 4), "navWindowTaggingSingleOptionSelect: " + string(navWindowTaggingSingleOptionSelect));
 	draw_text(devVarX - 580, wordTopMargin + (strHeight * 5), "displayTokenField: " + string(global.displayTokenField));
 	draw_text(devVarX - 580, wordTopMargin + (strHeight * 6), "participantField: " + string(global.participantField));
 	draw_text(devVarX - 580, wordTopMargin + (strHeight * 7), "currentTool: " + string(obj_toolPane.currentTool));
@@ -85,6 +85,11 @@ function scr_drawDevVars(){
 	draw_text(devVarX - 580, wordTopMargin + (strHeight * 12), "startRangeMax: " + string(obj_control.drawRangeStartMax));
 	draw_text(devVarX - 580, wordTopMargin + (strHeight * 13), "endRangeMin: " + string(obj_control.drawRangeEndMin));
 	draw_text(devVarX - 580, wordTopMargin + (strHeight * 14), "quickPickedChainID: " + string(obj_control.quickPickedChainID));
+	draw_text(devVarX - 580, wordTopMargin + (strHeight * 15), "mergeUnitList: " + scr_getStringOfList(mergeUnitList));
+	draw_text(devVarX - 580, wordTopMargin + (strHeight * 16), "navWindowTaggingField: " + string(navWindowTaggingField));
+	draw_text(devVarX - 580, wordTopMargin + (strHeight * 17), "navWindowTaggingID: " + string(navWindowTaggingID));
+	draw_text(devVarX - 580, wordTopMargin + (strHeight * 18), "navWindowTaggingFocusHeavy: " + string(navWindowTaggingFocusHeavy));
+	draw_text(devVarX - 580, wordTopMargin + (strHeight * 19), "navWindowTaggingOldValue : " + string(obj_control.navWindowTaggingOldValue));
 
 	
 	// reset halign to left

@@ -1,5 +1,3 @@
-// Script assets have changed for v2.3.0 see
-// https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
 function scr_disableFilter(){
 
 	with (obj_control) {		
@@ -29,7 +27,7 @@ function scr_disableFilter(){
 	
 	
 	discourseSubMap[? "displayUnitList"] = unitList;
-	scr_jumpToUnit(drawRangeUnit);
+	scr_jumpToUnitTop(drawRangeUnit);
 	scr_setValueForAllNodesInList(unitList, "active", true);
 	
 

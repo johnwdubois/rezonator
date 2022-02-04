@@ -1,5 +1,3 @@
-// Script assets have changed for v2.3.0 see
-// https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
 function scr_removeSearch(searchID){
 
 
@@ -11,7 +9,7 @@ function scr_removeSearch(searchID){
 	
 	
 	
-	var currentSearchSubMap = global.searchMap[?obj_dialogueBox.searchToBeRemoved];
+	var currentSearchSubMap = global.searchMap[?searchID];
 
 
 

@@ -4,7 +4,7 @@ function scr_tagOptions(optionSelected) {
 		scr_destroyAllDropDownsOtherThanSelf();
 		var dropDownOptionList = ds_list_create();
 		ds_list_copy(dropDownOptionList, obj_control.tokenFieldList);
-		ds_list_insert(dropDownOptionList, 0, "option_create-new-field");
+		ds_list_add(dropDownOptionList, "option_create-new-field");
 		scr_createDropDown(x + windowWidth, y + (obj_dropDown.optionSpacing * optionIndex), dropDownOptionList, global.optionListTypeTokenFields);
 	
 	}
@@ -12,7 +12,7 @@ function scr_tagOptions(optionSelected) {
 		scr_destroyAllDropDownsOtherThanSelf();
 		var dropDownOptionList = ds_list_create();
 		ds_list_copy(dropDownOptionList, obj_control.chunkFieldList);
-		ds_list_insert(dropDownOptionList, 0, "option_create-new-field");
+		ds_list_add(dropDownOptionList, "option_create-new-field");
 		scr_createDropDown(x + windowWidth, y + (obj_dropDown.optionSpacing * optionIndex), dropDownOptionList, global.optionListTypeChunkFields);
 	
 	}
@@ -20,7 +20,7 @@ function scr_tagOptions(optionSelected) {
 		scr_destroyAllDropDownsOtherThanSelf();
 		var dropDownOptionList = ds_list_create();
 		ds_list_copy(dropDownOptionList, obj_control.unitFieldList);
-		ds_list_insert(dropDownOptionList, 0, "option_create-new-field");
+		ds_list_add(dropDownOptionList, "option_create-new-field");
 		scr_createDropDown(x + windowWidth, y + (obj_dropDown.optionSpacing * optionIndex), dropDownOptionList, global.optionListTypeUnitFields);
 
 	}
@@ -28,7 +28,7 @@ function scr_tagOptions(optionSelected) {
 		scr_destroyAllDropDownsOtherThanSelf();
 		var dropDownOptionList = ds_list_create();
 		ds_list_copy(dropDownOptionList, global.chainEntryFieldList);
-		ds_list_insert(dropDownOptionList, 0, "option_create-new-field");
+		ds_list_add(dropDownOptionList, "option_create-new-field");
 		scr_deleteFromList(dropDownOptionList, "gapUnits");
 		scr_deleteFromList(dropDownOptionList, "gapWords");
 		scr_deleteFromList(dropDownOptionList, "tokenCount");
@@ -40,7 +40,7 @@ function scr_tagOptions(optionSelected) {
 		scr_destroyAllDropDownsOtherThanSelf();
 		var dropDownOptionList = ds_list_create();
 		ds_list_copy(dropDownOptionList, global.chainFieldList);
-		ds_list_insert(dropDownOptionList, 0, "option_create-new-field");
+		ds_list_add(dropDownOptionList, "option_create-new-field");
 		scr_deleteFromList(dropDownOptionList, "chainSize");
 		scr_createDropDown(x + windowWidth, y + (obj_dropDown.optionSpacing * optionIndex), dropDownOptionList, global.optionListTypeChainFields);
 

@@ -10,8 +10,11 @@ function scr_chain1ToManyFieldOptions(optionSelected) {
 	}
 	
 	if (ds_exists(chain1toManyColFieldList, ds_type_list)) {
+		
+		
 		var fieldToChange = obj_control.chain1ToManyColFieldToChange;
-		ds_list_set(chain1toManyColFieldList, fieldToChange, optionSelected);
+		var optionSelectedPrevIndex = ds_list_find_index(chain1toManyColFieldList,optionSelected);
+		scr_listSwap(chain1toManyColFieldList, fieldToChange, optionSelectedPrevIndex);
 	}
 
 }

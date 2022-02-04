@@ -1,5 +1,5 @@
 /// @description change prose/grid
-if (instance_exists(obj_dialogueBox)) {
+if (instance_exists(obj_dialogueBox) || !shortcutsEnabled) {
 	exit;
 }
 

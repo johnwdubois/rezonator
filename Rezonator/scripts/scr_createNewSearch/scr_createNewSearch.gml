@@ -1,5 +1,5 @@
-// Script assets have changed for v2.3.0 see
-// https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
+
+
 function scr_createNewSearch(searchTermList){
 	
 	if(scr_isNumericAndExists(global.searchMap,ds_type_map)){
@@ -20,6 +20,20 @@ function scr_createNewSearch(searchTermList){
 
 		var displayUnitList = searchLists[|0];
 		var displayTokenList = searchLists[|1];
+		
+		
+		var unitListSize = ds_list_size(displayUnitList);
+		var counter = 0;
+		show_debug_message("unitListSize:  " +string(unitListSize));
+		repeat(unitListSize){
+			show_debug_message(string(counter) + ":  "+string(displayUnitList[|counter]));
+			if(!is_string(displayUnitList[|counter])){
+				ds_list_delete(displayUnitList,counter);
+			}
+			else{
+				counter++;
+			}
+		}
 	
 		if(scr_isNumericAndExists(displayTokenList, ds_type_list)){
 
@@ -47,9 +61,13 @@ function scr_createNewSearch(searchTermList){
 					ds_map_add(subMap, "name", searchName);
 	
 					// add range settings to subMap
+					show_debug_message("field:  "+ string(obj_control.searchField))
 					ds_map_add(subMap, "field", obj_control.searchField);
+					show_debug_message("range:  "+ string(scr_get_translation(obj_control.searchRange)))
 					ds_map_add(subMap, "range", obj_control.searchRange);
+					show_debug_message("regex:  "+ string(obj_control.regExCheck))
 					ds_map_add(subMap, "regex", obj_control.regExCheck);
+					show_debug_message("caseSensitive:  "+ string(obj_control.caseSensitive))
 					ds_map_add(subMap, "caseSensitive", obj_control.caseSensitive);
 					
 					

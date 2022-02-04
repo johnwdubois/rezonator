@@ -1,5 +1,3 @@
-// Script assets have changed for v2.3.0 see
-// https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
 function scr_closeQuestionBoxVariables(){
 
 		
@@ -10,8 +8,10 @@ function scr_closeQuestionBoxVariables(){
 	clearAllRez = false;
 	clearAllLinks = false;
 	clearChain = false;
+	clearChainMulti = false;
 	layerLink = false;
 	combineChains = false;
+	removeTags = false;
 	removeTagToken = false;
 	removeTagUnit = false;
 	removeTagEntry = false;

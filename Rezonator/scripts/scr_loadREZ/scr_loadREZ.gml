@@ -93,6 +93,7 @@ function scr_loadREZ() {
 				
 					global.unitDelimField = ds_map_find_value(map, "unitDelimField");
 					global.unitImportTurnDelimColName = ds_map_find_value(map, "unitImportTurnDelimColName");
+					global.psentDelimField = ds_map_find_value(map, "psentDelimField");
 					global.wordDelimField = ds_map_find_value(map, "wordImportWordDelimColName");
 					global.currentTranslation = ds_map_find_value(map, "currentTranslation");
 					global.unitImportSpeakerColName = ds_map_find_value(map, "unitImportSpeakerColName");
@@ -250,6 +251,15 @@ function scr_loadREZ() {
 					if (ds_map_exists(map, "stackCounter")) {
 						var stackCounter = map[? "stackCounter"];
 						if (is_numeric(stackCounter)) obj_chain.stackChainNameCounter = stackCounter;
+					}
+					// get audioFile
+					if (ds_map_exists(map, "audioFile")) {
+						var audioFile = map[? "audioFile"];
+						show_debug_message("audioFile: " + string(audioFile))
+						if (file_exists(audioFile)){
+							obj_fileLoader.importedAudioFile = audioFile;
+							show_debug_message("obj_fileLoader.importedAudioFile:  "+string(obj_fileLoader.importedAudioFile));
+						}
 					}
 				}
 			}		

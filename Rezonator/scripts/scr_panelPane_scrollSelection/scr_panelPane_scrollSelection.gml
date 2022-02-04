@@ -1,5 +1,3 @@
-// Script assets have changed for v2.3.0 see
-// https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
 function scr_panelPane_scrollSelection(focusedElementY, strHeight){
 	
 	var leftPaneInst = -1;
@@ -46,6 +44,7 @@ function scr_panelPane_scrollSelection(focusedElementY, strHeight){
 					with (obj_panelPane) functionTree_treeSelected = list[| functionChainList_focusedIndex];
 				}
 				else if (onTagTabLeft) {
+					ds_list_clear(obj_control.selectedTagList);
 					if (chainViewOneToMany) {
 						// one to many fields
 						if (fieldPaneSwitchButton == fieldPaneDocMode) with (obj_panelPane) functionField_tokenFieldSelected = list[| functionChainList_focusedIndex];

@@ -12,6 +12,7 @@ stackerFunctionTurn = 2;
 stackerFunctionSent = 3;
 stackerFunctionGroup = 4;
 stackerFunctionConllu = 5;
+stackerFunctionPsent = 6;
 currentStackerFuntion = stackerFunctionDefault;
 
 endNoteTagsGrid = ds_grid_create(2, 0);
@@ -29,6 +30,7 @@ createStacksTurn = false;
 createStacksSentence = false;
 createStacksGroup = false;
 createStacksClique = false;
+createStacksPsent = false;
 
 
 scr_scrollBarInit();

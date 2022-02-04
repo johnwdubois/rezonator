@@ -1,5 +1,5 @@
-// Script assets have changed for v2.3.0 see
-// https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
+
+
 function scr_closeDialogueBoxVariables(){
 	if(inputWindowActive){
 		with (obj_control) {
@@ -48,8 +48,10 @@ function scr_closeDialogueBoxVariables(){
 		clearAllRez = false;
 		clearAllLinks = false;
 		clearChain = false;
+		clearChainMulti = false;
 		layerLink = false;
 		combineChains = false;
+		removeTags = false;
 		removeTagToken = false;
 		removeTagUnit = false;
 		removeTagEntry = false;
@@ -62,6 +64,7 @@ function scr_closeDialogueBoxVariables(){
 		removeFieldChain = false;
 		removeFieldChunk = false;
 		removeFieldLink = false;
+		mergeUnit = false;
 		stringToBeRemoved = "";
 		removeSearch = false;
 		searchToBeRemoved = "";
@@ -81,12 +84,14 @@ function scr_closeDialogueBoxVariables(){
 			createStacksTurn = false;
 			createStacksSentence = false;
 			createStacksClique = false;
+			createStacksPsent = false;
 		}
 	}
 	if (alertWindowActive) {
 		with (obj_control) {
 			noResultsFound = false;
 			noTurnFound = false;
+			noPsentFound = false;
 			insertAnyNumber = false;
 		}
 	}

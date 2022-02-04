@@ -1,5 +1,5 @@
-// Script assets have changed for v2.3.0 see
-// https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
+
+
 function scr_mapViewerDrawNodeData(){
 
 	scr_adaptFont("0", "M");
@@ -90,7 +90,7 @@ function scr_mapViewerDrawNodeData(){
 					var isList = (subsubMapKey == "tagSet" || subsubMapKey == "searchTermList" || subsubMapKey == "displayUnitList" 
 									|| subsubMapKey == "displayTokenList"|| subsubMapKey == "targetList"|| subsubMapKey == "unitList"|| subsubMapKey == "chainList"
 									|| subsubMapKey == "linkIDList" || subsubMapKey == "setIDList" ||subsubMapKey == "goalLinkList"||subsubMapKey == "shortcutSet"
-									||subsubMapKey == "tokenList" || subsubMapKey == "entryList" || nodeShow == "entityMap" || scr_isNumericAndExists(subsubMapVal, ds_type_list));
+									||subsubMapKey == "tokenList" || subsubMapKey == "entryList" || nodeShow == "entityMap");
 		
 					if (isList && scr_isNumericAndExists(subsubMapVal, ds_type_list)) {
 						subsubMapValStr = scr_getStringOfList(subsubMapVal);

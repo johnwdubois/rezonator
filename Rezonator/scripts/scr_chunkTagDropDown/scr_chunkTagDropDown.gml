@@ -1,6 +1,6 @@
-// Script assets have changed for v2.3.0 see
-// https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
-function scr_chunkTagDropDown(fieldMap, field, IDtoChange, cellRectX1, cellRectY1, cellRectX2, cellRectY2, mouseoverCell, lastColumn) {
+function scr_chunkTagDropDown(fieldMap, field, IDtoChange, str, cellRectX1, cellRectY1, cellRectX2, cellRectY2, mouseoverCell, lastColumn) {
+	
+	var mouseoverDropDown = false;
 	
 	if (mouseoverCell && !instance_exists(obj_dialogueBox)) {
 		// dropDown button for editing tags
@@ -30,7 +30,7 @@ function scr_chunkTagDropDown(fieldMap, field, IDtoChange, cellRectX1, cellRectY
 						dropDownButtonX2 -= global.scrollBarWidth;
 					}
 						
-					var mouseoverDropDown = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, dropDownButtonX1, dropDownButtonY1, dropDownButtonX2, dropDownButtonY2) && !instance_exists(obj_dropDown) && !instance_exists(obj_dialogueBox);
+					mouseoverDropDown = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, dropDownButtonX1, dropDownButtonY1, dropDownButtonX2, dropDownButtonY2) && !instance_exists(obj_dropDown) && !instance_exists(obj_dialogueBox);
 						
 					draw_sprite_ext(spr_dropDown, 0, mean(dropDownButtonX1, dropDownButtonX2) - clipX, mean(dropDownButtonY1, dropDownButtonY2) - clipY, 1, 1, 0, global.colorThemeText, 1);
 								
@@ -46,7 +46,8 @@ function scr_chunkTagDropDown(fieldMap, field, IDtoChange, cellRectX1, cellRectY
 							// create dropdown
 							var dropDownOptionList = ds_list_create();
 							ds_list_copy(dropDownOptionList, fieldTagSet);
-							ds_list_insert(dropDownOptionList, 0, "option_add-to-tag-set");
+							ds_list_add(dropDownOptionList, "option_add-to-tag-set");
+							ds_list_add(dropDownOptionList, "menu_clear");
 
 							scr_createDropDown(cellRectX1, cellRectY2, dropDownOptionList, global.optionListTypeChunk1To1Tag);
 						}
@@ -55,6 +56,8 @@ function scr_chunkTagDropDown(fieldMap, field, IDtoChange, cellRectX1, cellRectY
 			}
 		}
 	}
+	
+	scr_cellEdit(IDtoChange, field, mouseoverCell, mouseoverDropDown, cellRectX1, cellRectY1, cellRectX2, cellRectY2, str, "chunk");
 	
 
 }
