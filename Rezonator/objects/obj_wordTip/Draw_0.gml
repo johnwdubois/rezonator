@@ -2,15 +2,15 @@
 // You can write your code in this editor
 if ((obj_control.hoverTokenID != "" or obj_control.hoverUnitID != "" or obj_control.hoverChunkID != "" or obj_panelPane.functionTree_treeLinkMouseover != "") and wordTipDisplay == true) {
 
-	if(obj_control.hoverUnitID != ""){
-		currentID = obj_control.hoverUnitID;
-	}
-	else if(obj_control.hoverTokenID != ""){
+	if(obj_control.hoverTokenID != ""){
 		// Make the box display the word at the mouse cursor
 		currentID = obj_control.hoverTokenID;
 	}
 	else if(obj_control.hoverChunkID != ""){
 		currentID = obj_control.hoverChunkID;
+	}
+	else if(obj_control.hoverUnitID != ""){
+		currentID = obj_control.hoverUnitID;
 	}
 	else if(obj_panelPane.functionTree_treeLinkMouseover != ""){
 		currentID = obj_panelPane.functionTree_treeLinkMouseover;	
