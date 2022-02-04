@@ -1,6 +1,21 @@
 /// @description set nav window tag
 if (!instance_exists(obj_control)) exit;
 
+// get left pane inst
+var leftPaneInst = -1;
+with (obj_panelPane) {
+	if (currentFunction == functionChainList) leftPaneInst = self.id;
+}
+
+// refresh entry sort if we need to
+if (instance_exists(leftPaneInst)) {
+	var currentTab = leftPaneInst.functionChainList_currentTab;
+	var onChainTab = currentTab == leftPaneInst.functionChainList_tabRezBrush || currentTab == leftPaneInst.functionChainList_tabTrackBrush || currentTab == leftPaneInst.functionChainList_tabStackBrush;
+	if (onChainTab && obj_control.chain1toManyCustomSortColIndex >= 0 && obj_panelPane.chainViewOneToMany) {
+		obj_control.refreshCustomSort = true;
+	}
+}
+
 with(obj_control){
 	mouseoverInputBox = false;
 }

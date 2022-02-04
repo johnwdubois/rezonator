@@ -1,5 +1,3 @@
-
-
 function scr_sortVizSetIDList(chainID){
 	
 	// get chain's submap
