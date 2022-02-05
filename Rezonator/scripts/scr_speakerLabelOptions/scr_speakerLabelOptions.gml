@@ -144,7 +144,7 @@ function scr_speakerLabelOptions(optionSelected) {
 				}
 				var dropDownOptionList = ds_list_create();
 				ds_list_add(dropDownOptionList, "Tag Unit");
-				if(obj_control.inChain == true){
+				if(obj_control.inChain){
 					ds_list_add(dropDownOptionList, "Tag Chain", "Tag Entry");
 				}
 				if (ds_list_size(dropDownOptionList) > 0) {
@@ -153,7 +153,7 @@ function scr_speakerLabelOptions(optionSelected) {
 			}
 		}
 	}
-	obj_control.inChain = false;
+
 	obj_control.rightClicked = false;
 
 }

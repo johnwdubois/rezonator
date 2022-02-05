@@ -1,5 +1,3 @@
-// Script assets have changed for v2.3.0 see
-// https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
 function scr_sortCustom(chainID){
 	
 	show_debug_message("scr_sortCustom, chainID: " + string(chainID));
@@ -40,7 +38,7 @@ function scr_sortCustom(chainID){
 		show_debug_message("scr_sortCustom, fieldList does not exist");
 		exit;
 	}
-	var fieldName = fieldList[| fieldIndex];
+	var fieldName = fieldList[| fieldIndex - 3];
 
 	
 
@@ -172,5 +170,9 @@ function scr_sortCustom(chainID){
 	ds_grid_destroy(tempStrGrid);
 	ds_grid_destroy(tempDigitGrid);
 	
+	show_debug_message("fieldName: " + string(fieldName) + ", navWindowTaggingField: " + string(obj_control.navWindowTaggingField));
+	if (obj_control.navWindowTaggingID != "" && obj_control.navWindowTaggingField == fieldName && fieldName != "") {
+		scr_scrollNavToID(obj_panelPane.functionChainList_currentTab, obj_control.navWindowTaggingID, false);
+	}
 	
 }

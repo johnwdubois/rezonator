@@ -54,7 +54,7 @@ function scr_createStackOptions(optionSelected) {
 			obj_stacker.createStacksGroup = true;
 			instance_destroy(obj_dropDown);
 			break;
-		case "menu_sentence":
+		case "Unit Label":
 			if (doStacksExist) {
 				confirmStack = true;
 			}
@@ -63,6 +63,17 @@ function scr_createStackOptions(optionSelected) {
 				obj_stacker.alarm[6] = 1;
 			}
 			obj_stacker.createStacksSentence = true;
+			instance_destroy(obj_dropDown);
+			break;
+		case "Prosodic Sentence":
+			if (doStacksExist) {
+				confirmStack = true;
+			}
+			else {
+				obj_stacker.splitSave = true;
+				obj_stacker.alarm[10] = 1;
+			}
+			obj_stacker.createStacksPsent = true;
 			instance_destroy(obj_dropDown);
 			break;
 		case "menu_clique":

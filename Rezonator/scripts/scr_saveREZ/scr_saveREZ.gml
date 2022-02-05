@@ -91,6 +91,7 @@ function scr_saveREZ(autosave) {
 			//save special feild colnames
 			ds_map_add(map, "unitDelimField", global.unitDelimField);
 			ds_map_add(map, "unitImportTurnDelimColName", global.unitImportTurnDelimColName);
+			ds_map_add(map, "psentDelimField", global.psentDelimField);
 			ds_map_add(map, "wordImportWordDelimColName", global.wordDelimField);
 			ds_map_add(map, "unitImportUnitEndColName", global.unitImportUnitEndColName);
 			ds_map_add(map, "unitImportUnitStartColName", global.unitImportUnitStartColName);
@@ -143,6 +144,8 @@ function scr_saveREZ(autosave) {
 			ds_map_add(map, "resonanceCounter", obj_chain.rezChainNameCounter);
 			ds_map_add(map, "trailCounter", obj_chain.trackChainNameCounter);
 			ds_map_add(map, "stackCounter", obj_chain.stackChainNameCounter);
+			ds_map_add(map, "audioFile", obj_audioUI.audioFile);
+			
 			
 			
 		}

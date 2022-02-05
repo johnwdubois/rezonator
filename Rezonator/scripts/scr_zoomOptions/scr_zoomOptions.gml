@@ -59,7 +59,8 @@ function scr_zoomOptions(optionSelected) {
 				if(filterGridPopulated) {
 					ds_grid_multiply_region(obj_control.filterGrid, obj_control.lineGrid_colPixelYOriginal, 0, obj_control.lineGrid_colPixelYOriginal, ds_grid_height(obj_control.filterGrid), obj_control.gridSpaceRatio);
 				}
-				scr_jumpToUnit(obj_control.prevCenterDisplayRow);
+				obj_control.offIndex = true;
+				scr_jumpToUnitTop(obj_control.prevCenterDisplayRow);
 				// reset the ratio
 				obj_control.prevGridSpaceVertical = obj_control.gridSpaceVertical;
 				if(obj_control.arrowSpeed < obj_control.arrowSpeedMax) {
@@ -91,7 +92,8 @@ function scr_zoomOptions(optionSelected) {
 				if(filterGridPopulated) {
 					ds_grid_multiply_region(obj_control.filterGrid, obj_control.lineGrid_colPixelYOriginal, 0, obj_control.lineGrid_colPixelYOriginal, ds_grid_height(obj_control.filterGrid), obj_control.gridSpaceRatio);
 				}
-				scr_jumpToUnit(obj_control.prevCenterDisplayRow);
+				obj_control.offIndex = true;
+				scr_jumpToUnitTop(obj_control.prevCenterDisplayRow);
 				// reset the ratio
 				obj_control.prevGridSpaceVertical = obj_control.gridSpaceVertical;
 				if(obj_control.arrowSpeed > obj_control.arrowSpeedMin) {
@@ -129,7 +131,8 @@ function scr_zoomOptions(optionSelected) {
 				if(filterGridPopulated) {
 					ds_grid_multiply_region(obj_control.filterGrid, obj_control.lineGrid_colPixelYOriginal, 0, obj_control.lineGrid_colPixelYOriginal, ds_grid_height(obj_control.filterGrid), obj_control.gridSpaceRatio);
 				}
-				scr_jumpToUnit(obj_control.prevCenterDisplayRow);
+				obj_control.offIndex = true;
+				scr_jumpToUnitTop(obj_control.prevCenterDisplayRow);
 				// reset the ratio
 				obj_control.prevGridSpaceVertical = obj_control.gridSpaceVertical;
 				if(obj_control.arrowSpeed < obj_control.arrowSpeedMax) {
@@ -179,7 +182,8 @@ function scr_zoomOptions(optionSelected) {
 				if(filterGridPopulated) {
 					ds_grid_multiply_region(obj_control.filterGrid, obj_control.lineGrid_colPixelYOriginal, 0, obj_control.lineGrid_colPixelYOriginal, ds_grid_height(obj_control.filterGrid), obj_control.gridSpaceRatio);
 				}
-				scr_jumpToUnit(obj_control.prevCenterDisplayRow);
+				obj_control.offIndex = true;
+				scr_jumpToUnitTop(obj_control.prevCenterDisplayRow);
 				// reset the ratio
 				obj_control.prevGridSpaceVertical = obj_control.gridSpaceVertical;
 				if(obj_control.arrowSpeed > obj_control.arrowSpeedMin) {

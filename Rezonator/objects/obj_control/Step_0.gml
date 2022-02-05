@@ -1,7 +1,6 @@
 /*
 	Purpose: Check for user key inputs and navigate accordingly, update the center display row based on positioning, change the font size, and check for panel pane mouse over
 */
-
 #macro vk_rcommand 91
 #macro vk_lcommand 92
 
@@ -10,7 +9,14 @@ scr_windowExit();
 sessionCurrentTime = (current_time - sessionStartTime) + current_time;
 
 scr_multiDropDownMouseover();
+if (!instance_exists(obj_dropDown)) {
+	inChain = false;
+	inChunk = false;
+}
 
+if (keyboard_check_pressed(vk_anykey)) {
+	navWindowTaggingKeyboardInput = (navWindowTaggingID != "" && navWindowTaggingField != "");
+}
 
 
 if (!scr_isNumericAndExists(displayUnitList, ds_type_list)) {
@@ -31,6 +37,7 @@ if (!scr_isNumericAndExists(displayUnitList, ds_type_list)) {
 
 
 shortcutsEnabled = true;
+if (navWindowTaggingID != "") shortcutsEnabled = false;
 cameraBottomLine = camera_get_view_height(view_get_camera(0));
 
 global.delayInput = max(global.delayInput - 1, 0);
@@ -103,7 +110,7 @@ if (!gridView) {
 	
 		var scrollSpeed = 0;
 		// Single press of arrow keys now moves screen by one line
-		if ((keyboard_check(vk_down) or mouse_wheel_down())) {
+		if ((keyboard_check(vk_down) && navWindowTaggingID == "") or mouse_wheel_down()) {
 			if(holdDownArrowKey == 0 and not mouse_wheel_down()) {
 
 				scrollSpeed = -gridSpaceVertical;
@@ -131,7 +138,7 @@ if (!gridView) {
 				holdDownArrowKey = 31;
 			} 
 		}
-		if (keyboard_check(vk_up) or mouse_wheel_up()) {
+		if ((keyboard_check(vk_up) && navWindowTaggingID == "") or mouse_wheel_up()) {
 			if(holdUpArrowKey == 0 and not mouse_wheel_up()) {
 			
 				scrollSpeed = gridSpaceVertical;
@@ -275,13 +282,13 @@ if (!gridView) {
 				with (obj_alarm2) alarm[9] = 2;
 			}
 		
-			if (keyboard_check_pressed(vk_right) and !global.ctrlHold and not dialogueBoxActive) {
+			if (keyboard_check_pressed(vk_right) and !global.ctrlHold and !dialogueBoxActive && navWindowTaggingID == "") {
 				scrollPlusXDest -= gridSpaceHorizontal;
 			}
 
 
 
-			if (keyboard_check_pressed(vk_left) and !global.ctrlHold and not dialogueBoxActive) {
+			if (keyboard_check_pressed(vk_left) and !global.ctrlHold and !dialogueBoxActive && navWindowTaggingID == "") {
 				scrollPlusXDest += gridSpaceHorizontal;
 			}
 
@@ -387,6 +394,7 @@ if (shortcutsEnabled) {
 						arrowSpeed *= gridSpaceRatio;	
 					}
 				}
+				obj_control.offIndex = true;
 				scr_jumpToUnitTop(scr_currentTopLine());
 				alarm[3] = 15;
 				
@@ -407,6 +415,7 @@ if (shortcutsEnabled) {
 						arrowSpeed *= gridSpaceRatio;	
 					}
 				}
+				obj_control.offIndex = true;
 				scr_jumpToUnitTop(scr_currentTopLine());
 				alarm[4] = 15;
 			}
@@ -453,7 +462,6 @@ if (keyboard_check(vk_alt) and keyboard_check(vk_shift) and keyboard_check_press
 
 currentCenterDisplayRow = max(currentCenterDisplayRow, 0);
 currentCenterDisplayRow = min(currentCenterDisplayRow, ds_grid_height(currentActiveLineGrid) - 1);
-
 
 
 // hide participant names
@@ -549,9 +557,6 @@ if (not instance_exists(obj_dropDown) and not ableToCreateDropDownAlarmSet) {
 }
 
 
-if (keyboard_check(vk_alt) and keyboard_check(vk_shift) and keyboard_check_pressed(ord("S"))){
-	obj_panelPane.showTracker = !obj_panelPane.showTracker;
-}
 
 
 // filter & quick filter
@@ -609,3 +614,34 @@ window_set_caption(captionString);
 
 scr_fontSizeControl();
 
+
+	
+if (mouse_check_button(mb_left)) {
+	isDragging = true;
+}
+
+if (mouse_check_button_released(mb_left) && !mouseoverTagCell 
+&& !obj_control.mouseoverInputBox && !obj_control.mouseoverDropDown
+&& !obj_control.isDragging) {
+	alarm[1] = 1;
+	with (obj_inputBox) {
+		if (navWindowTagging) {
+			show_debug_message("obj_control kills input box 4 fun");
+			instance_destroy();
+		}
+	}
+}
+
+if (mouse_check_button_pressed(mb_right)) {
+	scr_clearNavWindowTagging();
+}
+if (mouse_check_button_pressed(mb_left) && !mouseoverPanelPane && navWindowTaggingID != "") {
+	with (obj_inputBox) instance_destroy();
+	scr_clearNavWindowTagging();
+}
+
+
+if (keyboard_check_released(vk_up)) navWindowTaggingCanPressUp = true;
+if (keyboard_check_released(vk_down)) navWindowTaggingCanPressDown = true;
+if (keyboard_check_released(vk_left)) navWindowTaggingCanPressLeft = true;
+if (keyboard_check_released(vk_right)) navWindowTaggingCanPressRight = true;

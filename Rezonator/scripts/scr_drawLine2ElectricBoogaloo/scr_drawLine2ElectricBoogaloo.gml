@@ -1,5 +1,5 @@
-// Script assets have changed for v2.3.0 see
-// https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
+
+
 function scr_drawLine2ElectricBoogaloo(){
 	
 	
@@ -141,11 +141,20 @@ function scr_drawLine2ElectricBoogaloo(){
 			drawRangeEnd += 2;
 		}
 		
+		//draw unit if selected for merge
+		var inMergeUnitList = (ds_list_find_index(mergeUnitList,currentUnit)>-1);
+		if(keyboard_check(vk_alt) && inMergeUnitList){
+			var unitY1 = floor(currentUnitSubMap[? "pixelY"] - gridSpaceVertical/2 -1);
+			var unitY2 = floor(currentUnitSubMap[? "pixelY"] + gridSpaceVertical/2 -3);
+			draw_set_color(merge_color(global.colorThemeGrid_colSelected1, c_white, 0.8));
+			draw_rectangle(0,unitY1,obj_toolPane.x , unitY2, false);
+		}
 		
 		
 		// check if this unit should be added to unitRectList
 		if (makingRect && mouse_check_button(mb_left)) {
 			var inMouseHoldRect = (min(mouse_y, mouseHoldRectY1) < currentPixelY + (gridSpaceVertical * 0.5) && max(mouse_y, mouseHoldRectY1) > currentPixelY - (gridSpaceVertical * 0.5));
+			if (instance_exists(obj_dialogueBox) || instance_exists(obj_dropDown)) inMouseHoldRect = true;
 			if (inMouseHoldRect) {
 				scr_addToListOnce(inRectUnitIDList, currentUnit);
 			}
@@ -184,9 +193,38 @@ function scr_drawLine2ElectricBoogaloo(){
 	var speakerLabelColXListSize = ds_list_size(speakerLabelColXList);
 	for (var i = 0; i < speakerLabelColXListSize; i++) {
 		var currentSectionX2 = speakerLabelColXList[| i];
+		if( i == 0 ){
+			currentSectionX2 -= 1;
+		}
 		draw_set_color(global.colorThemeBG);
 		draw_line(currentSectionX2, wordTopMargin, currentSectionX2, camHeight);
 	}
+	var hoverLine = false;
+	if (instance_exists(obj_audioUI)) {
+		if (obj_audioUI.audioJumpOnWordClick && unitClosestToMouse != "" && !obj_control.mouseoverPanelPane && !obj_toolPane.mouseOverToolPane && !obj_audioUI.mouseOverAudioUI && !instance_exists(obj_dropDown) && !instance_exists(obj_dialogueBox)) {
+			hoverLine = true;
+			obj_control.hoverUnitID = unitClosestToMouse;
+			
+			if(mouse_check_button_released(mb_left) && obj_audioUI.audioSound != -1 && file_exists(obj_audioUI.audioFile) ){
+				
+				scr_audioJumpToUnit(unitClosestToMouse);
+				obj_audioUI.audioPaused = false;
+			}
+		}
+	}
+	
+	
+	//draw the hover lines for each unit
+	if(hoverLine or (is_string(obj_control.hoverUnitID) && obj_control.hoverUnitID != "" && !mouse_check_button(mb_left)
+		&& obj_toolPane.currentMode != obj_toolPane.modeRead && !instance_exists(obj_dropDown) && !instance_exists(obj_dialogueBox))){
+		var currentUnitSubMap = global.nodeMap[? obj_control.hoverUnitID];
+		var unitY1 = floor(currentUnitSubMap[? "pixelY"] - gridSpaceVertical/2 -1);
+		var unitY2 = floor(currentUnitSubMap[? "pixelY"] + gridSpaceVertical/2 -3);
+		draw_set_color(merge_color(global.colorThemeGrid_colSelected1, c_white, 0.5));
+		draw_rectangle(0,unitY1,obj_toolPane.x , unitY2, true);
+	}
+
+
 	
 	// set wordLeftMargin
 	wordLeftMargin = speakerLabelColXList[| speakerLabelColXListSize - 1];
@@ -200,5 +238,24 @@ function scr_drawLine2ElectricBoogaloo(){
 	
 	
 	updateChainShowMap = false;
+	
+	
+	
+	// merge units list (temp?)
+	if (keyboard_check(vk_alt) && keyboard_check_released(ord("U")) && obj_control.shortcutsEnabled) {
+		if (!instance_exists(obj_dialogueBox)) {
+			instance_create_layer(x, y, "InstancesDialogue", obj_dialogueBox);
+							
+			obj_dialogueBox.questionWindowActive = true;
+			obj_dialogueBox.mergeUnit = true;
+		}
+		//scr_mergeUnit();
+	}
+	if (mouse_check_button_released(mb_left)) {
+		scr_addToListOnce(mergeUnitList, unitClosestToMouse, true);
+		if (ds_list_size(mergeUnitList) > 2) {
+			ds_list_delete(mergeUnitList, 2);
+		}
+	}
 	
 }

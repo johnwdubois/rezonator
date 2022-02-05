@@ -1,11 +1,10 @@
-// Script assets have changed for v2.3.0 see
-// https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
+
+
 function scr_setDialogueText(){
 	
 	if (room == rm_openingScreen && descriptionText == "") {
-		titleText = "";
-		var newVersionNum = instance_exists(obj_DBcontrol) ? obj_DBcontrol.newestVersionNum : "";
-		descriptionText = "A new version of Rezonator (version " + string(newVersionNum) + ") is available! Would you like to download it?";
+		titleText = instance_exists(obj_firestore) ? obj_firestore.newVersionStr : "";
+		descriptionText = scr_get_translation("msg_new-version-available");
 		exit;
 	}
 
@@ -36,6 +35,30 @@ function scr_setDialogueText(){
 			titleText = scr_get_translation("Clear Current Chain");
 			descriptionText = scr_get_translation("msg_warning_clear_focused_chain");
 		}
+		if (clearChainMulti) {
+			titleText = scr_get_translation("Clear Current Chains");
+			descriptionText = "You are about to clear these chains.";
+		}
+		if(mergeUnit){
+			var unitSeq1 = 0;
+			var unitSeq2 = 0;
+			for(var i = 0; i <= ds_list_size(obj_control.mergeUnitList)-1; i++){
+				var currentUnitID = obj_control.mergeUnitList[|i];
+				var currentUnitSubMap = global.nodeMap[?currentUnitID];
+				if(scr_isNumericAndExists(currentUnitSubMap,ds_type_map)){
+					if(i == 0){
+						unitSeq1 = currentUnitSubMap[?"unitSeq"];
+					}
+					else{
+						unitSeq2 = currentUnitSubMap[?"unitSeq"];
+					}
+				}
+				
+			}
+			titleText = scr_get_translation("Merge Units");
+			descriptionText = scr_get_translation("This will merge Unit "+string(unitSeq1)+" , with Unit "+string(unitSeq2));
+		}
+
 		if (clearShow) {
 			titleText = scr_get_translation("help_label_delete_plain")+ " "+ scr_get_translation("menu_show");
 			descriptionText =  scr_get_translation("You are about to delete this show");
@@ -61,6 +84,10 @@ function scr_setDialogueText(){
 		if (removeFieldToken || removeFieldUnit || removeFieldEntry || removeFieldChain || removeFieldChunk || removeFieldLink) {
 			titleText = scr_get_translation("msg_remove") + " " + scr_get_translation("option_field");
 			descriptionText =  scr_get_translation("msg_remove-field-tag") + " " + string(stringToBeRemoved);
+		}
+		if (removeTags) {
+			titleText = scr_get_translation("msg_remove") + " " + scr_get_translation("Tags");
+			descriptionText =  "This will permanently remove" + " " + string(ds_list_size(obj_control.selectedTagList)) + " tags from this tag set";
 		}
 		if (removeSearch) {
 			var searchSubMap = global.searchMap[?searchToBeRemoved];
@@ -191,6 +218,9 @@ function scr_setDialogueText(){
 		if (instance_exists(obj_control)) {
 			if (obj_control.noTurnFound) {
 				descriptionText = scr_get_translation("msg_order-notfound");
+			}
+			if (obj_control.noPsentFound) {
+				descriptionText = scr_get_translation("No Psent found");
 			}
 			if (obj_control.insertAnyNumber) {
 				descriptionText = scr_get_translation("msg_input_any_number");

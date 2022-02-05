@@ -1,5 +1,5 @@
-// Script assets have changed for v2.3.0 see
-// https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
+
+
 function scr_getSearchLists(searchTermList){
 	
 	var listOfResultLists = ds_list_create();
@@ -91,6 +91,7 @@ function scr_getSearchLists(searchTermList){
 			var entryList = currentUnitSubMap[? "entryList"];
 			var entryListSize = ds_list_size(entryList);
 			
+
 			// loop over the entries for this unit and check their tokens
 			for (var k = 0; k < entryListSize; k++) {
 				
@@ -183,12 +184,12 @@ function scr_getSearchLists(searchTermList){
 			}
 		}
 	}
-	obj_control.regExCheck = false;
+
 
 	
 	ds_list_add(listOfResultLists,searchUnitList);
 	ds_list_add(listOfResultLists,searchTokenList);
-	
+
 	scr_sortSearchLists(listOfResultLists);
 	
 	return listOfResultLists;

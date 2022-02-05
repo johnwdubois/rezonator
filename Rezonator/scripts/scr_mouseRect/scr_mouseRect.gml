@@ -3,7 +3,11 @@
 */
 function scr_mouseRect() {
 
-	if(instance_exists(obj_dialogueBox))exit;
+	if(instance_exists(obj_dialogueBox) || instance_exists(obj_dropDown)) {
+		makingRect = false;
+		exit;
+	}
+	
 	// is user releases mouse, do something!
 	if (mouse_check_button_released(mb_left)) {
 		

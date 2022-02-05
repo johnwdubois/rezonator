@@ -163,11 +163,9 @@ global.tagInfoGrid_colMarker = 0;
 global.tagInfoGrid_colLevel = 1;
 global.tagInfoGrid_colKey = 2;
 global.tagInfoGrid_colSpecialFields = 3;
-
-global.tagInfoGrid_colError = 4;
-global.tagInfoGrid_colLevelSchema = 5;
+global.tagInfoGrid_colLevelSchema = 4;
+global.tagInfoGrid_colError = 5;
 global.tagInfoGrid_colLevelPredict = 6;
-
 global.tagInfoGrid_colTokenCount = 7;
 global.tagInfoGrid_colMarkerPercent = 8;
 global.tagInfoGrid_colSingleTokenMarker = 9;
@@ -271,6 +269,7 @@ global.unitImportUnitStartColName = "";
 global.unitImportUnitEndColName = "";
 global.unitDelimField = "";
 global.unitImportTurnDelimColName = "";
+global.psentDelimField = "";
 global.wordDelimField = "";
 global.currentTranslation = "";
 global.unitImportSpeakerColName = "";
@@ -305,37 +304,9 @@ alarm[2] = 1;
 global.exitOut = false;
 
 
-// this map tells Rezonator what dropdowns expand to further dropdowns
-// so we can look up the strings in this map to know whether or not to draw the expand arrow
-global.expandableDropDownMap = ds_map_create();
-ds_map_add(global.expandableDropDownMap, "menu_delete-all", true);
-ds_map_add(global.expandableDropDownMap, "menu_window", true);
-ds_map_add(global.expandableDropDownMap, "menu_nav", true);
-ds_map_add(global.expandableDropDownMap, "menu_justify", true);
-ds_map_add(global.expandableDropDownMap, "menu_prose", true);
-ds_map_add(global.expandableDropDownMap, "menu_hide", true);
-ds_map_add(global.expandableDropDownMap, "menu_pick", true);
-ds_map_add(global.expandableDropDownMap, "menu_filter-context", true);
-ds_map_add(global.expandableDropDownMap, "menu_search", true);
-ds_map_add(global.expandableDropDownMap, "menu_stack", true);
-ds_map_add(global.expandableDropDownMap, "menu_stacker", true);
-ds_map_add(global.expandableDropDownMap, "menu_zoom", true);
-ds_map_add(global.expandableDropDownMap, "menu_autosave", true);
-ds_map_add(global.expandableDropDownMap, "menu_advanced", true);
-ds_map_add(global.expandableDropDownMap, "menu_language", true);
-ds_map_add(global.expandableDropDownMap, "option_recolor", true);
-ds_map_add(global.expandableDropDownMap, "text_dir", true);
-ds_map_add(global.expandableDropDownMap, "option_select-field", true);
-ds_map_add(global.expandableDropDownMap, "option-remove-tag-set", true);
-ds_map_add(global.expandableDropDownMap, "arrheads", true);
-ds_map_add(global.expandableDropDownMap, "tab_name_tag", true);
-ds_map_add(global.expandableDropDownMap, "Tag Token", true);
-ds_map_add(global.expandableDropDownMap, "Tag Chain", true);
-ds_map_add(global.expandableDropDownMap, "Tag Entry", true);
-ds_map_add(global.expandableDropDownMap, "Tag Chunk", true);
-ds_map_add(global.expandableDropDownMap, "Tag Unit", true);
-ds_map_add(global.expandableDropDownMap, "option_new-token", true);
-ds_map_add(global.expandableDropDownMap, "option_add-to-show", true);
+scr_dropDownOptionListTypeInit();
+
+scr_expandableDropDownInit();
 
 global.openingScreenDropDownMap = ds_map_create();
 ds_map_add(global.openingScreenDropDownMap, "menu_import", true);
@@ -362,7 +333,7 @@ ds_map_add(global.openingScreenDropDownMap, "menu_language-ru", true);
 
 
 
-scr_dropDownOptionListTypeInit();
+
 
 
 
@@ -466,3 +437,6 @@ global.includedTagSchemaFileList = ds_list_create();
 scr_addtoTagSchemaList();
 global.selectedTagSchemaFileList = ds_list_create();
 
+global.importFieldTagList = ds_list_create();
+
+global.userLangRTL = false;

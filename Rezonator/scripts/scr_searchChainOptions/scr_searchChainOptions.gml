@@ -1,5 +1,5 @@
-// Script assets have changed for v2.3.0 see
-// https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
+
+
 function scr_searchChainOptions(optionSelected){
 	
 	var searchSubMap = global.searchMap[? obj_panelPane.functionSearchList_searchSelected];
@@ -11,7 +11,12 @@ function scr_searchChainOptions(optionSelected){
 		exit;
 	}
 	
-	obj_toolPane.currentMode = obj_toolPane.modeTrack;
+	var trailMode = (obj_control.searchChainType == "trail")
+	
+	obj_toolPane.currentMode = (trailMode) ?  obj_toolPane.modeTrack: obj_toolPane.modeRez;
+	
+	var typeString = (trailMode) ? "trail" : "resonance"; 
+	
 	var selectedTokenListSize = ds_list_size(selectedTokenList);
 	
 	if (optionSelected == "Create New Chain") {	
@@ -32,7 +37,8 @@ function scr_searchChainOptions(optionSelected){
 					var currentChain = inChainsList[|j];
 					var chainSubMap = global.nodeMap[?currentChain];
 					var chainType = chainSubMap[?"type"];
-					if(string(chainType) == "trail") {
+					
+					if(string(chainType) == typeString) {
 						inChain = true;
 					}
 					j++;
@@ -73,7 +79,7 @@ function scr_searchChainOptions(optionSelected){
 					var currentChain = inChainsList[|j];
 					var chainSubMap = global.nodeMap[?currentChain];
 					var chainType = chainSubMap[?"type"];
-					if(string(chainType) == "trail") {
+					if(string(chainType) == typeString) {
 						inChain = true;
 					}
 					j++;
@@ -86,6 +92,8 @@ function scr_searchChainOptions(optionSelected){
 			i++;
 		}
 	}
-	instance_destroy(obj_dropDown);
+	with(obj_dropDown){
+		instance_destroy();
+	}
 	
 }

@@ -190,7 +190,6 @@ selectedColChain = 0;
 stackTagMapKey = "";
 
 lineContentsHighlightRow = -1;
-unitTagsHighlightRow = -1;
 chainTagsHighlightRow = -1;
 functionChainList_highlightUnit = "";
 
@@ -252,6 +251,7 @@ cliquePaneSwitchButton = "option_chain";
 scrollPlusX = 0;
 
 leftPaneStrHeight = 0;
+rightPaneStrHeight = 0;
 
 selectListPrevIndex = -1;
 

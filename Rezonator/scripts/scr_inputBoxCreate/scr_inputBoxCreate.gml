@@ -1,18 +1,23 @@
-// Script assets have changed for v2.3.0 see
-// https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
 function scr_inputBoxCreate(strDefault){
 	
 	// get dimensions for input window (windowHeight will adjust based on font size)
-	textBoxX = 0;
-	textBoxY = 0;
+	textBoxX = -200;
+	textBoxY = -200;
 	windowWidth = 100;
 	windowHeight = 100;
 	windowFocused = true;
 	
 	// str, cursor, & highlight
-	str = strDefault;
+	str = string(strDefault);
 	cursorIndex = string_length(str);
 	highlightIndex = 0;
+	if (instance_exists(obj_control)) {
+		if (obj_control.navWindowTaggingID != "") highlightIndex = cursorIndex;
+		if (obj_control.navWindowTaggingEnterPress) {
+			obj_control.navWindowTaggingEnterPress = false;
+			highlightIndex = cursorIndex;
+		}
+	}
 	strToCursor = "";
 	strToHighlight = "";
 
@@ -45,5 +50,7 @@ function scr_inputBoxCreate(strDefault){
 	doubleClickTimer = 0;
 	doubleClick = false;
 	
+	navWindowTagging = false;
+	inputBoxCancel = 0;
 
 }

@@ -23,5 +23,11 @@ function scr_tokenMarkerOptions(optionSelected) {
 		
 	
 	}
+	else if(optionSelected == "Remove Column"){
+		
+	}
+	else if(optionSelected == "Add Column"){
+		
+	}
 
 }

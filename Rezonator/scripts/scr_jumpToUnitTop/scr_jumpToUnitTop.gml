@@ -33,16 +33,24 @@ function scr_jumpToUnitTop(unitOrSeq) {
 		show_debug_message("scr_jumpToUnitTop ... unit is not in displayUnitList. Exiting...");
 		exit;
 	}
-	
+	var trueIndex = (obj_control.offIndex) ? unitIndex-1 : unitIndex;
 	// set scroll position
-	var scrollPos = -(((unitIndex - 1) * obj_control.gridSpaceVertical));
+	var scrollPos = -(((trueIndex) * obj_control.gridSpaceVertical));
 	show_debug_message("scr_jumpToUnitTop ... setting scroll from " + string(obj_control.scrollPlusYDest) + " to " + string(scrollPos));
 	obj_control.scrollPlusYDest = scrollPos;
 	obj_control.updateChainShowMap = true;
 	
 	obj_control.refreshYValuesUnit = unitID;
 	with (obj_alarm2) alarm[9] = 2;
-
+	
+	if(!obj_control.offIndex){
+		obj_control.unitFlash = obj_control.flashTime;
+		obj_control.unitToFlash = unitID;
+	}
+	else{
+		
+	}
+	obj_control.offIndex = false;
 	
 
 }

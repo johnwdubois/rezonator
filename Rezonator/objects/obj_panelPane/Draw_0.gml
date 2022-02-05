@@ -3,26 +3,6 @@
 
 */
 
-if (!obj_control.mouseoverPanelPane) {
-	unitTagsHighlightRow = -1;
-}
-if (currentFunction != functionChainList) {
-	if (point_in_rectangle(mouse_x, mouse_y, x, y, x + windowWidth, y + windowHeight)) {
-		if (currentFunction == functionChainContents) {
-			if (chainViewOneToMany) {
-				with (obj_panelPane) {
-					unitTagsHighlightRow = -1;
-				}
-			}
-		}
-		else {
-			with (obj_panelPane) {
-				unitTagsHighlightRow = -1;
-			}
-		}
-	}
-}
-
 
 if (obj_control.gridView and currentFunction != functionHelp) {
 	exit;

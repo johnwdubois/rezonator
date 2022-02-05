@@ -308,13 +308,13 @@ function scr_drawToolPane(toolSprScale) {
 
 	// Prevent typing in text from changing the tool mode
 	if (!obj_control.gridView and !obj_control.dialogueBoxActive and !instance_exists(obj_dropDown) and !instance_exists(obj_dialogueBox) and obj_control.mouseoverTagShortcut == "") {
-		if (keyboard_check_pressed(ord("E")) and !global.ctrlHold) {
+		if (keyboard_check_pressed(ord("E")) and !global.ctrlHold && obj_control.shortcutsEnabled) {
 			currentMode = modeRead;
 		}
-		if (keyboard_check_pressed(ord("R")) and !global.ctrlHold) {
+		if (keyboard_check_pressed(ord("R")) and !global.ctrlHold && obj_control.shortcutsEnabled) {
 			currentMode = modeRez;
 		}
-		if (keyboard_check_pressed(ord("T"))) {
+		if (keyboard_check_pressed(ord("T")) && obj_control.shortcutsEnabled) {
 			currentMode = modeTrack;
 		}
 	}

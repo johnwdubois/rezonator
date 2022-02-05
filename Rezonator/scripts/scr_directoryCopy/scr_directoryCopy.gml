@@ -1,5 +1,5 @@
-// Script assets have changed for v2.3.0 see
-// https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
+
+
 function scr_directoryCopy(sourceDir, destDir, debugTab){
 	
 	var dbMessage = debugTab + "scr_directoryCopy START ... sourceDir: " + string(sourceDir) + ", destDir: " + string(destDir);

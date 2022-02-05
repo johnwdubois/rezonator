@@ -1,5 +1,5 @@
-// Script assets have changed for v2.3.0 see
-// https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
+
+
 function scr_createTree(tokenList){
 	
 	// make sure tokenList and treeList exist
@@ -12,7 +12,6 @@ function scr_createTree(tokenList){
 		show_debug_message("scr_createTree, treeList does not exist");
 		exit;
 	}
-	
 	
 	// get ID for this tree, and give it a subMap within the treeMap
 	var treeNode = scr_generateRandomHex();
@@ -34,29 +33,9 @@ function scr_createTree(tokenList){
 	// add some dope entries to this tree
 	var tokenListSize = ds_list_size(tokenList);
 	for (var i = 0; i < tokenListSize; i++) {
+		
 		var currentToken = tokenList[| i];
-		
-		// get random hex and make a subMap for each entry
-		var currentEntry = scr_generateRandomHex();
-		var currentEntrySubMap = ds_map_create();
-		var currentTokenList = ds_list_create();
-		ds_list_add(currentTokenList,currentToken)
-		ds_map_add_map(global.treeMap, currentEntry, currentEntrySubMap);
-		
-		// give the entry some data
-		ds_map_add_list(currentEntrySubMap, "tokenList", currentTokenList);
-		ds_map_add(currentEntrySubMap, "order", i);
-		ds_map_add(currentEntrySubMap, "level", -1);
-		ds_map_add(currentEntrySubMap, "type", "treeEntry");
-		ds_map_add(currentEntrySubMap, "entryX1", -1);
-		ds_map_add(currentEntrySubMap, "entryY1", -1);
-		ds_map_add(currentEntrySubMap, "entryX2", -1);
-		ds_map_add(currentEntrySubMap, "entryY2", -1);
-		ds_map_add(currentEntrySubMap, "sourceLink", "");
-		ds_map_add_list(currentEntrySubMap, "goalLinkList", ds_list_create());
-		
-		// throw this new entry into the tree's setList
-		ds_list_add(treeSetIDList, currentEntry);
+		scr_createTreeEntry(treeNode, currentToken, i, false);
 		
 	}
 	

@@ -1,5 +1,5 @@
-// Script assets have changed for v2.3.0 see
-// https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
+
+
 function scr_stackerBranch(){
 	with (obj_stacker) {
 		if (createStacksRandom) {
@@ -16,10 +16,14 @@ function scr_stackerBranch(){
 		else if (createStacksClique) {
 			alarm[9] = 1;
 		}
+		else if (createStacksClique) {
+			alarm[9] = 1;
+		}
 		createStacksRandom = false;
 		createStacksTurn = false;
 		createStacksSentence = false;
 		confirmStackCreate = false;
 		createStacksClique = false;
+		createStacksPsent = false;
 	}
 }

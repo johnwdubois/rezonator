@@ -11,9 +11,16 @@ function scr_dialogueBoxNewCustomTagUnit() {
 		exit;
 	}
 	
+	var newTag = string(obj_control.inputText);
+	if (!is_string(newTag) || string_length(string(newTag)) < 1) {
+		show_debug_message("new tag is invalid or blank string, exiting...");
+		exit;
+	}
+	
 	// add new tag to this field's tagSet
-	scr_addToListOnce(tagSet, obj_control.inputText);
-
+	scr_addToListOnce(tagSet, newTag);
+	scr_sortList(tagSet);
+	
 	//add this to selected unit if not in tag pane
 	if(obj_panelPane.functionChainList_currentTab != obj_panelPane.functionChainList_tabField){
 		// get the unitToChange's submap, and that unit's tagmap
@@ -21,7 +28,7 @@ function scr_dialogueBoxNewCustomTagUnit() {
 		if(scr_isNumericAndExists(unitSubMap, ds_type_map)){
 			var unitTagMap = unitSubMap[? "tagMap"];
 			// set the new value in this unit's tagmap
-			unitTagMap[? obj_control.unitFieldToChange] = obj_control.inputText;
+			unitTagMap[? obj_control.unitFieldToChange] = newTag;
 		}
 		obj_control.unitToChange = "";
 	}

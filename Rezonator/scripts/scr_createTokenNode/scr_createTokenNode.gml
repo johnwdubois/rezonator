@@ -1,5 +1,5 @@
-// Script assets have changed for v2.3.0 see
-// https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
+
+
 function scr_createTokenNode(discourseTokenSeq , textToDisplay,newTokenSeq,newDisplayCol, unitID){
 	// make token node
 	var currentTokenNode = scr_addToNodeMap("token");
@@ -7,6 +7,7 @@ function scr_createTokenNode(discourseTokenSeq , textToDisplay,newTokenSeq,newDi
 	ds_map_add(currentTokenSubMap, "docTokenSeq", discourseTokenSeq);
 	ds_map_add(currentTokenSubMap, "tokenOrder", newTokenSeq);
 	ds_map_add(currentTokenSubMap, "relativeOrder", newTokenSeq);
+	ds_map_add(currentTokenSubMap, "place", "N/A");
 	ds_map_add(currentTokenSubMap, "displayCol", newDisplayCol);
 	ds_map_add(currentTokenSubMap, "void", 1);
 	ds_map_add(currentTokenSubMap, "pixelX", 0);

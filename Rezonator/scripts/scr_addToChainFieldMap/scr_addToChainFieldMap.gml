@@ -1,5 +1,5 @@
-// Script assets have changed for v2.3.0 see
-// https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
+
+
 function scr_addToChainFieldMap(map, key, tagSet, shortcutSet, rezTag, trackTag, stackTag){
 	// make sure field/key isn't in the map already
 	if (ds_map_exists(map, key)) {

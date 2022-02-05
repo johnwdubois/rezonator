@@ -1,5 +1,5 @@
-// Script assets have changed for v2.3.0 see
-// https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
+
+
 function scr_addToNodeMap(type){
 	
 	// type variable should be a string that declares what "type" of Node this is

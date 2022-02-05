@@ -95,6 +95,9 @@ function scr_panelPane_drawUnits1toMany() {
 			} 
 		}
 	}
+	
+	scr_navWindowTaggingSelection(obj_control.navTokenFieldList, functionChainContents_IDList, "token");
+	
 
 	if (!instance_exists(obj_dropDown)) {
 		
@@ -122,12 +125,16 @@ function scr_panelPane_drawUnits1toMany() {
 	
 		// Scroll up with mouse/key
 		if (((mouse_wheel_up() || keyboard_check(vk_up)) and (obj_panelPane.holdUp < 2 || obj_panelPane.holdUp > 30)) and !instance_exists(obj_dropDown)) {
-			scrollPlusYDest += strHeight;
+			if (obj_control.navWindowTaggingID == "") {
+				scrollPlusYDest += strHeight;
+			}
 		}
 	
 		// Scroll down with mouse/key
 		if (((mouse_wheel_down() || keyboard_check(vk_down)) and (obj_panelPane.holdDown < 2 || obj_panelPane.holdDown > 30))  and !instance_exists(obj_dropDown)) {
-			scrollPlusYDest -= strHeight;
+			if (obj_control.navWindowTaggingID == "") {
+				scrollPlusYDest -= strHeight;
+			}
 		}
 	
 		// CTRL+UP and CTRL+DOWN

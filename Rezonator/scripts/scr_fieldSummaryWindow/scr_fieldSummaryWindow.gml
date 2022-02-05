@@ -1,5 +1,5 @@
-// Script assets have changed for v2.3.0 see
-// https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
+
+
 function scr_fieldSummaryWindow(tokenCountX, markerPercentX, soloX, splitX, rowHeight, spaceWidth){
 	
 	scrollPlusY = obj_importMappingTagInfo.scrollPlusY;
@@ -36,7 +36,7 @@ function scr_fieldSummaryWindow(tokenCountX, markerPercentX, soloX, splitX, rowH
 		}
 	
 		// check for mouseover
-		var mouseover = point_in_rectangle(mouse_x, mouse_y, fieldSummaryWindowX1, floor(textY - (rowHeight * 0.5)), fieldSummaryWindowX2, floor(textY + (rowHeight * 0.5))) && !instance_exists(obj_dropDown);
+		var mouseover = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, fieldSummaryWindowX1, floor(textY - (rowHeight * 0.5)), fieldSummaryWindowX2, floor(textY + (rowHeight * 0.5))) && !instance_exists(obj_dropDown);
 		if (mouseover) obj_importMapping.mouseoverRow = i;
 	
 	

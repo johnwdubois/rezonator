@@ -1,5 +1,5 @@
-// Script assets have changed for v2.3.0 see
-// https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
+
+
 function scr_combineLeafs(leafList){
 	show_debug_message("combineLeafs CAllED!")
 	if(!scr_isNumericAndExists(leafList,ds_type_list)){exit;}
