@@ -10,12 +10,13 @@ function scr_dialogueBoxNewCustomFieldToken() {
 	if (!obj_control.selectFieldChunk) {
 		if (ds_list_find_index(obj_control.tokenFieldList, newField) != -1) exit;
 		scr_addToListOnce(obj_control.tokenFieldList, newField);
+			scr_sortList(obj_control.tokenFieldList);
 	}
 	else {
 		if (ds_list_find_index(obj_control.chunkFieldList, newField) != -1) exit;
 	}
 	scr_addToListOnce(obj_control.chunkFieldList, newField);
-	
+	scr_sortList(obj_control.chunkFieldList);
 	//add to nav window list
 	scr_addToListOnce(obj_control.navTokenFieldList, newField);
 	scr_addToListOnce(obj_control.navChunkFieldList, newField);
@@ -41,29 +42,6 @@ function scr_dialogueBoxNewCustomFieldToken() {
 	
 	scr_addNewFieldToNodes("token", newField);
 	
-	/*
-	// loop over all tokens and give their tagmaps this new field
-	var discourseSubMap = global.nodeMap[? global.discourseNode];
-	var tokenList = discourseSubMap[? "tokenList"];
-
-	if (scr_isNumericAndExists(tokenList, ds_type_list)) {
-		
-		var tokenListSize = ds_list_size(tokenList);
-		for (var i = 0; i < tokenListSize; i++) {
-			
-			// get the current token's tagmap
-			var currentToken = tokenList[| i];
-			var currentTokenSubMap = global.nodeMap[? currentToken];
-			var currentTagMap = currentTokenSubMap[? "tagMap"];
-			
-			// add the new field to this tagmap, with the default value being ""
-			if (!ds_map_exists(currentTagMap, newField)) {
-				ds_map_add(currentTagMap, newField, "");
-			}
-		}
-	}
-	
-	*/
 	
 
 

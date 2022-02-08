@@ -14,7 +14,7 @@ function scr_lockFields(){
 		var tagSet = currentFieldMap[?"tagSet"];
 		scr_sortList(tagSet);
 	}
-	
+	scr_sortList(obj_control.tokenFieldList);
 	show_debug_message("scr_lockFields, unitFieldList: " + scr_getStringOfList(obj_control.unitFieldList));
 	
 	fieldListSize = ds_list_size(obj_control.unitFieldList);
@@ -28,7 +28,7 @@ function scr_lockFields(){
 		var tagSet = currentFieldMap[?"tagSet"];
 		scr_sortList(tagSet);
 	}
-	
+		scr_sortList(obj_control.unitFieldList);
 	show_debug_message("scr_lockFields, entryFieldList: " + scr_getStringOfList(global.chainEntryFieldList));
 	
 	fieldListSize = ds_list_size(global.chainEntryFieldList);
@@ -42,7 +42,7 @@ function scr_lockFields(){
 		var tagSet = currentFieldMap[?"tagSet"];
 		scr_sortList(tagSet);
 	}
-	
+	scr_sortList(global.chainEntryFieldList);
 	show_debug_message("scr_lockFields, chainFieldList: " + scr_getStringOfList(global.chainFieldList));
 	
 	fieldListSize = ds_list_size(global.chainFieldList);
@@ -56,7 +56,7 @@ function scr_lockFields(){
 		var tagSet = currentFieldMap[?"tagSet"];
 		scr_sortList(tagSet);
 	}
-	
+	scr_sortList(global.chainFieldList);
 	show_debug_message("scr_lockFields, chunkFieldList: " + scr_getStringOfList(obj_control.chunkFieldList));
 	
 	fieldListSize = ds_list_size(obj_control.chunkFieldList);
@@ -70,7 +70,7 @@ function scr_lockFields(){
 		var tagSet = currentFieldMap[?"tagSet"];
 		scr_sortList(tagSet);
 	}
-	
+	scr_sortList(obj_control.chunkFieldList);
 	show_debug_message("scr_lockFields, linkFieldList: " + scr_getStringOfList(global.linkFieldList));
 	
 	fieldListSize = ds_list_size(global.linkFieldList);
@@ -84,5 +84,5 @@ function scr_lockFields(){
 		var tagSet = currentFieldMap[?"tagSet"];
 		scr_sortList(tagSet);
 	}
-
+	scr_sortList(global.linkFieldList);
 }
