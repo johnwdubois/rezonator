@@ -86,7 +86,7 @@ function scr_panelPane_drawUnits1to1() {
 		    var unitRectY1 = y + headerHeight + textPlusY + relativeScrollPlusY - (strHeight / 2);
 		    var unitRectX2 = x + windowWidth;
 		    var unitRectY2 = unitRectY1 + strHeight;
-			var mouseoverunitRect = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, unitRectX1, max(unitRectY1, y + headerHeight), unitRectX2, unitRectY2) && !mouseoverScrollBar && !mouseoverHorScrollBar && !scrollBarHorHolding && !scrollBarHolding;
+			var mouseoverunitRect = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, unitRectX1, max(unitRectY1, y + headerHeight), unitRectX2, unitRectY2) && !mouseoverScrollBar && !mouseoverHorScrollBar && !scrollBarHorHolding && !scrollBarHolding && !mouseoverCancel;
     
 			// highlight rect
 			draw_set_color(global.colorThemeBG);

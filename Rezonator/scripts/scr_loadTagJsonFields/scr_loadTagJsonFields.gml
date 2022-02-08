@@ -1,5 +1,3 @@
-
-
 function scr_loadTagJsonFields(originalTagMap, originalFieldList, tagMapJson, nodeType){
 
 	if(!scr_isNumericAndExists(originalTagMap, ds_type_map)  or !scr_isNumericAndExists(tagMapJson, ds_type_map)){
@@ -8,8 +6,6 @@ function scr_loadTagJsonFields(originalTagMap, originalFieldList, tagMapJson, no
 
 	// get tokenList & unitList
 	var discourseSubMap = global.nodeMap[? global.discourseNode];
-	
-
 	
 	// we will keep track of all the new fields encountered, so we can add them to the nodes later
 	var newFieldList = ds_list_create();
@@ -20,7 +16,7 @@ function scr_loadTagJsonFields(originalTagMap, originalFieldList, tagMapJson, no
 	var currentJsonField = ds_map_find_first(tagMapJson);
 	for (var i = 0; i < tagMapJsonSize; i++) {
 		
-		show_debug_message("scr_loadTagJson ... currentJsonField: " + string(currentJsonField));
+		show_debug_message("scr_loadTagJson ... currentJsonField: " + string(currentJsonField) + ", nodeType: " + string(nodeType));
 
 		// get the submap for the current field in the json file
 		var currentJsonMap = tagMapJson[? currentJsonField];
