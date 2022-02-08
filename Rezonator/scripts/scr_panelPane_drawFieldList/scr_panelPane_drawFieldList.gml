@@ -28,19 +28,19 @@ function scr_panelPane_drawFieldList(){
 	// determine which field list to use depending on 1to1 vs 1toMany and Chain vs Discourse
 	var fieldList = -1;
 	var fieldMap = -1;
-	if (chainViewOneToMany && fieldPaneSwitchButton == fieldPaneDocMode) {
+	if (fieldPaneSwitchButton == fieldPaneTokenMode) {
 		fieldList = obj_control.tokenFieldList;
 		fieldMap = global.nodeMap[? "tokenTagMap"];
 	}
-	else if (!chainViewOneToMany && fieldPaneSwitchButton == fieldPaneDocMode) {
+	else if (fieldPaneSwitchButton == fieldPaneUnitMode) {
 		fieldList = obj_control.unitFieldList;
 		fieldMap = global.nodeMap[? "unitTagMap"];
 	}
-	else if (chainViewOneToMany && fieldPaneSwitchButton == fieldPaneChainMode) {
+	else if (fieldPaneSwitchButton == fieldPaneEntryMode) {
 		fieldList = global.chainEntryFieldList;
 		fieldMap = global.nodeMap[? "entryTagMap"];
 	}
-	else if (!chainViewOneToMany && fieldPaneSwitchButton == fieldPaneChainMode) {
+	else if (fieldPaneSwitchButton == fieldPaneChainMode) {
 		fieldList = global.chainFieldList;
 		fieldMap = global.nodeMap[? "chainTagMap"];
 	}
@@ -116,57 +116,42 @@ function scr_panelPane_drawFieldList(){
 						ds_list_clear(obj_control.selectedTagList);
 				
 						// set field to be selected when clicked
-						if (chainViewOneToMany) {
-							if (fieldPaneSwitchButton == fieldPaneDocMode) {
-								if (functionField_tokenFieldSelected != currentField) {
-									with(obj_panelPane) functionField_tokenTagSelected = "";
-								}
-								with(obj_panelPane) functionField_tokenFieldSelected = currentField;
+
+						if (fieldPaneSwitchButton == fieldPaneTokenMode) {
+							if (functionField_tokenFieldSelected != currentField) {
+								with(obj_panelPane) functionField_tokenTagSelected = "";
 							}
-							else if(fieldPaneSwitchButton == fieldPaneChainMode){
-								if(functionField_entryFieldSelected != currentField){
-									with(obj_panelPane) functionField_entryTagSelected = "";
-								}
-								with(obj_panelPane) functionField_entryFieldSelected = currentField;
-							}
-							else if(fieldPaneSwitchButton == fieldPaneChunkMode){
-								if(functionField_chunkFieldSelected != currentField){
-									with(obj_panelPane) functionField_chunkTagSelected = "";
-								}
-								with(obj_panelPane) functionField_chunkFieldSelected = currentField;
-							}
-							else if(fieldPaneSwitchButton == fieldPaneLinkMode){
-								if(functionField_linkFieldSelected != currentField){
-									with(obj_panelPane) functionField_linkTagSelected = "";
-								}
-								with(obj_panelPane) functionField_linkFieldSelected = currentField;
-							}
+							with(obj_panelPane) functionField_tokenFieldSelected = currentField;
 						}
-						else {
-							if (fieldPaneSwitchButton == fieldPaneDocMode) {
-								if (functionField_unitFieldSelected != currentField) {
-									with(obj_panelPane) functionField_unitTagSelected = "";
-								}
-								with(obj_panelPane) functionField_unitFieldSelected = currentField;
+						else if(fieldPaneSwitchButton == fieldPaneEntryMode){
+							if(functionField_entryFieldSelected != currentField){
+								with(obj_panelPane) functionField_entryTagSelected = "";
 							}
-							else if(fieldPaneSwitchButton == fieldPaneChainMode){
-								if(functionField_chainFieldSelected != currentField){
-									with(obj_panelPane) functionField_chainTagSelected = "";
-								}
-								with(obj_panelPane) functionField_chainFieldSelected = currentField;
+							with(obj_panelPane) functionField_entryFieldSelected = currentField;
+						}
+						else if (fieldPaneSwitchButton == fieldPaneUnitMode) {
+							if (functionField_unitFieldSelected != currentField) {
+								with(obj_panelPane) functionField_unitTagSelected = "";
 							}
-							else if(fieldPaneSwitchButton == fieldPaneChunkMode){
-								if(functionField_chunkFieldSelected != currentField){
-									with(obj_panelPane) functionField_chunkTagSelected = "";
-								}
-								with(obj_panelPane) functionField_chunkFieldSelected = currentField;
+							with(obj_panelPane) functionField_unitFieldSelected = currentField;
+						}
+						else if(fieldPaneSwitchButton == fieldPaneChainMode){
+							if(functionField_chainFieldSelected != currentField){
+								with(obj_panelPane) functionField_chainTagSelected = "";
 							}
-							else if(fieldPaneSwitchButton == fieldPaneLinkMode){
-								if(functionField_linkFieldSelected != currentField){
-									with(obj_panelPane) functionField_linkTagSelected = "";
-								}
-								with(obj_panelPane) functionField_linkFieldSelected = currentField;
+							with(obj_panelPane) functionField_chainFieldSelected = currentField;
+						}
+						else if(fieldPaneSwitchButton == fieldPaneChunkMode){
+							if(functionField_chunkFieldSelected != currentField){
+								with(obj_panelPane) functionField_chunkTagSelected = "";
 							}
+							with(obj_panelPane) functionField_chunkFieldSelected = currentField;
+						}
+						else if(fieldPaneSwitchButton == fieldPaneLinkMode){
+							if(functionField_linkFieldSelected != currentField){
+								with(obj_panelPane) functionField_linkTagSelected = "";
+							}
+							with(obj_panelPane) functionField_linkFieldSelected = currentField;
 						}
 					}
 				}
@@ -174,34 +159,26 @@ function scr_panelPane_drawFieldList(){
 
 				// check if this field has been selected
 				var fieldSelected = false;
-				if (chainViewOneToMany) {
-					if (fieldPaneSwitchButton == fieldPaneDocMode) {
-						if (functionField_tokenFieldSelected == currentField) fieldSelected = true;
-					}
-					else if(fieldPaneSwitchButton == fieldPaneChainMode) {
-						if (functionField_entryFieldSelected == currentField) fieldSelected = true;
-					}
-					else if(fieldPaneSwitchButton == fieldPaneChunkMode) {
-						if (functionField_chunkFieldSelected == currentField) fieldSelected = true;
-					}
-					else if(fieldPaneSwitchButton == fieldPaneLinkMode) {
-						if (functionField_linkFieldSelected == currentField) fieldSelected = true;
-					}
+
+				if (fieldPaneSwitchButton == fieldPaneTokenMode) {
+					if (functionField_tokenFieldSelected == currentField) fieldSelected = true;
 				}
-				else {
-					if (fieldPaneSwitchButton == fieldPaneDocMode) {
-						if (functionField_unitFieldSelected == currentField) fieldSelected = true;
-					}
-					else if(fieldPaneSwitchButton == fieldPaneChainMode) {
-						if (functionField_chainFieldSelected == currentField) fieldSelected = true;
-					}
-					else if(fieldPaneSwitchButton == fieldPaneChunkMode) {
-						if (functionField_chunkFieldSelected == currentField) fieldSelected = true;
-					}
-					else if(fieldPaneSwitchButton == fieldPaneLinkMode) {
-						if (functionField_linkFieldSelected == currentField) fieldSelected = true;
-					}
+				else if(fieldPaneSwitchButton == fieldPaneEntryMode) {
+					if (functionField_entryFieldSelected == currentField) fieldSelected = true;
 				}
+				else if (fieldPaneSwitchButton == fieldPaneUnitMode) {
+					if (functionField_unitFieldSelected == currentField) fieldSelected = true;
+				}
+				else if(fieldPaneSwitchButton == fieldPaneChainMode) {
+					if (functionField_chainFieldSelected == currentField) fieldSelected = true;
+				}
+				else if(fieldPaneSwitchButton == fieldPaneChunkMode) {
+					if (functionField_chunkFieldSelected == currentField) fieldSelected = true;
+				}
+				else if(fieldPaneSwitchButton == fieldPaneLinkMode) {
+					if (functionField_linkFieldSelected == currentField) fieldSelected = true;
+				}
+				
 			
 				var textColor = fieldSelected ? global.colorThemeBG : global.colorThemeText;
 			
@@ -249,10 +226,10 @@ function scr_panelPane_drawFieldList(){
 					
 						if (!instance_exists(obj_dialogueBox)) {
 							instance_create_layer(x, y, "InstancesDialogue", obj_dialogueBox);
-							if (chainViewOneToMany && fieldPaneSwitchButton == fieldPaneDocMode) obj_dialogueBox.removeFieldToken = true;
-							else if (!chainViewOneToMany && fieldPaneSwitchButton == fieldPaneDocMode) obj_dialogueBox.removeFieldUnit = true;
-							else if (chainViewOneToMany && fieldPaneSwitchButton == fieldPaneChainMode) obj_dialogueBox.removeFieldEntry = true;
-							else if (!chainViewOneToMany && fieldPaneSwitchButton == fieldPaneChainMode) obj_dialogueBox.removeFieldChain = true;
+							if (fieldPaneSwitchButton == fieldPaneTokenMode) obj_dialogueBox.removeFieldToken = true;
+							else if (fieldPaneSwitchButton == fieldPaneUnitMode) obj_dialogueBox.removeFieldUnit = true;
+							else if (fieldPaneSwitchButton == fieldPaneEntryMode) obj_dialogueBox.removeFieldEntry = true;
+							else if (fieldPaneSwitchButton == fieldPaneChainMode) obj_dialogueBox.removeFieldChain = true;
 							else if (fieldPaneSwitchButton == fieldPaneChunkMode) obj_dialogueBox.removeFieldChunk = true;
 							else if (fieldPaneSwitchButton == fieldPaneLinkMode) obj_dialogueBox.removeFieldLink = true;
 							obj_dialogueBox.questionWindowActive = true;
@@ -303,34 +280,20 @@ function scr_panelPane_drawFieldList(){
 							chosenCol = -1;
 						}
 					
-						if (chainViewOneToMany) {
-						
-							// prompt user for name of new token field/marker
-							if (fieldPaneSwitchButton == fieldPaneDocMode) obj_control.newCustomFieldToken = true;
-							else if (fieldPaneSwitchButton == fieldPaneChainMode) obj_control.newCustomFieldEntry = true;
-							else if (fieldPaneSwitchButton == fieldPaneChunkMode) obj_control.newCustomFieldChunk = true;
-							else if (fieldPaneSwitchButton == fieldPaneLinkMode) obj_control.newCustomFieldLink = true;
-							obj_control.dialogueBoxActive = true;
+						// prompt user for name of new token field/marker
+						if (fieldPaneSwitchButton == fieldPaneTokenMode) obj_control.newCustomFieldToken = true;
+						else if (fieldPaneSwitchButton == fieldPaneEntryMode) obj_control.newCustomFieldEntry = true;
+						else if (fieldPaneSwitchButton == fieldPaneUnitMode) obj_control.newCustomFieldUnit = true;
+						else if (fieldPaneSwitchButton == fieldPaneChainMode) obj_control.newCustomFieldChain = true;
+						else if (fieldPaneSwitchButton == fieldPaneChunkMode) obj_control.newCustomFieldChunk = true;
+						else if (fieldPaneSwitchButton == fieldPaneLinkMode) obj_control.newCustomFieldLink = true;
+						obj_control.dialogueBoxActive = true;
 
-							if (!instance_exists(obj_dialogueBox)) {
-								instance_create_layer(x, y, "InstancesDialogue", obj_dialogueBox);
-							}
-							obj_dialogueBox.inputWindowActive = true;
+						if (!instance_exists(obj_dialogueBox)) {
+							instance_create_layer(x, y, "InstancesDialogue", obj_dialogueBox);
 						}
-						else {
-					
-							// prompt user for name of new token field/marker
-							if (fieldPaneSwitchButton == fieldPaneDocMode) obj_control.newCustomFieldUnit = true;
-							else if (fieldPaneSwitchButton == fieldPaneChainMode) obj_control.newCustomFieldChain = true;
-							else if (fieldPaneSwitchButton == fieldPaneChunkMode) obj_control.newCustomFieldChunk = true;
-							else if (fieldPaneSwitchButton == fieldPaneLinkMode) obj_control.newCustomFieldLink = true;
-							obj_control.dialogueBoxActive = true;
-
-							if (!instance_exists(obj_dialogueBox)) {
-								instance_create_layer(x, y, "InstancesDialogue", obj_dialogueBox);
-							}
-							obj_dialogueBox.inputWindowActive = true;
-						}	
+						obj_dialogueBox.inputWindowActive = true;
+						
 					}
 				}
 	
@@ -396,6 +359,90 @@ function scr_panelPane_drawFieldList(){
 	}
 	*/
 	
+		
+	var optionsIconRad = sprite_get_width(spr_trash) * 0.35;
+	var spaceWidth = string_width(" ");
+	//json tag saving button
+	var spriteSize = sprite_get_width(spr_saveIcon);
+	var saveRectX2 = x + windowWidth -spaceWidth*2;
+	var saveRectX1 = saveRectX2 - spriteSize;
+	var saveRectY1 =  mean(y ,y + headerHeight) - spriteSize/2;
+	var saveRectY2 = saveRectY1 + spriteSize;
+	
+	var saveSpriteX = floor(mean(saveRectX1,saveRectX2));
+	var saveSpriteY = floor(mean(saveRectY1,saveRectY2)+1);
+	
+	var mouseOverSave = point_in_rectangle(mouse_x,mouse_y,saveRectX1,saveRectY1,saveRectX2,saveRectY2)
+	
+	if(mouseOverSave){
+		draw_set_color(global.colorThemeSelected1);
+		draw_set_alpha(0.7);
+		draw_roundrect(mean(saveRectX1,saveRectX2)-optionsIconRad,mean(saveRectY1,saveRectY2)-optionsIconRad,mean(saveRectX1,saveRectX2)+optionsIconRad,mean(saveRectY1,saveRectY2)+optionsIconRad, false);
+		if(device_mouse_check_button_released(0,mb_left)){
+			scr_saveTagJson();
+		}
+		scr_createTooltip(saveSpriteX, saveRectY2,scr_get_translation("option_save-tag-json"), obj_tooltip.arrowFaceUp);
+	}
+	draw_sprite_ext(spr_saveIcon,0,saveSpriteX,saveSpriteY,1,1,0,global.colorThemeText, 1);
+	
+	// json tag loading button
+	var spriteSize = sprite_get_width(spr_loadingIcon);
+	var loadRectX2 = saveRectX1 - spaceWidth*3;
+	var loadRectX1 = loadRectX2 - spriteSize;
+	var loadRectY1 =  mean(y ,y + headerHeight) - spriteSize/2;
+	var loadRectY2 = loadRectY1 + spriteSize;
+	
+	var loadSpriteX = floor(mean(loadRectX1,loadRectX2));
+	var loadSpriteY = floor(mean(loadRectY1,loadRectY2)+1);
+	
+	var mouseOverload = point_in_rectangle(mouse_x,mouse_y,loadRectX1,loadRectY1,loadRectX2,loadRectY2)
+	
+	if(mouseOverload){
+		draw_set_color(global.colorThemeSelected1);
+		draw_set_alpha(0.7)
+		draw_roundrect(mean(loadRectX1,loadRectX2)-optionsIconRad,mean(loadRectY1,loadRectY2)-optionsIconRad,mean(loadRectX1,loadRectX2)+optionsIconRad,mean(loadRectY1,loadRectY2)+optionsIconRad, false);
+		if(device_mouse_check_button_released(0,mb_left)){
+			scr_loadTagJson();
+		}
+		scr_createTooltip(loadSpriteX, loadRectY2,scr_get_translation("option_load-tag-json"), obj_tooltip.arrowFaceUp);
+	}
+	draw_sprite_ext(spr_loadingIcon,0,loadSpriteX,loadSpriteY,1,1,0,global.colorThemeText, 1);
+	
+	
+	
+	//selection for field pane
+	var tabText = scr_get_translation(fieldPaneSwitchButton);
+	var stringWidthOfTab = string_width(tabText);
+	var stringHeightOfTab = string_height(tabText);
+	// toggle Token / Unit / Chain / Entry / chunk / link Fields
+	var moreOptionsWidth = sprite_get_width(spr_moreOptions);
+	var moreOptionsX2 = floor(loadRectX1 - textBuffer);
+	var moreOptionsX1 = floor(moreOptionsX2 - stringWidthOfTab);
+	var moreOptionsY = headerTextY;
+	var moreOptionsY1 = headerTextY - stringHeightOfTab/2;
+	var moreOptionsY2 = headerTextY + stringHeightOfTab/2;
+
+	var optionsIconRad = sprite_get_width(spr_toggleDraw) * 0.7;
+	var mouseoverMoreChain = scr_pointInRectangleClippedWindow(mouse_x,mouse_y,moreOptionsX1,moreOptionsY1,moreOptionsX2,moreOptionsY2);
+	
+	if(mouseoverMoreChain){
+		draw_set_color(global.colorThemeSelected1);
+		var edgebuffer = 2
+		draw_roundrect(moreOptionsX1-edgebuffer,moreOptionsY1,moreOptionsX2+edgebuffer,moreOptionsY2, false);
+		if(mouse_check_button_pressed(mb_left)){
+			var dropDownOptionList = ds_list_create();
+			var width = 0;
+			if(instance_exists(obj_dropDown)){
+			width = obj_dropDown.windowWidth
+			}
+			ds_list_add(dropDownOptionList, fieldPaneTokenMode,fieldPaneUnitMode,fieldPaneChainMode,fieldPaneEntryMode,fieldPaneChunkMode,fieldPaneLinkMode);
+			scr_createDropDown(moreOptionsX1, y + headerHeight, dropDownOptionList, global.optionListTypeTagPane);
+		}
+	}
+	draw_set_halign(fa_left);
+	draw_set_color(global.colorThemeText);
+	draw_set_alpha(1);
+	draw_text(moreOptionsX1, moreOptionsY, tabText);
 	
 
 }

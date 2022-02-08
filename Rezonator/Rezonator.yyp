@@ -303,6 +303,7 @@
     {"id":{"name":"scr_audioStep","path":"scripts/scr_audioStep/scr_audioStep.yy",},"order":0,},
     {"id":{"name":"scr_audioDraw","path":"scripts/scr_audioDraw/scr_audioDraw.yy",},"order":1,},
     {"id":{"name":"scr_dropDownHasCheckmark","path":"scripts/scr_dropDownHasCheckmark/scr_dropDownHasCheckmark.yy",},"order":6,},
+    {"id":{"name":"scr_tagPaneOptions","path":"scripts/scr_tagPaneOptions/scr_tagPaneOptions.yy",},"order":84,},
     {"id":{"name":"scr_splitStringWhitespaceAndHyphen","path":"scripts/scr_splitStringWhitespaceAndHyphen/scr_splitStringWhitespaceAndHyphen.yy",},"order":6,},
     {"id":{"name":"spr_pixel","path":"sprites/spr_pixel/spr_pixel.yy",},"order":26,},
     {"id":{"name":"scr_surfaceStart","path":"scripts/scr_surfaceStart/scr_surfaceStart.yy",},"order":0,},

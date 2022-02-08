@@ -125,5 +125,6 @@ function scr_expandableDropDownInit(){
 	ds_list_add(addtoRezList, global.optionListTypeSearchPane);
 	ds_map_add_list(global.expandableDropDownMap, "Add to Resonance", addtoRezList);
 	
+	
 
 }
