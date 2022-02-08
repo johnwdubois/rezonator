@@ -1,5 +1,3 @@
-
-
 function scr_fieldUnits1ToManyOptions(optionSelected){
 	
 	var optionSpacingMulti = ds_list_find_index(optionList, optionSelected);
@@ -36,6 +34,13 @@ function scr_fieldUnits1ToManyOptions(optionSelected){
 	}
 	else if (optionSelected == "Show in main screen") {
 		global.displayTokenField = obj_control.tokenFieldToChange;
+		instance_destroy();
+	}
+	else if (optionSelected == "Hide column") {
+		if (ds_list_size(obj_control.navTokenFieldList) > 1) {
+			show_debug_message("Hiding column: " + string(obj_panelPane.chosenCol));
+			ds_list_delete(obj_control.navTokenFieldList, obj_panelPane.chosenCol);
+		}
 		instance_destroy();
 	}
 	
