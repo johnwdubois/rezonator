@@ -34,6 +34,14 @@ function scr_insertColOptions(optionSelected){
 			navFieldList = obj_control.chain1to1ColFieldListStack;
 		}
 	}
+	else if (obj_panelPane.functionChainList_currentTab == obj_panelPane.functionChainList_tabChunk) {
+		if (obj_panelPane.chainViewOneToMany) {
+			navFieldList = obj_control.navTokenFieldList;
+		}
+		else {
+			navFieldList = obj_control.navChunkFieldList;
+		}
+	}
 	
 	
 	

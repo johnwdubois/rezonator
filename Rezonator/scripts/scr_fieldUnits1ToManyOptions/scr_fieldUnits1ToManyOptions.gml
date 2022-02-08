@@ -1,6 +1,8 @@
 function scr_fieldUnits1ToManyOptions(optionSelected){
 	
 	var optionSpacingMulti = ds_list_find_index(optionList, optionSelected);
+	var navFieldList = obj_control.selectFieldChunk ? obj_control.navChunkFieldList : obj_control.navTokenFieldList;
+	var fullFieldList = obj_control.selectFieldChunk ? obj_control.chunkFieldList : obj_control.tokenFieldList;
 	
 	if (optionSelected == "option_select-field") {
 		
@@ -37,15 +39,16 @@ function scr_fieldUnits1ToManyOptions(optionSelected){
 		instance_destroy();
 	}
 	else if (optionSelected == "Hide column") {
-		if (ds_list_size(obj_control.navTokenFieldList) > 1) {
+		if (ds_list_size(navFieldList) > 1) {
 			show_debug_message("Hiding column: " + string(obj_panelPane.chosenCol));
-			ds_list_delete(obj_control.navTokenFieldList, obj_panelPane.chosenCol);
+			ds_list_delete(navFieldList, obj_panelPane.chosenCol);
 		}
 		instance_destroy();
 	}
 	else if (optionSelected == "Insert column") {
 		
-		scr_insertColumnDropDown(obj_control.tokenFieldList, obj_control.navTokenFieldList, "token");
+		var type = obj_control.selectFieldChunk ? "chunk" : "token";
+		scr_insertColumnDropDown(fullFieldList, navFieldList, type);
 	
 	}
 	

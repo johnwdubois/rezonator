@@ -127,7 +127,7 @@ function scr_expandableDropDownInit(){
 	
 
 	var insertColumnList = ds_list_create();
-	ds_list_add(insertColumnList, global.optionListTypeFieldUnits1ToMany, global.optionListTypeFieldUnits1To1, global.optionListTypeFieldChains1ToMany);
+	ds_list_add(insertColumnList, global.optionListTypeFieldUnits1ToMany, global.optionListTypeFieldUnits1To1, global.optionListTypeFieldChains1ToMany, global.optionListTypeFieldChains1To1);
 	ds_map_add_list(global.expandableDropDownMap, "Insert column", insertColumnList);
 	
 

@@ -4,8 +4,8 @@ function scr_insertColumnDropDown(fullFieldList, navFieldList, type){
 	scr_destroyAllDropDownsOtherThanSelf();
 	
 	
-	// if this is an entry, we need to get only the fields that apply to the correct chain type
-	if (type == "entry") {
+	// if this is an entry or chain, we need to get only the fields that apply to the correct chain type
+	if (type == "entry" || type == "chain") {
 		var entryType = "";
 		with (obj_panelPane) {
 			if (currentFunction == functionChainList) {
@@ -20,11 +20,15 @@ function scr_insertColumnDropDown(fullFieldList, navFieldList, type){
 				}
 			}
 		}
+		
+		// go through field map and father all the fields that apply to this chain type
+		var fullFieldListAllTypes = (type == "entry") ? global.chainEntryFieldList : global.chainFieldList;
+		var fieldMap = (type == "entry") ? global.entryFieldMap : global.chainFieldMap;
 		fullFieldList = ds_list_create();
-		var entryFieldListSize = ds_list_size(global.chainEntryFieldList);
+		var entryFieldListSize = ds_list_size(fullFieldListAllTypes);
 		for (var i = 0; i < entryFieldListSize; i++) {
-			var currentEntryField = global.chainEntryFieldList[| i];
-			var currentEntryFieldSubMap = global.entryFieldMap[? currentEntryField];
+			var currentEntryField = fullFieldListAllTypes[| i];
+			var currentEntryFieldSubMap = fieldMap[? currentEntryField];
 			if (currentEntryFieldSubMap[? entryType]) {
 				ds_list_add(fullFieldList, currentEntryField);
 			}
@@ -32,7 +36,6 @@ function scr_insertColumnDropDown(fullFieldList, navFieldList, type){
 	}
 	
 
-	
 	// go through fullFieldlist, check which ones are not in navFieldList
 	var dropDownOptionList = ds_list_create();
 	var fullFieldListSize = ds_list_size(fullFieldList);

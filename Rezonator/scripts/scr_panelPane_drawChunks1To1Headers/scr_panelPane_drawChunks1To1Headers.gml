@@ -75,7 +75,11 @@ function scr_panelPane_drawChunks1To1Headers(fieldList){
 				obj_control.selectFieldChunk = true;
 				
 				var dropDownOptionList = ds_list_create();
-				ds_list_add(dropDownOptionList, "option_select-field", "option_create-new-field", "option_add-to-tag-set", "option-remove-tag-set",);
+				ds_list_add(dropDownOptionList, "option_select-field");
+				if (ds_list_size(obj_control.navChunkFieldList) > 1) ds_list_add(dropDownOptionList, "Hide column")
+				if (ds_list_size(obj_control.navChunkFieldList) < ds_list_size(obj_control.chunkFieldList)) ds_list_add(dropDownOptionList, "Insert column");
+				ds_list_add(dropDownOptionList, "option_create-new-field", "option_add-to-tag-set", "option-remove-tag-set");
+				
 				scr_createDropDown(headerRectX1, headerRectY2, dropDownOptionList, global.optionListTypeFieldUnits1ToMany);
 				scr_clearNavWindowTagging(false);
 			}

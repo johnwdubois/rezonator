@@ -39,6 +39,7 @@ function scr_panelPane_scrollSelection(focusedElementY, strHeight){
 				if (onChunkTab) {
 					with (obj_panelPane) functionChainList_chunkSelected = list[| functionChainList_focusedIndex];
 					obj_chain.currentFocusedChunkID = obj_panelPane.functionChainList_chunkSelected;
+					scr_clearNavWindowTagging(true);
 				}
 				else if (onTreeTab) {
 					with (obj_panelPane) functionTree_treeSelected = list[| functionChainList_focusedIndex];
@@ -80,6 +81,7 @@ function scr_panelPane_scrollSelection(focusedElementY, strHeight){
 				if (onChunkTab) {
 					with (obj_panelPane) functionChainList_chunkSelected = list[| functionChainList_focusedIndex];
 					obj_chain.currentFocusedChunkID = obj_panelPane.functionChainList_chunkSelected;
+					scr_clearNavWindowTagging(true);
 				}
 				else if (onTreeTab) {
 					with (obj_panelPane) functionTree_treeSelected = list[| functionChainList_focusedIndex];

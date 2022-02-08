@@ -184,10 +184,12 @@ function scr_navWindowTaggingSelection(fieldList, idList, type){
 			if (ds_list_size(obj_dropDown.optionList) == 0) canArrowUpDown = true;
 		}
 		
+		
 		// arrow key up & down
+		var handleTokenEntries = (type == "token" && obj_panelPane.functionChainList_currentTab == obj_panelPane.functionChainList_tabLine);
 		if (canArrowUpDown) {
 			if (keyboard_check(vk_up) && obj_control.navWindowTaggingCanPressUp) {
-				if (type == "token") {
+				if (type == "token" && handleTokenEntries) {
 					var prevID = "";
 					var idFound = false;
 					for (var i = idListSize - 1; i >= 0; i--) {
@@ -205,7 +207,7 @@ function scr_navWindowTaggingSelection(fieldList, idList, type){
 						obj_control.navWindowTaggingUpdateScroll = true;
 					}
 				}
-				else if (type == "unit" or type == "chain" or type == "chunk") {
+				else if (type == "unit" or type == "chain" or type == "chunk" or type == "token") {
 					var IDListIndex = ds_list_find_index(idList, obj_control.navWindowTaggingID);
 					if (IDListIndex > 0) {
 						with (obj_alarm3) alarm[0] = canPressArrowKeyAlarm;
@@ -248,7 +250,7 @@ function scr_navWindowTaggingSelection(fieldList, idList, type){
 		}
 	
 		if (selectNextRow) {
-			if (type == "token"){
+			if (type == "token" && handleTokenEntries){
 				var nextID = "";
 				var idFound = false;
 				for (var i = 0; i < idListSize; i++) {
@@ -264,7 +266,7 @@ function scr_navWindowTaggingSelection(fieldList, idList, type){
 					obj_control.navWindowTaggingUpdateScroll = true;
 				}
 			}
-			else if (type == "unit" or type == "chain" or type == "chunk") {
+			else if (type == "unit" or type == "chain" or type == "chunk" or type == "token") {
 				var IDListIndex = ds_list_find_index(idList, obj_control.navWindowTaggingID);
 				if (IDListIndex < ds_list_size(idList) - 1) {
 					with (obj_inputBox) instance_destroy();

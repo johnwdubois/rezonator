@@ -171,7 +171,7 @@ function scr_panelPane_drawChunks1To1(){
 		global.colorThemeSelected1, global.colorThemeSelected2, spr_ascend, windowWidth, windowHeight);
 		
 
-	scr_navWindowTaggingSelection(obj_control.navChunkFieldList, chunkList, "chunk");
+	scr_navWindowTaggingSelection(chunkFieldList, chunkList, "chunk");
 	
 	scr_surfaceEnd();
 	
