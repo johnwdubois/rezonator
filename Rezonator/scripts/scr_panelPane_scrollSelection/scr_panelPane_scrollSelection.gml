@@ -96,12 +96,12 @@ function scr_panelPane_scrollSelection(focusedElementY, strHeight){
 				}
 				else if (onTagTabRight) {
 
-						if (fieldPaneSwitchButton == fieldPaneTokenMode) with (obj_panelPane) functionField_tokenTagSelected = list[| functionChainList_focusedIndex];
-						else if (fieldPaneSwitchButton == fieldPaneEntryMode) with (obj_panelPane) functionField_entryTagSelected = list[| functionChainList_focusedIndex];
-						else if (fieldPaneSwitchButton == fieldPaneUnitMode) with (obj_panelPane) functionField_unitTagSelected = list[| functionChainList_focusedIndex];
-						else if (fieldPaneSwitchButton == fieldPaneChainMode) with (obj_panelPane) functionField_chainTagSelected = list[| functionChainList_focusedIndex];
-						else if (fieldPaneSwitchButton == fieldPaneChunkMode) with (obj_panelPane) functionField_chunkTagSelected = list[| functionChainList_focusedIndex];
-						else if (fieldPaneSwitchButton == fieldPaneLinkMode) with (obj_panelPane) functionField_linkTagSelected = list[| functionChainList_focusedIndex];
+					if (fieldPaneSwitchButton == fieldPaneTokenMode) with (obj_panelPane) functionField_tokenTagSelected = list[| functionChainList_focusedIndex];
+					else if (fieldPaneSwitchButton == fieldPaneEntryMode) with (obj_panelPane) functionField_entryTagSelected = list[| functionChainList_focusedIndex];
+					else if (fieldPaneSwitchButton == fieldPaneUnitMode) with (obj_panelPane) functionField_unitTagSelected = list[| functionChainList_focusedIndex];
+					else if (fieldPaneSwitchButton == fieldPaneChainMode) with (obj_panelPane) functionField_chainTagSelected = list[| functionChainList_focusedIndex];
+					else if (fieldPaneSwitchButton == fieldPaneChunkMode) with (obj_panelPane) functionField_chunkTagSelected = list[| functionChainList_focusedIndex];
+					else if (fieldPaneSwitchButton == fieldPaneLinkMode) with (obj_panelPane) functionField_linkTagSelected = list[| functionChainList_focusedIndex];
 
 				}
 				

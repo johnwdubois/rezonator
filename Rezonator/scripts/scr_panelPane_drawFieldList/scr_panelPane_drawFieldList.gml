@@ -15,7 +15,9 @@ function scr_panelPane_drawFieldList(){
 	var numColX = x;
 	var numColWidth = windowWidth * 0.1;
 	var fieldNameColX = numColX + numColWidth;
-	var fieldNameColWidth = windowWidth * 0.7;
+	var fieldNameColWidth = (fieldPaneSwitchButton != fieldPaneChainMode && fieldPaneSwitchButton != fieldPaneEntryMode )? windowWidth * 0.7: windowWidth * 0.2;
+	var typeColX = fieldNameColX + fieldNameColWidth;
+	var typeColWidth = (fieldPaneSwitchButton != fieldPaneChainMode && fieldPaneSwitchButton != fieldPaneEntryMode )? 0:windowWidth * 0.5;
 	var deleteColWidth = clamp(windowWidth * 0.15, sprite_get_width(spr_trash), sprite_get_width(spr_trash) * 2);
 	var deleteColX = x + windowWidth - deleteColWidth - global.scrollBarWidth;
 	var lockColWidth = deleteColWidth;
@@ -264,6 +266,25 @@ function scr_panelPane_drawFieldList(){
 		
 				// draw field name
 				draw_text(floor(fieldNameColX + textBuffer) - clipX, textY - clipY, string(currentField));
+				
+				if (fieldPaneSwitchButton == fieldPaneChainMode || fieldPaneSwitchButton == fieldPaneEntryMode ){
+					var inRez = currentFieldSubMap[?"rez"];
+					var inStack = currentFieldSubMap[?"card"];
+					var inTrail = currentFieldSubMap[?"track"];
+					var chainList = ds_list_create();
+					if(inRez){
+						ds_list_add(chainList,"Resonacne");
+					}
+					if(inTrail){
+						ds_list_add(chainList,"Trail");
+					}
+					if(inStack){
+						ds_list_add(chainList,"Stack");
+					}
+					// draw field name
+					draw_text(floor(typeColX + textBuffer) - clipX, textY - clipY, string(scr_getStringOfList(chainList)));
+					ds_list_destroy(chainList);
+				}
 		
 			}
 			else{
@@ -343,11 +364,20 @@ function scr_panelPane_drawFieldList(){
 	// field name header
 	draw_set_color(global.colorThemeBG);
 	draw_rectangle(fieldNameColX, y, x + windowWidth, y + headerHeight, false);
-	draw_set_color(global.colorThemeBorders);
-	draw_rectangle(fieldNameColX, y, x + windowWidth, y + headerHeight, true);
+
 	draw_set_color(global.colorThemeText);
 	draw_text(floor(fieldNameColX + textBuffer), headerTextY, scr_get_translation("option_field-name"));
 	
+	draw_set_color(global.colorThemeBG);
+	draw_rectangle(typeColX, y, x + windowWidth, y + headerHeight, false);
+
+	draw_set_color(global.colorThemeBorders);
+	draw_rectangle(fieldNameColX, y, x + windowWidth, y + headerHeight, true);
+
+	if (fieldPaneSwitchButton == fieldPaneChainMode || fieldPaneSwitchButton == fieldPaneEntryMode ){
+		draw_set_color(global.colorThemeText);
+		draw_text(floor(typeColX + textBuffer), headerTextY, scr_get_translation("Type"));
+	}
 	
 	
 	/*
