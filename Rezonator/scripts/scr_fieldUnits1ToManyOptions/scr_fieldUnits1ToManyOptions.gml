@@ -43,6 +43,11 @@ function scr_fieldUnits1ToManyOptions(optionSelected){
 		}
 		instance_destroy();
 	}
+	else if (optionSelected == "Insert column") {
+		
+		scr_insertColumnDropDown(obj_control.tokenFieldList, obj_control.navTokenFieldList, "token");
+	
+	}
 	
 
 }

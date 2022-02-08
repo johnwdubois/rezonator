@@ -52,7 +52,10 @@ windowWidth = max(originalWindowWidth, maxWidth);
 if (x + windowWidth > camWidth && !global.userLangRTL) {
 	var widthOffset = 0;
 	if (prevDropDownExists) {
-		widthOffset = prevDropDown.windowWidth;
+		
+		var prevDDX2 = prevDropDown.x + prevDropDown.windowWidth;
+		var horizontalOffset = camWidth-prevDDX2;
+		widthOffset = prevDropDown.windowWidth+ horizontalOffset;
 	}
 	x = camWidth - windowWidth - widthOffset;
 }
@@ -397,7 +400,6 @@ and !mouseInDropDown and !scrollBarHoldingDelay) {
 	}
 	if(destroyDropDown){
 		with (obj_dropDown) {
-			show_debug_message("BUHHHHHH")
 			instance_destroy();
 		}
 	}

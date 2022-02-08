@@ -125,6 +125,10 @@ function scr_expandableDropDownInit(){
 	ds_list_add(addtoRezList, global.optionListTypeSearchPane);
 	ds_map_add_list(global.expandableDropDownMap, "Add to Resonance", addtoRezList);
 	
+
+	var insertColumnList = ds_list_create();
+	ds_list_add(insertColumnList, global.optionListTypeFieldUnits1ToMany, global.optionListTypeFieldUnits1To1, global.optionListTypeFieldChains1ToMany);
+	ds_map_add_list(global.expandableDropDownMap, "Insert column", insertColumnList);
 	
 
 }

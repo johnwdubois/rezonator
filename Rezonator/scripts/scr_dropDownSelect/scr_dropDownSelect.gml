@@ -393,5 +393,9 @@ function scr_dropDownSelect(optionSelected) {
 	{
 		scr_tagPaneOptions(optionSelected);
 	}
+	else if (optionListType == global.optionListTypeInsertCol) //91
+	{
+		scr_insertColOptions(optionSelected);
+	}
 
 }

@@ -1,5 +1,3 @@
-
-
 function scr_fieldUnits1To1Options(optionSelected){
 	
 	var optionSpacingMulti = ds_list_find_index(optionList, optionSelected);
@@ -36,6 +34,18 @@ function scr_fieldUnits1To1Options(optionSelected){
 	else if (optionSelected == "Show in main screen") {
 		global.participantField = obj_control.unitFieldToChange;
 		instance_destroy();
+	}
+	else if (optionSelected == "Hide column") {
+		if (ds_list_size(obj_control.navUnitFieldList) > 1) {
+			show_debug_message("Hiding column: " + string(obj_panelPane.chosenCol));
+			ds_list_delete(obj_control.navUnitFieldList, obj_panelPane.chosenCol);
+		}
+		instance_destroy();
+	}
+	else if (optionSelected == "Insert column") {
+		
+		scr_insertColumnDropDown(obj_control.unitFieldList, obj_control.navUnitFieldList, "unit");
+	
 	}
 	
 

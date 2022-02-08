@@ -1,5 +1,3 @@
-
-
 function scr_panelPane_drawChunks1To1Headers(fieldList){
 	
 	scr_surfaceStart();
@@ -79,6 +77,7 @@ function scr_panelPane_drawChunks1To1Headers(fieldList){
 				var dropDownOptionList = ds_list_create();
 				ds_list_add(dropDownOptionList, "option_select-field", "option_create-new-field", "option_add-to-tag-set", "option-remove-tag-set",);
 				scr_createDropDown(headerRectX1, headerRectY2, dropDownOptionList, global.optionListTypeFieldUnits1ToMany);
+				scr_clearNavWindowTagging(false);
 			}
 		}
 		

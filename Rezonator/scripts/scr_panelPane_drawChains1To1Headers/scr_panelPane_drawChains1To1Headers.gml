@@ -1,5 +1,3 @@
-
-
 function scr_panelPane_drawChains1To1Headers(chain1to1ColFieldList, chainType){
 	
 	scr_surfaceStart();
@@ -105,6 +103,7 @@ function scr_panelPane_drawChains1To1Headers(chain1to1ColFieldList, chainType){
 				
 				
 				scr_createDropDown(headerRectX1, headerRectY2, dropDownOptionList, global.optionListTypeFieldChains1To1);
+				scr_clearNavWindowTagging(false);
 			}
 		}
 	}
