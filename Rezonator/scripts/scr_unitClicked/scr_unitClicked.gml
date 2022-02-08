@@ -82,8 +82,13 @@ function scr_unitClicked(unitID){
 		&& is_string(obj_panelPane.functionField_unitFieldSelected) && is_string(obj_panelPane.functionField_unitTagSelected)) {
 			var unitTagMap = unitSubMap[? "tagMap"];
 			if (scr_isNumericAndExists(unitTagMap, ds_type_map)) {
-				unitTagMap[? obj_panelPane.functionField_unitFieldSelected] = obj_panelPane.functionField_unitTagSelected;
-				show_debug_message("scr_unitClicked ... setting unit: " + string(unitID) + ", field:" + string(obj_panelPane.functionField_unitFieldSelected) + ", tag: " + string(obj_panelPane.functionField_unitTagSelected));
+				if(obj_panelPane.functionField_unitTagSelected == scr_get_translation("menu_clear")){
+					unitTagMap[? obj_panelPane.functionField_unitFieldSelected] = "";
+				}
+				else{
+					unitTagMap[? obj_panelPane.functionField_unitFieldSelected] = obj_panelPane.functionField_unitTagSelected;
+					show_debug_message("scr_unitClicked ... setting unit: " + string(unitID) + ", field:" + string(obj_panelPane.functionField_unitFieldSelected) + ", tag: " + string(obj_panelPane.functionField_unitTagSelected));
+				}
 			}
 		}
 	}
