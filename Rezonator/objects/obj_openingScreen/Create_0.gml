@@ -342,7 +342,6 @@ var ctrlStr = (os_type == os_macosx) ? "CMD" : "CTRL";
 global.keyboardShortcutMap = ds_map_create();
 ds_map_add(global.keyboardShortcutMap, "menu_keyword", "F");
 ds_map_add(global.keyboardShortcutMap, "menu_go-to-line", "G");
-ds_map_add(global.keyboardShortcutMap, "menu_go-to-time", "G");
 ds_map_add(global.keyboardShortcutMap, "menu_save", ctrlStr + "+S");
 ds_map_add(global.keyboardShortcutMap, "menu_grid", ctrlStr + "+G");
 ds_map_add(global.keyboardShortcutMap, "menu_theme", ctrlStr + "+B");
