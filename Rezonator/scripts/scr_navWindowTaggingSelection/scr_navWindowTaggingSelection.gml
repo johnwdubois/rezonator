@@ -92,18 +92,19 @@ function scr_navWindowTaggingSelection(fieldList, idList, type){
 		// create input box if user presses enter or types a letter on keyboard
 		if (!inputBoxExists && !obj_control.navWindowTaggingDisableSpawn && !global.ctrlHold && !instance_exists(obj_dropDown) && fieldHasTagSet) {
 			
-			if (keyboard_check_pressed(vk_enter) || scr_isCharLetter(keyboard_lastchar)){
-
-				// get the tagSet for this field
-				var dropDownOptionList = ds_list_create();
-				if (scr_isNumericAndExists(fieldSubMap,ds_type_map)){
-					var tagSet = fieldSubMap[? "tagSet"];
-					show_debug_message(scr_getStringOfList(tagSet))
-					// create dropdown
+			var enterKeyPressed = keyboard_check_pressed(vk_enter);
+			var lastCharIsLetter = scr_isCharLetter(keyboard_lastchar);
+			
+			if (enterKeyPressed || lastCharIsLetter){
 				
-					ds_list_copy(dropDownOptionList, tagSet);
-					show_debug_message(scr_getStringOfList(dropDownOptionList));
-				}				
+				// fill dropDown options with tagSet
+				var dropDownOptionList = ds_list_create();
+				if (scr_isNumericAndExists(fieldSubMap, ds_type_map)){
+					var tagSet = fieldSubMap[? "tagSet"];
+					if (scr_isNumericAndExists(tagSet, ds_type_list)){
+						ds_list_copy(dropDownOptionList, tagSet);
+					}
+				}
 			}
 			
 			var currentDropDownType = 0;
@@ -124,13 +125,13 @@ function scr_navWindowTaggingSelection(fieldList, idList, type){
 			}
 			
 			
-			if (keyboard_check_pressed(vk_enter)) {
+			if (enterKeyPressed) {
 				obj_control.navWindowTaggingEnterPress = true;
 				var currentTagValue = scr_navWindowGetTagValue();
 				scr_spawnTagInputBox(obj_control.navWindowTaggingID, obj_control.navWindowTaggingField, type, currentTagValue, self.id, dropDownOptionList, currentDropDownType);
 				obj_control.navWindowTaggingFocusHeavy = true;
 			}
-			else if (scr_isCharLetter(keyboard_lastchar) && obj_control.navWindowTaggingKeyboardInput) {
+			else if (lastCharIsLetter && obj_control.navWindowTaggingKeyboardInput) {
 				scr_spawnTagInputBox(obj_control.navWindowTaggingID, obj_control.navWindowTaggingField, type, keyboard_lastchar, self.id, dropDownOptionList, currentDropDownType);
 				obj_control.navWindowTaggingFocusHeavy = false;
 				obj_control.navWindowTaggingKeyboardLastChar = keyboard_lastchar;

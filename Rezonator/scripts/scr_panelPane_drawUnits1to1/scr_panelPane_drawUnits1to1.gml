@@ -64,7 +64,12 @@ function scr_panelPane_drawUnits1to1() {
 	    var colRectY1 = y;
 	    var colRectX2 = colRectX1 + colWidth;
 	    var colRectY2 = colRectY1 + headerHeight;
-
+		
+		// skip drawing this column if its out of horizontal drawRange
+		if (colRectX2 < x || colRectX1 > x + windowWidth) {
+			i++;
+			continue;
+		}
 
 		// loop down units for this field
 		for (var j = 0; j < displayUnitListSize; j++) {

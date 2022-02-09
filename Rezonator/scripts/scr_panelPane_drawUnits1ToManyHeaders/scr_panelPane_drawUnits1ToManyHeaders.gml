@@ -47,7 +47,7 @@ function scr_panelPane_drawUnits1ToManyHeaders(){
 			draw_set_halign(fa_right);
 			headerTextX = headerRectX2 - (textMarginLeft) - dropDownButtonSize - (textMarginLeft * 2);
 		}
-		draw_text(headerTextX- clipX, headerTextY- clipY, " " + currentField);
+		draw_text(headerTextX- clipX, headerTextY- clipY, currentField);
 		draw_set_alpha(1);
 		
 		// draw displayToken button
