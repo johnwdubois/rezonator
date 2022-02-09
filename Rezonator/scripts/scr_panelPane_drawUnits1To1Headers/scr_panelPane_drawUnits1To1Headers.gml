@@ -124,7 +124,7 @@ function scr_panelPane_drawUnits1To1Headers(){
 		draw_set_color(global.colorThemeText);
 	
 
-		draw_text(headerTextX - clipX, headerTextY - clipY, currentField);
+		draw_text(headerTextX - clipX, headerTextY - clipY, " " + currentField);
 	
 		plusX += colWidth;
 	}
