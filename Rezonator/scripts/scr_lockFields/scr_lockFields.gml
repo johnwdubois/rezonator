@@ -11,7 +11,13 @@ function scr_lockFields(){
 		if(!ds_map_exists(currentFieldMap, "locked")){
 			currentFieldMap[?"locked"] = false;
 		}
+		if(!ds_map_exists(currentFieldMap, "readOnly")){
+			currentFieldMap[?"readOnly"] = false;
+		}
 		var tagSet = currentFieldMap[?"tagSet"];
+		if(!scr_isNumericAndExists(tagSet,ds_type_list)){
+			currentFieldMap[?"readOnly"] = true
+		}
 		scr_sortList(tagSet);
 	}
 	scr_sortList(obj_control.tokenFieldList);
@@ -25,7 +31,13 @@ function scr_lockFields(){
 		if(!ds_map_exists(currentFieldMap, "locked")){
 			currentFieldMap[?"locked"] = false;
 		}
+		if(!ds_map_exists(currentFieldMap, "readOnly")){
+			currentFieldMap[?"readOnly"] = false;
+		}
 		var tagSet = currentFieldMap[?"tagSet"];
+		if(!scr_isNumericAndExists(tagSet,ds_type_list)){
+			currentFieldMap[?"readOnly"] = true
+		}
 		scr_sortList(tagSet);
 	}
 		scr_sortList(obj_control.unitFieldList);
@@ -39,7 +51,13 @@ function scr_lockFields(){
 		if(!ds_map_exists(currentFieldMap, "locked")){
 			currentFieldMap[?"locked"] = false;
 		}
+		if(!ds_map_exists(currentFieldMap, "readOnly")){
+			currentFieldMap[?"readOnly"] = false;
+		}
 		var tagSet = currentFieldMap[?"tagSet"];
+		if(!scr_isNumericAndExists(tagSet,ds_type_list)){
+			currentFieldMap[?"readOnly"] = true
+		}
 		scr_sortList(tagSet);
 	}
 	scr_sortList(global.chainEntryFieldList);
@@ -53,7 +71,13 @@ function scr_lockFields(){
 		if(!ds_map_exists(currentFieldMap, "locked")){
 			currentFieldMap[?"locked"] = false;
 		}
+		if(!ds_map_exists(currentFieldMap, "readOnly")){
+			currentFieldMap[?"readOnly"] = false;
+		}
 		var tagSet = currentFieldMap[?"tagSet"];
+		if(!scr_isNumericAndExists(tagSet,ds_type_list)){
+			currentFieldMap[?"readOnly"] = true
+		}
 		scr_sortList(tagSet);
 	}
 	scr_sortList(global.chainFieldList);
@@ -67,7 +91,15 @@ function scr_lockFields(){
 		if(!ds_map_exists(currentFieldMap, "locked")){
 			currentFieldMap[?"locked"] = false;
 		}
+		if(!ds_map_exists(currentFieldMap, "readOnly")){
+			currentFieldMap[?"readOnly"] = false;
+		}
+		
 		var tagSet = currentFieldMap[?"tagSet"];
+
+		if(!scr_isNumericAndExists(tagSet,ds_type_list)){
+			currentFieldMap[?"readOnly"] = true
+		}
 		scr_sortList(tagSet);
 	}
 	scr_sortList(obj_control.chunkFieldList);
@@ -81,7 +113,13 @@ function scr_lockFields(){
 		if(!ds_map_exists(currentFieldMap, "locked")){
 			currentFieldMap[?"locked"] = false;
 		}
+		if(!ds_map_exists(currentFieldMap, "readOnly")){
+			currentFieldMap[?"readOnly"] = false;
+		}
 		var tagSet = currentFieldMap[?"tagSet"];
+		if(!scr_isNumericAndExists(tagSet,ds_type_list)){
+			currentFieldMap[?"readOnly"] = true
+		}
 		scr_sortList(tagSet);
 	}
 	scr_sortList(global.linkFieldList);

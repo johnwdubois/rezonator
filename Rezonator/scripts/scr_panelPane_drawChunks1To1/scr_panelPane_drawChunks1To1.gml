@@ -65,7 +65,13 @@ function scr_panelPane_drawChunks1To1(){
 			var tagMap = chunkSubMap[? "tagMap"];
 			if (!scr_isNumericAndExists(tagMap, ds_type_map)) continue;
 			
-			
+			var readOnlyField = false;
+			var tokenTagMap = global.nodeMap[? "tokenTagMap"];
+			var currentFieldSubMap = tokenTagMap[? currentField];
+			if (scr_isNumericAndExists(currentFieldSubMap, ds_type_map)) {
+				if (!ds_map_exists(currentFieldSubMap, "tagSet")) readOnlyField = true;
+				if(currentFieldSubMap[?"readOnly"]) readOnlyField = true;
+			}
 			
 			// get coordinates for cell rectangle
 			var cellRectX1 = x + (i * colWidth) + scrollHorPlusX;
@@ -142,7 +148,10 @@ function scr_panelPane_drawChunks1To1(){
 			
 			var textY = floor(mean(cellRectY1, cellRectY2));
 			
+			
+			draw_set_alpha(readOnlyField ? 0.7 : 1);
 			draw_text(textX - clipX, textY - clipY, tagStr);
+			draw_set_alpha(1);
 			
 			scr_chunkTagDropDown(global.nodeMap[? "tokenTagMap"], currentField, currentChunk, tagStr, cellRectX1, cellRectY1, cellRectX2, cellRectY2, mouseoverCell, i == chunkFieldListSize - 1);
 			

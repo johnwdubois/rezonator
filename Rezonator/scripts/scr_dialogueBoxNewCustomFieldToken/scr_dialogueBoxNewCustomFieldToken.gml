@@ -39,6 +39,9 @@ function scr_dialogueBoxNewCustomFieldToken() {
 	var tagMap = global.nodeMap[? "tokenTagMap"];
 	ds_map_add_map(tagMap, newField, newFieldMap);
 	
+	ds_map_add(newFieldMap, "locked", false);
+	ds_map_add(newFieldMap, "readOnly", false);
+	
 	
 	scr_addNewFieldToNodes("token", newField);
 	

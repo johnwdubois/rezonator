@@ -9,10 +9,10 @@ function scr_chunkTagDropDown(fieldMap, field, IDtoChange, str, cellRectX1, cell
 										
 			// check whether this field has a tagSet
 			var fieldHasTagSet = ds_map_exists(fieldTagSubMap, "tagSet");
-			var fieldHasShortcutSet = ds_map_exists(fieldTagSubMap, "shortcutSet");
+			var fieldReadOnly = fieldTagSubMap[?"readOnly"];
 	
 			// draw dropDown button if this field has a tagSet
-			if (fieldHasTagSet) {
+			if (fieldHasTagSet && !fieldReadOnly) {
 			
 				// get the tagSet of this field and make sure it exists
 				var fieldTagSet = fieldTagSubMap[? "tagSet"];

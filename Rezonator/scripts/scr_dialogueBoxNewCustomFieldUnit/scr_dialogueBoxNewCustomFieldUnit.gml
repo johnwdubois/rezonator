@@ -14,6 +14,8 @@ function scr_dialogueBoxNewCustomFieldUnit() {
 	// create a new submap for this field
 	var newFieldMap = ds_map_create();
 	ds_map_add_list(newFieldMap, "tagSet", ds_list_create());
+	ds_map_add(newFieldMap, "locked", false);
+	ds_map_add(newFieldMap, "readOnly", false);
 	
 	//add to nav window list
 	scr_addToListOnce(obj_control.navUnitFieldList, newField);

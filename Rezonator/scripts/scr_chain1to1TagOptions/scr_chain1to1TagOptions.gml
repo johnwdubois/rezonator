@@ -1,5 +1,3 @@
-
-
 function scr_chain1To1TagOptions(optionSelected){
 	
 	// check if user is clearing tag
@@ -33,6 +31,9 @@ function scr_chain1To1TagOptions(optionSelected){
 		ds_map_delete(chainTagMap, fieldToChange);
 	}
 	else {
+		var fieldSubMap = global.chainFieldMap[?fieldToChange];
+		var readOnly =  fieldSubMap[?"readOnly"];
+		if(readOnly) exit;
 		// set the selected tag in this chain's tagmap
 		var newTagValue = clearTag ? "" : optionSelected;
 		scr_setMap(chainTagMap, fieldToChange, newTagValue);

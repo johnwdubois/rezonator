@@ -33,7 +33,10 @@ function scr_navWindowTaggingSelection(fieldList, idList, type){
 		fieldSubMap = tagMap[? obj_control.navWindowTaggingField];
 		var fieldHasTagSet = scr_checkForTagSet(fieldSubMap);
 		
-		
+		var readOnly = false;
+		if(scr_isNumericAndExists(fieldSubMap, ds_type_map)){
+			readOnly = fieldSubMap[?"readOnly"];
+		}
 		
 		if (global.ctrlHold && !inputBoxExists) {
 			// copy
@@ -43,7 +46,7 @@ function scr_navWindowTaggingSelection(fieldList, idList, type){
 				show_debug_message("scr_navWindowTaggingSelection, copied to clipboard: " + string(clipboard_get_text()));
 			}
 			
-			if (fieldHasTagSet) {
+			if (fieldHasTagSet && !readOnly) {
 				// paste
 				if (keyboard_check_pressed(ord("V"))) {
 					
@@ -70,9 +73,10 @@ function scr_navWindowTaggingSelection(fieldList, idList, type){
 				keyboard_lastchar = "";
 			}
 		}
+
 		
 		// backspace & delete
-		if (fieldHasTagSet) {
+		if (fieldHasTagSet && !readOnly) {
 			if ((keyboard_check_pressed(vk_backspace) || keyboard_check_pressed(vk_delete)) && !inputBoxExists) {
 				var idSubMap = global.nodeMap[? obj_control.navWindowTaggingID];
 				if (scr_isNumericAndExists(idSubMap, ds_type_map)) {
@@ -90,7 +94,7 @@ function scr_navWindowTaggingSelection(fieldList, idList, type){
 		
 		
 		// create input box if user presses enter or types a letter on keyboard
-		if (!inputBoxExists && !obj_control.navWindowTaggingDisableSpawn && !global.ctrlHold && !instance_exists(obj_dropDown) && fieldHasTagSet) {
+		if (!inputBoxExists && !obj_control.navWindowTaggingDisableSpawn && !global.ctrlHold && !instance_exists(obj_dropDown) && fieldHasTagSet && !readOnly) {
 			
 			var enterKeyPressed = keyboard_check_pressed(vk_enter);
 			var lastCharIsLetter = scr_isCharLetter(keyboard_lastchar);
@@ -101,10 +105,12 @@ function scr_navWindowTaggingSelection(fieldList, idList, type){
 				var dropDownOptionList = ds_list_create();
 				if (scr_isNumericAndExists(fieldSubMap, ds_type_map)){
 					var tagSet = fieldSubMap[? "tagSet"];
+
 					if (scr_isNumericAndExists(tagSet, ds_type_list)){
 						ds_list_copy(dropDownOptionList, tagSet);
 					}
 				}
+							
 			}
 			
 			var currentDropDownType = 0;
@@ -125,6 +131,7 @@ function scr_navWindowTaggingSelection(fieldList, idList, type){
 			}
 			
 			
+
 			if (enterKeyPressed) {
 				obj_control.navWindowTaggingEnterPress = true;
 				var currentTagValue = scr_navWindowGetTagValue();
@@ -137,6 +144,7 @@ function scr_navWindowTaggingSelection(fieldList, idList, type){
 				obj_control.navWindowTaggingKeyboardLastChar = keyboard_lastchar;
 				keyboard_lastchar = "";
 			}
+			
 		}
 		
 		// arrow key movement around nav window

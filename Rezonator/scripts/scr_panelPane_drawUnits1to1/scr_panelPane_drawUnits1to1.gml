@@ -97,7 +97,13 @@ function scr_panelPane_drawUnits1to1() {
 			draw_set_color(global.colorThemeBG);
 			draw_rectangle(colRectX1 - clipX, unitRectY1 - clipY, colRectX2 - clipX, unitRectY2 - clipY, false);
 				
-			
+			var readOnlyField = false;
+			var unitTagMap = global.nodeMap[? "unitTagMap"];
+			var currentFieldSubMap = unitTagMap[? currentField];
+			if (scr_isNumericAndExists(currentFieldSubMap, ds_type_map)) {
+				if (!ds_map_exists(currentFieldSubMap, "tagSet")) readOnlyField = true;
+				if(currentFieldSubMap[?"readOnly"]) readOnlyField = true;
+			}
 	
 		    //Check mouse clicks to focus a line in the list
 		    if (mouseoverunitRect && !instance_exists(obj_dialogueBox) && !instance_exists(obj_dropDown)) {
@@ -148,7 +154,7 @@ function scr_panelPane_drawUnits1to1() {
 					
 				
 								
-			if (mouseoverDropDownButton) {
+			if (mouseoverDropDownButton && !readOnlyField) {
 				scr_createTooltip(mean(dropDownButtonX1, dropDownButtonX2), dropDownButtonY2, scr_get_translation("option-tag"), obj_tooltip.arrowFaceUp);
 				draw_set_alpha(1);
 				draw_set_color(global.colorThemeBorders);
@@ -156,12 +162,9 @@ function scr_panelPane_drawUnits1to1() {
 				
 				if (mouse_check_button_released(mb_left)) {
 								
-					// get submap for this field
-					var unitTagMap = global.nodeMap[? "unitTagMap"];
-					var fieldSubMap = unitTagMap[? currentField];
 					
 					// get the tagSet for this field
-					var tagSet = fieldSubMap[? "tagSet"];
+					var tagSet = currentFieldSubMap[? "tagSet"];
 					if (scr_isNumericAndExists(tagSet, ds_type_list)) {
 					
 						// create dropdown
@@ -193,13 +196,11 @@ function scr_panelPane_drawUnits1to1() {
 			
 			var mouseOverCell = scr_pointInRectangleClippedWindow(mouse_x,mouse_y, colRectX1, unitRectY1, colRectX2, unitRectY2) && !mouseoverCancel;
 			if(mouseOverCell){
-				draw_sprite_ext(spr_dropDown, 0, mean(dropDownButtonX1, dropDownButtonX2) - clipX, mean(unitRectY1, unitRectY2) - clipY, 1, 1, 0, global.colorThemeText, 1);
+				if(!readOnlyField){
+					draw_sprite_ext(spr_dropDown, 0, mean(dropDownButtonX1, dropDownButtonX2) - clipX, mean(unitRectY1, unitRectY2) - clipY, 1, 1, 0, global.colorThemeText, 1);
+				}
 				obj_control.hoverTextCopy = currentStr;
 				
-				if (mouse_check_button_released(mb_left)) {
-					obj_control.navWindowTaggingID = currentUnitID;
-					obj_control.navWindowTaggingField = currentField;
-				}
 			}
 			
 			scr_cellEdit(currentUnitID, currentField, mouseOverCell, mouseoverDropDownButton, colRectX1, unitRectY1, colRectX2, unitRectY2, currentStr, "unit");
@@ -228,9 +229,11 @@ function scr_panelPane_drawUnits1to1() {
 				textX -= global.scrollBarWidth;
 			}
 			
+
+			draw_set_alpha(readOnlyField ? 0.7 : 1);
 			
 		    draw_text(textX - clipX, y + headerHeight + relativeScrollPlusY + textPlusY - clipY, currentStr);
-    
+			 draw_set_alpha(1);
 		    // Get height of chain name
 		    textPlusY += strHeight;
 			

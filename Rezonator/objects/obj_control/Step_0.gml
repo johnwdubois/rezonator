@@ -616,14 +616,10 @@ scr_fontSizeControl();
 
 
 	
-if (mouse_check_button(mb_left)) {
-	isDragging = true;
-}
+
 
 if (mouse_check_button_released(mb_left) && !mouseoverTagCell 
-&& !obj_control.mouseoverInputBox && !obj_control.mouseoverDropDown
-&& !obj_control.isDragging) {
-	alarm[1] = 1;
+&& !obj_control.mouseoverInputBox && !obj_control.mouseoverDropDown) {
 	with (obj_inputBox) {
 		if (navWindowTagging) {
 			show_debug_message("obj_control kills input box 4 fun");
@@ -631,6 +627,7 @@ if (mouse_check_button_released(mb_left) && !mouseoverTagCell
 		}
 	}
 }
+
 
 if (mouse_check_button_pressed(mb_right)) {
 	scr_clearNavWindowTagging();

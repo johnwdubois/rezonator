@@ -36,7 +36,6 @@ function scr_dialogueBoxNewCustomFieldChain() {
 
 	// create a new tagSet and shortcutSet for the new field
 	var tagSet = ds_list_create();
-	var shortcutSet = ds_list_create();
-	scr_addToChainFieldMap(global.chainFieldMap, newField, tagSet, shortcutSet, true, true, true);
+	scr_addToChainFieldMap(global.chainFieldMap, newField, tagSet, true, true, true);
 	scr_sortList(global.chainFieldList);
 }

@@ -98,6 +98,7 @@ function scr_panelPane_drawChains1To1(){
 		var fieldHasTagSet = false;
 		if (scr_isNumericAndExists(currentFieldSubMap, ds_type_map)) {
 			fieldHasTagSet = ds_map_exists(currentFieldSubMap, "tagSet");
+			if(currentFieldSubMap[?"readOnly"]) fieldHasTagSet = false;
 		}
 		
 		

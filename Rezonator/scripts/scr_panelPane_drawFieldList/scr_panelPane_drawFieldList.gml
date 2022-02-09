@@ -18,14 +18,18 @@ function scr_panelPane_drawFieldList(){
 	var fieldNameColWidth = (fieldPaneSwitchButton != fieldPaneChainMode && fieldPaneSwitchButton != fieldPaneEntryMode )? windowWidth * 0.7: windowWidth * 0.2;
 	var typeColX = fieldNameColX + fieldNameColWidth;
 	var typeColWidth = (fieldPaneSwitchButton != fieldPaneChainMode && fieldPaneSwitchButton != fieldPaneEntryMode )? 0:windowWidth * 0.5;
-	var deleteColWidth = clamp(windowWidth * 0.15, sprite_get_width(spr_trash), sprite_get_width(spr_trash) * 2);
+	var deleteColWidth = sprite_get_width(spr_trash) + textBuffer*1.5;
 	var deleteColX = x + windowWidth - deleteColWidth - global.scrollBarWidth;
-	var lockColWidth = deleteColWidth;
+	var lockColWidth = sprite_get_width(spr_lock) + textBuffer*1.5;
 	var lockColX = deleteColX - lockColWidth;
+	var readOnlyColWidth = sprite_get_width(spr_readOnly) + textBuffer*1.5;
+	var readOnlyColX = lockColX - readOnlyColWidth;
 	var focusedElementY = -1;
 
-	var mouseoverWindow = point_in_rectangle(mouse_x, mouse_y, x, y, x + windowWidth, y + windowHeight);
-	var mouseoverHeader = point_in_rectangle(mouse_x, mouse_y, x, y, x + windowWidth, y + headerHeight);
+	var mouseoverCancel = instance_exists(obj_dropDown) || instance_exists(obj_dialogueBox);
+	var mouseoverWindow = point_in_rectangle(mouse_x, mouse_y, x, y, x + windowWidth, y + windowHeight) && !mouseoverCancel;
+	var mouseoverHeader = point_in_rectangle(mouse_x, mouse_y, x, y, x + windowWidth, y + headerHeight) && !mouseoverCancel;
+	
 	
 	// determine which field list to use depending on 1to1 vs 1toMany and Chain vs Discourse
 	var fieldList = -1;
@@ -103,7 +107,7 @@ function scr_panelPane_drawFieldList(){
 			// get y values for this row
 			var currentRowY1 = y + plusY + scrollPlusY - 16;
 			var currentRowY2 = currentRowY1 + strHeight;
-			var mouseoverRow = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, x, currentRowY1, x + windowWidth, currentRowY2) && !instance_exists(obj_dropDown) && !instance_exists(obj_dialogueBox) && !mouseoverHeader && !mouseoverScrollBar && !scrollBarHolding;
+			var mouseoverRow = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, x, currentRowY1, x + windowWidth, currentRowY2) && !mouseoverCancel && !mouseoverHeader && !mouseoverScrollBar && !scrollBarHolding;
 			var textY = floor(mean(currentRowY1, currentRowY2));
 		
 				
@@ -209,14 +213,22 @@ function scr_panelPane_drawFieldList(){
 				// get coordinates for delete button
 				var delButtonX = mean(deleteColX, deleteColX + deleteColWidth);
 				var delButtonY = currentRowY1 + (strHeight * 0.5);
-				var mouseOverDel = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, deleteColX, currentRowY1, deleteColX + deleteColWidth, currentRowY2) && mouseoverRow && removable;
+				var mouseOverDel = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, deleteColX, currentRowY1, deleteColX + deleteColWidth, currentRowY2) && !mouseoverCancel && mouseoverRow && removable;
 				var trashAlpha = (removable) ? 1 : 0.5;
 				
 				// get coordinates for lock button
 				var lockButtonX = mean(lockColX, lockColX + lockColWidth);
 				var lockButtonY = currentRowY1 + (strHeight * 0.5);
-				var mouseOverLock = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, lockColX, currentRowY1, lockColX + lockColWidth, currentRowY2) && mouseoverRow;
+				var mouseOverLock = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, lockColX, currentRowY1, lockColX + lockColWidth, currentRowY2) && !mouseoverCancel && mouseoverRow;
 				var fieldLocked = currentFieldSubMap[?"locked"];
+				if (!is_bool(fieldLocked)) fieldLocked = false;
+				
+				// get coordinates for readonly button
+				var readOnlyButtonX = mean(readOnlyColX, readOnlyColX + readOnlyColWidth);
+				var readOnlyButtonY = currentRowY1 + (strHeight * 0.5);
+				var mouseOverReadOnly = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, readOnlyColX, currentRowY1, readOnlyColX + readOnlyColWidth, currentRowY2) && !mouseoverCancel && mouseoverRow;
+				var fieldReadOnly = currentFieldSubMap[?"readOnly"];
+				if (!is_bool(fieldReadOnly)) fieldReadOnly = false;
 
 								
 				// mouseover & click on delete button
@@ -245,20 +257,37 @@ function scr_panelPane_drawFieldList(){
 					draw_set_color(global.colorThemeSelected1);
 					draw_rectangle(lockColX - clipX, currentRowY1 - clipY, lockColX + lockColWidth - clipX, currentRowY2 - clipY, false);
 					if (mouse_check_button_released(mb_left)) {
-						currentFieldSubMap[?"locked"] = !currentFieldSubMap[?"locked"]
+						currentFieldSubMap[?"locked"] = !currentFieldSubMap[?"locked"];
 					
 					}
 					scr_createTooltip(lockButtonX, currentRowY2, fieldLocked ? "Unlock tags" : "Lock tags", obj_tooltip.arrowFaceUp);
+				}
+				// mouseover & click on lock button
+				else if (mouseOverReadOnly) {
+					if(removable){
+						draw_set_color(global.colorThemeSelected1);
+						draw_rectangle(readOnlyColX - clipX, currentRowY1 - clipY, readOnlyColX + readOnlyColWidth - clipX, currentRowY2 - clipY, false);
+						if (mouse_check_button_released(mb_left)) {
+							currentFieldSubMap[?"readOnly"] = !currentFieldSubMap[?"readOnly"];
+					
+						}
+					}
+					scr_createTooltip(readOnlyButtonX, currentRowY2, fieldReadOnly ? "Read Only" : "Taggable", obj_tooltip.arrowFaceUp);
 				}
 			
 
 				if(mouseoverRow || fieldSelected){
 					draw_sprite_ext(spr_trash, 0, delButtonX - clipX, delButtonY - clipY, .7, .7, 0, global.colorThemeText, trashAlpha);
 					draw_sprite_ext(spr_lock, !fieldLocked, lockButtonX - clipX, lockButtonY - clipY, .7, .7, 0, global.colorThemeText, 1);
+					draw_sprite_ext(spr_readOnly, fieldReadOnly, readOnlyButtonX - clipX, readOnlyButtonY - clipY, .6, .6, 0, global.colorThemeText, 1);
 				}
 				if(fieldLocked){
 					draw_sprite_ext(spr_lock, !fieldLocked, lockButtonX - clipX, lockButtonY - clipY, .7, .7, 0, global.colorThemeText, 1);
 				}
+				if(fieldReadOnly){
+					draw_sprite_ext(spr_readOnly, fieldReadOnly, readOnlyButtonX - clipX, readOnlyButtonY - clipY, .6, .6, 0, global.colorThemeText, 1);
+				}
+
 		
 				// draw #
 				draw_set_color(textColor);
@@ -273,7 +302,7 @@ function scr_panelPane_drawFieldList(){
 					var inTrail = currentFieldSubMap[?"track"];
 					var chainList = ds_list_create();
 					if(inRez){
-						ds_list_add(chainList,"Resonacne");
+						ds_list_add(chainList,"Resonance");
 					}
 					if(inTrail){
 						ds_list_add(chainList,"Trail");
@@ -402,7 +431,7 @@ function scr_panelPane_drawFieldList(){
 	var saveSpriteX = floor(mean(saveRectX1,saveRectX2));
 	var saveSpriteY = floor(mean(saveRectY1,saveRectY2)+1);
 	
-	var mouseOverSave = point_in_rectangle(mouse_x,mouse_y,saveRectX1,saveRectY1,saveRectX2,saveRectY2)
+	var mouseOverSave = point_in_rectangle(mouse_x,mouse_y,saveRectX1,saveRectY1,saveRectX2,saveRectY2) && !mouseoverCancel;
 	
 	if(mouseOverSave){
 		draw_set_color(global.colorThemeSelected1);
@@ -425,7 +454,7 @@ function scr_panelPane_drawFieldList(){
 	var loadSpriteX = floor(mean(loadRectX1,loadRectX2));
 	var loadSpriteY = floor(mean(loadRectY1,loadRectY2)+1);
 	
-	var mouseOverload = point_in_rectangle(mouse_x,mouse_y,loadRectX1,loadRectY1,loadRectX2,loadRectY2)
+	var mouseOverload = point_in_rectangle(mouse_x,mouse_y,loadRectX1,loadRectY1,loadRectX2,loadRectY2) && !mouseoverCancel;
 	
 	if(mouseOverload){
 		draw_set_color(global.colorThemeSelected1);
@@ -453,12 +482,11 @@ function scr_panelPane_drawFieldList(){
 	var moreOptionsY2 = headerTextY + stringHeightOfTab/2;
 
 	var optionsIconRad = sprite_get_width(spr_toggleDraw) * 0.7;
-	var mouseoverMoreChain = scr_pointInRectangleClippedWindow(mouse_x,mouse_y,moreOptionsX1,moreOptionsY1,moreOptionsX2,moreOptionsY2);
+	var mouseoverMoreChain = scr_pointInRectangleClippedWindow(mouse_x,mouse_y,moreOptionsX1,moreOptionsY1,moreOptionsX2,moreOptionsY2) && !mouseoverCancel;
+	var mouseoverMoreChainEffect = false;
 	
 	if(mouseoverMoreChain){
-		draw_set_color(global.colorThemeSelected1);
-		var edgebuffer = 2
-		draw_roundrect(moreOptionsX1-edgebuffer,moreOptionsY1,moreOptionsX2+edgebuffer,moreOptionsY2, false);
+		mouseoverMoreChainEffect = true;		
 		if(mouse_check_button_pressed(mb_left)){
 			var dropDownOptionList = ds_list_create();
 			var width = 0;
@@ -466,9 +494,20 @@ function scr_panelPane_drawFieldList(){
 			width = obj_dropDown.windowWidth
 			}
 			ds_list_add(dropDownOptionList, fieldPaneTokenMode,fieldPaneUnitMode,fieldPaneChainMode,fieldPaneEntryMode,fieldPaneChunkMode,fieldPaneLinkMode);
-			scr_createDropDown(moreOptionsX1, y + headerHeight, dropDownOptionList, global.optionListTypeTagPane);
+			scr_createDropDown(moreOptionsX1, moreOptionsY2, dropDownOptionList, global.optionListTypeTagPane);
 		}
 	}
+	
+	with (obj_dropDown) {
+		if (optionListType == global.optionListTypeTagPane) mouseoverMoreChainEffect = true;
+	}
+	
+	if (mouseoverMoreChainEffect) {
+		draw_set_color(global.colorThemeSelected1);
+		var edgebuffer = 2;
+		draw_roundrect(moreOptionsX1-edgebuffer,moreOptionsY1,moreOptionsX2+edgebuffer,moreOptionsY2, false);
+	}
+	
 	draw_set_halign(fa_left);
 	draw_set_color(global.colorThemeText);
 	draw_set_alpha(1);
