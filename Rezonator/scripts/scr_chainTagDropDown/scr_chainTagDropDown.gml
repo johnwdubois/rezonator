@@ -3,6 +3,7 @@ function scr_chainTagDropDown(fieldMap, field, IDtoChange, cellRectX1, cellRectY
 	var mouseoverDropDown = false;
 	var fieldHasTagSet = false;
 	var fieldTagSubMap = fieldMap[? field];
+	var setNavTaggingID = false;
 	if (scr_isNumericAndExists(fieldTagSubMap, ds_type_map)) {
 										
 		// check whether this field has a tagSet
@@ -62,6 +63,7 @@ function scr_chainTagDropDown(fieldMap, field, IDtoChange, cellRectX1, cellRectY
 							ds_list_add(dropDownOptionList, "menu_clear");
 							
 							scr_createDropDown(cellRectX1, cellRectY2, dropDownOptionList, optionListType);
+							setNavTaggingID = true;
 						}
 					}
 				}
@@ -74,6 +76,11 @@ function scr_chainTagDropDown(fieldMap, field, IDtoChange, cellRectX1, cellRectY
 	if (fieldMap == global.chainFieldMap) {type = "chain"}
 	
 
-	scr_cellEdit(IDtoChange, field, mouseoverCell, mouseoverDropDown, cellRectX1, cellRectY1, cellRectX2, cellRectY2, cellText, type);			
+	scr_cellEdit(IDtoChange, field, mouseoverCell, mouseoverDropDown, cellRectX1, cellRectY1, cellRectX2, cellRectY2, cellText, type);
+	
+	if (setNavTaggingID) {
+		obj_control.navWindowTaggingID = IDtoChange;
+		obj_control.navWindowTaggingField = field;
+	}
 
 }

@@ -89,15 +89,18 @@ function scr_navWindowTaggingSelection(fieldList, idList, type){
 			}
 		}
 		
-
 		
-		
+		var lastCharIsLetter = scr_isCharLetter(keyboard_lastchar);
+		if (readOnly && lastCharIsLetter) {
+			keyboard_lastchar = "";
+			lastCharIsLetter = false;
+		}
 		
 		// create input box if user presses enter or types a letter on keyboard
 		if (!inputBoxExists && !obj_control.navWindowTaggingDisableSpawn && !global.ctrlHold && !instance_exists(obj_dropDown) && fieldHasTagSet && !readOnly) {
 			
 			var enterKeyPressed = keyboard_check_pressed(vk_enter);
-			var lastCharIsLetter = scr_isCharLetter(keyboard_lastchar);
+			
 			
 			if (enterKeyPressed || lastCharIsLetter){
 				

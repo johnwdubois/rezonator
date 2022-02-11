@@ -17,7 +17,7 @@ function scr_panelPane_drawUnits1to1() {
 	var strHeight = leftPaneStrHeight;
 	var drawScrollbar = !chainViewOneToMany;
 	var relativeScrollPlusY = (drawScrollbar) ? scrollPlusY : lineListPanelPaneInst.scrollPlusY;
-	var mouseoverCancel = instance_exists(obj_dropDown) || instance_exists(obj_dialogueBox);
+	var mouseoverCancel = instance_exists(obj_dropDown) || instance_exists(obj_dialogueBox) || mouseoverHorScrollBar;
 	
 
 	// Set text margin area
@@ -153,35 +153,7 @@ function scr_panelPane_drawUnits1to1() {
 			if (mouseoverunitRect) mouseoverDropDownButton = point_in_rectangle(mouse_x, mouse_y, dropDownButtonX1, dropDownButtonY1, dropDownButtonX2, dropDownButtonY2);
 					
 				
-								
-			if (mouseoverDropDownButton && !readOnlyField) {
-				scr_createTooltip(mean(dropDownButtonX1, dropDownButtonX2), dropDownButtonY2, scr_get_translation("option-tag"), obj_tooltip.arrowFaceUp);
-				draw_set_alpha(1);
-				draw_set_color(global.colorThemeBorders);
-				draw_rectangle(dropDownButtonX1 - clipX, dropDownButtonY1 - clipY, dropDownButtonX2 - clipX, dropDownButtonY2 - clipY, true);
-				
-				if (mouse_check_button_released(mb_left)) {
-								
-					
-					// get the tagSet for this field
-					var tagSet = currentFieldSubMap[? "tagSet"];
-					if (scr_isNumericAndExists(tagSet, ds_type_list)) {
-					
-						// create dropdown
-						var dropDownOptionList = ds_list_create();
-						ds_list_copy(dropDownOptionList, tagSet);
-						ds_list_add(dropDownOptionList, "option_add-to-tag-set");
-						ds_list_add(dropDownOptionList, "menu_clear");
-
-						obj_control.unitToChange = currentUnitID;
-						obj_control.unitFieldToChange = currentField;
-						var dropDownX = colRectX1;
-						var dropDownY = unitRectY2;						
-						scr_createDropDown(dropDownX, dropDownY, dropDownOptionList, global.optionListTypeUnitTagMap);
-
-					}
-				}
-			}
+						
 	
     
 		    // Outline the rectangle in black
@@ -204,6 +176,38 @@ function scr_panelPane_drawUnits1to1() {
 			}
 			
 			scr_cellEdit(currentUnitID, currentField, mouseOverCell, mouseoverDropDownButton, colRectX1, unitRectY1, colRectX2, unitRectY2, currentStr, "unit");
+			
+			if (mouseoverDropDownButton && !readOnlyField) {
+				scr_createTooltip(mean(dropDownButtonX1, dropDownButtonX2), dropDownButtonY2, scr_get_translation("option-tag"), obj_tooltip.arrowFaceUp);
+				draw_set_alpha(1);
+				draw_set_color(global.colorThemeBorders);
+				draw_rectangle(dropDownButtonX1 - clipX, dropDownButtonY1 - clipY, dropDownButtonX2 - clipX, dropDownButtonY2 - clipY, true);
+				
+				if (mouse_check_button_released(mb_left)) {
+					
+					obj_control.navWindowTaggingID = currentUnitID;
+					obj_control.navWindowTaggingField = currentField;
+								
+					
+					// get the tagSet for this field
+					var tagSet = currentFieldSubMap[? "tagSet"];
+					if (scr_isNumericAndExists(tagSet, ds_type_list)) {
+					
+						// create dropdown
+						var dropDownOptionList = ds_list_create();
+						ds_list_copy(dropDownOptionList, tagSet);
+						ds_list_add(dropDownOptionList, "option_add-to-tag-set");
+						ds_list_add(dropDownOptionList, "menu_clear");
+
+						obj_control.unitToChange = currentUnitID;
+						obj_control.unitFieldToChange = currentField;
+						var dropDownX = colRectX1;
+						var dropDownY = unitRectY2;						
+						scr_createDropDown(dropDownX, dropDownY, dropDownOptionList, global.optionListTypeUnitTagMap);
+
+					}
+				}
+			}
     
 		    // Draw text of unit tags
 		    draw_set_halign(lineStateLTR ? fa_left : fa_right);
