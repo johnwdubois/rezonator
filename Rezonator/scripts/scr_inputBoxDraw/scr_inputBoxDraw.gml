@@ -172,7 +172,11 @@ function scr_inputBoxDraw(){
 	scr_surfaceEnd();
 	
 	if(isLockedField){
-		draw_sprite_ext(spr_lock,0,textBoxX+windowWidth - sprite_get_width(spr_lock)/2, textBoxY+windowHeight/2,.8,.8,0,global.colorThemeText,.5);
+		var spriteScale = .8;
+		if(sprite_get_height(spr_lock) * spriteScale  > windowHeight){
+			spriteScale = .6;
+		}
+		draw_sprite_ext(spr_lock,0,textBoxX+windowWidth - sprite_get_width(spr_lock)/2, textBoxY+windowHeight/2,spriteScale,spriteScale,0,global.colorThemeText,.5);
 	}
 	// outline rect
 	draw_set_color(global.colorThemeBorders);
