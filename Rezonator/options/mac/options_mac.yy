@@ -23,7 +23,7 @@
   "option_mac_allow_incoming_network": false,
   "option_mac_allow_outgoing_network": false,
   "option_mac_app_category": "Education",
-  "option_mac_enable_steam": true,
+  "option_mac_enable_steam": false,
   "option_mac_disable_sandbox": true,
   "option_mac_apple_sign_in": false,
   "resourceVersion": "1.0",
