@@ -1,5 +1,3 @@
-
-
 function scr_drawLine2ElectricBoogaloo(){
 	
 	
@@ -217,6 +215,21 @@ function scr_drawLine2ElectricBoogaloo(){
 			}
 		}
 	}
+	
+	// keep hover line around if right clicking on unit
+	if (instance_exists(obj_dropDown)) {
+		if (obj_dropDown.optionListType == global.optionListTypeSpeakerLabel) {
+			hoverLine = true;
+			obj_control.hoverUnitID = obj_control.rightClickID;
+		}
+	}
+	if (instance_exists(obj_dialogueBox)) {
+		if (obj_dialogueBox.mergeUnit) {
+			hoverLine = true;
+			obj_control.hoverUnitID = obj_control.rightClickID;
+		}
+	}
+
 	
 	
 	//draw the hover lines for each unit

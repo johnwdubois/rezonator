@@ -253,6 +253,11 @@ function scr_rightClickWordOptions(optionSelected) {
 			instance_destroy();
 			break;
 			
+		case "Split Unit":
+			scr_splitUnit(obj_control.rightClickID, false);
+			instance_destroy();
+			break;
+			
 		default:
 			break;
 	}

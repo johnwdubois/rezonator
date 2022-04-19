@@ -58,8 +58,8 @@ function scr_tokenRightClicked(){
 		}
 		
 		ds_list_add(dropDownOptionList, "word_tip", "option_zero", "option_delete-token", "tab_name_tag");
-		if (!firstWordInLine && obj_control.showDevVars) {
-			//ds_list_add(dropDownOptionList, "Split Line");
+		if (!firstWordInLine) {
+			ds_list_add(dropDownOptionList, "Split Unit");
 		}
 		// Create the dropdown
 		if (ds_list_size(dropDownOptionList) > 0 and obj_control.ableToCreateDropDown) {
