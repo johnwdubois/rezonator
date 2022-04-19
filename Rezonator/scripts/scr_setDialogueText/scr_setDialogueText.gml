@@ -1,5 +1,3 @@
-
-
 function scr_setDialogueText(){
 	
 	if (room == rm_openingScreen && descriptionText == "") {
@@ -42,21 +40,28 @@ function scr_setDialogueText(){
 		if(mergeUnit){
 			var unitSeq1 = 0;
 			var unitSeq2 = 0;
-			for(var i = 0; i <= ds_list_size(obj_control.mergeUnitList)-1; i++){
+			var mergeUnitPreviewStr = "";
+			var mergeUnitListSize = ds_list_size(obj_control.mergeUnitList);
+			for(var i = 0; i < mergeUnitListSize; i++){
 				var currentUnitID = obj_control.mergeUnitList[|i];
 				var currentUnitSubMap = global.nodeMap[?currentUnitID];
 				if(scr_isNumericAndExists(currentUnitSubMap,ds_type_map)){
+					
 					if(i == 0){
 						unitSeq1 = currentUnitSubMap[?"unitSeq"];
 					}
 					else{
 						unitSeq2 = currentUnitSubMap[?"unitSeq"];
 					}
+					
+					mergeUnitPreviewStr += string(scr_getUnitText(currentUnitSubMap));
+					if (i == 0) mergeUnitPreviewStr += " ";
 				}
-				
 			}
+			
+			
 			titleText = scr_get_translation("Merge Units");
-			descriptionText = scr_get_translation("This will merge Unit "+string(unitSeq1)+" , with Unit "+string(unitSeq2));
+			descriptionText = scr_get_translation("This will merge Unit " + string(unitSeq2) + " into Unit " + string(unitSeq1) + ":\n" + string(mergeUnitPreviewStr));
 		}
 
 		if (clearShow) {

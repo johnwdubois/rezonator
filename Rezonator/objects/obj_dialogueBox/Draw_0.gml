@@ -40,7 +40,7 @@ scr_adaptFont(titleText, "L",false);
 draw_text(titleTextX, titleTextY, titleText);
 if(!inputWindowActive || (inputWindowActive && obj_control.setRezMap)) {
 	scr_adaptFont(descriptionText, "M");
-	draw_text_ext(titleTextX, descriptionTextY, descriptionText, string_height(descriptionText), boxWidth * 0.8);
+	draw_text_ext(titleTextX, descriptionTextY, descriptionText, string_height(descriptionText) * 0.6, boxWidth * 0.8);
 }
 draw_set_valign(fa_middle);
 
