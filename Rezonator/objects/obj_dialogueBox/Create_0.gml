@@ -55,6 +55,7 @@ removeFieldLink = false;
 removeSearch = false;
 removeTree = false;
 mergeUnit = false;
+splitUnit = false;
 stringToBeRemoved = "";
 searchToBeRemoved = "";
 

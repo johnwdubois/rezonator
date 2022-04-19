@@ -63,6 +63,24 @@ function scr_setDialogueText(){
 			titleText = scr_get_translation("Merge Units");
 			descriptionText = scr_get_translation("This will merge Unit " + string(unitSeq2) + " into Unit " + string(unitSeq1) + ":\n" + string(mergeUnitPreviewStr));
 		}
+		if(splitUnit){
+			var unitSeq = 0;
+			var splitUnitPreviewStr = "";
+			var tokenSubMap = global.nodeMap[?obj_control.rightClickID];
+			var unitID = tokenSubMap[?"unit"];
+			var tokenTagMap = tokenSubMap[?"tagMap"];
+			var displayToken =  tokenTagMap[?global.displayTokenField];
+
+			var currentUnitSubMap = global.nodeMap[? unitID];
+			if(scr_isNumericAndExists(currentUnitSubMap,ds_type_map)){
+				unitSeq = currentUnitSubMap[?"unitSeq"];
+				splitUnitPreviewStr = string(scr_getUnitText(currentUnitSubMap));
+			}
+			
+			
+			titleText = scr_get_translation("Split Unit");
+			descriptionText = scr_get_translation("Split unit "+string(unitSeq) +" at \""+ string(displayToken) + "\":\n" + string(splitUnitPreviewStr));
+		}
 
 		if (clearShow) {
 			titleText = scr_get_translation("help_label_delete_plain")+ " "+ scr_get_translation("menu_show");

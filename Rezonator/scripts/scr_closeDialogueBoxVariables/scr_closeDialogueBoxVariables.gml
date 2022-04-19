@@ -65,6 +65,7 @@ function scr_closeDialogueBoxVariables(){
 		removeFieldChunk = false;
 		removeFieldLink = false;
 		mergeUnit = false;
+		splitUnit = false;
 		stringToBeRemoved = "";
 		removeSearch = false;
 		searchToBeRemoved = "";
