@@ -249,6 +249,7 @@
     {"id":{"name":"scr_getVersion","path":"scripts/scr_getVersion/scr_getVersion.yy",},"order":0,},
     {"id":{"name":"scr_storeSchemaLists","path":"scripts/scr_storeSchemaLists/scr_storeSchemaLists.yy",},"order":0,},
     {"id":{"name":"scr_unitClicked","path":"scripts/scr_unitClicked/scr_unitClicked.yy",},"order":18,},
+    {"id":{"name":"scr_swapAdjacentUnit","path":"scripts/scr_swapAdjacentUnit/scr_swapAdjacentUnit.yy",},"order":31,},
     {"id":{"name":"scr_removeChainFromInChainsList","path":"scripts/scr_removeChainFromInChainsList/scr_removeChainFromInChainsList.yy",},"order":44,},
     {"id":{"name":"scr_setSpecialFieldsVariables","path":"scripts/scr_setSpecialFieldsVariables/scr_setSpecialFieldsVariables.yy",},"order":21,},
     {"id":{"name":"scr_exportChainEntryGridNewRow","path":"scripts/scr_exportChainEntryGridNewRow/scr_exportChainEntryGridNewRow.yy",},"order":10,},

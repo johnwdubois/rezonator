@@ -151,6 +151,14 @@ function scr_speakerLabelOptions(optionSelected) {
 					scr_createDropDown(obj_dropDown.x + obj_dropDown.windowWidth, obj_dropDown.y + (obj_dropDown.optionSpacing * optionIndex), dropDownOptionList, global.optionListTypeTag);
 				}
 			}
+			else if (optionSelected == "Move up") {
+				scr_swapAdjacentUnit(true);
+				with (obj_dropDown) instance_destroy();
+			}
+			else if (optionSelected == "Move down") {
+				scr_swapAdjacentUnit(false);
+				with (obj_dropDown) instance_destroy();
+			}
 		}
 	}
 

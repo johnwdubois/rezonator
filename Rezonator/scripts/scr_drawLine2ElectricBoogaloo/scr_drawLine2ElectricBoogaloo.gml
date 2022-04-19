@@ -21,9 +21,12 @@ function scr_drawLine2ElectricBoogaloo(){
 	
 	if (!scr_isNumericAndExists(displayUnitList, ds_type_list)) {
 		if(scr_isNumericAndExists(unitList, ds_type_list)){
-			discourseSubMap[? "displayUnitList"] = unitList;
+			displayUnitList = ds_list_create();
+			ds_list_copy(displayUnitList, unitList);
+			discourseSubMap[? "displayUnitList"] = displayUnitList;
 			displayUnitList = discourseSubMap[? "displayUnitList"];
 			obj_control.displayUnitList = displayUnitList;
+			show_debug_message("... displayUnitList created!");
 		}
 		else{
 			exit;

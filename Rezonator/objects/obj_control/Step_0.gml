@@ -26,11 +26,11 @@ if (!scr_isNumericAndExists(displayUnitList, ds_type_list)) {
 		 var docDisplayUnitList = discourseSubMap[? "displayUnitList"];
 		 
 		 if(ds_list_size(docDisplayUnitList) > 1){
-			displayUnitList = docDisplayUnitList;
+			 displayUnitList = docDisplayUnitList;
 		 }
 		 else{
-			 displayUnitList = discourseSubMap[? "unitList"];
-			 discourseSubMap[? "displayUnitList"] = discourseSubMap[? "unitList"];
+			 ds_list_copy(discourseSubMap[? "displayUnitList"], discourseSubMap[? "unitList"]);
+			 displayUnitList = discourseSubMap[? "displayUnitList"];
 		 }
 	}
 }

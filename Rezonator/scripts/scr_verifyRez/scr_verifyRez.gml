@@ -1,5 +1,3 @@
-
-
 function scr_verifyRez(rezFileVerison){
 	
 	show_debug_message("rezFileVerison:  "+ string(rezFileVerison))
@@ -44,14 +42,16 @@ function scr_verifyRez(rezFileVerison){
 		// if this rez file doesn't have a valid displayUnitList, replace displayUnitList with the unitList
 		var displayUnitList = docSubMap[? "displayUnitList"];
 		if (!scr_isNumericAndExists(displayUnitList, ds_type_list)) {
-			displayUnitList = unitList;
+			show_debug_message("buhbuhbuh1");
+			displayUnitList = ds_list_create();
+			ds_list_copy(displayUnitList, unitList);
 			ds_map_delete(docSubMap, "displayUnitList");
 			ds_map_add_list(docSubMap, "displayUnitList", displayUnitList);
 		}
 		else {
 			// if this rez file has a valid displayUnitList but its empty, replace it with unitList
-			if (ds_list_size(displayUnitList < 1)) {
-				displayUnitList = unitList;
+			if (ds_list_size(displayUnitList) < 1) {
+				ds_list_copy(displayUnitList, unitList);
 				ds_map_delete(docSubMap, "displayUnitList");
 				ds_map_add_list(docSubMap, "displayUnitList", displayUnitList);
 			}
