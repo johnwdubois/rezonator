@@ -102,7 +102,10 @@ function scr_loadSchema(autoload) {
 				ds_grid_set(global.tagInfoGrid, global.tagInfoGrid_colLevel, i, levelFromMap);
 			}
 			if (!is_undefined(specialFieldFromMap)) {
-				ds_grid_set(global.tagInfoGrid, global.tagInfoGrid_colSpecialFields, i, specialFieldFromMap);
+				// REMOVE THIS IF STATEMENT TO REENABLE CONLLU IMPORT TAGGING
+				if(specialFieldFromMap != "tab_name_track"){
+					ds_grid_set(global.tagInfoGrid, global.tagInfoGrid_colSpecialFields, i, specialFieldFromMap);
+				}
 				//if (global.CoNLLUwithMeta && currentField == " MISC" && specialFieldFromMap == "tab_name_track") {
 				//	ds_grid_set(global.tagInfoGrid, global.tagInfoGrid_colSpecialFields, i, "");
 				//}

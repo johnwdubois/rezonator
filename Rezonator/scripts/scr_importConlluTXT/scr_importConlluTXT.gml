@@ -68,7 +68,7 @@ function scr_importConlluTXT(filename) {
 		
 		show_debug_message("START lineInFile: " + string(lineInFile) + ", tokenLevel: " + string(tokenLevel));
 		
-	
+		
 		// Check for Token level data
 		if (tokenLevel) {
 			var firstClusterTagListSize = ds_list_size(firstClusterTagList);
@@ -89,39 +89,40 @@ function scr_importConlluTXT(filename) {
 				}
 				*/
 				// Increase the width of the import grid to accomodate new columns
-				if(widthOfImportGrid <= ds_list_size(listOfColumns)){
-					var i = widthOfImportGrid;
-					var indexOfColNameList = 0;
+				show_debug_message("Width of Import Grid: " + string(widthOfImportGrid) + " listOfColumns size: " + string(ds_list_size(listOfColumns)) );
+				//if(widthOfImportGrid <= ds_list_size(listOfColumns)){
+				var i = widthOfImportGrid;
+				var indexOfColNameList = 0;
 				
-					if(!tokensAdded){
-						nextItterator = widthOfImportGrid;
-						widthOfImportGrid += ds_list_size(listOfColumns);
-						global.importGridWidth = widthOfImportGrid;
-						tokensAdded =true;
-					}
-
-					while( i < global.importGridWidth){
-
-						if (indexOfColNameList >= ds_list_size(CoNLLUColNameList)) {
-							var colName = " Col " + string(i);
-						}
-						else {
-							var colName = string(ds_list_find_value(CoNLLUColNameList, indexOfColNameList));
-						}
-					
-						var col = ds_map_find_value(global.importGridColMap, colName);
-						
-						if (is_undefined(col)) {
-							ds_list_add(global.importGridColNameList, colName);
-							ds_map_add(global.importGridColMap, colName, i);
-						}
-						i++;
-						indexOfColNameList++;
-					}	
-					
-
-					ds_grid_resize(global.importGrid, widthOfImportGrid, ds_grid_height(global.importGrid));
+				if(!tokensAdded){
+					nextItterator = widthOfImportGrid;
+					widthOfImportGrid += ds_list_size(listOfColumns);
+					global.importGridWidth = widthOfImportGrid;
+					tokensAdded =true;
 				}
+
+				while( i < global.importGridWidth){
+
+					if (indexOfColNameList >= ds_list_size(CoNLLUColNameList)) {
+						var colName = " Col " + string(i);
+					}
+					else {
+						var colName = string(ds_list_find_value(CoNLLUColNameList, indexOfColNameList));
+					}
+					
+					var col = ds_map_find_value(global.importGridColMap, colName);
+						
+					if (is_undefined(col)) {
+						ds_list_add(global.importGridColNameList, colName);
+						ds_map_add(global.importGridColMap, colName, i);
+					}
+					i++;
+					indexOfColNameList++;
+				}	
+					
+
+				ds_grid_resize(global.importGrid, widthOfImportGrid, ds_grid_height(global.importGrid));
+				//}
 			
 				ds_grid_resize(global.importGrid, global.importGridWidth, ds_grid_height(global.importGrid)+1);
 				rowCounter++;
@@ -196,6 +197,8 @@ function scr_importConlluTXT(filename) {
 		}
 	
 	}
+
+	show_debug_message(scr_getStringOfList(firstClusterTagList));
 
 	ds_grid_resize(global.importGrid, global.importGridWidth, rowCounter);
 			

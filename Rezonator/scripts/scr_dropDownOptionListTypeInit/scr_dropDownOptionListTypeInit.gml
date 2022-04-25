@@ -80,6 +80,6 @@ function scr_dropDownOptionListTypeInit(){
 	global.optionListTypeTagSchema = 87;
 	global.optionListTypeTreeRightClick = 88;
 	global.optionListTypeSearchPane = 89;
-
+	global.optionListTypeExport = 90;
 
 }

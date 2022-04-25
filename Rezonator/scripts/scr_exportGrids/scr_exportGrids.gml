@@ -36,6 +36,8 @@ function scr_exportGrids() {
 	var tempLinkGridHeaderList = ds_list_create();
 	ds_list_add(tempLinkGridHeaderList, "linkID", "chainID", "source", "sourceClickTime", "goal", "goalClickTime");
 	
+	
+	
 	var tokenFieldSize = ds_list_size(obj_control.tokenFieldList);
 	for (var i = 0; i < tokenFieldSize; i++) {
 		ds_list_add(tempEntryGridHeaderList, obj_control.tokenFieldList[| i]);
@@ -106,6 +108,7 @@ function scr_exportGrids() {
 	scr_gridToCSV(tempStackChainGrid, exportDir + "\\stack.csv", tempChainGridHeaderList);
 	scr_gridToCSV(tempChunkGrid, exportDir + "\\chunk.csv", tempChunkGridHeaderList);
 	scr_gridToCSV(tempLinkGrid, exportDir + "\\link.csv", tempLinkGridHeaderList);
+	//scr_gridToConlluTXT(tempConlluGrid, exportDir + "\\conllu.txt",)
 
 	// destroy temp grids
 	ds_grid_destroy(tempSearchGrid);

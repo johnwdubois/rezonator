@@ -125,5 +125,9 @@ function scr_expandableDropDownInit(){
 	ds_list_add(addtoRezList, global.optionListTypeSearchPane);
 	ds_map_add_list(global.expandableDropDownMap, "Add to Resonance", addtoRezList);
 	
+	
+	var exportList = ds_list_create();
+	ds_list_add(exportList, global.optionListTypeFile);
+	ds_map_add_list(global.expandableDropDownMap, "menu_export", exportList);
 
 }

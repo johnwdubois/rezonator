@@ -520,6 +520,7 @@
     {"id":{"name":"scr_drawNodeList","path":"scripts/scr_drawNodeList/scr_drawNodeList.yy",},"order":8,},
     {"id":{"name":"spr_justifyLeft","path":"sprites/spr_justifyLeft/spr_justifyLeft.yy",},"order":14,},
     {"id":{"name":"obj_panelPane","path":"objects/obj_panelPane/obj_panelPane.yy",},"order":1,},
+    {"id":{"name":"scr_exportOptions","path":"scripts/scr_exportOptions/scr_exportOptions.yy",},"order":84,},
     {"id":{"name":"FirebaseREST_Firestore_jsonEncode","path":"scripts/FirebaseREST_Firestore_jsonEncode/FirebaseREST_Firestore_jsonEncode.yy",},"order":13,},
     {"id":{"name":"scr_combineLeafs","path":"scripts/scr_combineLeafs/scr_combineLeafs.yy",},"order":5,},
     {"id":{"name":"obj_gridViewer","path":"objects/obj_gridViewer/obj_gridViewer.yy",},"order":2,},
@@ -627,6 +628,7 @@
   ],
   "isDnDProject": false,
   "isEcma": false,
+  "tutorialPath": "",
   "configs": {
     "name": "Default",
     "children": [],
@@ -885,7 +887,7 @@
     {"CopyToMask":-1,"filePath":"datafiles/IncludedFiles/Schemas/Import","resourceVersion":"1.0","name":"owpl_psent2unit.json","resourceType":"GMIncludedFile",},
   ],
   "MetaData": {
-    "IDEVersion": "2022.1.0.609",
+    "IDEVersion": "2.3.7.606",
   },
   "resourceVersion": "1.4",
   "name": "Rezonator",

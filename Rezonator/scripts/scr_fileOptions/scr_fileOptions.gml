@@ -1,5 +1,7 @@
 function scr_fileOptions(optionSelected) {
 
+	var optionIndex = ds_list_find_index(optionList, optionSelected);
+	var destroySelf = true;
 	switch (optionSelected)
 	{
 		case "help_label_open":
@@ -61,12 +63,14 @@ function scr_fileOptions(optionSelected) {
 		case "menu_export":
 			
 		
-			obj_fileLoader.ableToHotkey = false;
-			
-			with(obj_fileLoader){
-				alarm[5] = 2;
+			scr_destroyAllDropDownsOtherThanSelf();
+			var dropDownOptionList = ds_list_create();
+			ds_list_add(dropDownOptionList, "CSV Export", "CONLL-U Export");
+						
+			if (ds_list_size(dropDownOptionList) > 0) {
+				scr_createDropDown(obj_dropDown.x + obj_dropDown.windowWidth, y + (optionSpacing * optionIndex), dropDownOptionList, global.optionListTypeExport);
 			}
-			
+			destroySelf = false;
 			break;
 		case "option_clip":
 			if (!obj_control.dialogueBoxActive) {
@@ -123,6 +127,8 @@ function scr_fileOptions(optionSelected) {
 		default:
 			break;
 	}
+	
+	if(destroySelf) instance_destroy();
 
 
 }

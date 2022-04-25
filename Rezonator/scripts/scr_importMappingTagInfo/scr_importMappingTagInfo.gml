@@ -363,9 +363,10 @@ function scr_importMappingTagInfo() {
 							if (currentLevel == global.levelWord) {
 								ds_list_add(dropDownOptionList, "option_word-delimiter");
 							}
-							if (global.importType == global.importType_CoNLLU) {
-								ds_list_add(dropDownOptionList, "tab_name_track");
-							}
+							// UNCOMMENT TO REENABLE CONLLU TAG IMPORT
+							//if (global.importType == global.importType_CoNLLU) {
+							//	ds_list_add(dropDownOptionList, "tab_name_track");
+							//}
 							if (ds_list_size(dropDownOptionList) > 0) {
 								ds_list_add(dropDownOptionList, "menu_clear");
 								scr_createDropDown(colX, floor(plusY + rowHeight  + scrollPlusY), dropDownOptionList, global.optionListTypeSpecialFields);

@@ -59,6 +59,9 @@ function scr_importConlluAutotag(){
 			else{
 				ds_list_add(keyList, currentEntityKey);		
 			}
+			//iterate through keylist here to truncate it
+			
+			
 			show_debug_message("keylist: "+ scr_getStringOfList(keyList));
 			var keyListSize = ds_list_size(keyList);
 			for(var j = 0; j < keyListSize; j++){

@@ -26,7 +26,7 @@ function scr_dropDownSelect(optionSelected) {
 	else if (optionListType == global.optionListTypeFile) //4
 	{
 	    scr_fileOptions(optionSelected);
-	    instance_destroy();
+	    //instance_destroy();
 	}
 	// advancedOptions
 	else if (optionListType == global.optionListTypeAdvanced) //5
@@ -385,9 +385,13 @@ function scr_dropDownSelect(optionSelected) {
 	{
 		scr_treeRightClickOptions(optionSelected);
 	}
-	else if (optionListType == global.optionListTypeSearchPane) //88
+	else if (optionListType == global.optionListTypeSearchPane) //89
 	{
 		scr_searchPaneOptions(optionSelected);
+	}
+	else if (optionListType == global.optionListTypeExport) //90
+	{
+		scr_exportOptions(optionSelected);
 	}
 
 }
