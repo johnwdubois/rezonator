@@ -63,7 +63,7 @@
     "eventToFunction": {},
     "eventStubScript": null,
     "parent": {"name":"spr_readOnly","path":"sprites/spr_readOnly/spr_readOnly.yy",},
-    "resourceVersion": "1.3",
+    "resourceVersion": "1.4",
     "name": "spr_readOnly",
     "tags": [],
     "resourceType": "GMSequence",
