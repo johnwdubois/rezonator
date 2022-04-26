@@ -62,3 +62,5 @@ if(obj_fileLoader.importedAudioFile != ""){
 closestUnit = "";
 closestToken = "";
 closestTokenIndex = -1;
+
+audioFileExists = false;

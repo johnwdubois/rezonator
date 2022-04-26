@@ -1,8 +1,3 @@
-/*
-	
-	Purpose: draws the speaker labels to the left of the units in the discourse
-	
-*/
 function scr_drawSpeakerLabel(unitID, unitSubMap, pixelY) {
 	
 	
@@ -127,7 +122,7 @@ function scr_drawSpeakerLabel(unitID, unitSubMap, pixelY) {
 		}
 	}
 	
-		// Check for rightMouseClick
+	// Check for rightMouseClick
 	if (device_mouse_check_button_released(0, mb_right) and mouseOverCurrentSpeakerLabel and !instance_exists(obj_dialogueBox)) {
 				
 		obj_control.rightClickID = unitID;
@@ -139,7 +134,18 @@ function scr_drawSpeakerLabel(unitID, unitSubMap, pixelY) {
 
 	}
 	
-
+	// show audio sprite if audio of unit is playing
+	if (!obj_audioUI.audioPaused && obj_audioUI.audioFileExists) {
+		var unitStart = unitSubMap[? "unitStart"];
+		var unitEnd = unitSubMap[? "unitEnd"];
+		if (scr_isStrNumeric(unitStart) && scr_isStrNumeric(unitEnd)) {
+			unitStart = real(unitStart);
+			unitEnd = real(unitEnd);
+			if (obj_audioUI.audioPos >= unitStart && obj_audioUI.audioPos <= unitEnd) {
+				draw_sprite_ext(spr_audioTool, 0, wordLeftMargin - (sprite_get_width(spr_audioTool) * 0.5), mean(sectionRectY1, sectionRectY2), 0.4, 0.4, 0, c_black, 1);
+			}
+		}
+	}
 	
 	
 }
