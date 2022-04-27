@@ -10,7 +10,7 @@ function scr_getStringOfList(list) {
 		var listSizeMax = 90;
 	
 		for (var i = 0; i < min(listSizeMax, listSize); i++) {
-			if(scr_isNumericAndExists(list[|i], ds_type_list)){
+			if(scr_isNumericAndExists(list[|i], ds_type_list) && ds_list_is_list(list, i)){
 				str += scr_getStringOfList(list[|i]);	
 			}
 			else{

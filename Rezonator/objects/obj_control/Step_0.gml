@@ -111,7 +111,31 @@ if (!gridView) {
 		var scrollSpeed = 0;
 		// Single press of arrow keys now moves screen by one line
 		if ((keyboard_check(vk_down) && navWindowTaggingID == "") or mouse_wheel_down()) {
-			if(holdDownArrowKey == 0 and not mouse_wheel_down()) {
+			var holdPos = false;
+			
+			with(obj_audioUI){
+				if(audioJumpOnWordClick){
+					holdPos = true;
+					if(keyboard_check_pressed(vk_down)){
+						
+						if(closestUnit != ""){
+						
+							var docNode = global.nodeMap[?global.discourseNode];
+							var totalUnitList = docNode[?"unitList"];
+						
+							var nextUnitIndex = min(ds_list_find_index(totalUnitList,closestUnit) + 1, ds_list_size(totalUnitList)-1);
+							var nextUnit = totalUnitList[|nextUnitIndex];
+							scr_audioJumpToUnit(nextUnit);
+							scr_jumpToUnitTop(nextUnit);
+							if(audioPaused){
+								audioPaused = !audioPaused;
+							}
+						}
+					}
+				}
+			}
+			
+			if(holdDownArrowKey == 0 and not mouse_wheel_down() && !holdPos) {
 
 				scrollSpeed = -gridSpaceVertical;
 
@@ -133,13 +157,40 @@ if (!gridView) {
 			if(holdDownArrowKey > 75) {
 				holdArrowMod = 3;
 			}
-			holdDownArrowKey++;
+	
+			if(!holdPos){
+				show_debug_message("we PLUSSIN THIS BITCH")
+				holdDownArrowKey++;
+			}
 			if (mouse_wheel_down()) {
 				holdDownArrowKey = 31;
 			} 
 		}
 		if ((keyboard_check(vk_up) && navWindowTaggingID == "") or mouse_wheel_up()) {
-			if(holdUpArrowKey == 0 and not mouse_wheel_up()) {
+			var holdPos = false;
+			with(obj_audioUI){
+				if(audioJumpOnWordClick){
+					holdPos = true;
+					if(keyboard_check_pressed(vk_up)){
+	
+						if(closestUnit != ""){
+						
+							var docNode = global.nodeMap[?global.discourseNode];
+							var totalUnitList = docNode[?"unitList"];
+						
+							var prevUnitIndex = max(ds_list_find_index(totalUnitList,closestUnit) - 1, 0);
+							var prevUnit = totalUnitList[|prevUnitIndex];
+							scr_audioJumpToUnit(prevUnit);
+							scr_jumpToUnitTop(prevUnit);
+							if(audioPaused){
+								audioPaused = !audioPaused;
+							}
+						}
+					}
+				}
+			}
+			
+			if(holdUpArrowKey == 0 and not mouse_wheel_up() && !holdPos) {
 			
 				scrollSpeed = gridSpaceVertical;
 			
@@ -161,10 +212,15 @@ if (!gridView) {
 			if(holdUpArrowKey > 75) {
 				holdArrowMod = 3;
 			}
-			holdUpArrowKey++;
+		
+			if(!holdPos){
+				holdUpArrowKey++;
+			}
 			if (mouse_wheel_up()) {
 				holdUpArrowKey = 31;
 			}
+			
+			
 		}
 
 		// Allow the user to hold down the pageUp or pageDown buttons
@@ -283,13 +339,34 @@ if (!gridView) {
 			}
 		
 			if (keyboard_check_pressed(vk_right) and !global.ctrlHold and !dialogueBoxActive && navWindowTaggingID == "") {
-				scrollPlusXDest -= gridSpaceHorizontal;
+				var holdPos = false;
+				with(obj_audioUI){
+					if(audioJumpOnWordClick){
+						holdPos = true;
+					}
+				}
+				if(!holdPos){
+					scrollPlusXDest -= gridSpaceHorizontal;
+				}
 			}
 
 
-
+			
 			if (keyboard_check_pressed(vk_left) and !global.ctrlHold and !dialogueBoxActive && navWindowTaggingID == "") {
-				scrollPlusXDest += gridSpaceHorizontal;
+				var holdPos = false;
+				with(obj_audioUI){
+					if(audioJumpOnWordClick){
+						holdPos = true;
+						scr_audioJumpToUnit(closestUnit);
+						scr_jumpToUnitTop(closestUnit);
+						if(audioPaused){
+							audioPaused = !audioPaused;
+						}
+					}
+				}
+				if(!holdPos){
+					scrollPlusXDest += gridSpaceHorizontal;
+				}
 			}
 
 		}

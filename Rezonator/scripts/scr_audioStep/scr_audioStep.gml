@@ -34,7 +34,7 @@ function scr_audioStep() {
 
 	audioLength = audio_sound_length(audioSound);
 	audioPos = audio_sound_get_track_position(audioSound);
-	
+	var previousClosestUnit = closestUnit;
 	var disocurseSubMap = global.nodeMap[?global.discourseNode];
 	var unitList = disocurseSubMap[?"unitList"];
 	var tokenList = disocurseSubMap[?"tokenList"];
@@ -48,6 +48,11 @@ function scr_audioStep() {
 		if(is_real(unitStart) && is_real(unitEnd) && is_real(currentPos)){
 			if(unitStart <= currentPos && unitEnd >= currentPos){
 				closestUnit = currentUnit;
+				var closestUnitSubMap = global.nodeMap[?closestUnit];
+				var unitY = closestUnitSubMap[?"pixelY"]
+				if(previousClosestUnit  != closestUnit && unitY > camera_get_view_height(view_camera[0])-windowHeight){
+					scr_jumpToUnitTop(closestUnit);
+				}
 				var unitLength = unitEnd - unitStart;
 				var amountPlayed = currentPos - unitStart;
 				var unitEntryList = unitSubMap[? "entryList"];

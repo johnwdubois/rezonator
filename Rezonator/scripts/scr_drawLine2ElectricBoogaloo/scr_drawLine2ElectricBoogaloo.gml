@@ -208,7 +208,7 @@ function scr_drawLine2ElectricBoogaloo(){
 			hoverLine = true;
 			obj_control.hoverUnitID = unitClosestToMouse;
 			
-			if(mouse_check_button_released(mb_left) && obj_audioUI.audioSound != -1 && file_exists(obj_audioUI.audioFile) ){
+			if(mouse_check_button_released(mb_left) && obj_audioUI.audioSound != -1 && file_exists(obj_audioUI.audioFile) &&!scrollBarHolding){
 				
 				scr_audioJumpToUnit(unitClosestToMouse);
 				obj_audioUI.audioPaused = false;
