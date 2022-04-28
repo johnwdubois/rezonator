@@ -6,9 +6,9 @@ function scr_mergeUnit(){
 	}
 	
 	// get both units to merge, make sure they're valid
-	var unit1ID = obj_control.mergeUnitList[| 1];
+	var unit1ID = obj_control.mergeUnitList[| 0];
 	var unit1SubMap = global.nodeMap[? unit1ID];
-	var unit2ID = obj_control.mergeUnitList[| 0];
+	var unit2ID = obj_control.mergeUnitList[| 1];
 	var unit2SubMap = global.nodeMap[? unit2ID];
 	if (!scr_isNumericAndExists(unit1SubMap, ds_type_map) || !scr_isNumericAndExists(unit2SubMap, ds_type_map)) {
 		show_debug_message("scr_mergeUnit, units don't exist");
@@ -53,9 +53,73 @@ function scr_mergeUnit(){
 	}
 
 	
-	// now let's destroy the unit2 node and all of its contents
 	var unit2TagMap = unit2SubMap[? "tagMap"];
 	var unit2InChainsList = unit2SubMap[? "inChainsList"];
+	var unit1InChainsList = unit1SubMap[? "inChainsList"];
+	
+	//update all chains related to unit2
+	
+	var unit2InChainsListSize = ds_list_size(unit2InChainsList);
+	var unit1InChainsListSize = ds_list_size(unit1InChainsList);
+	show_debug_message("unit1InChainsListSize: "+string(unit1InChainsListSize) + " ,    unit2InChainsListSize: "+string(unit2InChainsListSize))
+	//first unit has a stack
+	if(unit2InChainsListSize >= 1){
+		//and second unit also has a stack
+		if(unit1InChainsListSize >= 1){
+			
+			//check if unit 1 stack's entry list has no more thingys in it
+			for (var i = 0; i < unit2InChainsListSize; ++i) {
+				var currentStack = unit2InChainsList[|i];
+				var stackSubMap = global.nodeMap[?currentStack];
+				if(scr_isNumericAndExists(stackSubMap,ds_type_map)){
+					var entryList = stackSubMap[?"setIDList"];
+					var entryListSize = ds_list_size(entryList);
+					for (var j = 0; j < entryListSize; ++j) {
+						var currentCard = entryList[|j];
+						var cardMap = global.nodeMap[?currentCard];
+						 
+						var cardUnit = cardMap[?"unit"];
+						show_debug_message("cardUnit: " + string(cardUnit) + ", unit1ID: " + string(unit1ID) + ", unit2ID: " + string(unit2ID));
+						if(cardUnit == unit1ID){
+							stackSubMap[? "focused"] = currentCard;
+							scr_deleteFromChain(true);
+						}
+					}
+				}
+			}
+		}
+	}
+	
+	
+	//first unit has a stack
+	if(unit2InChainsListSize >= 1){
+		//and second unit doesn't has a stack
+		if(unit1InChainsListSize == 0){
+			//we adjust the broken enttry in the first unit's chain to poin to new unit;
+			for (var i = 0; i < unit2InChainsListSize; ++i) {
+			    var currentStack = unit2InChainsList[|i];
+				var stackSubMap = global.nodeMap[?currentStack];
+				if(scr_isNumericAndExists(stackSubMap,ds_type_map)){
+					var entryList = stackSubMap[?"setIDList"];
+					var entryListSize = ds_list_size(entryList);
+					for (var j = 0; j < entryListSize; ++j) {
+					     var currentCard = entryList[|j];
+						 var cardMap = global.nodeMap[?currentCard];
+						 
+						 var cardUnit = cardMap[?"unit"];
+						 if(cardUnit == unit2ID){
+							cardMap[?"unit"] = unit1ID;
+							scr_addToListOnce(unit1InChainsList,currentStack);
+						 }
+					}
+				}
+			}
+		}
+	}
+	
+
+
+	// now let's destroy the unit2 node and all of its contents
 	ds_map_destroy(unit2TagMap);	
 	ds_list_destroy(unit2InChainsList);	
 	ds_list_destroy(unit2EntryList);
