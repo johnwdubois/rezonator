@@ -159,7 +159,6 @@ if (!gridView) {
 			}
 	
 			if(!holdPos){
-				show_debug_message("we PLUSSIN THIS BITCH")
 				holdDownArrowKey++;
 			}
 			if (mouse_wheel_down()) {
