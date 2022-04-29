@@ -147,5 +147,6 @@ function scr_drawSpeakerLabel(unitID, unitSubMap, pixelY) {
 		}
 	}
 	
+
 	
 }

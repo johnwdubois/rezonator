@@ -37,34 +37,94 @@ function scr_audioStep() {
 	var previousClosestUnit = closestUnit;
 	var disocurseSubMap = global.nodeMap[?global.discourseNode];
 	var unitList = disocurseSubMap[?"unitList"];
+	var displayUnitList = disocurseSubMap[?"displayUnitList"];
 	var tokenList = disocurseSubMap[?"tokenList"];
 	var unitListSize = ds_list_size(unitList);
 	var currentPos = audioPos;
-	for(var i = 0; i < unitListSize; i++){
-		var currentUnit = unitList[|i];
-		var unitSubMap = global.nodeMap[?currentUnit];
-		var unitStart = (scr_isStrNumeric(unitSubMap[? "unitStart"]))? real(unitSubMap[? "unitStart"]) : 0;
-		var unitEnd = (scr_isStrNumeric(unitSubMap[? "unitEnd"]))? real(unitSubMap[? "unitEnd"]) : 0;
-		if(is_real(unitStart) && is_real(unitEnd) && is_real(currentPos)){
-			if(unitStart <= currentPos && unitEnd >= currentPos){
-				closestUnit = currentUnit;
-				var closestUnitSubMap = global.nodeMap[?closestUnit];
-				var unitY = closestUnitSubMap[?"pixelY"]
-				if(previousClosestUnit  != closestUnit && unitY > camera_get_view_height(view_camera[0])-windowHeight){
-					scr_jumpToUnitTop(closestUnit);
-				}
-				var unitLength = unitEnd - unitStart;
-				var amountPlayed = currentPos - unitStart;
-				var unitEntryList = unitSubMap[? "entryList"];
-				var indexOfToken = floor((amountPlayed/unitLength) * ds_list_size(unitEntryList));
-				var entrySubMap = global.nodeMap[?unitEntryList[|indexOfToken]];
-				if(scr_isNumericAndExists(entrySubMap, ds_type_map)){
-					closestToken = entrySubMap[?"token"];
-					closestTokenIndex = ds_list_find_index(tokenList,closestToken);
+	/*
+	for(var i = obj_control.drawRangeStart; i < obj_control.drawRangeEnd; i++){
+		var currentUnit = displayUnitList[|i];
+		if (is_string(currentUnit)) {
+			var unitSubMap = global.nodeMap[?currentUnit];
+			if (scr_isNumericAndExists(unitSubMap, ds_type_map)) {
+				var unitStart = (scr_isStrNumeric(unitSubMap[? "unitStart"]))? real(unitSubMap[? "unitStart"]) : 0;
+				var unitEnd = (scr_isStrNumeric(unitSubMap[? "unitEnd"]))? real(unitSubMap[? "unitEnd"]) : 0;
+				if(is_real(unitStart) && is_real(unitEnd) && is_real(currentPos)){
+					if(unitStart <= currentPos && unitEnd >= currentPos){
+						closestUnit = currentUnit;
+						var closestUnitSubMap = global.nodeMap[?closestUnit];
+						var unitY = closestUnitSubMap[?"pixelY"]
+						if(previousClosestUnit  != closestUnit && unitY > camera_get_view_height(view_camera[0])-windowHeight){
+							scr_jumpToUnitTop(closestUnit);
+						}
+						var unitLength = unitEnd - unitStart;
+						var amountPlayed = currentPos - unitStart;
+						var unitEntryList = unitSubMap[? "entryList"];
+						var indexOfToken = floor((amountPlayed/unitLength) * ds_list_size(unitEntryList));
+						var entrySubMap = global.nodeMap[?unitEntryList[|indexOfToken]];
+						if(scr_isNumericAndExists(entrySubMap, ds_type_map)){
+							closestToken = entrySubMap[?"token"];
+							closestTokenIndex = ds_list_find_index(tokenList,closestToken);
+						}
+					}
 				}
 			}
 		}
 	}
+	*/
+	
+	if (closestUnit == "" && ds_list_size(unitList) >= 1) {
+		closestUnit = unitList[| 0];
+	}
+	
+	var closestUnitSubMap = global.nodeMap[? closestUnit];
+	if (scr_isNumericAndExists(closestUnitSubMap, ds_type_map)) {
+		var closestUnitStart = closestUnitSubMap[? "unitStart"];
+		if (scr_isStrNumeric(closestUnitStart) || is_real(closestUnitStart)) {
+			var closestUnitEnd = closestUnitSubMap[? "unitEnd"];
+			if (scr_isStrNumeric(closestUnitEnd) || is_real(closestUnitEnd)) {
+				closestUnitEnd = real(closestUnitEnd);
+				
+				// check if audio has progressed past this unit, and therefore we should check the next unit
+				if (audioPos > closestUnitEnd) {
+					
+					var closestUnitIndex = ds_list_find_index(unitList, closestUnit);
+					if (closestUnitIndex + 1 < ds_list_size(unitList)) {
+						var nextUnit = unitList[| closestUnitIndex + 1];
+						var nextUnitSubMap = global.nodeMap[? nextUnit];
+					
+						var nextUnitStart = nextUnitSubMap[? "unitStart"];
+						if (scr_isStrNumeric(nextUnitStart) || is_real(nextUnitStart)) {
+							nextUnitStart = real(nextUnitStart);
+						
+							// check if the audio has gotten to this unit's start time yet
+							if (audioPos >= nextUnitStart) {
+								closestUnit = nextUnit;
+								//show_debug_message("closestUnit updated: " + string())
+							}
+						}
+					}
+				}
+			}
+
+		
+		
+			var unitY = closestUnitSubMap[?"pixelY"]
+			if (previousClosestUnit != closestUnit && unitY > camera_get_view_height(view_camera[0])-windowHeight) {
+				scr_jumpToUnitTop(closestUnit);
+			}
+			var unitLength = closestUnitEnd - closestUnitStart;
+			var amountPlayed = currentPos - closestUnitStart;
+			var unitEntryList = closestUnitSubMap[? "entryList"];
+			var indexOfToken = floor((amountPlayed/unitLength) * ds_list_size(unitEntryList));
+			var entrySubMap = global.nodeMap[?unitEntryList[|indexOfToken]];
+			if(scr_isNumericAndExists(entrySubMap, ds_type_map)){
+				closestToken = entrySubMap[?"token"];
+				closestTokenIndex = ds_list_find_index(tokenList,closestToken);
+			}
+		}
+	}
+	
 	
 	
 	// Pause audio at end of track

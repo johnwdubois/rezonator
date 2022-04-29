@@ -35,6 +35,8 @@ function scr_audioJumpToUnit(unitID) {
 						}
 					}
 				}
+				
+				with (obj_audioUI) closestUnit = unitID;
 			}
 		}
 	}

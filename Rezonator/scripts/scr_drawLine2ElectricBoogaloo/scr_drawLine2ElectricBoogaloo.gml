@@ -212,6 +212,7 @@ function scr_drawLine2ElectricBoogaloo(){
 				
 				scr_audioJumpToUnit(unitClosestToMouse);
 				obj_audioUI.audioPaused = false;
+				obj_audioUI.closestUnit = unitClosestToMouse;
 			}
 		}
 	}
