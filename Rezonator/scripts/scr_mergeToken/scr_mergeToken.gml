@@ -29,9 +29,11 @@ function scr_mergeToken(tokenID){
 		
 		if(currentChainType == "resonance"){
 			mergeTokenHasRez = true;
+			var mergeTokenRez = currentChain;
 		}
 		if(currentChainType = "trail"){
-			mergeTokenHasTrack = true;	
+			mergeTokenHasTrack = true;
+			var mergeTokenTrack = currentChain;
 		}
 		
 
@@ -44,19 +46,33 @@ function scr_mergeToken(tokenID){
 		
 		if(currentChainType == "resonance"){
 			prevTokenHasRez = true;
+			prevTokenRez = currentChain;
 		}
 		if(currentChainType = "trail"){
 			prevTokenHasTrack = true;	
+			var prevTokenTrack = currentChain;
 		}
 		
 
 	}
 	
-			//if(ds_list_find_index(prevTokenChainList, currentChain) == -1){
-		//	obj_chain.currentFocusedChainID = currentChain
-		//	scr_newLink(prevTokenID)
-		//}
+	if(prevTokenHasRez and mergeTokenHasRez){
+		obj_chain.currentFocusedChainID = mergeTokenRez;
+		scr_deleteFromChain(true)
+	}
+	if(prevTokenHasTrack and mergeTokenHasTrack){
+		obj_chain.currentFocusedChainID = mergeTokenTrack;
+		scr_deleteFromChain(true)
+	}
+	if(not prevTokenHasRez and mergeTokenHasRez){
+		obj_chain.currentFocusedChainID = mergeTokenRez;
+		scr_newLink(prevTokenID);
+	}
+	if(not prevTokenHasTrack and mergeTokenHasTrack){
+		obj_chain.currentFocusedChainID = mergeTokenTrack;
+		scr_newLink(prevTokenID);
+	}
 	
 	
-	scr_deleteToken(tokenID)
+	scr_deleteToken(tokenID);
 }
