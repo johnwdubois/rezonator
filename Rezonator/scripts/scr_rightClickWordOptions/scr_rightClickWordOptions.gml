@@ -240,7 +240,12 @@ function scr_rightClickWordOptions(optionSelected) {
 
 			instance_destroy();
 			break;
-			
+		case "Split Token":
+			scr_splitToken(obj_control.rightClickID)
+			break;
+		case "Merge Token":
+			scr_mergeToken(obj_control.rightClickID)
+			break;
 		default:
 			break;
 	}

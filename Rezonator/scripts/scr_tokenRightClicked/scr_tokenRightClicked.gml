@@ -57,9 +57,9 @@ function scr_tokenRightClicked(){
 				//scr_addToListOnce(dropDownOptionList , "Tag Token");
 		}
 		
-		ds_list_add(dropDownOptionList, "word_tip", "option_zero", "option_delete-token", "tab_name_tag");
+		ds_list_add(dropDownOptionList, "word_tip", "option_zero", "option_delete-token", "tab_name_tag","Split Token");
 		if (!firstWordInLine) {
-			ds_list_add(dropDownOptionList, "Split Unit");
+			ds_list_add(dropDownOptionList, "Merge Token", "Split Unit");
 		}
 		// Create the dropdown
 		if (ds_list_size(dropDownOptionList) > 0 and obj_control.ableToCreateDropDown) {
