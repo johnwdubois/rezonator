@@ -5,6 +5,8 @@ function scr_splitTokenHelper(inputText){
 	var origTokenID = obj_control.rightClickID;
 	var origSubMap = global.nodeMap[?origTokenID];
 	var origTagMap = origSubMap[?"tagMap"];
+	var beforeVal = obj_control.before;
+	obj_control.before = false;
 	if(string_count(" ", inputText) > 0){
 		var splitIndex = string_pos(" ", inputText);
 		if(splitIndex == string_length(inputText) or splitIndex == 0){
@@ -22,4 +24,5 @@ function scr_splitTokenHelper(inputText){
 		
 		origTagMap[?global.displayTokenField] = string_copy(origTagMap[?global.displayTokenField], 1, splitIndex - 1);
 	}
+	obj_control.before = beforeVal;
 }
