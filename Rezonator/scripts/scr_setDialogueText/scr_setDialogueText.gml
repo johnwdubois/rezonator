@@ -235,6 +235,10 @@ function scr_setDialogueText(){
 			titleText = "Set rez map";
 			descriptionText = "Type in the amount of actions needed for the resonance chains in this stack";
 		}
+		if (obj_control.splitToken) {
+			titleText = "Pick token split";
+			descriptionText = "Pick where to split the token";
+		}
 	}
 	
 	if (alertWindowActive) {

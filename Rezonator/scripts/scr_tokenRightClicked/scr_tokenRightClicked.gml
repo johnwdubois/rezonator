@@ -56,9 +56,10 @@ function scr_tokenRightClicked(){
 			&& is_string(obj_panelPane.functionField_tokenFieldSelected) && is_string(obj_panelPane.functionField_tokenTagSelected)) {
 				//scr_addToListOnce(dropDownOptionList , "Tag Token");
 		}
-		
+		//localize
 		ds_list_add(dropDownOptionList, "word_tip", "option_zero", "option_delete-token", "tab_name_tag","Split Token");
 		if (!firstWordInLine) {
+			//localize
 			ds_list_add(dropDownOptionList, "Merge Token", "Split Unit");
 		}
 		// Create the dropdown

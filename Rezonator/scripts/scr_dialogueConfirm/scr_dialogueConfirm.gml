@@ -198,6 +198,10 @@ function scr_dialogueConfirm(){
 		if (obj_control.setRezMap) {
 			scr_setRezMap(obj_chain.currentFocusedChainID, obj_control.inputText);
 		}
+		
+		if (obj_control.splitToken) {
+			scr_splitTokenHelper(obj_control.inputText);	
+		}
 			
 		scr_closeDialogueBoxVariables();
 		instance_destroy();

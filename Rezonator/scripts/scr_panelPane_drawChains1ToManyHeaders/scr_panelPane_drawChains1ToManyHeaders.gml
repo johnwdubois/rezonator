@@ -185,6 +185,7 @@ function scr_panelPane_drawChains1ToManyHeaders(){
 						
 						// add some of the dropDown options
 						ds_list_add(dropDownOptionList, "option_select-field");
+						//localize
 						if (ds_list_size(chain1toManyColFieldList) > 1) ds_list_add(dropDownOptionList, "Hide column");
 						if (!allFieldsInNav) ds_list_add(dropDownOptionList, "Insert column");
 						ds_list_add(dropDownOptionList, "option_create-new-field");

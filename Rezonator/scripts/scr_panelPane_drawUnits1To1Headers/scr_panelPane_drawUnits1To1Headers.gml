@@ -82,8 +82,9 @@ function scr_panelPane_drawUnits1To1Headers(){
 				}
 				
 				var dropDownOptionList = ds_list_create();
-				
+				//localize
 				ds_list_add(dropDownOptionList, "option_select-field", "Show in main screen", "Show in translation tab");
+				//localize
 				if (ds_list_size(obj_control.navUnitFieldList) > 1) ds_list_add(dropDownOptionList, "Hide column")
 				if (ds_list_size(obj_control.navUnitFieldList) < ds_list_size(obj_control.unitFieldList)) ds_list_add(dropDownOptionList, "Insert column");
 				ds_list_add(dropDownOptionList, "option_create-new-field", "option_add-to-tag-set", "option-remove-tag-set");

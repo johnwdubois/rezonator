@@ -502,6 +502,7 @@ saveBeforeExiting = false;
 saveBeforeImporting = false;
 saveBeforeGameEnd = false;
 insertAnyNumber = false;
+splitToken = false;
 
 newWordPre1 = false
 newWordPre2 = false
