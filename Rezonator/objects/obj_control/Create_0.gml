@@ -864,5 +864,8 @@ navWindowTaggingEscape = false;
 navWindowTaggingSingleOptionSelect = false;
 navWindowTaggingKeyboardInput = false;
 
+mouseoverBackArrow = false;
+mouseoverBackArrowStopClick = false;
+
 //lock fields
 with (obj_alarm3) alarm[4] = 2;
