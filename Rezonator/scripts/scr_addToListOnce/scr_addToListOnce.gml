@@ -1,5 +1,3 @@
-
-
 function scr_addToListOnce(list, value, first){
 	
 	// quick function for adding to a list...

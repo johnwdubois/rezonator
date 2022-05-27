@@ -52,7 +52,10 @@ windowWidth = max(originalWindowWidth, maxWidth);
 if (x + windowWidth > camWidth && !global.userLangRTL) {
 	var widthOffset = 0;
 	if (prevDropDownExists) {
-		widthOffset = prevDropDown.windowWidth;
+		
+		var prevDDX2 = prevDropDown.x + prevDropDown.windowWidth;
+		var horizontalOffset = camWidth-prevDDX2;
+		widthOffset = prevDropDown.windowWidth+ horizontalOffset;
 	}
 	x = camWidth - windowWidth - widthOffset;
 }
@@ -95,6 +98,9 @@ mouseOverDropDown = point_in_rectangle(mouse_x, mouse_y, x, y, x + windowWidth, 
 
 scrollPlusY = min(scrollPlusY, 0);
 
+var greenOptionColor = merge_color(global.colorThemeBG, make_color_rgb(114, 230, 110), 0.5);
+var redOptionColor = merge_color(global.colorThemeBG, make_color_rgb(247, 129, 148), 0.5);
+
 var optionListSize = ds_list_size(optionList);
 for (var i = 0; i < optionListSize; i++) {
 	
@@ -107,6 +113,7 @@ for (var i = 0; i < optionListSize; i++) {
 	var hasCheck = scr_dropDownHasCheckmark(currentOptionRaw);
 	var isOpeningScreenOption = ds_map_exists(global.openingScreenDropDownMap, currentOptionRaw) or optionListType == global.optionListTypeTagSchema;
 	var unClickable = (room == rm_openingScreen and !isOpeningScreenOption);
+	var fadedTextColor = merge_color(global.colorThemeText, global.colorThemeBG, unClickable ? 0.6 : 0.3);
 	
 	// optionRect coordinates
 	var optionRectX1 = x;
@@ -188,10 +195,10 @@ for (var i = 0; i < optionListSize; i++) {
 	// draw BG rectangle for each option
 	var optionBGColor = global.colorThemeBG;
 	if (currentOptionRaw == "option-remove-tag-set" || currentOptionRaw == "menu_clear" && optionListType != global.optionListTypeFilter) {
-		optionBGColor = merge_color(global.colorThemeBG, make_color_rgb(247, 129, 148), 0.5);
+		optionBGColor = redOptionColor;
 	}
 	else if (currentOptionRaw == "option_add-to-tag-set" || currentOptionRaw == "option_create-new-field") {
-		optionBGColor = merge_color(global.colorThemeBG, make_color_rgb(114, 230, 110), 0.5);
+		optionBGColor = greenOptionColor;
 	}
 	if (mouseoverCurrentOption or (optionCurrent == i)) {
 		optionBGColor = c_ltblue;
@@ -227,8 +234,9 @@ for (var i = 0; i < optionListSize; i++) {
 	draw_text(optionTextX - clipX, floor(optionTextY - clipY), currentOptionTranslated);
 	
 	// draw shortcut text
-	draw_set_halign( (global.userLangRTL) ? fa_left : fa_right);	
+	draw_set_halign( (global.userLangRTL) ? fa_left : fa_right);
 	if(currentOptionShortcut != ""){
+		draw_set_color(fadedTextColor);
 		scr_adaptFont(scr_get_translation(currentOptionShortcut), "S");
 		if(isExpandable){
 			if(global.userLangRTL){
@@ -279,7 +287,7 @@ for (var i = 0; i < optionListSize; i++) {
 				shortcutTextX -= ascendWidth/2;
 				
 			}
-		draw_set_color(merge_color(global.colorThemeText, global.colorThemeBG, 0.3));
+		draw_set_color(fadedTextColor);
 		draw_text(shortcutTextX - clipX, optionTextY - clipY, currentOptionTag);	
 	}
 
@@ -397,7 +405,6 @@ and !mouseInDropDown and !scrollBarHoldingDelay) {
 	}
 	if(destroyDropDown){
 		with (obj_dropDown) {
-			show_debug_message("BUHHHHHH")
 			instance_destroy();
 		}
 	}

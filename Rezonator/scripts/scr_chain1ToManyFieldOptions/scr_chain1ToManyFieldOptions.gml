@@ -12,9 +12,14 @@ function scr_chain1ToManyFieldOptions(optionSelected) {
 	if (ds_exists(chain1toManyColFieldList, ds_type_list)) {
 		
 		
-		var fieldToChange = obj_control.chain1ToManyColFieldToChange;
+		var colListIndex = obj_control.chain1ToManyColFieldToChange;
 		var optionSelectedPrevIndex = ds_list_find_index(chain1toManyColFieldList,optionSelected);
-		scr_listSwap(chain1toManyColFieldList, fieldToChange, optionSelectedPrevIndex);
+		if(optionSelectedPrevIndex >= 0 && colListIndex != optionSelectedPrevIndex){
+			scr_listSwap(chain1toManyColFieldList, colListIndex, optionSelectedPrevIndex);
+		}
+		else if (optionSelectedPrevIndex == -1) {
+			ds_list_set(chain1toManyColFieldList, colListIndex, optionSelected);
+		}
 	}
 
 }

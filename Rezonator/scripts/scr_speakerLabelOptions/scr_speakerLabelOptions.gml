@@ -151,6 +151,33 @@ function scr_speakerLabelOptions(optionSelected) {
 					scr_createDropDown(obj_dropDown.x + obj_dropDown.windowWidth, obj_dropDown.y + (obj_dropDown.optionSpacing * optionIndex), dropDownOptionList, global.optionListTypeTag);
 				}
 			}
+			else if (optionSelected == "Move up") {
+				scr_swapAdjacentUnit(true);
+				with (obj_dropDown) instance_destroy();
+			}
+			else if (optionSelected == "Move down") {
+				scr_swapAdjacentUnit(false);
+				with (obj_dropDown) instance_destroy();
+			}
+			else if (optionSelected == "Merge up") {
+				
+				// put the rightclick unit and the previous unit into mergeUnitList and call merge unit!
+				ds_list_clear(obj_control.mergeUnitList);
+				var docSubMap = global.nodeMap[? global.discourseNode];
+				var unitList = docSubMap[? "unitList"];
+				var rightClickUnitIndex = ds_list_find_index(unitList, obj_control.rightClickID);
+				if (rightClickUnitIndex >= 1) {
+					var prevUnit = unitList[| rightClickUnitIndex - 1];
+					ds_list_add(obj_control.mergeUnitList, prevUnit, obj_control.rightClickID);
+					if (!instance_exists(obj_dialogueBox)) {
+						instance_create_layer(x, y, "InstancesDialogue", obj_dialogueBox);
+						obj_dialogueBox.questionWindowActive = true;
+						obj_dialogueBox.mergeUnit = true;
+					}
+				}
+				
+				with (obj_dropDown) instance_destroy();
+			}
 		}
 	}
 

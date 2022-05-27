@@ -89,6 +89,7 @@ if ((obj_control.hoverTokenID != "" or obj_control.hoverUnitID != "" or obj_cont
 
 	// Handle the case where the box clips off the bottom of the screen
 	var fullWindowHeight = camera_get_view_height(camera_get_active());
+	if (obj_audioUI.visible) fullWindowHeight -= obj_audioUI.windowHeight;
 	if (boxY2 >= fullWindowHeight) {
 		var overflowHeight = boxY2 - fullWindowHeight;
 		boxY1 -= overflowHeight;
@@ -155,12 +156,27 @@ if ((obj_control.hoverTokenID != "" or obj_control.hoverUnitID != "" or obj_cont
 			draw_rectangle(boxX1, rectY1, boxX2, rectY2, false);
 			
 			if (obj_toolPane.currentMode == obj_toolPane.modeRead) {
-				var selectedTag = obj_panelPane.functionField_tokenTagSelected;
+				var selectedTag = "";
 				if (IDType == "token") {
-					if (is_string(selectedTag) && selectedTag != "" && selectedTag != fieldValue) {
-						scr_createTooltip(boxX2, mean(rectY1, rectY2), "Quick tag: " + string(selectedTag), obj_tooltip.arrowFaceLeft);
-					}
+					selectedTag = obj_panelPane.functionField_tokenTagSelected;
 				}
+				else if(IDType == "unit"){
+					selectedTag = obj_panelPane.functionField_unitTagSelected;
+				}
+				else if(IDType == "chunk"){
+					selectedTag = obj_panelPane.functionField_chunkTagSelected;
+				}
+				else if(IDType == "treeLink"){
+					selectedTag = obj_panelPane.functionField_linkTagSelected;
+				}
+				
+				if (scr_get_translation(selectedTag) == scr_get_translation("menu_clear")) {
+					scr_createTooltip(boxX2, mean(rectY1, rectY2), "Clear tag", obj_tooltip.arrowFaceLeft);
+				}
+				else if(is_string(selectedTag) && selectedTag != "" && selectedTag != fieldValue){
+					scr_createTooltip(boxX2, mean(rectY1, rectY2), "Quick tag: " + string(selectedTag), obj_tooltip.arrowFaceLeft);
+				}
+				
 			}
 		}
 		

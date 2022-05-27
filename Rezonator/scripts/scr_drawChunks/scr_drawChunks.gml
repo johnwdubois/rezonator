@@ -305,8 +305,13 @@ function scr_drawChunks(){
 				&& is_string(obj_panelPane.functionField_chunkFieldSelected) && is_string(obj_panelPane.functionField_chunkTagSelected)) {
 					var chunkTagMap = currentChunkSubMap[? "tagMap"];
 					if (scr_isNumericAndExists(chunkTagMap, ds_type_map)) {
-						chunkTagMap[? obj_panelPane.functionField_chunkFieldSelected] = obj_panelPane.functionField_chunkTagSelected;
-						show_debug_message("scr_tokenClicked ... setting token: " + string(currentChunk) + ", field:" + string(obj_panelPane.functionField_chunkFieldSelected) + ", tag: " + string(obj_panelPane.functionField_chunkTagSelected));
+						if(obj_panelPane.functionField_chunkTagSelected == scr_get_translation("menu_clear")){
+							chunkTagMap[? obj_panelPane.functionField_chunkFieldSelected] = "";
+						}
+						else{
+							chunkTagMap[? obj_panelPane.functionField_chunkFieldSelected] = obj_panelPane.functionField_chunkTagSelected;
+							show_debug_message("scr_tokenClicked ... setting token: " + string(currentChunk) + ", field:" + string(obj_panelPane.functionField_chunkFieldSelected) + ", tag: " + string(obj_panelPane.functionField_chunkTagSelected));
+						}
 					}
 				}
 				

@@ -12,6 +12,7 @@ function scr_inputBoxDraw(){
 		textMarginY = 0;
 	}
 	var valign = fa_top;
+	var camWidth = camera_get_view_width(view_camera[0]);
 	
 	textX = floor(textBoxX + textMarginX + xOffset);
 	textY = floor(textBoxY + textMarginY);
@@ -58,14 +59,14 @@ function scr_inputBoxDraw(){
 	if(!windowFocused && navWindowTagging && !mouse_check_button(mb_left)){
 		inputBoxCancel += 1;
 		if(inputBoxCancel > 10){
-			show_debug_message("NO FOCUS MUST DESTROY")
+			show_debug_message("NO FOCUS MUST DESTROY");
 			instance_destroy();
 		}
 	}
 	else{
 		inputBoxCancel = 0;
 	}
-
+	
 	
 	
 	if (instance_exists(obj_openingScreen)) {
@@ -171,7 +172,11 @@ function scr_inputBoxDraw(){
 	scr_surfaceEnd();
 	
 	if(isLockedField){
-		draw_sprite_ext(spr_lock,0,textBoxX+windowWidth - sprite_get_width(spr_lock)/2, textBoxY+windowHeight/2,.8,.8,0,global.colorThemeText,.5);
+		var spriteScale = .8;
+		if(sprite_get_height(spr_lock) * spriteScale  > windowHeight){
+			spriteScale = .6;
+		}
+		draw_sprite_ext(spr_lock,0,textBoxX+windowWidth - sprite_get_width(spr_lock)/2, textBoxY+windowHeight/2,spriteScale,spriteScale,0,global.colorThemeText,.5);
 	}
 	// outline rect
 	draw_set_color(global.colorThemeBorders);

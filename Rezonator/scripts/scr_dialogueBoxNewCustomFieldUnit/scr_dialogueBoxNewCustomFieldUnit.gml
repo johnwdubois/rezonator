@@ -9,10 +9,13 @@ function scr_dialogueBoxNewCustomFieldUnit() {
 	// add new field to the list of unit fields
 	if (ds_list_find_index(obj_control.unitFieldList, newField) != -1) exit;
 	scr_addToListOnce(obj_control.unitFieldList, newField);
+	scr_sortList(obj_control.unitFieldList)
 	
 	// create a new submap for this field
 	var newFieldMap = ds_map_create();
 	ds_map_add_list(newFieldMap, "tagSet", ds_list_create());
+	ds_map_add(newFieldMap, "locked", false);
+	ds_map_add(newFieldMap, "readOnly", false);
 	
 	//add to nav window list
 	scr_addToListOnce(obj_control.navUnitFieldList, newField);

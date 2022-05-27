@@ -4,28 +4,6 @@ function scr_rightClickWordOptions(optionSelected) {
 	switch (optionSelected)
 	{
 		
-		case "Replace Word":
-		
-			if (obj_control.rightClickID != "") {
-
-					if (!obj_control.dialogueBoxActive) {
-						keyboard_string = "";
-						obj_control.replace = true;
-					}
-
-					obj_control.fromDropDown = true;
-					obj_control.dialogueBoxActive = true;
-
-					if (!instance_exists(obj_dialogueBox)) {
-						instance_create_layer(x, y, "InstancesDialogue", obj_dialogueBox);
-					}
-					obj_dialogueBox.inputWindowActive = true;
-		
-			}
-			
-			instance_destroy();
-
-			break;
 			
 		case "help_label_split-word":
 			scr_destroyAllDropDownsOtherThanSelf();
@@ -250,6 +228,16 @@ function scr_rightClickWordOptions(optionSelected) {
 			
 		case "Show in Nav":
 			scr_showInNav(obj_control.rightClickID);
+			instance_destroy();
+			break;
+			
+		case "Split Unit":
+			if (!instance_exists(obj_dialogueBox)) {
+				instance_create_layer(x, y, "InstancesDialogue", obj_dialogueBox);
+				obj_dialogueBox.questionWindowActive = true;
+				obj_dialogueBox.splitUnit = true;
+			}
+
 			instance_destroy();
 			break;
 			

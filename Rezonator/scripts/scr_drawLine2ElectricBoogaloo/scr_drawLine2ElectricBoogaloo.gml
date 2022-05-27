@@ -1,5 +1,3 @@
-
-
 function scr_drawLine2ElectricBoogaloo(){
 	
 	
@@ -21,9 +19,12 @@ function scr_drawLine2ElectricBoogaloo(){
 	
 	if (!scr_isNumericAndExists(displayUnitList, ds_type_list)) {
 		if(scr_isNumericAndExists(unitList, ds_type_list)){
-			discourseSubMap[? "displayUnitList"] = unitList;
+			displayUnitList = ds_list_create();
+			ds_list_copy(displayUnitList, unitList);
+			discourseSubMap[? "displayUnitList"] = displayUnitList;
 			displayUnitList = discourseSubMap[? "displayUnitList"];
 			obj_control.displayUnitList = displayUnitList;
+			show_debug_message("... displayUnitList created!");
 		}
 		else{
 			exit;
@@ -142,12 +143,14 @@ function scr_drawLine2ElectricBoogaloo(){
 		}
 		
 		//draw unit if selected for merge
-		var inMergeUnitList = (ds_list_find_index(mergeUnitList,currentUnit)>-1);
-		if(keyboard_check(vk_alt) && inMergeUnitList){
-			var unitY1 = floor(currentUnitSubMap[? "pixelY"] - gridSpaceVertical/2 -1);
-			var unitY2 = floor(currentUnitSubMap[? "pixelY"] + gridSpaceVertical/2 -3);
-			draw_set_color(merge_color(global.colorThemeGrid_colSelected1, c_white, 0.8));
-			draw_rectangle(0,unitY1,obj_toolPane.x , unitY2, false);
+		if (instance_exists(obj_dialogueBox)) {
+			var inMergeUnitList = (ds_list_find_index(mergeUnitList,currentUnit)>-1);
+			if (obj_dialogueBox.mergeUnit && inMergeUnitList){
+				var unitY1 = floor(currentUnitSubMap[? "pixelY"] - gridSpaceVertical/2 -1);
+				var unitY2 = floor(currentUnitSubMap[? "pixelY"] + gridSpaceVertical/2 -3);
+				draw_set_color(merge_color(global.colorThemeGrid_colSelected1, c_white, 0.8));
+				draw_rectangle(0,unitY1,obj_toolPane.x , unitY2, false);
+			}
 		}
 		
 		
@@ -205,13 +208,29 @@ function scr_drawLine2ElectricBoogaloo(){
 			hoverLine = true;
 			obj_control.hoverUnitID = unitClosestToMouse;
 			
-			if(mouse_check_button_released(mb_left) && obj_audioUI.audioSound != -1 && file_exists(obj_audioUI.audioFile) ){
+			if(mouse_check_button_released(mb_left) && obj_audioUI.audioSound != -1 && file_exists(obj_audioUI.audioFile) &&!scrollBarHolding){
 				
 				scr_audioJumpToUnit(unitClosestToMouse);
 				obj_audioUI.audioPaused = false;
+				obj_audioUI.closestUnit = unitClosestToMouse;
 			}
 		}
 	}
+	
+	// keep hover line around if right clicking on unit
+	if (instance_exists(obj_dropDown)) {
+		if (obj_dropDown.optionListType == global.optionListTypeSpeakerLabel) {
+			hoverLine = true;
+			obj_control.hoverUnitID = obj_control.rightClickID;
+		}
+	}
+	if (instance_exists(obj_dialogueBox)) {
+		if (obj_dialogueBox.mergeUnit) {
+			hoverLine = true;
+			obj_control.hoverUnitID = obj_control.rightClickID;
+		}
+	}
+
 	
 	
 	//draw the hover lines for each unit
@@ -239,23 +258,5 @@ function scr_drawLine2ElectricBoogaloo(){
 	
 	updateChainShowMap = false;
 	
-	
-	
-	// merge units list (temp?)
-	if (keyboard_check(vk_alt) && keyboard_check_released(ord("U")) && obj_control.shortcutsEnabled) {
-		if (!instance_exists(obj_dialogueBox)) {
-			instance_create_layer(x, y, "InstancesDialogue", obj_dialogueBox);
-							
-			obj_dialogueBox.questionWindowActive = true;
-			obj_dialogueBox.mergeUnit = true;
-		}
-		//scr_mergeUnit();
-	}
-	if (mouse_check_button_released(mb_left)) {
-		scr_addToListOnce(mergeUnitList, unitClosestToMouse, true);
-		if (ds_list_size(mergeUnitList) > 2) {
-			ds_list_delete(mergeUnitList, 2);
-		}
-	}
 	
 }

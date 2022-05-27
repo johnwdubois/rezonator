@@ -6,9 +6,9 @@ function scr_mergeUnit(){
 	}
 	
 	// get both units to merge, make sure they're valid
-	var unit1ID = obj_control.mergeUnitList[| 1];
+	var unit1ID = obj_control.mergeUnitList[| 0];
 	var unit1SubMap = global.nodeMap[? unit1ID];
-	var unit2ID = obj_control.mergeUnitList[| 0];
+	var unit2ID = obj_control.mergeUnitList[| 1];
 	var unit2SubMap = global.nodeMap[? unit2ID];
 	if (!scr_isNumericAndExists(unit1SubMap, ds_type_map) || !scr_isNumericAndExists(unit2SubMap, ds_type_map)) {
 		show_debug_message("scr_mergeUnit, units don't exist");
@@ -25,7 +25,7 @@ function scr_mergeUnit(){
 	var unit1Seq = unit1SubMap[? "unitSeq"];
 	var unit2Seq = unit2SubMap[? "unitSeq"];
 	show_debug_message("scr_mergeUnit, unit1ID: " + string(unit1ID) + ", unit2ID: " + string(unit2ID));
-	show_debug_message("scr_mergeUnit, merging unit " + string(unit1Seq) + " and unit " + string(unit2Seq));
+	show_debug_message("scr_mergeUnit, unit1Seq: " + string(unit1Seq) + ", unit2Seq: " + string(unit2Seq));
 	
 	// add every unit2 entry into unit1's entry list
 	// also make every entry & token that was in unit2 now point to unit1
@@ -53,14 +53,44 @@ function scr_mergeUnit(){
 	}
 
 	
-	// now let's destroy the unit2 node and all of its contents
 	var unit2TagMap = unit2SubMap[? "tagMap"];
 	var unit2InChainsList = unit2SubMap[? "inChainsList"];
-	ds_map_destroy(unit2TagMap);	
-	ds_list_destroy(unit2InChainsList);	
-	ds_list_destroy(unit2EntryList);
-	ds_map_destroy(unit2SubMap);
-	scr_deleteFromNodeMap(unit2ID);
+	var unit1InChainsList = unit1SubMap[? "inChainsList"];
+	
+	//update all chains related to unit2
+	var unit2InChainsListSize = ds_list_size(unit2InChainsList);
+	var unit1InChainsListSize = ds_list_size(unit1InChainsList);
+	show_debug_message("unit1InChainsListSize: "+string(unit1InChainsListSize) + ",    unit2InChainsListSize: "+string(unit2InChainsListSize))
+	
+	
+	//first unit has a stack
+	if(unit2InChainsListSize >= 1){
+		//and second unit doesn't has a stack
+		if(unit1InChainsListSize == 0){
+			//we adjust the broken enttry in the first unit's chain to poin to new unit;
+			for (var i = 0; i < unit2InChainsListSize; ++i) {
+			    var currentStack = unit2InChainsList[|i];
+				var stackSubMap = global.nodeMap[?currentStack];
+				if(scr_isNumericAndExists(stackSubMap,ds_type_map)){
+					var entryList = stackSubMap[?"setIDList"];
+					var entryListSize = ds_list_size(entryList);
+					for (var j = 0; j < entryListSize; ++j) {
+					     var currentCard = entryList[|j];
+						 var cardMap = global.nodeMap[?currentCard];
+						 
+						 var cardUnit = cardMap[?"unit"];
+						 if(cardUnit == unit2ID){
+							cardMap[?"unit"] = unit1ID;
+							scr_addToListOnce(unit1InChainsList,currentStack);
+						 }
+					}
+				}
+			}
+		}
+	}
+	
+
+	// we remove unit2 from all of the unitLists, so that we can reevaulate unitSeq
 	scr_deleteFromList(unitList, unit2ID);
 	scr_deleteFromList(displayUnitList, unit2ID);
 	scr_deleteFromList(obj_control.mergeUnitList, unit2ID);
@@ -97,5 +127,40 @@ function scr_mergeUnit(){
 		currentTokenSubMap[? "tokenOrder"] = i + 1;
 	}
 	
+	
+	// deal with the stacks that unit2 was in
+	show_debug_message("dealing with unit2InChainsList: " + scr_getStringOfList(unit2InChainsList) + ", unit2InChainsListSize: " + string(unit2InChainsListSize));
+	while (ds_list_size(unit2InChainsList) >= 1) {
+		var currentStack = unit2InChainsList[| 0];
+		var currentStackSubMap = global.nodeMap[? currentStack];
+		var currentStackEntryList = currentStackSubMap[? "setIDList"];
+		var currentStackEntryListSize = ds_list_size(currentStackEntryList);
+		
+		// find the stack entry that points to unit2
+		var deleteFromCurrentStack = false;
+		for (var j = 0; j < currentStackEntryListSize; j++) {
+			var currentStackEntry = currentStackEntryList[| j];
+			var currentStackEntrySubMap = global.nodeMap[? currentStackEntry];
+			var currentStackEntryUnit = currentStackEntrySubMap[? "unit"];
+			if (currentStackEntryUnit == unit2ID) {
+				deleteFromCurrentStack = true;
+				currentStackSubMap[? "focused"] = currentStackEntry;
+			}
+		}
+		
+		if (deleteFromCurrentStack) {
+			obj_chain.currentFocusedChainID = currentStack;
+			scr_deleteFromChain(true);
+		}
+		
+		scr_deleteFromList(unit2InChainsList, currentStack);
+	}
+	
+	// now let's destroy the unit2 node and all of its contents
+	ds_map_destroy(unit2TagMap);
+	ds_list_destroy(unit2EntryList);
+	ds_map_destroy(unit2SubMap);
+	scr_deleteFromNodeMap(unit2ID);
+	ds_list_destroy(unit2InChainsList);
 	
 }

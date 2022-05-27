@@ -858,7 +858,6 @@ navWindowTaggingCanPressDown = true;
 navWindowTaggingCanPressLeft = true;
 navWindowTaggingCanPressRight = true;
 navWindowTaggingKeyboardLastChar = "";
-isDragging = false;
 navWindowTaggingOldValue = "";
 navWindowTaggingEscape = false;
 navWindowTaggingSingleOptionSelect = false;

@@ -183,9 +183,6 @@ function scr_dialogueConfirm(){
 			}
 		}
 		
-		if (obj_control.replace) {
-			scr_dialogueBoxReplace();
-		}
 		
 
 		
@@ -263,6 +260,9 @@ function scr_dialogueConfirm(){
 		
 		if(mergeUnit){
 			scr_mergeUnit();
+		}
+		if(splitUnit){
+			scr_splitUnit(obj_control.rightClickID, false);
 		}
 	
 		if (clearChain) {

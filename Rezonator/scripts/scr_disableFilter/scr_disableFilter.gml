@@ -26,7 +26,7 @@ function scr_disableFilter(){
 	show_debug_message("scr_disableFilter ... drawRangeUnit: " + string(drawRangeUnit));
 	
 	
-	discourseSubMap[? "displayUnitList"] = unitList;
+	ds_list_copy(discourseSubMap[? "displayUnitList"], unitList);
 	scr_jumpToUnitTop(drawRangeUnit);
 	scr_setValueForAllNodesInList(unitList, "active", true);
 	

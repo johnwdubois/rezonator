@@ -1,5 +1,3 @@
-
-
 function scr_deleteToken(tokenID){
 	
 	// get token submap and make sure it exists

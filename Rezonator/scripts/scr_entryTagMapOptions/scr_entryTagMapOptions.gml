@@ -24,6 +24,10 @@ function scr_entryTagMapOptions(optionSelected) {
 	
 	}
 	else {
+		var fieldSubMap = global.entryFieldMap[?obj_control.tokenFieldToChange];
+		var readOnly =  fieldSubMap[?"readOnly"];
+		if(readOnly) exit;
+		
 		obj_control.navWindowTaggingID = tagID;
 		//tagging from nav window vs tagging from right click
 		if(obj_control.navWindowTaggingID != ""){
@@ -34,6 +38,7 @@ function scr_entryTagMapOptions(optionSelected) {
 				if(scr_isNumericAndExists(tagMap,ds_type_map)){
 					var newTagValue = clearTag ? "" : optionSelected;
 					tagMap[?obj_control.tokenFieldToChange] = newTagValue;
+	
 				}	
 			}
 		}

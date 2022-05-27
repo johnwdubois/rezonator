@@ -1,6 +1,7 @@
 function scr_chunkTagDropDown(fieldMap, field, IDtoChange, str, cellRectX1, cellRectY1, cellRectX2, cellRectY2, mouseoverCell, lastColumn) {
 	
 	var mouseoverDropDown = false;
+	var setNavTaggingID = false;
 	
 	if (mouseoverCell && !instance_exists(obj_dialogueBox)) {
 		// dropDown button for editing tags
@@ -9,10 +10,10 @@ function scr_chunkTagDropDown(fieldMap, field, IDtoChange, str, cellRectX1, cell
 										
 			// check whether this field has a tagSet
 			var fieldHasTagSet = ds_map_exists(fieldTagSubMap, "tagSet");
-			var fieldHasShortcutSet = ds_map_exists(fieldTagSubMap, "shortcutSet");
+			var fieldReadOnly = fieldTagSubMap[?"readOnly"];
 	
 			// draw dropDown button if this field has a tagSet
-			if (fieldHasTagSet) {
+			if (fieldHasTagSet && !fieldReadOnly) {
 			
 				// get the tagSet of this field and make sure it exists
 				var fieldTagSet = fieldTagSubMap[? "tagSet"];
@@ -50,6 +51,7 @@ function scr_chunkTagDropDown(fieldMap, field, IDtoChange, str, cellRectX1, cell
 							ds_list_add(dropDownOptionList, "menu_clear");
 
 							scr_createDropDown(cellRectX1, cellRectY2, dropDownOptionList, global.optionListTypeChunk1To1Tag);
+							setNavTaggingID = true;
 						}
 					}
 				}
@@ -58,6 +60,9 @@ function scr_chunkTagDropDown(fieldMap, field, IDtoChange, str, cellRectX1, cell
 	}
 	
 	scr_cellEdit(IDtoChange, field, mouseoverCell, mouseoverDropDown, cellRectX1, cellRectY1, cellRectX2, cellRectY2, str, "chunk");
-	
+	if (setNavTaggingID) {
+		obj_control.navWindowTaggingID = IDtoChange;
+		obj_control.navWindowTaggingField = field;
+	}
 
 }

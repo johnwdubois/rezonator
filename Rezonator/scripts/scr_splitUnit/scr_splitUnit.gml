@@ -79,6 +79,7 @@ function scr_splitUnit(currentToken, lastToken){
 		scr_unitClicked(newUnitNode);
 	}
 
-	discourseSubMap[? "displayUnitList"] = unitList;
+	
+	ds_list_copy(discourseSubMap[? "displayUnitList"], unitList);
 	
 }

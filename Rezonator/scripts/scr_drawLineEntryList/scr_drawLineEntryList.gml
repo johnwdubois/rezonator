@@ -185,9 +185,7 @@ function scr_drawLineEntryList(unitID, unitSubMap, entryList, pixelY, OOBCheck){
 					scr_tokenClicked(currentToken);
 				}
 				if(keyboard_check(vk_shift) && keyboard_check_pressed(ord("U")) && !global.ctrlHold && obj_control.shortcutsEnabled){
-					var lastToken = false;
-					scr_splitUnit(currentToken,lastToken);
-				
+					//scr_splitUnit(currentToken, false);
 				}
 				// Check for rightMouseClick
 				if (device_mouse_check_button_released(0, mb_right) and !instance_exists(obj_dialogueBox)) {

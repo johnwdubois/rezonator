@@ -59,7 +59,7 @@
     "eventToFunction": {},
     "eventStubScript": null,
     "parent": {"name":"spr_moreOptions","path":"sprites/spr_moreOptions/spr_moreOptions.yy",},
-    "resourceVersion": "1.3",
+    "resourceVersion": "1.4",
     "name": "spr_moreOptions",
     "tags": [],
     "resourceType": "GMSequence",

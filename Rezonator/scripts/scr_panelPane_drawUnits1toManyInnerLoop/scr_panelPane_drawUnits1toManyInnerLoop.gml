@@ -65,6 +65,13 @@
 		if (!lineStateLTR && i == fieldListSize-1) {
 			textX -= global.scrollBarWidth;
 		}
+		var readOnlyField = false;
+		var tokenTagMap = global.nodeMap[? "tokenTagMap"];
+		var currentFieldSubMap = tokenTagMap[? currentField];
+		if (scr_isNumericAndExists(currentFieldSubMap, ds_type_map)) {
+			if (!ds_map_exists(currentFieldSubMap, "tagSet")) readOnlyField = true;
+			if(currentFieldSubMap[?"readOnly"]) readOnlyField = true;
+		}
 		
 		// draw text	
 		draw_set_color(global.colorThemeText);
@@ -73,8 +80,9 @@
 		draw_set_valign(fa_middle);
 		currentStr = tagMap[? currentField];
 		currentStr = scr_adaptFont(currentStr, "S");
+		draw_set_alpha(readOnlyField ? 0.7 : 1);
 		draw_text(textX - clipX, textY - clipY, currentStr);
-
+		draw_set_alpha(1);
 		// dropDown button coordinates
 		var dropDownRectX1 = cellRectX2 - dropDownButtonWidth;
 		if (i == fieldListSize - 1) dropDownRectX1 -= global.scrollBarWidth;
@@ -84,14 +92,14 @@
 		var mouseoverDropDown = (point_in_rectangle(mouse_x, mouse_y, dropDownRectX1, dropDownRectY1, dropDownRectX2, dropDownRectY2) && !mouseoverCancel && !instance_exists(obj_inputBox) && mouseoverWindow);
 		
 		// draw dropdown sprite if mouseover on this cell
-		if (mouseoverCell && !isTildaField) {
+		if (mouseoverCell && !isTildaField && !readOnlyField) {
 			draw_sprite_ext(spr_dropDown, 0, mean(dropDownRectX1, dropDownRectX2) - clipX, mean(dropDownRectY1, dropDownRectY2) - clipY, 1, 1, 0, global.colorThemeText, 1);
 		}
 		
 		scr_cellEdit(tokenID, currentField, mouseoverCell, mouseoverDropDown, cellRectX1, cellRectY1, cellRectX2, cellRectY2, currentStr, "token");
 
 
-		if (drawDropDowns && !isTildaField) {
+		if (drawDropDowns && !isTildaField && !readOnlyField) {
 				
 			if (mouseoverDropDown) {
 									
@@ -105,7 +113,6 @@
 					obj_control.navWindowTaggingField = currentField;
 					
 					// get submap for this field
-					var tokenTagMap = global.nodeMap[? "tokenTagMap"];
 					var fieldSubMap = tokenTagMap[? currentField];
 					
 					// get the tagSet for this field

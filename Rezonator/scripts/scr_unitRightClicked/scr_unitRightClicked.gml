@@ -43,7 +43,22 @@ function scr_unitRightClicked(){
 		// check if this unit is in any trees
 		var unitInStack = (ds_list_size(unitInChainsList) > 0);
 		
+		
+		
 		ds_list_add(dropDownOptionList, "tab_name_tag", "option_create-tree");
+		if (obj_control.currentView == obj_control.mainView) {
+			var docSubMap = global.nodeMap[? global.discourseNode];
+			var unitList = docSubMap[? "unitList"];
+			
+			// give "move up" and "move down" options only if this unit is not first/last unit
+			if (unitList[| 0] != obj_control.rightClickID) {
+				ds_list_add(dropDownOptionList, "Merge up", "Move up");
+			}
+			if (unitList[| ds_list_size(unitList) - 1] != obj_control.rightClickID) {
+				ds_list_add(dropDownOptionList, "Move down");
+			}
+		}
+		
 		if (unitInStack) {
 			scr_deleteFromList(dropDownOptionList, "option_create-tree");
 			ds_list_add(dropDownOptionList, "Create tree (unit)", "Create tree (stack)");

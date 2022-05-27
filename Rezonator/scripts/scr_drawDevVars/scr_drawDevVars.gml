@@ -77,12 +77,12 @@ function scr_drawDevVars(){
 	draw_text(devVarX - 580, wordTopMargin + (strHeight * 4), "navWindowTaggingSingleOptionSelect: " + string(navWindowTaggingSingleOptionSelect));
 	draw_text(devVarX - 580, wordTopMargin + (strHeight * 5), "displayTokenField: " + string(global.displayTokenField));
 	draw_text(devVarX - 580, wordTopMargin + (strHeight * 6), "participantField: " + string(global.participantField));
-	draw_text(devVarX - 580, wordTopMargin + (strHeight * 7), "currentTool: " + string(obj_toolPane.currentTool));
+	draw_text(devVarX - 580, wordTopMargin + (strHeight * 7), "doubleClickTimer: " + string(doubleClickTimer));
 	draw_text(devVarX - 580, wordTopMargin + (strHeight * 8), "chainShowList: " + string(scr_getStringOfList(obj_chain.chainShowList)));
 	draw_text(devVarX - 580, wordTopMargin + (strHeight * 9), "rightClickID: " + string(obj_control.rightClickID));
 	draw_text(devVarX - 580, wordTopMargin + (strHeight * 10), "hoverUnitID: " + string(obj_control.hoverUnitID));
 	draw_text(devVarX - 580, wordTopMargin + (strHeight * 11), "currentFocusedEntryID: " + string(obj_chain.currentFocusedEntryID));
-	draw_text(devVarX - 580, wordTopMargin + (strHeight * 12), "startRangeMax: " + string(obj_control.drawRangeStartMax));
+	draw_text(devVarX - 580, wordTopMargin + (strHeight * 12), "audioClosestUnit: " + string(obj_audioUI.closestUnit));
 	draw_text(devVarX - 580, wordTopMargin + (strHeight * 13), "endRangeMin: " + string(obj_control.drawRangeEndMin));
 	draw_text(devVarX - 580, wordTopMargin + (strHeight * 14), "quickPickedChainID: " + string(obj_control.quickPickedChainID));
 	draw_text(devVarX - 580, wordTopMargin + (strHeight * 15), "mergeUnitList: " + scr_getStringOfList(mergeUnitList));

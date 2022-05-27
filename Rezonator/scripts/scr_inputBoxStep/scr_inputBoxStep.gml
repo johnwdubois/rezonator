@@ -17,6 +17,11 @@ function scr_inputBoxStep(){
 	var keyRightPressed = keyboard_check_pressed(vk_right) && windowFocused;
 	var keyEnterPressed = keyboard_check_pressed(vk_enter) && windowFocused;
 	var keyEscapePressed = keyboard_check_pressed(vk_escape) && windowFocused;
+	if(dragging && !mouse_check_button(mb_left)){
+		with(obj_control){
+			alarm[1] = 1;
+		}
+	}
 	
 	// cancel horizontal movement if in dropdown
 	if (instance_exists(obj_dropDown)) {
@@ -155,6 +160,7 @@ function scr_inputBoxStep(){
 
 	// drag and scroll outside of text box
 	if (mouse_check_button(mb_left)) {
+		dragging = true;
 		if (cursorIndex > highlightIndex && mouse_x > textBoxX + windowWidth * 0.95) {
 			if (xOffset > -(string_width(str) - (windowWidth * 0.9))) {
 				xOffset -= string_width("A");

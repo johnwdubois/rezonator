@@ -239,11 +239,14 @@ hoverTime[3] = 0;
 errorText = "";
 
 
-fieldPaneDocMode = "option_doc";
+
+fieldPaneTokenMode = "option_token";
+fieldPaneUnitMode = "error_unit";
 fieldPaneChainMode = "option_chain";
+fieldPaneEntryMode = "Entry";
 fieldPaneChunkMode = "option_chunk";
 fieldPaneLinkMode = "help_header_link";
-fieldPaneSwitchButton = fieldPaneDocMode;
+fieldPaneSwitchButton = fieldPaneTokenMode;
 fieldChains1ToManyChainType = "";
 fieldChains1To1ChainType = "";
 cliquePaneSwitchButton = "option_chain";

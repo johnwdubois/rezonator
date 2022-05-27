@@ -2,6 +2,8 @@ if (obj_control.gridView) {
 	audioPaused = true;
 }
 
+audioFileExists = file_exists(audioFile);
+
 windowWidth = camera_get_view_width(camera_get_active()) - global.scrollBarWidth;
 x = 0;
 y = camera_get_view_height(camera_get_active()) - windowHeight;
