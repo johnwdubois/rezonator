@@ -181,12 +181,15 @@ function scr_rightClickWordOptions(optionSelected) {
 			scr_destroyAllDropDownsOtherThanSelf();
 			var dropDownOptionList = ds_list_create();
 			if(obj_control.inChunk){
+				// localize
 				ds_list_add(dropDownOptionList, "Tag Chunk");
 			}
 			else{
+				// localize
 				ds_list_add(dropDownOptionList, "Tag Token");
 			}
 			if(obj_control.inChain){
+				// localize
 				ds_list_add(dropDownOptionList, "Tag Chain", "Tag Entry");
 			}
 			if (ds_list_size(dropDownOptionList) > 0) {
@@ -240,7 +243,12 @@ function scr_rightClickWordOptions(optionSelected) {
 
 			instance_destroy();
 			break;
-			
+		case "Split Token":
+			scr_splitToken(obj_control.rightClickID)
+			break;
+		case "Merge Token":
+			scr_mergeToken(obj_control.rightClickID)
+			break;
 		default:
 			break;
 	}

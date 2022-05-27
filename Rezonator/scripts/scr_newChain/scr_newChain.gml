@@ -5,7 +5,7 @@
 function scr_newChain(ID) {
 	
 	if(obj_toolPane.currentMode == obj_toolPane.modeRead) exit;
-	
+	if (obj_control.mouseoverBackArrowStopClick || obj_control.mouseoverBackArrow) exit;
 	
 	show_debug_message("ID before: " + string(ID));
 	var idSubMap = global.nodeMap[? ID];

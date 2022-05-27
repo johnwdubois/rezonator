@@ -359,6 +359,7 @@ function scr_preImportScreen(){
 	if (mouseoverTag && mouse_check_button_released(mb_left)) {		
 		var dropDownOptionList = ds_list_create();
 		ds_list_copy(dropDownOptionList, global.includedTagSchemaFileList)
+		// localize
 		ds_list_insert(dropDownOptionList, 0,"Custom tag schema");
 		scr_createDropDown(floor(tagButtonRectX1),floor(tagButtonRectY2), dropDownOptionList, global.optionListTypeTagSchema);
 		

@@ -37,7 +37,7 @@ function scr_closeDialogueBoxVariables(){
 			setRezMap = false;
 			dialogueBoxActive = false;
 			renameTree = false;
-		
+			splitToken = false;
 		}
 	}
 	if(questionWindowActive){

@@ -143,22 +143,27 @@ function scr_speakerLabelOptions(optionSelected) {
 					scr_destroyAllDropDownsOtherThanSelf();
 				}
 				var dropDownOptionList = ds_list_create();
+				// localize
 				ds_list_add(dropDownOptionList, "Tag Unit");
 				if(obj_control.inChain){
+					// localize
 					ds_list_add(dropDownOptionList, "Tag Chain", "Tag Entry");
 				}
 				if (ds_list_size(dropDownOptionList) > 0) {
 					scr_createDropDown(obj_dropDown.x + obj_dropDown.windowWidth, obj_dropDown.y + (obj_dropDown.optionSpacing * optionIndex), dropDownOptionList, global.optionListTypeTag);
 				}
 			}
+			// localize
 			else if (optionSelected == "Move up") {
 				scr_swapAdjacentUnit(true);
 				with (obj_dropDown) instance_destroy();
 			}
+			// localize
 			else if (optionSelected == "Move down") {
 				scr_swapAdjacentUnit(false);
 				with (obj_dropDown) instance_destroy();
 			}
+			// localize
 			else if (optionSelected == "Merge up") {
 				
 				// put the rightclick unit and the previous unit into mergeUnitList and call merge unit!

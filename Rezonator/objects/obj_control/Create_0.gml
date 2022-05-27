@@ -502,6 +502,7 @@ saveBeforeExiting = false;
 saveBeforeImporting = false;
 saveBeforeGameEnd = false;
 insertAnyNumber = false;
+splitToken = false;
 
 newWordPre1 = false
 newWordPre2 = false
@@ -862,6 +863,9 @@ navWindowTaggingOldValue = "";
 navWindowTaggingEscape = false;
 navWindowTaggingSingleOptionSelect = false;
 navWindowTaggingKeyboardInput = false;
+
+mouseoverBackArrow = false;
+mouseoverBackArrowStopClick = false;
 
 //lock fields
 with (obj_alarm3) alarm[4] = 2;

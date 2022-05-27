@@ -308,6 +308,7 @@ scr_dropDownOptionListTypeInit();
 
 scr_expandableDropDownInit();
 
+// This map stores all the dropdown options that are clickable in the opening screen
 global.openingScreenDropDownMap = ds_map_create();
 ds_map_add(global.openingScreenDropDownMap, "menu_import", true);
 ds_map_add(global.openingScreenDropDownMap, "menu_guide", true);
@@ -337,7 +338,7 @@ ds_map_add(global.openingScreenDropDownMap, "menu_language-ru", true);
 
 
 
-//this map stores all the keyboard shortcuts to be displayed on the tooltip
+// This map stores all the keyboard shortcuts to be displayed on the tooltip
 var ctrlStr = (os_type == os_macosx) ? "CMD" : "CTRL";
 global.keyboardShortcutMap = ds_map_create();
 ds_map_add(global.keyboardShortcutMap, "menu_keyword", "F");
@@ -361,7 +362,7 @@ ds_map_add(global.keyboardShortcutMap, "menu_resonance", "R");
 ds_map_add(global.keyboardShortcutMap, "menu_developer", "ALT+SHIFT+D");
 
 
-//to abstract dropdown options with checks later on. I've been doing them case by case so far
+// This map stores the toggle state of all the toggleable dropdowns
 global.checkDropdownMap = ds_map_create();
 ds_map_add(global.checkDropdownMap, "menu_resonance", false);
 ds_map_add(global.checkDropdownMap, "menu_track", false);
@@ -374,7 +375,7 @@ ds_map_add(global.checkDropdownMap, "menu_left-to-right", false);
 ds_map_add(global.checkDropdownMap, "menu_right-to-left", false);
 ds_map_add(global.checkDropdownMap, "menu_track-arrows", false);
 ds_map_add(global.checkDropdownMap, "menu_rez-arrows", false);
-ds_map_add(global.checkDropdownMap, "Track", false);
+ds_map_add(global.checkDropdownMap, "Track", false); // localize
 ds_map_add(global.checkDropdownMap, "menu_stack", false);
 ds_map_add(global.checkDropdownMap, "menu_language-en", false);
 ds_map_add(global.checkDropdownMap, "menu_language-ca", false);

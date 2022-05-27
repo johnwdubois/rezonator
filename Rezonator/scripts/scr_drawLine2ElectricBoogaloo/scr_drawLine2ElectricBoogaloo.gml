@@ -206,7 +206,9 @@ function scr_drawLine2ElectricBoogaloo(){
 	if (instance_exists(obj_audioUI)) {
 		if (obj_audioUI.audioJumpOnWordClick && unitClosestToMouse != "" && !obj_control.mouseoverPanelPane && !obj_toolPane.mouseOverToolPane && !obj_audioUI.mouseOverAudioUI && !instance_exists(obj_dropDown) && !instance_exists(obj_dialogueBox)) {
 			hoverLine = true;
-			obj_control.hoverUnitID = unitClosestToMouse;
+			if (!obj_control.mouseoverBackArrow) {
+				obj_control.hoverUnitID = unitClosestToMouse;
+			}
 			
 			if(mouse_check_button_released(mb_left) && obj_audioUI.audioSound != -1 && file_exists(obj_audioUI.audioFile) &&!scrollBarHolding){
 				
@@ -233,9 +235,9 @@ function scr_drawLine2ElectricBoogaloo(){
 
 	
 	
-	//draw the hover lines for each unit
-	if(hoverLine or (is_string(obj_control.hoverUnitID) && obj_control.hoverUnitID != "" && !mouse_check_button(mb_left)
-		&& obj_toolPane.currentMode != obj_toolPane.modeRead && !instance_exists(obj_dropDown) && !instance_exists(obj_dialogueBox))){
+	// draw horizontal lines for hovered unit
+	if (hoverLine or (is_string(obj_control.hoverUnitID) && obj_control.hoverUnitID != "" && !mouse_check_button(mb_left)
+		&& obj_toolPane.currentMode != obj_toolPane.modeRead && !instance_exists(obj_dropDown) && !instance_exists(obj_dialogueBox)) && !mouseoverBackArrow) {
 		var currentUnitSubMap = global.nodeMap[? obj_control.hoverUnitID];
 		var unitY1 = floor(currentUnitSubMap[? "pixelY"] - gridSpaceVertical/2 -1);
 		var unitY2 = floor(currentUnitSubMap[? "pixelY"] + gridSpaceVertical/2 -3);
@@ -253,6 +255,10 @@ function scr_drawLine2ElectricBoogaloo(){
 	
 	if (scrollBarHolding) {
 		global.delayInput = 5;
+	}
+	
+	if (mouseoverBackArrow) {
+		hoverUnitID = "";
 	}
 	
 	
