@@ -87,3 +87,6 @@ boxRectY2 = camMidY + boxHeight/2;
 
 buttonY1 = 0;
 buttonY2 = 0;
+
+blink = false;
+blinkAlpha = 0;

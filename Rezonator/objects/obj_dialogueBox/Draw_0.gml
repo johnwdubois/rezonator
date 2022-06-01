@@ -13,13 +13,24 @@ boxRectX1 = camMidX - boxWidth/2;
 boxRectY1 = camMidY - boxHeight/2;
 boxRectX2 = camMidX + boxWidth/2;
 boxRectY2 = camMidY + boxHeight/2;
+var mouseoverDialogueBox = point_in_rectangle(mouse_x, mouse_y, boxRectX1, boxRectY1, boxRectX2, boxRectY2);
+
+if (blink || blinkAlpha > 0) {
+	blinkAlpha += 0.1;
+}
+if (blinkAlpha > 1) {
+	blinkAlpha = 0;
+}
 	
 // draw box base
+draw_set_alpha(0.1);
+draw_set_color(global.colorThemeText);
+draw_rectangle(0, 0, camWidth, camHeight, false);
 scr_dropShadow(boxRectX1, boxRectY1, boxRectX2, boxRectY2);
 draw_set_alpha(1);
 draw_set_color(global.colorThemeBG);
 draw_roundrect(boxRectX1, boxRectY1, boxRectX2, boxRectY2, false);
-draw_set_color(global.colorThemeBorders);
+draw_set_color(merge_color(global.colorThemeBorders, c_white, blinkAlpha));
 scr_drawRectWidth(boxRectX1, boxRectY1, boxRectX2, boxRectY2, 2, true);
 
 
@@ -110,10 +121,11 @@ if (inputWindowActive) {
 
 
 
-//selection paths
+// selection paths
 var clickOk = mouseoverOk && mouse_check_button_released(mb_left);
 var clickNo = mouseoverNo && mouse_check_button_released(mb_left);
 var clickCancel = mouseoverCancel && mouse_check_button_released(mb_left);
+
 
 // ok button check
 if (clickOk || keyboard_check_pressed(vk_enter)) {
@@ -129,4 +141,10 @@ else if (clickCancel || keyboard_check_pressed(vk_escape)) {
 			
 	scr_closeDialogueBoxVariables();
 	instance_destroy();
+}
+
+// if user clicks outside of dialogue box
+if (!mouseoverDialogueBox && mouse_check_button_pressed(mb_left)) {
+	blink = true;
+	alarm[1] = 20;
 }
