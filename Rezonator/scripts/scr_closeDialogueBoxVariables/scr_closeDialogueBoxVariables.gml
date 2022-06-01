@@ -95,6 +95,7 @@ function scr_closeDialogueBoxVariables(){
 			noTurnFound = false;
 			noPsentFound = false;
 			insertAnyNumber = false;
+			mergeUnitDifferingParticipants = false;
 		}
 	}
 	if (instance_exists(obj_openingScreen)) {

@@ -504,6 +504,7 @@ saveBeforeGameEnd = false;
 insertAnyNumber = false;
 splitToken = false;
 mergeToken = false;
+mergeUnitDifferingParticipants = false;
 
 newWordPre1 = false
 newWordPre2 = false

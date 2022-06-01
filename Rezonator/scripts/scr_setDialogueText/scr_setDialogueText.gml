@@ -60,8 +60,8 @@ function scr_setDialogueText(){
 			}
 			
 			
-			titleText = scr_get_translation("Merge Units");
-			descriptionText = scr_get_translation("This will merge Unit " + string(unitSeq2) + " into Unit " + string(unitSeq1) + ":\n" + string(mergeUnitPreviewStr));
+			titleText = "Merge units"; // localize
+			descriptionText = scr_get_translation("This will merge unit " + string(unitSeq2) + " into unit " + string(unitSeq1) + ":\n" + string(mergeUnitPreviewStr)); // localize
 		}
 		if(splitUnit){
 			var unitSeq = 0;
@@ -276,6 +276,10 @@ function scr_setDialogueText(){
 			}
 			if (obj_control.insertAnyNumber) {
 				descriptionText = scr_get_translation("msg_input_any_number");
+			}
+			if (obj_control.mergeUnitDifferingParticipants) {
+				titleText = "Merge units"; // localize
+				descriptionText = "Different participants: Cannot merge units"; // localize
 			}
 		}
 	}

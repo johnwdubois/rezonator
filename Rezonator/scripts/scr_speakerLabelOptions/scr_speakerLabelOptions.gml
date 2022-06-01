@@ -173,11 +173,32 @@ function scr_speakerLabelOptions(optionSelected) {
 				var rightClickUnitIndex = ds_list_find_index(unitList, obj_control.rightClickID);
 				if (rightClickUnitIndex >= 1) {
 					var prevUnit = unitList[| rightClickUnitIndex - 1];
-					ds_list_add(obj_control.mergeUnitList, prevUnit, obj_control.rightClickID);
-					if (!instance_exists(obj_dialogueBox)) {
-						instance_create_layer(x, y, "InstancesDialogue", obj_dialogueBox);
-						obj_dialogueBox.questionWindowActive = true;
-						obj_dialogueBox.mergeUnit = true;
+					
+					// check if the two units have the same participant
+					var rightClickUnitSubMap = global.nodeMap[? obj_control.rightClickID];
+					var rightClickUnitTagMap = rightClickUnitSubMap[? "tagMap"];
+					var rightClickUnitParticipant = rightClickUnitTagMap[? global.participantField];
+					var prevUnitSubMap = global.nodeMap[? prevUnit];
+					var prevUnitTagMap = prevUnitSubMap[? "tagMap"];
+					var prevUnitParticipant = prevUnitTagMap[? global.participantField];
+					show_debug_message("rightClickUnitParticipant: " + string(rightClickUnitParticipant) + ", prevUnitParticipant: " + string(prevUnitParticipant));
+					if (rightClickUnitParticipant != "" && prevUnitParticipant != "" && is_string(rightClickUnitParticipant) && is_string(prevUnitParticipant)
+					&& rightClickUnitParticipant != prevUnitParticipant) {
+						// alert user that they can't merge units because of differing participants
+						if (!instance_exists(obj_dialogueBox)) {
+							instance_create_layer(x, y, "InstancesDialogue", obj_dialogueBox);
+							obj_dialogueBox.alertWindowActive = true;
+							obj_control.mergeUnitDifferingParticipants = true;
+						}
+					}
+					else {
+						// confirm is user wants to merge unit
+						ds_list_add(obj_control.mergeUnitList, prevUnit, obj_control.rightClickID);
+						if (!instance_exists(obj_dialogueBox)) {
+							instance_create_layer(x, y, "InstancesDialogue", obj_dialogueBox);
+							obj_dialogueBox.questionWindowActive = true;
+							obj_dialogueBox.mergeUnit = true;
+						}
 					}
 				}
 				
