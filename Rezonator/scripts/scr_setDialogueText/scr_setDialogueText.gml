@@ -66,15 +66,30 @@ function scr_setDialogueText(){
 		if(splitUnit){
 			var unitSeq = 0;
 			var splitUnitPreviewStr = "";
-			var tokenSubMap = global.nodeMap[?obj_control.rightClickID];
+			var tokenSubMap = global.nodeMap[? obj_control.rightClickID];
 			var unitID = tokenSubMap[?"unit"];
 			var tokenTagMap = tokenSubMap[?"tagMap"];
-			var displayToken =  tokenTagMap[?global.displayTokenField];
+			var displayToken = tokenTagMap[?global.displayTokenField];
 
 			var currentUnitSubMap = global.nodeMap[? unitID];
 			if(scr_isNumericAndExists(currentUnitSubMap,ds_type_map)){
 				unitSeq = currentUnitSubMap[?"unitSeq"];
-				splitUnitPreviewStr = string(scr_getUnitText(currentUnitSubMap));
+				
+				// get preview of split units
+				var unitEntryList = currentUnitSubMap[? "entryList"];
+				var unitEntryListSize = ds_list_size(unitEntryList);
+				for (var i = 0; i < unitEntryListSize; i++) {
+					var currentEntry = unitEntryList[| i];
+					var currentEntrySubMap = global.nodeMap[? currentEntry];
+					var currentToken = currentEntrySubMap[? "token"];
+					var currentTokenSubMap = global.nodeMap[? currentToken];
+					var currentTokenTagMap = currentTokenSubMap[? "tagMap"];
+					if (currentToken == obj_control.rightClickID) splitUnitPreviewStr += "\n";
+					splitUnitPreviewStr += currentTokenTagMap[? global.displayTokenField];
+					if (i < unitEntryListSize - 1 && currentToken != displayToken) splitUnitPreviewStr += " ";
+				}
+			
+				
 			}
 			
 			

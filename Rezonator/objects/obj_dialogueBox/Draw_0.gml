@@ -37,7 +37,7 @@ scr_adaptFont(titleText, "L",false);
 draw_text(titleTextX, titleTextY, titleText);
 if (!obj_control.fPressed) {
 	scr_adaptFont(descriptionText, "M");
-	draw_text_ext(titleTextX, descriptionTextY, descriptionText, string_height(descriptionText) * 0.6, boxWidth * 0.8);
+	draw_text_ext(titleTextX, descriptionTextY, descriptionText, string_height("A"), boxWidth * 0.8);
 }
 draw_set_valign(fa_middle);
 
