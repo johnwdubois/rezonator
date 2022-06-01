@@ -38,6 +38,7 @@ function scr_closeDialogueBoxVariables(){
 			dialogueBoxActive = false;
 			renameTree = false;
 			splitToken = false;
+			mergeToken = false;
 		}
 	}
 	if(questionWindowActive){

@@ -147,7 +147,32 @@ function scr_setDialogueText(){
 				if (is_string(global.fileSaveName) && global.fileSaveName != "undefined") titleText = filename_name(global.fileSaveName);
 				descriptionText = scr_get_translation("msg_warning_save-prompt");
 			}
+			
+			
+			if (obj_control.mergeToken) {
+			
+				// get preview of merged tokens
+				var previewStr = "";
+				var rightClickTokenSubMap = global.nodeMap[? obj_control.rightClickID];
+				if (scr_isNumericAndExists(rightClickTokenSubMap, ds_type_map)) {
+					var rightClickTokenTagMap = rightClickTokenSubMap[? "tagMap"];
+					var rightClickTokenDisplayStr = rightClickTokenTagMap[? global.displayTokenField];
+					var docMap = global.nodeMap[?global.discourseNode];
+					var tokenList = docMap[?"tokenList"];
+					var prevTokenID = tokenList[|ds_list_find_index(tokenList, obj_control.rightClickID) - 1];
+					var prevTokenSubMap = global.nodeMap[? prevTokenID];
+					var prevTokenTagMap = prevTokenSubMap[? "tagMap"];
+					var prevTokenDisplayStr = prevTokenTagMap[? global.displayTokenField];
+					if (is_string(prevTokenDisplayStr) && is_string(rightClickTokenDisplayStr)) {
+						previewStr = prevTokenDisplayStr + rightClickTokenDisplayStr;
+					}
+				}
+			
+				titleText = "Merge token"; // localize
+				descriptionText = "Would you like to merge this token with the previous token:\n" + previewStr; // localize
+			}
 		}
+	
 	}
 		
 	if(obj_dialogueBox.inputWindowActive){
@@ -199,7 +224,7 @@ function scr_setDialogueText(){
 			}
 			else{
 				titleText = scr_get_translation("msg_specify_line");
-				descriptionText = scr_get_translation("msg_input_line-jump");
+				descriptionText = " ";//scr_get_translation("msg_input_line-jump");
 			}
 		}
 		
@@ -236,8 +261,8 @@ function scr_setDialogueText(){
 			descriptionText = "Type in the amount of actions needed for the resonance chains in this stack";
 		}
 		if (obj_control.splitToken) {
-			titleText = "Pick token split";
-			descriptionText = "Pick where to split the token";
+			titleText = "Pick token split"; // localize
+			descriptionText = "Insert a space at the position you would like to split the token"; // localize
 		}
 	}
 	

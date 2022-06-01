@@ -244,10 +244,18 @@ function scr_rightClickWordOptions(optionSelected) {
 			instance_destroy();
 			break;
 		case "Split Token":
-			scr_splitToken(obj_control.rightClickID)
+			scr_splitToken(obj_control.rightClickID);
 			break;
 		case "Merge Token":
-			scr_mergeToken(obj_control.rightClickID)
+			
+				
+			if(!instance_exists(obj_dialogueBox)){
+				instance_create_layer(x, y, "InstancesDialogue", obj_dialogueBox);
+				obj_dialogueBox.questionWindowActive = true;
+				obj_control.mergeToken = true;
+			}
+			
+			
 			break;
 		default:
 			break;

@@ -503,6 +503,7 @@ saveBeforeImporting = false;
 saveBeforeGameEnd = false;
 insertAnyNumber = false;
 splitToken = false;
+mergeToken = false;
 
 newWordPre1 = false
 newWordPre2 = false

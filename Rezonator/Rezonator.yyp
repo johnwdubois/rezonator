@@ -903,7 +903,7 @@
     {"CopyToMask":-1,"filePath":"datafiles/IncludedFiles/Data/SBCorpus/REZ","resourceVersion":"1.0","name":"sbc060.rez","resourceType":"GMIncludedFile",},
   ],
   "MetaData": {
-    "IDEVersion": "2022.3.0.625",
+    "IDEVersion": "2022.5.0.8",
   },
   "resourceVersion": "1.5",
   "name": "Rezonator",

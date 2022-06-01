@@ -1,6 +1,3 @@
-/// @description Insert description here
-// You can write your code in this editor
-
 // cam vars
 camWidth = camera_get_view_width(camera_get_active());
 camHeight = camera_get_view_height(camera_get_active());
@@ -27,8 +24,8 @@ scr_drawRectWidth(boxRectX1, boxRectY1, boxRectX2, boxRectY2, 2, true);
 
 
 	
+// draw title text & description text
 scr_setDialogueText();
-
 var titleTextX = floor(camMidX);
 var titleTextY = floor(boxRectY1 + (boxHeight * ((!inputWindowActive) ? 0.2: 0.1)));
 var descriptionTextY = floor(boxRectY1 + (boxHeight * ((!inputWindowActive) ? 0.35 : 0.22)));
@@ -38,7 +35,7 @@ draw_set_halign(fa_center);
 draw_set_valign(fa_top);
 scr_adaptFont(titleText, "L",false);
 draw_text(titleTextX, titleTextY, titleText);
-if(!inputWindowActive || (inputWindowActive && obj_control.setRezMap)) {
+if (!obj_control.fPressed) {
 	scr_adaptFont(descriptionText, "M");
 	draw_text_ext(titleTextX, descriptionTextY, descriptionText, string_height(descriptionText) * 0.6, boxWidth * 0.8);
 }

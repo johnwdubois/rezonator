@@ -330,6 +330,10 @@ function scr_dialogueConfirm(){
 				}
 				game_end();
 			}
+			
+			if (obj_control.mergeToken) {
+				scr_mergeToken(obj_control.rightClickID);
+			}
 		}
 		
 		scr_closeQuestionBoxVariables();
