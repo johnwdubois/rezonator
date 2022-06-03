@@ -46,7 +46,13 @@ draw_set_halign(fa_center);
 draw_set_valign(fa_top);
 scr_adaptFont(titleText, "L",false);
 draw_text(titleTextX, titleTextY, titleText);
-if (!obj_control.fPressed) {
+var drawDesc = true;
+if (instance_exists(obj_control)) {
+	if (obj_control.fPressed) {
+		drawDesc = false;
+	}
+}
+if (drawDesc) {
 	scr_adaptFont(descriptionText, "M");
 	draw_text_ext(titleTextX, descriptionTextY, descriptionText, string_height("A"), boxWidth * 0.8);
 }
