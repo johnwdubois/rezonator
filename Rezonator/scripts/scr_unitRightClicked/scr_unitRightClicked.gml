@@ -64,6 +64,8 @@ function scr_unitRightClicked(){
 			ds_list_add(dropDownOptionList, "Create tree (unit)", "Create tree (stack)");
 		}
 		
+		ds_list_add(dropDownOptionList, "Show in Nav"); // localize
+		
 				
 		// Create the dropdown
 		if (ds_list_size(dropDownOptionList) > 0 and obj_control.ableToCreateDropDown) {

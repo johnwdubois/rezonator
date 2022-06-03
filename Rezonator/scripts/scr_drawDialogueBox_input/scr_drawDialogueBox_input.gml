@@ -103,6 +103,7 @@ function scr_drawDialogueBox_input(){
 		
 		
 		// regex checkbox
+		/*
 		var regexCheckboxX1 = obj_inputBox.textBoxX;
 		var regexCheckboxY1 = rangeRectY2 + dropDownXBuffer;
 		var regexCheckboxX2 = regexCheckboxX1 + checkboxSize;
@@ -119,12 +120,13 @@ function scr_drawDialogueBox_input(){
 		draw_set_halign(fa_left);
 		scr_adaptFont(scr_get_translation("search_dialogue_regEx"), "M");
 		draw_text(floor(regexCheckboxX2 + checkboxSize), floor(mean(regexCheckboxY1, regexCheckboxY2)), scr_get_translation("search_dialogue_regEx"));
+		*/
 
 		
 		if(!obj_control.regExCheck){
 			// case-sensitive checkbox
 			var caseCheckboxX1 = obj_inputBox.textBoxX;
-			var caseCheckboxY1 = regexCheckboxY2 + dropDownXBuffer;
+			var caseCheckboxY1 = rangeRectY2 + dropDownXBuffer;
 			var caseCheckboxX2 = caseCheckboxX1 + checkboxSize;
 			var caseCheckboxY2 = caseCheckboxY1 + checkboxSize;
 			var mouseoverCaseCheckbox = point_in_rectangle(mouse_x, mouse_y, caseCheckboxX1, caseCheckboxY1, caseCheckboxX2, caseCheckboxY2) && !instance_exists(obj_dropDown);
@@ -143,7 +145,7 @@ function scr_drawDialogueBox_input(){
 		
 		draw_set_valign(fa_top);
 		var explanationText = "Use & to search multiple terms";
-		draw_text(floor(regexCheckboxX2 + checkboxSize), largestPixelY, explanationText);
+		draw_text(floor(caseCheckboxX2 + checkboxSize), largestPixelY, explanationText);
 	}
 	
 	if (obj_control.newWordCreated) {

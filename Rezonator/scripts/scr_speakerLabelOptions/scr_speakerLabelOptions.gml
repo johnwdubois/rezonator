@@ -205,6 +205,11 @@ function scr_speakerLabelOptions(optionSelected) {
 				with (obj_dropDown) instance_destroy();
 			}
 		}
+		
+		if (optionSelected == "Show in Nav") {
+			scr_showInNav(obj_control.rightClickID);
+			with (obj_dropDown) instance_destroy();
+		}
 	}
 
 	obj_control.rightClicked = false;

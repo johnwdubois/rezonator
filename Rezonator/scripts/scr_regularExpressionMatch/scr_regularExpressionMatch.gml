@@ -19,7 +19,7 @@ function scr_regularExpressionMatch(argument0, argument1) {
 	    while (stack_nodes_current_index >= 0) {
 	        node = stack_nodes_current[stack_nodes_current_index--];
 			show_debug_message("node: " + string(node));
-			if (!is_undefined(node)) {
+			//if (!is_undefined(node)) {
 		        size = ds_list_size(node.edges_out);
 		        for (i = 0; i < size; ++i) {
 		            if (node.edges_out[| i].symbol == "" && is_undefined(map[? node.edges_out[| i].to])) {
@@ -51,7 +51,7 @@ function scr_regularExpressionMatch(argument0, argument1) {
 		                }
 		            }
 		        }
-			}
+			//}
 	    }
 	    if (stack_nodes_next_index < 0) {ds_map_destroy(map); return false;}
 	    t = stack_nodes_current; stack_nodes_current = stack_nodes_next; stack_nodes_next = t;

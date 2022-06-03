@@ -70,7 +70,7 @@ if (!alertWindowActive) {
 	mouseoverCancel = point_in_rectangle(mouse_x, mouse_y, cancelRectX1, buttonY1, cancelRectX2, buttonY2) && !instance_exists(obj_dropDown);
 	draw_set_color(mouseoverCancel ? global.colorThemeSelected1 : global.colorThemeBG);
 	draw_roundrect(cancelRectX1, buttonY1, cancelRectX2, buttonY2, false);
-	draw_set_color(global.colorThemeRezPink);
+	draw_set_color(merge_color(global.colorThemeRezPink, c_white, blinkAlpha / 2));
 	draw_roundrect(cancelRectX1, buttonY1, cancelRectX2, buttonY2, true);
 	draw_set_color(global.colorThemeText);
 	var cancelText = (room == rm_openingScreen) ? "msg_continue" : "msg_cancel";
@@ -84,7 +84,9 @@ var okRectX1 = camMidX + buttonXBuffer;
 var okRectX2 = okRectX1 + buttonWidth;
 mouseoverOk = point_in_rectangle(mouse_x, mouse_y, okRectX1, buttonY1, okRectX2, buttonY2) && !instance_exists(obj_dropDown);
 
-draw_set_color(mouseoverOk ? merge_color(global.colorThemeSelected1, global.colorThemeRezPink, 50)  : global.colorThemeRezPink);
+var notMouseoverColor = merge_color(global.colorThemeRezPink, merge_color(global.colorThemeSelected1, global.colorThemeRezPink, 50), blinkAlpha);
+
+draw_set_color(mouseoverOk ? merge_color(global.colorThemeSelected1, global.colorThemeRezPink, 50) : notMouseoverColor);
 draw_roundrect(okRectX1, buttonY1, okRectX2, buttonY2, false);
 draw_set_color(global.colorThemeBG);
 var okText = scr_get_translation("msg_okay");
