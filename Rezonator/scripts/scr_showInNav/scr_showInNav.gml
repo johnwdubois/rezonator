@@ -1,4 +1,9 @@
 function scr_showInNav(nodeID){
+	
+	obj_panelPane.showNav = true;
+	obj_panelPane.showNavLeft = true;
+	obj_panelPane.showNavRight = true;
+	
 	obj_control.showInNavID = nodeID;
 	var nodeSubMap = global.nodeMap[?nodeID];
 	var nodeType = nodeSubMap[? "type"];

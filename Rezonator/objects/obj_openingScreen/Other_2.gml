@@ -89,10 +89,10 @@ window_set_min_height(720);
 // CHANGE THIS VAR WHEN MAKING A BUILD
 // if build is true --> CJK fonts will be loaded
 // if build is false --> CJK fonts will not be loaded
-global.build = false;
+global.build = true;
 global.rezzles = true;
 
-global.buildType = "Windows_Website"
+global.buildType = "Windows_Website";
 
 //"Windows_GitHub_Master","Mac_GitHub_Master","Windows_GitHub_Release"
 //"Mac_GitHub_Release","Steam","Windows_Website", "Mac_Website"
