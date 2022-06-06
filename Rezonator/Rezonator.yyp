@@ -23,7 +23,6 @@
     {"id":{"name":"spr_focusPoint","path":"sprites/spr_focusPoint/spr_focusPoint.yy",},"order":9,},
     {"id":{"name":"spr_xButton","path":"sprites/spr_xButton/spr_xButton.yy",},"order":38,},
     {"id":{"name":"scr_chain1ToManyHeaderRightClickOptions","path":"scripts/scr_chain1ToManyHeaderRightClickOptions/scr_chain1ToManyHeaderRightClickOptions.yy",},"order":49,},
-    {"id":{"name":"scr_closeQuestionBoxVariables","path":"scripts/scr_closeQuestionBoxVariables/scr_closeQuestionBoxVariables.yy",},"order":19,},
     {"id":{"name":"spr_viewIcons","path":"sprites/spr_viewIcons/spr_viewIcons.yy",},"order":36,},
     {"id":{"name":"scr_dialogueBoxNewCustomTagLink","path":"scripts/scr_dialogueBoxNewCustomTagLink/scr_dialogueBoxNewCustomTagLink.yy",},"order":26,},
     {"id":{"name":"scr_deleteToken","path":"scripts/scr_deleteToken/scr_deleteToken.yy",},"order":7,},

@@ -21,11 +21,8 @@ draw_text(recentFilesWindowX1, recentFilesWindowY1 - stringHeight, "Recent Files
 //draw_line_width(recentFilesWindowX1,recentFilesWindowY1 - stringHeight/3,recentFilesWindowX1+ string_width("Recent Files"),recentFilesWindowY1 - stringHeight/3, 3);
 
 
-
-	var mouseOverWindow = point_in_rectangle(mouse_x, mouse_y, recentFilesWindowX1,recentFilesWindowY1,recentFilesWindowX2,recentFilesWindowY2);
-	if(mouseOverWindow){
-	
-	}
+var mouseoverCancel = instance_exists(obj_dialogueBox) || instance_exists(obj_dropDown);
+var mouseOverWindow = point_in_rectangle(mouse_x, mouse_y, recentFilesWindowX1,recentFilesWindowY1,recentFilesWindowX2,recentFilesWindowY2) && !mouseoverCancel;
 
 scr_surfaceStart();
 

@@ -28,8 +28,6 @@ function scr_dialogueNo(){
 					game_end();
 				}
 			}
-		
-			scr_closeQuestionBoxVariables();
 			instance_destroy();
 		}
 	}

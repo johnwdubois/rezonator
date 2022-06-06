@@ -336,7 +336,7 @@ function scr_dialogueConfirm(){
 			}
 		}
 		
-		scr_closeQuestionBoxVariables();
+		scr_closeDialogueBoxVariables();
 		instance_destroy();
 	}
 }

@@ -1,6 +1,7 @@
-
-
 function scr_closeDialogueBoxVariables(){
+	
+	show_debug_message("scr_closeDialogueBoxVariables");
+	
 	if(inputWindowActive){
 		with (obj_control) {
 			newWordCreated =false
@@ -38,10 +39,10 @@ function scr_closeDialogueBoxVariables(){
 			dialogueBoxActive = false;
 			renameTree = false;
 			splitToken = false;
-			mergeToken = false;
 		}
 	}
 	if(questionWindowActive){
+		
 		questionWindowActive = false;
 		clearAllStacks = false;
 		clearAllTracks = false;
@@ -78,6 +79,7 @@ function scr_closeDialogueBoxVariables(){
 			saveBeforeImporting = false;
 			saveBeforeExiting = false;
 			saveBeforeGameEnd = false;
+			mergeToken = false;
 		}
 		
 		with (obj_stacker) {
