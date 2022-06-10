@@ -151,8 +151,15 @@ else if (clickCancel || keyboard_check_pressed(vk_escape)) {
 	instance_destroy();
 }
 
+var mouseoverAnyDropDown = false;
+with (obj_dropDown) {
+	if (mouseOverDropDown) {
+		mouseoverAnyDropDown = true;
+	}
+}
+
 // if user clicks outside of dialogue box
-if (!mouseoverDialogueBox && mouse_check_button_pressed(mb_left)) {
+if (!mouseoverDialogueBox && !mouseoverAnyDropDown && mouse_check_button_pressed(mb_left)) {
 	blink = true;
 	alarm[1] = 20;
 }

@@ -505,6 +505,8 @@ insertAnyNumber = false;
 splitToken = false;
 mergeToken = false;
 mergeUnitDifferingParticipants = false;
+splitTokenField = "";
+splitTokenCopyTags = false;
 
 newWordPre1 = false
 newWordPre2 = false

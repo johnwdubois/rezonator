@@ -397,5 +397,10 @@ function scr_dropDownSelect(optionSelected) {
 	{
 		scr_insertColOptions(optionSelected);
 	}
+	else if (optionListType == global.optionListTypeSplitTokenField) //92
+	{
+		scr_splitTokenFieldOptions(optionSelected);
+		with (obj_dropDown) instance_destroy();
+	}
 
 }

@@ -506,6 +506,7 @@
     {"id":{"name":"FirebaseREST_asyncFunction_Firestore","path":"scripts/FirebaseREST_asyncFunction_Firestore/FirebaseREST_asyncFunction_Firestore.yy",},"order":4,},
     {"id":{"name":"FirebaseREST_Firestore_collection_compare","path":"scripts/FirebaseREST_Firestore_collection_compare/FirebaseREST_Firestore_collection_compare.yy",},"order":5,},
     {"id":{"name":"scr_strToColor","path":"scripts/scr_strToColor/scr_strToColor.yy",},"order":8,},
+    {"id":{"name":"scr_splitTokenFieldOptions","path":"scripts/scr_splitTokenFieldOptions/scr_splitTokenFieldOptions.yy",},"order":85,},
     {"id":{"name":"obj_fieldSummaryWindow","path":"objects/obj_fieldSummaryWindow/obj_fieldSummaryWindow.yy",},"order":12,},
     {"id":{"name":"scr_sentStackerLoop","path":"scripts/scr_sentStackerLoop/scr_sentStackerLoop.yy",},"order":4,},
     {"id":{"name":"scr_sortVizSetIDList","path":"scripts/scr_sortVizSetIDList/scr_sortVizSetIDList.yy",},"order":32,},
@@ -902,7 +903,7 @@
     {"CopyToMask":-1,"filePath":"datafiles/IncludedFiles/Data/SBCorpus/REZ","resourceVersion":"1.0","name":"sbc060.rez","resourceType":"GMIncludedFile",},
   ],
   "MetaData": {
-    "IDEVersion": "2022.5.0.8",
+    "IDEVersion": "2022.5.1.16",
   },
   "resourceVersion": "1.5",
   "name": "Rezonator",

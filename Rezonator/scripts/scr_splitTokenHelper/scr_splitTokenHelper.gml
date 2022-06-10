@@ -1,7 +1,9 @@
-// Script assets have changed for v2.3.0 see
-// https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
 function scr_splitTokenHelper(inputText){
+	
+	
 	show_debug_message("Reached scr_splitTokenHelper..." + inputText);
+	
+	var splitField = obj_control.splitTokenField;
 	var origTokenID = obj_control.rightClickID;
 	var origSubMap = global.nodeMap[?origTokenID];
 	var origTagMap = origSubMap[?"tagMap"];
@@ -18,11 +20,11 @@ function scr_splitTokenHelper(inputText){
 		
 		
 		var tokenList = scr_getTokenList();
-		var newTokenID = tokenList[|ds_list_find_index(tokenList, origTokenID) + 1];
-		var newSubMap = global.nodeMap[?newTokenID];
-		var newTagMap = newSubMap[?"tagMap"];
+		var newTokenID = tokenList[| ds_list_find_index(tokenList, origTokenID) + 1];
+		var newSubMap = global.nodeMap[? newTokenID];
+		var newTagMap = newSubMap[? "tagMap"];
 		
-		origTagMap[?global.displayTokenField] = string_copy(origTagMap[?global.displayTokenField], 1, splitIndex - 1);
+		origTagMap[? splitField] = string_copy(origTagMap[? splitField], 1, splitIndex - 1);
 	}
 	obj_control.before = beforeVal;
 }
