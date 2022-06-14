@@ -42,7 +42,7 @@ function scr_chunkRightClicked(){
 					
 		}
 
-		ds_list_add(dropDownOptionList, "tab_name_tag", "option_delete-chunk", "Show in Nav"); // localize
+		ds_list_add(dropDownOptionList, "tab_name_tag", "option_delete-chunk", "option_sync-unit-tab");
 		obj_control.inChunk = true;
 				
 		// Create the dropdown

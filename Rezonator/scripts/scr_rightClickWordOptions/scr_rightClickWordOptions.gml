@@ -229,12 +229,12 @@ function scr_rightClickWordOptions(optionSelected) {
 			scr_newTokenOptions("option_zero-0");
 			break;
 			
-		case "Show in Nav":
+		case "option_sync-unit-tab":
 			scr_showInNav(obj_control.rightClickID);
 			instance_destroy();
 			break;
 			
-		case "Split Unit":
+		case "option_split-unit":
 			if (!instance_exists(obj_dialogueBox)) {
 				instance_create_layer(x, y, "InstancesDialogue", obj_dialogueBox);
 				obj_dialogueBox.questionWindowActive = true;
@@ -243,10 +243,10 @@ function scr_rightClickWordOptions(optionSelected) {
 
 			instance_destroy();
 			break;
-		case "Split Token":
+		case "option_split-token":
 			scr_splitToken(obj_control.rightClickID);
 			break;
-		case "Merge Token":
+		case "option_merge-token":
 			
 				
 			if(!instance_exists(obj_dialogueBox)){

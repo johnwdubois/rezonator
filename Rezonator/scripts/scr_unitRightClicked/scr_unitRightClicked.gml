@@ -61,10 +61,10 @@ function scr_unitRightClicked(){
 		
 		if (unitInStack) {
 			scr_deleteFromList(dropDownOptionList, "option_create-tree");
-			ds_list_add(dropDownOptionList, "Create tree (unit)", "Create tree (stack)");
+			ds_list_add(dropDownOptionList, "option_create-tree-unit", "option_create-tree-stack");
 		}
 		
-		ds_list_add(dropDownOptionList, "Show in Nav"); // localize
+		ds_list_add(dropDownOptionList, "option_sync-unit-tab");
 		
 				
 		// Create the dropdown

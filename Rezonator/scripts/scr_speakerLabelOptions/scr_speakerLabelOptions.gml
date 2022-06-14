@@ -3,7 +3,7 @@ function scr_speakerLabelOptions(optionSelected) {
 	with (obj_panelPane) {
 		if (currentFunction == functionChainList) {
 			
-			if (optionSelected == "option_create-tree" || optionSelected == "Create tree (unit)") {
+			if (optionSelected == "option_create-tree" || optionSelected == "option_create-tree-unit") {
 				var unitSubMap = global.nodeMap[? obj_control.rightClickID];
 				if (scr_isNumericAndExists(unitSubMap, ds_type_map)) {
 					var tokenList = ds_list_create();
@@ -21,7 +21,7 @@ function scr_speakerLabelOptions(optionSelected) {
 				}
 				instance_destroy(obj_dropDown);
 			}
-			else if (optionSelected == "Create tree (stack)") {
+			else if (optionSelected == "option_create-tree-stack") {
 				var unitSubMap = global.nodeMap[? obj_control.rightClickID];
 				if (scr_isNumericAndExists(unitSubMap, ds_type_map)) {
 					var inChainsList = unitSubMap[? "inChainsList"];
@@ -206,7 +206,7 @@ function scr_speakerLabelOptions(optionSelected) {
 			}
 		}
 		
-		if (optionSelected == "Show in Nav") {
+		if (optionSelected == "option_sync-unit-tab") {
 			scr_showInNav(obj_control.rightClickID);
 			with (obj_dropDown) instance_destroy();
 		}

@@ -93,7 +93,7 @@ function scr_setDialogueText(){
 			}
 			
 			
-			titleText = scr_get_translation("Split Unit");
+			titleText = scr_get_translation("option_split-unit");
 			descriptionText = scr_get_translation("Split unit "+string(unitSeq) +" at \""+ string(displayToken) + "\":\n" + string(splitUnitPreviewStr));
 		}
 
@@ -183,7 +183,7 @@ function scr_setDialogueText(){
 					}
 				}
 			
-				titleText = "Merge token"; // localize
+				titleText = scr_get_translation("option_merge-token");
 				descriptionText = "Would you like to merge this token with the previous token:\n" + previewStr; // localize
 			}
 		}

@@ -56,11 +56,11 @@ function scr_tokenRightClicked(){
 			&& is_string(obj_panelPane.functionField_tokenFieldSelected) && is_string(obj_panelPane.functionField_tokenTagSelected)) {
 				//scr_addToListOnce(dropDownOptionList , "Tag Token");
 		}
-		//localize
-		ds_list_add(dropDownOptionList, "word_tip", "option_zero", "option_delete-token", "tab_name_tag","Split Token");
+		
+		ds_list_add(dropDownOptionList, "word_tip", "option_zero", "option_delete-token", "tab_name_tag", "option_split-token");
 		if (!firstWordInLine) {
 			//localize
-			ds_list_add(dropDownOptionList, "Merge Token", "Split Unit");
+			ds_list_add(dropDownOptionList, "option_merge-token", "option_split-unit");
 		}
 		// Create the dropdown
 		if (ds_list_size(dropDownOptionList) > 0 and obj_control.ableToCreateDropDown) {
