@@ -273,6 +273,14 @@ function scr_panelPane_drawTree1ToMany(){
 			var currentTokenTagMap = currentTokenSubMap[? "tagMap"];
 			currentDisplayToken += (" " + string(currentTokenTagMap[? global.displayTokenField]));
 		}
+		
+		// make sure goal link list is valid
+		var currentEntryGoalLinkList = currentEntrySubMap[? "goalLinkList"];
+		if (!scr_isNumericAndExists(currentEntryGoalLinkList, ds_type_list)) {
+			currentEntryGoalLinkList = ds_list_create();
+			if (ds_map_exists(currentEntrySubMap, "goalLinkList")) ds_map_delete(currentEntrySubMap, "goalLinkList");
+			ds_map_add_list(currentEntrySubMap, "goalLinkList", currentEntryGoalLinkList);
+		}
 	
 		//get entry box demensions, check if this token is in draw range
 		var boxWidth = string_width(currentDisplayToken) + (spaceWidth * 8);

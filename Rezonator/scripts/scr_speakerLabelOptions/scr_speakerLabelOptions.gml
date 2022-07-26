@@ -153,18 +153,15 @@ function scr_speakerLabelOptions(optionSelected) {
 					scr_createDropDown(obj_dropDown.x + obj_dropDown.windowWidth, obj_dropDown.y + (obj_dropDown.optionSpacing * optionIndex), dropDownOptionList, global.optionListTypeTag);
 				}
 			}
-			// localize
-			else if (optionSelected == "Move up") {
+			else if (optionSelected == "option_move-unit-up") {
 				scr_swapAdjacentUnit(true);
 				with (obj_dropDown) instance_destroy();
 			}
-			// localize
-			else if (optionSelected == "Move down") {
+			else if (optionSelected == "option_move-unit-down") {
 				scr_swapAdjacentUnit(false);
 				with (obj_dropDown) instance_destroy();
 			}
-			// localize
-			else if (optionSelected == "Merge up") {
+			else if (optionSelected == "option_merge-unit") {
 				
 				// put the rightclick unit and the previous unit into mergeUnitList and call merge unit!
 				ds_list_clear(obj_control.mergeUnitList);

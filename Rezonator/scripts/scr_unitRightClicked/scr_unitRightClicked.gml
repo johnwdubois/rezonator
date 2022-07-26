@@ -52,10 +52,10 @@ function scr_unitRightClicked(){
 			
 			// give "move up" and "move down" options only if this unit is not first/last unit
 			if (unitList[| 0] != obj_control.rightClickID) {
-				ds_list_add(dropDownOptionList, "Merge up", "Move up");
+				ds_list_add(dropDownOptionList, "option_merge-unit", "option_move-unit-up");
 			}
 			if (unitList[| ds_list_size(unitList) - 1] != obj_control.rightClickID) {
-				ds_list_add(dropDownOptionList, "Move down");
+				ds_list_add(dropDownOptionList, "option_move-unit-down");
 			}
 		}
 		
