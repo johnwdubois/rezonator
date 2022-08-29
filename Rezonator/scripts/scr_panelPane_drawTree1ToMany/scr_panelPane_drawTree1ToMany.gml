@@ -1,5 +1,3 @@
-
-
 function scr_panelPane_drawTree1ToMany(){
 	var ltr = (obj_control.drawLineState == obj_control.lineState_ltr);
 	ds_list_clear(obj_control.inRectEntryIDList);
