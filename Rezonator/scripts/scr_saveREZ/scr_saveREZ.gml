@@ -196,6 +196,8 @@ function scr_saveREZ(autosave) {
 		}
 
 	}
+	else if (obj_control.saveToFirebase) {
+	}
 	else {
 		scr_saveFileBuffer(working_directory + filename_name(global.fileSaveName), global.fileSaveName, jsonString);
 	}

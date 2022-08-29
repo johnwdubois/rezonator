@@ -1,4 +1,4 @@
-
+// firestore-test-30f41
 #macro Firebase_ProjectID "rezonator-13b47"
 
 #macro FirebaseFirestore_LibraryOptions_SDKOnly "SDKs_Only"
@@ -6,7 +6,7 @@
 #macro FirebaseFirestore_LibraryOptions_RESTOnly "REST_API_Only"
 
 //Change this macro depending of your needs
-#macro FirebaseFirestore_Library FirebaseFirestore_LibraryOptions_SDKWhenAvailable
+#macro FirebaseFirestore_Library FirebaseFirestore_LibraryOptions_RESTOnly
 
 
 #macro Firestore_Query_less_than "LESS_THAN"

@@ -210,8 +210,10 @@ function Firebase_Firestore_builder(path) constructor
     static Read = function()
     {
 		_action = "Read"
-		if(FirebaseFirestore_Library_useSDK)
+		if(FirebaseFirestore_Library_useSDK) {
+			show_debug_message("FirebaseFirestoreUserFunctions, static read");
 			return FirebaseFirestore_SDK(json_stringify(self))
+		}
 		if(FirebaseREST_Firestore_path_isDocument(_path))
 			return RESTFirebaseFirestore_Document_Read(_path)
 		else

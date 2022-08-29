@@ -873,3 +873,5 @@ mouseoverBackArrowStopClick = false;
 
 //lock fields
 with (obj_alarm3) alarm[4] = 2;
+
+saveToFirebase = false;

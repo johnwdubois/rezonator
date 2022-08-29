@@ -316,7 +316,11 @@ function RESTFirebaseFirestore_Document_Set(path,json)
 					FirebaseREST_Firestore_headerToken(),
 					FirebaseREST_Firestore_jsonEncode(json),
 				)
+	listener.body = string_replace_all(listener.body, "\\", "");
+	listener.body = scr_removeBadQuotes2(listener.body);//, "\"mapValue\"");
+	listener.body = scr_removeBadQuotes2(listener.body);//, "\"arrayValue\"");
 	listener.path = path
+	show_debug_message("listener.body: " + string(listener.body))
 	return listener
 }
 
@@ -334,7 +338,7 @@ function RESTFirebaseFirestore_Document_Update(path,json)
 					FirebaseREST_Firestore_jsonEncode(json),
 				)
 	listener.url += FriebaseREST_Firestore_urlUpdateMask(json)
-	show_debug_message(listener.url)
+	show_debug_message("RESTFirebaseFirestore_Document_Update, listener.url: " + listener.url)
 	listener.path = path
 	return listener
 }
