@@ -219,6 +219,7 @@ function RESTFirebaseFirestore_Collection_Query(struct)
 
 	listener.url += ":runQuery"
 	listener.path = original_ref
+	
 
 	return listener
 }

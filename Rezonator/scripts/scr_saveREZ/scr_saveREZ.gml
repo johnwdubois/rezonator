@@ -197,6 +197,29 @@ function scr_saveREZ(autosave) {
 
 	}
 	else if (obj_control.saveToFirebase) {
+		
+		var rezfileSubMap = ds_map_create();
+		rezfileSubMap[? "usedID"] = global.userName;
+		var rezfileFirestorePath = "rezfiles/" + filename_name(global.fileSaveName);
+		FirebaseFirestore(rezfileFirestorePath).Set(json_encode(rezfileSubMap));
+		
+		var nodeList = global.nodeMap[?"nodeList"];		
+		var nodeListSize = ds_list_size(nodeList);
+		for (var i = 0; i < nodeListSize; i++) {
+			var currentNodeID = nodeList[| i];
+			var currentNodeSubMap = global.nodeMap[? currentNodeID];
+			var currentNodeType = currentNodeSubMap[? "type"];
+			
+			if (is_string(currentNodeType)) {
+				if (currentNodeType == "unit" || currentNodeType == "token" || currentNodeType == "unit" || currentNodeType == "entry" || currentNodeType == "link"
+				|| currentNodeType == "stack" || currentNodeType == "card" || currentNodeType == "resonance" || currentNodeType == "rez" || currentNodeType == "track"
+				|| currentNodeType == "trail") {
+					var currentNodeSubMapJson = json_encode(currentNodeSubMap);
+					FirebaseFirestore(rezfileFirestorePath + "/" + currentNodeType + "/" + string(currentNodeID)).Set(currentNodeSubMapJson);
+				}
+			}
+		}
+		
 	}
 	else {
 		scr_saveFileBuffer(working_directory + filename_name(global.fileSaveName), global.fileSaveName, jsonString);

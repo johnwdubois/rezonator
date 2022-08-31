@@ -5,9 +5,7 @@ function FirebaseREST_firestore_value(value, dsType)
 	
 	var isMap = (dsType == ds_type_map);
 	var isList = (dsType == ds_type_list);
-	var valueEncode = json_encode(value);
 	show_debug_message("FirebaseREST_firestore_value, value: " + string(value) + ", isMap: " + string(isMap) + ", isList: " + string(isList));
-	show_debug_message("FirebaseREST_firestore_value, valueEncode: " + string(valueEncode));
 	
 	var map = ds_map_create()
 	if (is_real(value)) {
@@ -100,7 +98,7 @@ function FirebaseREST_firestore_value(value, dsType)
 			
 		}
 		else {
-			ds_map_add(map, "doubleValue", value)
+			ds_map_add(map, "integerValue", value)
 		}
 
 	}

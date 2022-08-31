@@ -1,4 +1,7 @@
 function scr_refreshCliques(){
+	
+	scr_refreshCliques2();
+	exit;
 	show_debug_message("scr_refreshCliques, START" + scr_printTime());
 	
 	obj_chain.cliqueCount = 1;
