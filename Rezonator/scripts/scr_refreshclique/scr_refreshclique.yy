@@ -6,7 +6,7 @@
     "path": "folders/Scripts/cliques.yy",
   },
   "resourceVersion": "1.0",
-  "name": "scr_refreshCliques2",
+  "name": "scr_refreshClique",
   "tags": [],
   "resourceType": "GMScript",
 }

@@ -1,6 +1,6 @@
 function scr_refreshCliques(){
 	
-	scr_refreshCliques2();
+	//scr_refreshCliques2();
 	exit;
 	show_debug_message("scr_refreshCliques, START" + scr_printTime());
 	

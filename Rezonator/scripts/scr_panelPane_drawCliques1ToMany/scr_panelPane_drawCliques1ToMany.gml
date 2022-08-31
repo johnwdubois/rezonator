@@ -57,6 +57,7 @@ function scr_panelPane_drawCliques1ToMany(){
 						currentItemNum = string(i + 1);
 						currentItemText = string(currentItemSubMap[? "name"]);
 						rectColor = currentItemSubMap[? "chainColor"];
+						/*
 						var currentChainOrderList = cliqueSubMap[? currentItem];
 						var currentChainOrderListSize = ds_list_size(currentChainOrderList);
 						for (var j = 0; j < currentChainOrderListSize; j++) {
@@ -64,6 +65,7 @@ function scr_panelPane_drawCliques1ToMany(){
 							var currentChainSubMap = global.nodeMap[? currentChain];
 							ds_list_add(currentChainOrderListNames, currentChainSubMap[? "name"]);
 						}
+						*/
 						
 						
 					}

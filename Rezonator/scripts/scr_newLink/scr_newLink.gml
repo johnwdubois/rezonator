@@ -137,6 +137,29 @@ function scr_newLink(ID) {
 					
 			show_debug_message("scr_newLink() ... entry nodeID: " + string(nodeID));
 		}
+		
+		
+		// if this is a rez-chain, we will evaluate what clique it should be in
+		if (nodeType == "rez") {
+			var unitSubMap = global.nodeMap[? unitID];
+			var unitInCliqueID = unitSubMap[? "inClique"];
+			var chainInCliqueID = chainSubMap[? "inClique"];
+			show_debug_message("scr_newLink, unitInCliqueID: " + string(unitInCliqueID) + ", chainInCliqueID: " + string(chainInCliqueID));
+			if (is_string(chainInCliqueID) && chainInCliqueID != "") {
+				if (is_string(unitInCliqueID) && unitInCliqueID != "") {
+					if (unitInCliqueID != chainInCliqueID) {
+						// in this case, we have two different cliques, we must merge the two
+						scr_mergeCliques(chainInCliqueID, unitInCliqueID);
+					}
+				}
+				else {
+					// unit is not in any clique, therefore we can assign this unit to this chain's clique
+					unitInCliqueID = chainInCliqueID;
+					unitSubMap[? "inClique"] = unitInCliqueID;
+					scr_refreshClique(unitInCliqueID);
+				}
+			}
+		}
 	}
 	
 	
@@ -171,6 +194,9 @@ function scr_newLink(ID) {
 			scr_addToListOnce(entryWordInEntryList, nodeID);
 		}
 	}
+	
+	
+
 	
 
 	
@@ -226,6 +252,11 @@ function scr_newLink(ID) {
 		}
 		scr_alignChain2ElectricBoogaloo(obj_chain.currentFocusedChainID);
 	}
+	
+	
+	
+	
+	
 	if(global.steamAPI){
 		var currentMaxChainLength = steam_get_stat_int("SA_entry-count");
 		var currentChainLength = ds_list_size(idList);
@@ -237,6 +268,12 @@ function scr_newLink(ID) {
 				}
 			}
 		}
+	}
+	
+	
+	if (is_string(obj_chain.newChainRefreshClique) && obj_chain.newChainRefreshClique != "") {
+		scr_refreshClique(obj_chain.newChainRefreshClique);
+		with (obj_chain) newChainRefreshClique = "";
 	}
 	
 	
