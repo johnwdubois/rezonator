@@ -13,7 +13,7 @@ function scr_newClique(chainID, unitID){
 	
 	// create unit list, add new unit to it
 	var newCliqueUnitList = ds_list_create();
-	ds_list_add(newCliqueUnitList, unitID);
+	if (is_string(unitID)) ds_list_add(newCliqueUnitList, unitID);
 	ds_map_add_list(newCliqueSubMap, "unitList", newCliqueUnitList);
 	
 	return newCliqueID;
