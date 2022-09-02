@@ -29,8 +29,8 @@ function scr_refreshClique(cliqueID){
 			var currentUnitSubMap = global.nodeMap[? currentUnit];
 			currentUnitSubMap[? "inClique"] = cliqueID;
 		}
+		
+		scr_sortCliqueChainList(cliqueID);
 	}
-	
-	scr_sortCliqueChainList(cliqueID);
 
 }

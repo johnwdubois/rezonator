@@ -11,9 +11,9 @@ function scr_newClique(chainID, unitID){
 	ds_list_add(newCliqueChainList, chainID);
 	ds_map_add_list(newCliqueSubMap, "chainList", newCliqueChainList);
 	
-	// create unit list, add new unit to it
+	// create unit list, add new unit to it (if the provided argument is actually a valid unitID)
 	var newCliqueUnitList = ds_list_create();
-	if (is_string(unitID)) ds_list_add(newCliqueUnitList, unitID);
+	if (is_string(unitID) && unitID != "") ds_list_add(newCliqueUnitList, unitID);
 	ds_map_add_list(newCliqueSubMap, "unitList", newCliqueUnitList);
 	
 	return newCliqueID;

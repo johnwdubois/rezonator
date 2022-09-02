@@ -84,6 +84,7 @@ function scr_saveREZ(autosave) {
 			var tempNavUnitFieldList = scr_copyListToMap(navUnitFieldList, map, "navUnitFieldList");
 			var tempUnitFieldList = scr_copyListToMap(unitFieldList, map, "unitFieldList");
 			var tempTranslationList = scr_copyListToMap(global.translationList, map, "translationList");
+			var tempCliqueList = scr_copyListToMap(obj_chain.cliqueList, map, "cliqueList");
 			
 			show_debug_message("here 2 " + scr_printTime());
 
@@ -238,6 +239,7 @@ function scr_saveREZ(autosave) {
 	ds_list_destroy(tempTokenFieldList);
 	ds_list_destroy(tempUnitFieldList);
 	ds_list_destroy(tempTranslationList);
+	ds_list_destroy(tempCliqueList);
 	
 	
 	
