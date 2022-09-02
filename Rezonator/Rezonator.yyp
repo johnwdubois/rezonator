@@ -465,6 +465,7 @@
     {"id":{"name":"scr_specialFieldsOptions","path":"scripts/scr_specialFieldsOptions/scr_specialFieldsOptions.yy",},"order":36,},
     {"id":{"name":"scr_addToFilterOptions","path":"scripts/scr_addToFilterOptions/scr_addToFilterOptions.yy",},"order":37,},
     {"id":{"name":"scr_filterOptions","path":"scripts/scr_filterOptions/scr_filterOptions.yy",},"order":38,},
+    {"id":{"name":"scr_sortCliqueChainList","path":"scripts/scr_sortCliqueChainList/scr_sortCliqueChainList.yy",},"order":13,},
     {"id":{"name":"scr_isStrRTL","path":"scripts/scr_isStrRTL/scr_isStrRTL.yy",},"order":7,},
     {"id":{"name":"scr_tagOptions","path":"scripts/scr_tagOptions/scr_tagOptions.yy",},"order":74,},
     {"id":{"name":"scr_importGridToNodeMap_fieldsRowUnit","path":"scripts/scr_importGridToNodeMap_fieldsRowUnit/scr_importGridToNodeMap_fieldsRowUnit.yy",},"order":28,},

@@ -14,6 +14,7 @@ function scr_refreshCliqueDelete(cliqueID, deletedChainID, deletedEntryID){
 	
 	
 	var cliqueChainListSize = ds_list_size(cliqueChainList);
+	show_debug_message("scr_refreshCliqueDelete, cliqueChainListSize: " + string(cliqueChainListSize));
 	if (cliqueChainListSize >= 2) {
 		// clear everything but first chain in clique
 		var cliqueFirstChain = "";
@@ -71,11 +72,23 @@ function scr_refreshCliqueDelete(cliqueID, deletedChainID, deletedEntryID){
 	}
 	else {
 		
+		scr_sortCliqueChainList(cliqueID);
+		
 		// collect any chains that were originally in the clique, but are not there anymore
 		var chainsKickedOutList = ds_list_create();
 		var cliqueChainListCopySize = ds_list_size(cliqueChainListCopy);
 		for (var i = 0; i < cliqueChainListCopySize; i++) {
 			var currentChain = cliqueChainListCopy[| i];
+			var currentChainSubMap = global.nodeMap[? currentChain];
+			var currentChainSetIDList = currentChainSubMap[? "setIDList"];
+			
+			// if this chain is empty, or only contains the deleted entry, we shouldn't put it into a new clique
+			if (ds_list_size(currentChainSetIDList) < 1) continue;
+			else if (ds_list_size(currentChainSetIDList) == 1) {
+				if (currentChainSetIDList[| 0] == deletedEntryID) continue;
+			}
+			
+			// otherwise, if this chain does not appear in our clique's chainlist, we'll keep track of it
 			if (ds_list_find_index(cliqueChainList, currentChain) == -1) {
 				scr_addToListOnce(chainsKickedOutList, currentChain);
 			}

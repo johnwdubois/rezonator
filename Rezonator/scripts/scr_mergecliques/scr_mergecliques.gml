@@ -34,5 +34,7 @@ function scr_mergeCliques(cliqueA, cliqueB){
 	ds_map_destroy(cliqueBSubMap);
 	ds_map_delete(global.cliqueMap, cliqueB);
 	
+	scr_sortCliqueChainList(cliqueA);
+	
 
 }

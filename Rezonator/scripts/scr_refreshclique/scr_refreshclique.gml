@@ -30,5 +30,7 @@ function scr_refreshClique(cliqueID){
 			currentUnitSubMap[? "inClique"] = cliqueID;
 		}
 	}
+	
+	scr_sortCliqueChainList(cliqueID);
 
 }
