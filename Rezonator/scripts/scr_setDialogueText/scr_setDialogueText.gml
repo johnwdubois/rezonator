@@ -63,6 +63,16 @@ function scr_setDialogueText(){
 			titleText = "Merge units"; // localize
 			descriptionText = scr_get_translation("This will merge unit " + string(unitSeq2) + " into unit " + string(unitSeq1) + ":\n" + string(mergeUnitPreviewStr)); // localize
 		}
+		
+		if (swapUnitUp) {
+			titleText = scr_get_translation("option_move-unit-up");
+			descriptionText =  "Move selected unit to before previous unit?";
+		}
+		else if (swapUnitDown) {
+			titleText = scr_get_translation("option_move-unit-down");
+			descriptionText =  "Move selected unit to before previous unit?";
+		}
+		
 		if(splitUnit){
 			var unitSeq = 0;
 			var splitUnitPreviewStr = "";

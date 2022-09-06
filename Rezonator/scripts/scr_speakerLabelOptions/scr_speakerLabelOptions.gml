@@ -154,10 +154,20 @@ function scr_speakerLabelOptions(optionSelected) {
 				}
 			}
 			else if (optionSelected == "option_move-unit-up") {
+				if (!instance_exists(obj_dialogueBox)) {
+					instance_create_layer(x, y, "InstancesDialogue", obj_dialogueBox);
+					obj_dialogueBox.questionWindowActive = true;
+					obj_dialogueBox.swapUnitUp = true;
+				}
 				scr_swapAdjacentUnit(true);
 				with (obj_dropDown) instance_destroy();
 			}
 			else if (optionSelected == "option_move-unit-down") {
+				if (!instance_exists(obj_dialogueBox)) {
+					instance_create_layer(x, y, "InstancesDialogue", obj_dialogueBox);
+					obj_dialogueBox.questionWindowActive = true;
+					obj_dialogueBox.swapUnitDown = true;
+				}
 				scr_swapAdjacentUnit(false);
 				with (obj_dropDown) instance_destroy();
 			}

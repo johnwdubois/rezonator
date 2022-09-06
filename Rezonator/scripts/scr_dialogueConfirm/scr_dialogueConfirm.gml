@@ -268,6 +268,12 @@ function scr_dialogueConfirm(){
 		if(splitUnit){
 			scr_splitUnit(obj_control.rightClickID, false);
 		}
+		if(swapUnitUp){
+			scr_swapAdjacentUnit(true);
+		}
+		else if(swapUnitDown){
+			scr_swapAdjacentUnit(false);
+		}
 	
 		if (clearChain) {
 			scr_deleteChain(obj_control.selectedChainID);

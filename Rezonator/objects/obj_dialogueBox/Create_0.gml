@@ -54,6 +54,8 @@ mergeUnit = false;
 splitUnit = false;
 stringToBeRemoved = "";
 searchToBeRemoved = "";
+swapUnitUp = false;
+swapUnitDown = false;
 
 
 canDelete = true;

@@ -73,6 +73,8 @@ function scr_closeDialogueBoxVariables(){
 		stringToBeRemoved = "";
 		removeSearch = false;
 		searchToBeRemoved = "";
+		swapUnitUp = false;
+		swapUnitDown = false;
 	
 		with (obj_control) {
 			stackMerged = false;
