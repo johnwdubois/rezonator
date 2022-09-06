@@ -56,22 +56,13 @@ function scr_refreshCliqueDelete(cliqueID, deletedChainID, deletedEntryID){
 	
 	// delete clique if we need to
 	if (deleteClique) {
-		while (ds_map_size(cliqueSubMap) > 0) {
-			var key = ds_map_find_first(cliqueSubMap);
-			if (ds_map_is_list(cliqueSubMap, key)) {
-				ds_list_destroy(cliqueSubMap[? key]);
-			}
-			else if (ds_map_is_map(cliqueSubMap, key)) {
-				ds_map_destroy(cliqueSubMap[? key]);
-			}
-			ds_map_delete(cliqueSubMap, key);
-		}
-		ds_map_destroy(cliqueSubMap);
+		scr_mapDeepDestroy(cliqueSubMap);
 		ds_map_delete(global.cliqueMap, cliqueID);
 		scr_deleteFromList(obj_chain.cliqueList, cliqueID);
 	}
 	else {
 		
+		scr_refreshClique(cliqueID);
 		scr_sortCliqueChainList(cliqueID);
 		
 		// collect any chains that were originally in the clique, but are not there anymore

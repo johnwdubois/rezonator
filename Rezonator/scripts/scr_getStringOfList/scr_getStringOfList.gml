@@ -3,7 +3,7 @@ function scr_getStringOfList(list) {
 	if (!is_numeric(list)) return "non-numeric list";
 	if (!ds_exists(list, ds_type_list)) return "list does not exist: " + string(list);
 	
-	var str = "{";
+	var str = "[";
 
 	if (!ds_list_empty(list)) {
 		var listSize = ds_list_size(list);
@@ -23,7 +23,7 @@ function scr_getStringOfList(list) {
 
 	}
 
-	str += "}";
+	str += "]";
 
 	return str;
 

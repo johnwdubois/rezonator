@@ -31,6 +31,7 @@ function scr_refreshClique(cliqueID){
 		}
 		
 		scr_sortCliqueChainList(cliqueID);
+		scr_refreshChainOrderMap(cliqueID);
 	}
 
 }

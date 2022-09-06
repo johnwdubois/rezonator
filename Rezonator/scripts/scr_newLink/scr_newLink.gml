@@ -246,10 +246,12 @@ function scr_newLink(ID) {
 	}
 	
 	if (focusedChainType == "resonance") {
-		show_debug_message("quickLink created:  "+ string(obj_chain.quickLinkCreated))
-		if (!obj_chain.quickLinkCreated) {
-			scr_refreshCliques();
-		}
+		show_debug_message("quickLink created:  "+ string(obj_chain.quickLinkCreated));
+		
+		var chainInCliqueID = chainSubMap[? "inClique"];
+		scr_refreshChainOrderMap(chainInCliqueID);
+		scr_cycleDetection(obj_chain.currentFocusedChainID);
+		
 		scr_alignChain2ElectricBoogaloo(obj_chain.currentFocusedChainID);
 	}
 	

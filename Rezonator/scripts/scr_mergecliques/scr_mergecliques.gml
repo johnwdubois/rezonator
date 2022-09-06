@@ -1,5 +1,7 @@
 function scr_mergeCliques(cliqueA, cliqueB){
 	
+	show_debug_message("scr_mergeCliques, cliqueA: " + string(cliqueA) + ", cliqueB: " + string(cliqueB));
+	
 	// cliqueA will eat cliqueB
 	
 	// get all submaps and lists for both cliques
@@ -33,6 +35,7 @@ function scr_mergeCliques(cliqueA, cliqueB){
 	ds_list_destroy(cliqueBChainList);
 	ds_map_destroy(cliqueBSubMap);
 	ds_map_delete(global.cliqueMap, cliqueB);
+	scr_deleteFromList(obj_chain.cliqueList, cliqueB);
 	
 	scr_sortCliqueChainList(cliqueA);
 	
