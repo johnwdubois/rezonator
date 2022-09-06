@@ -250,7 +250,10 @@ function scr_newLink(ID) {
 		
 		var chainInCliqueID = chainSubMap[? "inClique"];
 		scr_refreshChainOrderMap(chainInCliqueID);
+		
+		obj_chain.currentClique = chainInCliqueID;
 		scr_cycleDetection(obj_chain.currentFocusedChainID);
+		ds_list_clear(obj_chain.encounteredChainList);
 		
 		scr_alignChain2ElectricBoogaloo(obj_chain.currentFocusedChainID);
 	}
