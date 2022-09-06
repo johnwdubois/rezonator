@@ -40,7 +40,7 @@ function scr_closeDialogueBoxVariables(){
 			renameTree = false;
 			splitToken = false;
 			splitTokenField = "";
-			splitTokenCopyTags = false;
+			splitTokenCopyTags = true;
 		}
 	}
 	if(questionWindowActive){

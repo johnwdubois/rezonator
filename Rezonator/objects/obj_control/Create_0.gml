@@ -506,7 +506,7 @@ splitToken = false;
 mergeToken = false;
 mergeUnitDifferingParticipants = false;
 splitTokenField = "";
-splitTokenCopyTags = false;
+splitTokenCopyTags = true;
 
 newWordPre1 = false
 newWordPre2 = false

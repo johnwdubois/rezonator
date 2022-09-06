@@ -161,5 +161,5 @@ with (obj_dropDown) {
 // if user clicks outside of dialogue box
 if (!mouseoverDialogueBox && !mouseoverAnyDropDown && mouse_check_button_pressed(mb_left)) {
 	blink = true;
-	alarm[1] = 20;
+	alarm[1] = 50;
 }
