@@ -34,14 +34,17 @@ function scr_speakerLabelOptions(optionSelected) {
 			else if (optionSelected == "Toggle Line #") {
 				obj_control.showLineNumber = !obj_control.showLineNumber;
 			}
-			else if (optionSelected == "help_label_delete-link") {
+			else if (optionSelected == "help_label_delete-link" || optionSelected == "option_remove-from-stack") {
 				scr_deleteFromChain(true);
-
 				instance_destroy(obj_dropDown);
 			}
-			else if (optionSelected == "option_set-chain-name") {
-				scr_setChainName("");
-
+			else if (optionSelected == "option_set-chain-name" || optionSelected == "option_rename-stack") {
+				if (!instance_exists(obj_dialogueBox)) {
+					instance_create_layer(x, y, "InstancesDialogue", obj_dialogueBox);
+					global.inputBoxDefStr = scr_setChainNameGetString();
+					obj_dialogueBox.inputWindowActive = true;
+					obj_control.setChainName = true;
+				}
 				instance_destroy(obj_dropDown);
 			}
 			else if (optionSelected == "Tag Chain") {
@@ -159,7 +162,6 @@ function scr_speakerLabelOptions(optionSelected) {
 					obj_dialogueBox.questionWindowActive = true;
 					obj_dialogueBox.swapUnitUp = true;
 				}
-				scr_swapAdjacentUnit(true);
 				with (obj_dropDown) instance_destroy();
 			}
 			else if (optionSelected == "option_move-unit-down") {
@@ -168,7 +170,6 @@ function scr_speakerLabelOptions(optionSelected) {
 					obj_dialogueBox.questionWindowActive = true;
 					obj_dialogueBox.swapUnitDown = true;
 				}
-				scr_swapAdjacentUnit(false);
 				with (obj_dropDown) instance_destroy();
 			}
 			else if (optionSelected == "option_merge-unit") {

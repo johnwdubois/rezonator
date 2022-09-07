@@ -142,14 +142,24 @@ function scr_drawLine2ElectricBoogaloo(){
 			drawRangeEnd += 2;
 		}
 		
-		//draw unit if selected for merge
+		// draw highlight rectangle if selected for merge or move
 		if (instance_exists(obj_dialogueBox)) {
-			var inMergeUnitList = (ds_list_find_index(mergeUnitList,currentUnit)>-1);
-			if (obj_dialogueBox.mergeUnit && inMergeUnitList){
-				var unitY1 = floor(currentUnitSubMap[? "pixelY"] - gridSpaceVertical/2 -1);
-				var unitY2 = floor(currentUnitSubMap[? "pixelY"] + gridSpaceVertical/2 -3);
+			var drawHighlightRect = false;
+			if (obj_dialogueBox.mergeUnit) {
+				if (ds_list_find_index(mergeUnitList,currentUnit) >= 0) {
+					drawHighlightRect = true;
+				}
+			}
+			else if (obj_dialogueBox.swapUnitUp || obj_dialogueBox.swapUnitDown) {
+				if (currentUnit == obj_control.rightClickID) {
+					drawHighlightRect = true;
+				}
+			}
+			if (drawHighlightRect) {
+				var unitY1 = floor(currentUnitSubMap[? "pixelY"] - (gridSpaceVertical / 2) - 1);
+				var unitY2 = floor(currentUnitSubMap[? "pixelY"] + (gridSpaceVertical / 2) - 3);
 				draw_set_color(merge_color(global.colorThemeGrid_colSelected1, c_white, 0.8));
-				draw_rectangle(0,unitY1,obj_toolPane.x , unitY2, false);
+				draw_rectangle(0, unitY1, obj_toolPane.x, unitY2, false);
 			}
 		}
 		
