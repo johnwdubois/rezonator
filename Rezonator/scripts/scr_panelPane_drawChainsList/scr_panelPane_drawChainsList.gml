@@ -440,7 +440,7 @@ function scr_panelPane_drawChainsList() {
 					draw_text(floor(numColX + textBuffer) - clipX, floor(y + headerHeight + relativeScrollPlusY + textPlusY) - clipY, string(i + 1));
 	
 					// draw text: name column
-					draw_text(floor(nameColX + textBuffer) - clipX, floor(y + headerHeight + relativeScrollPlusY + textPlusY) - clipY, currentChainName + ", " + string(currentChainID));
+					draw_text(floor(nameColX + textBuffer) - clipX, floor(y + headerHeight + relativeScrollPlusY + textPlusY) - clipY, currentChainName);
 					
 					// draw text: text/caption column
 					if (currentChainCaption != "") {

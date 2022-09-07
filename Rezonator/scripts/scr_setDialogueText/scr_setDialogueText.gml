@@ -252,6 +252,10 @@ function scr_setDialogueText(){
 			}
 		}
 		
+		if (obj_control.setChainName) {
+			titleText = scr_get_translation("option_set-chain-name");
+		}
+		
 		var drawNewFieldText = (obj_control.newCustomFieldToken || obj_control.newCustomFieldUnit || obj_control.newCustomFieldEntry || obj_control.newCustomFieldChain || obj_control.newCustomFieldChunk || obj_control.newCustomFieldLink);
 		var drawNewTagText = (obj_control.newCustomTagToken || obj_control.newCustomTagUnit || obj_control.newCustomTagEntry || obj_control.newCustomTagChain || obj_control.newCustomTagChunk || obj_control.newCustomTagLink);
 		

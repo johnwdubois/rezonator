@@ -831,6 +831,7 @@ flashTime = 20;
 unitToFlash = "";
 offIndex = false;
 multiWordTag = false;
+setChainName = false;
 
 updateScroll = false;
 

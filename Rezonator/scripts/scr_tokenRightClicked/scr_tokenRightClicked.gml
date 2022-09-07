@@ -36,8 +36,8 @@ function scr_tokenRightClicked(){
 			if (scr_isNumericAndExists(chainSubMap, ds_type_map)) {
 				obj_control.inChain = true;
 				var chainType = chainSubMap[? "type"];
-				if (chainType == "trail") ds_list_add(dropDownOptionList, "option_remove-from-trail");
-				else if (chainType == "resonance") ds_list_add(dropDownOptionList, "option_remove-from-resonance");
+				if (chainType == "trail") ds_list_add(dropDownOptionList, "option_remove-from-trail", "option_rename-trail");
+				else if (chainType == "resonance") ds_list_add(dropDownOptionList, "option_remove-from-resonance", "option_rename-resonance");
 				
 				// check whether we should refocus this word's entry or not
 				obj_chain.currentFocusedChainID = chainID;

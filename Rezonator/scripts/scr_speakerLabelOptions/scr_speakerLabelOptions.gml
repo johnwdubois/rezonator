@@ -40,7 +40,7 @@ function scr_speakerLabelOptions(optionSelected) {
 				instance_destroy(obj_dropDown);
 			}
 			else if (optionSelected == "option_set-chain-name") {
-				scr_setChainName();
+				scr_setChainName("");
 
 				instance_destroy(obj_dropDown);
 			}

@@ -105,6 +105,9 @@ function scr_dialogueConfirm(){
 				ds_map_replace(chainSubMap, "name", obj_control.inputText);
 			}
 		}
+		if (obj_control.setChainName) {
+			scr_setChainName(obj_control.inputText);
+		}
 		if (obj_control.renameTree) {
 			var selectedTree = obj_panelPane.functionTree_treeSelected;
 			var selectedTreeSubMap = global.treeMap[? selectedTree];

@@ -57,37 +57,22 @@ function scr_rightClickWordOptions(optionSelected) {
 		instance_destroy();
 	}
 	else if (optionSelected == "option_remove-from-trail" || optionSelected == "option_remove-from-resonance") {
-		
-		// find the correct chain and focus it
-		var tokenSubMap = global.nodeMap[? obj_control.rightClickID];
-		var tokenInChainsList = tokenSubMap[? "inChainsList"];
-		var tokenInChainsListSize = ds_list_size(tokenInChainsList);
-		for(var i = 0; i < ds_list_size(tokenInChainsList); i++){
-			var chainID = tokenInChainsList[| i];
-			var chainSubMap = global.nodeMap[? chainID];
-			if (scr_isNumericAndExists(chainSubMap, ds_type_map)) {
-				var chainType = chainSubMap[? "type"];
-				if (optionSelected == "option_remove-from-trail" && chainType == "trail") {
-					obj_chain.currentFocusedChainID = chainID;
-					with (obj_toolPane) {
-						currentTool = toolTrackBrush;
-						currentMode = modeTrack;
-					}
-				}
-				else if (optionSelected == "option_remove-from-resonance" && chainType == "resonance") {
-					obj_chain.currentFocusedChainID = chainID;
-					with (obj_toolPane) {
-						currentTool = toolRezBrush;
-						currentMode = modeRez;
-					}
-				}
-			}
-		}
+		scr_focusRelevantChainOnToken(obj_control.rightClickID, optionSelected == "option_remove-from-trail" ? "trail" : "resonance");
 		scr_deleteFromChain(true);
 		instance_destroy();
 	}
 	else if (optionSelected == "option_set-chain-name") {
 		scr_setChainName();
+		instance_destroy();
+	}
+	else if (optionSelected == "option_rename-trail" || optionSelected == "option_rename-resonance") {
+		scr_focusRelevantChainOnToken(obj_control.rightClickID, optionSelected == "option_rename-trail" ? "trail" : "resonance");
+		if (!instance_exists(obj_dialogueBox)) {
+			instance_create_layer(x, y, "InstancesDialogue", obj_dialogueBox);
+			global.inputBoxDefStr = scr_setChainNameGetString();
+			obj_dialogueBox.inputWindowActive = true;
+			obj_control.setChainName = true;
+		}
 		instance_destroy();
 	}
 	else if (optionSelected == "Tag Chain") {

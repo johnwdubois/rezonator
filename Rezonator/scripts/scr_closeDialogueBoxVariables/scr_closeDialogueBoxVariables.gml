@@ -41,6 +41,7 @@ function scr_closeDialogueBoxVariables(){
 			splitToken = false;
 			splitTokenField = "";
 			splitTokenCopyTags = true;
+			setChainName = false;
 		}
 	}
 	if(questionWindowActive){
