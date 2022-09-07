@@ -24,44 +24,32 @@ function scr_tokenRightClicked(){
 
 		var firstWordInLine = (firstEntrySubMap[?"token"] == obj_control.rightClickID);
 
-		var tokenInChainsListSize = ds_list_size(tokenInChainsList);
 
+		
+		ds_list_add(dropDownOptionList, "option_sync-unit-tab");
+		
 		// Options for a word in a Chain
-		if(tokenInChainsListSize > 0){
-
-			ds_list_add(dropDownOptionList,  "help_label_delete-link", "option_set-chain-name");
-			
-			
-			for(var i = 0; i < ds_list_size(tokenInChainsList); i++){
-				var chainID = tokenInChainsList[|i];
-				var chainSubMap = global.nodeMap[?chainID];
-				if(scr_isNumericAndExists(chainSubMap, ds_type_map)){
-
-					obj_control.inChain = true;
-	
-				}
-			
+		var tokenInChainsListSize = ds_list_size(tokenInChainsList);
+		for(var i = 0; i < ds_list_size(tokenInChainsList); i++){
+			var chainID = tokenInChainsList[| i];
+			var chainSubMap = global.nodeMap[? chainID];
+			if (scr_isNumericAndExists(chainSubMap, ds_type_map)) {
+				obj_control.inChain = true;
+				var chainType = chainSubMap[? "type"];
+				if (chainType == "trail") ds_list_add(dropDownOptionList, "option_remove-from-trail");
+				else if (chainType == "resonance") ds_list_add(dropDownOptionList, "option_remove-from-resonance");
+				
 				// check whether we should refocus this word's entry or not
 				obj_chain.currentFocusedChainID = chainID;
 				scr_refocusChainEntry(obj_control.rightClickID);
 			}
-					
-		}
-		// Options for a chainless word
-		else{
-	
 		}
 		
-		if (obj_panelPane.functionField_tokenFieldSelected != "" && obj_panelPane.functionField_tokenTagSelected != ""
-			&& is_string(obj_panelPane.functionField_tokenFieldSelected) && is_string(obj_panelPane.functionField_tokenTagSelected)) {
-				//scr_addToListOnce(dropDownOptionList , "Tag Token");
-		}
+		// add the rest of the dropdown options
+		ds_list_add(dropDownOptionList, "word_tip", "option_zero", "help_label_new_token", "option_delete-token", "option_split-token");
+		if (!firstWordInLine) ds_list_add(dropDownOptionList, "option_merge-token", "option_split-unit");
+		ds_list_add(dropDownOptionList, "tab_name_tag");
 		
-		ds_list_add(dropDownOptionList, "word_tip", "option_zero", "option_delete-token", "tab_name_tag", "option_split-token");
-		if (!firstWordInLine) {
-			//localize
-			ds_list_add(dropDownOptionList, "option_merge-token", "option_split-unit");
-		}
 		// Create the dropdown
 		if (ds_list_size(dropDownOptionList) > 0 and obj_control.ableToCreateDropDown) {
 			scr_createDropDown(mouse_x, mouse_y, dropDownOptionList, global.optionListTypeRightClickWord);

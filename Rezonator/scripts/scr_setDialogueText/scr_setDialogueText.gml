@@ -223,7 +223,6 @@ function scr_setDialogueText(){
 		}
 		if (obj_control.newWordCreated) {
 			titleText = scr_get_translation("option_new-token");
-			descriptionText = scr_get_translation("msg_input_add_new-word");
 		}
 		
 		if(obj_control.caption){

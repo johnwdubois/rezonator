@@ -167,12 +167,11 @@ function scr_drawDialogueBox_input(){
 		
 		draw_rectangle(insertBeforeBoxRectX1, insertBeforeBoxRectY1, insertBeforeBoxRectX2, insertBeforeBoxRectY2, true);
 		if (obj_control.before) {
-			draw_rectangle(insertBeforeBoxRectX1, insertBeforeBoxRectY1, insertBeforeBoxRectX2, insertBeforeBoxRectY2, false);	
+			draw_sprite_ext(spr_checkmark, 0, mean(insertBeforeBoxRectX1, insertBeforeBoxRectX2), mean(insertBeforeBoxRectY1, insertBeforeBoxRectY2), 1, 1, 0, global.colorThemeText, 1);
 		}
 		
 		// insert before boolean switch
 		if (point_in_rectangle(mouse_x, mouse_y, insertBeforeBoxRectX1, insertBeforeBoxRectY1, insertBeforeBoxRectX2, insertBeforeBoxRectY2)){
-			scr_drawBoolHover(obj_control.before);
 			if (mouse_check_button_pressed(mb_left)) {
 				obj_control.before = !obj_control.before;
 			}
