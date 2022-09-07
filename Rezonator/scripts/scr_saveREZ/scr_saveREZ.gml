@@ -107,6 +107,8 @@ function scr_saveREZ(autosave) {
 			ds_map_add(map, "functionChainList_focusedUnit", obj_panelPane.functionChainList_focusedUnit);
 			ds_map_add(map, "functionChainList_focusedUnitSeq", obj_panelPane.functionChainList_focusedUnitIndex);
 			
+			ds_map_add(map, "insertTokenStr", obj_control.insertTokenStr);
+			
 			show_debug_message("here 3 " + scr_printTime());
 			
 			// deep-copy nodeMap

@@ -207,6 +207,10 @@ function scr_loadREZ() {
 							show_debug_message("obj_fileLoader.importedAudioFile:  "+string(obj_fileLoader.importedAudioFile));
 						}
 					}
+					// get insertTokenStr
+					if (ds_map_exists(map, "insertTokenStr")) {
+						obj_control.insertTokenStr = map[? "insertTokenStr"];
+					}
 				}
 			}		
 		}

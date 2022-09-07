@@ -44,6 +44,11 @@ function scr_newTokenOptions(optionSelected) {
 					instance_create_layer(x, y, "InstancesDialogue", obj_dialogueBox);
 				}
 				obj_dialogueBox.inputWindowActive = true;
+				
+				// put in default custom string if there is one set
+				if (obj_control.insertTokenStr != "" && is_string(obj_control.insertTokenStr)) {
+					global.inputBoxDefStr = obj_control.insertTokenStr;
+				}
 			}
 			obj_control.rightClicked = false;
 

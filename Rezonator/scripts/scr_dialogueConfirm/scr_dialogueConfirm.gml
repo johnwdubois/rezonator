@@ -87,17 +87,10 @@ function scr_dialogueConfirm(){
 		}
 		
 		if (obj_control.newWordCreated) {
-				
-		
-				
 			scr_newToken(obj_control.inputText, obj_control.rightClickID);
+			obj_control.insertTokenStr = obj_control.inputText;
+		}
 
-			
-			obj_control.lastAddedWord = obj_control.inputText;
-		}
-		if (obj_control.changeZero) {
-			obj_control.lastAddedWord = obj_control.inputText;
-		}
 			
 			
 		if (obj_control.rename) {
