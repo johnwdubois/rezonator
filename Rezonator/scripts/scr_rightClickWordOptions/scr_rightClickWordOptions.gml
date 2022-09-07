@@ -210,9 +210,11 @@ function scr_rightClickWordOptions(optionSelected) {
 		instance_destroy();
 	}
 	else if (optionSelected == "option_delete-token") {
-		var tokenSubMap = global.nodeMap[?obj_control.rightClickID];
-		scr_deleteToken(obj_control.rightClickID);
-			
+		if (!instance_exists(obj_dialogueBox)) {
+			instance_create_layer(x, y, "InstancesDialogue", obj_dialogueBox);
+			obj_dialogueBox.questionWindowActive = true;
+			obj_dialogueBox.deleteToken = true;
+		}
 		instance_destroy();
 	}
 	else if (optionSelected == "word_tip") {

@@ -72,6 +72,13 @@ function scr_setDialogueText(){
 			titleText = scr_get_translation("option_move-unit-down");
 			descriptionText =  "Move selected unit to before previous unit?";
 		}
+		if (deleteToken) {
+			var tokenSubMap = global.nodeMap[? obj_control.rightClickID];
+			var tokenTagMap = tokenSubMap[?"tagMap"];
+			var displayToken = tokenTagMap[?global.displayTokenField];
+			titleText = "Delete selected token?";
+			descriptionText = string(displayToken);
+		}
 		
 		if(splitUnit){
 			var unitSeq = 0;

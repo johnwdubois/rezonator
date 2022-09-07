@@ -295,6 +295,9 @@ function scr_dialogueConfirm(){
 		if (removeTree) {
 			scr_deleteTree(stringToBeRemoved);
 		}
+		if (deleteToken) {
+			scr_deleteToken(obj_control.rightClickID);
+		}
 		
 			
 		if(layerLink) {

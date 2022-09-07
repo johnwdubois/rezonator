@@ -56,6 +56,7 @@ stringToBeRemoved = "";
 searchToBeRemoved = "";
 swapUnitUp = false;
 swapUnitDown = false;
+deleteToken = false;
 
 
 canDelete = true;
