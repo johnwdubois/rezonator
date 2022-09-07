@@ -46,7 +46,7 @@ function scr_tokenRightClicked(){
 		}
 		
 		// add the rest of the dropdown options
-		ds_list_add(dropDownOptionList, "word_tip", "option_zero", "help_label_new_token", "option_delete-token", "option_split-token");
+		ds_list_add(dropDownOptionList, "word_tip", "option_zero", "help_label_new_token", "Add endnote", "option_delete-token", "option_split-token"); // localize
 		if (!firstWordInLine) ds_list_add(dropDownOptionList, "option_merge-token", "option_split-unit");
 		ds_list_add(dropDownOptionList, "tab_name_tag");
 		

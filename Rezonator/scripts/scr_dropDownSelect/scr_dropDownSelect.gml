@@ -402,5 +402,10 @@ function scr_dropDownSelect(optionSelected) {
 		scr_splitTokenFieldOptions(optionSelected);
 		with (obj_dropDown) instance_destroy();
 	}
+	else if (optionListType == global.optionListTypeAddEndnote) //93
+	{
+		scr_newTokenOptions(optionSelected);
+		with (obj_dropDown) instance_destroy();
+	}
 
 }
