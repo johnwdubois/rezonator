@@ -26,7 +26,7 @@ function scr_drawSpeakerLabel(unitID, unitSubMap, pixelY) {
 		// get section text
 		var sectionText = "";
 		if (i == 0) {
-			sectionText = string(unitSubMap[? "unitSeq"]) + ", " + string(unitID);
+			sectionText = string(unitSubMap[? "unitSeq"]);
 		}
 		else if (i == 1) sectionText = string(tagMap[? global.participantField]);
 		
