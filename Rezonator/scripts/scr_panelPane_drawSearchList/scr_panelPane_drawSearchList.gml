@@ -1,5 +1,3 @@
-
-
 function scr_panelPane_drawSearchList(){
 
 		

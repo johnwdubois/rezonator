@@ -1,4 +1,7 @@
 {
+  "resourceType": "GMMacOptions",
+  "resourceVersion": "1.0",
+  "name": "macOS",
   "option_mac_display_name": "Rezonator 1.1.2",
   "option_mac_app_id": "com.company.game",
   "option_mac_version": "1.1.2",
@@ -25,9 +28,7 @@
   "option_mac_app_category": "Education",
   "option_mac_enable_steam": true,
   "option_mac_disable_sandbox": true,
+  "option_mac_x86_64": true,
+  "option_mac_arm64": true,
   "option_mac_apple_sign_in": false,
-  "resourceVersion": "1.0",
-  "name": "macOS",
-  "tags": [],
-  "resourceType": "GMMacOptions",
 }

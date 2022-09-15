@@ -1,0 +1,9 @@
+{
+  "extensionId": {
+    "name": "Steamworks",
+    "path": "extensions/Steamworks/Steamworks.yy"
+  },
+  "resourceVersion": "1.0",
+  "resourceType": "GMExtensionConfigSet",
+  "configurables": null
+}

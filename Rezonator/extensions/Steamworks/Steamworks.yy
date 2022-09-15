@@ -1,4 +1,7 @@
 {
+  "resourceType": "GMExtension",
+  "resourceVersion": "1.2",
+  "name": "Steamworks",
   "ConfigValues": {},
   "optionsFile": "options.json",
   "options": [],
@@ -17,356 +20,356 @@
   "androidProps": false,
   "installdir": "",
   "files": [
-    {"filename":"Steamworks.dll","origname":"extensions\\Steamworks.dll","init":"steam_init","final":"steam_shutdown","kind":4,"uncompress":false,"functions":[
-        {"externalName":"steam_user_owns_dlc","kind":11,"help":"steam_user_owns_dlc(dlc_id)","hidden":true,"returnType":2,"argCount":1,"args":[
+    {"resourceType":"GMExtensionFile","resourceVersion":"1.0","name":"","filename":"Steamworks.dll","origname":"extensions\\Steamworks.dll","init":"steam_init","final":"steam_shutdown","kind":4,"uncompress":false,"functions":[
+        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"steam_user_owns_dlc","externalName":"steam_user_owns_dlc","kind":11,"help":"steam_user_owns_dlc(dlc_id)","hidden":true,"returnType":2,"argCount":1,"args":[
             2,
-          ],"resourceVersion":"1.0","name":"steam_user_owns_dlc","tags":[],"resourceType":"GMExtensionFunction",},
-        {"externalName":"steam_user_installed_dlc","kind":11,"help":"steam_user_installed_dlc(dlc_id)","hidden":true,"returnType":2,"argCount":1,"args":[
+          ],},
+        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"steam_user_installed_dlc","externalName":"steam_user_installed_dlc","kind":11,"help":"steam_user_installed_dlc(dlc_id)","hidden":true,"returnType":2,"argCount":1,"args":[
             2,
-          ],"resourceVersion":"1.0","name":"steam_user_installed_dlc","tags":[],"resourceType":"GMExtensionFunction",},
-        {"externalName":"steam_current_game_language","kind":11,"help":"steam_current_game_language()","hidden":true,"returnType":1,"argCount":1,"args":[],"resourceVersion":"1.0","name":"steam_current_game_language","tags":[],"resourceType":"GMExtensionFunction",},
-        {"externalName":"steam_available_languages","kind":11,"help":"steam_available_languages()","hidden":true,"returnType":1,"argCount":1,"args":[],"resourceVersion":"1.0","name":"steam_available_languages","tags":[],"resourceType":"GMExtensionFunction",},
-        {"externalName":"steam_activate_overlay","kind":11,"help":"steam_activate_overlay(overlayindex)","hidden":true,"returnType":2,"argCount":1,"args":[
+          ],},
+        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"steam_current_game_language","externalName":"steam_current_game_language","kind":11,"help":"steam_current_game_language()","hidden":true,"returnType":1,"argCount":1,"args":[],},
+        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"steam_available_languages","externalName":"steam_available_languages","kind":11,"help":"steam_available_languages()","hidden":true,"returnType":1,"argCount":1,"args":[],},
+        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"steam_activate_overlay","externalName":"steam_activate_overlay","kind":11,"help":"steam_activate_overlay(overlayindex)","hidden":true,"returnType":2,"argCount":1,"args":[
             2,
-          ],"resourceVersion":"1.0","name":"steam_activate_overlay","tags":[],"resourceType":"GMExtensionFunction",},
-        {"externalName":"steam_get_persona_name","kind":11,"help":"steam_get_persona_name()","hidden":true,"returnType":1,"argCount":1,"args":[],"resourceVersion":"1.0","name":"steam_get_persona_name","tags":[],"resourceType":"GMExtensionFunction",},
-        {"externalName":"steam_is_overlay_enabled","kind":11,"help":"steam_is_overlay_enabled()","hidden":true,"returnType":2,"argCount":1,"args":[],"resourceVersion":"1.0","name":"steam_is_overlay_enabled","tags":[],"resourceType":"GMExtensionFunction",},
-        {"externalName":"steam_is_overlay_activated","kind":11,"help":"steam_is_overlay_activated()","hidden":true,"returnType":2,"argCount":1,"args":[],"resourceVersion":"1.0","name":"steam_is_overlay_activated","tags":[],"resourceType":"GMExtensionFunction",},
-        {"externalName":"steam_activate_overlay_browser","kind":11,"help":"steam_activate_overlay_browser(url)","hidden":true,"returnType":2,"argCount":2,"args":[
+          ],},
+        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"steam_get_persona_name","externalName":"steam_get_persona_name","kind":11,"help":"steam_get_persona_name()","hidden":true,"returnType":1,"argCount":1,"args":[],},
+        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"steam_is_overlay_enabled","externalName":"steam_is_overlay_enabled","kind":11,"help":"steam_is_overlay_enabled()","hidden":true,"returnType":2,"argCount":1,"args":[],},
+        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"steam_is_overlay_activated","externalName":"steam_is_overlay_activated","kind":11,"help":"steam_is_overlay_activated()","hidden":true,"returnType":2,"argCount":1,"args":[],},
+        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"steam_activate_overlay_browser","externalName":"steam_activate_overlay_browser","kind":11,"help":"steam_activate_overlay_browser(url)","hidden":true,"returnType":2,"argCount":2,"args":[
             1,
-          ],"resourceVersion":"1.0","name":"steam_activate_overlay_browser","tags":[],"resourceType":"GMExtensionFunction",},
-        {"externalName":"steam_activate_overlay_user","kind":11,"help":"steam_activate_overlay_user(dialog_name, steamid)","hidden":true,"returnType":2,"argCount":2,"args":[
-            1,
-            2,
-          ],"resourceVersion":"1.0","name":"steam_activate_overlay_user","tags":[],"resourceType":"GMExtensionFunction",},
-        {"externalName":"steam_activate_overlay_store","kind":11,"help":"steam_activate_overlay_user(app_id)","hidden":true,"returnType":2,"argCount":1,"args":[
-            2,
-          ],"resourceVersion":"1.0","name":"steam_activate_overlay_store","tags":[],"resourceType":"GMExtensionFunction",},
-        {"externalName":"steam_get_user_persona_name","kind":11,"help":"steam_get_user_persona_name(steamID)","hidden":true,"returnType":1,"argCount":1,"args":[
-            2,
-          ],"resourceVersion":"1.0","name":"steam_get_user_persona_name","tags":[],"resourceType":"GMExtensionFunction",},
-        {"externalName":"steam_is_cloud_enabled_for_app","kind":11,"help":"steam_is_cloud_enabled_for_app()","hidden":true,"returnType":2,"argCount":1,"args":[],"resourceVersion":"1.0","name":"steam_is_cloud_enabled_for_app","tags":[],"resourceType":"GMExtensionFunction",},
-        {"externalName":"steam_is_cloud_enabled_for_account","kind":11,"help":"steam_is_cloud_enabled_for_account()","hidden":true,"returnType":2,"argCount":1,"args":[],"resourceVersion":"1.0","name":"steam_is_cloud_enabled_for_account","tags":[],"resourceType":"GMExtensionFunction",},
-        {"externalName":"steam_file_persisted","kind":11,"help":"steam_file_persisted(filename)","hidden":true,"returnType":2,"argCount":2,"args":[
-            1,
-          ],"resourceVersion":"1.0","name":"steam_file_persisted","tags":[],"resourceType":"GMExtensionFunction",},
-        {"externalName":"steam_get_quota_total","kind":11,"help":"steam_get_quota_total()","hidden":true,"returnType":2,"argCount":1,"args":[],"resourceVersion":"1.0","name":"steam_get_quota_total","tags":[],"resourceType":"GMExtensionFunction",},
-        {"externalName":"steam_get_quota_free","kind":11,"help":"steam_get_quota_free()","hidden":true,"returnType":2,"argCount":1,"args":[],"resourceVersion":"1.0","name":"steam_get_quota_free","tags":[],"resourceType":"GMExtensionFunction",},
-        {"externalName":"steam_file_write","kind":11,"help":"steam_file_write(filename, data, size)","hidden":true,"returnType":2,"argCount":3,"args":[
-            1,
+          ],},
+        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"steam_activate_overlay_user","externalName":"steam_activate_overlay_user","kind":11,"help":"steam_activate_overlay_user(dialog_name, steamid)","hidden":true,"returnType":2,"argCount":2,"args":[
             1,
             2,
-          ],"resourceVersion":"1.0","name":"steam_file_write","tags":[],"resourceType":"GMExtensionFunction",},
-        {"externalName":"steam_file_write_file","kind":11,"help":"steam_file_write_file(steam_filename, local_filename)","hidden":true,"returnType":2,"argCount":3,"args":[
+          ],},
+        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"steam_activate_overlay_store","externalName":"steam_activate_overlay_store","kind":11,"help":"steam_activate_overlay_user(app_id)","hidden":true,"returnType":2,"argCount":1,"args":[
+            2,
+          ],},
+        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"steam_get_user_persona_name","externalName":"steam_get_user_persona_name","kind":11,"help":"steam_get_user_persona_name(steamID)","hidden":true,"returnType":1,"argCount":1,"args":[
+            2,
+          ],},
+        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"steam_is_cloud_enabled_for_app","externalName":"steam_is_cloud_enabled_for_app","kind":11,"help":"steam_is_cloud_enabled_for_app()","hidden":true,"returnType":2,"argCount":1,"args":[],},
+        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"steam_is_cloud_enabled_for_account","externalName":"steam_is_cloud_enabled_for_account","kind":11,"help":"steam_is_cloud_enabled_for_account()","hidden":true,"returnType":2,"argCount":1,"args":[],},
+        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"steam_file_persisted","externalName":"steam_file_persisted","kind":11,"help":"steam_file_persisted(filename)","hidden":true,"returnType":2,"argCount":2,"args":[
+            1,
+          ],},
+        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"steam_get_quota_total","externalName":"steam_get_quota_total","kind":11,"help":"steam_get_quota_total()","hidden":true,"returnType":2,"argCount":1,"args":[],},
+        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"steam_get_quota_free","externalName":"steam_get_quota_free","kind":11,"help":"steam_get_quota_free()","hidden":true,"returnType":2,"argCount":1,"args":[],},
+        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"steam_file_write","externalName":"steam_file_write","kind":11,"help":"steam_file_write(filename, data, size)","hidden":true,"returnType":2,"argCount":3,"args":[
             1,
             1,
-          ],"resourceVersion":"1.0","name":"steam_file_write_file","tags":[],"resourceType":"GMExtensionFunction",},
-        {"externalName":"steam_file_read","kind":11,"help":"steam_file_read(filename)","hidden":true,"returnType":1,"argCount":2,"args":[
-            1,
-          ],"resourceVersion":"1.0","name":"steam_file_read","tags":[],"resourceType":"GMExtensionFunction",},
-        {"externalName":"steam_file_delete","kind":11,"help":"steam_file_delete(filename)","hidden":true,"returnType":2,"argCount":2,"args":[
-            1,
-          ],"resourceVersion":"1.0","name":"steam_file_delete","tags":[],"resourceType":"GMExtensionFunction",},
-        {"externalName":"steam_file_exists","kind":11,"help":"steam_file_exists(filename)","hidden":true,"returnType":2,"argCount":2,"args":[
-            1,
-          ],"resourceVersion":"1.0","name":"steam_file_exists","tags":[],"resourceType":"GMExtensionFunction",},
-        {"externalName":"steam_file_size","kind":11,"help":"steam_file_size(filename)","hidden":true,"returnType":2,"argCount":2,"args":[
-            1,
-          ],"resourceVersion":"1.0","name":"steam_file_size","tags":[],"resourceType":"GMExtensionFunction",},
-        {"externalName":"steam_file_share","kind":11,"help":"steam_file_share(filename)","hidden":true,"returnType":2,"argCount":2,"args":[
-            1,
-          ],"resourceVersion":"1.0","name":"steam_file_share","tags":[],"resourceType":"GMExtensionFunction",},
-        {"externalName":"steam_is_screenshot_requested","kind":11,"help":"steam_is_screenshot_requested()","hidden":true,"returnType":2,"argCount":1,"args":[],"resourceVersion":"1.0","name":"steam_is_screenshot_requested","tags":[],"resourceType":"GMExtensionFunction",},
-        {"externalName":"steam_send_screenshot","kind":11,"help":"steam_send_screenshot(filename, width, height)","hidden":true,"returnType":2,"argCount":2,"args":[
-            1,
             2,
-            2,
-          ],"resourceVersion":"1.0","name":"steam_send_screenshot","tags":[],"resourceType":"GMExtensionFunction",},
-        {"externalName":"steam_ugc_download","kind":11,"help":"steam_ugc_download(ugc_handle, dest_filename)","hidden":true,"returnType":2,"argCount":2,"args":[
-            2,
-            1,
-          ],"resourceVersion":"1.0","name":"steam_ugc_download","tags":[],"resourceType":"GMExtensionFunction",},
-        {"externalName":"steam_ugc_create_item","kind":11,"help":"steam_ugc_create_item(consumer_app_id, file_type)","hidden":true,"returnType":2,"argCount":1,"args":[
-            2,
-            2,
-          ],"resourceVersion":"1.0","name":"steam_ugc_create_item","tags":[],"resourceType":"GMExtensionFunction",},
-        {"externalName":"steam_ugc_start_item_update","kind":11,"help":"steam_ugc_start_item_update(consumer_app_id, published_file_id)","hidden":true,"returnType":2,"argCount":1,"args":[
-            2,
-            2,
-          ],"resourceVersion":"1.0","name":"steam_ugc_start_item_update","tags":[],"resourceType":"GMExtensionFunction",},
-        {"externalName":"steam_ugc_submit_item_update","kind":11,"help":"steam_ugc_submit_item_update(ugc_update_handle, change_note)","hidden":true,"returnType":2,"argCount":2,"args":[
-            2,
-            1,
-          ],"resourceVersion":"1.0","name":"steam_ugc_submit_item_update","tags":[],"resourceType":"GMExtensionFunction",},
-        {"externalName":"steam_ugc_set_item_title","kind":11,"help":"steam_ugc_set_item_title(ugc_update_handle, title)","hidden":true,"returnType":2,"argCount":2,"args":[
-            2,
-            1,
-          ],"resourceVersion":"1.0","name":"steam_ugc_set_item_title","tags":[],"resourceType":"GMExtensionFunction",},
-        {"externalName":"steam_ugc_set_item_description","kind":11,"help":"steam_ugc_set_item_description(ugc_update_handle, description)","hidden":true,"returnType":2,"argCount":2,"args":[
-            2,
-            1,
-          ],"resourceVersion":"1.0","name":"steam_ugc_set_item_description","tags":[],"resourceType":"GMExtensionFunction",},
-        {"externalName":"steam_ugc_set_item_visibility","kind":11,"help":"steam_ugc_set_item_visibility(ugc_update_handle, visibility)","hidden":true,"returnType":2,"argCount":1,"args":[
-            2,
-            2,
-          ],"resourceVersion":"1.0","name":"steam_ugc_set_item_visibility","tags":[],"resourceType":"GMExtensionFunction",},
-        {"externalName":"steam_ugc_set_item_tags","kind":11,"help":"steam_ugc_set_item_tags(ugc_update_handle, tags)","hidden":true,"returnType":2,"argCount":1,"args":[
-            2,
-            2,
-          ],"resourceVersion":"1.0","name":"steam_ugc_set_item_tags","tags":[],"resourceType":"GMExtensionFunction",},
-        {"externalName":"steam_ugc_set_item_content","kind":11,"help":"steam_ugc_set_item_content(ugc_update_handle, content)","hidden":true,"returnType":2,"argCount":2,"args":[
+          ],},
+        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"steam_file_write_file","externalName":"steam_file_write_file","kind":11,"help":"steam_file_write_file(steam_filename, local_filename)","hidden":true,"returnType":2,"argCount":3,"args":[
             1,
             1,
-          ],"resourceVersion":"1.0","name":"steam_ugc_set_item_content","tags":[],"resourceType":"GMExtensionFunction",},
-        {"externalName":"steam_ugc_set_item_preview","kind":11,"help":"steam_ugc_set_item_preview(ugc_update_handle, preview)","hidden":true,"returnType":2,"argCount":2,"args":[
-            2,
+          ],},
+        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"steam_file_read","externalName":"steam_file_read","kind":11,"help":"steam_file_read(filename)","hidden":true,"returnType":1,"argCount":2,"args":[
             1,
-          ],"resourceVersion":"1.0","name":"steam_ugc_set_item_preview","tags":[],"resourceType":"GMExtensionFunction",},
-        {"externalName":"steam_ugc_get_item_update_progress","kind":11,"help":"steam_ugc_get_item_update_progress(ugc_update_handle, info_map)","hidden":true,"returnType":2,"argCount":1,"args":[
-            2,
-            2,
-          ],"resourceVersion":"1.0","name":"steam_ugc_get_item_update_progress","tags":[],"resourceType":"GMExtensionFunction",},
-        {"externalName":"steam_ugc_subscribe_item","kind":11,"help":"steam_ugc_subscribe_item(published_file_id)","hidden":true,"returnType":2,"argCount":1,"args":[
-            2,
-          ],"resourceVersion":"1.0","name":"steam_ugc_subscribe_item","tags":[],"resourceType":"GMExtensionFunction",},
-        {"externalName":"steam_ugc_unsubscribe_item","kind":11,"help":"steam_ugc_unsubscribe_item(published_file_id)","hidden":true,"returnType":2,"argCount":1,"args":[
-            2,
-          ],"resourceVersion":"1.0","name":"steam_ugc_unsubscribe_item","tags":[],"resourceType":"GMExtensionFunction",},
-        {"externalName":"steam_ugc_num_subscribed_items","kind":11,"help":"steam_ugc_num_subscribed_items()","hidden":true,"returnType":2,"argCount":1,"args":[],"resourceVersion":"1.0","name":"steam_ugc_num_subscribed_items","tags":[],"resourceType":"GMExtensionFunction",},
-        {"externalName":"steam_ugc_get_subscribed_items","kind":11,"help":"steam_ugc_get_subscribed_items(item_list)","hidden":true,"returnType":2,"argCount":1,"args":[
-            2,
-          ],"resourceVersion":"1.0","name":"steam_ugc_get_subscribed_items","tags":[],"resourceType":"GMExtensionFunction",},
-        {"externalName":"steam_ugc_get_item_install_info","kind":11,"help":"steam_ugc_get_item_install_info(published_file_id, info_map)","hidden":true,"returnType":2,"argCount":1,"args":[
-            2,
-            2,
-          ],"resourceVersion":"1.0","name":"steam_ugc_get_item_install_info","tags":[],"resourceType":"GMExtensionFunction",},
-        {"externalName":"steam_ugc_get_item_update_info","kind":11,"help":"steam_ugc_get_item_update_info(published_file_id, info_map)","hidden":true,"returnType":2,"argCount":1,"args":[
-            2,
-            2,
-          ],"resourceVersion":"1.0","name":"steam_ugc_get_item_update_info","tags":[],"resourceType":"GMExtensionFunction",},
-        {"externalName":"steam_ugc_request_item_details","kind":11,"help":"steam_ugc_request_item_details(published_file_id, max_age_seconds)","hidden":true,"returnType":2,"argCount":1,"args":[
-            2,
-            2,
-          ],"resourceVersion":"1.0","name":"steam_ugc_request_item_details","tags":[],"resourceType":"GMExtensionFunction",},
-        {"externalName":"steam_ugc_delete_item","kind":11,"help":"steam_ugc_request_item_details(published_file_id)","hidden":true,"returnType":2,"argCount":1,"args":[
-            2,
-          ],"resourceVersion":"1.0","name":"steam_ugc_delete_item","tags":[],"resourceType":"GMExtensionFunction",},
-        {"externalName":"steam_ugc_create_query_user","kind":11,"help":"steam_ugc_create_query_user(list_type, match_type, sort_order, page)","hidden":true,"returnType":2,"argCount":1,"args":[
-            2,
-            2,
-            2,
-            2,
-          ],"resourceVersion":"1.0","name":"steam_ugc_create_query_user","tags":[],"resourceType":"GMExtensionFunction",},
-        {"externalName":"steam_ugc_create_query_user_ex","kind":11,"help":"steam_ugc_create_query_user_ex(list_type, match_type, sort_order, page, account_id, creator_app_id, consumer_app_id)","hidden":true,"returnType":2,"argCount":1,"args":[
-            2,
-            2,
-            2,
-            2,
-            2,
-            2,
-            2,
-          ],"resourceVersion":"1.0","name":"steam_ugc_create_query_user_ex","tags":[],"resourceType":"GMExtensionFunction",},
-        {"externalName":"steam_ugc_create_query_all","kind":11,"help":"steam_ugc_create_query_all(query_type, match_type, page);","hidden":true,"returnType":2,"argCount":1,"args":[
-            2,
-            2,
-            2,
-          ],"resourceVersion":"1.0","name":"steam_ugc_create_query_all","tags":[],"resourceType":"GMExtensionFunction",},
-        {"externalName":"steam_ugc_create_query_all_ex","kind":11,"help":"steam_ugc_create_query_all_ex(query_type, match_type, page, creator_app_id, consumer_app_id)","hidden":true,"returnType":2,"argCount":1,"args":[
-            2,
-            2,
-            2,
-            2,
-            2,
-          ],"resourceVersion":"1.0","name":"steam_ugc_create_query_all_ex","tags":[],"resourceType":"GMExtensionFunction",},
-        {"externalName":"steam_ugc_query_set_cloud_filename_filter","kind":11,"help":"steam_ugc_query_set_cloud_filename_filter(ugc_query_handle , should_match);","hidden":true,"returnType":2,"argCount":2,"args":[
-            2,
-            2,
-          ],"resourceVersion":"1.0","name":"steam_ugc_query_set_cloud_filename_filter","tags":[],"resourceType":"GMExtensionFunction",},
-        {"externalName":"steam_ugc_query_set_match_any_tag","kind":11,"help":"steam_ugc_query_set_match_any_tag(ugc_query_handle , match_any_tag)","hidden":true,"returnType":2,"argCount":1,"args":[
-            2,
-            2,
-          ],"resourceVersion":"1.0","name":"steam_ugc_query_set_match_any_tag","tags":[],"resourceType":"GMExtensionFunction",},
-        {"externalName":"steam_ugc_query_set_search_text","kind":11,"help":"steam_ugc_query_set_search_text(ugc_query_handle , search_text)","hidden":true,"returnType":2,"argCount":2,"args":[
-            2,
+          ],},
+        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"steam_file_delete","externalName":"steam_file_delete","kind":11,"help":"steam_file_delete(filename)","hidden":true,"returnType":2,"argCount":2,"args":[
             1,
-          ],"resourceVersion":"1.0","name":"steam_ugc_query_set_search_text","tags":[],"resourceType":"GMExtensionFunction",},
-        {"externalName":"steam_ugc_query_set_ranked_by_trend_days","kind":11,"help":"steam_ugc_query_set_ranked_by_trend_days(ugc_query_handle , days)","hidden":true,"returnType":2,"argCount":1,"args":[
-            2,
-            2,
-          ],"resourceVersion":"1.0","name":"steam_ugc_query_set_ranked_by_trend_days","tags":[],"resourceType":"GMExtensionFunction",},
-        {"externalName":"steam_ugc_query_add_required_tag","kind":11,"help":"steam_ugc_query_add_required_tag(ugc_query_handle , tag_name)","hidden":true,"returnType":2,"argCount":2,"args":[
-            2,
+          ],},
+        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"steam_file_exists","externalName":"steam_file_exists","kind":11,"help":"steam_file_exists(filename)","hidden":true,"returnType":2,"argCount":2,"args":[
             1,
-          ],"resourceVersion":"1.0","name":"steam_ugc_query_add_required_tag","tags":[],"resourceType":"GMExtensionFunction",},
-        {"externalName":"steam_ugc_query_add_excluded_tag","kind":11,"help":"steam_ugc_query_add_excluded_tag(ugc_query_handle , tag_name)","hidden":true,"returnType":2,"argCount":2,"args":[
-            2,
+          ],},
+        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"steam_file_size","externalName":"steam_file_size","kind":11,"help":"steam_file_size(filename)","hidden":true,"returnType":2,"argCount":2,"args":[
             1,
-          ],"resourceVersion":"1.0","name":"steam_ugc_query_add_excluded_tag","tags":[],"resourceType":"GMExtensionFunction",},
-        {"externalName":"steam_ugc_query_set_return_long_description","kind":11,"help":"steam_ugc_query_set_return_long_description(ugc_query_handle , long_description)","hidden":true,"returnType":2,"argCount":1,"args":[
-            2,
+          ],},
+        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"steam_file_share","externalName":"steam_file_share","kind":11,"help":"steam_file_share(filename)","hidden":true,"returnType":2,"argCount":2,"args":[
             1,
-          ],"resourceVersion":"1.0","name":"steam_ugc_query_set_return_long_description","tags":[],"resourceType":"GMExtensionFunction",},
-        {"externalName":"steam_ugc_query_set_return_total_only","kind":11,"help":"steam_ugc_query_set_return_total_only(ugc_query_handle , total_only)","hidden":true,"returnType":2,"argCount":1,"args":[
-            2,
-            2,
-          ],"resourceVersion":"1.0","name":"steam_ugc_query_set_return_total_only","tags":[],"resourceType":"GMExtensionFunction",},
-        {"externalName":"steam_ugc_query_set_allow_cached_response","kind":11,"help":"steam_ugc_query_set_allow_cached_response(ugc_query_handle , check_cache)","hidden":true,"returnType":2,"argCount":1,"args":[
-            2,
-            2,
-          ],"resourceVersion":"1.0","name":"steam_ugc_query_set_allow_cached_response","tags":[],"resourceType":"GMExtensionFunction",},
-        {"externalName":"steam_ugc_send_query","kind":11,"help":"steam_ugc_send_query(ugc_query_handle)","hidden":true,"returnType":2,"argCount":1,"args":[
-            2,
-          ],"resourceVersion":"1.0","name":"steam_ugc_send_query","tags":[],"resourceType":"GMExtensionFunction",},
-        {"externalName":"steam_is_user_logged_on","kind":11,"help":"steam_is_user_logged_on()","hidden":true,"returnType":2,"argCount":1,"args":[],"resourceVersion":"1.0","name":"steam_is_user_logged_on","tags":[],"resourceType":"GMExtensionFunction",},
-        {"externalName":"steam_get_user_steam_id","kind":11,"help":"steam_get_user_steam_id()","hidden":true,"returnType":2,"argCount":1,"args":[],"resourceVersion":"1.0","name":"steam_get_user_steam_id","tags":[],"resourceType":"GMExtensionFunction",},
-        {"externalName":"steam_get_user_account_id","kind":11,"help":"steam_get_user_account_id()","hidden":true,"returnType":2,"argCount":1,"args":[],"resourceVersion":"1.0","name":"steam_get_user_account_id","tags":[],"resourceType":"GMExtensionFunction",},
-        {"externalName":"steam_get_app_id","kind":11,"help":"steam_get_app_id()","hidden":true,"returnType":2,"argCount":1,"args":[],"resourceVersion":"1.0","name":"steam_get_app_id","tags":[],"resourceType":"GMExtensionFunction",},
-        {"externalName":"steam_create_leaderboard","kind":11,"help":"steam_create_leaderboard(lb_name, sort_method, display_type)","hidden":true,"returnType":2,"argCount":2,"args":[
+          ],},
+        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"steam_is_screenshot_requested","externalName":"steam_is_screenshot_requested","kind":11,"help":"steam_is_screenshot_requested()","hidden":true,"returnType":2,"argCount":1,"args":[],},
+        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"steam_send_screenshot","externalName":"steam_send_screenshot","kind":11,"help":"steam_send_screenshot(filename, width, height)","hidden":true,"returnType":2,"argCount":2,"args":[
             1,
             2,
             2,
-          ],"resourceVersion":"1.0","name":"steam_create_leaderboard","tags":[],"resourceType":"GMExtensionFunction",},
-        {"externalName":"steam_upload_score","kind":11,"help":"steam_upload_score(lb_name, score)","hidden":true,"returnType":2,"argCount":2,"args":[
-            1,
+          ],},
+        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"steam_ugc_download","externalName":"steam_ugc_download","kind":11,"help":"steam_ugc_download(ugc_handle, dest_filename)","hidden":true,"returnType":2,"argCount":2,"args":[
             2,
-          ],"resourceVersion":"1.0","name":"steam_upload_score","tags":[],"resourceType":"GMExtensionFunction",},
-        {"externalName":"steam_upload_score_ext","kind":11,"help":"steam_upload_score_ext(lb_name, score, force_update)","hidden":true,"returnType":2,"argCount":2,"args":[
             1,
-            2,
-            2,
-          ],"resourceVersion":"1.0","name":"steam_upload_score_ext","tags":[],"resourceType":"GMExtensionFunction",},
-        {"externalName":"steam_upload_score_buffer","kind":11,"help":"steam_upload_score_buffer(lb_name, score, buffer)","hidden":true,"returnType":2,"argCount":2,"args":[
-            1,
+          ],},
+        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"steam_ugc_create_item","externalName":"steam_ugc_create_item","kind":11,"help":"steam_ugc_create_item(consumer_app_id, file_type)","hidden":true,"returnType":2,"argCount":1,"args":[
             2,
             2,
-          ],"resourceVersion":"1.0","name":"steam_upload_score_buffer","tags":[],"resourceType":"GMExtensionFunction",},
-        {"externalName":"steam_upload_score_buffer_ext","kind":11,"help":"steam_upload_score_buffer(lb_name, score, buffer, force_update)","hidden":true,"returnType":2,"argCount":2,"args":[
+          ],},
+        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"steam_ugc_start_item_update","externalName":"steam_ugc_start_item_update","kind":11,"help":"steam_ugc_start_item_update(consumer_app_id, published_file_id)","hidden":true,"returnType":2,"argCount":1,"args":[
+            2,
+            2,
+          ],},
+        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"steam_ugc_submit_item_update","externalName":"steam_ugc_submit_item_update","kind":11,"help":"steam_ugc_submit_item_update(ugc_update_handle, change_note)","hidden":true,"returnType":2,"argCount":2,"args":[
+            2,
+            1,
+          ],},
+        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"steam_ugc_set_item_title","externalName":"steam_ugc_set_item_title","kind":11,"help":"steam_ugc_set_item_title(ugc_update_handle, title)","hidden":true,"returnType":2,"argCount":2,"args":[
+            2,
+            1,
+          ],},
+        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"steam_ugc_set_item_description","externalName":"steam_ugc_set_item_description","kind":11,"help":"steam_ugc_set_item_description(ugc_update_handle, description)","hidden":true,"returnType":2,"argCount":2,"args":[
+            2,
+            1,
+          ],},
+        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"steam_ugc_set_item_visibility","externalName":"steam_ugc_set_item_visibility","kind":11,"help":"steam_ugc_set_item_visibility(ugc_update_handle, visibility)","hidden":true,"returnType":2,"argCount":1,"args":[
+            2,
+            2,
+          ],},
+        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"steam_ugc_set_item_tags","externalName":"steam_ugc_set_item_tags","kind":11,"help":"steam_ugc_set_item_tags(ugc_update_handle, tags)","hidden":true,"returnType":2,"argCount":1,"args":[
+            2,
+            2,
+          ],},
+        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"steam_ugc_set_item_content","externalName":"steam_ugc_set_item_content","kind":11,"help":"steam_ugc_set_item_content(ugc_update_handle, content)","hidden":true,"returnType":2,"argCount":2,"args":[
+            1,
+            1,
+          ],},
+        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"steam_ugc_set_item_preview","externalName":"steam_ugc_set_item_preview","kind":11,"help":"steam_ugc_set_item_preview(ugc_update_handle, preview)","hidden":true,"returnType":2,"argCount":2,"args":[
+            2,
+            1,
+          ],},
+        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"steam_ugc_get_item_update_progress","externalName":"steam_ugc_get_item_update_progress","kind":11,"help":"steam_ugc_get_item_update_progress(ugc_update_handle, info_map)","hidden":true,"returnType":2,"argCount":1,"args":[
+            2,
+            2,
+          ],},
+        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"steam_ugc_subscribe_item","externalName":"steam_ugc_subscribe_item","kind":11,"help":"steam_ugc_subscribe_item(published_file_id)","hidden":true,"returnType":2,"argCount":1,"args":[
+            2,
+          ],},
+        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"steam_ugc_unsubscribe_item","externalName":"steam_ugc_unsubscribe_item","kind":11,"help":"steam_ugc_unsubscribe_item(published_file_id)","hidden":true,"returnType":2,"argCount":1,"args":[
+            2,
+          ],},
+        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"steam_ugc_num_subscribed_items","externalName":"steam_ugc_num_subscribed_items","kind":11,"help":"steam_ugc_num_subscribed_items()","hidden":true,"returnType":2,"argCount":1,"args":[],},
+        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"steam_ugc_get_subscribed_items","externalName":"steam_ugc_get_subscribed_items","kind":11,"help":"steam_ugc_get_subscribed_items(item_list)","hidden":true,"returnType":2,"argCount":1,"args":[
+            2,
+          ],},
+        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"steam_ugc_get_item_install_info","externalName":"steam_ugc_get_item_install_info","kind":11,"help":"steam_ugc_get_item_install_info(published_file_id, info_map)","hidden":true,"returnType":2,"argCount":1,"args":[
+            2,
+            2,
+          ],},
+        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"steam_ugc_get_item_update_info","externalName":"steam_ugc_get_item_update_info","kind":11,"help":"steam_ugc_get_item_update_info(published_file_id, info_map)","hidden":true,"returnType":2,"argCount":1,"args":[
+            2,
+            2,
+          ],},
+        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"steam_ugc_request_item_details","externalName":"steam_ugc_request_item_details","kind":11,"help":"steam_ugc_request_item_details(published_file_id, max_age_seconds)","hidden":true,"returnType":2,"argCount":1,"args":[
+            2,
+            2,
+          ],},
+        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"steam_ugc_delete_item","externalName":"steam_ugc_delete_item","kind":11,"help":"steam_ugc_request_item_details(published_file_id)","hidden":true,"returnType":2,"argCount":1,"args":[
+            2,
+          ],},
+        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"steam_ugc_create_query_user","externalName":"steam_ugc_create_query_user","kind":11,"help":"steam_ugc_create_query_user(list_type, match_type, sort_order, page)","hidden":true,"returnType":2,"argCount":1,"args":[
+            2,
+            2,
+            2,
+            2,
+          ],},
+        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"steam_ugc_create_query_user_ex","externalName":"steam_ugc_create_query_user_ex","kind":11,"help":"steam_ugc_create_query_user_ex(list_type, match_type, sort_order, page, account_id, creator_app_id, consumer_app_id)","hidden":true,"returnType":2,"argCount":1,"args":[
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+          ],},
+        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"steam_ugc_create_query_all","externalName":"steam_ugc_create_query_all","kind":11,"help":"steam_ugc_create_query_all(query_type, match_type, page);","hidden":true,"returnType":2,"argCount":1,"args":[
+            2,
+            2,
+            2,
+          ],},
+        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"steam_ugc_create_query_all_ex","externalName":"steam_ugc_create_query_all_ex","kind":11,"help":"steam_ugc_create_query_all_ex(query_type, match_type, page, creator_app_id, consumer_app_id)","hidden":true,"returnType":2,"argCount":1,"args":[
+            2,
+            2,
+            2,
+            2,
+            2,
+          ],},
+        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"steam_ugc_query_set_cloud_filename_filter","externalName":"steam_ugc_query_set_cloud_filename_filter","kind":11,"help":"steam_ugc_query_set_cloud_filename_filter(ugc_query_handle , should_match);","hidden":true,"returnType":2,"argCount":2,"args":[
+            2,
+            2,
+          ],},
+        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"steam_ugc_query_set_match_any_tag","externalName":"steam_ugc_query_set_match_any_tag","kind":11,"help":"steam_ugc_query_set_match_any_tag(ugc_query_handle , match_any_tag)","hidden":true,"returnType":2,"argCount":1,"args":[
+            2,
+            2,
+          ],},
+        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"steam_ugc_query_set_search_text","externalName":"steam_ugc_query_set_search_text","kind":11,"help":"steam_ugc_query_set_search_text(ugc_query_handle , search_text)","hidden":true,"returnType":2,"argCount":2,"args":[
+            2,
+            1,
+          ],},
+        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"steam_ugc_query_set_ranked_by_trend_days","externalName":"steam_ugc_query_set_ranked_by_trend_days","kind":11,"help":"steam_ugc_query_set_ranked_by_trend_days(ugc_query_handle , days)","hidden":true,"returnType":2,"argCount":1,"args":[
+            2,
+            2,
+          ],},
+        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"steam_ugc_query_add_required_tag","externalName":"steam_ugc_query_add_required_tag","kind":11,"help":"steam_ugc_query_add_required_tag(ugc_query_handle , tag_name)","hidden":true,"returnType":2,"argCount":2,"args":[
+            2,
+            1,
+          ],},
+        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"steam_ugc_query_add_excluded_tag","externalName":"steam_ugc_query_add_excluded_tag","kind":11,"help":"steam_ugc_query_add_excluded_tag(ugc_query_handle , tag_name)","hidden":true,"returnType":2,"argCount":2,"args":[
+            2,
+            1,
+          ],},
+        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"steam_ugc_query_set_return_long_description","externalName":"steam_ugc_query_set_return_long_description","kind":11,"help":"steam_ugc_query_set_return_long_description(ugc_query_handle , long_description)","hidden":true,"returnType":2,"argCount":1,"args":[
+            2,
+            1,
+          ],},
+        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"steam_ugc_query_set_return_total_only","externalName":"steam_ugc_query_set_return_total_only","kind":11,"help":"steam_ugc_query_set_return_total_only(ugc_query_handle , total_only)","hidden":true,"returnType":2,"argCount":1,"args":[
+            2,
+            2,
+          ],},
+        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"steam_ugc_query_set_allow_cached_response","externalName":"steam_ugc_query_set_allow_cached_response","kind":11,"help":"steam_ugc_query_set_allow_cached_response(ugc_query_handle , check_cache)","hidden":true,"returnType":2,"argCount":1,"args":[
+            2,
+            2,
+          ],},
+        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"steam_ugc_send_query","externalName":"steam_ugc_send_query","kind":11,"help":"steam_ugc_send_query(ugc_query_handle)","hidden":true,"returnType":2,"argCount":1,"args":[
+            2,
+          ],},
+        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"steam_is_user_logged_on","externalName":"steam_is_user_logged_on","kind":11,"help":"steam_is_user_logged_on()","hidden":true,"returnType":2,"argCount":1,"args":[],},
+        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"steam_get_user_steam_id","externalName":"steam_get_user_steam_id","kind":11,"help":"steam_get_user_steam_id()","hidden":true,"returnType":2,"argCount":1,"args":[],},
+        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"steam_get_user_account_id","externalName":"steam_get_user_account_id","kind":11,"help":"steam_get_user_account_id()","hidden":true,"returnType":2,"argCount":1,"args":[],},
+        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"steam_get_app_id","externalName":"steam_get_app_id","kind":11,"help":"steam_get_app_id()","hidden":true,"returnType":2,"argCount":1,"args":[],},
+        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"steam_create_leaderboard","externalName":"steam_create_leaderboard","kind":11,"help":"steam_create_leaderboard(lb_name, sort_method, display_type)","hidden":true,"returnType":2,"argCount":2,"args":[
+            1,
+            2,
+            2,
+          ],},
+        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"steam_upload_score","externalName":"steam_upload_score","kind":11,"help":"steam_upload_score(lb_name, score)","hidden":true,"returnType":2,"argCount":2,"args":[
+            1,
+            2,
+          ],},
+        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"steam_upload_score_ext","externalName":"steam_upload_score_ext","kind":11,"help":"steam_upload_score_ext(lb_name, score, force_update)","hidden":true,"returnType":2,"argCount":2,"args":[
+            1,
+            2,
+            2,
+          ],},
+        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"steam_upload_score_buffer","externalName":"steam_upload_score_buffer","kind":11,"help":"steam_upload_score_buffer(lb_name, score, buffer)","hidden":true,"returnType":2,"argCount":2,"args":[
+            1,
+            2,
+            2,
+          ],},
+        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"steam_upload_score_buffer_ext","externalName":"steam_upload_score_buffer_ext","kind":11,"help":"steam_upload_score_buffer(lb_name, score, buffer, force_update)","hidden":true,"returnType":2,"argCount":2,"args":[
             1,
             2,
             2,
             2,
-          ],"resourceVersion":"1.0","name":"steam_upload_score_buffer_ext","tags":[],"resourceType":"GMExtensionFunction",},
-        {"externalName":"steam_download_scores","kind":11,"help":"steam_download_scores(lb_name, start_idx, end_idx)","hidden":true,"returnType":2,"argCount":2,"args":[
+          ],},
+        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"steam_download_scores","externalName":"steam_download_scores","kind":11,"help":"steam_download_scores(lb_name, start_idx, end_idx)","hidden":true,"returnType":2,"argCount":2,"args":[
             1,
             2,
             2,
-          ],"resourceVersion":"1.0","name":"steam_download_scores","tags":[],"resourceType":"GMExtensionFunction",},
-        {"externalName":"steam_download_scores_around_user","kind":11,"help":"steam_download_scores_around_user(lb_name, range_start, range_end)","hidden":true,"returnType":2,"argCount":2,"args":[
+          ],},
+        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"steam_download_scores_around_user","externalName":"steam_download_scores_around_user","kind":11,"help":"steam_download_scores_around_user(lb_name, range_start, range_end)","hidden":true,"returnType":2,"argCount":2,"args":[
             1,
             2,
             2,
-          ],"resourceVersion":"1.0","name":"steam_download_scores_around_user","tags":[],"resourceType":"GMExtensionFunction",},
-        {"externalName":"steam_download_friends_scores","kind":11,"help":"steam_download_friends_scores(lb_name)","hidden":true,"returnType":2,"argCount":2,"args":[
+          ],},
+        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"steam_download_friends_scores","externalName":"steam_download_friends_scores","kind":11,"help":"steam_download_friends_scores(lb_name)","hidden":true,"returnType":2,"argCount":2,"args":[
             1,
-          ],"resourceVersion":"1.0","name":"steam_download_friends_scores","tags":[],"resourceType":"GMExtensionFunction",},
-        {"externalName":"steam_set_achievement","kind":11,"help":"steam_set_achievement(ach_name)","hidden":true,"returnType":2,"argCount":2,"args":[
+          ],},
+        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"steam_set_achievement","externalName":"steam_set_achievement","kind":11,"help":"steam_set_achievement(ach_name)","hidden":true,"returnType":2,"argCount":2,"args":[
             1,
-          ],"resourceVersion":"1.0","name":"steam_set_achievement","tags":[],"resourceType":"GMExtensionFunction",},
-        {"externalName":"steam_get_achievement","kind":11,"help":"steam_get_achievement(ach_name)","hidden":true,"returnType":2,"argCount":2,"args":[
+          ],},
+        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"steam_get_achievement","externalName":"steam_get_achievement","kind":11,"help":"steam_get_achievement(ach_name)","hidden":true,"returnType":2,"argCount":2,"args":[
             1,
-          ],"resourceVersion":"1.0","name":"steam_get_achievement","tags":[],"resourceType":"GMExtensionFunction",},
-        {"externalName":"steam_clear_achievement","kind":11,"help":"steam_clear_achievement(ach_name)","hidden":true,"returnType":2,"argCount":2,"args":[
+          ],},
+        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"steam_clear_achievement","externalName":"steam_clear_achievement","kind":11,"help":"steam_clear_achievement(ach_name)","hidden":true,"returnType":2,"argCount":2,"args":[
             1,
-          ],"resourceVersion":"1.0","name":"steam_clear_achievement","tags":[],"resourceType":"GMExtensionFunction",},
-        {"externalName":"steam_set_stat_int","kind":11,"help":"steam_set_stat_int(stat_name, value)","hidden":true,"returnType":2,"argCount":2,"args":[
-            1,
-            2,
-          ],"resourceVersion":"1.0","name":"steam_set_stat_int","tags":[],"resourceType":"GMExtensionFunction",},
-        {"externalName":"steam_set_stat_float","kind":11,"help":"steam_set_stat_float(stat_name, value)","hidden":true,"returnType":2,"argCount":2,"args":[
+          ],},
+        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"steam_set_stat_int","externalName":"steam_set_stat_int","kind":11,"help":"steam_set_stat_int(stat_name, value)","hidden":true,"returnType":2,"argCount":2,"args":[
             1,
             2,
-          ],"resourceVersion":"1.0","name":"steam_set_stat_float","tags":[],"resourceType":"GMExtensionFunction",},
-        {"externalName":"steam_set_stat_avg_rate","kind":11,"help":"steam_set_stat_avg_rate(stat_name, session_count, session_length)","hidden":true,"returnType":2,"argCount":2,"args":[
+          ],},
+        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"steam_set_stat_float","externalName":"steam_set_stat_float","kind":11,"help":"steam_set_stat_float(stat_name, value)","hidden":true,"returnType":2,"argCount":2,"args":[
+            1,
+            2,
+          ],},
+        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"steam_set_stat_avg_rate","externalName":"steam_set_stat_avg_rate","kind":11,"help":"steam_set_stat_avg_rate(stat_name, session_count, session_length)","hidden":true,"returnType":2,"argCount":2,"args":[
             1,
             2,
             2,
-          ],"resourceVersion":"1.0","name":"steam_set_stat_avg_rate","tags":[],"resourceType":"GMExtensionFunction",},
-        {"externalName":"steam_get_stat_int","kind":11,"help":"steam_get_stat_int(stat_name)","hidden":true,"returnType":2,"argCount":2,"args":[
+          ],},
+        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"steam_get_stat_int","externalName":"steam_get_stat_int","kind":11,"help":"steam_get_stat_int(stat_name)","hidden":true,"returnType":2,"argCount":2,"args":[
             1,
-          ],"resourceVersion":"1.0","name":"steam_get_stat_int","tags":[],"resourceType":"GMExtensionFunction",},
-        {"externalName":"steam_get_stat_float","kind":11,"help":"steam_get_stat_float(stat_name)","hidden":true,"returnType":2,"argCount":2,"args":[
+          ],},
+        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"steam_get_stat_float","externalName":"steam_get_stat_float","kind":11,"help":"steam_get_stat_float(stat_name)","hidden":true,"returnType":2,"argCount":2,"args":[
             1,
-          ],"resourceVersion":"1.0","name":"steam_get_stat_float","tags":[],"resourceType":"GMExtensionFunction",},
-        {"externalName":"steam_get_stat_avg_rate","kind":11,"help":"steam_get_stat_avg_rate(stat_name)","hidden":true,"returnType":2,"argCount":2,"args":[
+          ],},
+        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"steam_get_stat_avg_rate","externalName":"steam_get_stat_avg_rate","kind":11,"help":"steam_get_stat_avg_rate(stat_name)","hidden":true,"returnType":2,"argCount":2,"args":[
             1,
-          ],"resourceVersion":"1.0","name":"steam_get_stat_avg_rate","tags":[],"resourceType":"GMExtensionFunction",},
-        {"externalName":"steam_reset_all_stats","kind":11,"help":"steam_reset_all_stats()","hidden":true,"returnType":2,"argCount":1,"args":[],"resourceVersion":"1.0","name":"steam_reset_all_stats","tags":[],"resourceType":"GMExtensionFunction",},
-        {"externalName":"steam_reset_all_stats_achievements","kind":11,"help":"steam_reset_all_stats_achievements()","hidden":true,"returnType":2,"argCount":1,"args":[],"resourceVersion":"1.0","name":"steam_reset_all_stats_achievements","tags":[],"resourceType":"GMExtensionFunction",},
-        {"externalName":"steam_stats_ready","kind":11,"help":"steam_stats_ready()","hidden":true,"returnType":2,"argCount":1,"args":[],"resourceVersion":"1.0","name":"steam_stats_ready","tags":[],"resourceType":"GMExtensionFunction",},
-        {"externalName":"steam_update","kind":11,"help":"steam_update()","hidden":true,"returnType":2,"argCount":1,"args":[],"resourceVersion":"1.0","name":"steam_update","tags":[],"resourceType":"GMExtensionFunction",},
-        {"externalName":"steam_init","kind":11,"help":"steam_init()","hidden":true,"returnType":2,"argCount":1,"args":[],"resourceVersion":"1.0","name":"steam_init","tags":[],"resourceType":"GMExtensionFunction",},
-        {"externalName":"steam_initialised","kind":11,"help":"steam_initialised()","hidden":true,"returnType":2,"argCount":1,"args":[],"resourceVersion":"1.0","name":"steam_initialised","tags":[],"resourceType":"GMExtensionFunction",},
-        {"externalName":"PreGraphicsInitialisation","kind":1,"help":"","hidden":false,"returnType":1,"argCount":0,"args":[
+          ],},
+        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"steam_reset_all_stats","externalName":"steam_reset_all_stats","kind":11,"help":"steam_reset_all_stats()","hidden":true,"returnType":2,"argCount":1,"args":[],},
+        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"steam_reset_all_stats_achievements","externalName":"steam_reset_all_stats_achievements","kind":11,"help":"steam_reset_all_stats_achievements()","hidden":true,"returnType":2,"argCount":1,"args":[],},
+        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"steam_stats_ready","externalName":"steam_stats_ready","kind":11,"help":"steam_stats_ready()","hidden":true,"returnType":2,"argCount":1,"args":[],},
+        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"steam_update","externalName":"steam_update","kind":11,"help":"steam_update()","hidden":true,"returnType":2,"argCount":1,"args":[],},
+        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"steam_init","externalName":"steam_init","kind":11,"help":"steam_init()","hidden":true,"returnType":2,"argCount":1,"args":[],},
+        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"steam_initialised","externalName":"steam_initialised","kind":11,"help":"steam_initialised()","hidden":true,"returnType":2,"argCount":1,"args":[],},
+        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"PreGraphicsInitialisation","externalName":"PreGraphicsInitialisation","kind":1,"help":"","hidden":false,"returnType":1,"argCount":0,"args":[
             1,
-          ],"resourceVersion":"1.0","name":"PreGraphicsInitialisation","tags":[],"resourceType":"GMExtensionFunction",},
-        {"externalName":"steam_shutdown","kind":1,"help":"steam_shutdown()","hidden":false,"returnType":1,"argCount":0,"args":[],"resourceVersion":"1.0","name":"steam_shutdown","tags":[],"resourceType":"GMExtensionFunction",},
-        {"externalName":"steam_is_subscribed","kind":1,"help":"steam_is_subscribed()","hidden":false,"returnType":2,"argCount":0,"args":[],"resourceVersion":"1.0","name":"steam_is_subscribed","tags":[],"resourceType":"GMExtensionFunction",},
-        {"externalName":"steam_set_warning_message_hook","kind":1,"help":"steam_set_warning_message_hook()","hidden":false,"returnType":2,"argCount":0,"args":[],"resourceVersion":"1.0","name":"steam_set_warning_message_hook","tags":[],"resourceType":"GMExtensionFunction",},
+          ],},
+        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"steam_shutdown","externalName":"steam_shutdown","kind":1,"help":"steam_shutdown()","hidden":false,"returnType":1,"argCount":0,"args":[],},
+        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"steam_is_subscribed","externalName":"steam_is_subscribed","kind":1,"help":"steam_is_subscribed()","hidden":false,"returnType":2,"argCount":0,"args":[],},
+        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"steam_set_warning_message_hook","externalName":"steam_set_warning_message_hook","kind":1,"help":"steam_set_warning_message_hook()","hidden":false,"returnType":2,"argCount":0,"args":[],},
       ],"constants":[
-        {"value":"{\"Debug\":true,\"AppID\":480}","hidden":false,"resourceVersion":"1.0","name":"PreGraphicsInitialisationArgument","tags":[],"resourceType":"GMExtensionConstant",},
-        {"value":"0","hidden":false,"resourceVersion":"1.0","name":"ov_friends","tags":[],"resourceType":"GMExtensionConstant",},
-        {"value":"1","hidden":false,"resourceVersion":"1.0","name":"ov_community","tags":[],"resourceType":"GMExtensionConstant",},
-        {"value":"2","hidden":false,"resourceVersion":"1.0","name":"ov_players","tags":[],"resourceType":"GMExtensionConstant",},
-        {"value":"3","hidden":false,"resourceVersion":"1.0","name":"ov_settings","tags":[],"resourceType":"GMExtensionConstant",},
-        {"value":"4","hidden":false,"resourceVersion":"1.0","name":"ov_gamegroup","tags":[],"resourceType":"GMExtensionConstant",},
-        {"value":"5","hidden":false,"resourceVersion":"1.0","name":"ov_achievements","tags":[],"resourceType":"GMExtensionConstant",},
-        {"value":"0","hidden":false,"resourceVersion":"1.0","name":"lb_sort_none","tags":[],"resourceType":"GMExtensionConstant",},
-        {"value":"1","hidden":false,"resourceVersion":"1.0","name":"lb_sort_ascending","tags":[],"resourceType":"GMExtensionConstant",},
-        {"value":"2","hidden":false,"resourceVersion":"1.0","name":"lb_sort_descending","tags":[],"resourceType":"GMExtensionConstant",},
-        {"value":"0","hidden":false,"resourceVersion":"1.0","name":"lb_disp_none","tags":[],"resourceType":"GMExtensionConstant",},
-        {"value":"1","hidden":false,"resourceVersion":"1.0","name":"lb_disp_numeric","tags":[],"resourceType":"GMExtensionConstant",},
-        {"value":"2","hidden":false,"resourceVersion":"1.0","name":"lb_disp_time_sec","tags":[],"resourceType":"GMExtensionConstant",},
-        {"value":"3","hidden":false,"resourceVersion":"1.0","name":"lb_disp_time_ms","tags":[],"resourceType":"GMExtensionConstant",},
-        {"value":"1","hidden":false,"resourceVersion":"1.0","name":"ugc_result_success","tags":[],"resourceType":"GMExtensionConstant",},
-        {"value":"0","hidden":false,"resourceVersion":"1.0","name":"ugc_filetype_community","tags":[],"resourceType":"GMExtensionConstant",},
-        {"value":"1","hidden":false,"resourceVersion":"1.0","name":"ugc_filetype_microtrans","tags":[],"resourceType":"GMExtensionConstant",},
-        {"value":"0","hidden":false,"resourceVersion":"1.0","name":"ugc_visibility_public","tags":[],"resourceType":"GMExtensionConstant",},
-        {"value":"1","hidden":false,"resourceVersion":"1.0","name":"ugc_visibility_friends_only","tags":[],"resourceType":"GMExtensionConstant",},
-        {"value":"2","hidden":false,"resourceVersion":"1.0","name":"ugc_visibility_private","tags":[],"resourceType":"GMExtensionConstant",},
-        {"value":"0","hidden":false,"resourceVersion":"1.0","name":"ugc_query_RankedByVote","tags":[],"resourceType":"GMExtensionConstant",},
-        {"value":"1","hidden":false,"resourceVersion":"1.0","name":"ugc_query_RankedByPublicationDate","tags":[],"resourceType":"GMExtensionConstant",},
-        {"value":"2","hidden":false,"resourceVersion":"1.0","name":"ugc_query_AcceptedForGameRankedByAcceptanceDate","tags":[],"resourceType":"GMExtensionConstant",},
-        {"value":"3","hidden":false,"resourceVersion":"1.0","name":"ugc_query_RankedByTrend","tags":[],"resourceType":"GMExtensionConstant",},
-        {"value":"4","hidden":false,"resourceVersion":"1.0","name":"ugc_query_FavoritedByFriendsRankedByPublicationDate","tags":[],"resourceType":"GMExtensionConstant",},
-        {"value":"5","hidden":false,"resourceVersion":"1.0","name":"ugc_query_CreatedByFriendsRankedByPublicationDate","tags":[],"resourceType":"GMExtensionConstant",},
-        {"value":"6","hidden":false,"resourceVersion":"1.0","name":"ugc_query_RankedByNumTimesReported","tags":[],"resourceType":"GMExtensionConstant",},
-        {"value":"7","hidden":false,"resourceVersion":"1.0","name":"ugc_query_CreatedByFollowedUsersRankedByPublicationDate","tags":[],"resourceType":"GMExtensionConstant",},
-        {"value":"8","hidden":false,"resourceVersion":"1.0","name":"ugc_query_NotYetRated","tags":[],"resourceType":"GMExtensionConstant",},
-        {"value":"9","hidden":false,"resourceVersion":"1.0","name":"ugc_query_RankedByTotalVotesAsc","tags":[],"resourceType":"GMExtensionConstant",},
-        {"value":"10","hidden":false,"resourceVersion":"1.0","name":"ugc_query_RankedByVotesUp","tags":[],"resourceType":"GMExtensionConstant",},
-        {"value":"11","hidden":false,"resourceVersion":"1.0","name":"ugc_query_RankedByTextSearch","tags":[],"resourceType":"GMExtensionConstant",},
-        {"value":"0","hidden":false,"resourceVersion":"1.0","name":"ugc_sortorder_CreationOrderDesc","tags":[],"resourceType":"GMExtensionConstant",},
-        {"value":"1","hidden":false,"resourceVersion":"1.0","name":"ugc_sortorder_CreationOrderAsc","tags":[],"resourceType":"GMExtensionConstant",},
-        {"value":"2","hidden":false,"resourceVersion":"1.0","name":"ugc_sortorder_TitleAsc","tags":[],"resourceType":"GMExtensionConstant",},
-        {"value":"3","hidden":false,"resourceVersion":"1.0","name":"ugc_sortorder_LastUpdatedDesc","tags":[],"resourceType":"GMExtensionConstant",},
-        {"value":"4","hidden":false,"resourceVersion":"1.0","name":"ugc_sortorder_SubscriptionDateDesc","tags":[],"resourceType":"GMExtensionConstant",},
-        {"value":"5","hidden":false,"resourceVersion":"1.0","name":"ugc_sortorder_VoteScoreDesc","tags":[],"resourceType":"GMExtensionConstant",},
-        {"value":"6","hidden":false,"resourceVersion":"1.0","name":"ugc_sortorder_ForModeration","tags":[],"resourceType":"GMExtensionConstant",},
-        {"value":"0","hidden":false,"resourceVersion":"1.0","name":"ugc_list_Published","tags":[],"resourceType":"GMExtensionConstant",},
-        {"value":"1","hidden":false,"resourceVersion":"1.0","name":"ugc_list_VotedOn","tags":[],"resourceType":"GMExtensionConstant",},
-        {"value":"2","hidden":false,"resourceVersion":"1.0","name":"ugc_list_VotedUp","tags":[],"resourceType":"GMExtensionConstant",},
-        {"value":"3","hidden":false,"resourceVersion":"1.0","name":"ugc_list_VotedDown","tags":[],"resourceType":"GMExtensionConstant",},
-        {"value":"4","hidden":false,"resourceVersion":"1.0","name":"ugc_list_WillVoteLater","tags":[],"resourceType":"GMExtensionConstant",},
-        {"value":"5","hidden":false,"resourceVersion":"1.0","name":"ugc_list_Favorited","tags":[],"resourceType":"GMExtensionConstant",},
-        {"value":"6","hidden":false,"resourceVersion":"1.0","name":"ugc_list_Subscribed","tags":[],"resourceType":"GMExtensionConstant",},
-        {"value":"7","hidden":false,"resourceVersion":"1.0","name":"ugc_list_UsedOrPlayed","tags":[],"resourceType":"GMExtensionConstant",},
-        {"value":"8","hidden":false,"resourceVersion":"1.0","name":"ugc_list_Followed","tags":[],"resourceType":"GMExtensionConstant",},
-        {"value":"0","hidden":false,"resourceVersion":"1.0","name":"ugc_match_Items","tags":[],"resourceType":"GMExtensionConstant",},
-        {"value":"1","hidden":false,"resourceVersion":"1.0","name":"ugc_match_Items_Mtx","tags":[],"resourceType":"GMExtensionConstant",},
-        {"value":"2","hidden":false,"resourceVersion":"1.0","name":"ugc_match_Items_ReadyToUse","tags":[],"resourceType":"GMExtensionConstant",},
-        {"value":"3","hidden":false,"resourceVersion":"1.0","name":"ugc_match_Collections","tags":[],"resourceType":"GMExtensionConstant",},
-        {"value":"4","hidden":false,"resourceVersion":"1.0","name":"ugc_match_Artwork","tags":[],"resourceType":"GMExtensionConstant",},
-        {"value":"5","hidden":false,"resourceVersion":"1.0","name":"ugc_match_Videos","tags":[],"resourceType":"GMExtensionConstant",},
-        {"value":"6","hidden":false,"resourceVersion":"1.0","name":"ugc_match_Screenshots","tags":[],"resourceType":"GMExtensionConstant",},
-        {"value":"7","hidden":false,"resourceVersion":"1.0","name":"ugc_match_AllGuides","tags":[],"resourceType":"GMExtensionConstant",},
-        {"value":"8","hidden":false,"resourceVersion":"1.0","name":"ugc_match_WebGuides","tags":[],"resourceType":"GMExtensionConstant",},
-        {"value":"9","hidden":false,"resourceVersion":"1.0","name":"ugc_match_IntegratedGuides","tags":[],"resourceType":"GMExtensionConstant",},
-        {"value":"10","hidden":false,"resourceVersion":"1.0","name":"ugc_match_UsableInGame","tags":[],"resourceType":"GMExtensionConstant",},
-        {"value":"11","hidden":false,"resourceVersion":"1.0","name":"ugc_match_ControllerBindings","tags":[],"resourceType":"GMExtensionConstant",},
+        {"resourceType":"GMExtensionConstant","resourceVersion":"1.0","name":"PreGraphicsInitialisationArgument","value":"{\"Debug\":true,\"AppID\":480}","hidden":false,},
+        {"resourceType":"GMExtensionConstant","resourceVersion":"1.0","name":"ov_friends","value":"0","hidden":false,},
+        {"resourceType":"GMExtensionConstant","resourceVersion":"1.0","name":"ov_community","value":"1","hidden":false,},
+        {"resourceType":"GMExtensionConstant","resourceVersion":"1.0","name":"ov_players","value":"2","hidden":false,},
+        {"resourceType":"GMExtensionConstant","resourceVersion":"1.0","name":"ov_settings","value":"3","hidden":false,},
+        {"resourceType":"GMExtensionConstant","resourceVersion":"1.0","name":"ov_gamegroup","value":"4","hidden":false,},
+        {"resourceType":"GMExtensionConstant","resourceVersion":"1.0","name":"ov_achievements","value":"5","hidden":false,},
+        {"resourceType":"GMExtensionConstant","resourceVersion":"1.0","name":"lb_sort_none","value":"0","hidden":false,},
+        {"resourceType":"GMExtensionConstant","resourceVersion":"1.0","name":"lb_sort_ascending","value":"1","hidden":false,},
+        {"resourceType":"GMExtensionConstant","resourceVersion":"1.0","name":"lb_sort_descending","value":"2","hidden":false,},
+        {"resourceType":"GMExtensionConstant","resourceVersion":"1.0","name":"lb_disp_none","value":"0","hidden":false,},
+        {"resourceType":"GMExtensionConstant","resourceVersion":"1.0","name":"lb_disp_numeric","value":"1","hidden":false,},
+        {"resourceType":"GMExtensionConstant","resourceVersion":"1.0","name":"lb_disp_time_sec","value":"2","hidden":false,},
+        {"resourceType":"GMExtensionConstant","resourceVersion":"1.0","name":"lb_disp_time_ms","value":"3","hidden":false,},
+        {"resourceType":"GMExtensionConstant","resourceVersion":"1.0","name":"ugc_result_success","value":"1","hidden":false,},
+        {"resourceType":"GMExtensionConstant","resourceVersion":"1.0","name":"ugc_filetype_community","value":"0","hidden":false,},
+        {"resourceType":"GMExtensionConstant","resourceVersion":"1.0","name":"ugc_filetype_microtrans","value":"1","hidden":false,},
+        {"resourceType":"GMExtensionConstant","resourceVersion":"1.0","name":"ugc_visibility_public","value":"0","hidden":false,},
+        {"resourceType":"GMExtensionConstant","resourceVersion":"1.0","name":"ugc_visibility_friends_only","value":"1","hidden":false,},
+        {"resourceType":"GMExtensionConstant","resourceVersion":"1.0","name":"ugc_visibility_private","value":"2","hidden":false,},
+        {"resourceType":"GMExtensionConstant","resourceVersion":"1.0","name":"ugc_query_RankedByVote","value":"0","hidden":false,},
+        {"resourceType":"GMExtensionConstant","resourceVersion":"1.0","name":"ugc_query_RankedByPublicationDate","value":"1","hidden":false,},
+        {"resourceType":"GMExtensionConstant","resourceVersion":"1.0","name":"ugc_query_AcceptedForGameRankedByAcceptanceDate","value":"2","hidden":false,},
+        {"resourceType":"GMExtensionConstant","resourceVersion":"1.0","name":"ugc_query_RankedByTrend","value":"3","hidden":false,},
+        {"resourceType":"GMExtensionConstant","resourceVersion":"1.0","name":"ugc_query_FavoritedByFriendsRankedByPublicationDate","value":"4","hidden":false,},
+        {"resourceType":"GMExtensionConstant","resourceVersion":"1.0","name":"ugc_query_CreatedByFriendsRankedByPublicationDate","value":"5","hidden":false,},
+        {"resourceType":"GMExtensionConstant","resourceVersion":"1.0","name":"ugc_query_RankedByNumTimesReported","value":"6","hidden":false,},
+        {"resourceType":"GMExtensionConstant","resourceVersion":"1.0","name":"ugc_query_CreatedByFollowedUsersRankedByPublicationDate","value":"7","hidden":false,},
+        {"resourceType":"GMExtensionConstant","resourceVersion":"1.0","name":"ugc_query_NotYetRated","value":"8","hidden":false,},
+        {"resourceType":"GMExtensionConstant","resourceVersion":"1.0","name":"ugc_query_RankedByTotalVotesAsc","value":"9","hidden":false,},
+        {"resourceType":"GMExtensionConstant","resourceVersion":"1.0","name":"ugc_query_RankedByVotesUp","value":"10","hidden":false,},
+        {"resourceType":"GMExtensionConstant","resourceVersion":"1.0","name":"ugc_query_RankedByTextSearch","value":"11","hidden":false,},
+        {"resourceType":"GMExtensionConstant","resourceVersion":"1.0","name":"ugc_sortorder_CreationOrderDesc","value":"0","hidden":false,},
+        {"resourceType":"GMExtensionConstant","resourceVersion":"1.0","name":"ugc_sortorder_CreationOrderAsc","value":"1","hidden":false,},
+        {"resourceType":"GMExtensionConstant","resourceVersion":"1.0","name":"ugc_sortorder_TitleAsc","value":"2","hidden":false,},
+        {"resourceType":"GMExtensionConstant","resourceVersion":"1.0","name":"ugc_sortorder_LastUpdatedDesc","value":"3","hidden":false,},
+        {"resourceType":"GMExtensionConstant","resourceVersion":"1.0","name":"ugc_sortorder_SubscriptionDateDesc","value":"4","hidden":false,},
+        {"resourceType":"GMExtensionConstant","resourceVersion":"1.0","name":"ugc_sortorder_VoteScoreDesc","value":"5","hidden":false,},
+        {"resourceType":"GMExtensionConstant","resourceVersion":"1.0","name":"ugc_sortorder_ForModeration","value":"6","hidden":false,},
+        {"resourceType":"GMExtensionConstant","resourceVersion":"1.0","name":"ugc_list_Published","value":"0","hidden":false,},
+        {"resourceType":"GMExtensionConstant","resourceVersion":"1.0","name":"ugc_list_VotedOn","value":"1","hidden":false,},
+        {"resourceType":"GMExtensionConstant","resourceVersion":"1.0","name":"ugc_list_VotedUp","value":"2","hidden":false,},
+        {"resourceType":"GMExtensionConstant","resourceVersion":"1.0","name":"ugc_list_VotedDown","value":"3","hidden":false,},
+        {"resourceType":"GMExtensionConstant","resourceVersion":"1.0","name":"ugc_list_WillVoteLater","value":"4","hidden":false,},
+        {"resourceType":"GMExtensionConstant","resourceVersion":"1.0","name":"ugc_list_Favorited","value":"5","hidden":false,},
+        {"resourceType":"GMExtensionConstant","resourceVersion":"1.0","name":"ugc_list_Subscribed","value":"6","hidden":false,},
+        {"resourceType":"GMExtensionConstant","resourceVersion":"1.0","name":"ugc_list_UsedOrPlayed","value":"7","hidden":false,},
+        {"resourceType":"GMExtensionConstant","resourceVersion":"1.0","name":"ugc_list_Followed","value":"8","hidden":false,},
+        {"resourceType":"GMExtensionConstant","resourceVersion":"1.0","name":"ugc_match_Items","value":"0","hidden":false,},
+        {"resourceType":"GMExtensionConstant","resourceVersion":"1.0","name":"ugc_match_Items_Mtx","value":"1","hidden":false,},
+        {"resourceType":"GMExtensionConstant","resourceVersion":"1.0","name":"ugc_match_Items_ReadyToUse","value":"2","hidden":false,},
+        {"resourceType":"GMExtensionConstant","resourceVersion":"1.0","name":"ugc_match_Collections","value":"3","hidden":false,},
+        {"resourceType":"GMExtensionConstant","resourceVersion":"1.0","name":"ugc_match_Artwork","value":"4","hidden":false,},
+        {"resourceType":"GMExtensionConstant","resourceVersion":"1.0","name":"ugc_match_Videos","value":"5","hidden":false,},
+        {"resourceType":"GMExtensionConstant","resourceVersion":"1.0","name":"ugc_match_Screenshots","value":"6","hidden":false,},
+        {"resourceType":"GMExtensionConstant","resourceVersion":"1.0","name":"ugc_match_AllGuides","value":"7","hidden":false,},
+        {"resourceType":"GMExtensionConstant","resourceVersion":"1.0","name":"ugc_match_WebGuides","value":"8","hidden":false,},
+        {"resourceType":"GMExtensionConstant","resourceVersion":"1.0","name":"ugc_match_IntegratedGuides","value":"9","hidden":false,},
+        {"resourceType":"GMExtensionConstant","resourceVersion":"1.0","name":"ugc_match_UsableInGame","value":"10","hidden":false,},
+        {"resourceType":"GMExtensionConstant","resourceVersion":"1.0","name":"ugc_match_ControllerBindings","value":"11","hidden":false,},
       ],"ProxyFiles":[
-        {"TargetMask":1,"resourceVersion":"1.0","name":"libSteamworks.dylib","tags":[],"resourceType":"GMProxyFile",},
-        {"TargetMask":7,"resourceVersion":"1.0","name":"Steamworks.so","tags":[],"resourceType":"GMProxyFile",},
-        {"TargetMask":6,"resourceVersion":"1.0","name":"Steamworks_x64.dll","tags":[],"resourceType":"GMProxyFile",},
+        {"resourceType":"GMProxyFile","resourceVersion":"1.0","name":"libSteamworks.dylib","TargetMask":1,},
+        {"resourceType":"GMProxyFile","resourceVersion":"1.0","name":"Steamworks.so","TargetMask":7,},
+        {"resourceType":"GMProxyFile","resourceVersion":"1.0","name":"Steamworks_x64.dll","TargetMask":6,},
       ],"copyToTargets":194,"order":[
         {"name":"steam_user_owns_dlc","path":"extensions/Steamworks/Steamworks.yy",},
         {"name":"steam_user_installed_dlc","path":"extensions/Steamworks/Steamworks.yy",},
@@ -458,8 +461,8 @@
         {"name":"steam_shutdown","path":"extensions/Steamworks/Steamworks.yy",},
         {"name":"steam_is_subscribed","path":"extensions/Steamworks/Steamworks.yy",},
         {"name":"steam_set_warning_message_hook","path":"extensions/Steamworks/Steamworks.yy",},
-      ],"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMExtensionFile",},
-    {"filename":"libsteam_api.dylib","origname":"","init":"","final":"","kind":4,"uncompress":false,"functions":[],"constants":[],"ProxyFiles":[],"copyToTargets":2,"order":[],"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMExtensionFile",},
+      ],},
+    {"resourceType":"GMExtensionFile","resourceVersion":"1.0","name":"","filename":"libsteam_api.dylib","origname":"","init":"","final":"","kind":4,"uncompress":false,"functions":[],"constants":[],"ProxyFiles":[],"copyToTargets":2,"order":[],},
   ],
   "classname": "",
   "tvosclassname": "",
@@ -498,8 +501,4 @@
     "name": "Steamworks",
     "path": "folders/Steamworks.yy",
   },
-  "resourceVersion": "1.2",
-  "name": "Steamworks",
-  "tags": [],
-  "resourceType": "GMExtension",
 }

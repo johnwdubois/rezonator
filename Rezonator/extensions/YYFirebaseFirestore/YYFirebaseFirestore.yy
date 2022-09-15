@@ -1,4 +1,7 @@
 {
+  "resourceType": "GMExtension",
+  "resourceVersion": "1.2",
+  "name": "YYFirebaseFirestore",
   "optionsFile": "options.json",
   "options": [],
   "exportToGame": true,
@@ -16,24 +19,24 @@
   "androidProps": true,
   "installdir": "",
   "files": [
-    {"filename":"FirebaseFirestore.ext","origname":"","init":"","final":"","kind":4,"uncompress":false,"functions":[
-        {"externalName":"FirebaseFirestore_SDK","kind":4,"help":"FirebaseFirestore_SDK(fluent_json)","hidden":false,"returnType":2,"argCount":0,"args":[
+    {"resourceType":"GMExtensionFile","resourceVersion":"1.0","name":"","filename":"FirebaseFirestore.ext","origname":"","init":"","final":"","kind":4,"uncompress":false,"functions":[
+        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"FirebaseFirestore_SDK","externalName":"FirebaseFirestore_SDK","kind":4,"help":"FirebaseFirestore_SDK(fluent_json)","hidden":false,"returnType":2,"argCount":0,"args":[
             1,
-          ],"resourceVersion":"1.0","name":"FirebaseFirestore_SDK","tags":[],"resourceType":"GMExtensionFunction",},
+          ],},
       ],"constants":[],"ProxyFiles":[],"copyToTargets":-1,"order":[
         {"name":"FirebaseFirestore_SDK","path":"extensions/YYFirebaseFirestore/YYFirebaseFirestore.yy",},
-      ],"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMExtensionFile",},
-    {"filename":"FirebaseFirestore.js","origname":"","init":"","final":"","kind":5,"uncompress":false,"functions":[
-        {"externalName":"FirebaseFirestore_SDK","kind":5,"help":"FirebaseFirestore_SDK(json)","hidden":false,"returnType":1,"argCount":0,"args":[
+      ],},
+    {"resourceType":"GMExtensionFile","resourceVersion":"1.0","name":"","filename":"FirebaseFirestore.js","origname":"","init":"","final":"","kind":5,"uncompress":false,"functions":[
+        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"FirebaseFirestore_SDK","externalName":"FirebaseFirestore_SDK","kind":5,"help":"FirebaseFirestore_SDK(json)","hidden":false,"returnType":1,"argCount":0,"args":[
             1,
-          ],"resourceVersion":"1.0","name":"FirebaseFirestore_SDK","tags":[],"resourceType":"GMExtensionFunction",},
+          ],},
       ],"constants":[],"ProxyFiles":[],"copyToTargets":-1,"order":[
         {"name":"FirebaseFirestore_SDK","path":"extensions/YYFirebaseFirestore/YYFirebaseFirestore.yy",},
         {"name":"FirebaseFirestore_SDK","path":"extensions/YYFirebaseFirestore/YYFirebaseFirestore.yy",},
         {"name":"FirebaseFirestore_SDK","path":"extensions/YYFirebaseFirestore/YYFirebaseFirestore.yy",},
         {"name":"FirebaseFirestore_SDK","path":"extensions/YYFirebaseFirestore/YYFirebaseFirestore.yy",},
         {"name":"FirebaseFirestore_SDK","path":"extensions/YYFirebaseFirestore/YYFirebaseFirestore.yy",},
-      ],"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMExtensionFile",},
+      ],},
   ],
   "classname": "YYFirebaseFirestore",
   "tvosclassname": null,
@@ -72,8 +75,4 @@
     "name": "Extensions",
     "path": "folders/Firebase Firestore/Extensions.yy",
   },
-  "resourceVersion": "1.2",
-  "name": "YYFirebaseFirestore",
-  "tags": [],
-  "resourceType": "GMExtension",
 }
