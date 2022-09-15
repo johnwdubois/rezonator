@@ -58,6 +58,7 @@ function scr_newTokenOptions(optionSelected) {
 		obj_control.alarm[11] = 60;
 		obj_control.rightClicked = false;
 		obj_control.before = beforeState;
+		obj_control.recentlyAddedEndnote = optionSelected;
 	}
 
 	with(obj_dropDown){

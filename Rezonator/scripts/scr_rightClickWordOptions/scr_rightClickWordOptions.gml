@@ -249,7 +249,7 @@ function scr_rightClickWordOptions(optionSelected) {
 	else if (optionSelected == "Add endnote") {
 		scr_destroyAllDropDownsOtherThanSelf();
 		var dropDownOptionList = ds_list_create();
-		ds_list_add(dropDownOptionList, ",", ".", "?", "-");
+		ds_list_add(dropDownOptionList, ",", ".", "?", "—", "--");
 		scr_createDropDown(obj_dropDown.x + obj_dropDown.windowWidth, obj_dropDown.y + (obj_dropDown.optionSpacing * optionIndex), dropDownOptionList, global.optionListTypeAddEndnote);
 	}
 

@@ -831,6 +831,7 @@ unitToFlash = "";
 offIndex = false;
 multiWordTag = false;
 setChainName = false;
+recentlyAddedEndnote = ",";
 
 insertTokenStr = "";
 

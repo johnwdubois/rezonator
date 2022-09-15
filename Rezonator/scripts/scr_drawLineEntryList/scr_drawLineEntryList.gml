@@ -198,6 +198,13 @@ function scr_drawLineEntryList(unitID, unitSubMap, entryList, pixelY, OOBCheck){
 					}
 
 				}
+				
+				// if pressing the comma key while moused over a token, spawn an endnote
+				if (keyboard_check_released(188)) {
+					obj_control.rightClickID = currentToken;
+					scr_newTokenOptions(obj_control.recentlyAddedEndnote);
+					obj_control.rightClickID = "";
+				}
 
 			}
 
