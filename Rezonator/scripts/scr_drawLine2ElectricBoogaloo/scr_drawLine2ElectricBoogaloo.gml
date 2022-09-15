@@ -145,7 +145,7 @@ function scr_drawLine2ElectricBoogaloo(){
 		// draw highlight rectangle if selected for merge or move
 		if (instance_exists(obj_dialogueBox)) {
 			var drawHighlightRect = false;
-			if (obj_dialogueBox.mergeUnit) {
+			if (obj_dialogueBox.mergeUnit || obj_control.mergeUnitDifferingParticipants) {
 				if (ds_list_find_index(mergeUnitList,currentUnit) >= 0) {
 					drawHighlightRect = true;
 				}

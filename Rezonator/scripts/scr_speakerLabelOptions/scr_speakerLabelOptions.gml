@@ -190,6 +190,7 @@ function scr_speakerLabelOptions(optionSelected) {
 					var prevUnitTagMap = prevUnitSubMap[? "tagMap"];
 					var prevUnitParticipant = prevUnitTagMap[? global.participantField];
 					show_debug_message("rightClickUnitParticipant: " + string(rightClickUnitParticipant) + ", prevUnitParticipant: " + string(prevUnitParticipant));
+					ds_list_add(obj_control.mergeUnitList, prevUnit, obj_control.rightClickID);
 					if (rightClickUnitParticipant != "" && prevUnitParticipant != "" && is_string(rightClickUnitParticipant) && is_string(prevUnitParticipant)
 					&& rightClickUnitParticipant != prevUnitParticipant) {
 						// alert user that they can't merge units because of differing participants
@@ -201,7 +202,6 @@ function scr_speakerLabelOptions(optionSelected) {
 					}
 					else {
 						// confirm is user wants to merge unit
-						ds_list_add(obj_control.mergeUnitList, prevUnit, obj_control.rightClickID);
 						if (!instance_exists(obj_dialogueBox)) {
 							instance_create_layer(x, y, "InstancesDialogue", obj_dialogueBox);
 							obj_dialogueBox.questionWindowActive = true;
