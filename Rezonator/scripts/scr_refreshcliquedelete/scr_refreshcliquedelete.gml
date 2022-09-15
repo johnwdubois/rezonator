@@ -94,5 +94,7 @@ function scr_refreshCliqueDelete(cliqueID, deletedChainID, deletedEntryID){
 		}
 		ds_list_destroy(chainsKickedOutList);
 	}
+	
+	scr_setCliqueAutoTags(cliqueID);
 
 }

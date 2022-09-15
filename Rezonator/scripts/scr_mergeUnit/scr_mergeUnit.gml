@@ -156,11 +156,27 @@ function scr_mergeUnit(){
 		scr_deleteFromList(unit2InChainsList, currentStack);
 	}
 	
+	var unit1InClique = unit1SubMap[? "inClique"];
+	var unit2InClique = unit2SubMap[? "inClique"];
+	
 	// now let's destroy the unit2 node and all of its contents
 	ds_map_destroy(unit2TagMap);
 	ds_list_destroy(unit2EntryList);
 	ds_map_destroy(unit2SubMap);
 	scr_deleteFromNodeMap(unit2ID);
 	ds_list_destroy(unit2InChainsList);
+	
+	
+	
+	// if both units are in cliques...
+	show_debug_message("scr_mergeUnit, unit1InClique: " + string(unit1InClique) + ", unit2InClique: " + string(unit2InClique));
+	if (is_string(unit1InClique) && unit1InClique != "" && is_string(unit2InClique) && unit2InClique != "") {
+		
+		scr_refreshClique(unit1InClique);
+		if (unit1InClique != unit2InClique) {
+			// if they are different cliques, we merge them
+			scr_mergeCliques(unit1InClique, unit2InClique);
+		}
+	}
 	
 }

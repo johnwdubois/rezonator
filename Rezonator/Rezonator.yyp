@@ -525,6 +525,7 @@
     {"id":{"name":"scr_fillHelpMenuGrid","path":"scripts/scr_fillHelpMenuGrid/scr_fillHelpMenuGrid.yy",},"order":26,},
     {"id":{"name":"scr_strToColor","path":"scripts/scr_strToColor/scr_strToColor.yy",},"order":8,},
     {"id":{"name":"scr_splitTokenFieldOptions","path":"scripts/scr_splitTokenFieldOptions/scr_splitTokenFieldOptions.yy",},"order":85,},
+    {"id":{"name":"scr_setCliqueAutoTags","path":"scripts/scr_setCliqueAutoTags/scr_setCliqueAutoTags.yy",},"order":16,},
     {"id":{"name":"obj_fieldSummaryWindow","path":"objects/obj_fieldSummaryWindow/obj_fieldSummaryWindow.yy",},"order":12,},
     {"id":{"name":"scr_sentStackerLoop","path":"scripts/scr_sentStackerLoop/scr_sentStackerLoop.yy",},"order":4,},
     {"id":{"name":"scr_sortVizSetIDList","path":"scripts/scr_sortVizSetIDList/scr_sortVizSetIDList.yy",},"order":32,},
