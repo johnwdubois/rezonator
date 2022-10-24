@@ -16,9 +16,6 @@ function scr_stackerBranch(){
 		else if (createStacksClique) {
 			alarm[9] = 1;
 		}
-		else if (createStacksClique) {
-			alarm[9] = 1;
-		}
 		createStacksRandom = false;
 		createStacksTurn = false;
 		createStacksSentence = false;

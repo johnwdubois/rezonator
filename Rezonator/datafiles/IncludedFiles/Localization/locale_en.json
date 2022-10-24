@@ -472,6 +472,7 @@
 	"menu_turn" : "Turn",
 	"menu_sentence" : "Sentence",
 	"menu_random" : "Random",
+	"menu_utterance" : "Utterance",
 	"menu_stacktab" : "Stack tab",
 	"menu_show" : "Show",
 	"menu_stacker" : "Stacker",
