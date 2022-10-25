@@ -105,6 +105,7 @@ function scr_closeDialogueBoxVariables(){
 			insertAnyNumber = false;
 			mergeUnitDifferingParticipants = false;
 		}
+		mergeStack = false;
 	}
 	if (instance_exists(obj_openingScreen)) {
 		with (obj_openingScreen) {

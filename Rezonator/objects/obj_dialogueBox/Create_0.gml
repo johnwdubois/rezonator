@@ -57,6 +57,7 @@ searchToBeRemoved = "";
 swapUnitUp = false;
 swapUnitDown = false;
 deleteToken = false;
+mergeStack = false;
 
 
 canDelete = true;

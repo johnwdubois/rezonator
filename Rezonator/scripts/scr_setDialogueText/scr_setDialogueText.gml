@@ -323,5 +323,9 @@ function scr_setDialogueText(){
 				descriptionText = "Different participants: Cannot merge units"; // localize
 			}
 		}
+		if (mergeStack) {
+			titleText = scr_get_translation("option_merge-stack");
+			descriptionText = scr_get_translation("msg_merge-stack");
+		}
 	}
 }

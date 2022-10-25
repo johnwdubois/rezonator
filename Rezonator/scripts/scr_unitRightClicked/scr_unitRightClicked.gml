@@ -39,7 +39,7 @@ function scr_unitRightClicked(){
 				}
 			}
 			
-			ds_list_add(dropDownOptionList, "option_remove-from-stack", "option_rename-stack", "option_create-tree-stack");
+			ds_list_add(dropDownOptionList, "option_remove-from-stack", "option_rename-stack", "option_merge-stack", "option_create-tree-stack");
 		}
 		
 		ds_list_add(dropDownOptionList, "option_create-tree-unit");

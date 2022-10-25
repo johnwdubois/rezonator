@@ -31,6 +31,24 @@ function scr_speakerLabelOptions(optionSelected) {
 				}
 				instance_destroy(obj_dropDown);
 			}
+			else if (optionSelected == "option_merge-stack") {
+				var unitSubMap = global.nodeMap[? obj_control.rightClickID];
+				if (scr_isNumericAndExists(unitSubMap, ds_type_map)) {
+					var inChainsList = unitSubMap[? "inChainsList"];
+					if (ds_list_size(inChainsList) > 0) {
+						with (obj_chain) mergeStackID = inChainsList[| 0];
+						
+						// dialog box telling user to choose other stack to merge with
+						if (!instance_exists(obj_dialogueBox)) {
+							var inst = instance_create_layer(x, y, "InstancesDialogue", obj_dialogueBox);
+							with (inst) {
+								alertWindowActive = true;
+								mergeStack = true;
+							}
+						}
+					}
+				}
+			}
 			else if (optionSelected == "Toggle Line #") {
 				obj_control.showLineNumber = !obj_control.showLineNumber;
 			}
