@@ -153,7 +153,7 @@ function scr_setDialogueText(){
 		if (removeTree) {
 			var searchSubMap = global.treeMap[?stringToBeRemoved];
 			titleText = scr_get_translation("msg_remove") + " " + scr_get_translation("tab_name_tree");
-			descriptionText =  "This will permanently delete the tree:  " + string(searchSubMap[? "name"]);
+			descriptionText =  "This will permanently delete the tree:  " + string(searchSubMap[? "name"]); // localize
 		}
 		if (instance_exists(obj_stacker)) {
 			if (obj_stacker.confirmStackCreate) {
@@ -298,6 +298,12 @@ function scr_setDialogueText(){
 		if (obj_control.splitToken) {
 			titleText = "Pick token split"; // localize
 			descriptionText = "Insert a space at the position you would like to split the token"; // localize
+		}
+		
+		if (instance_exists(obj_stacker)) {
+			if (obj_stacker.confirmStackName) {
+				descriptionText = "Set name for new Stacks"; // localize
+			}
 		}
 	}
 	

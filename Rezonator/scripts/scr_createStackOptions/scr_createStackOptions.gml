@@ -5,9 +5,7 @@ function scr_createStackOptions(optionSelected) {
 	var stackChainList = global.nodeMap[? "stackList"];
 	var doStacksExist = (ds_list_size(stackChainList) > 0);
 	
-	obj_stacker.createStacksRandom = false;
-	obj_stacker.createStacksTurn = false;
-	obj_stacker.createStacksSentence = false;
+	obj_stacker.stackerMode = "";
 	
 
 	switch (optionSelected) {	
@@ -26,10 +24,10 @@ function scr_createStackOptions(optionSelected) {
 				confirmStack = true;
 			}
 			else {
-				obj_stacker.splitSave = true;
-				obj_stacker.alarm[1] = 1;
+				//obj_stacker.splitSave = true;
+				//obj_stacker.alarm[1] = 1;
 			}
-			obj_stacker.createStacksRandom = true;
+			obj_stacker.stackerMode = "menu_random";
 			instance_destroy(obj_dropDown);
 			break;
 		case "menu_turn":
@@ -37,10 +35,10 @@ function scr_createStackOptions(optionSelected) {
 				confirmStack = true;
 			}
 			else {
-				obj_stacker.splitSave = true;
-				obj_stacker.alarm[4] = 1;
+				//obj_stacker.splitSave = true;
+				//obj_stacker.alarm[4] = 1;
 			}
-			obj_stacker.createStacksTurn = true;
+			obj_stacker.stackerMode = "menu_turn";
 			instance_destroy(obj_dropDown);
 			break;
 		case "tag_group":
@@ -48,10 +46,10 @@ function scr_createStackOptions(optionSelected) {
 				confirmStack = true;
 			}
 			else {
-				obj_stacker.splitSave = true;
-				obj_stacker.alarm[8] = 1;
+				//obj_stacker.splitSave = true;
+				//obj_stacker.alarm[8] = 1;
 			}
-			obj_stacker.createStacksGroup = true;
+			obj_stacker.stackerMode = "tag_group";
 			instance_destroy(obj_dropDown);
 			break;
 		case "Unit Label":
@@ -59,21 +57,21 @@ function scr_createStackOptions(optionSelected) {
 				confirmStack = true;
 			}
 			else {
-				obj_stacker.splitSave = true;
-				obj_stacker.alarm[6] = 1;
+				//obj_stacker.splitSave = true;
+				//obj_stacker.alarm[6] = 1;
 			}
-			obj_stacker.createStacksSentence = true;
+			obj_stacker.stackerMode = "sentence";
 			instance_destroy(obj_dropDown);
 			break;
-		case "Prosodic Sentence":
+		case "menu_utterance":
 			if (doStacksExist) {
 				confirmStack = true;
 			}
 			else {
-				obj_stacker.splitSave = true;
-				obj_stacker.alarm[10] = 1;
+				//obj_stacker.splitSave = true;
+				//obj_stacker.alarm[10] = 1;
 			}
-			obj_stacker.createStacksPsent = true;
+			obj_stacker.stackerMode = "menu_utterance";
 			instance_destroy(obj_dropDown);
 			break;
 		case "menu_clique":
@@ -81,17 +79,22 @@ function scr_createStackOptions(optionSelected) {
 				confirmStack = true;
 			}
 			else {
-				obj_stacker.alarm[9] = 1;
+				//obj_stacker.alarm[9] = 1;
 			}
-			obj_stacker.createStacksClique = true;
+			obj_stacker.stackerMode = "menu_clique";
 			instance_destroy(obj_dropDown);
 			break;
 		default:
 			break;
 	}
 	
+	
+	
 	if (confirmStack) {
 		obj_stacker.confirmStackCreate = true;
+	}
+	else {
+		obj_stacker.confirmStackName = true;
 	}
 
 }

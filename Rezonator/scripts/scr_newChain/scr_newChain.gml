@@ -46,8 +46,18 @@ function scr_newChain(ID) {
 	else if (idType == "unit") {
 		obj_chain.stackChainNameCounter++;
 		chainSeq = obj_chain.stackChainNameCounter;
-		chainName = "Stack " + string(chainSeq);
-		chainType = "stack";	
+		chainType = "stack";
+		
+		show_debug_message("newChain, stackerName: " + string(obj_stacker.stackerName))
+		if (is_string(obj_stacker.stackerName) && obj_stacker.stackerName != "" && is_numeric(obj_stacker.stackerNameNum)) {
+			// if we are making stacks through the stacker, we use the stacker's naming convention
+			chainName = obj_stacker.stackerName + " " + string(obj_stacker.stackerNameNum);
+			with (obj_stacker) stackerNameNum++;
+		}
+		else {
+			// otherwise we use default naming convention
+			chainName = "Stack " + string(chainSeq);
+		}
 	}
 
 	

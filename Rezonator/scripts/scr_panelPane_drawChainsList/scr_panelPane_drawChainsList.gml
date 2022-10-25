@@ -201,10 +201,10 @@ function scr_panelPane_drawChainsList() {
 						if (device_mouse_check_button_released(0, mb_left) and !mouseoverCancel and !mouseoverCheckbox) {
 							
 							// deselect all chains of this type and select the current one
-							if (!global.ctrlHold) scr_setValueForAllChains(tabChainType, "selected", false);
-							currentChainSubMap[? "selected"] = true;
-							currentChainSelected = true;
-							scr_addToListOnce(selectedList, currentChainID);
+							//if (!global.ctrlHold) scr_setValueForAllChains(tabChainType, "selected", false);
+							//currentChainSubMap[? "selected"] = true;
+							//currentChainSelected = true;
+							//scr_addToListOnce(selectedList, currentChainID);
 							
 							
 		
@@ -508,10 +508,10 @@ function scr_panelPane_drawChainsList() {
 				obj_chain.currentFocusedChainID = newFocusedChainID;
 				
 				// deselect all chains of this type and select the current one
-				var newFocusedChainSubMap = global.nodeMap[? newFocusedChainID];
-				if (!keyboard_check(vk_shift)) scr_setValueForAllChains(tabChainType, "selected", false);
-				newFocusedChainSubMap[? "selected"] = true;
-				scr_addToListOnce(selectedList, newFocusedChainID);
+				//var newFocusedChainSubMap = global.nodeMap[? newFocusedChainID];
+				//if (!keyboard_check(vk_shift)) scr_setValueForAllChains(tabChainType, "selected", false);
+				//newFocusedChainSubMap[? "selected"] = true;
+				//scr_addToListOnce(selectedList, newFocusedChainID);
 				
 				if (focusedElementY <= y + headerHeight + strHeight) {
 					with (instToScroll) {
@@ -534,10 +534,10 @@ function scr_panelPane_drawChainsList() {
 				obj_chain.currentFocusedChainID = newFocusedChainID;
 				
 				// deselect all chains of this type and select the current one
-				var newFocusedChainSubMap = global.nodeMap[? newFocusedChainID];
-				if (!keyboard_check(vk_shift)) scr_setValueForAllChains(tabChainType, "selected", false);
-				newFocusedChainSubMap[? "selected"] = true;
-				scr_addToListOnce(selectedList, newFocusedChainID);
+				//var newFocusedChainSubMap = global.nodeMap[? newFocusedChainID];
+				//if (!keyboard_check(vk_shift)) scr_setValueForAllChains(tabChainType, "selected", false);
+				//newFocusedChainSubMap[? "selected"] = true;
+				//scr_addToListOnce(selectedList, newFocusedChainID);
 				
 				if (focusedElementY >= y + windowHeight - strHeight) {
 					with (instToScroll) {

@@ -31,9 +31,7 @@ function scr_stackOptions(optionSelected) {
 			break;
 		case "menu_stacker":
 			var dropDownOptionList = ds_list_create();
-			//, "Unit Label"
-			// localize
-			ds_list_add(dropDownOptionList,  "menu_turn", "menu_random","Unit Label", "menu_clique","Prosodic Sentence");
+			ds_list_add(dropDownOptionList,  "menu_turn", "menu_utterance", "menu_clique", "menu_random");
 			if (ds_list_size(dropDownOptionList) > 0) {
 				scr_createDropDown(x + windowWidth, y, dropDownOptionList, global.optionListTypeCreateStack);
 			}

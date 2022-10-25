@@ -83,7 +83,7 @@ function scr_panelPane_drawChains1ToManyHeaders(){
 					break;
 				case 2:
 					if (functionChainList_currentTab == functionChainList_tabStackBrush) {
-						colName = "utterance"; // stacks
+						colName = "menu_utterance"; // stacks
 					}
 					else {
 						colName = scr_get_translation("tag_text"); // rez & track

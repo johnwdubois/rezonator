@@ -1,5 +1,3 @@
-
-
 function scr_dialogueConfirm(){
 	
 	// check if they are trying to download newest version of rezonator
@@ -198,7 +196,15 @@ function scr_dialogueConfirm(){
 		if (obj_control.splitToken) {
 			scr_splitTokenHelper(obj_control.inputText);	
 		}
-			
+		
+		if (instance_exists(obj_stacker)) {
+			if (obj_stacker.confirmStackName) {
+				scr_stackerBranch();
+			}
+		}
+		
+		
+		
 		scr_closeDialogueBoxVariables();
 		instance_destroy();
 
@@ -316,7 +322,7 @@ function scr_dialogueConfirm(){
 		if (instance_exists(obj_stacker)) {
 			if (obj_stacker.confirmStackCreate) {
 				scr_deleteAllChains(global.nodeMap[? "stackList"]);
-				scr_stackerBranch();
+				with (obj_stacker) alarm[11] = 2;
 			}
 		}
 		

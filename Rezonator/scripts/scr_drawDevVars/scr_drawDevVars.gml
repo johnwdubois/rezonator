@@ -87,9 +87,10 @@ function scr_drawDevVars(){
 	draw_text(devVarX - 580, wordTopMargin + (strHeight * 14), "quickPickedChainID: " + string(obj_control.quickPickedChainID));
 	draw_text(devVarX - 580, wordTopMargin + (strHeight * 15), "mergeUnitList: " + scr_getStringOfList(mergeUnitList));
 	draw_text(devVarX - 580, wordTopMargin + (strHeight * 16), "navWindowTaggingField: " + string(navWindowTaggingField));
-	draw_text(devVarX - 580, wordTopMargin + (strHeight * 17), "navWindowTaggingID: " + string(navWindowTaggingID));
-	draw_text(devVarX - 580, wordTopMargin + (strHeight * 18), "navWindowTaggingFocusHeavy: " + string(navWindowTaggingFocusHeavy));
-	draw_text(devVarX - 580, wordTopMargin + (strHeight * 19), "saveToFirebase : " + string(saveToFirebase));
+	draw_text(devVarX - 580, wordTopMargin + (strHeight * 17), "stackerName: " + string(obj_stacker.stackerName));
+	draw_text(devVarX - 580, wordTopMargin + (strHeight * 18), "confirmStackCreate: " + string(obj_stacker.confirmStackCreate));
+	draw_text(devVarX - 580, wordTopMargin + (strHeight * 19), "confirmStackName : " + string(obj_stacker.confirmStackName));
+	draw_text(devVarX - 580, wordTopMargin + (strHeight * 20), "stackerMode : " + string(obj_stacker.stackerMode));
 
 	
 	// reset halign to left

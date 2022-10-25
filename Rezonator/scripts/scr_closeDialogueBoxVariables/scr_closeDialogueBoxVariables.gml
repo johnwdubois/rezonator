@@ -43,6 +43,10 @@ function scr_closeDialogueBoxVariables(){
 			splitTokenCopyTags = true;
 			setChainName = false;
 		}
+		with (obj_stacker) {
+			confirmStackCreate = false;
+			confirmStackName = false;
+		}
 	}
 	if(questionWindowActive){
 		
@@ -88,12 +92,9 @@ function scr_closeDialogueBoxVariables(){
 		}
 		
 		with (obj_stacker) {
+			if (!confirmStackCreate) stackerMode = "";
 			confirmStackCreate = false;
-			createStacksRandom = false;
-			createStacksTurn = false;
-			createStacksSentence = false;
-			createStacksClique = false;
-			createStacksPsent = false;
+			confirmStackName = false;
 		}
 	}
 	if (alertWindowActive) {
