@@ -8,7 +8,6 @@ function scr_newLink(ID) {
 	if (obj_control.mouseoverBackArrowStopClick || obj_control.mouseoverBackArrow) exit;
 	
 	
-	show_debug_message("scr_newLink() ... ID: " + string(ID));
 	ds_list_clear(obj_control.chainStretchCheckList);
 		
 	// make sure this is a valid ID
@@ -18,20 +17,32 @@ function scr_newLink(ID) {
 	
 	var unitID = "";
 	var tokenID = "";
-	var IDsubMap = global.nodeMap[?ID];
-	var type = IDsubMap[?"type"];
-	if(type == "unit"){
+	var type = idSubMap[? "type"];
+	show_debug_message("scr_newLink() ... ID: " + string(ID) + ", type: " + string(type));
+	
+	
+	if (type == "unit") {
 		unitID = ID
-		var entryList = IDsubMap[?"entryList"];
+		var entryList = idSubMap[?"entryList"];
 		if (!scr_isNumericAndExists(entryList, ds_type_list)) exit;
 		if (ds_list_size(entryList) < 1) exit;
 		var firstEntry = entryList[|0];
 		var entrySubMap = global.nodeMap[?firstEntry];
 		tokenID = entrySubMap[?"token"];
 	}
-	else if(type == "token"){	
-		unitID = IDsubMap[?"unit"];
-		tokenID = ID
+	else if (type == "token") {
+		unitID = idSubMap[?"unit"];
+		tokenID = ID;
+	}
+	else if (type == "chunk") {
+		var tokenList = idSubMap[? "tokenList"];
+		if (scr_isNumericAndExists(tokenList, ds_type_list)) {
+			if (ds_list_size(tokenList) >= 1) {
+				var firstToken = tokenList[| 0];
+				var firstTokenSubMap = global.nodeMap[? firstToken];
+				unitID = firstTokenSubMap[? "unit"];
+			}
+		}
 	}
 	
 	

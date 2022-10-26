@@ -432,6 +432,8 @@
 	"msg_warning_clear_focused_chain" : "You are about to clear this chain.",
 	"masg_warning_layer_link" : "You are about to layer one link atop another.",
 	"msg_warning_merge_stacks" : "You are about to merge these two stacks together.",
+	"msg_warning_merge_trails" : "You are about to merge these two trails (track chains) together.",
+	"msg_warning_merge_resonances" : "You are about to merge these two resonances (rez chains) together.",
 	"msg_warning_merge_chains" : "You are about to merge these two chains together.",
 	"msg_stacks_created-1" : "You have created",
 	"msg_stacks_created-2" : "Stacks.\nReplace with automatic Stacks? (Cannot be undone)",

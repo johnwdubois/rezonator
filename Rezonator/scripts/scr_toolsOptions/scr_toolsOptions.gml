@@ -71,7 +71,7 @@ function scr_toolsOptions(optionSelected) {
 			scr_destroyAllDropDownsOtherThanSelf();
 			var dropDownOptionList = ds_list_create();
 			//, "Unit Label"
-			ds_list_add(dropDownOptionList,  "menu_turn", "menu_utterance", "menu_clique", "menu_random");
+			ds_list_add(dropDownOptionList,  "menu_turn", "menu_utterance", "menu_clique", "menu_random", "sentence");
 			if (ds_list_size(dropDownOptionList) > 0) {
 				scr_createDropDown(x + windowWidth, y + (optionSpacing * optionIndex), dropDownOptionList, global.optionListTypeCreateStack);
 			}
