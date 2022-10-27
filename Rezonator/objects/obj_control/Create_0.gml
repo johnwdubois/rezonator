@@ -585,7 +585,7 @@ showSpeakerName = false;
 
 combineChainsFocused = "";
 combineChainsSelected = "";
-stackMerged = false;
+mergeChainType = "";
 rightClickID = "";
 rightClicked = false;
 inChain = false;

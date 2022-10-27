@@ -133,6 +133,8 @@
 	"option_split-token" : "Split token",
 	"option_merge-token" : "Merge token",
 	"option_merge-stack" : "Merge stack",
+	"option_merge-trail" : "Merge trail",
+	"option_merge-resonance" : "Merge resonance",
 	"option_split-unit" : "Split unit",
 	"option_current-chain" : "Current chain",
 	"option_trails" : "Trails",

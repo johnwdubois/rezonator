@@ -122,14 +122,18 @@ function scr_setDialogueText(){
 			titleText = scr_get_translation("help_label_link");
 			descriptionText = scr_get_translation("masg_warning_layer_link");
 		}
-		if(combineChains) {
-			if (obj_control.stackMerged) {
-				titleText = scr_get_translation("Merging Stacks");
+		if (combineChains) {
+			if (obj_control.mergeChainType == "stack") {
+				titleText = scr_get_translation("option_merge-stack");
 				descriptionText = scr_get_translation("msg_warning_merge_stacks");
 			}
-			else{
-				titleText = scr_get_translation("Merging Chains");
-				descriptionText = scr_get_translation("msg_warning_merge_chains");
+			else if (obj_control.mergeChainType == "trail") {
+				titleText = scr_get_translation("option_merge-trail");
+				descriptionText = scr_get_translation("msg_warning_merge_trails");
+			}
+			else if (obj_control.mergeChainType == "resonance") {
+				titleText = scr_get_translation("option_merge-resonance");
+				descriptionText = scr_get_translation("msg_warning_merge_resonances");
 			}
 		}
 		if (removeTagToken || removeTagUnit || removeTagEntry || removeTagChain || removeTagChunk || removeTagLink) {

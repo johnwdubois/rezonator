@@ -36,8 +36,14 @@ function scr_unitClicked(unitID){
 	// merge stacks
 	show_debug_message("scr_unitClicked, stackID: " + string(stackID) + ", mergeStackID: " + string(obj_chain.mergeStackID));
 	if (inChainsListSize >= 1 && is_string(obj_chain.mergeStackID) && obj_chain.mergeStackID != "" && is_string(stackID) && stackID != "") {
-		scr_combineChains(obj_chain.mergeStackID, stackID);
-		with (obj_chain) mergeStackID = "";
+		//scr_combineChains(obj_chain.mergeStackID, stackID);
+		//with (obj_chain) mergeStackID = "";
+		with (obj_control) combineChainsSelected = stackID;
+		var inst = instance_create_layer(x, y, "InstancesDialogue", obj_dialogueBox);
+		with (inst) {
+			questionWindowActive = true;
+			combineChains = true;
+		}
 		exit;
 	}
 	

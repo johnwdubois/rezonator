@@ -37,6 +37,10 @@ function scr_speakerLabelOptions(optionSelected) {
 					var inChainsList = unitSubMap[? "inChainsList"];
 					if (ds_list_size(inChainsList) > 0) {
 						with (obj_chain) mergeStackID = inChainsList[| 0];
+						with (obj_control) {
+							combineChainsFocused = obj_chain.mergeStackID;
+							mergeChainType = "stack";
+						}
 						
 						// dialog box telling user to choose other stack to merge with
 						if (!instance_exists(obj_dialogueBox)) {

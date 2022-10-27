@@ -82,13 +82,16 @@ function scr_closeDialogueBoxVariables(){
 		swapUnitDown = false;
 	
 		with (obj_control) {
-			stackMerged = false;
+			mergeChainType = "";
 			combineChainsFocused = "";
 			combineChainsSelected = "";
 			saveBeforeImporting = false;
 			saveBeforeExiting = false;
 			saveBeforeGameEnd = false;
 			mergeToken = false;
+		}
+		with (obj_chain) {
+			mergeStackID = "";
 		}
 		
 		with (obj_stacker) {

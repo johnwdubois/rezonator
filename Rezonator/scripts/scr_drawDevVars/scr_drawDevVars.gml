@@ -70,9 +70,9 @@ function scr_drawDevVars(){
 	draw_text(devVarX, wordTopMargin + (strHeight * 35), "functionChainList_playShowID: " + string(obj_panelPane.functionChainList_playShowID));
 	
 	draw_text(devVarX - 580, wordTopMargin + (strHeight * 1), "showNav: " + string(obj_panelPane.showNav));
-	draw_text(devVarX - 580, wordTopMargin + (strHeight * 2), "turnDelim: " + string(global.unitImportTurnDelimColName));
-	draw_text(devVarX - 580, wordTopMargin + (strHeight * 3), "selectedTagList: " + scr_getStringOfList(selectedTagList));
-	draw_text(devVarX - 580, wordTopMargin + (strHeight * 4), "navWindowTaggingSingleOptionSelect: " + string(navWindowTaggingSingleOptionSelect));
+	draw_text(devVarX - 580, wordTopMargin + (strHeight * 2), "mergeChainType: " + string(mergeChainType));
+	draw_text(devVarX - 580, wordTopMargin + (strHeight * 3), "combineChainsFocused: " + string(combineChainsFocused));
+	draw_text(devVarX - 580, wordTopMargin + (strHeight * 4), "combineChainsSelected: " + string(combineChainsSelected));
 	draw_text(devVarX - 580, wordTopMargin + (strHeight * 5), "displayTokenField: " + string(global.displayTokenField));
 	draw_text(devVarX - 580, wordTopMargin + (strHeight * 6), "participantField: " + string(global.participantField));
 	draw_text(devVarX - 580, wordTopMargin + (strHeight * 7), "doubleClickTimer: " + string(doubleClickTimer));
