@@ -276,11 +276,7 @@ function scr_panelPane_drawChainsList() {
 					// right-click on chain in chainList
 					if (mouseoverChainNameRect && mouse_check_button_pressed(mb_right) && !mouseoverCancel) {
 						
-						scr_setValueForAllChains(tabChainType, "selected", false);
-						currentChainSubMap[? "selected"] = true;
-						currentChainSelected = true;
-						scr_addToListOnce(selectedList, currentChainID);
-
+						
 						obj_chain.currentFocusedChainID = currentChainID;
 						obj_control.selectedChainID = obj_chain.currentFocusedChainID 
 						obj_control.rightClicked = true;
@@ -390,10 +386,6 @@ function scr_panelPane_drawChainsList() {
 							
 							
 							// simulate right-click
-							scr_setValueForAllChains(tabChainType, "selected", false);
-							currentChainSubMap[? "selected"] = true;
-							currentChainSelected = true;
-							scr_addToListOnce(selectedList, currentChainID);
 
 							obj_chain.currentFocusedChainID = currentChainID;
 							obj_control.selectedChainID = obj_chain.currentFocusedChainID 
