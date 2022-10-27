@@ -252,6 +252,16 @@ function scr_rightClickWordOptions(optionSelected) {
 		ds_list_add(dropDownOptionList, ",", ".", "?", "—", "--");
 		scr_createDropDown(obj_dropDown.x + obj_dropDown.windowWidth, obj_dropDown.y + (obj_dropDown.optionSpacing * optionIndex), dropDownOptionList, global.optionListTypeAddEndnote);
 	}
+	else if (optionSelected == "Extend to previous token") {
+		show_debug_message("extend to prev!");
+		scr_extendChunk(obj_control.rightClickID, true);
+		with (obj_dropDown) instance_destroy();
+	}
+	else if (optionSelected == "Extend to next token") {
+		show_debug_message("extend to next!");
+		scr_extendChunk(obj_control.rightClickID, false);
+		with (obj_dropDown) instance_destroy();
+	}
 
 
 	obj_control.rightClicked = false;
