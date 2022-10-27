@@ -1,5 +1,3 @@
-
-
 function scr_drawDevVars(){
 	
 	// drawing settings
@@ -72,7 +70,7 @@ function scr_drawDevVars(){
 	draw_text(devVarX, wordTopMargin + (strHeight * 35), "functionChainList_playShowID: " + string(obj_panelPane.functionChainList_playShowID));
 	
 	draw_text(devVarX - 580, wordTopMargin + (strHeight * 1), "showNav: " + string(obj_panelPane.showNav));
-	draw_text(devVarX - 580, wordTopMargin + (strHeight * 2), "showNavLeft: " + string(obj_panelPane.showNavLeft));
+	draw_text(devVarX - 580, wordTopMargin + (strHeight * 2), "turnDelim: " + string(global.unitImportTurnDelimColName));
 	draw_text(devVarX - 580, wordTopMargin + (strHeight * 3), "selectedTagList: " + scr_getStringOfList(selectedTagList));
 	draw_text(devVarX - 580, wordTopMargin + (strHeight * 4), "navWindowTaggingSingleOptionSelect: " + string(navWindowTaggingSingleOptionSelect));
 	draw_text(devVarX - 580, wordTopMargin + (strHeight * 5), "displayTokenField: " + string(global.displayTokenField));

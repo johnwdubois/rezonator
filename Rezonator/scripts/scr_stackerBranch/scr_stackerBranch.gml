@@ -38,7 +38,12 @@ function scr_stackerBranch(){
 			scr_randomStackerLoop();
 		}
 		else if (stackerMode == "menu_turn") {
-			scr_turnStackerLoop();
+			if (is_string(global.unitImportTurnDelimColName) && global.unitImportTurnDelimColName != "") {
+				scr_turnStackerLoop();
+			}
+			else if (is_string(global.participantField) && global.participantField != "") {
+				scr_sentStackerLoop();
+			}
 		}
 		else if (stackerMode == "sentence") {
 			scr_sentStackerLoop();
