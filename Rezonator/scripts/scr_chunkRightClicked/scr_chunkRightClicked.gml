@@ -42,7 +42,7 @@ function scr_chunkRightClicked(){
 					
 		}
 
-		ds_list_add(dropDownOptionList, "tab_name_tag", "option_delete-chunk", "option_sync-unit-tab", "Extend to previous token", "Extend to next token");
+		ds_list_add(dropDownOptionList, "tab_name_tag", "option_delete-chunk", "option_sync-unit-tab", "option_extend-chunk-previous", "option_extend-chunk-next", "option_remove-chunk-start", "option_remove-chunk-end");
 		obj_control.inChunk = true;
 				
 		// Create the dropdown

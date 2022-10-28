@@ -152,6 +152,7 @@
     {"id":{"name":"scr_gridListWindow","path":"scripts/scr_gridListWindow/scr_gridListWindow.yy",},"order":5,},
     {"id":{"name":"scr_scrollMouseControls","path":"scripts/scr_scrollMouseControls/scr_scrollMouseControls.yy",},"order":9,},
     {"id":{"name":"scr_checkUnitStillInClique","path":"scripts/scr_checkUnitStillInClique/scr_checkUnitStillInClique.yy",},"order":12,},
+    {"id":{"name":"scr_removeFromChunk","path":"scripts/scr_removeFromChunk/scr_removeFromChunk.yy",},"order":10,},
     {"id":{"name":"scr_steamInit","path":"scripts/scr_steamInit/scr_steamInit.yy",},"order":30,},
     {"id":{"name":"scr_chain1ToManyFieldOptions","path":"scripts/scr_chain1ToManyFieldOptions/scr_chain1ToManyFieldOptions.yy",},"order":46,},
     {"id":{"name":"scr_setChainName","path":"scripts/scr_setChainName/scr_setChainName.yy",},"order":49,},

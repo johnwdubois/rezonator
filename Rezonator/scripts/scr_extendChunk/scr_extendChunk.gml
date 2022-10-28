@@ -1,10 +1,10 @@
 function scr_extendChunk(chunkID, extendToPrev){
 	
+	// make sure we have a valid chunk with a tokenlist
 	var chunkSubMap = global.nodeMap[? chunkID];
 	if (!scr_isNumericAndExists(chunkSubMap, ds_type_map)) {
 		exit;
 	}
-	
 	var tokenList = chunkSubMap[? "tokenList"];
 	if (!scr_isNumericAndExists(tokenList, ds_type_list)) {
 		exit;
@@ -12,6 +12,7 @@ function scr_extendChunk(chunkID, extendToPrev){
 
 	
 	if (extendToPrev) {
+		// if extending to previous, we can just use the first token's prevToken field
 		var firstToken = tokenList[| 0];
 		var firstTokenSubMap = global.nodeMap[? firstToken];
 		var prevToken = firstTokenSubMap[? "prevToken"];
@@ -20,6 +21,7 @@ function scr_extendChunk(chunkID, extendToPrev){
 		}
 	}
 	else {
+		// if extending to next, we have to find the next token by looking in the unit's entrylist
 		var lastToken = tokenList[| ds_list_size(tokenList) - 1];
 		var lastTokenSubMap = global.nodeMap[? lastToken];
 		var lastTokenUnit = lastTokenSubMap[? "unit"];
