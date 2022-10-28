@@ -1,9 +1,10 @@
 function scr_createStackOptions(optionSelected) {
 
-	
+	var optionIndex = ds_list_find_index(optionList, optionSelected);
 	var confirmStack = false;
 	var stackChainList = global.nodeMap[? "stackList"];
 	var doStacksExist = (ds_list_size(stackChainList) > 0);
+	var noConfirm = false;
 	
 	obj_stacker.stackerMode = "";
 	
@@ -31,15 +32,25 @@ function scr_createStackOptions(optionSelected) {
 			instance_destroy(obj_dropDown);
 			break;
 		case "menu_turn":
-			if (doStacksExist) {
-				confirmStack = true;
+			
+			// if the user has both turndelim and participant, show another dropdown with both options
+			if (is_string(global.unitImportTurnDelimColName) && global.unitImportTurnDelimColName != ""
+			&& is_string(global.participantField) && global.participantField != "") {
+				noConfirm = true;
+				var dropDownOptionList = ds_list_create();
+				ds_list_add(dropDownOptionList, "From participant labels", "From turn delimiter");
+				scr_createDropDown(x + windowWidth, y + (optionSpacing * optionIndex), dropDownOptionList, global.optionListTypeTurnStacker);
 			}
 			else {
-				//obj_stacker.splitSave = true;
-				//obj_stacker.alarm[4] = 1;
+				if (doStacksExist) {
+					confirmStack = true;
+				}
+				instance_destroy(obj_dropDown);
+				
+				// if they only have turndelim or only have participant, use the one they have
+				if (is_string(global.unitImportTurnDelimColName) && global.unitImportTurnDelimColName != "") obj_stacker.stackerMode = "menu_turn";
+				else if (is_string(global.participantField) && global.participantField != "") obj_stacker.stackerMode = "participant";
 			}
-			obj_stacker.stackerMode = "menu_turn";
-			instance_destroy(obj_dropDown);
 			break;
 		case "tag_group":
 			if (doStacksExist) {
@@ -89,12 +100,14 @@ function scr_createStackOptions(optionSelected) {
 	}
 	
 	
-	
-	if (confirmStack) {
-		obj_stacker.confirmStackCreate = true;
-	}
-	else {
-		obj_stacker.confirmStackName = true;
+	if (!noConfirm) {
+		if (confirmStack) {
+			obj_stacker.confirmStackCreate = true;
+		}
+		else {
+			obj_stacker.confirmStackName = true;
+		}
+		with (obj_dropDown) instance_destroy();
 	}
 
 }

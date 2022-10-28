@@ -41,7 +41,9 @@ function scr_stackerBranch(){
 			if (is_string(global.unitImportTurnDelimColName) && global.unitImportTurnDelimColName != "") {
 				scr_turnStackerLoop();
 			}
-			else if (is_string(global.participantField) && global.participantField != "") {
+		}
+		else if (stackerMode == "participant") {
+			if (is_string(global.participantField) && global.participantField != "") {
 				scr_sentStackerLoop();
 			}
 		}

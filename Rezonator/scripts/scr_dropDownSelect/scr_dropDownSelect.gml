@@ -145,7 +145,6 @@ function scr_dropDownSelect(optionSelected) {
 	else if (optionListType == global.optionListTypeCreateStack) //29
 	{
 	    scr_createStackOptions(optionSelected);
-	    instance_destroy();
 	}
 	//token selection
 	else if (optionListType == global.optionListTypeUnitSelection) //31
@@ -405,6 +404,11 @@ function scr_dropDownSelect(optionSelected) {
 	else if (optionListType == global.optionListTypeAddEndnote) //93
 	{
 		scr_newTokenOptions(optionSelected);
+		with (obj_dropDown) instance_destroy();
+	}
+	else if (optionListType == global.optionListTypeTurnStacker) //94
+	{
+		scr_turnStackerOptions(optionSelected);
 		with (obj_dropDown) instance_destroy();
 	}
 

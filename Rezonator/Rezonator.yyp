@@ -629,6 +629,7 @@
     {"id":{"name":"rm_mainScreen","path":"rooms/rm_mainScreen/rm_mainScreen.yy",},"order":1,},
     {"id":{"name":"FirebaseREST_firestore_cursor","path":"scripts/FirebaseREST_firestore_cursor/FirebaseREST_firestore_cursor.yy",},"order":8,},
     {"id":{"name":"spr_audioTool","path":"sprites/spr_audioTool/spr_audioTool.yy",},"order":6,},
+    {"id":{"name":"scr_turnStackerOptions","path":"scripts/scr_turnStackerOptions/scr_turnStackerOptions.yy",},"order":86,},
     {"id":{"name":"obj_exampleWindow","path":"objects/obj_exampleWindow/obj_exampleWindow.yy",},"order":13,},
     {"id":{"name":"rm_importScreen","path":"rooms/rm_importScreen/rm_importScreen.yy",},"order":2,},
     {"id":{"name":"FriebaseREST_Firestore_urlUpdateMask","path":"scripts/FriebaseREST_Firestore_urlUpdateMask/FriebaseREST_Firestore_urlUpdateMask.yy",},"order":20,},
