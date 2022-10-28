@@ -15,7 +15,7 @@ function scr_splitTokenHelper(inputText){
 			exit;
 		}
 		var tokenText = string_copy(inputText, splitIndex + 1, string_length(inputText) - splitIndex);
-		scr_newToken(tokenText, origTokenID)
+		scr_newToken(tokenText, origTokenID);
 		
 		
 		
@@ -25,6 +25,16 @@ function scr_splitTokenHelper(inputText){
 		var newTagMap = newSubMap[? "tagMap"];
 		
 		origTagMap[? splitField] = string_copy(origTagMap[? splitField], 1, splitIndex - 1);
+		
+		
+		// create chunk of both tokens
+		ds_list_clear(obj_control.inRectTokenIDList);
+		ds_list_add(obj_control.inRectTokenIDList, origTokenID, newTokenID);
+		ds_list_clear(obj_control.inRectUnitIDList);
+		var origUnitID = origSubMap[? "unit"];
+		ds_list_add(obj_control.inRectUnitIDList, origUnitID);
+		obj_control.mouseoverPanelPane = false;
+		scr_createChunk();
 	}
 	obj_control.before = beforeVal;
 }

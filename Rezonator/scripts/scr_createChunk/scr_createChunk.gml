@@ -2,7 +2,7 @@
 
 function scr_createChunk(){
 	
-	show_debug_message("....scr_createChunk, mouseoverPanelPane: " + string(obj_control.mouseoverPanelPane) + ", delayInput: " + string(global.delayInput));
+	show_debug_message("....scr_createChunk, mouseoverPanelPane: " + string(obj_control.mouseoverPanelPane) + ", delayInput: " + string(global.delayInput) + ", obj_control.rightClickID: " + string(obj_control.rightClickID));
 	
 	if (obj_control.mouseoverPanelPane) exit;
 	if (global.delayInput > 0) exit;
@@ -183,21 +183,53 @@ function scr_createChunk(){
 	if (ds_list_size(chunksInChainsList) < 1) {
 		//in chain making tool
 		if(obj_toolPane.currentMode == obj_toolPane.modeRez || obj_toolPane.currentMode == obj_toolPane.modeTrack){
-			//chain is already seleceted
-			if(obj_chain.currentFocusedChainID != ""){
-				var focusedChainSubMap = global.nodeMap[?obj_chain.currentFocusedChainID];
+			if (obj_control.splitToken) {
+				var rightClickTokenSubMap = global.nodeMap[? obj_control.rightClickID];
+				var rightClickTokenInEntryList = rightClickTokenSubMap[? "inEntryList"];
+				var rightClickTokenInChainsList = rightClickTokenSubMap[? "inChainsList"];
+				if (ds_list_size(rightClickTokenInChainsList) >= 1 && ds_list_size(rightClickTokenInEntryList) >= 1) {
+					var rightClickTokenEntry = rightClickTokenInEntryList[| 0];
+					var rightClickTokenEntrySubMap = global.nodeMap[? rightClickTokenEntry];
+					var rightClickTokenEntryType = rightClickTokenEntrySubMap[? "type"];
+					var rightClickTokenChain = rightClickTokenInChainsList[| 0];
+					var rightClickTokenChainSubMap = global.nodeMap[? rightClickTokenChain];
+					var rightClickTokenChainType = rightClickTokenChainSubMap[? "type"];
+					
+					show_debug_message("rightClickTokenEntryType: " + string(rightClickTokenEntryType) + ", rightClickTokenChainType: " + string(rightClickTokenChainType));
+					
+					if ((rightClickTokenEntryType == "track" && rightClickTokenChainType == "trail") || (rightClickTokenEntryType == "rez" && rightClickTokenChainType == "resonance")) {
+					
+						if (rightClickTokenChainType == "resonance") obj_toolPane.currentMode = obj_toolPane.modeRez;
+						else if (rightClickTokenChainType == "trail") obj_toolPane.currentMode = obj_toolPane.modeTrack;
+					
+						obj_chain.currentFocusedChainID = rightClickTokenChain;
+					
+						obj_control.hoverChunkID = chunkID;
+						scr_newLink(obj_control.hoverChunkID);
+						global.delayInput = 5;
+					
+						rightClickTokenChainSubMap[? "focused"] = rightClickTokenInEntryList[| 0];
+						scr_deleteFromChain(true);
+					}
+				}
+			}
+			else {
+				//chain is already seleceted
+				if(obj_chain.currentFocusedChainID != ""){
+					var focusedChainSubMap = global.nodeMap[?obj_chain.currentFocusedChainID];
 				
-				if(focusedChainSubMap[?"type"] != "stack"){
-					scr_newLink(chunkID);
+					if(focusedChainSubMap[?"type"] != "stack"){
+						scr_newLink(chunkID);
+					}
+					else{
+						scr_newChain(chunkID);
+						scr_newLink(chunkID);
+					}
 				}
 				else{
 					scr_newChain(chunkID);
 					scr_newLink(chunkID);
 				}
-			}
-			else{
-				scr_newChain(chunkID);
-				scr_newLink(chunkID);
 			}
 		}
 	}
