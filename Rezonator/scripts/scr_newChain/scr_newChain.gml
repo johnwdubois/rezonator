@@ -70,22 +70,36 @@ function scr_newChain(ID) {
 	
 	
 	// if this is a token and we're making a rez chain, we will put the chain into a clique
-	if (idType == "token" && obj_toolPane.currentMode == obj_toolPane.modeRez) {
-		var unitID = idSubMap[? "unit"];
-		var unitSubMap = global.nodeMap[? unitID];
-		var unitInCliqueID = unitSubMap[? "inClique"];
-		if (is_string(unitInCliqueID) && unitInCliqueID != "") {
-			// the new chain should continue the clique this unit is in
-			chainInCliqueID = unitInCliqueID;
-			with (obj_chain) newChainRefreshClique = chainInCliqueID;
+	if (obj_toolPane.currentMode == obj_toolPane.modeRez) {
+		var unitID = "";
+		if (idType == "token") {
+			unitID = idSubMap[? "unit"];
 		}
-		else {
-			// the new chain should create a new clique
-			chainInCliqueID = scr_newClique(obj_chain.currentChainID, unitID);
-			unitSubMap[? "inClique"] = chainInCliqueID;
+		else if (idType == "chunk") {
+			var firstToken = scr_getFirstWordOfChunk(ID);
+			show_debug_message("scr_newChain, chunk firstToken: " + string(firstToken));
+			if (is_string(firstToken) && firstToken != "") {
+				var firstTokenSubMap = global.nodeMap[? firstToken];
+				unitID = firstTokenSubMap[? "unit"];
+			}
+		}
+
+		if (is_string(unitID) && unitID != "") {
+			var unitSubMap = global.nodeMap[? unitID];
+			var unitInCliqueID = unitSubMap[? "inClique"];
+			if (is_string(unitInCliqueID) && unitInCliqueID != "") {
+				// the new chain should continue the clique this unit is in
+				chainInCliqueID = unitInCliqueID;
+				with (obj_chain) newChainRefreshClique = chainInCliqueID;
+			}
+			else {
+				// the new chain should create a new clique
+				chainInCliqueID = scr_newClique(obj_chain.currentChainID, unitID);
+				unitSubMap[? "inClique"] = chainInCliqueID;
+			}
+			show_debug_message("scr_newChain, unitInCliqueID: " + string(unitInCliqueID));
 		}
 	}
-	
 	
 	
 	// if user is doing a quickstack, and they are starting the quickstack on a unit that is not in a chain, and this is the first chain being made, let's save this chain
@@ -115,6 +129,7 @@ function scr_newChain(ID) {
 	}
 	else if (chainType == "resonance") {
 		ds_map_add(newChainSubMap, "inClique", chainInCliqueID);
+		show_debug_message("newChain, chainInCliqueID: " + string(chainInCliqueID));
 	}
 
 	obj_chain.currentFocusedChainID = obj_chain.currentChainID;

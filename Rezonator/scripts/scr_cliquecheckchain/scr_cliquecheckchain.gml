@@ -9,7 +9,19 @@ function scr_cliqueCheckChain(chain, cliqueChainList, cliqueUnitList){
 		var currentEntrySubMap = global.nodeMap[? currentEntry];
 		var currentToken = currentEntrySubMap[? "token"];
 		var currentTokenSubMap = global.nodeMap[? currentToken];
-		var currentUnit = currentTokenSubMap[? "unit"];
+		
+		// the token could actually be a chunk, either way we need to get the unit its on
+		var currentUnit = "";
+		var currentTokenType = currentTokenSubMap[? "type"];
+		if (currentTokenType == "token") {
+			currentUnit = currentTokenSubMap[? "unit"];
+		}
+		else if (currentTokenType == "chunk") {
+			var chunkFirstToken = scr_getFirstWordOfChunk(currentToken);
+			var chunkFirstTokenSubMap = global.nodeMap[? chunkFirstToken];
+			currentUnit = chunkFirstTokenSubMap[? "unit"];
+		}
+	
 		if (ds_list_find_index(cliqueUnitList, currentUnit) == -1) {
 			ds_list_add(cliqueUnitList, currentUnit);
 			ds_list_add(discoveredUnitList, currentUnit);
