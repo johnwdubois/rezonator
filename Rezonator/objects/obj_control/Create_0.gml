@@ -874,6 +874,8 @@ navWindowTaggingKeyboardInput = false;
 mouseoverBackArrow = false;
 mouseoverBackArrowStopClick = false;
 
+createChunkNoChain = false;
+
 //lock fields
 with (obj_alarm3) alarm[4] = 2;
 

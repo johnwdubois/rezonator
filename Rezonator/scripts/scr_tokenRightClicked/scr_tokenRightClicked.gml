@@ -13,17 +13,18 @@ function scr_tokenRightClicked(){
 		
 		var unitSubMap = global.nodeMap[?unitID];
 		var entryList = unitSubMap[?"entryList"];
-		var firstEntry = entryList[|0];
-		var firstEntrySubMap = global.nodeMap[?firstEntry];
+		var firstEntry = entryList[| 0];
+		var firstEntrySubMap = global.nodeMap[? firstEntry];
+		var lastEntry = entryList[| ds_list_size(entryList) - 1];
+		var lastEntrySubMap = global.nodeMap[? lastEntry];
 		
 		obj_control.rightClicked = true;
 		obj_control.wideDropDown = true;
 		var dropDownOptionList = ds_list_create();
 			
-		// check if this is the first word in its line
-
-		var firstWordInLine = (firstEntrySubMap[?"token"] == obj_control.rightClickID);
-
+		// check if this is the first/last token in its unit
+		var isFirstToken = (firstEntrySubMap[? "token"] == obj_control.rightClickID);
+		var isLastToken = (lastEntrySubMap[? "token"] == obj_control.rightClickID);
 
 		
 		ds_list_add(dropDownOptionList, "option_sync-unit-tab");
@@ -47,7 +48,9 @@ function scr_tokenRightClicked(){
 		
 		// add the rest of the dropdown options
 		ds_list_add(dropDownOptionList, "word_tip", "option_zero", "help_label_new_token", "Add endnote", "option_delete-token", "option_split-token"); // localize
-		if (!firstWordInLine) ds_list_add(dropDownOptionList, "option_merge-token", "option_split-unit");
+		if (!isFirstToken) ds_list_add(dropDownOptionList, "option_merge-token", "option_split-unit");
+		if (!isLastToken) ds_list_add(dropDownOptionList, "option_extend-chunk-next");
+		if (!isFirstToken) ds_list_add(dropDownOptionList, "option_extend-chunk-previous");
 		ds_list_add(dropDownOptionList, "tab_name_tag");
 		
 		// Create the dropdown

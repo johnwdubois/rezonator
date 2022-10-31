@@ -1,5 +1,3 @@
-
-
 function scr_createChunk(){
 	
 	show_debug_message("....scr_createChunk, mouseoverPanelPane: " + string(obj_control.mouseoverPanelPane) + ", delayInput: " + string(global.delayInput) + ", obj_control.rightClickID: " + string(obj_control.rightClickID));
@@ -168,7 +166,7 @@ function scr_createChunk(){
 	var chunksInChainsList = chunkSubMap[? "inChainsList"];
 	if (ds_list_size(chunksInChainsList) < 1) {
 		//in chain making tool
-		if(obj_toolPane.currentMode == obj_toolPane.modeRez || obj_toolPane.currentMode == obj_toolPane.modeTrack){
+		if (obj_toolPane.currentMode == obj_toolPane.modeRez || obj_toolPane.currentMode == obj_toolPane.modeTrack) {
 			if (obj_control.splitToken) {
 				var rightClickTokenSubMap = global.nodeMap[? obj_control.rightClickID];
 				var rightClickTokenInEntryList = rightClickTokenSubMap[? "inEntryList"];
@@ -199,20 +197,19 @@ function scr_createChunk(){
 					}
 				}
 			}
-			else {
+			else if (!obj_control.createChunkNoChain) {
 				//chain is already seleceted
-				if(obj_chain.currentFocusedChainID != ""){
-					var focusedChainSubMap = global.nodeMap[?obj_chain.currentFocusedChainID];
-				
-					if(focusedChainSubMap[?"type"] != "stack"){
+				if (obj_chain.currentFocusedChainID != "") {
+					var focusedChainSubMap = global.nodeMap[? obj_chain.currentFocusedChainID];
+					if (focusedChainSubMap[?"type"] != "stack") {
 						scr_newLink(chunkID);
 					}
-					else{
+					else {
 						scr_newChain(chunkID);
 						scr_newLink(chunkID);
 					}
 				}
-				else{
+				else {
 					scr_newChain(chunkID);
 					scr_newLink(chunkID);
 				}
@@ -233,4 +230,6 @@ function scr_createChunk(){
 	}
 
 	global.delayInput = 5;
+	obj_control.createChunkNoChain = false;
+	
 }

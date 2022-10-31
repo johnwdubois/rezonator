@@ -9,9 +9,9 @@ function scr_splitTokenHelper(inputText){
 	var origTagMap = origSubMap[?"tagMap"];
 	var beforeVal = obj_control.before;
 	obj_control.before = false;
-	if(string_count(" ", inputText) > 0){
+	if (string_count(" ", inputText) > 0) {
 		var splitIndex = string_pos(" ", inputText);
-		if(splitIndex == string_length(inputText) or splitIndex == 0){
+		if (splitIndex == string_length(inputText) or splitIndex == 0) {
 			exit;
 		}
 		var tokenText = string_copy(inputText, splitIndex + 1, string_length(inputText) - splitIndex);
