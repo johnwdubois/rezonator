@@ -52,7 +52,15 @@ function scr_deleteFromChain(sortVizSetList) {
 		// if we're deleting a rez entry, we should check if the unit should be removed from its clique
 		if (focusedEntryType == "rez") {
 			var focusedEntryTokenSubMap = global.nodeMap[? focusedEntryToken];
-			var focusedEntryUnit = focusedEntryTokenSubMap[? "unit"];
+			var focusedEntryUnit = "";
+			if (scr_isChunk(focusedEntryToken)) {
+				var firstToken = scr_getFirstWordOfChunk(focusedEntryToken);
+				var firstTokenSubMap = global.nodeMap[? firstToken];
+				focusedEntryUnit = firstTokenSubMap[? "unit"];
+			}
+			else {
+				focusedEntryUnit = focusedEntryTokenSubMap[? "unit"];
+			}
 			scr_checkUnitStillInClique(focusedEntryUnit, focusedEntry);
 		}
 	}

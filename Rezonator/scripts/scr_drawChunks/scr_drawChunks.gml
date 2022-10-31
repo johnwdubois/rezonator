@@ -1,4 +1,6 @@
 function scr_drawChunks(){
+	
+	
 	draw_set_halign(fa_center);
 	var mouseoverChunkList = ds_list_create();
 	var mouseoverChunkX1 = -1;
@@ -314,14 +316,10 @@ function scr_drawChunks(){
 						}
 					}
 				}
-				
-				
-				
-				
 			}
 			
 			// add chunk to pre-existing chain
-			if (ds_list_size(hoverChunkInChainsList) < 1) {
+			//if (ds_list_size(hoverChunkInChainsList) < 1) {
 				obj_chain.currentFocusedChunkID = obj_control.hoverChunkID;
 				if (obj_chain.currentFocusedChainID != "") {						
 					var chainSubMap = global.nodeMap[? obj_chain.currentFocusedChainID];
@@ -330,7 +328,7 @@ function scr_drawChunks(){
 						global.delayInput = 5;
 					}
 				}
-				else{
+				else {
 					scr_newChain(obj_control.hoverChunkID);
 					scr_newLink(obj_control.hoverChunkID);
 					global.delayInput = 5;
@@ -340,16 +338,16 @@ function scr_drawChunks(){
 					obj_chain.currentFocusedChunkID = "";
 				}
 					
-			}
-			else {
-				// if this chunk is in at least 1 chain, we will focus the first chain its inChainsList
-				obj_chain.currentFocusedChunkID = "";
-				var chainToRefocus = hoverChunkInChainsList[| 0];
-				if (is_string(chainToRefocus) && ds_map_exists(global.nodeMap, chainToRefocus)) {
-					obj_chain.currentFocusedChainID = chainToRefocus;
-					scr_refocusChainEntry(obj_control.hoverChunkID);
-				}
-			}
+			//}
+			//else {
+			//	// if this chunk is in at least 1 chain, we will focus the first chain its inChainsList
+			//	obj_chain.currentFocusedChunkID = "";
+			//	var chainToRefocus = hoverChunkInChainsList[| 0];
+			//	if (is_string(chainToRefocus) && ds_map_exists(global.nodeMap, chainToRefocus)) {
+			//		obj_chain.currentFocusedChainID = chainToRefocus;
+			//		scr_refocusChainEntry(obj_control.hoverChunkID);
+			//	}
+			//}
 			
 
 			
