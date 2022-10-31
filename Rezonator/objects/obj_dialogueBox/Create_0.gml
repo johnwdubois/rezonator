@@ -58,6 +58,7 @@ swapUnitUp = false;
 swapUnitDown = false;
 deleteToken = false;
 mergeStack = false;
+chunkAlreadyExists = false;
 
 
 canDelete = true;

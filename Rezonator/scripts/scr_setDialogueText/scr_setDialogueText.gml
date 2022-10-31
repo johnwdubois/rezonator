@@ -331,5 +331,8 @@ function scr_setDialogueText(){
 			titleText = scr_get_translation("option_merge-stack");
 			descriptionText = scr_get_translation("msg_merge-stack");
 		}
+		if (chunkAlreadyExists) {
+			descriptionText = scr_get_translation("msg_duplicate-chunk");
+		}
 	}
 }

@@ -9,6 +9,9 @@ function scr_extendChunk(chunkID, extendToPrev){
 	if (!scr_isNumericAndExists(tokenList, ds_type_list)) {
 		exit;
 	}
+	
+	
+	var tokenToInsert = "";
 
 	
 	if (extendToPrev) {
@@ -17,7 +20,7 @@ function scr_extendChunk(chunkID, extendToPrev){
 		var firstTokenSubMap = global.nodeMap[? firstToken];
 		var prevToken = firstTokenSubMap[? "prevToken"];
 		if (is_string(prevToken) && prevToken != "") {
-			ds_list_insert(tokenList, 0, prevToken);
+			tokenToInsert = prevToken;
 		}
 	}
 	else {
@@ -42,11 +45,37 @@ function scr_extendChunk(chunkID, extendToPrev){
 						var nextEntry = lastTokenUnitEntryList[| i + 1];
 						var nextEntrySubMap = global.nodeMap[? nextEntry];
 						var nextToken = nextEntrySubMap[? "token"];
-						ds_list_add(tokenList, nextToken);
+						tokenToInsert = nextToken;
 					}
 				}
 			}
 		}
+	}
+	
+	
+	if (is_string(tokenToInsert) && tokenToInsert != "") {
+		
+		// save list before adding
+		var listBeforeAdding = ds_list_create();
+		ds_list_copy(listBeforeAdding, tokenList);
+		
+		if (extendToPrev) ds_list_insert(tokenList, 0, tokenToInsert);
+		else ds_list_add(tokenList, tokenToInsert);
+		
+		// show alert if chunk already exists
+		if (scr_checkChunkAlreadyExists(chunkID, tokenList)) {
+			show_debug_message("scr_extendChunk, chunk already exists");
+			var inst = instance_create_layer(x, y, "InstancesDialogue", obj_dialogueBox);
+			with (inst) {
+				alertWindowActive = true;
+				chunkAlreadyExists = true;
+			}
+			
+			// if the chunk already exists, we will restore the original list
+			ds_list_copy(tokenList, listBeforeAdding);
+		}
+		
+		ds_list_destroy(listBeforeAdding);
 	}
 
 }

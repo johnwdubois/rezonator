@@ -13,22 +13,8 @@ function scr_createChunk(){
 	var inRectTokenIDListSize = ds_list_size(obj_control.inRectTokenIDList);
 	var inRectUnitIDListSize = ds_list_size(obj_control.inRectUnitIDList);
 	
-	for(var i = 0; i < inRectTokenIDListSize; i++){
-		var tokenToCheck = obj_control.inRectTokenIDList[|i];
-		var tokenSubMap = global.nodeMap[? tokenToCheck];
-		var tokenInChunkList = tokenSubMap[? "inChunkList"];
-		var tokenInChunkListSize = ds_list_size(tokenInChunkList);
-		for(var j =0; j < tokenInChunkListSize; j++){
-			var chunkToCheck = tokenInChunkList[|j];
-			var chunkSubMap = global.nodeMap[?chunkToCheck];
-			var tokenList = chunkSubMap[? "tokenList"];
-			if(scr_compareLists(tokenList, obj_control.inRectTokenIDList)){
-				show_debug_message("CHUNK ALREADY EXISTS")
-				exit;
-			}
-		}
-	}
-	
+	// make sure this chunk doesn't already chunk
+	if (scr_checkChunkAlreadyExists(undefined, obj_control.inRectTokenIDList)) exit;
 	
 	if (inRectUnitIDListSize > 0 && inRectTokenIDListSize > 0) { // Make sure the box captured something
 

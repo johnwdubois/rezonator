@@ -383,6 +383,7 @@
 	"msg_saving-default-directory" : "Error in saving. Please save file outside of Default Discourse folder",
 	"msg_transcript" : "Transcript",
 	"msg_order-notfound" : "No turn order found",
+	"msg_duplicate-chunk" : "Two chunks cannot contain identical tokens",
 	"key_quit-chain" : "[ESC], q",
 	"key_delete_link" : "[DEL]",
 	"key_stack" : "k",
