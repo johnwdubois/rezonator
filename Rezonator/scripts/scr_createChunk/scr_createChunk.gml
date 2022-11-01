@@ -193,7 +193,7 @@ function scr_createChunk(){
 						global.delayInput = 5;
 					
 						rightClickTokenChainSubMap[? "focused"] = rightClickTokenInEntryList[| 0];
-						scr_deleteFromChain(true);
+						//scr_deleteFromChain(true);
 					}
 				}
 			}

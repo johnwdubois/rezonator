@@ -34,7 +34,8 @@ function scr_splitTokenHelper(inputText){
 		var origUnitID = origSubMap[? "unit"];
 		ds_list_add(obj_control.inRectUnitIDList, origUnitID);
 		obj_control.mouseoverPanelPane = false;
-		scr_createChunk();
+		var chunkID = scr_createChunk();
+		scr_removeTokensInChunkFromChain(chunkID, obj_chain.currentFocusedChainID);
 	}
 	obj_control.before = beforeVal;
 }

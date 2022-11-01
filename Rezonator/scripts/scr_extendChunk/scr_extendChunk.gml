@@ -157,6 +157,7 @@ function scr_extendChunk(ID, extendToPrev){
 				
 				obj_chain.currentFocusedChainID = currentChain;
 				scr_newLink(chunkID);
+				scr_removeTokensInChunkFromChain(chunkID, currentChain);
 			}
 		}
 	}
