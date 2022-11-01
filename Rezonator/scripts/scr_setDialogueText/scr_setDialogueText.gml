@@ -37,6 +37,9 @@ function scr_setDialogueText(){
 			titleText = scr_get_translation("Clear Current Chains");
 			descriptionText = "You are about to clear these chains.";
 		}
+		if (confirmSideLink) {
+			descriptionText = scr_get_translation("msg_side-link");
+		}
 		if(mergeUnit){
 			var unitSeq1 = 0;
 			var unitSeq2 = 0;

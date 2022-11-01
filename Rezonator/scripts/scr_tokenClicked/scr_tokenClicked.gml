@@ -150,6 +150,17 @@ function scr_tokenClicked(tokenID){
 	if (!ds_map_exists(global.nodeMap, obj_chain.currentFocusedChainID)) {
 		scr_newChain(tokenID);
 	}
+	else {
+		if (scr_checkUnitSideLink(unitID, obj_chain.currentFocusedChainID)) {
+			var inst = instance_create_layer(0, 0, "InstancesDialogue", obj_dialogueBox);
+			with (inst) {
+				questionWindowActive = true;
+				confirmSideLink = true;
+			}
+			obj_control.sideLinkTokenID = tokenID;
+			exit;
+		}
+	}
 
 	// add new link and refresh chain grid
 	scr_newLink(tokenID);

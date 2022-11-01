@@ -80,6 +80,7 @@ function scr_closeDialogueBoxVariables(){
 		searchToBeRemoved = "";
 		swapUnitUp = false;
 		swapUnitDown = false;
+		confirmSideLink = false;
 	
 		with (obj_control) {
 			mergeChainType = "";
@@ -89,6 +90,7 @@ function scr_closeDialogueBoxVariables(){
 			saveBeforeExiting = false;
 			saveBeforeGameEnd = false;
 			mergeToken = false;
+			sideLinkTokenID = "";
 		}
 		with (obj_chain) {
 			mergeStackID = "";

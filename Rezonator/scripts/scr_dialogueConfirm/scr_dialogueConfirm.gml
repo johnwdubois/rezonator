@@ -319,6 +319,13 @@ function scr_dialogueConfirm(){
 			scr_combineChains(obj_control.combineChainsFocused, obj_control.combineChainsSelected);
 		}
 		
+		if (confirmSideLink) {
+			if (is_string(obj_control.sideLinkTokenID) && obj_control.sideLinkTokenID != "") {
+				scr_newLink(obj_control.sideLinkTokenID);
+			}
+			obj_control.sideLinkTokenID = "";
+		}
+		
 		if (instance_exists(obj_stacker)) {
 			if (obj_stacker.confirmStackCreate) {
 				scr_deleteAllChains(global.nodeMap[? "stackList"]);

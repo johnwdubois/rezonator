@@ -606,6 +606,7 @@
     {"id":{"name":"scr_loadTagJson","path":"scripts/scr_loadTagJson/scr_loadTagJson.yy",},"order":0,},
     {"id":{"name":"scr_setUnitYValues","path":"scripts/scr_setUnitYValues/scr_setUnitYValues.yy",},"order":28,},
     {"id":{"name":"scr_updateTagInfoErrorCol","path":"scripts/scr_updateTagInfoErrorCol/scr_updateTagInfoErrorCol.yy",},"order":7,},
+    {"id":{"name":"scr_checkUnitSideLink","path":"scripts/scr_checkUnitSideLink/scr_checkUnitSideLink.yy",},"order":61,},
     {"id":{"name":"scr_identifyBlocks","path":"scripts/scr_identifyBlocks/scr_identifyBlocks.yy",},"order":3,},
     {"id":{"name":"obj_buh","path":"objects/obj_buh/obj_buh.yy",},"order":6,},
     {"id":{"name":"scr_importConlluAutotag","path":"scripts/scr_importConlluAutotag/scr_importConlluAutotag.yy",},"order":32,},

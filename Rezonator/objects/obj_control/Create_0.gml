@@ -871,6 +871,8 @@ navWindowTaggingEscape = false;
 navWindowTaggingSingleOptionSelect = false;
 navWindowTaggingKeyboardInput = false;
 
+sideLinkTokenID = "";
+
 mouseoverBackArrow = false;
 mouseoverBackArrowStopClick = false;
 

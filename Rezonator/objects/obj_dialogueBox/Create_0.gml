@@ -59,6 +59,7 @@ swapUnitDown = false;
 deleteToken = false;
 mergeStack = false;
 chunkAlreadyExists = false;
+confirmSideLink = false;
 
 
 canDelete = true;

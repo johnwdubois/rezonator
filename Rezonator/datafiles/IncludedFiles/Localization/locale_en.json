@@ -462,6 +462,7 @@
 	"msg_specify_line" : "Line number",
 	"msg_go-to-guide" : "Visit Rezonator.com for documentation",
 	"msg_merge-stack" : "Select another stack to merge with",
+	"msg_side-link" : "You are about to make a side-link",
 	"menu_save-as" : "Save as",
 	"menu_delete-all" : "Delete all",
 	"menu_track_chains_pl" : "Trails",
