@@ -12,7 +12,10 @@ function scr_newLink(ID) {
 		
 	// make sure this is a valid ID
 	var idSubMap = global.nodeMap[? ID];
-	if (!scr_isNumericAndExists(idSubMap, ds_type_map)) exit;
+	if (!scr_isNumericAndExists(idSubMap, ds_type_map)) {
+		show_debug_message("scr_newLink, ID does not exist: " + string(ID) + ", exiting...")
+		exit;
+	}
 	
 	
 	var unitID = "";

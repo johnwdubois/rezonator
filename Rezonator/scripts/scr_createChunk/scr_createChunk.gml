@@ -219,6 +219,7 @@ function scr_createChunk(){
 	
 	// if there is a focused chain, unfocus the chunk
 	if (obj_chain.currentFocusedChainID != "") {
+		show_debug_message("scr_createChunk, unfocusing chunk");
 		obj_chain.currentFocusedChunkID = "";
 	}
 	
@@ -231,5 +232,7 @@ function scr_createChunk(){
 
 	global.delayInput = 5;
 	obj_control.createChunkNoChain = false;
+	
+	return chunkID;
 	
 }

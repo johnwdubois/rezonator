@@ -92,6 +92,7 @@ function scr_extendChunk(ID, extendToPrev){
 		// if we have a token, we need to create a chunk
 		var tokenID = ID;
 		var tokenSubMap = subMap;
+		var chunkID = "";
 		
 		if (extendToPrev) {
 			var prevToken = tokenSubMap[? "prevToken"];
@@ -103,7 +104,7 @@ function scr_extendChunk(ID, extendToPrev){
 				ds_list_add(obj_control.inRectUnitIDList, origUnitID);
 				obj_control.mouseoverPanelPane = false;
 				obj_control.createChunkNoChain = true;
-				scr_createChunk();
+				chunkID = scr_createChunk();
 			}
 		}
 		else {
@@ -132,19 +133,19 @@ function scr_extendChunk(ID, extendToPrev){
 				ds_list_add(obj_control.inRectUnitIDList, origUnitID);
 				obj_control.mouseoverPanelPane = false;
 				obj_control.createChunkNoChain = true;
-				scr_createChunk();
+				chunkID = scr_createChunk();
 			}
 		}
 		
 		
-		
 		var tokenInChainsList = tokenSubMap[? "inChainsList"];
-		var tokenInChainsListSize = ds_list_size(tokenInChainsList)
-		if (tokenInChainsListSize >= 1) {
+		var tokenInChainsListSize = ds_list_size(tokenInChainsList);
+		if (tokenInChainsListSize >= 1 && is_string(chunkID) && chunkID != "") {
 			for (var i = 0; i < tokenInChainsListSize; i++) {
 				var currentChain = tokenInChainsList[| i];
 				var currentChainSubMap = global.nodeMap[? currentChain];
 				var currentChainType = currentChainSubMap[? "type"];
+				show_debug_message("scr_extendChunk, currentChainType: " + string(currentChainType));
 				if (currentChainType == "resonance") {
 					obj_toolPane.currentMode = obj_toolPane.modeRez;
 					obj_toolPane.currentTool = obj_toolPane.toolRezBrush;
@@ -155,7 +156,7 @@ function scr_extendChunk(ID, extendToPrev){
 				}
 				
 				obj_chain.currentFocusedChainID = currentChain;
-				scr_newLink(obj_chain.currentFocusedChunkID);
+				scr_newLink(chunkID);
 			}
 		}
 	}
