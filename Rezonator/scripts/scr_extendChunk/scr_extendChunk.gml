@@ -135,6 +135,29 @@ function scr_extendChunk(ID, extendToPrev){
 				scr_createChunk();
 			}
 		}
+		
+		
+		
+		var tokenInChainsList = tokenSubMap[? "inChainsList"];
+		var tokenInChainsListSize = ds_list_size(tokenInChainsList)
+		if (tokenInChainsListSize >= 1) {
+			for (var i = 0; i < tokenInChainsListSize; i++) {
+				var currentChain = tokenInChainsList[| i];
+				var currentChainSubMap = global.nodeMap[? currentChain];
+				var currentChainType = currentChainSubMap[? "type"];
+				if (currentChainType == "resonance") {
+					obj_toolPane.currentMode = obj_toolPane.modeRez;
+					obj_toolPane.currentTool = obj_toolPane.toolRezBrush;
+				}
+				else if (currentChainType == "trail") {
+					obj_toolPane.currentMode = obj_toolPane.modeTrack;
+					obj_toolPane.currentTool = obj_toolPane.toolTrackBrush;
+				}
+				
+				obj_chain.currentFocusedChainID = currentChain;
+				scr_newLink(obj_chain.currentFocusedChunkID);
+			}
+		}
 	}
 
 }
