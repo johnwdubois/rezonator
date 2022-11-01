@@ -318,10 +318,31 @@ function scr_drawChunks(){
 				}
 			}
 			
-			// add chunk to pre-existing chain
-			//if (ds_list_size(hoverChunkInChainsList) < 1) {
-				obj_chain.currentFocusedChunkID = obj_control.hoverChunkID;
-				if (obj_chain.currentFocusedChainID != "") {						
+			
+			// check if this chunk is in a chain that matches the mode we are on
+			var chainToRefocus = "";
+			var hoverChunkInChainsListSize = ds_list_size(hoverChunkInChainsList);
+			for (var i = 0; i < hoverChunkInChainsListSize; i++) {
+				var currentChain = hoverChunkInChainsList[| i];
+				var currentChainSubMap = global.nodeMap[? currentChain];
+				var currentChainType = currentChainSubMap[? "type"];
+				if (currentChainType == "resonance" && obj_toolPane.currentMode == obj_toolPane.modeRez) {
+					chainToRefocus = currentChain;
+				}
+				else if (currentChainType == "trail" && obj_toolPane.currentMode == obj_toolPane.modeTrack) {
+					chainToRefocus = currentChain;
+				}
+			}
+			
+			if (is_string(chainToRefocus) && chainToRefocus != "") {
+				obj_chain.currentFocusedChainID = chainToRefocus;
+				scr_refocusChainEntry(obj_control.hoverChunkID);
+			}
+			else {
+		
+				
+				if (is_string(obj_chain.currentFocusedChainID) && obj_chain.currentFocusedChainID != "") {
+					// add chunk to pre-existing chain
 					var chainSubMap = global.nodeMap[? obj_chain.currentFocusedChainID];
 					if (scr_isNumericAndExists(chainSubMap, ds_type_map)) {
 						scr_newLink(obj_control.hoverChunkID);
@@ -329,27 +350,24 @@ function scr_drawChunks(){
 					}
 				}
 				else {
+					// start a new chain
 					scr_newChain(obj_control.hoverChunkID);
 					scr_newLink(obj_control.hoverChunkID);
 					global.delayInput = 5;
 				}
+				
+				
+				
+				obj_chain.currentFocusedChunkID = obj_control.hoverChunkID;
+
+					
+					
 				// if there is a focused chain, unfocus the chunk
 				if (obj_chain.currentFocusedChainID != "") {
 					obj_chain.currentFocusedChunkID = "";
 				}
 					
-			//}
-			//else {
-			//	// if this chunk is in at least 1 chain, we will focus the first chain its inChainsList
-			//	obj_chain.currentFocusedChunkID = "";
-			//	var chainToRefocus = hoverChunkInChainsList[| 0];
-			//	if (is_string(chainToRefocus) && ds_map_exists(global.nodeMap, chainToRefocus)) {
-			//		obj_chain.currentFocusedChainID = chainToRefocus;
-			//		scr_refocusChainEntry(obj_control.hoverChunkID);
-			//	}
-			//}
-			
-
+			}
 			
 		}
 			
