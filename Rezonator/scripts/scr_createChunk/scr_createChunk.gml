@@ -121,7 +121,7 @@ function scr_createChunk(){
 			show_debug_message("no lowestEncapsulatingChunk");
 			
 		}
-		else{
+		else {
 			
 			show_debug_message("highestEncapsulatedNest: " + string(highestEncapsulatedNest));
 			show_debug_message("lowestEncapsulatingNest: " + string(lowestEncapsulatingNest));
@@ -129,7 +129,7 @@ function scr_createChunk(){
 			chunkSubMap[? "nest"] = highestEncapsulatedNest + 1;
 			
 			ds_list_clear(obj_chain.encounteredChunkList);
-			if(highestEncapsulatedNest + 1 >= lowestEncapsulatingNest ){
+			if (highestEncapsulatedNest + 1 >= lowestEncapsulatingNest) {
 
 				ds_list_add(obj_chain.encounteredChunkList,chunkID);
 				scr_expandChunk(lowestEncapsulatingChunk);
@@ -193,20 +193,35 @@ function scr_createChunk(){
 						global.delayInput = 5;
 					
 						rightClickTokenChainSubMap[? "focused"] = rightClickTokenInEntryList[| 0];
-						//scr_deleteFromChain(true);
 					}
 				}
 			}
 			else if (!obj_control.createChunkNoChain) {
-				//chain is already seleceted
-				if (obj_chain.currentFocusedChainID != "") {
-					var focusedChainSubMap = global.nodeMap[? obj_chain.currentFocusedChainID];
-					if (focusedChainSubMap[?"type"] != "stack") {
-						scr_newLink(chunkID);
+				
+				// chain is already seleceted				
+				if (is_string(obj_chain.currentFocusedChainID) && obj_chain.currentFocusedChainID != "") {
+					
+					var firstToken = scr_getFirstWordOfChunk(chunkID);
+					var firstTokenSubMap = global.nodeMap[? firstToken];
+					var unitID = firstTokenSubMap[? "unit"];
+					if (scr_checkUnitSideLink(unitID, obj_chain.currentFocusedChainID)) {
+						var inst = instance_create_layer(0, 0, "InstancesDialogue", obj_dialogueBox);
+						with (inst) {
+							questionWindowActive = true;
+							confirmSideLink = true;
+						}
+						obj_control.sideLinkTokenID = chunkID;
+						exit;
 					}
 					else {
-						scr_newChain(chunkID);
-						scr_newLink(chunkID);
+						var focusedChainSubMap = global.nodeMap[? obj_chain.currentFocusedChainID];
+						if (focusedChainSubMap[?"type"] != "stack") {
+							scr_newLink(chunkID);
+						}
+						else {
+							scr_newChain(chunkID);
+							scr_newLink(chunkID);
+						}
 					}
 				}
 				else {

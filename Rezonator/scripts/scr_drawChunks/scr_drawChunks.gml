@@ -237,7 +237,7 @@ function scr_drawChunks(){
 						
 			if (global.ctrlHold) {
 				// combine chains
-				var inChainsList = currentChunkSubMap[?"inChainsList"];
+				var inChainsList = currentChunkSubMap[? "inChainsList"];
 				scr_combineChainsDrawLine(inChainsList);
 			}
 			
@@ -339,34 +339,54 @@ function scr_drawChunks(){
 				scr_refocusChainEntry(obj_control.hoverChunkID);
 			}
 			else {
-		
 				
-				if (is_string(obj_chain.currentFocusedChainID) && obj_chain.currentFocusedChainID != "") {
-					// add chunk to pre-existing chain
-					var chainSubMap = global.nodeMap[? obj_chain.currentFocusedChainID];
-					if (scr_isNumericAndExists(chainSubMap, ds_type_map)) {
+				var hoverChunkTokenList = hoverChunkSubMap[? "tokenList"];
+				var hoverChunkTokenListSize = ds_list_size(hoverChunkTokenList);
+				if (hoverChunkTokenListSize >= 1) {
+				
+					if (is_string(obj_chain.currentFocusedChainID) && obj_chain.currentFocusedChainID != "") {
+						var hoverChunkFirstToken = hoverChunkTokenList[| 0];
+						var hoverChunkFirstTokenSubMap = global.nodeMap[? hoverChunkFirstToken];
+						if (scr_isNumericAndExists(hoverChunkFirstTokenSubMap, ds_type_map)) {
+							var hoverChunkUnit = hoverChunkFirstTokenSubMap[? "unit"];
+							if (scr_checkUnitSideLink(hoverChunkUnit, obj_chain.currentFocusedChainID)) {
+								var inst = instance_create_layer(0, 0, "InstancesDialogue", obj_dialogueBox);
+								with (inst) {
+									questionWindowActive = true;
+									confirmSideLink = true;
+								}
+								obj_control.sideLinkTokenID = obj_control.hoverChunkID;
+								exit;
+							}
+						}
+					}
+				
+					if (is_string(obj_chain.currentFocusedChainID) && obj_chain.currentFocusedChainID != "") {
+						// add chunk to pre-existing chain
+						var chainSubMap = global.nodeMap[? obj_chain.currentFocusedChainID];
+						if (scr_isNumericAndExists(chainSubMap, ds_type_map)) {
+							scr_newLink(obj_control.hoverChunkID);
+							global.delayInput = 5;
+						}
+					}
+					else {
+						// start a new chain
+						scr_newChain(obj_control.hoverChunkID);
 						scr_newLink(obj_control.hoverChunkID);
 						global.delayInput = 5;
 					}
-				}
-				else {
-					// start a new chain
-					scr_newChain(obj_control.hoverChunkID);
-					scr_newLink(obj_control.hoverChunkID);
-					global.delayInput = 5;
-				}
 				
 				
 				
-				obj_chain.currentFocusedChunkID = obj_control.hoverChunkID;
+					obj_chain.currentFocusedChunkID = obj_control.hoverChunkID;
 
 					
 					
-				// if there is a focused chain, unfocus the chunk
-				if (obj_chain.currentFocusedChainID != "") {
-					obj_chain.currentFocusedChunkID = "";
+					// if there is a focused chain, unfocus the chunk
+					if (obj_chain.currentFocusedChainID != "") {
+						obj_chain.currentFocusedChunkID = "";
+					}
 				}
-					
 			}
 			
 		}

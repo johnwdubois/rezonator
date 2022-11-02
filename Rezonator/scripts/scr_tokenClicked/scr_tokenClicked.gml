@@ -1,5 +1,3 @@
-
-
 function scr_tokenClicked(tokenID){
 	
 	if (global.delayInput > 0) exit;
@@ -45,7 +43,7 @@ function scr_tokenClicked(tokenID){
 		obj_control.moveCounter++;
 	}
 	
-	var inChainsList = tokenSubMap[?"inChainsList"];
+	var inChainsList = tokenSubMap[? "inChainsList"];
 	show_debug_message("scr_tokenClicked ... inChainsList: " + scr_getStringOfList(inChainsList));
 	
 	var shouldExit = false;
