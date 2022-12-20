@@ -179,8 +179,9 @@ draw_text(floor(mean(openDirButtonX1, openDirButtonX2)), floor(mean(openDirButto
 if (mouseoverOpenDirButton) {
 	if (mouse_check_button_released(mb_left)) {
 		if (directory_exists(global.rezonatorDirString)) {
-			show_debug_message("here");
-			var dir = "C:\\Users\\Terry\\Documents\\Random Games";
+			var delimiter = os_type == os_macosx ? "/" : "\\"
+			var dir = global.rezonatorDirString + delimiter + "Data" + delimiter + "SBCorpus" + delimiter + "REZ";
+			show_debug_message("attempting to open folder: " + string(dir));
 			scr_openDirectory(dir);
 		}
 		else {
