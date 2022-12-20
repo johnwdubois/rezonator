@@ -22,15 +22,15 @@
     {"resourceType":"GMExtensionFile","resourceVersion":"1.0","name":"","filename":"FirebaseFirestore.ext","origname":"","init":"","final":"","kind":4,"uncompress":false,"functions":[
         {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"FirebaseFirestore_SDK","externalName":"FirebaseFirestore_SDK","kind":4,"help":"FirebaseFirestore_SDK(fluent_json)","hidden":false,"returnType":2,"argCount":0,"args":[
             1,
-          ],},
-      ],"constants":[],"ProxyFiles":[],"copyToTargets":-1,"order":[
+          ],"documentation":"",},
+      ],"constants":[],"ProxyFiles":[],"copyToTargets":-1,"usesRunnerInterface":false,"order":[
         {"name":"FirebaseFirestore_SDK","path":"extensions/YYFirebaseFirestore/YYFirebaseFirestore.yy",},
       ],},
     {"resourceType":"GMExtensionFile","resourceVersion":"1.0","name":"","filename":"FirebaseFirestore.js","origname":"","init":"","final":"","kind":5,"uncompress":false,"functions":[
         {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"FirebaseFirestore_SDK","externalName":"FirebaseFirestore_SDK","kind":5,"help":"FirebaseFirestore_SDK(json)","hidden":false,"returnType":1,"argCount":0,"args":[
             1,
-          ],},
-      ],"constants":[],"ProxyFiles":[],"copyToTargets":-1,"order":[
+          ],"documentation":"",},
+      ],"constants":[],"ProxyFiles":[],"copyToTargets":-1,"usesRunnerInterface":false,"order":[
         {"name":"FirebaseFirestore_SDK","path":"extensions/YYFirebaseFirestore/YYFirebaseFirestore.yy",},
         {"name":"FirebaseFirestore_SDK","path":"extensions/YYFirebaseFirestore/YYFirebaseFirestore.yy",},
         {"name":"FirebaseFirestore_SDK","path":"extensions/YYFirebaseFirestore/YYFirebaseFirestore.yy",},

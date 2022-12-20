@@ -1,8 +1,5 @@
 {
-  "extensionId": {
-    "name": "GML_Regular_Expressions",
-    "path": "extensions/GML_Regular_Expressions/GML_Regular_Expressions.yy"
-  },
+  "extensionId": null,
   "resourceVersion": "1.0",
   "resourceType": "GMExtensionConfigSet",
   "configurables": null

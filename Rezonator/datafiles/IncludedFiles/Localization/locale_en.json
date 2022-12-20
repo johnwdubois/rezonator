@@ -515,6 +515,8 @@
 	"menu_30-min" : "30 minutes",
 	"menu_off" : "Off",
 	"menu_read" : "Read",
+	"menu_open-rez-folder-windows" : "Open REZ folder in Explorer",
+	"menu_open-rez-folder-macos" : "Open REZ folder in Finder",
     "text_dir" : "Text Direction",
     "word_tip" : "Word Tip",
     "arrheads" : "Arrowheads",
