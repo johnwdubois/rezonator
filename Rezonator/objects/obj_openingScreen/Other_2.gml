@@ -46,6 +46,7 @@ global.importGroupFileIndex = 0;
 global.importGroupOutputDir = "";
 global.importGroupSchemaFile = "";
 global.skipToImportScreen = false;
+global.skipToOpen = false;
 
 var defStr = "";
 defStr = (global.userName == "") ? scr_get_translation("msg_signin") : global.userName;

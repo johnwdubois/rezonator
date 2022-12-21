@@ -182,6 +182,10 @@ function scr_setDialogueText(){
 				if (is_string(global.fileSaveName) && global.fileSaveName != "undefined") titleText = filename_name(global.fileSaveName);
 				descriptionText = scr_get_translation("question_save_before_import");
 			}
+			if (obj_control.saveBeforeOpening) {
+				if (is_string(global.fileSaveName) && global.fileSaveName != "undefined") titleText = filename_name(global.fileSaveName);
+				descriptionText = scr_get_translation("question_save_before_open");
+			}
 			if (obj_control.saveBeforeGameEnd) {
 				if (is_string(global.fileSaveName) && global.fileSaveName != "undefined") titleText = filename_name(global.fileSaveName);
 				descriptionText = scr_get_translation("msg_warning_save-prompt");

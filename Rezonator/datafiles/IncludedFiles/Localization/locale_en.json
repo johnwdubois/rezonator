@@ -456,6 +456,7 @@
 	"label_word" : "Word",
 	"label_exceptions" : "Exceptions",
 	"question_save_before_import" : "Save before importing new file?",
+	"question_save_before_open" : "Save before opening file?",
 	"question_save_before_exit" : "Save before exiting?",
 	"msg_numbers_only" : "Error: Numbers only",
 	"msg_input_any_number" : "Insert number",

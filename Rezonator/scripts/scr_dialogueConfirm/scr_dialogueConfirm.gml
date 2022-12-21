@@ -334,9 +334,10 @@ function scr_dialogueConfirm(){
 		}
 		
 		if (instance_exists(obj_control)) {
-			if (obj_control.saveBeforeExiting || obj_control.saveBeforeImporting) {
+			if (obj_control.saveBeforeExiting || obj_control.saveBeforeImporting || obj_control.saveBeforeOpening) {
 				with(obj_fileLoader) scr_saveREZ(false);
 				global.skipToImportScreen = obj_control.saveBeforeImporting;
+				global.skipToOpen = obj_control.saveBeforeOpening;
 				show_debug_message("Going to openingScreen, scr_dialogueConfirm");
 				room_goto(rm_openingScreen);
 				scr_loadINI();

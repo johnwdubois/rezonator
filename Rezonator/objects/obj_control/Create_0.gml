@@ -500,6 +500,7 @@ noTurnFound = false;
 noPsentFound = false;
 saveBeforeExiting = false;
 saveBeforeImporting = false;
+saveBeforeOpening = false;
 saveBeforeGameEnd = false;
 insertAnyNumber = false;
 splitToken = false;
