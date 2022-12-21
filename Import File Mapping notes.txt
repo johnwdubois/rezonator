@@ -1,7 +1,0 @@
--Switching RezInfo/TagInfo?
--Rainbow colors for selections
-	-unit level colors are warm
-	-other level colors are cool
--keep backslashes in TagInfo
--fill in FileInfo & Summary window
--work left-to-right

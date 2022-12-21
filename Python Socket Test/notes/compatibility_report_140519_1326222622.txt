@@ -1,6 +1,0 @@
-Converting GML script: ${project_dir}\scripts\draw_tbutton\draw_tbutton.gml
-Converted description /// @description draw_tbutton(x, y, text,def color,check color)/// @param x
-/// @param  y
-/// @param  text
-/// @param def color
-/// @param check color

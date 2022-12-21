@@ -1,3 +1,0 @@
-Audiovis2 uses and would like to thank the following open source software:
-- kissFFT (see LICENSE_kissfft) https://github.com/mborgerding/kissfft
-- libaudiodecoder (see LICENSE_libaudiodecoder) http://www.oscillicious.com/libaudiodecoder
