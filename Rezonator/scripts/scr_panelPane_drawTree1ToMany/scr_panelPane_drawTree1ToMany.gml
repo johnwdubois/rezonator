@@ -1,5 +1,3 @@
-
-
 function scr_panelPane_drawTree1ToMany(){
 	var ltr = (obj_control.drawLineState == obj_control.lineState_ltr);
 	ds_list_clear(obj_control.inRectEntryIDList);
@@ -272,6 +270,14 @@ function scr_panelPane_drawTree1ToMany(){
 			if(!scr_isNumericAndExists(currentTokenSubMap, ds_type_map)){continue;}
 			var currentTokenTagMap = currentTokenSubMap[? "tagMap"];
 			currentDisplayToken += (" " + string(currentTokenTagMap[? global.displayTokenField]));
+		}
+		
+		// make sure goal link list is valid
+		var currentEntryGoalLinkList = currentEntrySubMap[? "goalLinkList"];
+		if (!scr_isNumericAndExists(currentEntryGoalLinkList, ds_type_list)) {
+			currentEntryGoalLinkList = ds_list_create();
+			if (ds_map_exists(currentEntrySubMap, "goalLinkList")) ds_map_delete(currentEntrySubMap, "goalLinkList");
+			ds_map_add_list(currentEntrySubMap, "goalLinkList", currentEntryGoalLinkList);
 		}
 	
 		//get entry box demensions, check if this token is in draw range

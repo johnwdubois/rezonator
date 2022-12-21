@@ -13,13 +13,9 @@ function FirebaseFirestore_SDK(json,callback)
 	let fluent_obj = JSON.parse(json);
 	let action = fluent_obj._action;
 	let isDocument = fluent_obj._isDocument;
-	console.log("DEBUG PLZZSZZZ")
+	
 	if(action == "Set")
 	{
-		GMS_API.send_async_event_social({
-			type:"Debug",
-			message:"WAAHHHHHH ITS BROKEN"
-		});
 		if(isDocument >= 0.5)
 			return YYFirebasetore_Document_Set(fluent_obj);
 		else
@@ -71,7 +67,6 @@ function FirebaseFirestore_SDK(json,callback)
 function YYFirebasetore_Document_Set(fluent_obj)
 {
 	const listenerInd = Firestore_getListenerInd();
-	console.log(JSON.parse(fluent_obj._value));
 	let ref = firebase.firestore().doc(fluent_obj._path).set(JSON.parse(fluent_obj._value)).then(() => 
 	{
 		GMS_API.send_async_event_social({

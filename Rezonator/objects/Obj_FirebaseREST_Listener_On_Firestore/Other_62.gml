@@ -18,7 +18,7 @@ if(async_load[?"id"] == request)
 	{
 		if(async_load[?"http_status"] == 401 or async_load[?"http_status"] == 403 or async_load[?"http_status"] == 404)//if i not have permissions or not exists, destroy me
 		{
-			FirebaseREST_HTTP_Failed_RealTime()
+			FirebaseREST_HTTP_Failed_Firestore()
 			instance_destroy()
 			exit
 		}

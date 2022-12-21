@@ -8,7 +8,6 @@ function scr_windowExit(){
 			
 			with (obj_dialogueBox) {
 				scr_closeDialogueBoxVariables();
-				scr_closeQuestionBoxVariables();
 				instance_destroy();
 			}
 		

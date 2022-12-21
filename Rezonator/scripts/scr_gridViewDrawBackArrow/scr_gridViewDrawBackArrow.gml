@@ -21,6 +21,11 @@ function scr_gridViewDrawBackArrow() {
 	var backArrowX = spriteWidth;
 	var backArrowY = camera_get_view_height(camera_get_active()) - spriteHeight;
 	
+	// if audio bar is visible, raise the back arrow
+	if (instance_exists(obj_audioUI)) {
+		if (obj_audioUI.visible) backArrowY -= obj_audioUI.windowHeight;
+	}
+	
 	// Set vraibles for checking mouse click
 	var backArrowRectX1 = backArrowX - spriteWidth / 2;
 	var backArrowRectY1 = backArrowY - spriteHeight / 2;

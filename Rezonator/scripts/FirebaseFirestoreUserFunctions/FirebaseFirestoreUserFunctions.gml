@@ -100,7 +100,7 @@ function Firebase_Firestore_builder(path) constructor
 			_operations = []
 		
 		op = FirebaseFirestore_operationFromSymbol(op);
-			
+
 		array_push(_operations, {operation: op, path: path, value: value})
 		return self;
 	}
@@ -133,7 +133,7 @@ function Firebase_Firestore_builder(path) constructor
 	{
 		if(is_undefined(_operations))
 			_operations = []
-		array_push(_operations,{operation: Firestore_Query_less_than_or_equal,path: path,value: value})
+		array_push(_operations,{operation: Firestore_Query_less_than,path: path,value: value})
 		return self
 	}
 	
@@ -141,7 +141,7 @@ function Firebase_Firestore_builder(path) constructor
 	{
 		if(is_undefined(_operations))
 			_operations = []
-		array_push(_operations,{operation: Firestore_Query_equal,path: path,value: value})
+		array_push(_operations,{operation: Firestore_Query_less_than_or_equal,path: path,value: value})
 		return self
 	}
 	
@@ -210,8 +210,10 @@ function Firebase_Firestore_builder(path) constructor
     static Read = function()
     {
 		_action = "Read"
-		if(FirebaseFirestore_Library_useSDK)
+		if(FirebaseFirestore_Library_useSDK) {
+			show_debug_message("FirebaseFirestoreUserFunctions, static read");
 			return FirebaseFirestore_SDK(json_stringify(self))
+		}
 		if(FirebaseREST_Firestore_path_isDocument(_path))
 			return RESTFirebaseFirestore_Document_Read(_path)
 		else
@@ -224,10 +226,13 @@ function Firebase_Firestore_builder(path) constructor
 		_action = "Query"
 		if(FirebaseFirestore_Library_useSDK)
 		{
+			show_debug_message("here1");
 			return FirebaseFirestore_SDK(json_stringify(self))
 		}
-		if(FirebaseREST_Firestore_path_isCollection(_path))
+		if(FirebaseREST_Firestore_path_isCollection(_path)) {
+			show_debug_message("here2, _path: " + string(_path));
 			return RESTFirebaseFirestore_Collection_Query(self)
+		}
 		else
 			show_debug_message("Firestore: You can't query documents")
 	}

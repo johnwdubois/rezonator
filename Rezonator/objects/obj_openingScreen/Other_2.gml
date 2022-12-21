@@ -46,6 +46,7 @@ global.importGroupFileIndex = 0;
 global.importGroupOutputDir = "";
 global.importGroupSchemaFile = "";
 global.skipToImportScreen = false;
+global.skipToOpen = false;
 
 var defStr = "";
 defStr = (global.userName == "") ? scr_get_translation("msg_signin") : global.userName;
@@ -92,7 +93,7 @@ window_set_min_height(720);
 global.build = true;
 global.rezzles = true;
 
-global.buildType = "Windows_Website"
+global.buildType = "Windows_Website";
 
 //"Windows_GitHub_Master","Mac_GitHub_Master","Windows_GitHub_Release"
 //"Mac_GitHub_Release","Steam","Windows_Website", "Mac_Website"

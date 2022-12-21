@@ -20,6 +20,7 @@ function scr_newChain(ID) {
 	var chainType = "";
 
 	var aligned = false;
+	var chainInCliqueID = "";
 
 
 	// set up chain variables depending on what type of ID is passed in
@@ -45,8 +46,18 @@ function scr_newChain(ID) {
 	else if (idType == "unit") {
 		obj_chain.stackChainNameCounter++;
 		chainSeq = obj_chain.stackChainNameCounter;
-		chainName = "Stack " + string(chainSeq);
-		chainType = "stack";	
+		chainType = "stack";
+		
+		show_debug_message("newChain, stackerName: " + string(obj_stacker.stackerName))
+		if (is_string(obj_stacker.stackerName) && obj_stacker.stackerName != "" && is_numeric(obj_stacker.stackerNameNum)) {
+			// if we are making stacks through the stacker, we use the stacker's naming convention
+			chainName = obj_stacker.stackerName + " " + string(obj_stacker.stackerNameNum);
+			with (obj_stacker) stackerNameNum++;
+		}
+		else {
+			// otherwise we use default naming convention
+			chainName = "Stack " + string(chainSeq);
+		}
 	}
 
 	
@@ -56,6 +67,40 @@ function scr_newChain(ID) {
 	// get random hex chainID
 	obj_chain.currentChainID = scr_addToNodeMap(chainType);
 	var newChainSubMap = global.nodeMap[? obj_chain.currentChainID];
+	
+	
+	// if this is a token and we're making a rez chain, we will put the chain into a clique
+	if (obj_toolPane.currentMode == obj_toolPane.modeRez) {
+		var unitID = "";
+		if (idType == "token") {
+			unitID = idSubMap[? "unit"];
+		}
+		else if (idType == "chunk") {
+			var firstToken = scr_getFirstWordOfChunk(ID);
+			show_debug_message("scr_newChain, chunk firstToken: " + string(firstToken));
+			if (is_string(firstToken) && firstToken != "") {
+				var firstTokenSubMap = global.nodeMap[? firstToken];
+				unitID = firstTokenSubMap[? "unit"];
+			}
+		}
+
+		if (is_string(unitID) && unitID != "") {
+			var unitSubMap = global.nodeMap[? unitID];
+			var unitInCliqueID = unitSubMap[? "inClique"];
+			if (is_string(unitInCliqueID) && unitInCliqueID != "") {
+				// the new chain should continue the clique this unit is in
+				chainInCliqueID = unitInCliqueID;
+				with (obj_chain) newChainRefreshClique = chainInCliqueID;
+			}
+			else {
+				// the new chain should create a new clique
+				chainInCliqueID = scr_newClique(obj_chain.currentChainID, unitID);
+				unitSubMap[? "inClique"] = chainInCliqueID;
+			}
+			show_debug_message("scr_newChain, unitInCliqueID: " + string(unitInCliqueID));
+		}
+	}
+	
 	
 	// if user is doing a quickstack, and they are starting the quickstack on a unit that is not in a chain, and this is the first chain being made, let's save this chain
 	show_debug_message("dragStartOriginalChain: " + string(obj_chain.dragStartOriginalChain));
@@ -77,12 +122,15 @@ function scr_newChain(ID) {
 	// set values in nodeMap
 	scr_nodeMapSetChainValues(obj_chain.currentChainID, chainName, chainColor, chainSeq);
 	
-	// add stack-specific fields
+	// add chainType-specific fields
 	if (chainType == "stack") {
 		ds_map_add(newChainSubMap, "caption", "");
 		ds_map_add(newChainSubMap, "stackType", obj_control.activeStackType);
 	}
-
+	else if (chainType == "resonance") {
+		ds_map_add(newChainSubMap, "inClique", chainInCliqueID);
+		show_debug_message("newChain, chainInCliqueID: " + string(chainInCliqueID));
+	}
 
 	obj_chain.currentFocusedChainID = obj_chain.currentChainID;
 

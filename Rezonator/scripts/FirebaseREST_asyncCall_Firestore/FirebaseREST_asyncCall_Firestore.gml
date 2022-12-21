@@ -1,7 +1,7 @@
 
 function FirebaseREST_asyncCall_Firestore()
 {
-	show_debug_message(json_encode(async_load))
+	//show_debug_message("FirebaseREST_asyncCall_Firestore, json_encode(async_load): " + json_encode(async_load))
 	
 	var map = ds_map_create()
 	map[?"listener"] = id
@@ -12,7 +12,9 @@ function FirebaseREST_asyncCall_Firestore()
 	if(!is_undefined(errorMessage))
 		map[?"errorMessage"] = errorMessage
 	
-	if(argument_count)
+	if(argument_count) {
 		map[?"value"] = argument[0]
+		//show_debug_message("argument[0]: " + string(argument[0]));
+	}
 	event_perform_async(ev_async_social,map)
 }

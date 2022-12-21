@@ -37,6 +37,9 @@ function scr_setDialogueText(){
 			titleText = scr_get_translation("Clear Current Chains");
 			descriptionText = "You are about to clear these chains.";
 		}
+		if (confirmSideLink) {
+			descriptionText = scr_get_translation("msg_side-link");
+		}
 		if(mergeUnit){
 			var unitSeq1 = 0;
 			var unitSeq2 = 0;
@@ -60,25 +63,57 @@ function scr_setDialogueText(){
 			}
 			
 			
-			titleText = scr_get_translation("Merge Units");
-			descriptionText = scr_get_translation("This will merge Unit " + string(unitSeq2) + " into Unit " + string(unitSeq1) + ":\n" + string(mergeUnitPreviewStr));
+			titleText = "Merge units"; // localize
+			descriptionText = scr_get_translation("This will merge unit " + string(unitSeq2) + " into unit " + string(unitSeq1) + ":\n" + string(mergeUnitPreviewStr)); // localize
 		}
+		
+		if (swapUnitUp) {
+			titleText = scr_get_translation("option_move-unit-up");
+			descriptionText =  "Move selected unit to before previous unit?";
+		}
+		else if (swapUnitDown) {
+			titleText = scr_get_translation("option_move-unit-down");
+			descriptionText =  "Move selected unit to before previous unit?";
+		}
+		if (deleteToken) {
+			var tokenSubMap = global.nodeMap[? obj_control.rightClickID];
+			var tokenTagMap = tokenSubMap[?"tagMap"];
+			var displayToken = tokenTagMap[?global.displayTokenField];
+			titleText = "Delete selected token?";
+			descriptionText = string(displayToken);
+		}
+		
 		if(splitUnit){
 			var unitSeq = 0;
 			var splitUnitPreviewStr = "";
-			var tokenSubMap = global.nodeMap[?obj_control.rightClickID];
+			var tokenSubMap = global.nodeMap[? obj_control.rightClickID];
 			var unitID = tokenSubMap[?"unit"];
 			var tokenTagMap = tokenSubMap[?"tagMap"];
-			var displayToken =  tokenTagMap[?global.displayTokenField];
+			var displayToken = tokenTagMap[?global.displayTokenField];
 
 			var currentUnitSubMap = global.nodeMap[? unitID];
 			if(scr_isNumericAndExists(currentUnitSubMap,ds_type_map)){
 				unitSeq = currentUnitSubMap[?"unitSeq"];
-				splitUnitPreviewStr = string(scr_getUnitText(currentUnitSubMap));
+				
+				// get preview of split units
+				var unitEntryList = currentUnitSubMap[? "entryList"];
+				var unitEntryListSize = ds_list_size(unitEntryList);
+				for (var i = 0; i < unitEntryListSize; i++) {
+					var currentEntry = unitEntryList[| i];
+					var currentEntrySubMap = global.nodeMap[? currentEntry];
+					var currentToken = currentEntrySubMap[? "token"];
+					var currentTokenSubMap = global.nodeMap[? currentToken];
+					var currentTokenTagMap = currentTokenSubMap[? "tagMap"];
+					if (currentToken == obj_control.rightClickID) splitUnitPreviewStr += "\n";
+					splitUnitPreviewStr += currentTokenTagMap[? global.displayTokenField];
+					if (i < unitEntryListSize - 1 && currentToken != displayToken) splitUnitPreviewStr += " ";
+				}
+			
+				
 			}
 			
 			
-			titleText = scr_get_translation("Split Unit");
+			titleText = scr_get_translation("option_split-unit");
 			descriptionText = scr_get_translation("Split unit "+string(unitSeq) +" at \""+ string(displayToken) + "\":\n" + string(splitUnitPreviewStr));
 		}
 
@@ -90,14 +125,18 @@ function scr_setDialogueText(){
 			titleText = scr_get_translation("help_label_link");
 			descriptionText = scr_get_translation("masg_warning_layer_link");
 		}
-		if(combineChains) {
-			if (obj_control.stackMerged) {
-				titleText = scr_get_translation("Merging Stacks");
+		if (combineChains) {
+			if (obj_control.mergeChainType == "stack") {
+				titleText = scr_get_translation("option_merge-stack");
 				descriptionText = scr_get_translation("msg_warning_merge_stacks");
 			}
-			else{
-				titleText = scr_get_translation("Merging Chains");
-				descriptionText = scr_get_translation("msg_warning_merge_chains");
+			else if (obj_control.mergeChainType == "trail") {
+				titleText = scr_get_translation("option_merge-trail");
+				descriptionText = scr_get_translation("msg_warning_merge_trails");
+			}
+			else if (obj_control.mergeChainType == "resonance") {
+				titleText = scr_get_translation("option_merge-resonance");
+				descriptionText = scr_get_translation("msg_warning_merge_resonances");
 			}
 		}
 		if (removeTagToken || removeTagUnit || removeTagEntry || removeTagChain || removeTagChunk || removeTagLink) {
@@ -121,7 +160,7 @@ function scr_setDialogueText(){
 		if (removeTree) {
 			var searchSubMap = global.treeMap[?stringToBeRemoved];
 			titleText = scr_get_translation("msg_remove") + " " + scr_get_translation("tab_name_tree");
-			descriptionText =  "This will permanently delete the tree:  " + string(searchSubMap[? "name"]);
+			descriptionText =  "This will permanently delete the tree:  " + string(searchSubMap[? "name"]); // localize
 		}
 		if (instance_exists(obj_stacker)) {
 			if (obj_stacker.confirmStackCreate) {
@@ -143,11 +182,40 @@ function scr_setDialogueText(){
 				if (is_string(global.fileSaveName) && global.fileSaveName != "undefined") titleText = filename_name(global.fileSaveName);
 				descriptionText = scr_get_translation("question_save_before_import");
 			}
+			if (obj_control.saveBeforeOpening) {
+				if (is_string(global.fileSaveName) && global.fileSaveName != "undefined") titleText = filename_name(global.fileSaveName);
+				descriptionText = scr_get_translation("question_save_before_open");
+			}
 			if (obj_control.saveBeforeGameEnd) {
 				if (is_string(global.fileSaveName) && global.fileSaveName != "undefined") titleText = filename_name(global.fileSaveName);
 				descriptionText = scr_get_translation("msg_warning_save-prompt");
 			}
+			
+			
+			if (obj_control.mergeToken) {
+			
+				// get preview of merged tokens
+				var previewStr = "";
+				var rightClickTokenSubMap = global.nodeMap[? obj_control.rightClickID];
+				if (scr_isNumericAndExists(rightClickTokenSubMap, ds_type_map)) {
+					var rightClickTokenTagMap = rightClickTokenSubMap[? "tagMap"];
+					var rightClickTokenDisplayStr = rightClickTokenTagMap[? global.displayTokenField];
+					var docMap = global.nodeMap[?global.discourseNode];
+					var tokenList = docMap[?"tokenList"];
+					var prevTokenID = tokenList[|ds_list_find_index(tokenList, obj_control.rightClickID) - 1];
+					var prevTokenSubMap = global.nodeMap[? prevTokenID];
+					var prevTokenTagMap = prevTokenSubMap[? "tagMap"];
+					var prevTokenDisplayStr = prevTokenTagMap[? global.displayTokenField];
+					if (is_string(prevTokenDisplayStr) && is_string(rightClickTokenDisplayStr)) {
+						previewStr = prevTokenDisplayStr + rightClickTokenDisplayStr;
+					}
+				}
+			
+				titleText = scr_get_translation("option_merge-token");
+				descriptionText = "Would you like to merge this token with the previous token:\n" + previewStr; // localize
+			}
 		}
+	
 	}
 		
 	if(obj_dialogueBox.inputWindowActive){
@@ -173,7 +241,6 @@ function scr_setDialogueText(){
 		}
 		if (obj_control.newWordCreated) {
 			titleText = scr_get_translation("option_new-token");
-			descriptionText = scr_get_translation("msg_input_add_new-word");
 		}
 		
 		if(obj_control.caption){
@@ -199,8 +266,12 @@ function scr_setDialogueText(){
 			}
 			else{
 				titleText = scr_get_translation("msg_specify_line");
-				descriptionText = scr_get_translation("msg_input_line-jump");
+				descriptionText = " ";//scr_get_translation("msg_input_line-jump");
 			}
+		}
+		
+		if (obj_control.setChainName) {
+			titleText = scr_get_translation("option_set-chain-name");
 		}
 		
 		var drawNewFieldText = (obj_control.newCustomFieldToken || obj_control.newCustomFieldUnit || obj_control.newCustomFieldEntry || obj_control.newCustomFieldChain || obj_control.newCustomFieldChunk || obj_control.newCustomFieldLink);
@@ -236,8 +307,14 @@ function scr_setDialogueText(){
 			descriptionText = "Type in the amount of actions needed for the resonance chains in this stack";
 		}
 		if (obj_control.splitToken) {
-			titleText = "Pick token split";
-			descriptionText = "Pick where to split the token";
+			titleText = "Pick token split"; // localize
+			descriptionText = "Insert a space at the position you would like to split the token"; // localize
+		}
+		
+		if (instance_exists(obj_stacker)) {
+			if (obj_stacker.confirmStackName) {
+				descriptionText = "Set name for new Stacks"; // localize
+			}
 		}
 	}
 	
@@ -252,6 +329,17 @@ function scr_setDialogueText(){
 			if (obj_control.insertAnyNumber) {
 				descriptionText = scr_get_translation("msg_input_any_number");
 			}
+			if (obj_control.mergeUnitDifferingParticipants) {
+				titleText = "Merge units"; // localize
+				descriptionText = "Different participants: Cannot merge units"; // localize
+			}
+		}
+		if (mergeStack) {
+			titleText = scr_get_translation("option_merge-stack");
+			descriptionText = scr_get_translation("msg_merge-stack");
+		}
+		if (chunkAlreadyExists) {
+			descriptionText = scr_get_translation("msg_duplicate-chunk");
 		}
 	}
 }

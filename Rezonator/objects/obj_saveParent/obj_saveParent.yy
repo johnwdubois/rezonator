@@ -1,7 +1,11 @@
 {
+  "resourceType": "GMObject",
+  "resourceVersion": "1.0",
+  "name": "obj_saveParent",
   "spriteId": null,
   "solid": false,
   "visible": true,
+  "managed": true,
   "spriteMaskId": null,
   "persistent": false,
   "parentObjectId": null,
@@ -24,8 +28,4 @@
     "name": "Import_Export",
     "path": "folders/Objects/Import_Export.yy",
   },
-  "resourceVersion": "1.0",
-  "name": "obj_saveParent",
-  "tags": [],
-  "resourceType": "GMObject",
 }

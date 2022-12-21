@@ -18,6 +18,8 @@ function scr_scrollNavToID(tab, ID, leftPane){
 		show_debug_message("wrong tab, exiting..."); exit;
 	}
 	
+	var docSubMap = global.nodeMap[? global.discourseNode];
+	
 	// find the idList that goes with this tab, make sure that list exists
 	var idList = -1;
 	if (leftPane) {
@@ -25,6 +27,7 @@ function scr_scrollNavToID(tab, ID, leftPane){
 		else if (tab == obj_panelPane.functionChainList_tabRezBrush) idList = global.nodeMap[? "resonanceList"];
 		else if (tab == obj_panelPane.functionChainList_tabTrackBrush) idList = global.nodeMap[? "trailList"];
 		else if (tab == obj_panelPane.functionChainList_tabStackBrush) idList = global.nodeMap[? "stackList"];
+		else if (tab == obj_panelPane.functionChainList_tabLine) idList = docSubMap[? "unitList"];
 	}
 	else {
 		// if we're scrolling to a chain tab on the right pane, we will look at the current focused chain's entry list

@@ -500,15 +500,19 @@ noTurnFound = false;
 noPsentFound = false;
 saveBeforeExiting = false;
 saveBeforeImporting = false;
+saveBeforeOpening = false;
 saveBeforeGameEnd = false;
 insertAnyNumber = false;
 splitToken = false;
+mergeToken = false;
+mergeUnitDifferingParticipants = false;
+splitTokenField = "";
+splitTokenCopyTags = true;
 
 newWordPre1 = false
 newWordPre2 = false
 newWordPre3 = false
 currentNewWordPre = 1;
-lastAddedWord = "";
 
 
 hitIDCounter = 1;
@@ -582,7 +586,7 @@ showSpeakerName = false;
 
 combineChainsFocused = "";
 combineChainsSelected = "";
-stackMerged = false;
+mergeChainType = "";
 rightClickID = "";
 rightClicked = false;
 inChain = false;
@@ -827,6 +831,10 @@ flashTime = 20;
 unitToFlash = "";
 offIndex = false;
 multiWordTag = false;
+setChainName = false;
+recentlyAddedEndnote = ",";
+
+insertTokenStr = "";
 
 updateScroll = false;
 
@@ -864,8 +872,14 @@ navWindowTaggingEscape = false;
 navWindowTaggingSingleOptionSelect = false;
 navWindowTaggingKeyboardInput = false;
 
+sideLinkTokenID = "";
+
 mouseoverBackArrow = false;
 mouseoverBackArrowStopClick = false;
 
+createChunkNoChain = false;
+
 //lock fields
 with (obj_alarm3) alarm[4] = 2;
+
+saveToFirebase = false;
