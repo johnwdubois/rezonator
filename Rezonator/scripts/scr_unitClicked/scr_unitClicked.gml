@@ -1,5 +1,3 @@
-
-
 function scr_unitClicked(unitID){
 	
 	if (global.delayInput > 0) exit;
@@ -28,6 +26,28 @@ function scr_unitClicked(unitID){
 	var inChainsListSize = ds_list_size(inChainsList);
 	
 	obj_toolPane.currentTool = obj_toolPane.toolStackBrush;
+	
+	// get stack, if this unit is in one
+	var stackID = "";
+	if (inChainsListSize >= 1) {
+		stackID = inChainsList[| 0];
+	}
+	
+	// merge stacks
+	show_debug_message("scr_unitClicked, stackID: " + string(stackID) + ", mergeStackID: " + string(obj_chain.mergeStackID));
+	if (inChainsListSize >= 1 && is_string(obj_chain.mergeStackID) && obj_chain.mergeStackID != "" && is_string(stackID) && stackID != "") {
+		//scr_combineChains(obj_chain.mergeStackID, stackID);
+		//with (obj_chain) mergeStackID = "";
+		with (obj_control) combineChainsSelected = stackID;
+		var inst = instance_create_layer(x, y, "InstancesDialogue", obj_dialogueBox);
+		with (inst) {
+			questionWindowActive = true;
+			combineChains = true;
+		}
+		exit;
+	}
+	
+	
 	
 	if(keyboard_check(vk_shift)){
 		if (obj_panelPane.functionField_chainFieldSelected != "" && obj_panelPane.functionField_chainTagSelected != ""
@@ -94,7 +114,6 @@ function scr_unitClicked(unitID){
 	}
 	
 	
-	
 	// refocus any chain that this unit is in
 	for (var i = 0; i < inChainsListSize; i++) {
 		var currentChainID = inChainsList[| i];
@@ -111,7 +130,6 @@ function scr_unitClicked(unitID){
 			exit;
 		}
 	}
-	
 
 
 	// if there is not a focused chain, we create a new chain

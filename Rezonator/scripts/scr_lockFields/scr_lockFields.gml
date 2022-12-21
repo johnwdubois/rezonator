@@ -30,6 +30,7 @@ function scr_lockFields(){
 		var currentFieldMap = fieldMap[?currentField];
 		if(!ds_map_exists(currentFieldMap, "locked")){
 			currentFieldMap[?"locked"] = false;
+			if(currentField == global.participantField) currentFieldMap[?"locked"] = true;
 		}
 		if(!ds_map_exists(currentFieldMap, "readOnly")){
 			currentFieldMap[?"readOnly"] = false;

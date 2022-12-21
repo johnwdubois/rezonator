@@ -4,18 +4,19 @@ function scr_deleteFromChain(sortVizSetList) {
 	
 	ds_list_clear(obj_control.chainStretchCheckList);
 	
-	show_debug_message("scr_deleteFromChain() , sortVizSetList: " + string(sortVizSetList));
+	show_debug_message("scr_deleteFromChain , sortVizSetList: " + string(sortVizSetList));
 
 
 	var prevTool = obj_toolPane.currentMode;
 	// get the focused chain's submap
 	var chainSubMap = global.nodeMap[? obj_chain.currentFocusedChainID];
 	if (!scr_isNumericAndExists(chainSubMap, ds_type_map)) {
-		show_debug_message("scr_deleteFromChain() ... chainSubMap does not exist");
+		show_debug_message("scr_deleteFromChain ... chainSubMap does not exist");
 		obj_toolPane.currentMode = prevTool;
 		exit;
 	}
 	var chainType = chainSubMap[? "type"];
+	var chainInCliqueID = chainSubMap[? "inClique"];
 	
 	
 	if(chainType == "trail"){
@@ -33,18 +34,35 @@ function scr_deleteFromChain(sortVizSetList) {
 	var focusedEntry = chainSubMap[? "focused"];
 	var focusedEntrySubMap = global.nodeMap[? focusedEntry];
 	if (!scr_isNumericAndExists(focusedEntrySubMap, ds_type_map)) {
-		show_debug_message("scr_deleteFromChain() ... focusedEntrySubMap does not exist");
+		show_debug_message("scr_deleteFromChain ... focusedEntrySubMap does not exist");
 		obj_toolPane.currentMode = prevTool;
 		exit;
 	}
 	
-	show_debug_message("scr_deleteFromChain() , CHECK 1");
-	var focusedEntryType = ds_map_find_value(focusedEntrySubMap, "type");
+	show_debug_message("scr_deleteFromChain , CHECK 1");
+	var focusedEntryType = focusedEntrySubMap[? "type"];
+	show_debug_message("scr_deleteFromChain, focusedEntryType: " + string(focusedEntryType));
 	
 	// get the focusedEntry's token & displayrow
+	var focusedEntryUnitInCliqueChainList = undefined;
 	var focusedEntryToken = "";
 	if (focusedEntryType == "rez" || focusedEntryType == "track") {
 		focusedEntryToken = focusedEntrySubMap[? "token"];
+		
+		// if we're deleting a rez entry, we should check if the unit should be removed from its clique
+		if (focusedEntryType == "rez") {
+			var focusedEntryTokenSubMap = global.nodeMap[? focusedEntryToken];
+			var focusedEntryUnit = "";
+			if (scr_isChunk(focusedEntryToken)) {
+				var firstToken = scr_getFirstWordOfChunk(focusedEntryToken);
+				var firstTokenSubMap = global.nodeMap[? firstToken];
+				focusedEntryUnit = firstTokenSubMap[? "unit"];
+			}
+			else {
+				focusedEntryUnit = focusedEntryTokenSubMap[? "unit"];
+			}
+			scr_checkUnitStillInClique(focusedEntryUnit, focusedEntry);
+		}
 	}
 	var focusedEntryIsChunk = scr_isChunk(focusedEntryToken);
 	
@@ -56,6 +74,8 @@ function scr_deleteFromChain(sortVizSetList) {
 	
 	// get the focused entry's sourceLink's submap
 	var sourceLink = focusedEntrySubMap[? "sourceLink"];
+	
+	show_debug_message("scr_deleteFromChain, sourceLink: " + string(sourceLink));
 	
 	// if this entry has no source...
 	var focusedEntryGoalLinkList = focusedEntrySubMap[? "goalLinkList"];
@@ -71,6 +91,7 @@ function scr_deleteFromChain(sortVizSetList) {
 				
 				if(focusedEntryType == "rez"){
 					if(obj_chain.quickLinkDeleted == false){
+						scr_refreshCliqueDelete(chainInCliqueID, obj_chain.currentFocusedChainID, focusedEntry);
 						scr_refreshCliques();
 					}
 				}
@@ -79,7 +100,7 @@ function scr_deleteFromChain(sortVizSetList) {
 				var focusedEntryUnit = focusedEntrySubMap[? "unit"];
 				scr_removeChainFromInChainsList(obj_chain.currentFocusedChainID, focusedEntry, focusedEntryUnit);
 			}
-			show_debug_message("scr_deleteFromChain() , CHECK 2");
+			show_debug_message("scr_deleteFromChain , CHECK 2");
 			
 			// delete and destroy the focused entry and its chain
 			scr_deleteFromNodeMap(focusedEntry);
@@ -96,38 +117,49 @@ function scr_deleteFromChain(sortVizSetList) {
 		}
 		// if no source but it has at least 1 goal, we will restructure the links
 		else {
-			show_debug_message("scr_deleteFromChain() , CHECK 3");
+			show_debug_message("scr_deleteFromChain , CHECK 3");
 			var firstGoalLink = focusedEntryGoalLinkList[| 0];
 			var firstGoalLinkSubMap = global.nodeMap[? firstGoalLink];
 			if (!scr_isNumericAndExists(firstGoalLinkSubMap, ds_type_map)) {
-				show_debug_message("scr_deleteFromChain() ... firstGoalLinkSubMap does not exist");
+				show_debug_message("scr_deleteFromChain ... firstGoalLinkSubMap does not exist");
 				obj_toolPane.currentMode = prevTool;
 				exit;
 			}
 			var goalEntry = firstGoalLinkSubMap[? "goal"];
 			var goalEntrySubMap = global.nodeMap[? goalEntry];
 			if (!scr_isNumericAndExists(goalEntrySubMap, ds_type_map)) {
-				show_debug_message("scr_deleteFromChain() ... goalEntrySubMap does not exist");
+				show_debug_message("scr_deleteFromChain ... goalEntrySubMap does not exist");
 				obj_toolPane.currentMode = prevTool;
 				exit;
 			}
-			show_debug_message("scr_deleteFromChain() , CHECK 4");
+			show_debug_message("scr_deleteFromChain, CHECK 4.1");
+			
+			show_debug_message("firstGoalLink: " + string(firstGoalLink) + ", goalEntry: " + string(goalEntry));
+			
 			// go through all goalLinks (excluding firstGoalLink) and set their sources to be goalEntry
 			var goalEntryGoalLinkList = goalEntrySubMap[? "goalLinkList"];
 			for (var i = 0; i < focusedEntryGoalLinkListSize; i++) {
 				 var currentGoalEntryGoalLink = focusedEntryGoalLinkList[| i];
 				 if (currentGoalEntryGoalLink != firstGoalLink) {
 					 var currentGoalEntryGoalLinkSubMap = global.nodeMap[? currentGoalEntryGoalLink];
-					 ds_map_replace(currentGoalEntryGoalLinkSubMap, "source", goalEntry);
-					 ds_list_add(goalEntryGoalLinkList, currentGoalEntryGoalLink);
+					 currentGoalEntryGoalLinkSubMap[? "source"] = goalEntry;
+					 scr_addToListOnce(goalEntryGoalLinkList, currentGoalEntryGoalLink);
 				 }
 			}
+			
+			show_debug_message("scr_deleteFromChain, CHECK 4.2");
+			
+			// remove the focused entry from its chain's setList
+			scr_deleteFromList(chainSetList, focusedEntry);
+			
+			show_debug_message("scr_deleteFromChain, CHECK 4.3");
 			
 			// remove the focusedEntry from this token's inChainsList (if it is a rez or track)
 			if (focusedEntryType == "rez" || focusedEntryType == "track") {
 				scr_removeChainFromInChainsList(obj_chain.currentFocusedChainID, focusedEntry, focusedEntryToken);
 				if(focusedEntryType == "rez" ){
 					if(obj_chain.quickLinkDeleted == false){
+						scr_refreshCliqueDelete(chainInCliqueID, obj_chain.currentFocusedChainID, focusedEntry);
 						scr_refreshCliques();
 					}
 				}
@@ -136,12 +168,13 @@ function scr_deleteFromChain(sortVizSetList) {
 				var focusedEntryUnit = focusedEntrySubMap[? "unit"];
 				scr_removeChainFromInChainsList(obj_chain.currentFocusedChainID, focusedEntry, focusedEntryUnit);
 			}
-			show_debug_message("scr_deleteFromChain() , CHECK 5");
 			
-			// remove the focused entry from its chain's setList and delete it from nodeMap
-			scr_deleteFromList(chainSetList, focusedEntry);
+			// delete focused entry from nodeMap
 			scr_deleteFromNodeMap(focusedEntry);
 			ds_map_destroy(focusedEntrySubMap);
+			
+			show_debug_message("scr_deleteFromChain , CHECK 5");
+
 			
 			// remove the entry from the vizSetList
 			scr_deleteFromList(chainVizSetList, focusedEntry);
@@ -169,7 +202,7 @@ function scr_deleteFromChain(sortVizSetList) {
 	
 	var sourceLinkSubMap = global.nodeMap[? sourceLink];
 	if (!scr_isNumericAndExists(sourceLinkSubMap, ds_type_map)) {
-		show_debug_message("scr_deleteFromChain() ... sourceLinkSubMap does not exist");
+		show_debug_message("scr_deleteFromChain ... sourceLinkSubMap does not exist");
 		obj_toolPane.currentMode = prevTool;
 		exit;
 	}
@@ -178,22 +211,22 @@ function scr_deleteFromChain(sortVizSetList) {
 	var sourceEntry = sourceLinkSubMap[? "source"];
 	var sourceEntrySubMap = global.nodeMap[? sourceEntry];
 	if (!scr_isNumericAndExists(sourceEntrySubMap, ds_type_map)) {
-		show_debug_message("scr_deleteFromChain() ... sourceEntrySubMap does not exist");
+		show_debug_message("scr_deleteFromChain ... sourceEntrySubMap does not exist");
 		obj_toolPane.currentMode = prevTool;
 		exit;
 	}
 	
-	show_debug_message("scr_deleteFromChain() , CHECK 6");
+	show_debug_message("scr_deleteFromChain , CHECK 6");
 	
 	// remove the sourceLink from sourceEntry's goalLinkList
 	var sourceEntryGoalLinkList = sourceEntrySubMap[? "goalLinkList"];
 	var goalLinkListIndex = ds_list_find_index(sourceEntryGoalLinkList, sourceLink);
-	show_debug_message("scr_deleteFromChain() ... goalLinkListIndex: " + string(goalLinkListIndex));
+	show_debug_message("scr_deleteFromChain ... goalLinkListIndex: " + string(goalLinkListIndex));
 	ds_list_delete(sourceEntryGoalLinkList, goalLinkListIndex);
 	
 	// remove the sourceLink from chain's linkList
 	var chainLinkListIndex = ds_list_find_index(chainLinkList, sourceLink);
-	show_debug_message("scr_deleteFromChain() ... chainLinkListIndex: " + string(chainLinkListIndex));
+	show_debug_message("scr_deleteFromChain ... chainLinkListIndex: " + string(chainLinkListIndex));
 	ds_list_delete(chainLinkList, chainLinkListIndex);
 	
 	// remove sourceLink from nodeMap and destroy sourceLink
@@ -227,6 +260,7 @@ function scr_deleteFromChain(sortVizSetList) {
 		scr_removeChainFromInChainsList(obj_chain.currentFocusedChainID, focusedEntry, focusedEntryToken);
 		if(focusedEntryType == "rez" ){
 			if(obj_chain.quickLinkDeleted == false){
+				scr_refreshCliqueDelete(chainInCliqueID, obj_chain.currentFocusedChainID, focusedEntry);
 				scr_refreshCliques();
 			}
 		}
@@ -247,7 +281,7 @@ function scr_deleteFromChain(sortVizSetList) {
 	
 	
 	scr_deleteFromChainVoidCheck(obj_chain.currentFocusedChainID, focusedEntryToken, true);
-	show_debug_message("scr_deleteFromChain() , FINAL CHECK");
+	show_debug_message("scr_deleteFromChain , FINAL CHECK");
 	obj_toolPane.currentMode = prevTool;
 
 }

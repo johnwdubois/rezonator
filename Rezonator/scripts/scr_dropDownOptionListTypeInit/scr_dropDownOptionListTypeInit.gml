@@ -82,6 +82,9 @@ function scr_dropDownOptionListTypeInit(){
 	global.optionListTypeSearchPane = 89;
 	global.optionListTypeTagPane = 90;
 	global.optionListTypeInsertCol = 91;
+	global.optionListTypeSplitTokenField = 92;
+	global.optionListTypeAddEndnote = 93;
+	global.optionListTypeTurnStacker = 94;
 
 
 }

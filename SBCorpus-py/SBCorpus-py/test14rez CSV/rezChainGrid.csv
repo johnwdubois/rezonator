@@ -1,5 +1,0 @@
-chainID,chainState,wordList,name,color,inFilter,align,tiltSum,
-1,0,{16, 33, 42},Rez 1,16711680,0,1,0,
-2,0,{32, 41},Rez 2,255,0,1,0,
-3,0,{31, 40},Rez 3,32768,0,1,0,
-7,0,{55, 85, 92, 104},Rez 4,8388736,0,1,0,

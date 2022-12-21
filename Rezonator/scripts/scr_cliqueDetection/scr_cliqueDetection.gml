@@ -1,5 +1,3 @@
-
-
 function scr_cliqueDetection(){
 	show_debug_message("scr_cliqueDetection, START" + scr_printTime());
 

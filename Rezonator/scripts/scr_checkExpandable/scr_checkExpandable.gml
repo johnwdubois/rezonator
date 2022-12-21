@@ -16,6 +16,15 @@ function scr_checkExpandable(option, optionType){
 		}
 	}
 	
+	
+	// special cases
+	if (option == "menu_turn" && optionType == global.optionListTypeCreateStack) {
+		if (is_string(global.unitImportTurnDelimColName) && global.unitImportTurnDelimColName != ""
+		&& is_string(global.participantField) && global.participantField != "") {
+			isExpandable = true;
+		}
+	}
+	
 	return isExpandable;
 	
 }

@@ -1,0 +1,3 @@
+/// @description confirmStackName
+
+confirmStackName = true;

@@ -56,6 +56,7 @@ function scr_loadTagJson(fileName){
 	
 	
 	#region set nav window lists based on the lists found in tag json
+	show_debug_message("map[? navTokenFieldList]: " + scr_getStringOfList(map[? "navTokenFieldList"]));
 	var navTokenFieldList = map[? "navTokenFieldList"];
 	var navUnitFieldList = map[? "navUnitFieldList"];
 	var navChunkFieldList = map[? "navChunkFieldList"];

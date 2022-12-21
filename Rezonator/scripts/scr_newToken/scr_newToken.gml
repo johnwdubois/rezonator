@@ -2,10 +2,10 @@ function scr_newToken(newTokenStr, refTokenID) {
 	/*
 		Purpose: Create a new word within the discourse based on user string input
 	*/
-	if(string_length(string(newTokenStr)) <= 0 or newTokenStr == undefined){exit;}
+	if (string_length(string(newTokenStr)) <= 0 or newTokenStr == undefined) {exit;}
 
 	var refTokenSubMap = global.nodeMap[? refTokenID];
-	if(!scr_isNumericAndExists(refTokenSubMap, ds_type_map)){ exit; }
+	if (!scr_isNumericAndExists(refTokenSubMap, ds_type_map)) { exit; }
 	
 	
 	// get the tokenSeq & displayCol for our new token
@@ -110,6 +110,10 @@ function scr_newToken(newTokenStr, refTokenID) {
 		if (!scr_isNumericAndExists(currentChunkSubMap, ds_type_map)) continue;
 		var currentChunkTokenList = currentChunkSubMap[? "tokenList"];
 		if (!scr_isNumericAndExists(currentChunkTokenList, ds_type_list)) continue;
+		
+		// if the new token would be outside the bounds of the chunk, dont add it to the chunk
+		if (currentChunkTokenList[| 0] == refTokenID && obj_control.before) continue;
+		if (currentChunkTokenList[| ds_list_size(currentChunkTokenList) - 1] == refTokenID && !obj_control.before) continue;
 		
 		var refTokenChunkIndex = ds_list_find_index(currentChunkTokenList, refTokenID);
 		var newTokenChunkIndex = (obj_control.before) ? refTokenChunkIndex : refTokenChunkIndex + 1;

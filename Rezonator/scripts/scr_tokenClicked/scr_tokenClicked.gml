@@ -1,5 +1,3 @@
-
-
 function scr_tokenClicked(tokenID){
 	
 	if (global.delayInput > 0) exit;
@@ -45,7 +43,7 @@ function scr_tokenClicked(tokenID){
 		obj_control.moveCounter++;
 	}
 	
-	var inChainsList = tokenSubMap[?"inChainsList"];
+	var inChainsList = tokenSubMap[? "inChainsList"];
 	show_debug_message("scr_tokenClicked ... inChainsList: " + scr_getStringOfList(inChainsList));
 	
 	var shouldExit = false;
@@ -149,6 +147,17 @@ function scr_tokenClicked(tokenID){
 	// if there is not a focused chain, we create a new chain
 	if (!ds_map_exists(global.nodeMap, obj_chain.currentFocusedChainID)) {
 		scr_newChain(tokenID);
+	}
+	else {
+		if (scr_checkUnitSideLink(unitID, obj_chain.currentFocusedChainID)) {
+			var inst = instance_create_layer(0, 0, "InstancesDialogue", obj_dialogueBox);
+			with (inst) {
+				questionWindowActive = true;
+				confirmSideLink = true;
+			}
+			obj_control.sideLinkTokenID = tokenID;
+			exit;
+		}
 	}
 
 	// add new link and refresh chain grid

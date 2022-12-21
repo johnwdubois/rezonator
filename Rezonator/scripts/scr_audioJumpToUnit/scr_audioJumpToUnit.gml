@@ -8,14 +8,21 @@ function scr_audioJumpToUnit(unitID) {
 		
 			if (unitID != "" or unitID != undefined) {
 				var unitSubMap = global.nodeMap[?unitID];
-				if(!scr_isNumericAndExists(unitSubMap, ds_type_map)){exit;}
+				if(!scr_isNumericAndExists(unitSubMap, ds_type_map)){
+						show_debug_message("unitSubMap failed");
+						exit;
+						}
 				
 				var unitStart = unitSubMap[?"unitStart"];
-				if(string_length(string_digits(unitStart)) < 1){exit;}
+				if(string_length(string_digits(unitStart)) < 1){
+						show_debug_message("unit start failed");
+						exit;
+					}
 				unitStart = real(unitStart);
-				
-				if (unitStart != undefined and unitStart > 0) {
+				show_debug_message("jump to audio: unit start "+string(unitStart));
+				if (unitStart != undefined and unitStart >= 0) {
 					with (obj_audioUI) {
+						
 						audioPos = unitStart;
 						bookmarkStartTime = audioPos;
 						if (audioPos >= 0 and audioPos <= audioLength) {
@@ -28,6 +35,8 @@ function scr_audioJumpToUnit(unitID) {
 						}
 					}
 				}
+				
+				with (obj_audioUI) closestUnit = unitID;
 			}
 		}
 	}

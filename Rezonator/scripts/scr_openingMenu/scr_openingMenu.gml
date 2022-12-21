@@ -31,15 +31,27 @@ function scr_openingMenu() {
 	var openProjectButtonX2 = openProjectButtonX1 + buttonWidth;
 	var openProjectButtonY2 = openProjectButtonY1 + buttonHeight;
 	var mouseOverOpen = point_in_rectangle(mouse_x, mouse_y, openProjectButtonX1, openProjectButtonY1, openProjectButtonX2, openProjectButtonY2) && !mouseoverCancel;
+	var _selectOpenButton = false;
 	if (mouseOverOpen) {
 		draw_set_color(global.colorThemeSelected1);
 		draw_rectangle(openProjectButtonX1, openProjectButtonY1, openProjectButtonX2, openProjectButtonY2, false);
 	
 		if (device_mouse_check_button_released(0, mb_left)) {
-			global.newProject = false;
-			global.openProject = true;
-			global.userName = obj_openingScreen.inputText;
+			_selectOpenButton = true;
 		}
+	}
+	
+	// altnerately users can select the Open option from the menu bar
+	if (selectOpenButton) {
+		selectOpenButton = false;
+		_selectOpenButton = true;
+	}
+	
+	// if the user clicks the open button (or has used the Open option from the menu bar)
+	if (_selectOpenButton) {
+		global.newProject = false;
+		global.openProject = true;
+		global.userName = obj_openingScreen.inputText;
 	}
 	
 	// draw open button

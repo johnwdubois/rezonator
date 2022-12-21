@@ -89,6 +89,7 @@ if ((obj_control.hoverTokenID != "" or obj_control.hoverUnitID != "" or obj_cont
 
 	// Handle the case where the box clips off the bottom of the screen
 	var fullWindowHeight = camera_get_view_height(camera_get_active());
+	if (obj_audioUI.visible) fullWindowHeight -= obj_audioUI.windowHeight;
 	if (boxY2 >= fullWindowHeight) {
 		var overflowHeight = boxY2 - fullWindowHeight;
 		boxY1 -= overflowHeight;

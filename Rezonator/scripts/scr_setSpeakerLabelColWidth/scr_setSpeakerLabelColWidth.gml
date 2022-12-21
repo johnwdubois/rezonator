@@ -37,7 +37,7 @@ function scr_setSpeakerLabelColWidth() {
 	for (var i = 0; i < speakerLabelColXListSize; i++) {
 		
 		var colX = speakerLabelColXList[| i];
-		var mouseoverColX = point_in_rectangle(mouse_x, mouse_y, colX - sectionMouseWidth, wordTopMargin, colX + sectionMouseWidth, camHeight);
+		var mouseoverColX = point_in_rectangle(mouse_x, mouse_y, colX - sectionMouseWidth, wordTopMargin, colX + sectionMouseWidth, camHeight) && !instance_exists(obj_dropDown);
 		
 		if (mouseoverColX) {
 			mouseoverSpeakerLabelWidth = true;

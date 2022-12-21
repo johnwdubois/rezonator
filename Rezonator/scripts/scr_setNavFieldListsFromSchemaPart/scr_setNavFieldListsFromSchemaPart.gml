@@ -2,6 +2,10 @@
 
 function scr_setNavFieldListsFromSchemaPart(schemaFieldList, fullFieldList, navFieldList){
 	
+	show_debug_message("schemaFieldList: " + scr_getStringOfList(schemaFieldList));
+	show_debug_message("fullFieldList: " + scr_getStringOfList(fullFieldList));
+	show_debug_message("navFieldList: " + scr_getStringOfList(navFieldList));
+	
 	// make sure we got a schema field list
 	if (scr_isNumericAndExists(schemaFieldList, ds_type_list)) {
 		

@@ -1,5 +1,3 @@
-
-
 function scr_addNewFieldToNodes(type, field){
 	
 	var chainList = ds_list_create();

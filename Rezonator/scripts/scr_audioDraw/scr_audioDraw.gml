@@ -1,6 +1,3 @@
-/*
-	Purpose: Draw the Audio GUI when an Audio File has been uploaded, including plauhead, bookmarks, and toggles
-*/
 function scr_audioDraw() {
 	
 	// Get dimensions of whole GUI window
@@ -29,11 +26,11 @@ function scr_audioDraw() {
 	var audioFileX = floor(x + (windowWidth * mean(0.02, 0.15)));
 	var audioFileY = floor(y + 24);
 	var strHeight = string_height("0");
-	var audioFileStr = file_exists(audioFile) ? filename_name(audioFile) : "";
+	var audioFileStr = audioFileExists ? filename_name(audioFile) : "";
 	scr_adaptFont(audioFileStr, "S");
 	draw_text(audioFileX, audioFileY, audioFileStr);
 	
-	if (point_in_rectangle(mouse_x, mouse_y, x, y, seekBarX1 - string_width("AAAAAAA"), y + windowHeight) && audioFile != "" && file_exists(audioFile)) {
+	if (point_in_rectangle(mouse_x, mouse_y, x, y, seekBarX1 - string_width("AAAAAAA"), y + windowHeight) && audioFile != "" && audioFileExists) {
 		scr_createTooltip(mean(x, seekBarX1 - string_width("AAAAAAA")), y, string(audioFile), obj_tooltip.arrowFaceDown);
 	}
 	
@@ -88,13 +85,15 @@ function scr_audioDraw() {
 	// Check for mouseClick on play/pause button
 	if (mouseOverPlayPause) {
 		if (mouse_check_button_pressed(mb_left)) {
-			audioPaused = !audioPaused;
+			if (audioFileExists) {
+				audioPaused = !audioPaused;
+			}
 		}
 	}
 	
 	// Check for Spacebar to toggle play/pause and set Bookmark
 	if (keyboard_check_released(vk_space) and !instance_exists(obj_dialogueBox) && audioSound != -1) {
-
+	/*
 		if (bookmarkStartTime > -1) {
 			if (audioPaused) {
 				audio_sound_set_track_position(audioSound, bookmarkStartTime);
@@ -105,8 +104,10 @@ function scr_audioDraw() {
 			}
 		}
 		else {
+	*/		
 			audioPaused = !audioPaused;
-		}
+			
+	//	}
 	}
 	
 	
@@ -141,9 +142,9 @@ function scr_audioDraw() {
 		bookmarkX = ((real(bookmarkStartTime) * real(seekBarWidth)) / audioLength) + seekBarX1;
 		bookmarkY = seekBarY1 - (playheadRad*1.5);
 		var bookmarkWidth = windowWidth*0.001;
-		draw_set_halign(fa_right);
-		draw_set_color(c_white);
-		draw_rectangle(bookmarkX - bookmarkWidth, bookmarkY ,bookmarkX + bookmarkWidth, bookmarkY + playheadRad*4, false);
+		//draw_set_halign(fa_right);
+		//draw_set_color(c_white);
+		//draw_rectangle(bookmarkX - bookmarkWidth, bookmarkY ,bookmarkX + bookmarkWidth, bookmarkY + playheadRad*4, false);
 		//draw_sprite_ext(spr_linkArrow, 0, bookmarkX, bookmarkY, 0.4, 0.4, 270, c_white, 1);
 	}
 
@@ -163,7 +164,7 @@ function scr_audioDraw() {
 	//Check for mousehover/click on Playhead
 	var playheadHoldable = false;
 
-	if ((mouseoverSeekbar or playheadHolding) && audioSound != -1 && file_exists(audioFile)) {
+	if ((mouseoverSeekbar or playheadHolding) && audioSound != -1 && audioFileExists) {
 		playheadHoldable = true;
 	}
 	if (playheadHoldable and !mouseOverPlayPause) {
@@ -342,7 +343,7 @@ function scr_audioDraw() {
 		volumeSliderX = clamp(mouse_x,volumeBarX1,volumeBarX2);
 		audioVolume = (volumeSliderX - volumeBarX1) / volumeBarWidth;
 	}
-	if(audioSound != -1 && file_exists(audioFile)){
+	if(audioSound != -1 && audioFileExists){
 		audio_sound_gain(audioSound, audioVolume, 0);
 	}
 	

@@ -1,6 +1,6 @@
 
 
-function scr_createTokenNode(discourseTokenSeq , textToDisplay,newTokenSeq,newDisplayCol, unitID){
+function scr_createTokenNode(discourseTokenSeq, textToDisplay, newTokenSeq, newDisplayCol, unitID){
 	// make token node
 	var currentTokenNode = scr_addToNodeMap("token");
 	var currentTokenSubMap = global.nodeMap[? currentTokenNode];
@@ -25,9 +25,24 @@ function scr_createTokenNode(discourseTokenSeq , textToDisplay,newTokenSeq,newDi
 	for (var i = 0; i < tokenImportColNameListSize; i++) {
 		var currentField = string(obj_control.tokenFieldList[| i]);
 		var currentTag = "";
-		if(currentField == global.displayTokenField){
-			currentTag = textToDisplay
+		
+		if (obj_control.splitToken) {
+			if (currentField == obj_control.splitTokenField) {
+				currentTag = textToDisplay
+			}
+			else if (obj_control.splitTokenCopyTags) {
+				var rightClickTokenSubMap = global.nodeMap[? obj_control.rightClickID];
+				var rightClickTokenTagMap = rightClickTokenSubMap[? "tagMap"];
+				
+				currentTag = rightClickTokenTagMap[? currentField];
+			}
 		}
+		else {
+			if (currentField == global.displayTokenField) {
+				currentTag = textToDisplay
+			}
+		}
+		
 		ds_map_add(tagMap, currentField, currentTag);
 	}
 		

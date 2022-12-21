@@ -1,5 +1,3 @@
-
-
 function scr_drawDialogueBox_input(){
 
 	// draw title text
@@ -63,7 +61,10 @@ function scr_drawDialogueBox_input(){
 			ds_list_copy(tokenFieldListCopy, obj_control.tokenFieldList);
 			scr_createDropDown(fieldRectX1, fieldRectY2, tokenFieldListCopy, global.optionListTypeSearchField);
 		}
-		if(string_length(obj_control.searchField) < 1){obj_control.searchField = global.displayTokenField;}
+		if (string_length(obj_control.searchField) < 1) {
+			obj_control.searchField = global.displayTokenField;
+		}
+		
 		// field text
 		draw_set_color(global.colorThemeText);
 		scr_adaptFont(obj_control.searchField, "S", false);
@@ -103,6 +104,7 @@ function scr_drawDialogueBox_input(){
 		
 		
 		// regex checkbox
+		/*
 		var regexCheckboxX1 = obj_inputBox.textBoxX;
 		var regexCheckboxY1 = rangeRectY2 + dropDownXBuffer;
 		var regexCheckboxX2 = regexCheckboxX1 + checkboxSize;
@@ -119,12 +121,13 @@ function scr_drawDialogueBox_input(){
 		draw_set_halign(fa_left);
 		scr_adaptFont(scr_get_translation("search_dialogue_regEx"), "M");
 		draw_text(floor(regexCheckboxX2 + checkboxSize), floor(mean(regexCheckboxY1, regexCheckboxY2)), scr_get_translation("search_dialogue_regEx"));
+		*/
 
 		
 		if(!obj_control.regExCheck){
 			// case-sensitive checkbox
 			var caseCheckboxX1 = obj_inputBox.textBoxX;
-			var caseCheckboxY1 = regexCheckboxY2 + dropDownXBuffer;
+			var caseCheckboxY1 = rangeRectY2 + dropDownXBuffer;
 			var caseCheckboxX2 = caseCheckboxX1 + checkboxSize;
 			var caseCheckboxY2 = caseCheckboxY1 + checkboxSize;
 			var mouseoverCaseCheckbox = point_in_rectangle(mouse_x, mouse_y, caseCheckboxX1, caseCheckboxY1, caseCheckboxX2, caseCheckboxY2) && !instance_exists(obj_dropDown);
@@ -143,7 +146,7 @@ function scr_drawDialogueBox_input(){
 		
 		draw_set_valign(fa_top);
 		var explanationText = "Use & to search multiple terms";
-		draw_text(floor(regexCheckboxX2 + checkboxSize), largestPixelY, explanationText);
+		draw_text(floor(caseCheckboxX2 + checkboxSize), largestPixelY, explanationText);
 	}
 	
 	if (obj_control.newWordCreated) {
@@ -164,17 +167,70 @@ function scr_drawDialogueBox_input(){
 		
 		draw_rectangle(insertBeforeBoxRectX1, insertBeforeBoxRectY1, insertBeforeBoxRectX2, insertBeforeBoxRectY2, true);
 		if (obj_control.before) {
-			draw_rectangle(insertBeforeBoxRectX1, insertBeforeBoxRectY1, insertBeforeBoxRectX2, insertBeforeBoxRectY2, false);	
+			draw_sprite_ext(spr_checkmark, 0, mean(insertBeforeBoxRectX1, insertBeforeBoxRectX2), mean(insertBeforeBoxRectY1, insertBeforeBoxRectY2), 1, 1, 0, global.colorThemeText, 1);
 		}
 		
 		// insert before boolean switch
 		if (point_in_rectangle(mouse_x, mouse_y, insertBeforeBoxRectX1, insertBeforeBoxRectY1, insertBeforeBoxRectX2, insertBeforeBoxRectY2)){
-			scr_drawBoolHover(obj_control.before);
 			if (mouse_check_button_pressed(mb_left)) {
 				obj_control.before = !obj_control.before;
 			}
 		}
 	
+	}
+	
+	
+	if (instance_exists(obj_control)) {
+		if (obj_control.splitToken) {
+			
+			// field rect
+			var fieldRectX1 = boxRectX1 + (boxWidth * 0.25);
+			var fieldRectY1 = obj_inputBox.textBoxY + obj_inputBox.windowHeight + dropDownXBuffer;
+			var fieldRectX2 = boxRectX1 + (boxWidth * 0.75);
+			var fieldRectY2 = fieldRectY1 + dropDownHeight;
+			var mouseoverFieldRect = point_in_rectangle(mouse_x, mouse_y, fieldRectX1, fieldRectY1, fieldRectX2, fieldRectY2) && !instance_exists(obj_dropDown);
+			draw_set_color(mouseoverFieldRect ? global.colorThemeSelected1 : global.colorThemeBG);
+			draw_rectangle(fieldRectX1, fieldRectY1, fieldRectX2, fieldRectY2, false);
+			draw_set_color(global.colorThemeBorders);
+			draw_rectangle(fieldRectX1, fieldRectY1, fieldRectX2, fieldRectY2, true);
+		
+			// click field dropdown
+			if (mouseoverFieldRect && mouse_check_button_released(mb_left)) {
+				var tokenFieldListCopy = ds_list_create();
+				ds_list_copy(tokenFieldListCopy, obj_control.tokenFieldList);
+				scr_createDropDown(fieldRectX1, fieldRectY2, tokenFieldListCopy, global.optionListTypeSplitTokenField);
+			}
+			
+			// field text
+			draw_set_color(global.colorThemeText);
+			scr_adaptFont(obj_control.splitTokenField, "S", false);
+			draw_set_halign(fa_left);
+			scr_adaptFont(obj_control.splitTokenField, "S", false);
+			draw_text(floor(fieldRectX1 + dropDownXBuffer), floor(mean(fieldRectY1, fieldRectY2)), obj_control.splitTokenField);
+			draw_set_halign(fa_right);
+			scr_adaptFont(scr_get_translation("option_field"), "S", false);
+			draw_text(floor(fieldRectX1 - dropDownXBuffer), floor(mean(fieldRectY1, fieldRectY2)), scr_get_translation("option_field")+": ");
+			
+			
+			
+			// copy tags checkbox
+			var copyTagsCheckboxX1 = obj_inputBox.textBoxX;
+			var copyTagsCheckboxY1 = fieldRectY2 + dropDownXBuffer;
+			var copyTagsCheckboxX2 = copyTagsCheckboxX1 + checkboxSize;
+			var copyTagsCheckboxY2 = copyTagsCheckboxY1 + checkboxSize;
+			var mouseoverCopyTagsCheckbox = point_in_rectangle(mouse_x, mouse_y, copyTagsCheckboxX1, copyTagsCheckboxY1, copyTagsCheckboxX2, copyTagsCheckboxY2) && !instance_exists(obj_dropDown);
+			if (mouseoverCopyTagsCheckbox && mouse_check_button_released(mb_left)) obj_control.splitTokenCopyTags = !obj_control.splitTokenCopyTags;
+			if (obj_control.splitTokenCopyTags) draw_sprite_ext(spr_checkmark, 0, mean(copyTagsCheckboxX1, copyTagsCheckboxX2), mean(copyTagsCheckboxY1, copyTagsCheckboxY2), 1, 1, 0, global.colorThemeText, 1);
+			draw_set_color(global.colorThemeBorders);
+			draw_rectangle(copyTagsCheckboxX1, copyTagsCheckboxY1, copyTagsCheckboxX2, copyTagsCheckboxY2, true);
+			largestPixelY = copyTagsCheckboxY2;
+		
+			// copy tags text
+			draw_set_color(global.colorThemeText);
+			draw_set_halign(fa_left);
+			scr_adaptFont("Copy tags: ", "M"); // localize
+			draw_text(floor(copyTagsCheckboxX2 + checkboxSize), floor(mean(copyTagsCheckboxY1, copyTagsCheckboxY2)), "Copy tags"); // localize
+		}
 	}
 
 

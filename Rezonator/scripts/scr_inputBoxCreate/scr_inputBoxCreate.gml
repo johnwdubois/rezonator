@@ -54,5 +54,8 @@ function scr_inputBoxCreate(strDefault){
 	navWindowTagging = false;
 	inputBoxCancel = 0;
 	
+	// reset keyboard string
+	keyboard_string = "";
+	
 
 }

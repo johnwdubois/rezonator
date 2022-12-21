@@ -2,9 +2,11 @@ function scr_searchPaneOptions(optionSelected){
 	
 	var optionIndex = ds_list_find_index(optionList, optionSelected);
 //"Add to Trail", "Add to Resonance", "Add to Stack", "Remove from Search"
+// localize
 	if(optionSelected == "Add to Trail"){
 		scr_destroyAllDropDownsOtherThanSelf();
 		var dropDownOptionList = ds_list_create();
+		// localize
 		ds_list_add(dropDownOptionList, "Create New Chain");
 		var currentTrackList = global.nodeMap[?"trailList"];
 		obj_control.searchChainType = "trail";
