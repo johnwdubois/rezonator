@@ -606,6 +606,7 @@ function scr_panelPane_drawSearch1ToMany(){
 	if (mouse_check_button_released(mb_left) && mouseoverAddToChainButton) {
 		var dropDownOptionList = ds_list_create();
 		//, "Add to Stack"
+		// localize
 		ds_list_add(dropDownOptionList, "Add to Trail", "Add to Resonance", "Tag Token", "Remove from Search");
 		scr_createDropDown(addToChainButtonX1, addToChainButtonY2, dropDownOptionList, global.optionListTypeSearchPane);
 	}

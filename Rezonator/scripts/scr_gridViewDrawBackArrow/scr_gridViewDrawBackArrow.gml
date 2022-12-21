@@ -21,6 +21,11 @@ function scr_gridViewDrawBackArrow() {
 	var backArrowX = spriteWidth;
 	var backArrowY = camera_get_view_height(camera_get_active()) - spriteHeight;
 	
+	// if audio bar is visible, raise the back arrow
+	if (instance_exists(obj_audioUI)) {
+		if (obj_audioUI.visible) backArrowY -= obj_audioUI.windowHeight;
+	}
+	
 	// Set vraibles for checking mouse click
 	var backArrowRectX1 = backArrowX - spriteWidth / 2;
 	var backArrowRectY1 = backArrowY - spriteHeight / 2;
@@ -30,7 +35,9 @@ function scr_gridViewDrawBackArrow() {
 	// Check for mouse hover over
 	var mouseover = point_in_circle(mouse_x, mouse_y, backArrowX, backArrowY, spriteWidth / 2);
 	if (mouseover) {
-	
+		
+		obj_control.mouseoverBackArrow = true;
+		
 		draw_set_color(global.colorThemeSelected2);
 		draw_set_alpha(0.35);
 		draw_circle(backArrowX, backArrowY, spriteWidth / 2, false);
@@ -39,6 +46,7 @@ function scr_gridViewDrawBackArrow() {
 		
 		// Check for mouse click
 		if (mouse_check_button_released(mb_left)) {
+			
 			if (obj_control.gridView) {
 				obj_control.gridView = false;
 			}
@@ -52,6 +60,9 @@ function scr_gridViewDrawBackArrow() {
 		if (obj_control.gridView) tooltipText = scr_get_translation("label_back");
 		else tooltipText = scr_get_translation("menu_clear");
 		scr_createTooltip(backArrowRectX2, mean(backArrowRectY1, backArrowRectY2), tooltipText, obj_tooltip.arrowFaceLeft);
+	}
+	else {
+		obj_control.mouseoverBackArrow = false;
 	}
 	
 	// Draw the arrow sprite

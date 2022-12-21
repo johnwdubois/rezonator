@@ -1,5 +1,3 @@
-
-
 function scr_panelPane_drawChunkList(){
 
 	var drawScrollbar = chainViewOneToMany;

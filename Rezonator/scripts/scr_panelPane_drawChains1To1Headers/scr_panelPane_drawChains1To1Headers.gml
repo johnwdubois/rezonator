@@ -1,7 +1,9 @@
-
-
 function scr_panelPane_drawChains1To1Headers(chain1to1ColFieldList, chainType){
 	
+	var entryType = "";
+	if (chainType == "resonance") entryType = "rez";
+	else if (chainType == "trail") entryType = "track";
+	else if (chainType == "stack") entryType = "card";
 	scr_surfaceStart();
 	
 	var headerHeight = functionTabs_tabHeight;
@@ -85,14 +87,40 @@ function scr_panelPane_drawChains1To1Headers(chain1to1ColFieldList, chainType){
 			draw_line_width(underlineX1 - clipX, underlineY - clipY, underlineX2 - clipX, underlineY - clipY, 2);
 
 			if (mouse_check_button_released(mb_left)) {
-				with (obj_panelPane) fieldChains1To1ChainType = chainType;
+				with (obj_panelPane) {
+					fieldChains1To1ChainType = chainType;
+					chosenCol = i;
+				}
 				obj_control.chain1to1ChainToChange = "";
 				obj_control.chain1To1ColFieldToChange = i;
 				obj_control.chain1to1FieldToChange = currentField;
 				var dropDownOptionList = ds_list_create();
 				
 				// add some of the dropDown options
-				ds_list_add(dropDownOptionList, "option_select-field", "option_create-new-field"); 
+				ds_list_add(dropDownOptionList, "option_select-field", "option_create-new-field");
+				
+				// check if all the fields that apply to this chainType are in the navFieldList
+				var allFieldsInNav = true;
+				var chainFieldListSize = ds_list_size(global.chainFieldList);
+				for (var i = 0; i < chainFieldListSize; i++) {
+					var currentField = global.chainFieldList[| i];
+					var currentFieldSubMap = global.chainFieldMap[? currentField];
+					if (currentFieldSubMap[? entryType]) {
+						if (ds_list_find_index(chain1to1ColFieldList, currentField) == -1) {
+							allFieldsInNav = false;
+						}
+					}
+				}
+						
+				var dropDownOptionList = ds_list_create();
+						
+				// add some of the dropDown options
+				ds_list_add(dropDownOptionList, "option_select-field");
+				// localize
+				if (ds_list_size(chain1to1ColFieldList) > 1) ds_list_add(dropDownOptionList, "Hide column");
+				// localize
+				if (!allFieldsInNav) ds_list_add(dropDownOptionList, "Insert column");
+				ds_list_add(dropDownOptionList, "option_create-new-field");
 				
 				// check if this field has a finite tagSet, and therefore we should put in "Add to tag set" and "Remove from tag set"
 				var tagSubMap = global.chainFieldMap[? currentField];
@@ -105,6 +133,7 @@ function scr_panelPane_drawChains1To1Headers(chain1to1ColFieldList, chainType){
 				
 				
 				scr_createDropDown(headerRectX1, headerRectY2, dropDownOptionList, global.optionListTypeFieldChains1To1);
+				scr_clearNavWindowTagging(false);
 			}
 		}
 	}

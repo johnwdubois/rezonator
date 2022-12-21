@@ -1,5 +1,7 @@
 function scr_turnStackerLoop(){
 	
+	show_debug_message("scr_turnStackerLoop");
+	
 	// Set script variables
 	var currentUnitList = ds_list_create();
 	ds_list_clear(currentUnitList);

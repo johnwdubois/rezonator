@@ -25,12 +25,12 @@ alarm[7] = 2;
 
 showEndNoteWindow = false;
 confirmStackCreate = false;
-createStacksRandom = false;
-createStacksTurn = false;
-createStacksSentence = false;
-createStacksGroup = false;
-createStacksClique = false;
-createStacksPsent = false;
+confirmStackName = false;
+stackerName = "";
+stackerNameNum = 0;
+stackerMode = ""; // turn, utterance, clique, random, sentence, group
+
+
 
 
 scr_scrollBarInit();

@@ -76,6 +76,7 @@ function scr_panelPane_drawChains1ToManyInnerLoop(chain1toManyColFieldList, entr
 			var currentFieldSubMap = entryTagMap[? currentField];
 			if (scr_isNumericAndExists(currentFieldSubMap, ds_type_map)) {
 				if (!ds_map_exists(currentFieldSubMap, "tagSet")) readOnlyField = true;
+				if(currentFieldSubMap[?"readOnly"]) readOnlyField = true;
 			}
 		}
 		
@@ -170,5 +171,6 @@ function scr_panelPane_drawChains1ToManyInnerLoop(chain1toManyColFieldList, entr
 		draw_set_valign(fa_middle);
 		drawStr = scr_adaptFont(drawStr, "S");
 		draw_text(textX - clipX + 2, floor(textY - clipY + scrollPlusY), drawStr);
+		draw_set_alpha(1);
 	}
 }

@@ -59,6 +59,8 @@ function scr_importGridToNodeMap_fieldsRowToken(row){
 		//add all fields to appropriate field lists
 		for(var i = 0 ; i < ds_list_size(global.importGridColNameList); i++){
 			var fieldName = global.importGridColNameList[| i];
+			
+			
 			if(global.fieldLevelMap[? fieldName] == "tab_name_unit"){
 				
 				if(fieldName == "~blockID"){continue;}

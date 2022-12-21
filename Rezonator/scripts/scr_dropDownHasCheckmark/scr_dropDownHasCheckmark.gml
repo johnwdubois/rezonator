@@ -9,6 +9,7 @@ function scr_dropDownHasCheckmark(option){
 
 	// some checks for duplicate optionText that shouldnt have checkmarks
 	if(optionListType == global.optionListTypeTools and option == "menu_stack") hasCheck = false;
+	if(optionListType == global.optionListTypeAddToFilter and option == "menu_track") hasCheck = false;
 	if(optionListType == global.optionListTypeView and option == "menu_prose") hasCheck = false;
 	
 	return hasCheck;

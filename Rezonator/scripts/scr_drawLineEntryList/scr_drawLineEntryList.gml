@@ -185,9 +185,7 @@ function scr_drawLineEntryList(unitID, unitSubMap, entryList, pixelY, OOBCheck){
 					scr_tokenClicked(currentToken);
 				}
 				if(keyboard_check(vk_shift) && keyboard_check_pressed(ord("U")) && !global.ctrlHold && obj_control.shortcutsEnabled){
-					var lastToken = false;
-					scr_splitUnit(currentToken,lastToken);
-				
+					//scr_splitUnit(currentToken, false);
 				}
 				// Check for rightMouseClick
 				if (device_mouse_check_button_released(0, mb_right) and !instance_exists(obj_dialogueBox)) {
@@ -199,6 +197,13 @@ function scr_drawLineEntryList(unitID, unitSubMap, entryList, pixelY, OOBCheck){
 						alarm[11] = 2;
 					}
 
+				}
+				
+				// if pressing the comma key while moused over a token, spawn an endnote
+				if (keyboard_check_released(188)) {
+					obj_control.rightClickID = currentToken;
+					scr_newTokenOptions(obj_control.recentlyAddedEndnote);
+					obj_control.rightClickID = "";
 				}
 
 			}

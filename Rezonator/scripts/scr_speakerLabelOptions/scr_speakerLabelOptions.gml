@@ -3,7 +3,7 @@ function scr_speakerLabelOptions(optionSelected) {
 	with (obj_panelPane) {
 		if (currentFunction == functionChainList) {
 			
-			if (optionSelected == "option_create-tree" || optionSelected == "Create tree (unit)") {
+			if (optionSelected == "option_create-tree" || optionSelected == "option_create-tree-unit") {
 				var unitSubMap = global.nodeMap[? obj_control.rightClickID];
 				if (scr_isNumericAndExists(unitSubMap, ds_type_map)) {
 					var tokenList = ds_list_create();
@@ -21,7 +21,7 @@ function scr_speakerLabelOptions(optionSelected) {
 				}
 				instance_destroy(obj_dropDown);
 			}
-			else if (optionSelected == "Create tree (stack)") {
+			else if (optionSelected == "option_create-tree-stack") {
 				var unitSubMap = global.nodeMap[? obj_control.rightClickID];
 				if (scr_isNumericAndExists(unitSubMap, ds_type_map)) {
 					var inChainsList = unitSubMap[? "inChainsList"];
@@ -31,17 +31,42 @@ function scr_speakerLabelOptions(optionSelected) {
 				}
 				instance_destroy(obj_dropDown);
 			}
+			else if (optionSelected == "option_merge-stack") {
+				var unitSubMap = global.nodeMap[? obj_control.rightClickID];
+				if (scr_isNumericAndExists(unitSubMap, ds_type_map)) {
+					var inChainsList = unitSubMap[? "inChainsList"];
+					if (ds_list_size(inChainsList) > 0) {
+						with (obj_chain) mergeStackID = inChainsList[| 0];
+						with (obj_control) {
+							combineChainsFocused = obj_chain.mergeStackID;
+							mergeChainType = "stack";
+						}
+						
+						// dialog box telling user to choose other stack to merge with
+						if (!instance_exists(obj_dialogueBox)) {
+							var inst = instance_create_layer(x, y, "InstancesDialogue", obj_dialogueBox);
+							with (inst) {
+								alertWindowActive = true;
+								mergeStack = true;
+							}
+						}
+					}
+				}
+			}
 			else if (optionSelected == "Toggle Line #") {
 				obj_control.showLineNumber = !obj_control.showLineNumber;
 			}
-			else if (optionSelected == "help_label_delete-link") {
+			else if (optionSelected == "help_label_delete-link" || optionSelected == "option_remove-from-stack") {
 				scr_deleteFromChain(true);
-
 				instance_destroy(obj_dropDown);
 			}
-			else if (optionSelected == "option_set-chain-name") {
-				scr_setChainName();
-
+			else if (optionSelected == "option_set-chain-name" || optionSelected == "option_rename-stack") {
+				if (!instance_exists(obj_dialogueBox)) {
+					instance_create_layer(x, y, "InstancesDialogue", obj_dialogueBox);
+					global.inputBoxDefStr = scr_setChainNameGetString();
+					obj_dialogueBox.inputWindowActive = true;
+					obj_control.setChainName = true;
+				}
 				instance_destroy(obj_dropDown);
 			}
 			else if (optionSelected == "Tag Chain") {
@@ -143,14 +168,77 @@ function scr_speakerLabelOptions(optionSelected) {
 					scr_destroyAllDropDownsOtherThanSelf();
 				}
 				var dropDownOptionList = ds_list_create();
+				// localize
 				ds_list_add(dropDownOptionList, "Tag Unit");
 				if(obj_control.inChain){
+					// localize
 					ds_list_add(dropDownOptionList, "Tag Chain", "Tag Entry");
 				}
 				if (ds_list_size(dropDownOptionList) > 0) {
 					scr_createDropDown(obj_dropDown.x + obj_dropDown.windowWidth, obj_dropDown.y + (obj_dropDown.optionSpacing * optionIndex), dropDownOptionList, global.optionListTypeTag);
 				}
 			}
+			else if (optionSelected == "option_move-unit-up") {
+				if (!instance_exists(obj_dialogueBox)) {
+					instance_create_layer(x, y, "InstancesDialogue", obj_dialogueBox);
+					obj_dialogueBox.questionWindowActive = true;
+					obj_dialogueBox.swapUnitUp = true;
+				}
+				with (obj_dropDown) instance_destroy();
+			}
+			else if (optionSelected == "option_move-unit-down") {
+				if (!instance_exists(obj_dialogueBox)) {
+					instance_create_layer(x, y, "InstancesDialogue", obj_dialogueBox);
+					obj_dialogueBox.questionWindowActive = true;
+					obj_dialogueBox.swapUnitDown = true;
+				}
+				with (obj_dropDown) instance_destroy();
+			}
+			else if (optionSelected == "option_merge-unit") {
+				
+				// put the rightclick unit and the previous unit into mergeUnitList and call merge unit!
+				ds_list_clear(obj_control.mergeUnitList);
+				var docSubMap = global.nodeMap[? global.discourseNode];
+				var unitList = docSubMap[? "unitList"];
+				var rightClickUnitIndex = ds_list_find_index(unitList, obj_control.rightClickID);
+				if (rightClickUnitIndex >= 1) {
+					var prevUnit = unitList[| rightClickUnitIndex - 1];
+					
+					// check if the two units have the same participant
+					var rightClickUnitSubMap = global.nodeMap[? obj_control.rightClickID];
+					var rightClickUnitTagMap = rightClickUnitSubMap[? "tagMap"];
+					var rightClickUnitParticipant = rightClickUnitTagMap[? global.participantField];
+					var prevUnitSubMap = global.nodeMap[? prevUnit];
+					var prevUnitTagMap = prevUnitSubMap[? "tagMap"];
+					var prevUnitParticipant = prevUnitTagMap[? global.participantField];
+					show_debug_message("rightClickUnitParticipant: " + string(rightClickUnitParticipant) + ", prevUnitParticipant: " + string(prevUnitParticipant));
+					ds_list_add(obj_control.mergeUnitList, prevUnit, obj_control.rightClickID);
+					if (rightClickUnitParticipant != "" && prevUnitParticipant != "" && is_string(rightClickUnitParticipant) && is_string(prevUnitParticipant)
+					&& rightClickUnitParticipant != prevUnitParticipant) {
+						// alert user that they can't merge units because of differing participants
+						if (!instance_exists(obj_dialogueBox)) {
+							instance_create_layer(x, y, "InstancesDialogue", obj_dialogueBox);
+							obj_dialogueBox.alertWindowActive = true;
+							obj_control.mergeUnitDifferingParticipants = true;
+						}
+					}
+					else {
+						// confirm is user wants to merge unit
+						if (!instance_exists(obj_dialogueBox)) {
+							instance_create_layer(x, y, "InstancesDialogue", obj_dialogueBox);
+							obj_dialogueBox.questionWindowActive = true;
+							obj_dialogueBox.mergeUnit = true;
+						}
+					}
+				}
+				
+				with (obj_dropDown) instance_destroy();
+			}
+		}
+		
+		if (optionSelected == "option_sync-unit-tab") {
+			scr_showInNav(obj_control.rightClickID);
+			with (obj_dropDown) instance_destroy();
 		}
 	}
 

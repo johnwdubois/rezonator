@@ -1,5 +1,4 @@
 function scr_spawnTagInputBox(ID, field, type, defStr, paneInst, dropDownList, dropDownType){
-	
 	with (obj_inputBox) {
 		if (navWindowTagging) {
 			if (obj_control.navWindowTaggingField != field || obj_control.navWindowTaggingID != ID) {
@@ -11,7 +10,6 @@ function scr_spawnTagInputBox(ID, field, type, defStr, paneInst, dropDownList, d
 	with (obj_dropDown) {
 		instance_destroy();
 	}
-	
 	scr_setIDandFieldToChange(ID, field, type);
 	
 	scr_createDropDown(-400,-200,dropDownList,dropDownType);

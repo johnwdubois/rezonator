@@ -1,4 +1,5 @@
-
+// Call this script every time before using draw_text
+// This script handles setting text size for different fonts and reversing strings for RTL fonts
 
 function scr_adaptFont(inputString, size, isTitle){
 	var setTitleFont = false;

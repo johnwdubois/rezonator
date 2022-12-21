@@ -1,5 +1,3 @@
-
-
 function scr_loadTagJson(fileName){
 	if(!is_string(fileName)){
 		fileName = get_open_filename_ext("Tag file|*.json", "", global.rezonatorSchemaDirString, "Open Tag JSON");
@@ -58,6 +56,7 @@ function scr_loadTagJson(fileName){
 	
 	
 	#region set nav window lists based on the lists found in tag json
+	show_debug_message("map[? navTokenFieldList]: " + scr_getStringOfList(map[? "navTokenFieldList"]));
 	var navTokenFieldList = map[? "navTokenFieldList"];
 	var navUnitFieldList = map[? "navUnitFieldList"];
 	var navChunkFieldList = map[? "navChunkFieldList"];
@@ -91,18 +90,34 @@ function scr_loadTagJson(fileName){
 	for (var i = 0; i < unitFieldListSize; i++) scr_addToListOnce(obj_control.navUnitFieldList, obj_control.unitFieldList[| i]);
 	var chunkFieldListSize = ds_list_size(obj_control.chunkFieldList);
 	for (var i = 0; i < chunkFieldListSize; i++) scr_addToListOnce(obj_control.navChunkFieldList, obj_control.chunkFieldList[| i]);
+	
+	// for chain & entry fields, we must check the chain types before adding to the lists
 	var entryFieldListSize = ds_list_size(global.chainEntryFieldList);
 	for (var i = 0; i < entryFieldListSize; i++) {
-		scr_addToListOnce(obj_control.chain1toManyColFieldListRez, global.chainEntryFieldList[| i]);
-		scr_addToListOnce(obj_control.chain1toManyColFieldListTrack, global.chainEntryFieldList[| i]);
-		scr_addToListOnce(obj_control.chain1toManyColFieldListStack, global.chainEntryFieldList[| i]);
+		var currentField = global.chainEntryFieldList[| i];
+		var currentFieldSubMap = global.entryFieldMap[? currentField];
+		if (!scr_isNumericAndExists(currentFieldSubMap, ds_type_map)) continue;
+		
+		if (currentFieldSubMap[? "rez"]) scr_addToListOnce(obj_control.chain1toManyColFieldListRez, currentField);
+		if (currentFieldSubMap[? "track"]) scr_addToListOnce(obj_control.chain1toManyColFieldListTrack, currentField);
+		if (currentFieldSubMap[? "card"]) scr_addToListOnce(obj_control.chain1toManyColFieldListStack, currentField);
 	}
 	var chainFieldListSize = ds_list_size(global.chainFieldList);
 	for (var i = 0; i < chainFieldListSize; i++) {
-		scr_addToListOnce(obj_control.chain1to1ColFieldListRez, global.chainFieldList[| i]);
-		scr_addToListOnce(obj_control.chain1to1ColFieldListTrack, global.chainFieldList[| i]);
-		scr_addToListOnce(obj_control.chain1to1ColFieldListStack, global.chainFieldList[| i]);
+		var currentField = global.chainFieldList[| i];
+		var currentFieldSubMap = global.chainFieldMap[? currentField];
+		if (!scr_isNumericAndExists(currentFieldSubMap, ds_type_map)) continue;
+		
+		if (currentFieldSubMap[? "rez"]) scr_addToListOnce(obj_control.chain1to1ColFieldListRez, currentField);
+		if (currentFieldSubMap[? "track"]) scr_addToListOnce(obj_control.chain1to1ColFieldListTrack, currentField);
+		if (currentFieldSubMap[? "card"]) scr_addToListOnce(obj_control.chain1to1ColFieldListStack, currentField);
 	}
+	show_debug_message("scr_loadTagJson, chain1toManyColFieldListRez: " + scr_getStringOfList(obj_control.chain1toManyColFieldListRez));
+	show_debug_message("scr_loadTagJson, chain1toManyColFieldListTrack: " + scr_getStringOfList(obj_control.chain1toManyColFieldListTrack));
+	show_debug_message("scr_loadTagJson, chain1toManyColFieldListStack: " + scr_getStringOfList(obj_control.chain1toManyColFieldListStack));
+	show_debug_message("scr_loadTagJson, chain1to1ColFieldListRez: " + scr_getStringOfList(obj_control.chain1to1ColFieldListRez));
+	show_debug_message("scr_loadTagJson, chain1to1ColFieldListTrack: " + scr_getStringOfList(obj_control.chain1to1ColFieldListTrack));
+	show_debug_message("scr_loadTagJson, chain1to1ColFieldListStack: " + scr_getStringOfList(obj_control.chain1to1ColFieldListStack));
 	
 	
 }

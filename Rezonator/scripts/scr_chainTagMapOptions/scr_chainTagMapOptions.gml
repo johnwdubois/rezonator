@@ -1,5 +1,4 @@
 function scr_chainTagMapOptions(optionSelected) {
-				show_debug_message("wahhh im terry")
 
 	if(obj_control.navWindowTaggingDisableSpawn) {
 		with(obj_dropDown){

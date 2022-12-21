@@ -20,6 +20,8 @@ function scr_jumpToUnitTop(unitOrSeq) {
 	}
 	else if (is_numeric(unitOrSeq)) {
 		// if we are given a unitSeq, we need to look in the fullUnitList to get the unitID
+		if (unitOrSeq - 1 >= 0) unitOrSeq--;
+		unitOrSeq = min(unitOrSeq, ds_list_size(fullUnitList) - 1);
 		unitID = fullUnitList[| unitOrSeq];
 	}
 	

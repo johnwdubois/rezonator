@@ -32,6 +32,7 @@ function scr_panelPane_drawCliques1ToMany(){
 		draw_set_alpha(1);
 		
 		var list = cliqueSubMap[? (cliquePaneSwitchButton == "option_chain") ? "chainList" : "unitList"];
+		var chainOrderMap = cliqueSubMap[? "chainOrderMap"];
 		if (scr_isNumericAndExists(list, ds_type_list)) {
 			var listSize = ds_list_size(list);
 			
@@ -57,15 +58,17 @@ function scr_panelPane_drawCliques1ToMany(){
 						currentItemNum = string(i + 1);
 						currentItemText = string(currentItemSubMap[? "name"]);
 						rectColor = currentItemSubMap[? "chainColor"];
-						var currentChainOrderList = cliqueSubMap[? currentItem];
-						var currentChainOrderListSize = ds_list_size(currentChainOrderList);
-						for (var j = 0; j < currentChainOrderListSize; j++) {
-							var currentChain = currentChainOrderList[| j];
-							var currentChainSubMap = global.nodeMap[? currentChain];
-							ds_list_add(currentChainOrderListNames, currentChainSubMap[? "name"]);
+						if (scr_isNumericAndExists(chainOrderMap, ds_type_map)) {
+							var currentChainOrderList = chainOrderMap[? currentItem];
+							if (scr_isNumericAndExists(currentChainOrderList, ds_type_list)) {
+								var currentChainOrderListSize = ds_list_size(currentChainOrderList);
+								for (var j = 0; j < currentChainOrderListSize; j++) {
+									var currentChain = currentChainOrderList[| j];
+									var currentChainSubMap = global.nodeMap[? currentChain];
+									ds_list_add(currentChainOrderListNames, currentChainSubMap[? "name"]);
+								}
+							}
 						}
-						
-						
 					}
 					else {
 						currentItemNum = string(currentItemSubMap[? "unitSeq"]);

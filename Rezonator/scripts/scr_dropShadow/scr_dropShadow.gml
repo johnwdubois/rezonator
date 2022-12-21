@@ -1,5 +1,3 @@
-
-
 function scr_dropShadow(rectX1, rectY1, rectX2, rectY2){
 	
 	var maxAlpha = 1;

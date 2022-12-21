@@ -49,8 +49,13 @@ function scr_inputBoxCreate(strDefault){
 	doubleClickTimerFull = 30;
 	doubleClickTimer = 0;
 	doubleClick = false;
+	dragging = false;
 	
 	navWindowTagging = false;
 	inputBoxCancel = 0;
+	
+	// reset keyboard string
+	keyboard_string = "";
+	
 
 }

@@ -1,1 +1,0 @@
-gridView = !gridView;

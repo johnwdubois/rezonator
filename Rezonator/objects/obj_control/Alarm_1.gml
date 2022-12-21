@@ -1,2 +1,5 @@
-///@description reset dragging variable
-isDragging = false;
+///@description reset dragging
+
+with(obj_inputBox){
+	dragging = false;
+}

@@ -42,6 +42,14 @@ function scr_importPlainTXT() {
 			ds_grid_resize(global.importGrid, global.importGridWidth, ds_grid_height(global.importGrid) + 1);
 			var row = ds_grid_height(global.importGrid) - 1;
 			var colVal = string_copy(lineInFile, 0 , string_length(lineInFile));
+			show_debug_message("row: " + string(row) + ", colVal: " + string(colVal));
+			if (currentLine == txtGridHeight - 1 && col == 0) {
+				show_debug_message("last line, removing last char");
+				if (string_length(colVal) >= 2) {
+					colVal = string_delete(colVal, string_length(colVal) - 1, 1);
+				}
+			}
+			
 			
 			colVal = scr_inputSpaces(colVal);
 

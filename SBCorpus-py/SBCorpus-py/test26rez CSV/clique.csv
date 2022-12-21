@@ -1,2 +1,0 @@
-cliqueID,"chainIDList","unitIDList",rangeStart,rangeEnd,flankLeft,flankRight,length,break,tilt,name
-1,"{2, 3}","{958, 961, 966, 970, 973}",958,973,3,4,5,0,0,Clique 1

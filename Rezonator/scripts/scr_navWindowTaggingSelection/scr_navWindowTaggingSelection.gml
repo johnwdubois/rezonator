@@ -33,7 +33,10 @@ function scr_navWindowTaggingSelection(fieldList, idList, type){
 		fieldSubMap = tagMap[? obj_control.navWindowTaggingField];
 		var fieldHasTagSet = scr_checkForTagSet(fieldSubMap);
 		
-		
+		var readOnly = false;
+		if(scr_isNumericAndExists(fieldSubMap, ds_type_map)){
+			readOnly = fieldSubMap[?"readOnly"];
+		}
 		
 		if (global.ctrlHold && !inputBoxExists) {
 			// copy
@@ -43,7 +46,7 @@ function scr_navWindowTaggingSelection(fieldList, idList, type){
 				show_debug_message("scr_navWindowTaggingSelection, copied to clipboard: " + string(clipboard_get_text()));
 			}
 			
-			if (fieldHasTagSet) {
+			if (fieldHasTagSet && !readOnly) {
 				// paste
 				if (keyboard_check_pressed(ord("V"))) {
 					
@@ -70,9 +73,10 @@ function scr_navWindowTaggingSelection(fieldList, idList, type){
 				keyboard_lastchar = "";
 			}
 		}
+
 		
 		// backspace & delete
-		if (fieldHasTagSet) {
+		if (fieldHasTagSet && !readOnly) {
 			if ((keyboard_check_pressed(vk_backspace) || keyboard_check_pressed(vk_delete)) && !inputBoxExists) {
 				var idSubMap = global.nodeMap[? obj_control.navWindowTaggingID];
 				if (scr_isNumericAndExists(idSubMap, ds_type_map)) {
@@ -85,25 +89,31 @@ function scr_navWindowTaggingSelection(fieldList, idList, type){
 			}
 		}
 		
-
 		
-		
+		var lastCharIsLetter = scr_isCharLetter(keyboard_lastchar);
+		if (readOnly && lastCharIsLetter) {
+			keyboard_lastchar = "";
+			lastCharIsLetter = false;
+		}
 		
 		// create input box if user presses enter or types a letter on keyboard
-		if (!inputBoxExists && !obj_control.navWindowTaggingDisableSpawn && !global.ctrlHold && !instance_exists(obj_dropDown) && fieldHasTagSet) {
+		if (!inputBoxExists && !obj_control.navWindowTaggingDisableSpawn && !global.ctrlHold && !instance_exists(obj_dropDown) && fieldHasTagSet && !readOnly) {
 			
-			if (keyboard_check_pressed(vk_enter) || scr_isCharLetter(keyboard_lastchar)){
-
-				// get the tagSet for this field
-				var dropDownOptionList = ds_list_create();
-				if (scr_isNumericAndExists(fieldSubMap,ds_type_map)){
-					var tagSet = fieldSubMap[? "tagSet"];
-					show_debug_message(scr_getStringOfList(tagSet))
-					// create dropdown
+			var enterKeyPressed = keyboard_check_pressed(vk_enter);
+			
+			
+			if (enterKeyPressed || lastCharIsLetter){
 				
-					ds_list_copy(dropDownOptionList, tagSet);
-					show_debug_message(scr_getStringOfList(dropDownOptionList));
-				}				
+				// fill dropDown options with tagSet
+				var dropDownOptionList = ds_list_create();
+				if (scr_isNumericAndExists(fieldSubMap, ds_type_map)){
+					var tagSet = fieldSubMap[? "tagSet"];
+
+					if (scr_isNumericAndExists(tagSet, ds_type_list)){
+						ds_list_copy(dropDownOptionList, tagSet);
+					}
+				}
+							
 			}
 			
 			var currentDropDownType = 0;
@@ -124,18 +134,20 @@ function scr_navWindowTaggingSelection(fieldList, idList, type){
 			}
 			
 			
-			if (keyboard_check_pressed(vk_enter)) {
+
+			if (enterKeyPressed) {
 				obj_control.navWindowTaggingEnterPress = true;
 				var currentTagValue = scr_navWindowGetTagValue();
 				scr_spawnTagInputBox(obj_control.navWindowTaggingID, obj_control.navWindowTaggingField, type, currentTagValue, self.id, dropDownOptionList, currentDropDownType);
 				obj_control.navWindowTaggingFocusHeavy = true;
 			}
-			else if (scr_isCharLetter(keyboard_lastchar) && obj_control.navWindowTaggingKeyboardInput) {
+			else if (lastCharIsLetter && obj_control.navWindowTaggingKeyboardInput) {
 				scr_spawnTagInputBox(obj_control.navWindowTaggingID, obj_control.navWindowTaggingField, type, keyboard_lastchar, self.id, dropDownOptionList, currentDropDownType);
 				obj_control.navWindowTaggingFocusHeavy = false;
 				obj_control.navWindowTaggingKeyboardLastChar = keyboard_lastchar;
 				keyboard_lastchar = "";
 			}
+			
 		}
 		
 		// arrow key movement around nav window
@@ -167,6 +179,15 @@ function scr_navWindowTaggingSelection(fieldList, idList, type){
 					obj_control.navWindowTaggingUpdateScroll = true;
 				}
 			}
+			
+
+		}
+		if (keyboard_check_pressed(vk_tab)) {
+			with (obj_inputBox) instance_destroy();
+			var fieldIndex = ds_list_find_index(fieldList, obj_control.navWindowTaggingField);
+			fieldIndex = min(fieldIndex + 1, ds_list_size(fieldList) - 1);
+			obj_control.navWindowTaggingField = fieldList[| fieldIndex];
+			obj_control.navWindowTaggingUpdateScroll = true;
 		}
 		
 		var canArrowUpDown = false;
@@ -175,10 +196,12 @@ function scr_navWindowTaggingSelection(fieldList, idList, type){
 			if (ds_list_size(obj_dropDown.optionList) == 0) canArrowUpDown = true;
 		}
 		
+		
 		// arrow key up & down
+		var handleTokenEntries = (type == "token" && obj_panelPane.functionChainList_currentTab == obj_panelPane.functionChainList_tabLine);
 		if (canArrowUpDown) {
 			if (keyboard_check(vk_up) && obj_control.navWindowTaggingCanPressUp) {
-				if (type == "token") {
+				if (type == "token" && handleTokenEntries) {
 					var prevID = "";
 					var idFound = false;
 					for (var i = idListSize - 1; i >= 0; i--) {
@@ -196,7 +219,7 @@ function scr_navWindowTaggingSelection(fieldList, idList, type){
 						obj_control.navWindowTaggingUpdateScroll = true;
 					}
 				}
-				else if (type == "unit" or type == "chain" or type == "chunk") {
+				else if (type == "unit" or type == "chain" or type == "chunk" or type == "token") {
 					var IDListIndex = ds_list_find_index(idList, obj_control.navWindowTaggingID);
 					if (IDListIndex > 0) {
 						with (obj_alarm3) alarm[0] = canPressArrowKeyAlarm;
@@ -239,7 +262,7 @@ function scr_navWindowTaggingSelection(fieldList, idList, type){
 		}
 	
 		if (selectNextRow) {
-			if (type == "token"){
+			if (type == "token" && handleTokenEntries){
 				var nextID = "";
 				var idFound = false;
 				for (var i = 0; i < idListSize; i++) {
@@ -255,7 +278,7 @@ function scr_navWindowTaggingSelection(fieldList, idList, type){
 					obj_control.navWindowTaggingUpdateScroll = true;
 				}
 			}
-			else if (type == "unit" or type == "chain" or type == "chunk") {
+			else if (type == "unit" or type == "chain" or type == "chunk" or type == "token") {
 				var IDListIndex = ds_list_find_index(idList, obj_control.navWindowTaggingID);
 				if (IDListIndex < ds_list_size(idList) - 1) {
 					with (obj_inputBox) instance_destroy();

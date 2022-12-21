@@ -11,7 +11,7 @@ function FirebaseREST_HTTP_Failed_Firestore()
 			else
 			{
 				var list = map[?"default"]
-				if(scr_isNumericAndExists(list,ds_type_list))
+				if(ds_exists(list,ds_type_list))
 				if(ds_list_size(list))
 					map = list[|0]
 				

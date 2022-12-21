@@ -1,5 +1,3 @@
-
-
 function scr_drawStack(unitID, unitSubMap, camWidth, pixelY){
 	
 	// get chainID

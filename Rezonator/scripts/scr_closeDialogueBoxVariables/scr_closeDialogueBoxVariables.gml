@@ -1,6 +1,7 @@
-
-
 function scr_closeDialogueBoxVariables(){
+	
+	show_debug_message("scr_closeDialogueBoxVariables");
+	
 	if(inputWindowActive){
 		with (obj_control) {
 			newWordCreated =false
@@ -37,10 +38,18 @@ function scr_closeDialogueBoxVariables(){
 			setRezMap = false;
 			dialogueBoxActive = false;
 			renameTree = false;
-		
+			splitToken = false;
+			splitTokenField = "";
+			splitTokenCopyTags = true;
+			setChainName = false;
+		}
+		with (obj_stacker) {
+			confirmStackCreate = false;
+			confirmStackName = false;
 		}
 	}
 	if(questionWindowActive){
+		
 		questionWindowActive = false;
 		clearAllStacks = false;
 		clearAllTracks = false;
@@ -65,26 +74,33 @@ function scr_closeDialogueBoxVariables(){
 		removeFieldChunk = false;
 		removeFieldLink = false;
 		mergeUnit = false;
+		splitUnit = false;
 		stringToBeRemoved = "";
 		removeSearch = false;
 		searchToBeRemoved = "";
+		swapUnitUp = false;
+		swapUnitDown = false;
+		confirmSideLink = false;
 	
 		with (obj_control) {
-			stackMerged = false;
+			mergeChainType = "";
 			combineChainsFocused = "";
 			combineChainsSelected = "";
 			saveBeforeImporting = false;
+			saveBeforeOpening = false;
 			saveBeforeExiting = false;
 			saveBeforeGameEnd = false;
+			mergeToken = false;
+			sideLinkTokenID = "";
+		}
+		with (obj_chain) {
+			mergeStackID = "";
 		}
 		
 		with (obj_stacker) {
+			if (!confirmStackCreate) stackerMode = "";
 			confirmStackCreate = false;
-			createStacksRandom = false;
-			createStacksTurn = false;
-			createStacksSentence = false;
-			createStacksClique = false;
-			createStacksPsent = false;
+			confirmStackName = false;
 		}
 	}
 	if (alertWindowActive) {
@@ -93,7 +109,10 @@ function scr_closeDialogueBoxVariables(){
 			noTurnFound = false;
 			noPsentFound = false;
 			insertAnyNumber = false;
+			mergeUnitDifferingParticipants = false;
 		}
+		mergeStack = false;
+		chunkAlreadyExists = false;
 	}
 	if (instance_exists(obj_openingScreen)) {
 		with (obj_openingScreen) {

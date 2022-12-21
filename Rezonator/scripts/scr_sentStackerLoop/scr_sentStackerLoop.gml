@@ -1,4 +1,6 @@
 function scr_sentStackerLoop(){
+	
+	show_debug_message("scr_sentStackerLoop");
 
 	// Set script variables
 	var currentUnitList = ds_list_create();

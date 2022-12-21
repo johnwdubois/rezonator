@@ -54,8 +54,13 @@ function scr_drawTreeLinks(){
 				&& is_string(obj_panelPane.functionField_linkFieldSelected) && is_string(obj_panelPane.functionField_linkTagSelected)) {
 					var linkTagMap = linkSubMap[? "tagMap"];
 					if (scr_isNumericAndExists(linkTagMap, ds_type_map)) {
-						linkTagMap[? obj_panelPane.functionField_linkFieldSelected] = obj_panelPane.functionField_linkTagSelected;
-						show_debug_message("scr_tokenClicked ... setting token: " + string(currentLink) + ", field:" + string(obj_panelPane.functionField_linkFieldSelected) + ", tag: " + string(obj_panelPane.functionField_linkTagSelected));
+						if(obj_panelPane.functionField_linkTagSelected == scr_get_translation("menu_clear")){
+							linkTagMap[? obj_panelPane.functionField_linkFieldSelected] = "";
+						}
+						else{
+							linkTagMap[? obj_panelPane.functionField_linkFieldSelected] = obj_panelPane.functionField_linkTagSelected;
+							show_debug_message("scr_tokenClicked ... setting token: " + string(currentLink) + ", field:" + string(obj_panelPane.functionField_linkFieldSelected) + ", tag: " + string(obj_panelPane.functionField_linkTagSelected));
+						}
 					}
 				}
 			}

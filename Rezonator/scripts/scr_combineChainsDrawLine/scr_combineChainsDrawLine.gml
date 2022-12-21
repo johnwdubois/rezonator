@@ -47,6 +47,9 @@ function scr_combineChainsDrawLine(inChainsList){
 		with (obj_control) {
 			combineChainsFocused = obj_chain.currentFocusedChainID;
 			combineChainsSelected = chainToCombine;
+			
+			var combineChainsFocusedSubMap = global.nodeMap[? combineChainsFocused];
+			mergeChainType = combineChainsFocusedSubMap[? "type"];
 		}
 		
 		// call alarm to show question box

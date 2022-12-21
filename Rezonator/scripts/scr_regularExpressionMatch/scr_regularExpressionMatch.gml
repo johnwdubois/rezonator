@@ -18,37 +18,40 @@ function scr_regularExpressionMatch(argument0, argument1) {
 	for (char_position = 1; char_position <= length; ++char_position) {
 	    while (stack_nodes_current_index >= 0) {
 	        node = stack_nodes_current[stack_nodes_current_index--];
-	        size = ds_list_size(node.edges_out);
-	        for (i = 0; i < size; ++i) {
-	            if (node.edges_out[| i].symbol == "" && is_undefined(map[? node.edges_out[| i].to])) {
-	                stack_nodes_current[++stack_nodes_current_index] = node.edges_out[| i].to;
-	                ds_map_add(map, node.edges_out[| i].to, true);
-	            } else {
-	                char = string_char_at(node.edges_out[| i].symbol, 1);
-	                if (char == "\\") {
-	                    switch (string_char_at(node.edges_out[| i].symbol, 2)) {
-	                        case "0":
-	                            char = ord(string_char_at(argument1, char_position));
-	                            if (char >= 97 && char <= 122) stack_nodes_next[++stack_nodes_next_index] = node.edges_out[| i].to;
-	                            break;
+			show_debug_message("node: " + string(node));
+			//if (!is_undefined(node)) {
+		        size = ds_list_size(node.edges_out);
+		        for (i = 0; i < size; ++i) {
+		            if (node.edges_out[| i].symbol == "" && is_undefined(map[? node.edges_out[| i].to])) {
+		                stack_nodes_current[++stack_nodes_current_index] = node.edges_out[| i].to;
+		                ds_map_add(map, node.edges_out[| i].to, true);
+		            } else {
+		                char = string_char_at(node.edges_out[| i].symbol, 1);
+		                if (char == "\\") {
+		                    switch (string_char_at(node.edges_out[| i].symbol, 2)) {
+		                        case "0":
+		                            char = ord(string_char_at(argument1, char_position));
+		                            if (char >= 97 && char <= 122) stack_nodes_next[++stack_nodes_next_index] = node.edges_out[| i].to;
+		                            break;
                             
-	                        case "1":
-	                            char = ord(string_char_at(argument1, char_position));
-	                            if (char >= 65 && char <= 90) stack_nodes_next[++stack_nodes_next_index] = node.edges_out[| i].to;
-	                            break;
+		                        case "1":
+		                            char = ord(string_char_at(argument1, char_position));
+		                            if (char >= 65 && char <= 90) stack_nodes_next[++stack_nodes_next_index] = node.edges_out[| i].to;
+		                            break;
                             
-	                        case "2":
-	                            char = ord(string_char_at(argument1, char_position));
-	                            number_0 = ord(string_char_at(node.edges_out[| i].symbol, 3));
-	                            number_1 = ord(string_char_at(node.edges_out[| i].symbol, 4));
-	                            if ((char >= number_0 && char <= number_1) || (char <= number_0 && char >= number_1)) stack_nodes_next[++stack_nodes_next_index] = node.edges_out[| i].to; 
-	                            break;
-	                    }
-	                } else if (string_char_at(argument1, char_position) == char) {
-	                    stack_nodes_next[++stack_nodes_next_index] = node.edges_out[| i].to;
-	                }
-	            }
-	        }
+		                        case "2":
+		                            char = ord(string_char_at(argument1, char_position));
+		                            number_0 = ord(string_char_at(node.edges_out[| i].symbol, 3));
+		                            number_1 = ord(string_char_at(node.edges_out[| i].symbol, 4));
+		                            if ((char >= number_0 && char <= number_1) || (char <= number_0 && char >= number_1)) stack_nodes_next[++stack_nodes_next_index] = node.edges_out[| i].to; 
+		                            break;
+		                    }
+		                } else if (string_char_at(argument1, char_position) == char) {
+		                    stack_nodes_next[++stack_nodes_next_index] = node.edges_out[| i].to;
+		                }
+		            }
+		        }
+			//}
 	    }
 	    if (stack_nodes_next_index < 0) {ds_map_destroy(map); return false;}
 	    t = stack_nodes_current; stack_nodes_current = stack_nodes_next; stack_nodes_next = t;

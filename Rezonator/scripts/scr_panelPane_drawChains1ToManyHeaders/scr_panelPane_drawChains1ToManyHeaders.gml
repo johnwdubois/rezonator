@@ -11,19 +11,23 @@ function scr_panelPane_drawChains1ToManyHeaders(){
 	var tabHeight = functionTabs_tabHeight;
 	var chain1toManyColFieldList = -1;
 	var chainType = "";
+	var entryType = "";
 	with (obj_panelPane) {
 		if (currentFunction == functionChainList) {
 			if (functionChainList_currentTab == functionChainList_tabRezBrush) {
 				chain1toManyColFieldList = obj_control.chain1toManyColFieldListRez;
 				chainType ="resonance";
+				entryType = "rez";
 			}
 			else if (functionChainList_currentTab == functionChainList_tabTrackBrush) {
 				chain1toManyColFieldList = obj_control.chain1toManyColFieldListTrack;
 				chainType ="trail";
+				entryType = "track";
 			}
 			else if (functionChainList_currentTab == functionChainList_tabStackBrush) {
 				chain1toManyColFieldList = obj_control.chain1toManyColFieldListStack;
 				chainType ="stack";
+				entryType = "card";
 			}
 		}
 	}
@@ -79,7 +83,7 @@ function scr_panelPane_drawChains1ToManyHeaders(){
 					break;
 				case 2:
 					if (functionChainList_currentTab == functionChainList_tabStackBrush) {
-						colName = "utterance"; // stacks
+						colName = "menu_utterance"; // stacks
 					}
 					else {
 						colName = scr_get_translation("tag_text"); // rez & track
@@ -156,14 +160,35 @@ function scr_panelPane_drawChains1ToManyHeaders(){
 					draw_line_width(underlineX1 - clipX, underlineY - clipY, underlineX2 - clipX, underlineY - clipY, 2);
 					
 					if (mouse_check_button_released(mb_left)) {
-						with (obj_panelPane) fieldChains1ToManyChainType = chainType;
+						with (obj_panelPane) {
+							fieldChains1ToManyChainType = chainType;
+							chosenCol = i - 3;
+						}
 						obj_control.chain1toManyEntryToChange = "";
 						obj_control.chain1ToManyColFieldToChange = i - 3;
 						obj_control.chain1toManyFieldToChange = currentField;
+						
+						// check if all the fields that apply to this chainType are in the navFieldList
+						var allFieldsInNav = true;
+						var entryFieldListSize = ds_list_size(global.chainEntryFieldList);
+						for (var i = 0; i < entryFieldListSize; i++) {
+							var currentEntryField = global.chainEntryFieldList[| i];
+							var currentEntryFieldSubMap = global.entryFieldMap[? currentEntryField];
+							if (currentEntryFieldSubMap[? entryType]) {
+								if (ds_list_find_index(chain1toManyColFieldList, currentEntryField) == -1) {
+									allFieldsInNav = false;
+								}
+							}
+						}
+						
 						var dropDownOptionList = ds_list_create();
 						
 						// add some of the dropDown options
-						ds_list_add(dropDownOptionList, "option_select-field", "option_create-new-field");
+						ds_list_add(dropDownOptionList, "option_select-field");
+						//localize
+						if (ds_list_size(chain1toManyColFieldList) > 1) ds_list_add(dropDownOptionList, "Hide column");
+						if (!allFieldsInNav) ds_list_add(dropDownOptionList, "Insert column");
+						ds_list_add(dropDownOptionList, "option_create-new-field");
 						
 						// check if this field has a finite tagSet, and therefore we should put in "Add to tag set" and "Remove from tag set"
 						var tagSubMap = global.entryFieldMap[? currentField];

@@ -1,5 +1,3 @@
-
-
 function scr_deleteToken(tokenID){
 	
 	// get token submap and make sure it exists
@@ -160,6 +158,52 @@ function scr_deleteToken(tokenID){
 			}
 		}
 	}
+	
+	// remove this token from any searches that it is in
+	var removeSearchList = ds_list_create();
+	var searchList = global.nodeMap[? "searchNodeList"];
+	var searchListSize = ds_list_size(searchList);
+	var searchMap = global.nodeMap[? "searchMap"];
+	for (var i = 0; i < searchListSize; i++) {
+		var currentSearchID = searchList[| i];
+		var currentSearchSubMap = searchMap[? currentSearchID];
+		var currentSearchDisplayTokenList = currentSearchSubMap[? "displayTokenList"];
+		var currentSearchDisplayUnitList = currentSearchSubMap[? "displayUnitList"];
+		var currentSearchSelectedTokenList = currentSearchSubMap[? "selectedTokenList"];
+		scr_deleteFromList(currentSearchDisplayTokenList, tokenID);
+		scr_deleteFromList(currentSearchSelectedTokenList, tokenID);
+		
+		// let's check to see if there is anything left in the search, now that we've removed the deleted token
+		var currentSearchDisplayTokenListSize = ds_list_size(currentSearchDisplayTokenList);
+		if (currentSearchDisplayTokenListSize < 1) {
+			ds_list_add(removeSearchList, currentSearchID);
+		}
+		else {
+			// we need to check if this search has any other token that belongs to this unit (to see if we should remove from the displayUnitList)
+			var removeUnit = true;
+			for (var j = 0; j < currentSearchDisplayTokenListSize; j++) {
+				var currentSearchDisplayToken = currentSearchDisplayTokenList[| j];
+				var currentSearchDisplayTokenSubMap = global.nodeMap[? currentSearchDisplayToken];
+				var currentSearchDisplayUnit = currentSearchDisplayTokenSubMap[? "unit"];
+				if (currentSearchDisplayUnit == unitID) {
+					removeUnit = false;
+					break;
+				}
+			}
+		
+			if (removeUnit) {
+				scr_deleteFromList(currentSearchDisplayUnitList, unitID);
+			}
+		}
+	}
+	
+	// delete any searches if we need to (we do this after the fact so that our loop doesn't get screwed up)
+	var removeSearchListSize = ds_list_size(removeSearchList);
+	for (var i = 0; i < removeSearchListSize; i++) {
+		var currentSearchID = removeSearchList[| i];
+		scr_removeSearch(currentSearchID);
+	}
+	ds_list_destroy(removeSearchList);
 	
 	
 	// remove this token's entry from the unit's entry list
