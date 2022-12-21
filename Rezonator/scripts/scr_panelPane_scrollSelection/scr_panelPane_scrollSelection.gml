@@ -1,5 +1,3 @@
-// Script assets have changed for v2.3.0 see
-// https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
 function scr_panelPane_scrollSelection(focusedElementY, strHeight){
 	
 	var leftPaneInst = -1;
@@ -41,41 +39,28 @@ function scr_panelPane_scrollSelection(focusedElementY, strHeight){
 				if (onChunkTab) {
 					with (obj_panelPane) functionChainList_chunkSelected = list[| functionChainList_focusedIndex];
 					obj_chain.currentFocusedChunkID = obj_panelPane.functionChainList_chunkSelected;
+					scr_clearNavWindowTagging(true);
 				}
 				else if (onTreeTab) {
 					with (obj_panelPane) functionTree_treeSelected = list[| functionChainList_focusedIndex];
 				}
 				else if (onTagTabLeft) {
-					if (chainViewOneToMany) {
-						// one to many fields
-						if (fieldPaneSwitchButton == fieldPaneDocMode) with (obj_panelPane) functionField_tokenFieldSelected = list[| functionChainList_focusedIndex];
-						else if (fieldPaneSwitchButton == fieldPaneChainMode) with (obj_panelPane) functionField_entryFieldSelected = list[| functionChainList_focusedIndex];
-						else if (fieldPaneSwitchButton == fieldPaneChunkMode) with (obj_panelPane) functionField_chunkFieldSelected = list[| functionChainList_focusedIndex];
-						else if (fieldPaneSwitchButton == fieldPaneLinkMode) with (obj_panelPane) functionField_linkFieldSelected = list[| functionChainList_focusedIndex];
-					}
-					else {
-						// one to one fields
-						if (fieldPaneSwitchButton == fieldPaneDocMode) with (obj_panelPane) functionField_unitFieldSelected = list[| functionChainList_focusedIndex];
-						else if (fieldPaneSwitchButton == fieldPaneChainMode) with (obj_panelPane) functionField_chainFieldSelected = list[| functionChainList_focusedIndex];
-						else if (fieldPaneSwitchButton == fieldPaneChunkMode) with (obj_panelPane) functionField_chunkFieldSelected = list[| functionChainList_focusedIndex];
-						else if (fieldPaneSwitchButton == fieldPaneLinkMode) with (obj_panelPane) functionField_linkFieldSelected = list[| functionChainList_focusedIndex];
-					}
+					ds_list_clear(obj_control.selectedTagList);
+					if (fieldPaneSwitchButton == fieldPaneTokenMode) with (obj_panelPane) functionField_tokenFieldSelected = list[| functionChainList_focusedIndex];
+					else if (fieldPaneSwitchButton == fieldPaneEntryMode) with (obj_panelPane) functionField_entryFieldSelected = list[| functionChainList_focusedIndex];
+					else if (fieldPaneSwitchButton == fieldPaneUnitMode) with (obj_panelPane) functionField_unitFieldSelected = list[| functionChainList_focusedIndex];
+					else if (fieldPaneSwitchButton == fieldPaneChainMode) with (obj_panelPane) functionField_chainFieldSelected = list[| functionChainList_focusedIndex];
+					else if (fieldPaneSwitchButton == fieldPaneChunkMode) with (obj_panelPane) functionField_chunkFieldSelected = list[| functionChainList_focusedIndex];
+					else if (fieldPaneSwitchButton == fieldPaneLinkMode) with (obj_panelPane) functionField_linkFieldSelected = list[| functionChainList_focusedIndex];
+
 				}
 				else if (onTagTabRight) {
-					if (chainViewOneToMany) {
-						// one to many fields
-						if (fieldPaneSwitchButton == fieldPaneDocMode) with (obj_panelPane) functionField_tokenTagSelected = list[| functionChainList_focusedIndex];
-						else if (fieldPaneSwitchButton == fieldPaneChainMode) with (obj_panelPane) functionField_entryTagSelected = list[| functionChainList_focusedIndex];
-						else if (fieldPaneSwitchButton == fieldPaneChunkMode) with (obj_panelPane) functionField_chunkTagSelected = list[| functionChainList_focusedIndex];
-						else if (fieldPaneSwitchButton == fieldPaneLinkMode) with (obj_panelPane) functionField_linkTagSelected = list[| functionChainList_focusedIndex];
-					}
-					else {
-						// one to one fields
-						if (fieldPaneSwitchButton == fieldPaneDocMode) with (obj_panelPane) functionField_unitTagSelected = list[| functionChainList_focusedIndex];
-						else if (fieldPaneSwitchButton == fieldPaneChainMode) with (obj_panelPane) functionField_chainTagSelected = list[| functionChainList_focusedIndex];
-						else if (fieldPaneSwitchButton == fieldPaneChunkMode) with (obj_panelPane) functionField_chunkTagSelected = list[| functionChainList_focusedIndex];
-						else if (fieldPaneSwitchButton == fieldPaneLinkMode) with (obj_panelPane) functionField_linkTagSelected = list[| functionChainList_focusedIndex];
-					}
+					if (fieldPaneSwitchButton == fieldPaneTokenMode) with (obj_panelPane) functionField_tokenTagSelected = list[| functionChainList_focusedIndex];
+					else if (fieldPaneSwitchButton == fieldPaneEntryMode) with (obj_panelPane) functionField_entryTagSelected = list[| functionChainList_focusedIndex];
+					else if (fieldPaneSwitchButton == fieldPaneUnitMode) with (obj_panelPane) functionField_unitTagSelected = list[| functionChainList_focusedIndex];
+					else if (fieldPaneSwitchButton == fieldPaneChainMode) with (obj_panelPane) functionField_chainTagSelected = list[| functionChainList_focusedIndex];
+					else if (fieldPaneSwitchButton == fieldPaneChunkMode) with (obj_panelPane) functionField_chunkTagSelected = list[| functionChainList_focusedIndex];
+					else if (fieldPaneSwitchButton == fieldPaneLinkMode) with (obj_panelPane) functionField_linkTagSelected = list[| functionChainList_focusedIndex];
 				}
 			
 				if (focusedElementY <= y + headerHeight + strHeight) {
@@ -96,41 +81,30 @@ function scr_panelPane_scrollSelection(focusedElementY, strHeight){
 				if (onChunkTab) {
 					with (obj_panelPane) functionChainList_chunkSelected = list[| functionChainList_focusedIndex];
 					obj_chain.currentFocusedChunkID = obj_panelPane.functionChainList_chunkSelected;
+					scr_clearNavWindowTagging(true);
 				}
 				else if (onTreeTab) {
 					with (obj_panelPane) functionTree_treeSelected = list[| functionChainList_focusedIndex];
 				}
 				else if (onTagTabLeft) {
-					if (chainViewOneToMany) {
-						// one to many fields
-						if (fieldPaneSwitchButton == fieldPaneDocMode) with (obj_panelPane) functionField_tokenFieldSelected = list[| functionChainList_focusedIndex];
-						else if (fieldPaneSwitchButton == fieldPaneChainMode) with (obj_panelPane) functionField_entryFieldSelected = list[| functionChainList_focusedIndex];
-						else if (fieldPaneSwitchButton == fieldPaneChunkMode) with (obj_panelPane) functionField_chunkFieldSelected = list[| functionChainList_focusedIndex];
-						else if (fieldPaneSwitchButton == fieldPaneLinkMode) with (obj_panelPane) functionField_linkFieldSelected = list[| functionChainList_focusedIndex];
-					}
-					else {
-						// one to one fields
-						if (fieldPaneSwitchButton == fieldPaneDocMode) with (obj_panelPane) functionField_unitFieldSelected = list[| functionChainList_focusedIndex];
-						else if (fieldPaneSwitchButton == fieldPaneChainMode) with (obj_panelPane) functionField_chainFieldSelected = list[| functionChainList_focusedIndex];
-						else if (fieldPaneSwitchButton == fieldPaneChunkMode) with (obj_panelPane) functionField_chunkFieldSelected = list[| functionChainList_focusedIndex];
-						else if (fieldPaneSwitchButton == fieldPaneLinkMode) with (obj_panelPane) functionField_linkFieldSelected = list[| functionChainList_focusedIndex];
-					}
+
+					if (fieldPaneSwitchButton == fieldPaneTokenMode) with (obj_panelPane) functionField_tokenFieldSelected = list[| functionChainList_focusedIndex];
+					else if (fieldPaneSwitchButton == fieldPaneEntryMode) with (obj_panelPane) functionField_entryFieldSelected = list[| functionChainList_focusedIndex];
+					else if (fieldPaneSwitchButton == fieldPaneUnitMode) with (obj_panelPane) functionField_unitFieldSelected = list[| functionChainList_focusedIndex];
+					else if (fieldPaneSwitchButton == fieldPaneChainMode) with (obj_panelPane) functionField_chainFieldSelected = list[| functionChainList_focusedIndex];
+					else if (fieldPaneSwitchButton == fieldPaneChunkMode) with (obj_panelPane) functionField_chunkFieldSelected = list[| functionChainList_focusedIndex];
+					else if (fieldPaneSwitchButton == fieldPaneLinkMode) with (obj_panelPane) functionField_linkFieldSelected = list[| functionChainList_focusedIndex];
+					
 				}
 				else if (onTagTabRight) {
-					if (chainViewOneToMany) {
-						// one to many fields
-						if (fieldPaneSwitchButton == fieldPaneDocMode) with (obj_panelPane) functionField_tokenTagSelected = list[| functionChainList_focusedIndex];
-						else if (fieldPaneSwitchButton == fieldPaneChainMode) with (obj_panelPane) functionField_entryTagSelected = list[| functionChainList_focusedIndex];
-						else if (fieldPaneSwitchButton == fieldPaneChunkMode) with (obj_panelPane) functionField_chunkTagSelected = list[| functionChainList_focusedIndex];
-						else if (fieldPaneSwitchButton == fieldPaneLinkMode) with (obj_panelPane) functionField_linkTagSelected = list[| functionChainList_focusedIndex];
-					}
-					else {
-						// one to one fields
-						if (fieldPaneSwitchButton == fieldPaneDocMode) with (obj_panelPane) functionField_unitTagSelected = list[| functionChainList_focusedIndex];
-						else if (fieldPaneSwitchButton == fieldPaneChainMode) with (obj_panelPane) functionField_chainTagSelected = list[| functionChainList_focusedIndex];
-						else if (fieldPaneSwitchButton == fieldPaneChunkMode) with (obj_panelPane) functionField_chunkTagSelected = list[| functionChainList_focusedIndex];
-						else if (fieldPaneSwitchButton == fieldPaneLinkMode) with (obj_panelPane) functionField_linkTagSelected = list[| functionChainList_focusedIndex];
-					}
+
+					if (fieldPaneSwitchButton == fieldPaneTokenMode) with (obj_panelPane) functionField_tokenTagSelected = list[| functionChainList_focusedIndex];
+					else if (fieldPaneSwitchButton == fieldPaneEntryMode) with (obj_panelPane) functionField_entryTagSelected = list[| functionChainList_focusedIndex];
+					else if (fieldPaneSwitchButton == fieldPaneUnitMode) with (obj_panelPane) functionField_unitTagSelected = list[| functionChainList_focusedIndex];
+					else if (fieldPaneSwitchButton == fieldPaneChainMode) with (obj_panelPane) functionField_chainTagSelected = list[| functionChainList_focusedIndex];
+					else if (fieldPaneSwitchButton == fieldPaneChunkMode) with (obj_panelPane) functionField_chunkTagSelected = list[| functionChainList_focusedIndex];
+					else if (fieldPaneSwitchButton == fieldPaneLinkMode) with (obj_panelPane) functionField_linkTagSelected = list[| functionChainList_focusedIndex];
+
 				}
 				
 				if (focusedElementY >= y + windowHeight - strHeight) {

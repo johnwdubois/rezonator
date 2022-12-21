@@ -1,5 +1,3 @@
-// Script assets have changed for v2.3.0 see
-// https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
 function scr_importGridToNodeMap_fieldsRowToken(row){
 
 	// make sure row is still in range
@@ -61,6 +59,8 @@ function scr_importGridToNodeMap_fieldsRowToken(row){
 		//add all fields to appropriate field lists
 		for(var i = 0 ; i < ds_list_size(global.importGridColNameList); i++){
 			var fieldName = global.importGridColNameList[| i];
+			
+			
 			if(global.fieldLevelMap[? fieldName] == "tab_name_unit"){
 				
 				if(fieldName == "~blockID"){continue;}
@@ -87,11 +87,13 @@ function scr_importGridToNodeMap_fieldsRowToken(row){
 	
 	
 	// make token node
+	var currentTokenOrder = ds_list_size(currentEntryList) + 1;
 	var currentTokenNode = scr_addToNodeMap("token");
 	var currentTokenSubMap = global.nodeMap[? currentTokenNode];
 	ds_map_add(currentTokenSubMap, "docTokenSeq", ds_list_size(tokenList) + 1);
-	ds_map_add(currentTokenSubMap, "tokenOrder", ds_list_size(currentEntryList) + 1);
-	ds_map_add(currentTokenSubMap, "relativeOrder", ds_list_size(currentEntryList) + 1);
+	ds_map_add(currentTokenSubMap, "tokenOrder", currentTokenOrder);
+	ds_map_add(currentTokenSubMap, "relativeOrder", currentTokenOrder);
+	ds_map_add(currentTokenSubMap, "place", currentTokenOrder);
 	ds_map_add(currentTokenSubMap, "displayCol", ds_list_size(currentEntryList));
 	ds_map_add(currentTokenSubMap, "void", 1);
 	ds_map_add(currentTokenSubMap, "pixelX", 0);

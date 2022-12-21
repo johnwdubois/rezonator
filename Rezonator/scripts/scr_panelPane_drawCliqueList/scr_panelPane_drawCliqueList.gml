@@ -1,5 +1,3 @@
-// Script assets have changed for v2.3.0 see
-// https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
 function scr_panelPane_drawCliqueList(){
 	
 
@@ -58,6 +56,7 @@ function scr_panelPane_drawCliqueList(){
 		}
 		
 
+		var currentCliqueName = currentCliqueSubMap[? "name"];
 		var currentCliqueChainList = currentCliqueSubMap[? "chainList"];
 		var currentCliqueUnitList = currentCliqueSubMap[? "unitList"];
 		var currentCliqueSelected = (functionClique_cliqueSelected == currentClique);

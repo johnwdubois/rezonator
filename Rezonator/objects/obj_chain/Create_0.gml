@@ -104,7 +104,7 @@ cliqueGridRowToCheckBreak = -1;
 //cliqueGridChainIDTakenOut = -1;
 //cliqueGridChainIndexToTakeOut = -1;
 
-cliqueGridRowToRefreshFlanks = -1;
+
 
 
 cliqueCount = 0;
@@ -116,6 +116,7 @@ traversedUnitList = ds_list_create();
 cliqueList =  ds_list_create();
 currentClique = "";
 cycleDetected = false;
+newChainRefreshClique = "";
 
 
 rezChainGridRowToRefreshTilt = -1;
@@ -206,5 +207,7 @@ chainHue = random(255);
 
 quickLinkCreated = false;
 quickLinkDeleted = false;
+
+mergeStackID = "";
 
 alarm[10] = 1;

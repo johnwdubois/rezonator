@@ -1,5 +1,5 @@
-// Script assets have changed for v2.3.0 see
-// https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
+
+
 function scr_sortChainList(chainType, list){
 	
 	// sort a list of chains based on their order in the full chain list

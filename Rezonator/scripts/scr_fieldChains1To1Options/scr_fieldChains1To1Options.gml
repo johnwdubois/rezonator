@@ -1,8 +1,20 @@
-// Script assets have changed for v2.3.0 see
-// https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
 function scr_fieldChains1To1Options(optionSelected){
 	
 	var optionSpacingMulti = ds_list_find_index(optionList, optionSelected);
+	var navFieldList = -1;
+	with (obj_panelPane) {
+		if (currentFunction == functionChainList) {
+			if (functionChainList_currentTab == functionChainList_tabRezBrush) {
+				navFieldList = obj_control.chain1to1ColFieldListRez;
+			}
+			else if (functionChainList_currentTab == functionChainList_tabTrackBrush) {
+				navFieldList = obj_control.chain1to1ColFieldListTrack;
+			}
+			else if (functionChainList_currentTab == functionChainList_tabStackBrush) {
+				navFieldList = obj_control.chain1to1ColFieldListStack;
+			}
+		}
+	}
 	
 	show_debug_message("scr_fieldChains1To1Options ... optionSelected: " + string(optionSelected));
 	
@@ -48,6 +60,18 @@ function scr_fieldChains1To1Options(optionSelected){
 		ds_list_copy(dropDownOptionList, tagSet);
 		scr_createDropDown(obj_dropDown.x + obj_dropDown.windowWidth, obj_dropDown.y + (obj_dropDown.optionSpacing * optionSpacingMulti), dropDownOptionList, global.optionListTypeRemoveFromTagSetChains1To1);
 		
+	}
+	else if (optionSelected == "Hide column") {
+		if (ds_list_size(navFieldList) > 1) {
+			show_debug_message("Hiding column: " + string(obj_panelPane.chosenCol));
+			ds_list_delete(navFieldList, obj_panelPane.chosenCol);
+		}
+		instance_destroy();
+	}
+	else if (optionSelected == "Insert column") {
+		
+		scr_insertColumnDropDown(global.chainFieldList, navFieldList, "chain");
+	
 	}
 		
 	

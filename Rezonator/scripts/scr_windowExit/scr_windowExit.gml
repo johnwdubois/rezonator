@@ -1,5 +1,5 @@
-// Script assets have changed for v2.3.0 see
-// https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
+
+
 function scr_windowExit(){
 	
 	if (window_command_check(window_command_close)) {
@@ -8,7 +8,6 @@ function scr_windowExit(){
 			
 			with (obj_dialogueBox) {
 				scr_closeDialogueBoxVariables();
-				scr_closeQuestionBoxVariables();
 				instance_destroy();
 			}
 		

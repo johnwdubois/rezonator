@@ -1,5 +1,3 @@
-// Script assets have changed for v2.3.0 see
-// https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
 function scr_drawTreeLinks(){
 	
 
@@ -56,8 +54,13 @@ function scr_drawTreeLinks(){
 				&& is_string(obj_panelPane.functionField_linkFieldSelected) && is_string(obj_panelPane.functionField_linkTagSelected)) {
 					var linkTagMap = linkSubMap[? "tagMap"];
 					if (scr_isNumericAndExists(linkTagMap, ds_type_map)) {
-						linkTagMap[? obj_panelPane.functionField_linkFieldSelected] = obj_panelPane.functionField_linkTagSelected;
-						show_debug_message("scr_tokenClicked ... setting token: " + string(currentLink) + ", field:" + string(obj_panelPane.functionField_linkFieldSelected) + ", tag: " + string(obj_panelPane.functionField_linkTagSelected));
+						if(obj_panelPane.functionField_linkTagSelected == scr_get_translation("menu_clear")){
+							linkTagMap[? obj_panelPane.functionField_linkFieldSelected] = "";
+						}
+						else{
+							linkTagMap[? obj_panelPane.functionField_linkFieldSelected] = obj_panelPane.functionField_linkTagSelected;
+							show_debug_message("scr_tokenClicked ... setting token: " + string(currentLink) + ", field:" + string(obj_panelPane.functionField_linkFieldSelected) + ", tag: " + string(obj_panelPane.functionField_linkTagSelected));
+						}
 					}
 				}
 			}
@@ -65,9 +68,7 @@ function scr_drawTreeLinks(){
 				obj_chain.currentFocusedEntryID = "";
 				with (obj_panelPane) functionTree_treeLinkSelected = currentLink;
 				var dropDownOptionList = ds_list_create();
-				ds_list_copy(dropDownOptionList, global.linkFieldList);
-				ds_list_insert(dropDownOptionList, 0, "help_label_delete-link");
-				ds_list_insert(dropDownOptionList, 0, "option_create-new-field");
+				ds_list_add(dropDownOptionList, "option_create-new-field", "help_label_delete-link", "Tag Link");
 				scr_createDropDown(mouse_x, mouse_y, dropDownOptionList, global.optionListTypeLinkFields);
 			}
 		}

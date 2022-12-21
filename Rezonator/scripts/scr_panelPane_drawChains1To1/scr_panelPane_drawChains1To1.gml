@@ -1,5 +1,5 @@
-// Script assets have changed for v2.3.0 see
-// https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
+
+
 function scr_panelPane_drawChains1To1(){
 	
 	
@@ -94,6 +94,13 @@ function scr_panelPane_drawChains1To1(){
 		
 		// get field/key for this column
 		var currentField = ds_list_find_value(chain1to1ColFieldList, j);
+		var currentFieldSubMap = global.chainFieldMap[? currentField];
+		var fieldHasTagSet = false;
+		if (scr_isNumericAndExists(currentFieldSubMap, ds_type_map)) {
+			fieldHasTagSet = ds_map_exists(currentFieldSubMap, "tagSet");
+			if(currentFieldSubMap[?"readOnly"]) fieldHasTagSet = false;
+		}
+		
 		
 		for (var i = 0; i < listOfChainsSize; i++) {
 			
@@ -178,20 +185,22 @@ function scr_panelPane_drawChains1To1(){
 				obj_control.hoverTextCopy = tagStr;
 			}
 			
+			draw_set_alpha(fieldHasTagSet ? 1 : 0.7);
 			draw_text(textX - clipX, y + headerHeight + scrollPlusY + textPlusY - clipY, string(tagStr));
+			draw_set_alpha(1);
 			
 			textPlusY += strHeight;
 								
-			scr_chainTagDropDown(global.chainFieldMap, currentField, chainID, cellRectX1, cellRectY1, cellRectX2, cellRectY2, mouseoverCell, (j == chain1to1ColFieldListSize - 1));
+			scr_chainTagDropDown(global.chainFieldMap, currentField, chainID, cellRectX1, cellRectY1, cellRectX2, cellRectY2, mouseoverCell, (j == chain1to1ColFieldListSize - 1),string(tagStr));
 		}
 	}
-	
+	scr_navWindowTaggingSelection(chain1to1ColFieldList, listOfChains,"chain");
 	
 	// draw focus outline
 	if (focusedRowRectY1 > -1 and focusedRowRectY2 > -1) {
 		draw_set_color(global.colorThemeBorders);
-		draw_line_width(x - clipX, focusedRowRectY1 - clipY, x + windowWidth - clipX, focusedRowRectY1 - clipY, 4);
-		draw_line_width(x - clipX, focusedRowRectY2 - clipY, x + windowWidth - clipX, focusedRowRectY2 - clipY, 4);
+		//draw_line_width(x - clipX, focusedRowRectY1 - clipY, x + windowWidth - clipX, focusedRowRectY1 - clipY, 4);
+		//draw_line_width(x - clipX, focusedRowRectY2 - clipY, x + windowWidth - clipX, focusedRowRectY2 - clipY, 4);
 	}
 	
 	
@@ -213,8 +222,7 @@ function scr_panelPane_drawChains1To1(){
 	// Allows use of arrow keys, pgUp/pgDwn, and ctrl+key in chain list if clicked in chainList
 	var instToScroll = self.id;
 	if (clickedIn) {	
-		if ((mouse_wheel_up() or keyboard_check(vk_up)) and (holdUp < 2 or holdUp > 30)) {
-
+		if ((mouse_wheel_up() or (keyboard_check(vk_up) && obj_control.navWindowTaggingID == "")) and (holdUp < 2 or holdUp > 30)) {
 			if (functionChainList_focusedChainIndex > 0 and functionChainList_focusedChainIndex < listOfChainsSize) {
 				with (obj_panelPane) functionChainList_focusedChainIndex--;
 				var newFocusedChainID = ds_list_find_value(listOfChains, functionChainList_focusedChainIndex);
@@ -233,8 +241,7 @@ function scr_panelPane_drawChains1To1(){
 			}
 		}
 		
-		if ((mouse_wheel_down() || keyboard_check(vk_down)) and (holdDown < 2 || holdDown > 30)) {
-			
+		if ((mouse_wheel_down() || (keyboard_check(vk_down) && obj_control.navWindowTaggingID == "")) and (holdDown < 2 || holdDown > 30)) {	
 			if (functionChainList_focusedChainIndex < listOfChainsSize - 1 and functionChainList_focusedChainIndex >= 0) {
 				with (obj_panelPane) functionChainList_focusedChainIndex++;
 				var newFocusedChainID = ds_list_find_value(listOfChains, functionChainList_focusedChainIndex);

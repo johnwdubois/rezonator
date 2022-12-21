@@ -4,33 +4,48 @@
 function scr_newLink(ID) {
 	
 	
-	if(obj_toolPane.currentMode == obj_toolPane.modeRead) exit;
+	if (obj_toolPane.currentMode == obj_toolPane.modeRead) exit;
+	if (obj_control.mouseoverBackArrowStopClick || obj_control.mouseoverBackArrow) exit;
 	
 	
-	show_debug_message("scr_newLink() ... ID: " + string(ID));
 	ds_list_clear(obj_control.chainStretchCheckList);
 		
 	// make sure this is a valid ID
 	var idSubMap = global.nodeMap[? ID];
-	if (!scr_isNumericAndExists(idSubMap, ds_type_map)) exit;
+	if (!scr_isNumericAndExists(idSubMap, ds_type_map)) {
+		show_debug_message("scr_newLink, ID does not exist: " + string(ID) + ", exiting...")
+		exit;
+	}
 	
 	
 	var unitID = "";
 	var tokenID = "";
-	var IDsubMap = global.nodeMap[?ID];
-	var type = IDsubMap[?"type"];
-	if(type == "unit"){
+	var type = idSubMap[? "type"];
+	show_debug_message("scr_newLink() ... ID: " + string(ID) + ", type: " + string(type));
+	
+	
+	if (type == "unit") {
 		unitID = ID
-		var entryList = IDsubMap[?"entryList"];
+		var entryList = idSubMap[?"entryList"];
 		if (!scr_isNumericAndExists(entryList, ds_type_list)) exit;
 		if (ds_list_size(entryList) < 1) exit;
 		var firstEntry = entryList[|0];
 		var entrySubMap = global.nodeMap[?firstEntry];
 		tokenID = entrySubMap[?"token"];
 	}
-	else if(type == "token"){	
-		unitID = IDsubMap[?"unit"];
-		tokenID = ID
+	else if (type == "token") {
+		unitID = idSubMap[?"unit"];
+		tokenID = ID;
+	}
+	else if (type == "chunk") {
+		var tokenList = idSubMap[? "tokenList"];
+		if (scr_isNumericAndExists(tokenList, ds_type_list)) {
+			if (ds_list_size(tokenList) >= 1) {
+				var firstToken = tokenList[| 0];
+				var firstTokenSubMap = global.nodeMap[? firstToken];
+				unitID = firstTokenSubMap[? "unit"];
+			}
+		}
 	}
 	
 	
@@ -136,6 +151,29 @@ function scr_newLink(ID) {
 					
 			show_debug_message("scr_newLink() ... entry nodeID: " + string(nodeID));
 		}
+		
+		
+		// if this is a rez-chain, we will evaluate what clique it should be in
+		if (nodeType == "rez") {
+			var unitSubMap = global.nodeMap[? unitID];
+			var unitInCliqueID = unitSubMap[? "inClique"];
+			var chainInCliqueID = chainSubMap[? "inClique"];
+			show_debug_message("scr_newLink, unitInCliqueID: " + string(unitInCliqueID) + ", chainInCliqueID: " + string(chainInCliqueID));
+			if (is_string(chainInCliqueID) && chainInCliqueID != "") {
+				if (is_string(unitInCliqueID) && unitInCliqueID != "") {
+					if (unitInCliqueID != chainInCliqueID) {
+						// in this case, we have two different cliques, we must merge the two
+						scr_mergeCliques(chainInCliqueID, unitInCliqueID);
+					}
+				}
+				else {
+					// unit is not in any clique, therefore we can assign this unit to this chain's clique
+					unitInCliqueID = chainInCliqueID;
+					unitSubMap[? "inClique"] = unitInCliqueID;
+					scr_refreshClique(unitInCliqueID);
+				}
+			}
+		}
 	}
 	
 	
@@ -170,6 +208,9 @@ function scr_newLink(ID) {
 			scr_addToListOnce(entryWordInEntryList, nodeID);
 		}
 	}
+	
+	
+
 	
 
 	
@@ -219,12 +260,22 @@ function scr_newLink(ID) {
 	}
 	
 	if (focusedChainType == "resonance") {
-		show_debug_message("quickLink created:  "+ string(obj_chain.quickLinkCreated))
-		if (!obj_chain.quickLinkCreated) {
-			scr_refreshCliques();
-		}
+		show_debug_message("quickLink created:  "+ string(obj_chain.quickLinkCreated));
+		
+		var chainInCliqueID = chainSubMap[? "inClique"];
+		scr_refreshChainOrderMap(chainInCliqueID);
+		
+		obj_chain.currentClique = chainInCliqueID;
+		scr_cycleDetection(obj_chain.currentFocusedChainID);
+		ds_list_clear(obj_chain.encounteredChainList);
+		
 		scr_alignChain2ElectricBoogaloo(obj_chain.currentFocusedChainID);
 	}
+	
+	
+	
+	
+	
 	if(global.steamAPI){
 		var currentMaxChainLength = steam_get_stat_int("SA_entry-count");
 		var currentChainLength = ds_list_size(idList);
@@ -236,6 +287,12 @@ function scr_newLink(ID) {
 				}
 			}
 		}
+	}
+	
+	
+	if (is_string(obj_chain.newChainRefreshClique) && obj_chain.newChainRefreshClique != "") {
+		scr_refreshClique(obj_chain.newChainRefreshClique);
+		with (obj_chain) newChainRefreshClique = "";
 	}
 	
 	

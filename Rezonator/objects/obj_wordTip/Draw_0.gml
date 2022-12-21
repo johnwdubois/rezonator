@@ -2,15 +2,15 @@
 // You can write your code in this editor
 if ((obj_control.hoverTokenID != "" or obj_control.hoverUnitID != "" or obj_control.hoverChunkID != "" or obj_panelPane.functionTree_treeLinkMouseover != "") and wordTipDisplay == true) {
 
-	if(obj_control.hoverUnitID != ""){
-		currentID = obj_control.hoverUnitID;
-	}
-	else if(obj_control.hoverTokenID != ""){
+	if(obj_control.hoverTokenID != ""){
 		// Make the box display the word at the mouse cursor
 		currentID = obj_control.hoverTokenID;
 	}
 	else if(obj_control.hoverChunkID != ""){
 		currentID = obj_control.hoverChunkID;
+	}
+	else if(obj_control.hoverUnitID != ""){
+		currentID = obj_control.hoverUnitID;
 	}
 	else if(obj_panelPane.functionTree_treeLinkMouseover != ""){
 		currentID = obj_panelPane.functionTree_treeLinkMouseover;	
@@ -89,14 +89,17 @@ if ((obj_control.hoverTokenID != "" or obj_control.hoverUnitID != "" or obj_cont
 
 	// Handle the case where the box clips off the bottom of the screen
 	var fullWindowHeight = camera_get_view_height(camera_get_active());
-	if (boxY2 >= fullWindowHeight)
-	{
+	if (obj_audioUI.visible) fullWindowHeight -= obj_audioUI.windowHeight;
+	if (boxY2 >= fullWindowHeight) {
 		var overflowHeight = boxY2 - fullWindowHeight;
 		boxY1 -= overflowHeight;
 		boxY2 -= overflowHeight;
 	}
+	
+	scr_dropShadow(boxX1, boxY1, boxX2, boxY2);
 
 	// Draw the box's outline
+	draw_set_alpha(1);
 	draw_set_color(c_black);
 	draw_rectangle(boxX1, boxY1, boxX2, boxY2, true);
 
@@ -146,11 +149,35 @@ if ((obj_control.hoverTokenID != "" or obj_control.hoverUnitID != "" or obj_cont
 		if ((IDType == "token" && fieldName == obj_panelPane.functionField_tokenFieldSelected)
 		|| (IDType == "unit" && fieldName == obj_panelPane.functionField_unitFieldSelected)
 		|| (IDType == "chunk" && fieldName == obj_panelPane.functionField_chunkFieldSelected)
-		|| (IDType == "link" && fieldName == obj_panelPane.functionField_linkFieldSelected)) {
+		|| (IDType == "treeLink" && fieldName == obj_panelPane.functionField_linkFieldSelected)) {
 			var rectY1 = valueY - (lineHeight * 0.5);
 			var rectY2 = rectY1 + lineHeight;
 			draw_set_color(merge_color(c_yellow, global.colorThemeBG, 0.4));
 			draw_rectangle(boxX1, rectY1, boxX2, rectY2, false);
+			
+			if (obj_toolPane.currentMode == obj_toolPane.modeRead) {
+				var selectedTag = "";
+				if (IDType == "token") {
+					selectedTag = obj_panelPane.functionField_tokenTagSelected;
+				}
+				else if(IDType == "unit"){
+					selectedTag = obj_panelPane.functionField_unitTagSelected;
+				}
+				else if(IDType == "chunk"){
+					selectedTag = obj_panelPane.functionField_chunkTagSelected;
+				}
+				else if(IDType == "treeLink"){
+					selectedTag = obj_panelPane.functionField_linkTagSelected;
+				}
+				
+				if (scr_get_translation(selectedTag) == scr_get_translation("menu_clear")) {
+					scr_createTooltip(boxX2, mean(rectY1, rectY2), "Clear tag", obj_tooltip.arrowFaceLeft);
+				}
+				else if(is_string(selectedTag) && selectedTag != "" && selectedTag != fieldValue){
+					scr_createTooltip(boxX2, mean(rectY1, rectY2), "Quick tag: " + string(selectedTag), obj_tooltip.arrowFaceLeft);
+				}
+				
+			}
 		}
 		
 

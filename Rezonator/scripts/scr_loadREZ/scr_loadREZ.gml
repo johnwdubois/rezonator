@@ -93,6 +93,7 @@ function scr_loadREZ() {
 				
 					global.unitDelimField = ds_map_find_value(map, "unitDelimField");
 					global.unitImportTurnDelimColName = ds_map_find_value(map, "unitImportTurnDelimColName");
+					global.psentDelimField = ds_map_find_value(map, "psentDelimField");
 					global.wordDelimField = ds_map_find_value(map, "wordImportWordDelimColName");
 					global.currentTranslation = ds_map_find_value(map, "currentTranslation");
 					global.unitImportSpeakerColName = ds_map_find_value(map, "unitImportSpeakerColName");
@@ -151,72 +152,18 @@ function scr_loadREZ() {
 						var tempList3 = ds_list_create();
 						global.importGridColNameList = tempList3;
 					}
-					
-					
-					// get navTokenFieldList, if supplied
-					var navTokenFieldList = ds_map_find_value(map, "navTokenFieldList");
-					if (scr_isNumericAndExists(navTokenFieldList, ds_type_list)) {
-						ds_list_destroy(obj_control.navTokenFieldList);
-						obj_control.navTokenFieldList = navTokenFieldList;
-					}
-					
-					// get navTokenFieldList, if supplied
-					var tokenFieldList = ds_map_find_value(map, "tokenFieldList");
-					if (scr_isNumericAndExists(tokenFieldList, ds_type_list)) {
-						ds_list_destroy(obj_control.tokenFieldList);
-						obj_control.tokenFieldList = tokenFieldList;
-					}
-					
-					
-					// get navUnitFieldList, if supplied
-					var navUnitFieldList = ds_map_find_value(map, "navUnitFieldList");
-					if (scr_isNumericAndExists(navUnitFieldList, ds_type_list)) {
-						ds_list_destroy(obj_control.navUnitFieldList);
-						obj_control.navUnitFieldList = navUnitFieldList;
-					}
-					
-					// get navChunkFieldList, if supplied
-					var navChunkFieldList = ds_map_find_value(map, "navChunkFieldList");
-					if (scr_isNumericAndExists(navChunkFieldList, ds_type_list)) {
-						ds_list_destroy(obj_control.navChunkFieldList);
-						obj_control.navChunkFieldList = navChunkFieldList;
-					}
-					// get chunkFieldList, if supplied
-					var chunkFieldList = ds_map_find_value(map, "chunkFieldList");
-					if (scr_isNumericAndExists(chunkFieldList, ds_type_list)) {
-						ds_list_destroy(obj_control.chunkFieldList);
-						obj_control.chunkFieldList = chunkFieldList;
-					}
-					
-					// get navTokenFieldList, if supplied
-					var unitFieldList = ds_map_find_value(map, "unitFieldList");
-					if (scr_isNumericAndExists(unitFieldList, ds_type_list)) {
-						ds_list_destroy(obj_control.unitFieldList);
-						obj_control.unitFieldList = unitFieldList;
-					}
-					
-					
-					// get chainEntryFieldList, if supplied
-					var chainEntryFieldList = ds_map_find_value(map, "chainEntryFieldList");
-					if (!is_undefined(chainEntryFieldList)) {
-						ds_list_destroy(global.chainEntryFieldList);
-						global.chainEntryFieldList = chainEntryFieldList;
-					}
-					
-					
-					// get chainFieldList, if supplied
-					var chainFieldList = ds_map_find_value(map, "chainFieldList");
-					if (!is_undefined(chainFieldList)) {
-						ds_list_destroy(global.chainFieldList);
-						global.chainFieldList = chainFieldList;
-					}
 
-					
-
-					
-					
+					obj_control.navTokenFieldList = scr_loadListFromMap(map, "navTokenFieldList", obj_control.navTokenFieldList);
+					obj_control.tokenFieldList = scr_loadListFromMap(map, "tokenFieldList", obj_control.tokenFieldList);
+					obj_control.navUnitFieldList = scr_loadListFromMap(map, "navUnitFieldList", obj_control.navUnitFieldList);
+					obj_control.navChunkFieldList = scr_loadListFromMap(map, "navChunkFieldList", obj_control.navChunkFieldList);
+					obj_control.chunkFieldList = scr_loadListFromMap(map, "chunkFieldList", obj_control.chunkFieldList);
+					obj_control.unitFieldList = scr_loadListFromMap(map, "unitFieldList", obj_control.unitFieldList);
+					global.chainEntryFieldList = scr_loadListFromMap(map, "chainEntryFieldList", global.chainEntryFieldList);
+					global.chainFieldList = scr_loadListFromMap(map, "chainFieldList", global.chainFieldList);
+					obj_chain.cliqueList = scr_loadListFromMap(map, "cliqueList", obj_chain.cliqueList);
 	
-					
+		
 					// get displayTokenField & participantField
 					var getDisplayTokenField = ds_map_find_value(map, "displayTokenField");
 					var getParticipantField = ds_map_find_value(map, "participantField");
@@ -251,10 +198,25 @@ function scr_loadREZ() {
 						var stackCounter = map[? "stackCounter"];
 						if (is_numeric(stackCounter)) obj_chain.stackChainNameCounter = stackCounter;
 					}
+					// get audioFile
+					if (ds_map_exists(map, "audioFile")) {
+						var audioFile = map[? "audioFile"];
+						show_debug_message("audioFile: " + string(audioFile))
+						if (file_exists(audioFile)){
+							obj_fileLoader.importedAudioFile = audioFile;
+							show_debug_message("obj_fileLoader.importedAudioFile:  "+string(obj_fileLoader.importedAudioFile));
+						}
+					}
+					// get insertTokenStr
+					if (ds_map_exists(map, "insertTokenStr")) {
+						obj_control.insertTokenStr = map[? "insertTokenStr"];
+					}
 				}
 			}		
 		}
 	}
+	
+	scr_openFileRefreshCliques();
 
 	ds_list_destroy(newInstList);
 	

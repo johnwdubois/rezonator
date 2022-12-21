@@ -1,5 +1,3 @@
-// Script assets have changed for v2.3.0 see
-// https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
 function scr_drawStack(unitID, unitSubMap, camWidth, pixelY){
 	
 	// get chainID
@@ -43,22 +41,29 @@ function scr_drawStack(unitID, unitSubMap, camWidth, pixelY){
 				}
 			}
 		}
-		else if (unitInRect) {
-			draw_set_color(c_blue);
+		else if (unitInRect && obj_toolPane.currentMode != obj_toolPane.modeRead) {
+			draw_set_color(global.colorThemeGrid_colSelected1);
 			draw_set_alpha(0.15);
 			drawStackRect = true;
 		}
 	}
-
+	var stackRectY1 = pixelY - (gridSpaceVertical * 0.5);
+	var stackRectX1 = wordLeftMargin;
+	var stackRectX2 = camWidth;				
+	var stackRectY2 = stackRectY1 + gridSpaceVertical;
 
 	// draw the rectangle for this stack, if necessary
 	if (drawStackRect) {
-		var stackRectY1 = pixelY - (gridSpaceVertical * 0.5);
-		var stackRectX1 = wordLeftMargin;
-		var stackRectX2 = camWidth;				
-		var stackRectY2 = stackRectY1 + gridSpaceVertical;
+		draw_rectangle(stackRectX1, stackRectY1-1, stackRectX2, stackRectY2-2, false);
+	}
+	
+	if(obj_control.unitFlash > 0 and unitID == obj_control.unitToFlash){
+		obj_control.unitFlash--;
+		draw_set_color(merge_color(global.colorThemeGrid_colSelected1, c_white, 0.5));
+		draw_set_alpha(obj_control.unitFlash/obj_control.flashTime);
 		draw_rectangle(stackRectX1, stackRectY1, stackRectX2, stackRectY2, false);
 	}
+
 
 
 }

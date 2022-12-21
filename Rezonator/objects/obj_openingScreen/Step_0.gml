@@ -60,8 +60,9 @@ if (global.skipToImportScreen) {
 	global.openProject = false;
 	global.currentDirString = global.previousImportDirectory;
 }
-
-
-
+if (global.skipToOpen) {
+	global.skipToOpen = false;
+	alarm[8] = 1;
+}
 
 window_set_caption(string(game_display_name) );

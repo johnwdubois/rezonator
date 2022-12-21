@@ -1,5 +1,5 @@
-// Script assets have changed for v2.3.0 see
-// https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
+
+
 function scr_deleteField(fieldName){
 
 	// determine the list that this field is in
@@ -9,10 +9,10 @@ function scr_deleteField(fieldName){
 	var navWindowList1 = -1;
 	var navWindowList2 = -1;
 	var navWindowList3 = -1;
-	var deletingTokenField = (chainViewOneToMany && fieldPaneSwitchButton == obj_panelPane.fieldPaneDocMode);
-	var deletingUnitField = (!chainViewOneToMany && fieldPaneSwitchButton == obj_panelPane.fieldPaneDocMode);
-	var deletingEntryField = (chainViewOneToMany && fieldPaneSwitchButton == obj_panelPane.fieldPaneChainMode);
-	var deletingChainField = (!chainViewOneToMany && fieldPaneSwitchButton == obj_panelPane.fieldPaneChainMode);
+	var deletingTokenField = (fieldPaneSwitchButton == obj_panelPane.fieldPaneTokenMode);
+	var deletingUnitField = (fieldPaneSwitchButton == obj_panelPane.fieldPaneUnitMode);
+	var deletingEntryField = (fieldPaneSwitchButton == obj_panelPane.fieldPaneEntryMode);
+	var deletingChainField = (fieldPaneSwitchButton == obj_panelPane.fieldPaneChainMode);
 	var deletingChunkField = (fieldPaneSwitchButton == obj_panelPane.fieldPaneChunkMode);
 	var deletingLinkField = (fieldPaneSwitchButton == obj_panelPane.fieldPaneLinkMode);
 	

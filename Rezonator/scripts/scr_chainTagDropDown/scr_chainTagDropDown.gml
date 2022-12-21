@@ -1,18 +1,20 @@
-// Script assets have changed for v2.3.0 see
-// https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
-function scr_chainTagDropDown(fieldMap, field, IDtoChange, cellRectX1, cellRectY1, cellRectX2, cellRectY2, mouseoverCell, lastColumn) {
+function scr_chainTagDropDown(fieldMap, field, IDtoChange, cellRectX1, cellRectY1, cellRectX2, cellRectY2, mouseoverCell, lastColumn,cellText) {
 	
-	if (mouseoverCell && !instance_exists(obj_dialogueBox)) {
-		// dropDown button for editing tags
-		var fieldTagSubMap = fieldMap[? field];
-		if (scr_isNumericAndExists(fieldTagSubMap, ds_type_map)) {
+	var mouseoverDropDown = false;
+	var fieldHasTagSet = false;
+	var fieldTagSubMap = fieldMap[? field];
+	var setNavTaggingID = false;
+	if (scr_isNumericAndExists(fieldTagSubMap, ds_type_map)) {
 										
-			// check whether this field has a tagSet
-			var fieldHasTagSet = ds_map_exists(fieldTagSubMap, "tagSet");
-			var fieldHasShortcutSet = ds_map_exists(fieldTagSubMap, "shortcutSet");
+		// check whether this field has a tagSet
+		var fieldHasTagSet = ds_map_exists(fieldTagSubMap, "tagSet");
+		var fieldReadOnly = fieldTagSubMap[?"readOnly"];
+		if (mouseoverCell && !instance_exists(obj_dialogueBox)) {
+			// dropDown button for editing tags
+
 	
 			// draw dropDown button if this field has a tagSet
-			if (fieldHasTagSet) {
+			if (fieldHasTagSet && !fieldReadOnly) {
 			
 				// get the tagSet of this field and make sure it exists
 				var fieldTagSet = fieldTagSubMap[? "tagSet"];
@@ -30,10 +32,14 @@ function scr_chainTagDropDown(fieldMap, field, IDtoChange, cellRectX1, cellRectY
 						dropDownButtonX2 -= global.scrollBarWidth;
 					}
 						
-					var mouseoverDropDown = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, dropDownButtonX1, dropDownButtonY1, dropDownButtonX2, dropDownButtonY2) && !instance_exists(obj_dropDown) && !instance_exists(obj_dialogueBox);
+					mouseoverDropDown = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, dropDownButtonX1, dropDownButtonY1, dropDownButtonX2, dropDownButtonY2) && !instance_exists(obj_dropDown) && !instance_exists(obj_dialogueBox);
 						
 					draw_sprite_ext(spr_dropDown, 0, mean(dropDownButtonX1, dropDownButtonX2) - clipX, mean(dropDownButtonY1, dropDownButtonY2) - clipY, 1, 1, 0, global.colorThemeText, 1);
-								
+					
+					
+
+					
+					
 					// click on dropdown button to create dropdown
 					if (mouseoverDropDown) {
 						scr_createTooltip(mean(dropDownButtonX1, dropDownButtonX2), dropDownButtonY2, scr_get_translation("option-tag"), obj_tooltip.arrowFaceUp);
@@ -54,56 +60,10 @@ function scr_chainTagDropDown(fieldMap, field, IDtoChange, cellRectX1, cellRectY
 							
 							var dropDownOptionList = ds_list_create();
 							ds_list_copy(dropDownOptionList, fieldTagSet);
-							ds_list_insert(dropDownOptionList, 0, "option_add-to-tag-set");
+							ds_list_add(dropDownOptionList, "menu_clear");
 							
 							scr_createDropDown(cellRectX1, cellRectY2, dropDownOptionList, optionListType);
-						}
-					}
-						
-					// keyboard shortcut
-					if (fieldHasShortcutSet) {
-						if (!instance_exists(obj_dropDown)) {
-							obj_control.mouseoverTagShortcut = string(field);
-							if (fieldMap == global.entryFieldMap) {
-								obj_control.chain1toManyEntryToChange = IDtoChange;
-								obj_control.chain1toManyFieldToChange = field;
-							}
-							else if (fieldMap == global.chainFieldMap) {
-								obj_control.chain1to1ChainToChange = IDtoChange;
-								obj_control.chain1to1FieldToChange = field;
-							}
-						}
-						if (obj_control.mouseoverTagShortcut == string(field)) {
-							var fieldShortcutSet = fieldTagSubMap[? "shortcutSet"];
-							if (scr_isNumericAndExists(fieldShortcutSet, ds_type_list)) {
-										
-								if (keyboard_check_released(vk_anykey)) {
-										
-									// loop down through all possible shortcuts and see if any of them are being used
-									var fieldShortcutSetSize = ds_list_size(fieldShortcutSet);
-									for (var i = 0; i < fieldShortcutSetSize; i++) {
-										var currentShortcut = fieldShortcutSet[| i];
-										currentShortcut = string_upper(string(currentShortcut));
-										if (string_length(currentShortcut) == 1) {
-											if (keyboard_check_released(ord(currentShortcut))) {
-													
-												// set value if keyboard shortcut used
-												var optionSelected = fieldTagSet[| i];
-												if (fieldMap == global.entryFieldMap) {
-													scr_chain1ToManyTagOptions(optionSelected);
-												}
-												else if (fieldMap == global.chainFieldMap) {
-													scr_chain1To1TagOptions(optionSelected);
-												}
-													
-												with (obj_dropDown) {
-													instance_destroy();
-												}
-											}
-										}
-									}
-								}
-							}
+							setNavTaggingID = true;
 						}
 					}
 				}
@@ -111,5 +71,16 @@ function scr_chainTagDropDown(fieldMap, field, IDtoChange, cellRectX1, cellRectY
 		}
 	}
 	
+	var type = "entry"
+	if (fieldMap == global.entryFieldMap) {type = "entry";}
+	if (fieldMap == global.chainFieldMap) {type = "chain"}
+	
+
+	scr_cellEdit(IDtoChange, field, mouseoverCell, mouseoverDropDown, cellRectX1, cellRectY1, cellRectX2, cellRectY2, cellText, type);
+	
+	if (setNavTaggingID) {
+		obj_control.navWindowTaggingID = IDtoChange;
+		obj_control.navWindowTaggingField = field;
+	}
 
 }

@@ -77,15 +77,15 @@ function scr_loadINI() {
 
 
 				if (global.rememberMe) {
-					obj_openingScreen.inputText = string(ds_map_find_value(map, "userName"));
+					global.userName = string(ds_map_find_value(map, "userName"));
 
-					obj_openingScreen.cursorPos = string_length(obj_openingScreen.inputText) + 1;
 				}
 
 				global.previousRezDirectory = ds_map_find_value(map, "previousRezDirectory"); 
 
 				global.previousImportDirectory = ds_map_find_value(map, "previousImportDirectory");
 				global.previousSaveDirectory = ds_map_find_value(map, "previousSaveDirectory"); 
+				global.previousAudioDirectory = ds_map_find_value(map, "previousAudioDirectory"); 
 		
 
 				global.previousSpecialFields = ds_map_find_value(map, "previousSpecialFields");

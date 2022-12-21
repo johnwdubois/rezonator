@@ -1,8 +1,6 @@
-// Script assets have changed for v2.3.0 see
-// https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
 function scr_createChunk(){
 	
-	show_debug_message("....scr_createChunk, mouseoverPanelPane: " + string(obj_control.mouseoverPanelPane) + ", delayInput: " + string(global.delayInput));
+	show_debug_message("....scr_createChunk, mouseoverPanelPane: " + string(obj_control.mouseoverPanelPane) + ", delayInput: " + string(global.delayInput) + ", obj_control.rightClickID: " + string(obj_control.rightClickID));
 	
 	if (obj_control.mouseoverPanelPane) exit;
 	if (global.delayInput > 0) exit;
@@ -13,22 +11,8 @@ function scr_createChunk(){
 	var inRectTokenIDListSize = ds_list_size(obj_control.inRectTokenIDList);
 	var inRectUnitIDListSize = ds_list_size(obj_control.inRectUnitIDList);
 	
-	for(var i = 0; i < inRectTokenIDListSize; i++){
-		var tokenToCheck = obj_control.inRectTokenIDList[|i];
-		var tokenSubMap = global.nodeMap[? tokenToCheck];
-		var tokenInChunkList = tokenSubMap[? "inChunkList"];
-		var tokenInChunkListSize = ds_list_size(tokenInChunkList);
-		for(var j =0; j < tokenInChunkListSize; j++){
-			var chunkToCheck = tokenInChunkList[|j];
-			var chunkSubMap = global.nodeMap[?chunkToCheck];
-			var tokenList = chunkSubMap[? "tokenList"];
-			if(scr_compareLists(tokenList, obj_control.inRectTokenIDList)){
-				show_debug_message("CHUNK ALREADY EXISTS")
-				exit;
-			}
-		}
-	}
-	
+	// make sure this chunk doesn't already chunk
+	if (scr_checkChunkAlreadyExists(undefined, obj_control.inRectTokenIDList)) exit;
 	
 	if (inRectUnitIDListSize > 0 && inRectTokenIDListSize > 0) { // Make sure the box captured something
 
@@ -137,7 +121,7 @@ function scr_createChunk(){
 			show_debug_message("no lowestEncapsulatingChunk");
 			
 		}
-		else{
+		else {
 			
 			show_debug_message("highestEncapsulatedNest: " + string(highestEncapsulatedNest));
 			show_debug_message("lowestEncapsulatingNest: " + string(lowestEncapsulatingNest));
@@ -145,7 +129,7 @@ function scr_createChunk(){
 			chunkSubMap[? "nest"] = highestEncapsulatedNest + 1;
 			
 			ds_list_clear(obj_chain.encounteredChunkList);
-			if(highestEncapsulatedNest + 1 >= lowestEncapsulatingNest ){
+			if (highestEncapsulatedNest + 1 >= lowestEncapsulatingNest) {
 
 				ds_list_add(obj_chain.encounteredChunkList,chunkID);
 				scr_expandChunk(lowestEncapsulatingChunk);
@@ -182,28 +166,75 @@ function scr_createChunk(){
 	var chunksInChainsList = chunkSubMap[? "inChainsList"];
 	if (ds_list_size(chunksInChainsList) < 1) {
 		//in chain making tool
-		if(obj_toolPane.currentMode == obj_toolPane.modeRez || obj_toolPane.currentMode == obj_toolPane.modeTrack){
-			//chain is already seleceted
-			if(obj_chain.currentFocusedChainID != ""){
-				var focusedChainSubMap = global.nodeMap[?obj_chain.currentFocusedChainID];
-				
-				if(focusedChainSubMap[?"type"] != "stack"){
-					scr_newLink(chunkID);
+		if (obj_toolPane.currentMode == obj_toolPane.modeRez || obj_toolPane.currentMode == obj_toolPane.modeTrack) {
+			if (obj_control.splitToken) {
+				var rightClickTokenSubMap = global.nodeMap[? obj_control.rightClickID];
+				var rightClickTokenInEntryList = rightClickTokenSubMap[? "inEntryList"];
+				var rightClickTokenInChainsList = rightClickTokenSubMap[? "inChainsList"];
+				if (ds_list_size(rightClickTokenInChainsList) >= 1 && ds_list_size(rightClickTokenInEntryList) >= 1) {
+					var rightClickTokenEntry = rightClickTokenInEntryList[| 0];
+					var rightClickTokenEntrySubMap = global.nodeMap[? rightClickTokenEntry];
+					var rightClickTokenEntryType = rightClickTokenEntrySubMap[? "type"];
+					var rightClickTokenChain = rightClickTokenInChainsList[| 0];
+					var rightClickTokenChainSubMap = global.nodeMap[? rightClickTokenChain];
+					var rightClickTokenChainType = rightClickTokenChainSubMap[? "type"];
+					
+					show_debug_message("rightClickTokenEntryType: " + string(rightClickTokenEntryType) + ", rightClickTokenChainType: " + string(rightClickTokenChainType));
+					
+					if ((rightClickTokenEntryType == "track" && rightClickTokenChainType == "trail") || (rightClickTokenEntryType == "rez" && rightClickTokenChainType == "resonance")) {
+					
+						if (rightClickTokenChainType == "resonance") obj_toolPane.currentMode = obj_toolPane.modeRez;
+						else if (rightClickTokenChainType == "trail") obj_toolPane.currentMode = obj_toolPane.modeTrack;
+					
+						obj_chain.currentFocusedChainID = rightClickTokenChain;
+					
+						obj_control.hoverChunkID = chunkID;
+						scr_newLink(obj_control.hoverChunkID);
+						global.delayInput = 5;
+					
+						rightClickTokenChainSubMap[? "focused"] = rightClickTokenInEntryList[| 0];
+					}
 				}
-				else{
+			}
+			else if (!obj_control.createChunkNoChain) {
+				
+				// chain is already seleceted				
+				if (is_string(obj_chain.currentFocusedChainID) && obj_chain.currentFocusedChainID != "") {
+					
+					var firstToken = scr_getFirstWordOfChunk(chunkID);
+					var firstTokenSubMap = global.nodeMap[? firstToken];
+					var unitID = firstTokenSubMap[? "unit"];
+					if (scr_checkUnitSideLink(unitID, obj_chain.currentFocusedChainID)) {
+						var inst = instance_create_layer(0, 0, "InstancesDialogue", obj_dialogueBox);
+						with (inst) {
+							questionWindowActive = true;
+							confirmSideLink = true;
+						}
+						obj_control.sideLinkTokenID = chunkID;
+						exit;
+					}
+					else {
+						var focusedChainSubMap = global.nodeMap[? obj_chain.currentFocusedChainID];
+						if (focusedChainSubMap[?"type"] != "stack") {
+							scr_newLink(chunkID);
+						}
+						else {
+							scr_newChain(chunkID);
+							scr_newLink(chunkID);
+						}
+					}
+				}
+				else {
 					scr_newChain(chunkID);
 					scr_newLink(chunkID);
 				}
-			}
-			else{
-				scr_newChain(chunkID);
-				scr_newLink(chunkID);
 			}
 		}
 	}
 	
 	// if there is a focused chain, unfocus the chunk
 	if (obj_chain.currentFocusedChainID != "") {
+		show_debug_message("scr_createChunk, unfocusing chunk");
 		obj_chain.currentFocusedChunkID = "";
 	}
 	
@@ -215,4 +246,8 @@ function scr_createChunk(){
 	}
 
 	global.delayInput = 5;
+	obj_control.createChunkNoChain = false;
+	
+	return chunkID;
+	
 }

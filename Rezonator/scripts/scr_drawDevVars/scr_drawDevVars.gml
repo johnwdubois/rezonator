@@ -1,5 +1,3 @@
-// Script assets have changed for v2.3.0 see
-// https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
 function scr_drawDevVars(){
 	
 	// drawing settings
@@ -52,8 +50,8 @@ function scr_drawDevVars(){
 	draw_text(devVarX, wordTopMargin + (strHeight * 15), "focusedChain's vizSetIDList: " + ((ds_exists(focusedChainVizSetIDList, ds_type_list)) ? scr_getStringOfList(focusedChainVizSetIDList) : ""));
 	draw_text(devVarX, wordTopMargin + (strHeight * 16), "focusedChainEntry: " + string(focusedChainFocused));
 	draw_text(devVarX, wordTopMargin + (strHeight * 17), "showSpeakerName: " + string(showSpeakerName));
-	draw_text(devVarX, wordTopMargin + (strHeight * 18), "tokenFieldList: " + scr_getStringOfList(tokenFieldList));
-	draw_text(devVarX, wordTopMargin + (strHeight * 19), "chain1toManyColFieldListTrack: " + scr_getStringOfList(obj_control.chain1toManyColFieldListTrack));
+	draw_text(devVarX, wordTopMargin + (strHeight * 18), "shortcutsEnabled: " + string(shortcutsEnabled));
+	draw_text(devVarX, wordTopMargin + (strHeight * 19), "mouseoverTagCell: " + string(mouseoverTagCell));
 	draw_text(devVarX, wordTopMargin + (strHeight * 20), "displayTokenList: " + scr_getStringOfList(obj_control.displayTokenList));
 	draw_text(devVarX, wordTopMargin + (strHeight * 21), "nodeMap size: " + string(ds_map_size(global.nodeMap)));
 	draw_text(devVarX, wordTopMargin + (strHeight * 22), "dragStartOriginalUnit: " + string(obj_chain.dragStartOriginalUnit));
@@ -72,19 +70,25 @@ function scr_drawDevVars(){
 	draw_text(devVarX, wordTopMargin + (strHeight * 35), "functionChainList_playShowID: " + string(obj_panelPane.functionChainList_playShowID));
 	
 	draw_text(devVarX - 580, wordTopMargin + (strHeight * 1), "showNav: " + string(obj_panelPane.showNav));
-	draw_text(devVarX - 580, wordTopMargin + (strHeight * 2), "showNavLeft: " + string(obj_panelPane.showNavLeft));
-	draw_text(devVarX - 580, wordTopMargin + (strHeight * 3), "showNavRight: " + string(obj_panelPane.showNavRight));
-	draw_text(devVarX - 580, wordTopMargin + (strHeight * 4), "showTool: " + string(obj_toolPane.showTool));
+	draw_text(devVarX - 580, wordTopMargin + (strHeight * 2), "sideLinkTokenID: " + string(sideLinkTokenID));
+	draw_text(devVarX - 580, wordTopMargin + (strHeight * 3), "combineChainsFocused: " + string(combineChainsFocused));
+	draw_text(devVarX - 580, wordTopMargin + (strHeight * 4), "combineChainsSelected: " + string(combineChainsSelected));
 	draw_text(devVarX - 580, wordTopMargin + (strHeight * 5), "displayTokenField: " + string(global.displayTokenField));
 	draw_text(devVarX - 580, wordTopMargin + (strHeight * 6), "participantField: " + string(global.participantField));
-	draw_text(devVarX - 580, wordTopMargin + (strHeight * 7), "currentTool: " + string(obj_toolPane.currentTool));
+	draw_text(devVarX - 580, wordTopMargin + (strHeight * 7), "doubleClickTimer: " + string(doubleClickTimer));
 	draw_text(devVarX - 580, wordTopMargin + (strHeight * 8), "chainShowList: " + string(scr_getStringOfList(obj_chain.chainShowList)));
 	draw_text(devVarX - 580, wordTopMargin + (strHeight * 9), "rightClickID: " + string(obj_control.rightClickID));
 	draw_text(devVarX - 580, wordTopMargin + (strHeight * 10), "hoverUnitID: " + string(obj_control.hoverUnitID));
 	draw_text(devVarX - 580, wordTopMargin + (strHeight * 11), "currentFocusedEntryID: " + string(obj_chain.currentFocusedEntryID));
-	draw_text(devVarX - 580, wordTopMargin + (strHeight * 12), "startRangeMax: " + string(obj_control.drawRangeStartMax));
+	draw_text(devVarX - 580, wordTopMargin + (strHeight * 12), "audioClosestUnit: " + string(obj_audioUI.closestUnit));
 	draw_text(devVarX - 580, wordTopMargin + (strHeight * 13), "endRangeMin: " + string(obj_control.drawRangeEndMin));
 	draw_text(devVarX - 580, wordTopMargin + (strHeight * 14), "quickPickedChainID: " + string(obj_control.quickPickedChainID));
+	draw_text(devVarX - 580, wordTopMargin + (strHeight * 15), "mergeUnitList: " + scr_getStringOfList(mergeUnitList));
+	draw_text(devVarX - 580, wordTopMargin + (strHeight * 16), "mergeStackID: " + string(obj_chain.mergeStackID));
+	draw_text(devVarX - 580, wordTopMargin + (strHeight * 17), "stackerName: " + string(obj_stacker.stackerName));
+	draw_text(devVarX - 580, wordTopMargin + (strHeight * 18), "confirmStackCreate: " + string(obj_stacker.confirmStackCreate));
+	draw_text(devVarX - 580, wordTopMargin + (strHeight * 19), "confirmStackName : " + string(obj_stacker.confirmStackName));
+	draw_text(devVarX - 580, wordTopMargin + (strHeight * 20), "stackerMode : " + string(obj_stacker.stackerMode));
 
 	
 	// reset halign to left

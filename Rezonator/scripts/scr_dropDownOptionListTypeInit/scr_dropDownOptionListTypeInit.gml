@@ -1,5 +1,3 @@
-// Script assets have changed for v2.3.0 see
-// https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
 function scr_dropDownOptionListTypeInit(){
 	
 	global.optionListTypeSort = 0;
@@ -80,6 +78,13 @@ function scr_dropDownOptionListTypeInit(){
 	global.optionListTypeChainListMulti = 85;
 	global.optionListTypeSearchChain = 86;
 	global.optionListTypeTagSchema = 87;
+	global.optionListTypeTreeRightClick = 88;
+	global.optionListTypeSearchPane = 89;
+	global.optionListTypeTagPane = 90;
+	global.optionListTypeInsertCol = 91;
+	global.optionListTypeSplitTokenField = 92;
+	global.optionListTypeAddEndnote = 93;
+	global.optionListTypeTurnStacker = 94;
 
 
 }

@@ -1,5 +1,6 @@
 function scr_toolsOptions(optionSelected) {
 	//toolsOptions
+	var optionIndex = ds_list_find_index(optionList, optionSelected);
 
 	switch (optionSelected)
 	{
@@ -27,6 +28,7 @@ function scr_toolsOptions(optionSelected) {
 					obj_toolPane.setModeMain = obj_toolPane.modeRez;
 				}
 			}
+			obj_wordTip.wordTipDisplay = false;
 			with (obj_dropDown) {
 				instance_destroy();
 			}
@@ -46,6 +48,7 @@ function scr_toolsOptions(optionSelected) {
 					obj_toolPane.setModeMain = obj_toolPane.modeTrack;
 				}
 			}
+			obj_wordTip.wordTipDisplay = false;
 			with (obj_dropDown) {
 				instance_destroy();
 			}
@@ -59,19 +62,21 @@ function scr_toolsOptions(optionSelected) {
 			with (obj_toolPane){
 				currentMode = modeRead;
 			}
+			obj_wordTip.wordTipDisplay = true;
 			with(obj_dropDown){
 				instance_destroy();	
 			}
 			break;
-		case "menu_stack":
+		case "menu_stacker":
 			scr_destroyAllDropDownsOtherThanSelf();
 			var dropDownOptionList = ds_list_create();
-			ds_list_add(dropDownOptionList, "menu_stacker", "menu_clip-all", "menu_tree-all");
-						
+			//, "Unit Label"
+			ds_list_add(dropDownOptionList,  "menu_turn", "menu_utterance", "menu_clique", "menu_random");
 			if (ds_list_size(dropDownOptionList) > 0) {
-				scr_createDropDown(obj_dropDown.x + obj_dropDown.windowWidth, obj_dropDown.y + (obj_dropDown.optionSpacing * 4), dropDownOptionList, global.optionListTypeStack);
+				scr_createDropDown(x + windowWidth, y + (optionSpacing * optionIndex), dropDownOptionList, global.optionListTypeCreateStack);
 			}
 			break;
+
 		default:
 			break;
 	}

@@ -1,5 +1,3 @@
-// Script assets have changed for v2.3.0 see
-// https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
 function scr_panelPane_drawChunks1To1(){
 	
 	// draw BG
@@ -62,12 +60,18 @@ function scr_panelPane_drawChunks1To1(){
 			
 			// get chunkID & tagMap for the chunk (and make sure it all exists)
 			var currentChunk = chunkList[| j];
-			var chainSubMap = global.nodeMap[? currentChunk];
-			if (!scr_isNumericAndExists(chainSubMap, ds_type_map)) continue;
-			var tagMap = chainSubMap[? "tagMap"];
+			var chunkSubMap = global.nodeMap[? currentChunk];
+			if (!scr_isNumericAndExists(chunkSubMap, ds_type_map)) continue;
+			var tagMap = chunkSubMap[? "tagMap"];
 			if (!scr_isNumericAndExists(tagMap, ds_type_map)) continue;
 			
-			
+			var readOnlyField = false;
+			var tokenTagMap = global.nodeMap[? "tokenTagMap"];
+			var currentFieldSubMap = tokenTagMap[? currentField];
+			if (scr_isNumericAndExists(currentFieldSubMap, ds_type_map)) {
+				if (!ds_map_exists(currentFieldSubMap, "tagSet")) readOnlyField = true;
+				if(currentFieldSubMap[?"readOnly"]) readOnlyField = true;
+			}
 			
 			// get coordinates for cell rectangle
 			var cellRectX1 = x + (i * colWidth) + scrollHorPlusX;
@@ -114,15 +118,16 @@ function scr_panelPane_drawChunks1To1(){
 			// check if this chain has a tag filled in for this field
 			var tagStr = "";
 			if (ds_map_exists(tagMap, currentField)) {
-				tagStr = tagMap[? currentField];
+				tagStr = string(tagMap[? currentField]);
 			}
+			
 			
 			if(mouseoverCell){
 				obj_control.hoverTextCopy = tagStr;
 			}
 			
 			// draw text for chain tag
-			scr_adaptFont(string(tagStr), "S");
+			scr_adaptFont(tagStr, "S");
 			draw_set_halign(lineStateLTR ? fa_left : fa_right);
 			draw_set_valign(fa_middle);
 			draw_set_alpha(1);
@@ -143,9 +148,12 @@ function scr_panelPane_drawChunks1To1(){
 			
 			var textY = floor(mean(cellRectY1, cellRectY2));
 			
-			draw_text(textX - clipX, textY - clipY, string(tagStr));
 			
-			scr_chunkTagDropDown(global.nodeMap[? "tokenTagMap"], currentField, currentChunk, cellRectX1, cellRectY1, cellRectX2, cellRectY2, mouseoverCell, i == chunkFieldListSize - 1);
+			draw_set_alpha(readOnlyField ? 0.7 : 1);
+			draw_text(textX - clipX, textY - clipY, tagStr);
+			draw_set_alpha(1);
+			
+			scr_chunkTagDropDown(global.nodeMap[? "tokenTagMap"], currentField, currentChunk, tagStr, cellRectX1, cellRectY1, cellRectX2, cellRectY2, mouseoverCell, i == chunkFieldListSize - 1);
 			
 			textPlusY += strHeight;
 			
@@ -160,8 +168,8 @@ function scr_panelPane_drawChunks1To1(){
 	// draw focus outline
 	if (focusedRowRectY1 > -1 and focusedRowRectY2 > -1) {
 		draw_set_color(global.colorThemeBorders);
-		draw_line_width(x - clipX, focusedRowRectY1 - clipY, x + windowWidth - clipX, focusedRowRectY1 - clipY, 4);
-		draw_line_width(x - clipX, focusedRowRectY2 - clipY, x + windowWidth - clipX, focusedRowRectY2 - clipY, 4);
+		//draw_line_width(x - clipX, focusedRowRectY1 - clipY, x + windowWidth - clipX, focusedRowRectY1 - clipY, 4);
+		//draw_line_width(x - clipX, focusedRowRectY2 - clipY, x + windowWidth - clipX, focusedRowRectY2 - clipY, 4);
 	}
 	
 	scr_scrollBarHorizontal(ds_list_size(chunkFieldList), colWidth, global.colorThemeSelected1, global.colorThemeSelected2,
@@ -170,6 +178,9 @@ function scr_panelPane_drawChunks1To1(){
 	scr_scrollBar(chunkListSize, focusedElementY, strHeight, headerHeight,
 		global.colorThemeSelected1, global.colorThemeSelected2,
 		global.colorThemeSelected1, global.colorThemeSelected2, spr_ascend, windowWidth, windowHeight);
+		
+
+	scr_navWindowTaggingSelection(chunkFieldList, chunkList, "chunk");
 	
 	scr_surfaceEnd();
 	
@@ -184,8 +195,16 @@ function scr_panelPane_drawChunks1To1(){
 	
 	// Allows use of arrow keys, pgUp/pgDwn, and ctrl+key in chain list if clicked in chainList
 	var instToScroll = self.id;
-	if (clickedIn || chainListPanelPaneInst.clickedIn) {	
-		if ((mouse_wheel_up() or keyboard_check(vk_up)) and (holdUp < 2 or holdUp > 30)) {
+	if (clickedIn || chainListPanelPaneInst.clickedIn) {
+		
+		var arrowKeyUp = keyboard_check(vk_up);
+		var arrowKeyDown = keyboard_check(vk_down);
+		if (obj_control.navWindowTaggingID != "") {
+			arrowKeyUp = false;
+			arrowKeyDown = false;
+		}
+		
+		if ((mouse_wheel_up() or arrowKeyUp) and (holdUp < 2 or holdUp > 30)) {
 
 			if (selectedChunkIndex > 0 and selectedChunkIndex < chunkListSize) {
 				
@@ -206,7 +225,7 @@ function scr_panelPane_drawChunks1To1(){
 			}
 		}
 		
-		if ((mouse_wheel_down() || keyboard_check(vk_down)) and (holdDown < 2 || holdDown > 30)) {
+		if ((mouse_wheel_down() || arrowKeyDown) and (holdDown < 2 || holdDown > 30)) {
 			
 			if (selectedChunkIndex < chunkListSize - 1 and selectedChunkIndex >= 0) {
 

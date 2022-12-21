@@ -1,5 +1,3 @@
-// Script assets have changed for v2.3.0 see
-// https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
 function scr_tokenClicked(tokenID){
 	
 	if (global.delayInput > 0) exit;
@@ -24,7 +22,7 @@ function scr_tokenClicked(tokenID){
 	}
 	
 	//deselect tree pane chain entities
-	obj_panelPane.functionTree_treeLinkSelected = "";
+	with (obj_panelPane) functionTree_treeLinkSelected = "";
 	obj_chain.currentFocusedEntryID = "";
 	
 
@@ -45,7 +43,7 @@ function scr_tokenClicked(tokenID){
 		obj_control.moveCounter++;
 	}
 	
-	var inChainsList = tokenSubMap[?"inChainsList"];
+	var inChainsList = tokenSubMap[? "inChainsList"];
 	show_debug_message("scr_tokenClicked ... inChainsList: " + scr_getStringOfList(inChainsList));
 	
 	var shouldExit = false;
@@ -125,6 +123,10 @@ function scr_tokenClicked(tokenID){
 		&& is_string(obj_panelPane.functionField_tokenFieldSelected) && is_string(obj_panelPane.functionField_tokenTagSelected)) {
 			var tokenTagMap = tokenSubMap[? "tagMap"];
 			if (scr_isNumericAndExists(tokenTagMap, ds_type_map)) {
+				if(obj_panelPane.functionField_tokenTagSelected == scr_get_translation("menu_clear")){
+					tokenTagMap[? obj_panelPane.functionField_tokenFieldSelected] = "";
+				}
+				else{
 				if(global.steamAPI){
 					if(!steam_get_achievement("SA_tag-token")){
 						steam_set_achievement("SA_tag-token");
@@ -132,6 +134,7 @@ function scr_tokenClicked(tokenID){
 				}
 				tokenTagMap[? obj_panelPane.functionField_tokenFieldSelected] = obj_panelPane.functionField_tokenTagSelected;
 				show_debug_message("scr_tokenClicked ... setting token: " + string(tokenID) + ", field:" + string(obj_panelPane.functionField_tokenFieldSelected) + ", tag: " + string(obj_panelPane.functionField_tokenTagSelected));
+				}
 			}
 		}
 	}
@@ -144,6 +147,17 @@ function scr_tokenClicked(tokenID){
 	// if there is not a focused chain, we create a new chain
 	if (!ds_map_exists(global.nodeMap, obj_chain.currentFocusedChainID)) {
 		scr_newChain(tokenID);
+	}
+	else {
+		if (scr_checkUnitSideLink(unitID, obj_chain.currentFocusedChainID)) {
+			var inst = instance_create_layer(0, 0, "InstancesDialogue", obj_dialogueBox);
+			with (inst) {
+				questionWindowActive = true;
+				confirmSideLink = true;
+			}
+			obj_control.sideLinkTokenID = tokenID;
+			exit;
+		}
 	}
 
 	// add new link and refresh chain grid

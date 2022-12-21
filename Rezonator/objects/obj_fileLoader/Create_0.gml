@@ -1,3 +1,4 @@
+importedAudioFile = "";
 if (global.openProject) {
 	show_debug_message("obj_loadingControl Create ... loading REZ");
 	scr_loadREZ();
@@ -77,6 +78,8 @@ currentRowWordGrid = 0;
 currentRowUnitGrid = 0;
 loadLineGridSectionCounter = 0;
 
+
+
 global.importedSpecialFields = false;
 global.unitTagMapFilled = false;
 global.tokenTagMapFilled = false;
@@ -85,11 +88,8 @@ global.unitGridCopied = false;
 global.discoGridCopied = false;
 
 // if this is prose/paragraph import, we will run the prose linebreak script
-if (global.importType == global.importType_Paragraph) {
-	with (obj_alarm2) {
-		alarm[0] = 3;
-	}
-}
+//if (global.importType == global.importType_Paragraph) {
+//}
 
 
 

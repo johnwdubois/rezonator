@@ -1,5 +1,3 @@
-// Script assets have changed for v2.3.0 see
-// https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
 function scr_renderFilter2(){
 	
 	show_debug_message("scr_renderFilter2!");
@@ -188,6 +186,6 @@ function scr_renderFilter2(){
 	}
 	
 	// if there is a focused chain, let's jump back to the first thing in that chain
-	if (obj_chain.currentFocusedChainID != "") scr_jumpToUnit(scr_getFirstUnitOfChain(obj_chain.currentFocusedChainID));
+	if (obj_chain.currentFocusedChainID != "") scr_jumpToUnitTop(scr_getFirstUnitOfChain(obj_chain.currentFocusedChainID));
 
 }

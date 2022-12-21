@@ -29,6 +29,7 @@ menuBarGrid_rowHelp = 6;
 fileOptionList = ds_list_create();
 ds_list_add(fileOptionList, "menu_save", 
 							"menu_save-as",
+							"help_label_open",
 							"menu_media", 
 							"menu_export",
 							"menu_import", 
@@ -63,7 +64,7 @@ ds_list_add(toolsOptionList,"menu_search",
 							"menu_track",
 							"menu_resonance",
 							"help_label_tag",
-							"menu_stack");
+							"menu_stacker");
 
 settingsOptionList = ds_list_create();
 ds_list_add(settingsOptionList, "menu_user", 

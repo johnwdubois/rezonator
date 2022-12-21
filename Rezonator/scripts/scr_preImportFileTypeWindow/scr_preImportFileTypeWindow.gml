@@ -1,5 +1,5 @@
-// Script assets have changed for v2.3.0 see
-// https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
+
+
 function scr_preImportFileTypeWindow(){
 
 	var camWidth = camera_get_view_width(camera_get_active());
@@ -131,7 +131,21 @@ function scr_preImportFileTypeWindow(){
 		draw_line_width(tableX1,boxY2,tableX2,boxY2, 2);
 		
 		draw_set_color(global.colorThemeText);
-		draw_text(tableX1 +textBuffer,floor(mean(boxY1,boxY2)), string(scr_get_translation(currentImportType)) );
+		
+		// cut off section text if its too long
+		var cutoffs = 0;
+		var tabName = string(scr_get_translation(currentImportType));
+		var strwidth = string_width(tabName + "...   ");
+		while (string_width(tabName + "...   ")  > tableWidth and cutoffs < 100) {
+		
+			tabName = string_delete(tabName, string_length(tabName), 1);
+			cutoffs++;
+		}
+		if (cutoffs > 0) {
+			tabName += "... ";
+		}
+		
+		draw_text(tableX1 +textBuffer,floor(mean(boxY1,boxY2)),  tabName);
 		plusY += heightOfBox;
 		// set choose column value
 		ds_grid_set(preImportInfoGrid, global.preImportInfoGrid_colChoose, i, currentImportTypeSelected);
@@ -156,7 +170,11 @@ function scr_preImportFileTypeWindow(){
 	draw_set_halign(fa_left);
 	draw_set_color(global.colorThemeText);
 	draw_set_alpha(1);
+	
+	
+	
 	scr_adaptFont( scr_get_translation("msg_choose-data-type"), "L");
+	
 	draw_text(fileTypeWindowX1, floor(obj_menuBar.menuHeight + strHeight), scr_get_translation("msg_choose-data-type"));
 	
 	

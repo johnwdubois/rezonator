@@ -1,5 +1,3 @@
-// Script assets have changed for v2.3.0 see
-// https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
 function scr_dialogueConfirm(){
 	
 	// check if they are trying to download newest version of rezonator
@@ -79,7 +77,7 @@ function scr_dialogueConfirm(){
 				var strDigits = string_digits(obj_control.inputText);
 				if (string_length(strDigits) > 0) {
 					var realDigits = real(strDigits);
-					scr_jumpToUnit(realDigits);
+					scr_jumpToUnitTop(realDigits);
 				}
 			}
 			
@@ -87,24 +85,25 @@ function scr_dialogueConfirm(){
 		}
 		
 		if (obj_control.newWordCreated) {
-				
-		
-				
 			scr_newToken(obj_control.inputText, obj_control.rightClickID);
+			obj_control.insertTokenStr = obj_control.inputText;
+		}
 
-			
-			obj_control.lastAddedWord = obj_control.inputText;
-		}
-		if (obj_control.changeZero) {
-			obj_control.lastAddedWord = obj_control.inputText;
-		}
 			
 			
 		if (obj_control.rename) {
-			if (is_numeric(chainSubMap)) {
-				if (ds_exists(chainSubMap, ds_type_map)) {
-					ds_map_replace(chainSubMap, "name", obj_control.inputText);
-				}
+			if (scr_isNumericAndExists(chainSubMap, ds_type_map)) {
+				ds_map_replace(chainSubMap, "name", obj_control.inputText);
+			}
+		}
+		if (obj_control.setChainName) {
+			scr_setChainName(obj_control.inputText);
+		}
+		if (obj_control.renameTree) {
+			var selectedTree = obj_panelPane.functionTree_treeSelected;
+			var selectedTreeSubMap = global.treeMap[? selectedTree];
+			if (scr_isNumericAndExists(selectedTreeSubMap, ds_type_map)) {
+				ds_map_replace(selectedTreeSubMap, "name", obj_control.inputText);
 			}
 		}
 		if (obj_control.newCustomFieldToken) {
@@ -178,9 +177,6 @@ function scr_dialogueConfirm(){
 			}
 		}
 		
-		if (obj_control.replace) {
-			scr_dialogueBoxReplace();
-		}
 		
 
 		
@@ -196,7 +192,19 @@ function scr_dialogueConfirm(){
 		if (obj_control.setRezMap) {
 			scr_setRezMap(obj_chain.currentFocusedChainID, obj_control.inputText);
 		}
-			
+		
+		if (obj_control.splitToken) {
+			scr_splitTokenHelper(obj_control.inputText);	
+		}
+		
+		if (instance_exists(obj_stacker)) {
+			if (obj_stacker.confirmStackName) {
+				scr_stackerBranch();
+			}
+		}
+		
+		
+		
 		scr_closeDialogueBoxVariables();
 		instance_destroy();
 
@@ -223,6 +231,15 @@ function scr_dialogueConfirm(){
 			// delete all track chains!!
 			scr_deleteAllChains(global.nodeMap[? "trailList"]);
 		}
+		if (clearAllChunks) {
+				
+			// delete all track chunks!!
+			var chunkListSize = global.nodeMap[?"chunkList"];
+			repeat(chunkListSize){
+				scr_deleteChunk(global.nodeMap[?"chunkList"][|0]);
+			}
+			
+		}
 		
 		
 		if (removeTagToken) scr_removeFromTagSetOptions(string(stringToBeRemoved), "token");
@@ -231,6 +248,7 @@ function scr_dialogueConfirm(){
 		if (removeTagChain) scr_removeFromTagSetOptions(string(stringToBeRemoved), "chain");
 		if (removeTagChunk) scr_removeFromTagSetOptions(string(stringToBeRemoved), "chunk");
 		if (removeTagLink) scr_removeFromTagSetOptions(string(stringToBeRemoved), "link");
+		if (removeTags) scr_removeFromTagSetMulti();
 		
 		if (removeFieldToken || removeFieldUnit || removeFieldEntry || removeFieldChain || removeFieldChunk || removeFieldLink) {
 			// delete the field
@@ -246,11 +264,33 @@ function scr_dialogueConfirm(){
 		}
 		
 		
-			
-		
-
+		if(mergeUnit){
+			scr_mergeUnit();
+		}
+		if(splitUnit){
+			scr_splitUnit(obj_control.rightClickID, false);
+		}
+		if(swapUnitUp){
+			scr_swapAdjacentUnit(true);
+		}
+		else if(swapUnitDown){
+			scr_swapAdjacentUnit(false);
+		}
+	
 		if (clearChain) {
 			scr_deleteChain(obj_control.selectedChainID);
+		}
+		if (clearChainMulti) {
+			var selectedChainList = -1;
+			if (obj_panelPane.functionChainList_currentTab == obj_panelPane.functionChainList_tabRezBrush) selectedChainList = obj_control.selectedRezChainList;
+			else if (obj_panelPane.functionChainList_currentTab == obj_panelPane.functionChainList_tabTrackBrush) selectedChainList = obj_control.selectedTrackChainList;
+			else if (obj_panelPane.functionChainList_currentTab == obj_panelPane.functionChainList_tabStackBrush) selectedChainList = obj_control.selectedStackChainList;
+			
+			if (scr_isNumericAndExists(selectedChainList, ds_type_list)) {
+				while(ds_list_size(selectedChainList) > 0){
+					scr_deleteChain(selectedChainList[| 0])
+				}
+			}
 		}
 		if (clearShow) {
 			scr_deleteShow(obj_control.selectedChainID);
@@ -260,6 +300,9 @@ function scr_dialogueConfirm(){
 		}
 		if (removeTree) {
 			scr_deleteTree(stringToBeRemoved);
+		}
+		if (deleteToken) {
+			scr_deleteToken(obj_control.rightClickID);
 		}
 		
 			
@@ -276,17 +319,25 @@ function scr_dialogueConfirm(){
 			scr_combineChains(obj_control.combineChainsFocused, obj_control.combineChainsSelected);
 		}
 		
+		if (confirmSideLink) {
+			if (is_string(obj_control.sideLinkTokenID) && obj_control.sideLinkTokenID != "") {
+				scr_newLink(obj_control.sideLinkTokenID);
+			}
+			obj_control.sideLinkTokenID = "";
+		}
+		
 		if (instance_exists(obj_stacker)) {
 			if (obj_stacker.confirmStackCreate) {
 				scr_deleteAllChains(global.nodeMap[? "stackList"]);
-				scr_stackerBranch();
+				with (obj_stacker) alarm[11] = 2;
 			}
 		}
 		
 		if (instance_exists(obj_control)) {
-			if (obj_control.saveBeforeExiting || obj_control.saveBeforeImporting) {
+			if (obj_control.saveBeforeExiting || obj_control.saveBeforeImporting || obj_control.saveBeforeOpening) {
 				with(obj_fileLoader) scr_saveREZ(false);
 				global.skipToImportScreen = obj_control.saveBeforeImporting;
+				global.skipToOpen = obj_control.saveBeforeOpening;
 				show_debug_message("Going to openingScreen, scr_dialogueConfirm");
 				room_goto(rm_openingScreen);
 				scr_loadINI();
@@ -298,9 +349,13 @@ function scr_dialogueConfirm(){
 				}
 				game_end();
 			}
+			
+			if (obj_control.mergeToken) {
+				scr_mergeToken(obj_control.rightClickID);
+			}
 		}
 		
-		scr_closeQuestionBoxVariables();
+		scr_closeDialogueBoxVariables();
 		instance_destroy();
 	}
 }

@@ -1,5 +1,3 @@
-// Script assets have changed for v2.3.0 see
-// https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
 function scr_dialogueNo(){
 	
 	show_debug_message("scr_dialogueNo");
@@ -9,17 +7,20 @@ function scr_dialogueNo(){
 		
 		if(questionWindowActive){
 		
-		
-		
 			if (instance_exists(obj_stacker)) {
 				if (obj_stacker.confirmStackCreate) {
+					obj_stacker.confirmStackCreate = false;
+					with (obj_stacker) alarm[11] = 2;
+				}
+				else if (obj_stacker.confirmStackName) {
 					scr_stackerBranch();
 				}
 			}
 		
 			if (instance_exists(obj_control)) {
-				if (obj_control.saveBeforeExiting || obj_control.saveBeforeImporting) {
+				if (obj_control.saveBeforeExiting || obj_control.saveBeforeImporting || obj_control.saveBeforeOpening) {
 					global.skipToImportScreen = obj_control.saveBeforeImporting;
+					global.skipToOpen = obj_control.saveBeforeOpening;
 					show_debug_message("Going to openingScreen, scr_dialogueNo");
 					room_goto(rm_openingScreen);
 					scr_loadINI();
@@ -28,8 +29,6 @@ function scr_dialogueNo(){
 					game_end();
 				}
 			}
-		
-			scr_closeQuestionBoxVariables();
 			instance_destroy();
 		}
 	}

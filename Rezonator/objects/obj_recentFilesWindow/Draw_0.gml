@@ -21,11 +21,8 @@ draw_text(recentFilesWindowX1, recentFilesWindowY1 - stringHeight, "Recent Files
 //draw_line_width(recentFilesWindowX1,recentFilesWindowY1 - stringHeight/3,recentFilesWindowX1+ string_width("Recent Files"),recentFilesWindowY1 - stringHeight/3, 3);
 
 
-
-	var mouseOverWindow = point_in_rectangle(mouse_x, mouse_y, recentFilesWindowX1,recentFilesWindowY1,recentFilesWindowX2,recentFilesWindowY2);
-	if(mouseOverWindow){
-	
-	}
+var mouseoverCancel = instance_exists(obj_dialogueBox) || instance_exists(obj_dropDown);
+var mouseOverWindow = point_in_rectangle(mouse_x, mouse_y, recentFilesWindowX1,recentFilesWindowY1,recentFilesWindowX2,recentFilesWindowY2) && !mouseoverCancel;
 
 scr_surfaceStart();
 
@@ -43,7 +40,7 @@ var scale = .7;
 var textY = floor(plusY + scrollPlusY);
 for (var i = 0; i < fileKeyListSize; i++) {
 	
-
+	
 	
 	
 	textY = floor(plusY + scrollPlusY);
@@ -53,6 +50,22 @@ for (var i = 0; i < fileKeyListSize; i++) {
 	var lineY1 = textY - rowHeight/2;
 	var lineX2 = recentFilesWindowX2 - global.scrollBarWidth;
 	var lineY2 = textY + rowHeight/2;
+	
+	
+	
+			
+	var removeScale = 0.8;
+	var removeButtonWidth = sprite_get_width(spr_xButton)*removeScale; 
+	var removeButtonX2 = lineX2 - removeButtonWidth/2; 
+	var removeButtonX1 = removeButtonX2 - removeButtonWidth; 
+	var removeButtonY1 = lineY1 + removeButtonWidth/2; 
+	var removeButtonY2 = removeButtonY1 + removeButtonWidth; 
+
+	var mouseOverRemove = point_in_rectangle(mouse_x, mouse_y, removeButtonX1, removeButtonY1, removeButtonX2, removeButtonY2) && mouseOverWindow;
+	
+	
+	
+	
 	
 		
 	draw_set_color(global.colorThemeText);
@@ -80,18 +93,29 @@ for (var i = 0; i < fileKeyListSize; i++) {
 		draw_set_color(c_white);
 		draw_roundrect(lineX1 - clipX,lineY1 - clipY,lineX2 - clipX,lineY2 - clipY, false);
 		
+		if(mouseOverRemove){
+			draw_set_color(global.colorThemeSelected1);
+			draw_roundrect(removeButtonX1- clipX, removeButtonY1- clipY, removeButtonX2- clipX, removeButtonY2- clipY, false);
 		
-		//scr_createTooltip(mean(lineX1 ,lineX2), lineY1, string(filePath), obj_tooltip.arrowFaceDown)
+			if(mouse_check_button_released(mb_left)){
+			
+				scr_deleteFromList(global.recentFilesList, fileKey);
+				scr_saveINI();
 		
-		if (mouse_check_button_released(mb_left) && (inputDelay == 0)) {
+			}
+		}
+		
+		if (mouse_check_button_released(mb_left) && (inputDelay == 0) && !mouseOverRemove) {
 			global.selectedFile = filePath;
 			global.openProject = true
+			global.userName = obj_openingScreen.inputText;
 		}
 	}
 	
 	draw_set_color(global.colorThemeText);
 	draw_set_halign(fa_left);
 	
+	if(mouseOverRow)draw_sprite_ext(spr_xButton,0,mean(removeButtonX1, removeButtonX2)- clipX,mean(removeButtonY1, removeButtonY2)- clipY,removeScale,removeScale,0,global.colorThemeText,1);
 
 	scr_adaptFont(scr_get_translation(fileName), "L");
 	draw_text(fileTextX - clipX, floor(textY- stringHeight/2 - clipY), scr_get_translation(string(fileName)));
@@ -107,10 +131,7 @@ for (var i = 0; i < fileKeyListSize; i++) {
 	draw_sprite_ext(spr_toolsNew,1,iconX - clipX,textY - clipY,-scale,scale,0,color,1);
 		
 		
-		
-		
-		
-		
+
 	plusY += rowHeight;
 }
 
@@ -123,13 +144,13 @@ scr_scrollBar(fileKeyListSize, -1, rowHeight, 0,
 	global.colorThemeSelected2, global.colorThemeSelected2,
 	global.colorThemeSelected1, global.colorThemeSelected2, spr_ascend, windowWidth, windowHeight);
 
-	// scroll mouse wheel
-	if (mouse_wheel_up()) {
-		scrollPlusYDest += stringHeight;
-	}
-	if (mouse_wheel_down()) {
-		scrollPlusYDest -= stringHeight;
-	}
+// scroll mouse wheel
+if (mouse_wheel_up()) {
+	scrollPlusYDest += stringHeight;
+}
+if (mouse_wheel_down()) {
+	scrollPlusYDest -= stringHeight;
+}
 
 
 scr_surfaceEnd();
@@ -137,3 +158,34 @@ draw_set_color(global.colorThemeRezPurple);
 draw_set_alpha(0.5);
 scr_drawRectWidth(recentFilesWindowX1, recentFilesWindowY1, recentFilesWindowX2, recentFilesWindowY2,1, true);
 draw_set_alpha(1);
+
+
+// draw open directory button
+var openDirTextKey = os_type == os_windows ? "menu_open-rez-folder-windows" : "menu_open-rez-folder-macos";
+var openDirText = scr_get_translation(openDirTextKey)
+var openDirButtonX1 = recentFilesWindowX1;
+var openDirButtonY1 = recentFilesWindowY2 + string_height("A") * 0.5;
+var openDirButtonX2 = openDirButtonX1 + string_width("  " + openDirText);
+var openDirButtonY2 = openDirButtonY1 + string_height("A");
+var mouseoverOpenDirButton = point_in_rectangle(mouse_x, mouse_y, openDirButtonX1, openDirButtonY1, openDirButtonX2, openDirButtonY2);
+draw_set_color(mouseoverOpenDirButton ? c_white : c_ltgray);
+draw_roundrect(openDirButtonX1, openDirButtonY1, openDirButtonX2, openDirButtonY2, false);
+draw_set_color(c_gray);
+draw_roundrect(openDirButtonX1, openDirButtonY1, openDirButtonX2, openDirButtonY2, true);
+draw_set_color(c_black);
+draw_set_halign(fa_center);
+draw_set_valign(fa_middle);
+draw_text(floor(mean(openDirButtonX1, openDirButtonX2)), floor(mean(openDirButtonY1, openDirButtonY2)), openDirText);
+if (mouseoverOpenDirButton) {
+	if (mouse_check_button_released(mb_left)) {
+		if (directory_exists(global.rezonatorDirString)) {
+			var delimiter = os_type == os_macosx ? "/" : "\\"
+			var dir = global.rezonatorDirString + delimiter + "Data" + delimiter + "SBCorpus" + delimiter + "REZ";
+			show_debug_message("attempting to open folder: " + string(dir));
+			scr_openDirectory(dir);
+		}
+		else {
+			show_message("This directory does not exist");
+		}
+	}
+}

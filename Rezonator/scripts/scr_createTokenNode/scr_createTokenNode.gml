@@ -1,12 +1,13 @@
-// Script assets have changed for v2.3.0 see
-// https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
-function scr_createTokenNode(discourseTokenSeq , textToDisplay,newTokenSeq,newDisplayCol, unitID){
+
+
+function scr_createTokenNode(discourseTokenSeq, textToDisplay, newTokenSeq, newDisplayCol, unitID){
 	// make token node
 	var currentTokenNode = scr_addToNodeMap("token");
 	var currentTokenSubMap = global.nodeMap[? currentTokenNode];
 	ds_map_add(currentTokenSubMap, "docTokenSeq", discourseTokenSeq);
 	ds_map_add(currentTokenSubMap, "tokenOrder", newTokenSeq);
 	ds_map_add(currentTokenSubMap, "relativeOrder", newTokenSeq);
+	ds_map_add(currentTokenSubMap, "place", "N/A");
 	ds_map_add(currentTokenSubMap, "displayCol", newDisplayCol);
 	ds_map_add(currentTokenSubMap, "void", 1);
 	ds_map_add(currentTokenSubMap, "pixelX", 0);
@@ -24,9 +25,24 @@ function scr_createTokenNode(discourseTokenSeq , textToDisplay,newTokenSeq,newDi
 	for (var i = 0; i < tokenImportColNameListSize; i++) {
 		var currentField = string(obj_control.tokenFieldList[| i]);
 		var currentTag = "";
-		if(currentField == global.displayTokenField){
-			currentTag = textToDisplay
+		
+		if (obj_control.splitToken) {
+			if (currentField == obj_control.splitTokenField) {
+				currentTag = textToDisplay
+			}
+			else if (obj_control.splitTokenCopyTags) {
+				var rightClickTokenSubMap = global.nodeMap[? obj_control.rightClickID];
+				var rightClickTokenTagMap = rightClickTokenSubMap[? "tagMap"];
+				
+				currentTag = rightClickTokenTagMap[? currentField];
+			}
 		}
+		else {
+			if (currentField == global.displayTokenField) {
+				currentTag = textToDisplay
+			}
+		}
+		
 		ds_map_add(tagMap, currentField, currentTag);
 	}
 		

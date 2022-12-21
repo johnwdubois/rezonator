@@ -1,5 +1,6 @@
-// Script assets have changed for v2.3.0 see
-// https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
+// Call this script every time before using draw_text
+// This script handles setting text size for different fonts and reversing strings for RTL fonts
+
 function scr_adaptFont(inputString, size, isTitle){
 	var setTitleFont = false;
 	if(argument_count >2){

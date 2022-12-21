@@ -13,12 +13,12 @@ function scr_createDropDown(dropDownX, dropDownY, dropDownOptionList, dropDownOp
 		exit;
 	}
 	
-
+	// if the dropdown is going off the bottom of the screen, pull it up
 	var dropDownHeight = ds_list_size(dropDownOptionList) * string_height("0") * 1.25;
 	var camViewHeight = camera_get_view_height(view_get_camera(0));
 	if (dropDownY + dropDownHeight > camViewHeight) {
-		var adjustedHeight = ds_list_size(dropDownOptionList) * string_height("0") * 1.25;
-		dropDownY -= adjustedHeight;	
+		var adjustedHeight = (ds_list_size(dropDownOptionList) - 1) * string_height("0") * 1.25;
+		dropDownY -= adjustedHeight;
 	}
 	dropDownY = clamp(dropDownY, 0, camViewHeight);
 	
@@ -26,6 +26,8 @@ function scr_createDropDown(dropDownX, dropDownY, dropDownOptionList, dropDownOp
 	if (instance_exists(obj_control)) dropDownDepth = obj_control.menuDepth;
 	var dropDownInst = instance_create_depth(dropDownX, dropDownY, dropDownDepth, obj_dropDown);
 	dropDownInst.optionList = dropDownOptionList;
+	dropDownInst.originalOptionList = ds_list_create();
+	ds_list_copy(dropDownInst.originalOptionList, dropDownOptionList);
 	dropDownInst.optionListType = dropDownOptionListType;
 	dropDownInst.level = instance_number(obj_dropDown);
 	with(obj_dropDown){
@@ -51,14 +53,14 @@ function scr_createDropDown(dropDownX, dropDownY, dropDownOptionList, dropDownOp
 	
 	if (object_index == obj_dropDown) dropDownInst.prevDropDown = self.id;
 	if (object_index == obj_menuBar) dropDownInst.myAlpha = 1;
-	//if(global.lang_codes[| global.lang_index] == "he" and instance_number(obj_dropDown) == 1){
+	//if(global.userLangRTL and instance_number(obj_dropDown) == 1){
 	//		dropDownInst.x -= dropDownInst.windowWidth;
 	//	}
-	//	if(global.lang_codes[| global.lang_index] == "he" and instance_number(obj_dropDown) == 2){
+	//	if(global.userLangRTL and instance_number(obj_dropDown) == 2){
 	//		dropDownInst.x -= 2*windowWidth;
 	//	}
 		
-	if(global.lang_codes[| global.lang_index] == "he"){
+	if(global.userLangRTL){
 		dropDownInst.x -= instance_number(obj_dropDown) * dropDownInst.windowWidth;
 		if(instance_number(obj_dropDown) == 3){
 			dropDownInst.x += dropDownInst.windowWidth;	

@@ -1,5 +1,5 @@
-// Script assets have changed for v2.3.0 see
-// https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
+
+
 function scr_preImportScreen(){
 	
 	scr_fontSizeControlOpeningScreen();
@@ -151,6 +151,11 @@ function scr_preImportScreen(){
 	draw_set_color(global.colorThemeBG);
 	draw_set_alpha(1);
 	draw_roundrect(exampleTabX1, exampleTabY1, exampleTabX2, exampleTabY2, false);
+	
+	// draw window border
+	draw_set_color(global.colorThemeBG);
+	draw_set_alpha(1);
+	draw_roundrect(exampleWindowX1, exampleWindowY1, exampleWindowX2, exampleWindowY2, false);
 	
 	
 	
@@ -354,6 +359,7 @@ function scr_preImportScreen(){
 	if (mouseoverTag && mouse_check_button_released(mb_left)) {		
 		var dropDownOptionList = ds_list_create();
 		ds_list_copy(dropDownOptionList, global.includedTagSchemaFileList)
+		// localize
 		ds_list_insert(dropDownOptionList, 0,"Custom tag schema");
 		scr_createDropDown(floor(tagButtonRectX1),floor(tagButtonRectY2), dropDownOptionList, global.optionListTypeTagSchema);
 		

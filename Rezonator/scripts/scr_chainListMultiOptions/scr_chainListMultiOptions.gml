@@ -1,5 +1,3 @@
-// Script assets have changed for v2.3.0 see
-// https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
 function scr_chainListMultiOptions(optionSelected){
 	
 	var optionIndex = ds_list_find_index(optionList, optionSelected);
@@ -39,22 +37,26 @@ function scr_chainListMultiOptions(optionSelected){
 		scr_createDropDown(obj_dropDown.x + obj_dropDown.windowWidth, obj_dropDown.y + (obj_dropDown.optionSpacing * optionIndex), dropDownOptionList, global.optionListTypeSelectShow);
 	}
 	else if (optionSelected == "help_label_delete_plain") {
+		
+		/*
 		while(ds_list_size(currentSelectedChainList) > 0){
 			scr_deleteChain(currentSelectedChainList[|0])
 		}
+		*/
+		if (!instance_exists(obj_dialogueBox)) {
+			instance_create_layer(x, y, "InstancesDialogue", obj_dialogueBox);
+			obj_dialogueBox.clearChainMulti = true;
+			obj_dialogueBox.questionWindowActive = true;
+		}
 		with (obj_dropDown)  instance_destroy();
+		
 	}
 	else if (optionSelected == "menu_filter") {
 		for(var i = 0 ; i < currentSelectedChainListSize; i++){
 			var currentChain = currentSelectedChainList[|i];
 			var currentChainSubMap = global.nodeMap[?currentChain];
-			currentChainSubMap[?"filter"] = !currentChainSubMap[?"filter"];
-			if(!currentChainSubMap[?"filter"]){
-				scr_deleteFromList(filterList, currentChain);
-			}
-			else{
-				scr_addToListOnce(filterList,currentChain);
-			}
+			currentChainSubMap[? "filter"] = true;
+			scr_addToListOnce(filterList,currentChain);
 		}
 		with (obj_dropDown)  instance_destroy();
 	}
@@ -62,15 +64,22 @@ function scr_chainListMultiOptions(optionSelected){
 		for(var i = 0 ; i < currentSelectedChainListSize; i++){
 			var currentChain = currentSelectedChainList[|i];
 			var currentChainSubMap = global.nodeMap[?currentChain];
-			currentChainSubMap[?"visible"] = !currentChainSubMap[?"visible"];
-			if(currentChainSubMap[?"visible"]){
-				scr_deleteFromList(visibleList, currentChain);
-			}
-			else{
-				scr_addToListOnce(visibleList,currentChain);
-			}
+			currentChainSubMap[?"visible"] = false;
+			scr_addToListOnce(visibleList,currentChain);
 		}
 		with (obj_dropDown)  instance_destroy();
+	}
+	else if ( optionSelected == "option_clip" ){					
+		// Create a clip file based on that Stack
+		scr_clipAllStacks(obj_control.selectedStackChainList);			
+		// Destory the Dropdown
+		instance_destroy(obj_dropDown);
+	}
+	else if ( optionSelected == "option_create-tree"){
+		scr_treeAllStacks(obj_control.selectedStackChainList);
+	
+		// Destory the Dropdown
+		instance_destroy(obj_dropDown);
 	}
 
 }

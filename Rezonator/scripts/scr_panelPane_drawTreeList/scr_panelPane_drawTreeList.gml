@@ -1,11 +1,14 @@
-// Script assets have changed for v2.3.0 see
-// https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
+
+
 function scr_panelPane_drawTreeList(){
+	
 	var ltr = (obj_control.drawLineState == obj_control.lineState_ltr);
 	var strHeight = string_height("0") * 1.5;
 	var numColX = x;
 	var numColWidth = windowWidth * 0.1;
-	var nameColX = numColX + numColWidth;
+	var unitColX = numColX + numColWidth;
+	var unitColWidth = windowWidth * 0.1;
+	var nameColX = unitColX + unitColWidth;
 	var nameColWidth = windowWidth * 0.25;
 	var captionColX = nameColX + nameColWidth;
 	
@@ -13,7 +16,7 @@ function scr_panelPane_drawTreeList(){
 	var deleteColX = x + windowWidth - deleteColWidth - global.scrollBarWidth;
 	var mouseOverDel = false;
 	
-	var maxCaptionSize = deleteColX-captionColX;
+	var maxCaptionSize = deleteColX - captionColX;
 	
 	var textBuffer = 8;
 	var headerHeight = functionTabs_tabHeight;
@@ -67,6 +70,17 @@ function scr_panelPane_drawTreeList(){
 			continue;
 		}
 		
+		// get unitID of the first token
+		var unitToJumpTo = "";
+		var unitSeq = -1;
+		var firstToken = tokenList[| 0];
+		var firstTokenSubMap = global.nodeMap[? firstToken];
+		if (scr_isNumericAndExists(firstTokenSubMap, ds_type_map)) {
+			unitToJumpTo = firstTokenSubMap[? "unit"];
+			var unitToJumpToSubMap = global.nodeMap[? unitToJumpTo];
+			unitSeq = unitToJumpToSubMap[? "unitSeq"];
+		}
+		
 		// Get dimensions of rectangle around tree name
 		var treeRectX1 = x;
 		var treeRectY1 = y + headerHeight + scrollPlusY + textPlusY - (strHeight / 2);
@@ -83,12 +97,19 @@ function scr_panelPane_drawTreeList(){
 		
 		// click on tree name
 		if (mouseoverTreeRect) {
-			if (mouse_check_button_released(mb_left) && !instance_exists(obj_dropDown)) {
+			if (mouse_check_button_released(mb_left)) {
 				with (obj_panelPane) functionTree_treeSelected = currentTree;
 				obj_chain.currentFocusedEntryID = "";
 				with (obj_panelPane) {
 					if (currentFunction == functionChainContents) scrollPlusX = 0;
 				}
+			}
+			else if (mouse_check_button_released(mb_right)) {
+				with (obj_panelPane) functionTree_treeSelected = currentTree;
+				obj_chain.currentFocusedEntryID = "";
+				var dropDownOptionList = ds_list_create();
+				ds_list_add(dropDownOptionList, "help_label_rename", "help_label_delete_plain");
+				scr_createDropDown(mouse_x, mouse_y, dropDownOptionList, global.optionListTypeTreeRightClick);
 			}
 		}
 		
@@ -101,6 +122,9 @@ function scr_panelPane_drawTreeList(){
 		// # column
 		draw_set_color(textColor);
 		draw_text(floor(numColX + textBuffer) - clipX, textY - clipY, string(i + 1));
+		
+		// unit column
+		if (unitSeq >= 0) draw_text(floor(unitColX + textBuffer) - clipX, textY - clipY, string(unitSeq));
 		
 		// name column
 		draw_text(floor(nameColX + textBuffer) - clipX, textY - clipY, string(currentTreeName));
@@ -132,13 +156,6 @@ function scr_panelPane_drawTreeList(){
 		scr_adaptFont(string(fullTreeStr), "M");
 		draw_text(floor(captionColX + textBuffer) - clipX, textY - clipY, string(fullTreeStr));
 		
-		// get unitID of the first token, for double-click to jump
-		var unitToJumpTo = "";
-		var firstToken = tokenList[| 0];
-		var firstTokenSubMap = global.nodeMap[? firstToken];
-		if (scr_isNumericAndExists(firstTokenSubMap, ds_type_map)) {
-			unitToJumpTo = firstTokenSubMap[? "unit"];
-		}
 	
 		// get coordinates for delete button
 		var delButtonX = mean(deleteColX, deleteColX + deleteColWidth);
@@ -194,7 +211,7 @@ function scr_panelPane_drawTreeList(){
 	
 	// draw column headers
 	var headerPlusX = 0;
-	for (var i = 0; i <= 2; i++) {
+	for (var i = 0; i <= 3; i++) {
 		
 		// get column data
 		var colWidth = 0;
@@ -204,10 +221,14 @@ function scr_panelPane_drawTreeList(){
 			colText = "#";
 		}
 		else if (i == 1) {
+			colWidth = unitColWidth;
+			colText = scr_get_translation("tab_name_unit");
+		}
+		else if (i == 2) {
 			colWidth = nameColWidth;
 			colText = scr_get_translation("name");
 		}
-		else if (i == 2) {
+		else if (i == 3) {
 			colWidth = windowWidth - nameColX;
 			colText = scr_get_translation("tag_text");
 		}

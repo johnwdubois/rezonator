@@ -43,6 +43,7 @@ function scr_jumpToUnit(unitOrSeq) {
 	obj_control.refreshYValuesUnit = unitID;
 	with (obj_alarm2) alarm[9] = 2;
 
-	
+	obj_control.unitFlash = obj_control.flashTime;
+	obj_control.unitToFlash = unitID;
 
 }

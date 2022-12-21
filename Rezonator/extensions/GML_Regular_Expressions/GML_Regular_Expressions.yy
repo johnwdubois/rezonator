@@ -1,4 +1,7 @@
 {
+  "resourceType": "GMExtension",
+  "resourceVersion": "1.2",
+  "name": "GML_Regular_Expressions",
   "optionsFile": "options.json",
   "options": [],
   "exportToGame": true,
@@ -34,6 +37,10 @@
   "androidmanifestinject": "",
   "androidactivityinject": "",
   "gradleinject": "",
+  "androidcodeinjection": "",
+  "hasConvertedCodeInjection": true,
+  "ioscodeinjection": "",
+  "tvoscodeinjection": "",
   "iosSystemFrameworkEntries": [],
   "tvosSystemFrameworkEntries": [],
   "iosThirdPartyFrameworkEntries": [],
@@ -58,8 +65,4 @@
     "name": "Extensions",
     "path": "folders/Extensions.yy",
   },
-  "resourceVersion": "1.2",
-  "name": "GML_Regular_Expressions",
-  "tags": [],
-  "resourceType": "GMExtension",
 }

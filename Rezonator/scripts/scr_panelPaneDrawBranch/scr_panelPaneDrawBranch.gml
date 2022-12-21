@@ -1,9 +1,7 @@
-// Script assets have changed for v2.3.0 see
-// https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
 function scr_panelPaneDrawBranch(){
 	
 	var camWidth = camera_get_view_width(camera_get_active());
-	
+	obj_control.mouseoverTagCell = false;
 	
 	switch (currentFunction) {
 		

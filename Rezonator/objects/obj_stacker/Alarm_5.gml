@@ -9,7 +9,7 @@ switch (currentStackerFuntion) {
 		break;
 		
 	case stackerFunctionTurn:
-		obj_control.activeStackType = "Turn";
+		obj_control.activeStackType = "menu_turn";
 		scr_turnStackerLoop();
 		break;
 		
@@ -21,6 +21,11 @@ switch (currentStackerFuntion) {
 	case stackerFunctionGroup:
 		obj_control.activeStackType = "Group";
 		scr_groupStackerLoop();
+		break;
+		
+	case stackerFunctionPsent:
+		obj_control.activeStackType = "pSent";
+		scr_psentStackerLoop();
 		break;
 		
 	case stackerFunctionConllu:

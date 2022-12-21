@@ -1,8 +1,8 @@
-// Script assets have changed for v2.3.0 see
-// https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
 function scr_fieldUnits1ToManyOptions(optionSelected){
 	
 	var optionSpacingMulti = ds_list_find_index(optionList, optionSelected);
+	var navFieldList = obj_control.selectFieldChunk ? obj_control.navChunkFieldList : obj_control.navTokenFieldList;
+	var fullFieldList = obj_control.selectFieldChunk ? obj_control.chunkFieldList : obj_control.tokenFieldList;
 	
 	if (optionSelected == "option_select-field") {
 		
@@ -37,6 +37,19 @@ function scr_fieldUnits1ToManyOptions(optionSelected){
 	else if (optionSelected == "Show in main screen") {
 		global.displayTokenField = obj_control.tokenFieldToChange;
 		instance_destroy();
+	}
+	else if (optionSelected == "Hide column") {
+		if (ds_list_size(navFieldList) > 1) {
+			show_debug_message("Hiding column: " + string(obj_panelPane.chosenCol));
+			ds_list_delete(navFieldList, obj_panelPane.chosenCol);
+		}
+		instance_destroy();
+	}
+	else if (optionSelected == "Insert column") {
+		
+		var type = obj_control.selectFieldChunk ? "chunk" : "token";
+		scr_insertColumnDropDown(fullFieldList, navFieldList, type);
+	
 	}
 	
 

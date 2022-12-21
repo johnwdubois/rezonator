@@ -1,9 +1,8 @@
-// Script assets have changed for v2.3.0 see
-// https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
 function scr_inputBoxStep(){
 	
-	if(!instance_exists(obj_dialogueBox) && room != rm_openingScreen) instance_destroy();
-	
+	if(!instance_exists(obj_dialogueBox) && room != rm_openingScreen && !navWindowTagging) instance_destroy();
+	if (room == rm_mainScreen) with (obj_control) shortcutsEnabled = false;
+	var fontSize = navWindowTagging ? "S" : "M";
 	
 	// check important keys
 	var ctrlCheck = global.ctrlHold;
@@ -16,6 +15,21 @@ function scr_inputBoxStep(){
 	var keyRight = keyboard_check(vk_right) && windowFocused;
 	var keyLeftPressed = keyboard_check_pressed(vk_left) && windowFocused;
 	var keyRightPressed = keyboard_check_pressed(vk_right) && windowFocused;
+	var keyEnterPressed = keyboard_check_pressed(vk_enter) && windowFocused;
+	var keyEscapePressed = keyboard_check_pressed(vk_escape) && windowFocused;
+	if(dragging && !mouse_check_button(mb_left)){
+		with(obj_control){
+			alarm[1] = 1;
+		}
+	}
+	
+	// cancel horizontal movement if in dropdown
+	if (instance_exists(obj_dropDown)) {
+		if (obj_dropDown.optionCurrent >= 0) {
+			keyLeft = false;
+			keyRight = false;
+		}
+	}
 	
 	// check shortcuts
 	var shortcutPaste = ctrlCheck && keyboard_check_pressed(ord("V"));
@@ -26,16 +40,19 @@ function scr_inputBoxStep(){
 	var shortcutJumpLeft = ctrlCheck && keyLeftPressed;
 	
 	// set font here so that string width/height checks are accurate
-	scr_adaptFont(str, "M");
-
-	// make sure we don't get multiple keys inputting at once
-	if (string_length(keyboard_string) > 1) {
-		keyboard_string = string_char_at(keyboard_string, 1);
-	}
+	scr_adaptFont(str, fontSize);
 
 	// get keyboard input
 	var input = "";
-	if (string_length(keyboard_string) > 0 && windowFocused) input = keyboard_string;
+	if (string_length(keyboard_string) > 0 && windowFocused) {
+		input = keyboard_string;
+		with (obj_dropDown) {
+			if (!keyboard_check(vk_enter) && !keyboard_check_pressed(vk_enter) && !keyboard_check_released(vk_enter)) {
+				optionCurrent = -1;
+			}
+		}
+	}
+	
 	
 	// CTRL+V (paste)
 	var paste = false;
@@ -47,7 +64,7 @@ function scr_inputBoxStep(){
 	}
 
 	// get keyboard input for typing in
-	if (string_length(keyboard_string) == 1 || shortcutPaste) {
+	if (string_length(keyboard_string) >= 1 || shortcutPaste) {
 	
 		// delete highlighted text if there is any
 		if (cursorIndex != highlightIndex) {
@@ -143,6 +160,7 @@ function scr_inputBoxStep(){
 
 	// drag and scroll outside of text box
 	if (mouse_check_button(mb_left)) {
+		dragging = true;
 		if (cursorIndex > highlightIndex && mouse_x > textBoxX + windowWidth * 0.95) {
 			if (xOffset > -(string_width(str) - (windowWidth * 0.9))) {
 				xOffset -= string_width("A");
@@ -235,5 +253,28 @@ function scr_inputBoxStep(){
 	// decrease doubleClickTimer
 	doubleClickTimer = max(doubleClickTimer - 1, 0);
 	
+	
+	if (navWindowTagging && instance_exists(obj_control)) {
+		
+		if (keyEnterPressed) {
+			if (instance_exists(obj_alarm2)) {
+				with (obj_control) {
+					navWindowTaggingDisableSpawn = true;
+					navWindowTaggingNextRow = true;
+				}
+				with (obj_alarm2) alarm[11] = 1;
+			}
+			show_debug_message("DESTROYING INPUT BOX FROM ENTER PRESSED");
+			instance_destroy();
+		}
+		else if (keyEscapePressed) {
+			// set old tag back
+			if (obj_control.navWindowTaggingID != "" && obj_control.navWindowTaggingField != "") {
+				
+				obj_control.navWindowTaggingEscape = true;
+				instance_destroy();
+			}
+		}
+	}
 	
 }

@@ -1,6 +1,4 @@
-// Script assets have changed for v2.3.0 see
-// https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
-function scr_addToChainFieldMap(map, key, tagSet, shortcutSet, rezTag, trackTag, stackTag){
+function scr_addToChainFieldMap(map, key, tagSet, rezTag, trackTag, stackTag){
 	// make sure field/key isn't in the map already
 	if (ds_map_exists(map, key)) {
 		show_debug_message("scr_addToChainFieldMap ... " + string(key) + " already exists in entryFieldMap");
@@ -78,11 +76,6 @@ function scr_addToChainFieldMap(map, key, tagSet, shortcutSet, rezTag, trackTag,
 		ds_map_add_list(subMap, "tagSet", tagSet);
 	}
 	
-	// if a valid shortcutSet was provided, let's add it to this field's submap
-	if (scr_isNumericAndExists(shortcutSet, ds_type_list)) {
-		ds_map_add_list(subMap, "shortcutSet", shortcutSet);
-	}
-	
 	if(map != global.linkFieldMap){
 	
 		// set whether this tag can be applied to rez/track/stack
@@ -92,5 +85,8 @@ function scr_addToChainFieldMap(map, key, tagSet, shortcutSet, rezTag, trackTag,
 		ds_map_add(subMap, "card", stackTag);
 	
 	}
+	
+	ds_map_add(subMap, "locked", false);
+	ds_map_add(subMap, "readOnly", false);
 	
 }

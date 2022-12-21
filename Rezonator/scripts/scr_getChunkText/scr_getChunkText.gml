@@ -1,5 +1,5 @@
-// Script assets have changed for v2.3.0 see
-// https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
+
+
 function scr_getChunkText(chunkID){
 	
 	// this function will return a concatenated string of the tokens in the chunkID, for the specified tokenField

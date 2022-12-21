@@ -30,7 +30,7 @@ function scr_jumpToTime(timeStr) {
 			currentUnitStart = real(currentUnitStart);
 			currentUnitEnd = real(currentUnitEnd);
 			if(currentUnitStart < timeStrReal && timeStrReal < currentUnitEnd){
-				scr_jumpToUnit(currentUnit);
+				scr_jumpToUnitTop(currentUnit);
 				exit;
 			}
 		}

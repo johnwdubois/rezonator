@@ -1,7 +1,3 @@
-/// @description Insert description here
-// You can write your code in this editor
-
-
 scr_scrollBarInit();
 
 
@@ -31,12 +27,15 @@ selectAll = false;
 
 clearAllStacks = false;
 clearAllTracks = false;
+clearAllChunks = false;
 clearAllRez = false;
 clearAllLinks = false;
 clearChain = false;
+clearChainMulti = false;
 clearShow = false;
 layerLink = false;
 combineChains = false;
+removeTags = false;
 removeTagToken = false;
 removeTagUnit = false;
 removeTagEntry = false;
@@ -51,8 +50,16 @@ removeFieldChunk = false;
 removeFieldLink = false;
 removeSearch = false;
 removeTree = false;
+mergeUnit = false;
+splitUnit = false;
 stringToBeRemoved = "";
 searchToBeRemoved = "";
+swapUnitUp = false;
+swapUnitDown = false;
+deleteToken = false;
+mergeStack = false;
+chunkAlreadyExists = false;
+confirmSideLink = false;
 
 
 canDelete = true;
@@ -86,3 +93,6 @@ boxRectY2 = camMidY + boxHeight/2;
 
 buttonY1 = 0;
 buttonY2 = 0;
+
+blink = false;
+blinkAlpha = 0;

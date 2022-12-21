@@ -2,19 +2,6 @@ function scr_fileOptions(optionSelected) {
 
 	switch (optionSelected)
 	{
-		case "help_label_open":
-		//room_instance_clear(rm_mainScreen);
-		
-		// destroy grid
-		
-		// get file name + extension
-		
-		// distinguish between rez or xml
-		
-		//room_restart();
-		
-			//show_message("Coming Soon");
-			break;
 				
 		case "menu_save":
 			var instLoading = instance_create_layer(0, 0, "InstanceLoading", obj_loadingScreen);
@@ -52,10 +39,33 @@ function scr_fileOptions(optionSelected) {
 			}
 			else {
 				global.skipToImportScreen = true;
-				show_debug_message("Going to openingScreen, scr_fileOptions 1");
+				show_debug_message("Going to openingScreen, scr_fileOptions skipToImportScreen");
 				room_goto(rm_openingScreen);
 				scr_loadINI();
 			}
+			break;
+		
+		case "help_label_open":
+		
+			if (room == rm_mainScreen) {
+				if (!instance_exists(obj_dialogueBox)) {
+					var inst = instance_create_layer(x, y, "InstancesDialogue", obj_dialogueBox);
+					inst.questionWindowActive = true;
+					inst.noButtonActive = true;
+					obj_control.saveBeforeOpening = true;
+				
+					// if everything is saved already we can just pretend they clicked "no"
+					if (obj_control.allSaved) scr_dialogueNo();
+				}
+				scr_saveINI();
+			}
+			else {
+				global.skipToOpen = true;
+				show_debug_message("Going to openingScreen, scr_fileOptions skipToOpen");
+				room_goto(rm_openingScreen);
+				scr_loadINI();
+			}
+		
 			break;
 			
 		case "menu_export":
@@ -85,8 +95,8 @@ function scr_fileOptions(optionSelected) {
 		case "menu_media":
 
 			with( obj_audioUI ){
-			
-				var getAudioFile = get_open_filename_ext("ogg file|*.ogg", "", working_directory, scr_get_translation("msg_file_audio"));
+				var fileFolder = (directory_exists(string(global.previousAudioDirectory)) && global.previousAudioDirectory != "") ? global.previousAudioDirectory : working_directory;
+				var getAudioFile = get_open_filename_ext("ogg file|*.ogg", "", fileFolder, scr_get_translation("msg_file_audio"));
 					if (getAudioFile != "" and file_exists(getAudioFile)) {
 						if(global.steamAPI){
 							if(!steam_get_achievement("SA_play-audio")){
@@ -94,6 +104,7 @@ function scr_fileOptions(optionSelected) {
 							}
 						}
 						audioFile = getAudioFile;
+						global.previousAudioDirectory = filename_path(audioFile);
 						audioStream = audio_create_stream(audioFile);
 						audioSound = audio_play_sound(audioStream, 100, false);
 						visible = true;
@@ -111,6 +122,9 @@ function scr_fileOptions(optionSelected) {
 				inst.noButtonActive = true;
 				obj_control.saveBeforeExiting = true;
 				scr_saveINI();
+				var defStr = "";
+				defStr = (global.userName == "") ? scr_get_translation("msg_signin") : global.userName;
+				global.inputBoxDefStr = defStr;
 				// if everything is saved already we can just pretend they clicked "no"
 				if (obj_control.allSaved) scr_dialogueNo();
 			}

@@ -16,7 +16,7 @@ function scr_importMappingTagInfo() {
 	// Tag Info window
 	tagInfoWindowRectX1 = 40;
 	tagInfoWindowRectY1 = (camHeight / 2) - 100;
-	tagInfoWindowRectX2 = (camWidth * 0.5) - 40;
+	tagInfoWindowRectX2 = (camWidth * 0.5) - 20;
 	tagInfoWindowRectY2 = camHeight - 150;
 
 	windowWidth = max(tagInfoWindowRectX2 - tagInfoWindowRectX1, 48);
@@ -133,7 +133,7 @@ function scr_importMappingTagInfo() {
 			
 			
 			// check for mouseover
-			if (point_in_rectangle(mouse_x, mouse_y, cellRectX1, cellRectY1, cellRectX2, cellRectY2) and point_in_rectangle(mouse_x, mouse_y, x, y, x + windowWidth - global.scrollBarWidth, y + windowHeight)
+			if (scr_pointInRectangleClippedWindow(mouse_x, mouse_y, cellRectX1, cellRectY1, cellRectX2, cellRectY2) and point_in_rectangle(mouse_x, mouse_y, x, y, x + windowWidth - global.scrollBarWidth, y + windowHeight)
 			&& !instance_exists(obj_dropDown)) {
 				if (!scrollBarHolding) {
 					obj_importMapping.mouseoverRow = j;
@@ -156,6 +156,13 @@ function scr_importMappingTagInfo() {
 			}
 			else if (i == global.tagInfoGrid_colSingleTokenMarker) {
 				currentCell = (currentCell) ? "msg_yes" : "";
+			}
+			//column for tag creating checkbox
+			else if (i == global.tagInfoGrid_colLevelSchema) {
+				currentCell = "";
+			}
+			else if (i == global.tagInfoGrid_colLevelPredict) {
+				currentCell =  "";
 			}
 			else if (i == global.tagInfoGrid_colLevel) {
 				
@@ -345,7 +352,7 @@ function scr_importMappingTagInfo() {
 							var dropDownOptionList = ds_list_create();
 						
 							if (currentLevel == global.levelUnit) {
-								ds_list_add(dropDownOptionList, "participant", "turn_delim", "option_translation");
+								ds_list_add(dropDownOptionList, "participant", "turn_delim","psent_delim", "option_translation");
 								if (global.importType != global.importType_TabDelimited) {
 									ds_list_add(dropDownOptionList, "unit_start", "unit_end");
 								}
@@ -425,6 +432,39 @@ function scr_importMappingTagInfo() {
 					draw_text(textX - clipX, textY - clipY, "!");
 				}
 			}
+			//draw tag craetion selection boxes
+			if (i == global.tagInfoGrid_colLevelSchema) {
+
+				var filterRectMargin = 8;
+				var filterRectSize = (string_height("A") / 2) + 5;
+				var checkboxColWidth = filterRectMargin + (filterRectSize * 2);
+				var checkboxSize = checkboxColWidth * 0.35;
+				
+				var checkboxRectX1 = textX  - (checkboxSize / 2);
+				var checkboxRectY1 = textY - (checkboxSize / 2);
+				var checkboxRectX2 = checkboxRectX1 + checkboxSize;
+				var checkboxRectY2 = checkboxRectY1 + checkboxSize;
+				draw_set_color(global.colorThemeBG);
+				draw_rectangle(checkboxRectX1- clipX, checkboxRectY1- clipY, checkboxRectX2- clipX, checkboxRectY2- clipY, false);
+				draw_set_color(global.colorThemeBorders);
+				draw_rectangle(checkboxRectX1- clipX, checkboxRectY1- clipY, checkboxRectX2- clipX, checkboxRectY2- clipY, true);
+				var mouseoverCheckbox = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, checkboxRectX1, checkboxRectY1, checkboxRectX2, checkboxRectY2) && !mouseoverHeaderRegion && !mouseoverScrollBar;
+				var currentField = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colMarker, j);
+				if(ds_list_find_index(global.importFieldTagList,currentField) != -1){
+					draw_sprite_ext(spr_checkmark,0,textX - clipX,textY - clipY, .8,.8,0,global.colorThemeBorders,1);
+				}
+				if (mouseoverCheckbox){
+					if(mouse_check_button_pressed(mb_left)){
+						
+						if(ds_list_find_index(global.importFieldTagList,currentField) == -1){
+							scr_addToListOnce(global.importFieldTagList, currentField, true);
+						}
+						else{
+							scr_deleteFromList(global.importFieldTagList, currentField);
+						}
+					}
+				}
+			}
 			
 			
 		
@@ -460,10 +500,10 @@ function scr_importMappingTagInfo() {
 			headerStr = "level";
 		}
 		else if (i == global.tagInfoGrid_colLevelSchema) {
-			headerStr = "Level (Schema)";
+			headerStr = "Tag";
 		}
 		else if (i == global.tagInfoGrid_colLevelPredict) {
-			headerStr = "Level (Predicted)";
+			headerStr = "";
 		}
 		else if (i == global.tagInfoGrid_colMarkerPercent) {
 			headerStr = "Marker %";
@@ -527,7 +567,7 @@ function scr_importMappingTagInfo() {
 
 
 	// if mouse is outside the window, or not on a row, then don't highlight a row
-	if ((!point_in_rectangle(mouse_x, mouse_y, tagInfoWindowRectX1, tagInfoWindowRectY1, tagInfoWindowRectX2 - global.scrollBarWidth, tagInfoWindowRectY2) && !instance_exists(obj_dropDown))
+	if ((!scr_pointInRectangleClippedWindow(mouse_x, mouse_y, tagInfoWindowRectX1, tagInfoWindowRectY1, tagInfoWindowRectX2 - global.scrollBarWidth, tagInfoWindowRectY2) && !instance_exists(obj_dropDown))
 	|| scrollBarHolding || !mouseoverAnyRow) {
 		obj_importMapping.mouseoverRow = -1;
 	}

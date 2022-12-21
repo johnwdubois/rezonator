@@ -84,6 +84,7 @@ function scr_saveREZ(autosave) {
 			var tempNavUnitFieldList = scr_copyListToMap(navUnitFieldList, map, "navUnitFieldList");
 			var tempUnitFieldList = scr_copyListToMap(unitFieldList, map, "unitFieldList");
 			var tempTranslationList = scr_copyListToMap(global.translationList, map, "translationList");
+			var tempCliqueList = scr_copyListToMap(obj_chain.cliqueList, map, "cliqueList");
 			
 			show_debug_message("here 2 " + scr_printTime());
 
@@ -91,6 +92,7 @@ function scr_saveREZ(autosave) {
 			//save special feild colnames
 			ds_map_add(map, "unitDelimField", global.unitDelimField);
 			ds_map_add(map, "unitImportTurnDelimColName", global.unitImportTurnDelimColName);
+			ds_map_add(map, "psentDelimField", global.psentDelimField);
 			ds_map_add(map, "wordImportWordDelimColName", global.wordDelimField);
 			ds_map_add(map, "unitImportUnitEndColName", global.unitImportUnitEndColName);
 			ds_map_add(map, "unitImportUnitStartColName", global.unitImportUnitStartColName);
@@ -104,6 +106,8 @@ function scr_saveREZ(autosave) {
 			
 			ds_map_add(map, "functionChainList_focusedUnit", obj_panelPane.functionChainList_focusedUnit);
 			ds_map_add(map, "functionChainList_focusedUnitSeq", obj_panelPane.functionChainList_focusedUnitIndex);
+			
+			ds_map_add(map, "insertTokenStr", obj_control.insertTokenStr);
 			
 			show_debug_message("here 3 " + scr_printTime());
 			
@@ -143,6 +147,8 @@ function scr_saveREZ(autosave) {
 			ds_map_add(map, "resonanceCounter", obj_chain.rezChainNameCounter);
 			ds_map_add(map, "trailCounter", obj_chain.trackChainNameCounter);
 			ds_map_add(map, "stackCounter", obj_chain.stackChainNameCounter);
+			ds_map_add(map, "audioFile", obj_audioUI.audioFile);
+			
 			
 			
 		}
@@ -193,6 +199,31 @@ function scr_saveREZ(autosave) {
 		}
 
 	}
+	else if (obj_control.saveToFirebase) {
+		
+		var rezfileSubMap = ds_map_create();
+		rezfileSubMap[? "usedID"] = global.userName;
+		var rezfileFirestorePath = "rezfiles/" + filename_name(global.fileSaveName);
+		FirebaseFirestore(rezfileFirestorePath).Set(json_encode(rezfileSubMap));
+		
+		var nodeList = global.nodeMap[?"nodeList"];		
+		var nodeListSize = ds_list_size(nodeList);
+		for (var i = 0; i < nodeListSize; i++) {
+			var currentNodeID = nodeList[| i];
+			var currentNodeSubMap = global.nodeMap[? currentNodeID];
+			var currentNodeType = currentNodeSubMap[? "type"];
+			
+			if (is_string(currentNodeType)) {
+				if (currentNodeType == "unit" || currentNodeType == "token" || currentNodeType == "unit" || currentNodeType == "entry" || currentNodeType == "link"
+				|| currentNodeType == "stack" || currentNodeType == "card" || currentNodeType == "resonance" || currentNodeType == "rez" || currentNodeType == "track"
+				|| currentNodeType == "trail") {
+					var currentNodeSubMapJson = json_encode(currentNodeSubMap);
+					FirebaseFirestore(rezfileFirestorePath + "/" + currentNodeType + "/" + string(currentNodeID)).Set(currentNodeSubMapJson);
+				}
+			}
+		}
+		
+	}
 	else {
 		scr_saveFileBuffer(working_directory + filename_name(global.fileSaveName), global.fileSaveName, jsonString);
 	}
@@ -210,6 +241,7 @@ function scr_saveREZ(autosave) {
 	ds_list_destroy(tempTokenFieldList);
 	ds_list_destroy(tempUnitFieldList);
 	ds_list_destroy(tempTranslationList);
+	ds_list_destroy(tempCliqueList);
 	
 	
 	

@@ -1,7 +1,5 @@
-// Script assets have changed for v2.3.0 see
-// https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
 function scr_linkClickOptions(optionSelected){
-	
+	var optionIndex = ds_list_find_index(optionList, optionSelected);
 	show_debug_message("scr_linkClickOptions, optionSelected: " + string(optionSelected));
 	
 	if (optionSelected == "option_create-new-field") {
@@ -17,6 +15,14 @@ function scr_linkClickOptions(optionSelected){
 	else if (optionSelected == "help_label_delete-link") {
 		scr_deleteTreeLink();
 		instance_destroy();
+	}
+	else if (optionSelected == "Tag Link"){
+
+		scr_destroyAllDropDownsOtherThanSelf();
+		var dropDownOptionList = ds_list_create();
+		ds_list_copy(dropDownOptionList, global.linkFieldList);
+		ds_list_insert(dropDownOptionList, 0, "option_create-new-field");
+		scr_createDropDown(x + windowWidth, y + (obj_dropDown.optionSpacing * optionIndex), dropDownOptionList, global.optionListTypeLinkFields);
 	}
 	else {
 		scr_destroyAllDropDownsOtherThanSelf();

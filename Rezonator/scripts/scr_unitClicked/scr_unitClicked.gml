@@ -1,5 +1,3 @@
-// Script assets have changed for v2.3.0 see
-// https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
 function scr_unitClicked(unitID){
 	
 	if (global.delayInput > 0) exit;
@@ -28,6 +26,28 @@ function scr_unitClicked(unitID){
 	var inChainsListSize = ds_list_size(inChainsList);
 	
 	obj_toolPane.currentTool = obj_toolPane.toolStackBrush;
+	
+	// get stack, if this unit is in one
+	var stackID = "";
+	if (inChainsListSize >= 1) {
+		stackID = inChainsList[| 0];
+	}
+	
+	// merge stacks
+	show_debug_message("scr_unitClicked, stackID: " + string(stackID) + ", mergeStackID: " + string(obj_chain.mergeStackID));
+	if (inChainsListSize >= 1 && is_string(obj_chain.mergeStackID) && obj_chain.mergeStackID != "" && is_string(stackID) && stackID != "") {
+		//scr_combineChains(obj_chain.mergeStackID, stackID);
+		//with (obj_chain) mergeStackID = "";
+		with (obj_control) combineChainsSelected = stackID;
+		var inst = instance_create_layer(x, y, "InstancesDialogue", obj_dialogueBox);
+		with (inst) {
+			questionWindowActive = true;
+			combineChains = true;
+		}
+		exit;
+	}
+	
+	
 	
 	if(keyboard_check(vk_shift)){
 		if (obj_panelPane.functionField_chainFieldSelected != "" && obj_panelPane.functionField_chainTagSelected != ""
@@ -82,12 +102,16 @@ function scr_unitClicked(unitID){
 		&& is_string(obj_panelPane.functionField_unitFieldSelected) && is_string(obj_panelPane.functionField_unitTagSelected)) {
 			var unitTagMap = unitSubMap[? "tagMap"];
 			if (scr_isNumericAndExists(unitTagMap, ds_type_map)) {
-				unitTagMap[? obj_panelPane.functionField_unitFieldSelected] = obj_panelPane.functionField_unitTagSelected;
-				show_debug_message("scr_unitClicked ... setting unit: " + string(unitID) + ", field:" + string(obj_panelPane.functionField_unitFieldSelected) + ", tag: " + string(obj_panelPane.functionField_unitTagSelected));
+				if(obj_panelPane.functionField_unitTagSelected == scr_get_translation("menu_clear")){
+					unitTagMap[? obj_panelPane.functionField_unitFieldSelected] = "";
+				}
+				else{
+					unitTagMap[? obj_panelPane.functionField_unitFieldSelected] = obj_panelPane.functionField_unitTagSelected;
+					show_debug_message("scr_unitClicked ... setting unit: " + string(unitID) + ", field:" + string(obj_panelPane.functionField_unitFieldSelected) + ", tag: " + string(obj_panelPane.functionField_unitTagSelected));
+				}
 			}
 		}
 	}
-	
 	
 	
 	// refocus any chain that this unit is in
@@ -106,7 +130,6 @@ function scr_unitClicked(unitID){
 			exit;
 		}
 	}
-	
 
 
 	// if there is not a focused chain, we create a new chain

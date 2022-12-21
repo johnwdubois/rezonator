@@ -1,5 +1,5 @@
-// Script assets have changed for v2.3.0 see
-// https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
+
+
 function scr_importGridToNodeMap_plainText(row){
 
 	// make sure row is still in range
@@ -7,7 +7,15 @@ function scr_importGridToNodeMap_plainText(row){
 	
 	// get unit string and split it
 	var unitStr = ds_grid_get(global.importGrid, 0, row);
-	var splitList = scr_splitStringImport(unitStr, " ", false);
+	var splitList = scr_splitStringImport(unitStr, " ", true);
+
+	show_debug_message(scr_getStringOfList(splitList))
+	scr_deleteFromList(splitList, "");
+	scr_deleteFromList(splitList, " ");
+	scr_deleteFromList(splitList, "\r");
+	scr_deleteFromList(splitList, "\n");
+	scr_deleteFromList(splitList, "\r\n");
+	show_debug_message(scr_getStringOfList(splitList))
 	
 	// make a new unit node for this row
 	var unitNode = scr_addToNodeMap("unit");
@@ -39,11 +47,13 @@ function scr_importGridToNodeMap_plainText(row){
 		for (var i = 0; i < splitListSize; i++) {
 			
 			// make token node
+			var currentTokenOrder = i + 1;
 			var currentTokenNode = scr_addToNodeMap("token");
 			var currentTokenSubMap = global.nodeMap[? currentTokenNode];
 			ds_map_add(currentTokenSubMap, "docTokenSeq", ds_list_size(tokenList) + 1);
-			ds_map_add(currentTokenSubMap, "tokenOrder", i + 1);
-			ds_map_add(currentTokenSubMap, "relativeOrder", i + 1);
+			ds_map_add(currentTokenSubMap, "tokenOrder", currentTokenOrder);
+			ds_map_add(currentTokenSubMap, "relativeOrder", currentTokenOrder);
+			ds_map_add(currentTokenSubMap, "place", currentTokenOrder);
 			ds_map_add(currentTokenSubMap, "displayCol", i);
 			ds_map_add(currentTokenSubMap, "void", 1);
 			ds_map_add(currentTokenSubMap, "pixelX", 0);

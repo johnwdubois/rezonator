@@ -1,5 +1,5 @@
-// Script assets have changed for v2.3.0 see
-// https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
+
+
 function scr_panelPane_drawSearch1ToMany(){
 
 
@@ -30,6 +30,20 @@ function scr_panelPane_drawSearch1ToMany(){
 					hitColWidth = max(hitColWidth, strWidth);
 				}
 			}
+			
+			var tokenTokenList = searchSubMap[?"displayTokenList"];
+			if (scr_isNumericAndExists(tokenTokenList, ds_type_list)) {
+				var tokenTokenListSize = ds_list_size(tokenTokenList);
+				for (var i = 0; i < tokenTokenListSize; i++) {
+					var tokenID = tokenTokenList[| i];
+					var tokenSubMap = global.nodeMap[?tokenID]
+					var tokenTagMap = tokenSubMap[?"tagMap"];
+					var currentTokenStr = tokenTagMap[?global.displayTokenField];
+					var strWidth = string_width(currentTokenStr) + (spaceWidth * 2);
+					hitColWidth = max(hitColWidth, strWidth);
+				}
+			}
+			
 		}
 	}
 	hitColWidth = clamp(hitColWidth, windowWidth * 0.05, windowWidth * 0.4);
@@ -81,6 +95,7 @@ function scr_panelPane_drawSearch1ToMany(){
 
 			var tokenDisplayList = searchSubMap[?"displayTokenList"];
 			var selectedTokenList = searchSubMap[?"selectedTokenList"];
+			var displayUnitList = searchSubMap[?"displayUnitList"];
 			tokenDisplayListSize = ds_list_size(tokenDisplayList);
 	
 	
@@ -115,10 +130,15 @@ function scr_panelPane_drawSearch1ToMany(){
 				var currentTokenText = currentTokenTagMap[? global.displayTokenField];
 				var currentUnitID = currentTokenSubMap[? "unit"];
 				var unitSeq = "NULL";
+				var unitTagMap = "";
+				var displayUnitStr = "";
 				var unitSubMap = global.nodeMap[? currentUnitID];
 				if(scr_isNumericAndExists(unitSubMap, ds_type_map)){
 					unitSeq = unitSubMap[?"unitSeq"];
+					unitTagMap = unitSubMap[?"tagMap"];
+					displayUnitStr = unitTagMap[?global.participantField];
 				}
+				
 				var currentTokenIndex = ds_list_find_index(tokenList, currentToken);
 				var currentTokenSelected = (functionSearchList_tokenSelected == currentToken);
 				var currentTokenChecked = (ds_list_find_index(selectedTokenList, currentToken) != -1);
@@ -127,14 +147,18 @@ function scr_panelPane_drawSearch1ToMany(){
 				}
 				var beforeTokenList = ds_list_create();
 				var afterTokenList = ds_list_create();
-				var contextAmount = 6;
+				var contextAmount = 20;
 				var itterator = 1;
-				repeat(contextAmount){
+				var totalLineCount = (windowWidth/string_width("A"))/2;
+				var charCount = 0;
+				while(charCount < totalLineCount && itterator < 100){
 					var newTokenID = tokenList[| currentTokenIndex - itterator];
 					var newTokenSubMap = global.nodeMap[? newTokenID];
 					if(scr_isNumericAndExists(newTokenSubMap, ds_type_map)){
 						var newTokenTagMap = newTokenSubMap[? "tagMap"];
 						var newTokenText = newTokenTagMap[? global.displayTokenField];
+						var tokenCharCount = string_length(newTokenText);
+						charCount += tokenCharCount;
 						if(newTokenText != undefined && newTokenText != ""){
 							ds_list_add(beforeTokenList, newTokenText);
 						}
@@ -142,12 +166,15 @@ function scr_panelPane_drawSearch1ToMany(){
 					itterator ++;
 				}
 				itterator = 1;
-				repeat(contextAmount){
+				charCount = 0;
+				while(charCount < totalLineCount && itterator < 100){
 					var newTokenID = tokenList[| currentTokenIndex + itterator];
 					var newTokenSubMap = global.nodeMap[? newTokenID];
 					if(scr_isNumericAndExists(newTokenSubMap, ds_type_map)){
 						var newTokenTagMap = newTokenSubMap[? "tagMap"];
 						var newTokenText = newTokenTagMap[? global.displayTokenField];
+						var tokenCharCount = string_length(newTokenText);
+						charCount += tokenCharCount;
 						if(newTokenText != undefined && newTokenText != ""){
 							ds_list_add(afterTokenList, newTokenText);
 						}
@@ -184,7 +211,10 @@ function scr_panelPane_drawSearch1ToMany(){
 					if (mouse_check_button_released(mb_left)) {
 						with (obj_panelPane) functionSearchList_tokenSelected = currentToken;
 						obj_control.selectedSearchTokenID = functionSearchList_tokenSelected;
-						scr_jumpToUnit(currentUnitID);
+						
+						//var nextUnitPos = min(ds_list_size(displayUnitList)-1,ds_list_find_index(displayUnitList,currentUnitID)+1);
+						//displayUnitList[|nextUnitPos]
+						scr_jumpToUnitTop(currentUnitID);
 						
 						// deselect all other tokens and select the current one
 						if (!global.ctrlHold) ds_list_clear(selectedTokenList);
@@ -254,7 +284,7 @@ function scr_panelPane_drawSearch1ToMany(){
 				var beforeText = scr_getSearchString(beforeTokenList, true);
 				scr_adaptFont(beforeText, "M");
 				draw_text(beforeTextX - clipX, textY - clipY,beforeText);
-
+				rectColor = merge_color(rectColor,scr_strToColor(displayUnitStr), 0.5);
 				//draw rect to clip before text
 				draw_set_color(rectColor);
 				draw_rectangle(unitRectX1 - clipX, unitRectY1 - clipY, unitRectX2 - clipX, unitRectY2 - clipY, false);
@@ -512,7 +542,7 @@ function scr_panelPane_drawSearch1ToMany(){
 			}
 			var newUnitID = newTokenSubMap[?"unit"];
 
-			scr_jumpToUnit(newUnitID);				
+			scr_jumpToUnitTop(newUnitID);				
 
 
 
@@ -546,7 +576,7 @@ function scr_panelPane_drawSearch1ToMany(){
 			}
 			var newUnitID = newTokenSubMap[?"unit"];
 
-			scr_jumpToUnit(newUnitID);
+			scr_jumpToUnitTop(newUnitID);
 					
 			
 
@@ -568,22 +598,17 @@ function scr_panelPane_drawSearch1ToMany(){
 	draw_roundrect(addToChainButtonX1, addToChainButtonY1, addToChainButtonX2, addToChainButtonY2, false);
 	draw_set_color(global.colorThemeText);
 
-	draw_sprite_ext(spr_toolsNew,1,floor(mean(addToChainButtonX1, addToChainButtonX2)), floor(mean(addToChainButtonY1, addToChainButtonY2)),.3,.3,0,(someChainsSelected or allChainsSelected)? global.colorThemeRezPink:c_white,1)
+	draw_sprite_ext(spr_moreOptions,1,floor(mean(addToChainButtonX1, addToChainButtonX2)), floor(mean(addToChainButtonY1, addToChainButtonY2)),.8,.8,0,(someChainsSelected or allChainsSelected)? global.colorThemeRezPink:c_white,1)
 	
-	if (mouseoverAddToChainButton) {scr_createTooltip(mean(addToChainButtonX1, addToChainButtonX2), addToChainButtonY2, scr_get_translation("Add to Chain"), obj_tooltip.arrowFaceUp);}
+	if (mouseoverAddToChainButton) {scr_createTooltip(mean(addToChainButtonX1, addToChainButtonX2), addToChainButtonY2, scr_get_translation("More"), obj_tooltip.arrowFaceUp);}
 		
 
 	if (mouse_check_button_released(mb_left) && mouseoverAddToChainButton) {
 		var dropDownOptionList = ds_list_create();
-		ds_list_add(dropDownOptionList, "Create New Chain");
-		var currentTrackList = global.nodeMap[?"trailList"];
-		var currentTrackListSize = ds_list_size(currentTrackList);
-		var i = 0;
-		repeat(currentTrackListSize){
-			ds_list_add(dropDownOptionList, currentTrackList[|i]);
-			i++;
-		}
-		scr_createDropDown(addToChainButtonX1, addToChainButtonY2, dropDownOptionList, global.optionListTypeSearchChain);
+		//, "Add to Stack"
+		// localize
+		ds_list_add(dropDownOptionList, "Add to Trail", "Add to Resonance", "Tag Token", "Remove from Search");
+		scr_createDropDown(addToChainButtonX1, addToChainButtonY2, dropDownOptionList, global.optionListTypeSearchPane);
 	}
 
 

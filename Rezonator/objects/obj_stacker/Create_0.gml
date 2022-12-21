@@ -12,6 +12,7 @@ stackerFunctionTurn = 2;
 stackerFunctionSent = 3;
 stackerFunctionGroup = 4;
 stackerFunctionConllu = 5;
+stackerFunctionPsent = 6;
 currentStackerFuntion = stackerFunctionDefault;
 
 endNoteTagsGrid = ds_grid_create(2, 0);
@@ -24,11 +25,12 @@ alarm[7] = 2;
 
 showEndNoteWindow = false;
 confirmStackCreate = false;
-createStacksRandom = false;
-createStacksTurn = false;
-createStacksSentence = false;
-createStacksGroup = false;
-createStacksClique = false;
+confirmStackName = false;
+stackerName = "";
+stackerNameNum = 0;
+stackerMode = ""; // turn, utterance, clique, random, sentence, group
+
+
 
 
 scr_scrollBarInit();

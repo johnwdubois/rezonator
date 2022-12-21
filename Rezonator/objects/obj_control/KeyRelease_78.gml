@@ -1,3 +1,4 @@
+if (!shortcutsEnabled) exit;
 if (instance_exists(obj_dialogueBox) || instance_exists(obj_dropDown)) exit;
 
 var showNavOriginal = obj_panelPane.showNav;

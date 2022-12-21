@@ -15,7 +15,7 @@ function scr_dropDownSelect(optionSelected) {
 	else if (optionListType == global.optionListTypeChainRecolor) //2
 	{
 	    scr_chainRecolorOptions(optionSelected);
-	    instance_destroy();
+	    
 	}
 	//speakerLabelEdit
 	else if (optionListType == global.optionListTypeSpeakerLabel) //3
@@ -145,7 +145,6 @@ function scr_dropDownSelect(optionSelected) {
 	else if (optionListType == global.optionListTypeCreateStack) //29
 	{
 	    scr_createStackOptions(optionSelected);
-	    instance_destroy();
 	}
 	//token selection
 	else if (optionListType == global.optionListTypeUnitSelection) //31
@@ -369,17 +368,48 @@ function scr_dropDownSelect(optionSelected) {
 		scr_selectShowOptions(optionSelected);
 		with (obj_dropDown) instance_destroy();
 	}
-	if (optionListType == global.optionListTypeChainListMulti) //85
+	else if (optionListType == global.optionListTypeChainListMulti) //85
 	{
 	    scr_chainListMultiOptions(optionSelected);
 	}
-	if (optionListType == global.optionListTypeSearchChain) //86
+	else if (optionListType == global.optionListTypeSearchChain) //86
 	{
 	    scr_searchChainOptions(optionSelected);
 	}
-	if (optionListType == global.optionListTypeTagSchema) //87
+	else if (optionListType == global.optionListTypeTagSchema) //87
 	{
 	    scr_tagSchemaOptions(optionSelected);
+	}
+	else if (optionListType == global.optionListTypeTreeRightClick) //88
+	{
+		scr_treeRightClickOptions(optionSelected);
+	}
+	else if (optionListType == global.optionListTypeSearchPane) //89
+	{
+		scr_searchPaneOptions(optionSelected);
+	}
+	else if (optionListType == global.optionListTypeTagPane) //90
+	{
+		scr_tagPaneOptions(optionSelected);
+	}
+	else if (optionListType == global.optionListTypeInsertCol) //91
+	{
+		scr_insertColOptions(optionSelected);
+	}
+	else if (optionListType == global.optionListTypeSplitTokenField) //92
+	{
+		scr_splitTokenFieldOptions(optionSelected);
+		with (obj_dropDown) instance_destroy();
+	}
+	else if (optionListType == global.optionListTypeAddEndnote) //93
+	{
+		scr_newTokenOptions(optionSelected);
+		with (obj_dropDown) instance_destroy();
+	}
+	else if (optionListType == global.optionListTypeTurnStacker) //94
+	{
+		scr_turnStackerOptions(optionSelected);
+		with (obj_dropDown) instance_destroy();
 	}
 
 }

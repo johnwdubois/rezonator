@@ -1,27 +1,28 @@
-// Script assets have changed for v2.3.0 see
-// https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
 function scr_unitRightClicked(){
+	
+	var unitSubMap = global.nodeMap[? obj_control.rightClickID];
+	if(!scr_isNumericAndExists(unitSubMap, ds_type_map)){exit;}
+	var unitInChainsList = unitSubMap[? "inChainsList"];
 	
 	if (instance_exists(obj_control) and !instance_exists(obj_dialogueBox)) {
 		
-		var unitSubMap = global.nodeMap[?obj_control.rightClickID];
-		if(!scr_isNumericAndExists(unitSubMap, ds_type_map)){exit;}
+
 		//deselect tree pane chain entities
 		obj_panelPane.functionTree_treeLinkSelected = "";
 		obj_chain.currentFocusedEntryID = "";
-		
-		var unitInChainsList = unitSubMap[?"inChainsList"];
+	
 
 		obj_control.rightClicked = true;
 		obj_control.wideDropDown = true;
 		var dropDownOptionList = ds_list_create();
+		
+		ds_list_add(dropDownOptionList, "option_sync-unit-tab");
 
 		// Options for a word in a Chain
-		if(ds_list_size(unitInChainsList) > 0){
-					
-			ds_list_add(dropDownOptionList,  "help_label_delete-link", "option_set-chain-name");
+		var unitInStack = (ds_list_size(unitInChainsList) > 0);
+		if (unitInStack) {
 		
-			for(var i = 0; i < ds_list_size(unitInChainsList); i++){
+			for (var i = 0; i < ds_list_size(unitInChainsList); i++) {
 				var chainID = unitInChainsList[|i];
 				var chainSubMap = global.nodeMap[?chainID];
 				if(scr_isNumericAndExists(chainSubMap, ds_type_map)){
@@ -37,10 +38,25 @@ function scr_unitRightClicked(){
 					scr_refocusChainEntry(obj_control.rightClickID);
 				}
 			}
-					
+			
+			ds_list_add(dropDownOptionList, "option_remove-from-stack", "option_rename-stack", "option_merge-stack", "option_create-tree-stack");
 		}
 		
-		ds_list_add(dropDownOptionList, "tab_name_tag" ,"option_create-tree");
+		ds_list_add(dropDownOptionList, "option_create-tree-unit");
+		
+		if (obj_control.currentView == obj_control.mainView) {
+			var docSubMap = global.nodeMap[? global.discourseNode];
+			var unitList = docSubMap[? "unitList"];
+			
+			// give "merge up", "move up", and "move down" options only if this unit is not first/last unit
+			if (unitList[| 0] != obj_control.rightClickID) {
+				ds_list_add(dropDownOptionList, "option_merge-unit", "option_move-unit-up");
+			}
+			if (unitList[| ds_list_size(unitList) - 1] != obj_control.rightClickID) {
+				ds_list_add(dropDownOptionList, "option_move-unit-down");
+			}
+		}
+		ds_list_add(dropDownOptionList, "tab_name_tag");
 				
 		// Create the dropdown
 		if (ds_list_size(dropDownOptionList) > 0 and obj_control.ableToCreateDropDown) {

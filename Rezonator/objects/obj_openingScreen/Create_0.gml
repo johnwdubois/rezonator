@@ -13,6 +13,8 @@ scr_colorThemeGridInit();
  
 global.toolPaneWidth = 100;
 
+
+
 global.versionString = string(game_display_name);
 global.versionString = string_delete(global.versionString, 1, string_length("Rezonator"));
 global.versionString = "Version" + global.versionString;
@@ -161,11 +163,9 @@ global.tagInfoGrid_colMarker = 0;
 global.tagInfoGrid_colLevel = 1;
 global.tagInfoGrid_colKey = 2;
 global.tagInfoGrid_colSpecialFields = 3;
-
-global.tagInfoGrid_colError = 4;
-global.tagInfoGrid_colLevelSchema = 5;
+global.tagInfoGrid_colLevelSchema = 4;
+global.tagInfoGrid_colError = 5;
 global.tagInfoGrid_colLevelPredict = 6;
-
 global.tagInfoGrid_colTokenCount = 7;
 global.tagInfoGrid_colMarkerPercent = 8;
 global.tagInfoGrid_colSingleTokenMarker = 9;
@@ -242,7 +242,7 @@ cursorPos = 1 ;
 cursorViz = false;
 inputText = "";
 cursorTimer = 20;
-global.userName = "";
+  
 
 maxDisplaySize = 12;
 canDelete = true;
@@ -269,6 +269,7 @@ global.unitImportUnitStartColName = "";
 global.unitImportUnitEndColName = "";
 global.unitDelimField = "";
 global.unitImportTurnDelimColName = "";
+global.psentDelimField = "";
 global.wordDelimField = "";
 global.currentTranslation = "";
 global.unitImportSpeakerColName = "";
@@ -303,40 +304,14 @@ alarm[2] = 1;
 global.exitOut = false;
 
 
-// this map tells Rezonator what dropdowns expand to further dropdowns
-// so we can look up the strings in this map to know whether or not to draw the expand arrow
-global.expandableDropDownMap = ds_map_create();
-ds_map_add(global.expandableDropDownMap, "menu_delete-all", true);
-ds_map_add(global.expandableDropDownMap, "menu_window", true);
-ds_map_add(global.expandableDropDownMap, "menu_nav", true);
-ds_map_add(global.expandableDropDownMap, "menu_justify", true);
-ds_map_add(global.expandableDropDownMap, "menu_prose", true);
-ds_map_add(global.expandableDropDownMap, "menu_hide", true);
-ds_map_add(global.expandableDropDownMap, "menu_pick", true);
-ds_map_add(global.expandableDropDownMap, "menu_filter-context", true);
-ds_map_add(global.expandableDropDownMap, "menu_search", true);
-ds_map_add(global.expandableDropDownMap, "menu_stack", true);
-ds_map_add(global.expandableDropDownMap, "menu_stacker", true);
-ds_map_add(global.expandableDropDownMap, "menu_zoom", true);
-ds_map_add(global.expandableDropDownMap, "menu_autosave", true);
-ds_map_add(global.expandableDropDownMap, "menu_advanced", true);
-ds_map_add(global.expandableDropDownMap, "menu_language", true);
-ds_map_add(global.expandableDropDownMap, "option_recolor", true);
-ds_map_add(global.expandableDropDownMap, "text_dir", true);
-ds_map_add(global.expandableDropDownMap, "option_select-field", true);
-ds_map_add(global.expandableDropDownMap, "option-remove-tag-set", true);
-ds_map_add(global.expandableDropDownMap, "arrheads", true);
-ds_map_add(global.expandableDropDownMap, "tab_name_tag", true);
-ds_map_add(global.expandableDropDownMap, "Tag Token", true);
-ds_map_add(global.expandableDropDownMap, "Tag Chain", true);
-ds_map_add(global.expandableDropDownMap, "Tag Entry", true);
-ds_map_add(global.expandableDropDownMap, "Tag Chunk", true);
-ds_map_add(global.expandableDropDownMap, "Tag Unit", true);
-ds_map_add(global.expandableDropDownMap, "option_new-token", true);
-ds_map_add(global.expandableDropDownMap, "option_add-to-show", true);
+scr_dropDownOptionListTypeInit();
 
+scr_expandableDropDownInit();
+
+// This map stores all the dropdown options that are clickable in the opening screen
 global.openingScreenDropDownMap = ds_map_create();
 ds_map_add(global.openingScreenDropDownMap, "menu_import", true);
+ds_map_add(global.openingScreenDropDownMap, "help_label_open", true);
 ds_map_add(global.openingScreenDropDownMap, "menu_guide", true);
 ds_map_add(global.openingScreenDropDownMap, "menu_about", true);
 ds_map_add(global.openingScreenDropDownMap, "menu_theme", true);
@@ -360,16 +335,15 @@ ds_map_add(global.openingScreenDropDownMap, "menu_language-ru", true);
 
 
 
-scr_dropDownOptionListTypeInit();
 
 
 
-//this map stores all the keyboard shortcuts to be displayed on the tooltip
+
+// This map stores all the keyboard shortcuts to be displayed on the tooltip
 var ctrlStr = (os_type == os_macosx) ? "CMD" : "CTRL";
 global.keyboardShortcutMap = ds_map_create();
 ds_map_add(global.keyboardShortcutMap, "menu_keyword", "F");
 ds_map_add(global.keyboardShortcutMap, "menu_go-to-line", "G");
-ds_map_add(global.keyboardShortcutMap, "menu_go-to-time", "G");
 ds_map_add(global.keyboardShortcutMap, "menu_save", ctrlStr + "+S");
 ds_map_add(global.keyboardShortcutMap, "menu_grid", ctrlStr + "+G");
 ds_map_add(global.keyboardShortcutMap, "menu_theme", ctrlStr + "+B");
@@ -389,7 +363,7 @@ ds_map_add(global.keyboardShortcutMap, "menu_resonance", "R");
 ds_map_add(global.keyboardShortcutMap, "menu_developer", "ALT+SHIFT+D");
 
 
-//to abstract dropdown options with checks later on. I've been doing them case by case so far
+// This map stores the toggle state of all the toggleable dropdowns
 global.checkDropdownMap = ds_map_create();
 ds_map_add(global.checkDropdownMap, "menu_resonance", false);
 ds_map_add(global.checkDropdownMap, "menu_track", false);
@@ -402,7 +376,7 @@ ds_map_add(global.checkDropdownMap, "menu_left-to-right", false);
 ds_map_add(global.checkDropdownMap, "menu_right-to-left", false);
 ds_map_add(global.checkDropdownMap, "menu_track-arrows", false);
 ds_map_add(global.checkDropdownMap, "menu_rez-arrows", false);
-ds_map_add(global.checkDropdownMap, "Track", false);
+ds_map_add(global.checkDropdownMap, "Track", false); // localize
 ds_map_add(global.checkDropdownMap, "menu_stack", false);
 ds_map_add(global.checkDropdownMap, "menu_language-en", false);
 ds_map_add(global.checkDropdownMap, "menu_language-ca", false);
@@ -459,10 +433,13 @@ global.schemaNavUnitFieldList = -1;
 
 alarm[6] = 1;
 
-var defStr = "";
-defStr = (global.userName == "") ? scr_get_translation("msg_signin") : global.userName;
-global.inputBoxDefStr = defStr;
 
 global.includedTagSchemaFileList = ds_list_create();
 scr_addtoTagSchemaList();
 global.selectedTagSchemaFileList = ds_list_create();
+
+global.importFieldTagList = ds_list_create();
+
+global.userLangRTL = false;
+
+selectOpenButton = false;

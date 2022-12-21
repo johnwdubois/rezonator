@@ -1,5 +1,5 @@
-// Script assets have changed for v2.3.0 see
-// https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
+
+
 function scr_createFlyout(flyoutX, flyoutY, optionList, optionListType, sprite, drawBG){
 	
 	var dropDownHeight = ds_list_size(optionList) * string_height("0") * 1.25;

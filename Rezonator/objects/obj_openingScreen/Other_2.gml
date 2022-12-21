@@ -9,12 +9,14 @@ global.autosaveTimer = global.autosaveTimerFull;
 global.previousRezDirectory = "";
 global.previousImportDirectory = "";
 global.previousSaveDirectory = "";
+global.previousAudioDirectory = "";
 global.previousLevelEstimates = ds_list_create();
 global.previousSpecialFields = ds_list_create();
 ds_list_clear(global.previousLevelEstimates);
 ds_list_clear(global.previousSpecialFields);
 
 global.readHintHide = false;
+global.userName = "";
 
 global.recentFilesMap = ds_map_create();
 global.recentFilesList = ds_list_create();
@@ -44,8 +46,11 @@ global.importGroupFileIndex = 0;
 global.importGroupOutputDir = "";
 global.importGroupSchemaFile = "";
 global.skipToImportScreen = false;
+global.skipToOpen = false;
 
-
+var defStr = "";
+defStr = (global.userName == "") ? scr_get_translation("msg_signin") : global.userName;
+global.inputBoxDefStr = defStr;
 
 scr_initializeFonts();
 scr_fontGlobalUpdate();
@@ -85,9 +90,13 @@ window_set_min_height(720);
 // CHANGE THIS VAR WHEN MAKING A BUILD
 // if build is true --> CJK fonts will be loaded
 // if build is false --> CJK fonts will not be loaded
-global.build = false;
+global.build = true;
 global.rezzles = true;
 
+global.buildType = "Windows_Website";
 
-global.steamAPI = true;
+//"Windows_GitHub_Master","Mac_GitHub_Master","Windows_GitHub_Release"
+//"Mac_GitHub_Release","Steam","Windows_Website", "Mac_Website"
+
+global.steamAPI = false;
 alarm[7] = 3;

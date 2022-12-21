@@ -1,5 +1,5 @@
-// Script assets have changed for v2.3.0 see
-// https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
+
+
 function scr_combineChainsDrawLine(inChainsList){
 	
 	// make sure that the focused chain is not in the inChainsList
@@ -47,6 +47,9 @@ function scr_combineChainsDrawLine(inChainsList){
 		with (obj_control) {
 			combineChainsFocused = obj_chain.currentFocusedChainID;
 			combineChainsSelected = chainToCombine;
+			
+			var combineChainsFocusedSubMap = global.nodeMap[? combineChainsFocused];
+			mergeChainType = combineChainsFocusedSubMap[? "type"];
 		}
 		
 		// call alarm to show question box

@@ -31,6 +31,7 @@ function scr_panelPane_drawChains1ToMany() {
 	draw_set_halign(fa_left);
 	draw_set_valign(fa_middle);
 	var strHeight = string_height("0");
+	with (obj_panelPane) rightPaneStrHeight = strHeight;
 	var tabHeight = functionTabs_tabHeight;
 	var scrollBarListHeight = 0;
 	var mouseoverHeader = point_in_rectangle(mouse_x, mouse_y, x, y, x + windowWidth, y + tabHeight);
@@ -203,7 +204,7 @@ function scr_panelPane_drawChains1ToMany() {
 	}
 	
 	
-	
+	scr_navWindowTaggingSelection(chain1toManyColFieldList, functionChainContents_IDList,"entry");
 
 	var scrollBarListSize = 0;
 	if (scr_isNumericAndExists(functionChainContents_IDList, ds_type_list)) {

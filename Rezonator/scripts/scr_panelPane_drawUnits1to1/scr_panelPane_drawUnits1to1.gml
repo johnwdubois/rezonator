@@ -17,6 +17,7 @@ function scr_panelPane_drawUnits1to1() {
 	var strHeight = leftPaneStrHeight;
 	var drawScrollbar = !chainViewOneToMany;
 	var relativeScrollPlusY = (drawScrollbar) ? scrollPlusY : lineListPanelPaneInst.scrollPlusY;
+	var mouseoverCancel = instance_exists(obj_dropDown) || instance_exists(obj_dialogueBox) || mouseoverHorScrollBar;
 	
 
 	// Set text margin area
@@ -63,7 +64,12 @@ function scr_panelPane_drawUnits1to1() {
 	    var colRectY1 = y;
 	    var colRectX2 = colRectX1 + colWidth;
 	    var colRectY2 = colRectY1 + headerHeight;
-
+		
+		// skip drawing this column if its out of horizontal drawRange
+		if (colRectX2 < x || colRectX1 > x + windowWidth) {
+			i++;
+			continue;
+		}
 
 		// loop down units for this field
 		for (var j = 0; j < displayUnitListSize; j++) {
@@ -85,19 +91,25 @@ function scr_panelPane_drawUnits1to1() {
 		    var unitRectY1 = y + headerHeight + textPlusY + relativeScrollPlusY - (strHeight / 2);
 		    var unitRectX2 = x + windowWidth;
 		    var unitRectY2 = unitRectY1 + strHeight;
-			var mouseoverunitRect = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, unitRectX1, max(unitRectY1, y + headerHeight), unitRectX2, unitRectY2) && !mouseoverScrollBar && !mouseoverHorScrollBar && !scrollBarHorHolding && !scrollBarHolding;
+			var mouseoverunitRect = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, unitRectX1, max(unitRectY1, y + headerHeight), unitRectX2, unitRectY2) && !mouseoverScrollBar && !mouseoverHorScrollBar && !scrollBarHorHolding && !scrollBarHolding && !mouseoverCancel;
     
 			// highlight rect
 			draw_set_color(global.colorThemeBG);
 			draw_rectangle(colRectX1 - clipX, unitRectY1 - clipY, colRectX2 - clipX, unitRectY2 - clipY, false);
 				
-			
+			var readOnlyField = false;
+			var unitTagMap = global.nodeMap[? "unitTagMap"];
+			var currentFieldSubMap = unitTagMap[? currentField];
+			if (scr_isNumericAndExists(currentFieldSubMap, ds_type_map)) {
+				if (!ds_map_exists(currentFieldSubMap, "tagSet")) readOnlyField = true;
+				if(currentFieldSubMap[?"readOnly"]) readOnlyField = true;
+			}
 	
 		    //Check mouse clicks to focus a line in the list
 		    if (mouseoverunitRect && !instance_exists(obj_dialogueBox) && !instance_exists(obj_dropDown)) {
 				drawDropDowns = true;
 				with (obj_panelPane) {
-					unitTagsHighlightRow = j;
+					functionChainList_highlightUnit = currentUnitID;
 				}
         
 		        if (device_mouse_check_button_released(0, mb_left)) {
@@ -107,7 +119,7 @@ function scr_panelPane_drawUnits1to1() {
 		            }
 					if (obj_control.doubleClickTimer > 2) {
 						// scroll to focused unit if the user double clicks
-						scr_jumpToUnit(currentUnitID);
+						scr_jumpToUnitTop(currentUnitID);
 					}
 					else {
 						obj_control.doubleClickTimer = 0;
@@ -115,14 +127,11 @@ function scr_panelPane_drawUnits1to1() {
 		        }
 		    }
 			
-			if (unitTagsHighlightRow == j) {
+			if (functionChainList_highlightUnit == currentUnitID) {
 				
 				// highlight rect
 				draw_set_color(merge_color(global.colorThemeBG, global.colorThemeSelected1, 0.4));
 				draw_rectangle(colRectX1 - clipX, unitRectY1 - clipY, colRectX2 - clipX, unitRectY2 - clipY, false);
-				
-			
-
 
 			}
 			draw_set_alpha(1);
@@ -144,37 +153,7 @@ function scr_panelPane_drawUnits1to1() {
 			if (mouseoverunitRect) mouseoverDropDownButton = point_in_rectangle(mouse_x, mouse_y, dropDownButtonX1, dropDownButtonY1, dropDownButtonX2, dropDownButtonY2);
 					
 				
-								
-			if (mouseoverDropDownButton) {
-				scr_createTooltip(mean(dropDownButtonX1, dropDownButtonX2), dropDownButtonY2, scr_get_translation("option-tag"), obj_tooltip.arrowFaceUp);
-				draw_set_alpha(1);
-				draw_set_color(global.colorThemeBorders);
-				draw_rectangle(dropDownButtonX1 - clipX, dropDownButtonY1 - clipY, dropDownButtonX2 - clipX, dropDownButtonY2 - clipY, true);
-				
-				if (mouse_check_button_released(mb_left)) {
-								
-					// get submap for this field
-					var unitTagMap = global.nodeMap[? "unitTagMap"];
-					var fieldSubMap = unitTagMap[? currentField];
-					
-					// get the tagSet for this field
-					var tagSet = fieldSubMap[? "tagSet"];
-					if (scr_isNumericAndExists(tagSet, ds_type_list)) {
-					
-						// create dropdown
-						var dropDownOptionList = ds_list_create();
-						ds_list_copy(dropDownOptionList, tagSet);
-						ds_list_insert(dropDownOptionList, 0, "option_add-to-tag-set");
-
-						obj_control.unitToChange = currentUnitID;
-						obj_control.unitFieldToChange = currentField;
-						var dropDownX = colRectX1;
-						var dropDownY = unitRectY2;						
-						scr_createDropDown(dropDownX, dropDownY, dropDownOptionList, global.optionListTypeUnitTagMap);
-
-					}
-				}
-			}
+						
 	
     
 		    // Outline the rectangle in black
@@ -187,12 +166,48 @@ function scr_panelPane_drawUnits1to1() {
 			draw_set_color(global.colorThemeBG);
 			draw_rectangle(colRectX1 - clipX, colRectY1 - clipY, colRectX2 - clipX, colRectY2 - clipY, false);
 			
-			var mouseOverCell = scr_pointInRectangleClippedWindow(mouse_x,mouse_y, colRectX1, unitRectY1, colRectX2, unitRectY2);
+			var mouseOverCell = scr_pointInRectangleClippedWindow(mouse_x,mouse_y, colRectX1, unitRectY1, colRectX2, unitRectY2) && !mouseoverCancel;
 			if(mouseOverCell){
-				draw_sprite_ext(spr_dropDown, 0, mean(dropDownButtonX1, dropDownButtonX2) - clipX, mean(unitRectY1, unitRectY2) - clipY, 1, 1, 0, global.colorThemeText, 1);
+				if(!readOnlyField){
+					draw_sprite_ext(spr_dropDown, 0, mean(dropDownButtonX1, dropDownButtonX2) - clipX, mean(unitRectY1, unitRectY2) - clipY, 1, 1, 0, global.colorThemeText, 1);
+				}
 				obj_control.hoverTextCopy = currentStr;
+				
 			}
+			
+			scr_cellEdit(currentUnitID, currentField, mouseOverCell, mouseoverDropDownButton, colRectX1, unitRectY1, colRectX2, unitRectY2, currentStr, "unit");
+			
+			if (mouseoverDropDownButton && !readOnlyField) {
+				scr_createTooltip(mean(dropDownButtonX1, dropDownButtonX2), dropDownButtonY2, scr_get_translation("option-tag"), obj_tooltip.arrowFaceUp);
+				draw_set_alpha(1);
+				draw_set_color(global.colorThemeBorders);
+				draw_rectangle(dropDownButtonX1 - clipX, dropDownButtonY1 - clipY, dropDownButtonX2 - clipX, dropDownButtonY2 - clipY, true);
+				
+				if (mouse_check_button_released(mb_left)) {
+					
+					obj_control.navWindowTaggingID = currentUnitID;
+					obj_control.navWindowTaggingField = currentField;
+								
+					
+					// get the tagSet for this field
+					var tagSet = currentFieldSubMap[? "tagSet"];
+					if (scr_isNumericAndExists(tagSet, ds_type_list)) {
+					
+						// create dropdown
+						var dropDownOptionList = ds_list_create();
+						ds_list_copy(dropDownOptionList, tagSet);
+						ds_list_add(dropDownOptionList, "option_add-to-tag-set");
+						ds_list_add(dropDownOptionList, "menu_clear");
 
+						obj_control.unitToChange = currentUnitID;
+						obj_control.unitFieldToChange = currentField;
+						var dropDownX = colRectX1;
+						var dropDownY = unitRectY2;						
+						scr_createDropDown(dropDownX, dropDownY, dropDownOptionList, global.optionListTypeUnitTagMap);
+
+					}
+				}
+			}
     
 		    // Draw text of unit tags
 		    draw_set_halign(lineStateLTR ? fa_left : fa_right);
@@ -218,9 +233,11 @@ function scr_panelPane_drawUnits1to1() {
 				textX -= global.scrollBarWidth;
 			}
 			
+
+			draw_set_alpha(readOnlyField ? 0.7 : 1);
 			
 		    draw_text(textX - clipX, y + headerHeight + relativeScrollPlusY + textPlusY - clipY, currentStr);
-    
+			 draw_set_alpha(1);
 		    // Get height of chain name
 		    textPlusY += strHeight;
 			
@@ -233,11 +250,13 @@ function scr_panelPane_drawUnits1to1() {
 	
 	
 	// draw focus outline
+	/*
 	if (focusedRowRectY1 > -1 and focusedRowRectY2 > -1) {
 		draw_set_color(global.colorThemeBorders);
 		draw_line_width(x - clipX, focusedRowRectY1 - clipY, x + windowWidth - clipX, focusedRowRectY1 - clipY, 4);
 		draw_line_width(x - clipX, focusedRowRectY2 - clipY, x + windowWidth - clipX, focusedRowRectY2 - clipY, 4);
 	}
+	*/
 	
 
 
@@ -255,9 +274,13 @@ function scr_panelPane_drawUnits1to1() {
 		    global.colorThemeSelected1, global.colorThemeSelected2, spr_ascend, windowWidth, windowHeight);
 	}
 	
+	scr_navWindowTaggingSelection(obj_control.navUnitFieldList, displayUnitList, "unit");
+	
 	scr_surfaceEnd();
 	
 	scr_panelPane_drawUnits1To1Headers();
+	
+
 	
 	
 

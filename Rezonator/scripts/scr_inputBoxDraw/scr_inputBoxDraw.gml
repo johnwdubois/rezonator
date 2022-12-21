@@ -1,19 +1,43 @@
-// Script assets have changed for v2.3.0 see
-// https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
 function scr_inputBoxDraw(){
 	
 	// set text positions and window height
-	scr_adaptFont(str, "M");
+	var fontSize = navWindowTagging ? "S" : "M";
+	scr_adaptFont(str, fontSize);
 	var strLen = string_length(str);
 	var strHeight = string_height("A");
 	var textMarginX = 10;
 	var textMarginY = 10;
+	if (navWindowTagging) {
+		textMarginX *= 0.5;
+		textMarginY = 0;
+	}
+	var valign = fa_top;
+	var camWidth = camera_get_view_width(view_camera[0]);
+	
 	textX = floor(textBoxX + textMarginX + xOffset);
 	textY = floor(textBoxY + textMarginY);
 	windowHeight = strHeight + (textMarginY * 2);
+	if (instance_exists(obj_panelPane) && instance_exists(obj_control) && navWindowTagging) {
+		if (!obj_panelPane.chainViewOneToMany) {
+			windowHeight = obj_control.navWindowTaggingCellY2 - obj_control.navWindowTaggingCellY1;
+			textY = floor(textBoxY + (windowHeight * 0.25));
+		}
+	}
+	
+	var isLockedField = false;
+	if(instance_exists(obj_control)){
+		var fieldTagMap = scr_getFieldMap();
+		var currentFieldSubMap = fieldTagMap[?obj_control.navWindowTaggingField];
+		if(scr_isNumericAndExists(currentFieldSubMap,ds_type_map)){
+			isLockedField = currentFieldSubMap[?"locked"];
+		}
+	}
 
 	// click in window to focus it
 	var mouseoverWindow = point_in_rectangle(mouse_x, mouse_y, textBoxX, textBoxY, textBoxX + windowWidth, textBoxY + windowHeight);
+	with(obj_control){
+		mouseoverInputBox = mouseoverWindow;
+	}
 	if (mouse_check_button_pressed(mb_left)) {
 		if (mouseoverWindow && !windowFocused) {
 			windowFocused = true;
@@ -21,8 +45,32 @@ function scr_inputBoxDraw(){
 			alarm[0] = blinkRate;
 		}
 		else if (!mouseoverWindow && windowFocused) {
-			windowFocused = false;
+			if (!instance_exists(obj_openingScreen)) {
+				windowFocused = false;
+			}
 		}
+		
+		if (navWindowTagging && !mouseoverWindow && instance_exists(obj_control)) {
+			if(!obj_control.mouseoverDropDown){
+				instance_destroy();
+			}
+		}
+	}
+	if(!windowFocused && navWindowTagging && !mouse_check_button(mb_left)){
+		inputBoxCancel += 1;
+		if(inputBoxCancel > 10){
+			show_debug_message("NO FOCUS MUST DESTROY");
+			instance_destroy();
+		}
+	}
+	else{
+		inputBoxCancel = 0;
+	}
+	
+	
+	
+	if (instance_exists(obj_openingScreen)) {
+		windowFocused = !obj_openingScreen.showPreImportScreen;
 	}
 	
 	// moving cursor with mouse click
@@ -42,11 +90,16 @@ function scr_inputBoxDraw(){
 			}
 		}
 		
+		
 		// check to move cursor/highlight index
 		if (mouse_check_button_pressed(mb_left)) {
 			validDrag = mouseoverWindow;
 			if (validDrag) highlightIndex = closestCharToMouse;
+			
 		}
+
+
+
 		if (validDrag) cursorIndex = closestCharToMouse;
 		
 		// check if double-clicking
@@ -58,6 +111,8 @@ function scr_inputBoxDraw(){
 
 	if (mouse_check_button_released(mb_left)) {
 		validDrag = true;
+		
+		//with(obj_control){alarm[1] = 1;}
 		
 		// double click to select word
 		if (doubleClick) {
@@ -74,15 +129,15 @@ function scr_inputBoxDraw(){
 	draw_rectangle(textBoxX, textBoxY, textBoxX + windowWidth, textBoxY + windowHeight, false);
 
 	// start clipping for text
-	scr_miniSurfaceStart();
+	scr_miniSurfaceStart(textBoxX, textBoxY);
 
 	// draw text
-	scr_adaptFont(str, "M");
+	scr_adaptFont(str, fontSize);
 	draw_set_color(global.colorThemeText);
 	draw_set_alpha(1);
 	draw_set_halign(fa_left);
-	draw_set_valign(fa_top);
-	draw_text(textX - clipX, textY - clipY, str);
+	draw_set_valign(valign);
+	draw_text(floor(textX - clipX), floor(textY - clipY), str);
 
 	// draw cursor
 	cursorX = textX + string_width(strToCursor);
@@ -112,10 +167,17 @@ function scr_inputBoxDraw(){
 		draw_rectangle(highlightRectX1 - clipX, highlightRectY1 - clipY, highlightRectX2 - clipX, highlightRectY2 - clipY, false);
 		draw_set_alpha(1);
 	}
-
+	
 	// end clipping for text
 	scr_surfaceEnd();
-
+	
+	if(isLockedField){
+		var spriteScale = .8;
+		if(sprite_get_height(spr_lock) * spriteScale  > windowHeight){
+			spriteScale = .6;
+		}
+		draw_sprite_ext(spr_lock,0,textBoxX+windowWidth - sprite_get_width(spr_lock)/2, textBoxY+windowHeight/2,spriteScale,spriteScale,0,global.colorThemeText,.5);
+	}
 	// outline rect
 	draw_set_color(global.colorThemeBorders);
 	if (windowFocused) {

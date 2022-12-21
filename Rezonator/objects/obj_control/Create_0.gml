@@ -366,7 +366,7 @@ canPressMinus = true;
 //lightThemeTextColor = c_black;
 
 // Set global font info
-global.fontSize = 0;
+//global.fontSize = 0;
 
 // UNused variable
 //scrollFast = 0;
@@ -467,6 +467,7 @@ gPressed = false;
 regExCheck = false;
 goToTime = false;
 rename = false;
+renameTree = false;
 before = true;
 recolor = false;
 caption = false;
@@ -496,16 +497,22 @@ inputText = "";
 cursorTimer = 20;
 noResultsFound = false;
 noTurnFound = false;
+noPsentFound = false;
 saveBeforeExiting = false;
 saveBeforeImporting = false;
+saveBeforeOpening = false;
 saveBeforeGameEnd = false;
 insertAnyNumber = false;
+splitToken = false;
+mergeToken = false;
+mergeUnitDifferingParticipants = false;
+splitTokenField = "";
+splitTokenCopyTags = true;
 
 newWordPre1 = false
 newWordPre2 = false
 newWordPre3 = false
 currentNewWordPre = 1;
-lastAddedWord = "";
 
 
 hitIDCounter = 1;
@@ -523,11 +530,15 @@ alarm[9] = 10;
 
 
 mouseoverPanelPane = false;
+mouseoverTagCell = false;
 rectNotInPanelPane = false;
 mouseoverDialogueBox = false;
 mouseoverSpeakerLabel = false;
 mouseoverHelpPane = false;
 mouseoverTagShortcut = "";
+mouseoverDropDownOption = "";
+mouseoverInputBox = false;
+mouseoverDropDown = false;
 
 gridInDelete = undefined;
 
@@ -575,7 +586,7 @@ showSpeakerName = false;
 
 combineChainsFocused = "";
 combineChainsSelected = "";
-stackMerged = false;
+mergeChainType = "";
 rightClickID = "";
 rightClicked = false;
 inChain = false;
@@ -748,6 +759,7 @@ global.delayInput = 10;
 selectedRezChainList = ds_list_create();
 selectedTrackChainList = ds_list_create();
 selectedStackChainList = ds_list_create();
+selectedTagList = ds_list_create();
 
 hiddenRezChainList = ds_list_create();
 hiddenTrackChainList = ds_list_create();
@@ -810,9 +822,64 @@ show_debug_message("obj_control create end");
 setRezMap = false;
 
 switchToTab = "";
+showInNavID = "";
+
+searchChainType = "trail";
+
+unitFlash = 0;
+flashTime = 20;
+unitToFlash = "";
+offIndex = false;
+multiWordTag = false;
+setChainName = false;
+recentlyAddedEndnote = ",";
+
+insertTokenStr = "";
+
+updateScroll = false;
+
+entryToScrollTo = "";
+entryToScrollToTab = "";
+
+mergeUnitList = ds_list_create();
 
 global.inputBoxDefStr = "";
 //set up tags from schema a frame after loading
 with(obj_alarm){
 	alarm[0] = 1;
 }
+scr_loadINI();
+
+navWindowTaggingField = "";
+navWindowTaggingID = "";
+navWindowTaggingPaneInst = -1;
+navWindowTaggingCellX1 = -1;
+navWindowTaggingCellY1 = -1;
+navWindowTaggingCellX2 = -1;
+navWindowTaggingCellY2 = -1;
+navWindowTaggingUpdateScroll = false;
+navWindowTaggingFocusHeavy = false;
+navWindowTaggingEnterPress = false;
+navWindowTaggingDisableSpawn = false;
+navWindowTaggingNextRow = false;
+navWindowTaggingCanPressUp = true;
+navWindowTaggingCanPressDown = true;
+navWindowTaggingCanPressLeft = true;
+navWindowTaggingCanPressRight = true;
+navWindowTaggingKeyboardLastChar = "";
+navWindowTaggingOldValue = "";
+navWindowTaggingEscape = false;
+navWindowTaggingSingleOptionSelect = false;
+navWindowTaggingKeyboardInput = false;
+
+sideLinkTokenID = "";
+
+mouseoverBackArrow = false;
+mouseoverBackArrowStopClick = false;
+
+createChunkNoChain = false;
+
+//lock fields
+with (obj_alarm3) alarm[4] = 2;
+
+saveToFirebase = false;

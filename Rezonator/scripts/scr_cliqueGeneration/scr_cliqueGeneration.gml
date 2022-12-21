@@ -1,5 +1,3 @@
-// Script assets have changed for v2.3.0 see
-// https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
 function scr_cliqueGeneration(){
 
 	var encounteredTokenListSize = ds_list_size(obj_chain.encounteredTokenList);
@@ -98,19 +96,21 @@ function scr_cliqueGeneration(){
 	}
 	else{
 		if(ds_list_size(obj_chain.encounteredChainList) > 0){
-			var cliqueID = "Clique " + string(obj_chain.cliqueCount)
+			var cliqueID = scr_generateRandomHex();
+			var cliqueName = "Clique " + string(obj_chain.cliqueCount);
 			var cliqueChainList = ds_list_create();
 			var cliqueUnitList = ds_list_create();
 	
 			ds_list_copy(cliqueChainList, obj_chain.encounteredChainList);
 			ds_list_copy(cliqueUnitList, obj_chain.traversedUnitList);
 	
-			var cliqueMap = ds_map_create();
+			var cliqueSubMap = ds_map_create();
 	
-			ds_map_add_list(cliqueMap, "chainList", cliqueChainList);
-			ds_map_add_list(cliqueMap, "unitList", cliqueUnitList);
+			ds_map_add_list(cliqueSubMap, "chainList", cliqueChainList);
+			ds_map_add_list(cliqueSubMap, "unitList", cliqueUnitList);
+			ds_map_add(cliqueSubMap, "name", cliqueName);
 	
-			ds_map_add(global.cliqueMap, cliqueID, cliqueMap);
+			ds_map_add_map(global.cliqueMap, cliqueID, cliqueSubMap);
 	
 			var traversedUnitListSize = ds_list_size(obj_chain.traversedUnitList);
 			for(var i = 0 ; i < traversedUnitListSize; i ++){

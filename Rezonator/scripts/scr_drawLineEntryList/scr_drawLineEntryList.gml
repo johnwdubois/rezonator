@@ -1,10 +1,8 @@
-// Script assets have changed for v2.3.0 see
-// https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
 function scr_drawLineEntryList(unitID, unitSubMap, entryList, pixelY, OOBCheck){
 	if(OOBCheck){
 		if (pixelY + gridSpaceVertical < wordTopMargin || pixelY - gridSpaceVertical > camera_get_view_height(view_camera[0])) exit;
 	}
-	
+		
 	draw_set_color(global.colorThemeText);
 	draw_set_alpha(1);
 	draw_set_valign(fa_middle);
@@ -49,6 +47,15 @@ function scr_drawLineEntryList(unitID, unitSubMap, entryList, pixelY, OOBCheck){
 		if (!scr_isNumericAndExists(currentTokenSubMap, ds_type_map)) continue;
 		currentTokenSubMap[? "relativeOrder"] = k;
 		
+		var textBeenSaid = true;
+		var currentTokenDocSeq = currentTokenSubMap[?"docTokenSeq"];
+		if(instance_exists(obj_audioUI)){
+			with(obj_audioUI){
+				if(currentTokenDocSeq > closestTokenIndex && closestTokenIndex != -1){
+					textBeenSaid = false;
+				}
+			}
+		}
 		// get tag map for this token
 		var currentTagMap = currentTokenSubMap[? "tagMap"];
 		if (!scr_isNumericAndExists(currentTagMap, ds_type_map)) continue;
@@ -108,17 +115,19 @@ function scr_drawLineEntryList(unitID, unitSubMap, entryList, pixelY, OOBCheck){
 			// draw background tokenRect
 			draw_set_color(global.colorThemeBG);
 			draw_set_alpha(1);
-			draw_rectangle(tokenRectX1, tokenRectY1, tokenRectX2, tokenRectY2, false);
+			draw_roundrect(tokenRectX1, tokenRectY1, tokenRectX2, tokenRectY2, false);
 		
 			// check if this token is in mouse rect
 			var mouseRectExists = makingRect;
 			var inMouseRect = false;
 			if (mouseRectExists) {
-				inMouseRect = (rectangle_in_rectangle(tokenRectX1, tokenRectY1, tokenRectX2, tokenRectY2, min(mouse_x, mouseHoldRectX1), min(mouse_y, mouseHoldRectY1), max(mouse_x, mouseHoldRectX1), max(mouse_y, mouseHoldRectY1))
-				&& (mouse_x > mouseHoldRectX1 + minimumChunkDist || mouse_x < mouseHoldRectX1 - minimumChunkDist));
-				if (mouseRectExists && inMouseRect && !mouse_check_button_released(mb_left)) {
-					ds_list_add(inRectTokenIDList, currentToken);
-					scr_addToListOnce(inRectUnitIDList, unitID);
+				if (!instance_exists(obj_dialogueBox) && !instance_exists(obj_dropDown)) {
+					inMouseRect = (rectangle_in_rectangle(tokenRectX1, tokenRectY1, tokenRectX2, tokenRectY2, min(mouse_x, mouseHoldRectX1), min(mouse_y, mouseHoldRectY1), max(mouse_x, mouseHoldRectX1), max(mouse_y, mouseHoldRectY1))
+					&& (mouse_x > mouseHoldRectX1 + minimumChunkDist || mouse_x < mouseHoldRectX1 - minimumChunkDist));
+					if (mouseRectExists && inMouseRect && !mouse_check_button_released(mb_left)) {
+						scr_addToListOnce(inRectTokenIDList, currentToken);
+						scr_addToListOnce(inRectUnitIDList, unitID);
+					}
 				}
 			}
 		
@@ -175,7 +184,9 @@ function scr_drawLineEntryList(unitID, unitSubMap, entryList, pixelY, OOBCheck){
 				
 					scr_tokenClicked(currentToken);
 				}
-			
+				if(keyboard_check(vk_shift) && keyboard_check_pressed(ord("U")) && !global.ctrlHold && obj_control.shortcutsEnabled){
+					//scr_splitUnit(currentToken, false);
+				}
 				// Check for rightMouseClick
 				if (device_mouse_check_button_released(0, mb_right) and !instance_exists(obj_dialogueBox)) {
 				
@@ -187,13 +198,20 @@ function scr_drawLineEntryList(unitID, unitSubMap, entryList, pixelY, OOBCheck){
 					}
 
 				}
+				
+				// if pressing the comma key while moused over a token, spawn an endnote
+				if (keyboard_check_released(188)) {
+					obj_control.rightClickID = currentToken;
+					scr_newTokenOptions(obj_control.recentlyAddedEndnote);
+					obj_control.rightClickID = "";
+				}
 
 			}
 
-
+			// token mouseover effect
 			if (drawTokenBorder) {
-				draw_set_color(global.colorThemeBorders);
-				draw_rectangle(tokenRectX1,tokenRectY1,tokenRectX2,tokenRectY2, true);
+				draw_set_color(merge_color(global.colorThemeSelected1, global.colorThemeBG, 0.4));
+				draw_roundrect(tokenRectX1, tokenRectY1, tokenRectX2, tokenRectY2, false);
 			}
 
 		
@@ -213,8 +231,8 @@ function scr_drawLineEntryList(unitID, unitSubMap, entryList, pixelY, OOBCheck){
 		
 
 			draw_set_color((wordFound) ? make_color_rgb(20, 146, 181) : global.colorThemeText );
-
-			draw_set_alpha(1);
+			var textAlpha = (textBeenSaid)? 1: .6;
+			draw_set_alpha(textAlpha);
 			draw_text(currentPixelX, pixelY, currentDisplayStr);
 		}
 		

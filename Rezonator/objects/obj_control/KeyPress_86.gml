@@ -2,7 +2,20 @@
 /*
 	Purpose: Cycle between main screen and grid view, plus search screen if it exists
 */
-if (!shortcutsEnabled || dialogueBoxActive) {
+
+obj_control.quickPickedChainID = "";
+
+var altShitft = keyboard_check(vk_alt) and keyboard_check(vk_shift);
+
+if (altShitft and !gridView) {
+	gridView = true;
+}
+else if (altShitft and gridView) {
+	gridView = false;
+}
+
+
+if ((!shortcutsEnabled || dialogueBoxActive) or altShitft or (obj_panelPane.functionSearchList_searchSelected == "")) {
 	exit;
 }
 

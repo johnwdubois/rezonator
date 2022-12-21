@@ -1,6 +1,7 @@
-// Script assets have changed for v2.3.0 see
-// https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
 function scr_closeDialogueBoxVariables(){
+	
+	show_debug_message("scr_closeDialogueBoxVariables");
+	
 	if(inputWindowActive){
 		with (obj_control) {
 			newWordCreated =false
@@ -36,18 +37,30 @@ function scr_closeDialogueBoxVariables(){
 			cursorPos = 1;
 			setRezMap = false;
 			dialogueBoxActive = false;
-		
+			renameTree = false;
+			splitToken = false;
+			splitTokenField = "";
+			splitTokenCopyTags = true;
+			setChainName = false;
+		}
+		with (obj_stacker) {
+			confirmStackCreate = false;
+			confirmStackName = false;
 		}
 	}
 	if(questionWindowActive){
+		
 		questionWindowActive = false;
 		clearAllStacks = false;
 		clearAllTracks = false;
+		clearAllChunks = false;
 		clearAllRez = false;
 		clearAllLinks = false;
 		clearChain = false;
+		clearChainMulti = false;
 		layerLink = false;
 		combineChains = false;
+		removeTags = false;
 		removeTagToken = false;
 		removeTagUnit = false;
 		removeTagEntry = false;
@@ -60,33 +73,46 @@ function scr_closeDialogueBoxVariables(){
 		removeFieldChain = false;
 		removeFieldChunk = false;
 		removeFieldLink = false;
+		mergeUnit = false;
+		splitUnit = false;
 		stringToBeRemoved = "";
 		removeSearch = false;
 		searchToBeRemoved = "";
+		swapUnitUp = false;
+		swapUnitDown = false;
+		confirmSideLink = false;
 	
 		with (obj_control) {
-			stackMerged = false;
+			mergeChainType = "";
 			combineChainsFocused = "";
 			combineChainsSelected = "";
 			saveBeforeImporting = false;
+			saveBeforeOpening = false;
 			saveBeforeExiting = false;
 			saveBeforeGameEnd = false;
+			mergeToken = false;
+			sideLinkTokenID = "";
+		}
+		with (obj_chain) {
+			mergeStackID = "";
 		}
 		
 		with (obj_stacker) {
+			if (!confirmStackCreate) stackerMode = "";
 			confirmStackCreate = false;
-			createStacksRandom = false;
-			createStacksTurn = false;
-			createStacksSentence = false;
-			createStacksClique = false;
+			confirmStackName = false;
 		}
 	}
 	if (alertWindowActive) {
 		with (obj_control) {
 			noResultsFound = false;
 			noTurnFound = false;
+			noPsentFound = false;
 			insertAnyNumber = false;
+			mergeUnitDifferingParticipants = false;
 		}
+		mergeStack = false;
+		chunkAlreadyExists = false;
 	}
 	if (instance_exists(obj_openingScreen)) {
 		with (obj_openingScreen) {

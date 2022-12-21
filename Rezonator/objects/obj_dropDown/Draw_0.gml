@@ -1,10 +1,18 @@
 /*
 	Purpose: Create the visuals of any drop down menus
 */
-myAlpha += 0.15;
-if (myAlpha > 1) myAlpha = 1;
 
-if (instance_exists(prevDropDown) && prevDropDown != -1) {
+myAlpha = min(myAlpha + 0.15, 1);
+
+arrowKeySelection = (optionListType == global.optionListTypeTokenTagMap || optionListType == global.optionListTypeUnitTagMap
+					|| optionListType == global.optionListTypeEntryTagMap || optionListType == global.optionListTypeChainTagMap
+					|| optionListType == global.optionListTypeChunk1To1Tag);
+var filterOptionList = arrowKeySelection && instance_exists(obj_inputBox);
+if (filterOptionList) scr_filterDropDownList(originalOptionList, optionList, obj_inputBox.str);
+
+var prevDropDownExists = (instance_exists(prevDropDown) && prevDropDown != -1);
+
+if (prevDropDownExists) {
 	x = prevDropDown.x + prevDropDown.windowWidth;
 }
 
@@ -25,182 +33,108 @@ windowHeight = ds_list_size(optionList) * optionSpacing;
 textBuffer = 10;
 
 
-
-
-
 // clamp windowHeight so dropDown is not hanging off the screen
 var showScrollBar = false;
 var camHeight = camera_get_view_height(camera_get_active());
 var camWidth = camera_get_view_width(camera_get_active());
 if (y + windowHeight > camHeight) {
-	windowHeight = camHeight - y ;
+	windowHeight = camHeight - y;
 	showScrollBar = true;
 }
 
-
-// loop through list to get windowWidth
+// get windowWidth
+var ascendWidth = sprite_get_width(spr_ascend);
 var optionListSize = ds_list_size(optionList);
-var maxStrWidth = originalWindowWidth;
-for (var i = 0; i < optionListSize; i++) {
-	
-	var currentOptionStrOriginal = string(optionList[| i]);
-	var currentOptionStr = currentOptionStrOriginal;
-	
-	// get keyboard shortcut if provided
-	var shortcutStr = "";
-	if(ds_map_exists(global.keyboardShortcutMap, currentOptionStrOriginal)){
-		shortcutStr = global.keyboardShortcutMap[? currentOptionStrOriginal];	
-	}
-	
-	// get width of current string
-	currentOptionStr = scr_get_translation(currentOptionStr);
-	
-	//get name of chain instead
-	if(optionListType == global.optionListTypeSearchChain){
-		if(currentOptionStr != "Create New Chain"){
-			var chainSubMap = global.nodeMap[?currentOptionStr];
-			var chainName = chainSubMap[?"name"];
-			currentOptionStr = chainName;
-		}
-	}
-	//get name of file instead
-	if(optionListType == global.optionListTypeTagSchema){
-		if(currentOptionStr != "Custom tag schema"){
-			currentOptionStr = filename_name(currentOptionStr);
-		}
-	}
+var maxWidth = scr_getDropDownWidth();
+windowWidth = max(originalWindowWidth, maxWidth);
 
-	var currentOptionStrWidth = string_width(currentOptionStr) + string_width(shortcutStr) + (textBuffer * 2);
-	
-	var isTagOption = string_count("Tag", currentOptionStr) > 0;
-	var tagWidth = 0;
-	if(isTagOption){
-		var isTokenOption = string_count("Token", currentOptionStr) > 0;
-		var isUnitOption = string_count("Unit", currentOptionStr) > 0;
-		var isChainOption = string_count("Chain", currentOptionStr) > 0;
-		var isEntryOption = string_count("Entry", currentOptionStr) > 0;
-		var isChunkOption = string_count("Chunk", currentOptionStr) > 0;
-	
-		if(isTokenOption){
-
-			var tokenTagText =  "   (" + string(obj_panelPane.functionField_tokenTagSelected) + " : " + string(obj_panelPane.functionField_tokenFieldSelected) + ")";
-			tagWidth = string_width(tokenTagText); 
-		}
-		if(isUnitOption){
-			var unitTagText =  "   (" + string(obj_panelPane.functionField_unitTagSelected) + " : " + string(obj_panelPane.functionField_unitFieldSelected) + ")";
-			tagWidth = string_width(unitTagText); 
-		}
-		if(isChainOption){
-			var chainTagText =  "   (" + string(obj_panelPane.functionField_chainTagSelected) + " : " + string(obj_panelPane.functionField_chainFieldSelected) + ")";
-			tagWidth = string_width(chainTagText); 
-		}
-		if(isEntryOption){
-			var entryTagText =  "   (" + string(obj_panelPane.functionField_entryTagSelected) + " : " + string(obj_panelPane.functionField_entryFieldSelected) + ")";
-			tagWidth = string_width(entryTagText); 
-		}
-		if(isChunkOption){
-			var entryTagText =  "   (" + string(obj_panelPane.functionField_chunkTagSelected) + " : " + string(obj_panelPane.functionField_chunkFieldSelected) + ")";
-			tagWidth = string_width(entryTagText); 
-		}
-	
+// force dropdown to stay on screen horizontally
+if (x + windowWidth > camWidth && !global.userLangRTL) {
+	var widthOffset = 0;
+	if (prevDropDownExists) {
+		
+		var prevDDX2 = prevDropDown.x + prevDropDown.windowWidth;
+		var horizontalOffset = camWidth-prevDDX2;
+		widthOffset = prevDropDown.windowWidth+ horizontalOffset;
 	}
-	currentOptionStrWidth += tagWidth;
-	
-	
-	// check if expandable
-	var isExpandable = false;
-	if (ds_exists(global.expandableDropDownMap, ds_type_map)) {
-		isExpandable = ds_map_exists(global.expandableDropDownMap, currentOptionStrOriginal);
-		if (currentOptionStrOriginal == "menu_stack" &&  ds_list_size(optionList) == 3) {
-			isExpandable = false;
-		}
-		else if (currentOptionStrOriginal == "menu_search" && ds_list_size(optionList) == 4) {
-			isExpandable = false;
-		}
-		else if (currentOptionStrOriginal == "menu_prose" && ds_list_size(optionList) == 2) {
-			isExpandable = false;
-		}
-		else if (currentOptionStrOriginal == "menu_nav" && ds_list_size(optionList) == 5) {
-			isExpandable = false;
-		}
-		if (optionListType == global.optionListTypeLinkFields) {
-			if (ds_list_find_index(global.linkFieldList, currentOptionStrOriginal) >= 0) isExpandable = true;
-		}
-		if (currentOptionStrOriginal == "menu_hide" && optionListType == global.optionListTypeChainListMulti) {
-			isExpandable = false;
-		}
-		if (optionListType == global.optionListTypeTokenFields || optionListType == global.optionListTypeUnitFields
-		|| optionListType == global.optionListTypeEntryFields || optionListType == global.optionListTypeChainFields
-		|| optionListType == global.optionListTypeChunkFields) {
-			if (currentOptionStrOriginal != "option_create-new-field") isExpandable = true;
-		}
-	}
-	
-	// add some width if this is an expandable dropdown
-	if (isExpandable) {
-		currentOptionStrWidth += sprite_get_width(spr_linkArrow) * arrowScale;
-	}
-	
-	// check if this is the widest string so far
-	if (currentOptionStrWidth > maxStrWidth) {
-		maxStrWidth = currentOptionStrWidth;
-	}
-}
-windowWidth = maxStrWidth;
-
-if( x + windowWidth > camWidth and !(global.lang_codes[| global.lang_index] == "he") ){
-	x = camWidth - windowWidth;
+	x = camWidth - windowWidth - widthOffset;
 }
 
+
+
+// check mouseover for dropdown
+var mouseoverThisDropDown = false
+var mouseInDropDown = false;
+var dropDownInstanceNumber = instance_number(obj_dropDown);
+for (var i = 0; i < dropDownInstanceNumber; i++) {
+	var currentDropDown = instance_find(obj_dropDown, i);
+	if (point_in_rectangle(mouse_x, mouse_y, currentDropDown.x, currentDropDown.y, currentDropDown.x + currentDropDown.windowWidth, currentDropDown.y + currentDropDown.windowHeight)) {
+		mouseInDropDown = true;
+		if (currentDropDown == self.id) mouseoverThisDropDown = true;
+	}
+}
+
+// make sure this dropDown contains at least 1 value
+if (ds_list_size(optionList) <= 0) {
+	if (arrowKeySelection) {
+		exit;
+	}
+	else {
+		show_debug_message("obj_dropDown Draw ... ds_list_size(optionList) <= 0, destroying");
+		instance_destroy();
+	}
+
+}
 scr_dropShadow(x, y, x + windowWidth, y + windowHeight);
 
 // surface stuff
 windowX = x;
 windowY = y;
-clipX = x;
-clipY = y;
-clipWidth = windowWidth;
-clipHeight = windowHeight;
-
-if (!surface_exists(clipSurface)) {
-    clipSurface = surface_create(clipWidth, clipHeight);
-}
-if (surface_exists(clipSurface)) {
-	surface_resize(clipSurface, clipWidth, clipHeight);
-}
-
-scr_windowCameraAdjust();
-
-surface_set_target(clipSurface);
-draw_clear_alpha(c_black, 0);
-
+scr_miniSurfaceStart(x, y);
 draw_set_alpha(myAlpha);
-
-if (ds_list_size(optionList) <= 0) {
-	show_debug_message("obj_dropDown Draw ... ds_list_size(optionList) <= 0");
-	instance_destroy();
-}
 
 mouseOverDropDown = point_in_rectangle(mouse_x, mouse_y, x, y, x + windowWidth, y + windowHeight);
 
+
 scrollPlusY = min(scrollPlusY, 0);
+
+var greenOptionColor = merge_color(global.colorThemeBG, make_color_rgb(114, 230, 110), 0.5);
+var redOptionColor = merge_color(global.colorThemeBG, make_color_rgb(247, 129, 148), 0.5);
 
 var optionListSize = ds_list_size(optionList);
 for (var i = 0; i < optionListSize; i++) {
 	
-	// get option text
-	var optionText = ds_list_find_value(optionList, i);
+	// get current option & everything about it
+	var currentOptionRaw = optionList[| i];
+	var currentOptionTranslated = scr_getDropDownOptionStr(currentOptionRaw);
+	var currentOptionShortcut = scr_getDropDownShortcutStr(currentOptionRaw);
+	var currentOptionTag = scr_getDropDownTagStr(currentOptionRaw);
+	var isExpandable = scr_checkExpandable(currentOptionRaw, optionListType);
+	var hasCheck = scr_dropDownHasCheckmark(currentOptionRaw);
+	var isOpeningScreenOption = ds_map_exists(global.openingScreenDropDownMap, currentOptionRaw) or optionListType == global.optionListTypeTagSchema;
+	var unClickable = (room == rm_openingScreen and !isOpeningScreenOption);
+	var fadedTextColor = merge_color(global.colorThemeText, global.colorThemeBG, unClickable ? 0.6 : 0.3);
 	
 	// optionRect coordinates
-	//var optionRectX1 = (global.lang_codes[| global.lang_index] == "he") ? x - windowWidth : x;
 	var optionRectX1 = x;
 	var optionRectY1 = y + (optionSpacing * i) + scrollPlusY;
 	var optionRectX2 = optionRectX1 + windowWidth;
 	var optionRectY2 = optionRectY1 + optionSpacing;
 	var mouseoverRectX2 = (showScrollBar) ? optionRectX2 - global.scrollBarWidth : optionRectX2;
 	
+	// check update scroll
+	if (updateScroll && optionCurrent == i) {
+		show_debug_message("obj_dropDown, updateScroll!");
+		updateScroll = false;
+		if (optionRectY1 < y) {		
+			scrollPlusYDest += abs(optionRectY1 - y);
+		}
+		else if (optionRectY2 > y + windowHeight) {
+			scrollPlusYDest -= abs(optionRectY2 - (y + windowHeight));
+		}
+	}
 	
-	
+	// check mouseover
 	var mouseoverCurrentOption = false;
 	if (instance_exists(obj_panelPane)) {
 		if (point_in_rectangle(mouse_x, mouse_y, optionRectX1, optionRectY1, mouseoverRectX2, optionRectY2) and ableToMouseover
@@ -222,9 +156,32 @@ for (var i = 0; i < optionListSize; i++) {
 		}
 	}
 	if (multiDropDownCancel) mouseoverCurrentOption = false;
+	if (!mouseMoved) mouseoverCurrentOption = false;
+	
+	if(mouseoverCurrentOption){
+		if(optionCurrent != i){
+			var dropDownsWithGreaterLevelExists = false;
+			var myLevel = level;
+			with (obj_dropDown) {
+				if (level > myLevel) dropDownsWithGreaterLevelExists = true;
+			}
+			if (dropDownsWithGreaterLevelExists) {				
+				// check if prevoption is expandable
+				var isPrevOptionExpandale = scr_checkExpandable(optionList[| prevOptionClicked], optionListType);
+				if (!isPrevOptionExpandale) prevOptionClicked = i;
+			}
+			
+			scr_destroyAllDropDownsOtherThanSelf();
+		}
+		optionCurrent = i;
+		with(obj_control){
+			mouseoverDropDownOption = currentOptionRaw;
+		}
+	}
+	
 	
 	// handle expandable timer
-	if (mouseoverCurrentOption) {
+	if (mouseoverCurrentOption or optionCurrent == i) {
 		currentMouseoverOption = i;
 		if (expandableTimer < expandableTimerFull) expandableTimer++;
 		if (prevMouseoverOption != currentMouseoverOption) {
@@ -237,55 +194,25 @@ for (var i = 0; i < optionListSize; i++) {
 	
 	// draw BG rectangle for each option
 	var optionBGColor = global.colorThemeBG;
-	if (optionText == "option-remove-tag-set") {
-		optionBGColor = merge_color(global.colorThemeBG, make_color_rgb(247, 129, 148), 0.5);
+	if (currentOptionRaw == "option-remove-tag-set" || currentOptionRaw == "menu_clear" && optionListType != global.optionListTypeFilter) {
+		optionBGColor = redOptionColor;
 	}
-	if (mouseoverCurrentOption or (optionCurrent == i && !mouseOverDropDown)) {
+	else if (currentOptionRaw == "option_add-to-tag-set" || currentOptionRaw == "option_create-new-field") {
+		optionBGColor = greenOptionColor;
+	}
+	if (mouseoverCurrentOption or (optionCurrent == i)) {
 		optionBGColor = c_ltblue;
 	}
-	if (mouseoverCurrentOption) optionMouseover = optionText;
+	if (mouseoverCurrentOption) optionMouseover = currentOptionRaw;
 	draw_set_color(optionBGColor);
 	draw_rectangle(optionRectX1 - clipX, optionRectY1 - clipY, optionRectX2 - clipX, optionRectY2 - clipY, false);
 	
 	
-	var isOpeningScreenOption = ds_map_exists(global.openingScreenDropDownMap,optionText) or optionListType == global.optionListTypeTagSchema;
-	
-	
-	// check whether this option is expandable
-	var isExpandable = false;
-	if (ds_exists(global.expandableDropDownMap, ds_type_map)) {
-		isExpandable = ds_map_exists(global.expandableDropDownMap, optionText);
-		if (optionText == "menu_stack" &&  ds_list_size(optionList) == 3) {
-			isExpandable = false;
-		}
-		else if (optionText == "menu_search" && ds_list_size(optionList) == 4) {
-			isExpandable = false;
-		}
-		else if (optionText == "menu_prose" && ds_list_size(optionList) == 2) {
-			isExpandable = false;
-		}
-		else if (optionText == "menu_nav" && ds_list_size(optionList) == 5) {
-			isExpandable = false;
-		}
-		if (optionListType == global.optionListTypeLinkFields) {
-			if (ds_list_find_index(global.linkFieldList, optionText) >= 0) isExpandable = true;
-		}
-		if (currentOptionStrOriginal == "menu_hide" && optionListType == global.optionListTypeChainListMulti) {
-			isExpandable = false;
-		}
-		if (optionListType == global.optionListTypeTokenFields || optionListType == global.optionListTypeUnitFields
-		|| optionListType == global.optionListTypeEntryFields || optionListType == global.optionListTypeChainFields
-		|| optionListType == global.optionListTypeChunkFields) {
-			if (optionText != "option_create-new-field") isExpandable = true;
-		}
-	}
-	
-	var unClickable = (room == rm_openingScreen and !isOpeningScreenOption);
 	// gray out option if it begins with ~
 	draw_set_color(global.colorThemeText);
 	if (room == rm_mainScreen) {
-		if (string_length(optionText) >= 1) {
-			if (string_char_at(optionText, 1) == "~") {
+		if (string_length(currentOptionRaw) >= 1) {
+			if (string_char_at(currentOptionRaw, 1) == "~") {
 				draw_set_color(global.colorThemeSelected2);
 			}
 		}
@@ -294,167 +221,128 @@ for (var i = 0; i < optionListSize; i++) {
 		draw_set_color(global.colorThemeSelected2);
 	}
 	
-	// draw option text
-	var optionTextStr = scr_get_translation(optionText);
 	
-	// for special cases, draw chain name instead of hex-string
-	if (optionListType == global.optionListTypeSearchChain || optionListType == global.optionListTypeAddToShow || (optionListType == global.optionListTypeSelectShow && optionText != "option_create-show")) {
-		var subMap = global.nodeMap[? optionText];
-		if (scr_isNumericAndExists(subMap, ds_type_map)) {
-			optionTextStr = subMap[? "name"];
-		}
-	}
-	//get name of file instead
-	if(optionListType == global.optionListTypeTagSchema){
-		if(optionTextStr != "Custom tag schema"){
-			optionTextStr = filename_name(optionTextStr);
-		}
-	}
 
-	//optionTextStr = optionText;
-	//uncomment this line to see the raw strings instead of display strings in dropdown
-	
-	var shortcutStr = "";
-	if(ds_map_exists(global.keyboardShortcutMap, optionText)){
-		shortcutStr = ds_map_find_value(global.keyboardShortcutMap, optionText);	
-	}
-
-	if(optionText == "menu_grid" and  optionListType != global.optionListTypePane){
-		shortcutStr = "";
-	}
-	if(optionText == "menu_search" and optionListType != global.optionListTypePane){
-		shortcutStr = "";
-	}
-	if((optionText == "menu_resonance" or optionText == "menu_track") and optionListType != global.optionListTypeTools){
-		shortcutStr = "";	
-	}
-	if(optionText == "menu_prose" and optionListType != global.optionListTypeView){
-		shortcutStr = "";	
-	}
-	
-	var optionTextX = (global.lang_codes[| global.lang_index] == "he") ? floor(optionRectX2 - textBuffer) : floor(optionRectX1 + textBuffer);
+	// get XY for text positioning
+	var optionTextX = (global.userLangRTL) ? floor(optionRectX2 - textBuffer) : floor(optionRectX1 + textBuffer);
 	var optionTextY = floor(mean(optionRectY1, optionRectY2));
-	var shortcutTextX = (global.lang_codes[| global.lang_index] == "he") ? floor(optionRectX1 + textBuffer) : floor(optionRectX2 - textBuffer);
-	scr_adaptFont(scr_get_translation(optionTextStr), "M");
-	if(global.lang_codes[| global.lang_index] == "he"){
-		draw_set_halign(fa_right);	
-	}
-	
+	var shortcutTextX = (global.userLangRTL) ? floor(optionRectX1 + textBuffer) : floor(optionRectX2 - textBuffer);
+	scr_adaptFont(scr_get_translation(currentOptionTranslated), "M");
+	if(global.userLangRTL) draw_set_halign(fa_right);
 
-
-	draw_text(optionTextX - clipX, floor(optionTextY - clipY), optionTextStr);
+	// draw text for current option
+	draw_text(optionTextX - clipX, floor(optionTextY - clipY), currentOptionTranslated);
 	
-	
-
-	if(global.lang_codes[| global.lang_index] == "he"){
-		draw_set_halign(fa_left);	
-	}
-	else{
-		draw_set_halign(fa_right);
-	}
-	if(shortcutStr != ""){
-		scr_adaptFont(scr_get_translation(shortcutStr), "S");
+	// draw shortcut text
+	draw_set_halign( (global.userLangRTL) ? fa_left : fa_right);
+	if(currentOptionShortcut != ""){
+		draw_set_color(fadedTextColor);
+		scr_adaptFont(scr_get_translation(currentOptionShortcut), "S");
 		if(isExpandable){
-			if(global.lang_codes[| global.lang_index] == "he"){
-				draw_text(shortcutTextX - clipX + sprite_get_width(spr_ascend), optionTextY - clipY, shortcutStr);
-			}
-			else{	
-				draw_text(shortcutTextX - clipX - sprite_get_width(spr_ascend), optionTextY - clipY, shortcutStr);
-			}
-		}
-		else{
-			draw_text(shortcutTextX - clipX, optionTextY - clipY, shortcutStr);
-		}
-	}
-	
-	var hasCheck = false;
-	if(ds_map_exists(global.checkDropdownMap, optionText)){
-		scr_updateCheckMap(optionText);
-		hasCheck = ds_map_find_value(global.checkDropdownMap, optionText);
-		if (optionListType == global.optionListTypeNav) hasCheck = false;
-
-		var checkX = (global.lang_codes[| global.lang_index] == "he") ? 
-				floor(optionRectX1 + (sprite_get_width(spr_checkmark) / 2)) : floor(optionRectX2 - (sprite_get_width(spr_checkmark) / 2));
-		var checkY = floor(mean(optionRectY1, optionRectY2));
-	}
-	
-	//some checks for duplicate optionText that shouldnt have checkmarks
-	if(optionListType == global.optionListTypeTools and optionText == "menu_stack") hasCheck = false;
-	if(optionListType == global.optionListTypeView and optionText == "menu_prose") hasCheck = false;
-	
-	
-	if(hasCheck){
-		if(shortcutStr != ""){
-			if(global.lang_codes[| global.lang_index] == "he"){
-				draw_sprite_ext(spr_checkmark, 0, checkX - clipX + string_width(shortcutStr) + textBuffer, checkY - clipY, 0.8, 0.8, 0, c_black, 1);
+			if(global.userLangRTL){
+				
+				shortcutTextX += ascendWidth;
+				
 			}
 			else{
-				draw_sprite_ext(spr_checkmark, 0, checkX - clipX - string_width(shortcutStr) - textBuffer, checkY - clipY, 0.8, 0.8, 0, c_black, 1);
+				shortcutTextX -= ascendWidth;
+				
+			}
+			
+			draw_text(shortcutTextX - clipX, optionTextY - clipY, currentOptionShortcut);
+		}
+		else{
+			draw_text(shortcutTextX - clipX, optionTextY - clipY, currentOptionShortcut);
+		}
+	}
+	
+	
+	// draw checkmark
+	var checkX = (global.userLangRTL) ? 
+				floor(optionRectX1 + (sprite_get_width(spr_checkmark) / 2)) : floor(optionRectX2 - (sprite_get_width(spr_checkmark) / 2));
+	var checkY = floor(mean(optionRectY1, optionRectY2));
+	if(hasCheck){
+		if(currentOptionShortcut != ""){
+			if(global.userLangRTL){
+				draw_sprite_ext(spr_checkmark, 0, checkX - clipX + string_width(currentOptionShortcut) + textBuffer, checkY - clipY, 0.8, 0.8, 0, c_black, 1);
+			}
+			else{
+				draw_sprite_ext(spr_checkmark, 0, checkX - clipX - string_width(currentOptionShortcut) - textBuffer, checkY - clipY, 0.8, 0.8, 0, c_black, 1);
 			}
 		}
 		else{
 			draw_sprite_ext(spr_checkmark, 0, checkX - clipX, checkY - clipY, 0.8, 0.8, 0, c_black, 1);
 		}
 	}
+	
+	
 	//add tag info to option
-	var isTagOption = string_count("Tag", optionTextStr) > 0;
-	var tagWidth = 0;
-	var tagText = "";
-	if(isTagOption){
-		var isTokenOption = string_count("Token", optionTextStr) > 0;
-		var isUnitOption = string_count("Unit", optionTextStr) > 0;
-		var isChainOption = string_count("Chain", optionTextStr) > 0;
-		var isEntryOption = string_count("Entry", optionTextStr) > 0;
-		var isChunkOption = string_count("Chunk", optionTextStr) > 0;
-	
-		if(isTokenOption){
-			tagText =  "   (" + string(obj_panelPane.functionField_tokenFieldSelected) + " :  " + string(obj_panelPane.functionField_tokenTagSelected) + ")";
-		}
-		if(isUnitOption){
-			tagText =  "   (" + string(obj_panelPane.functionField_unitFieldSelected) + " : " + string(obj_panelPane.functionField_unitTagSelected) + ")";
-		}
-		if(isChainOption){
-			tagText =  "   (" + string(obj_panelPane.functionField_chainFieldSelected) + " : " + string(obj_panelPane.functionField_chainTagSelected) + ")";
-		}
-		if(isEntryOption){
-			tagText =  "   (" + string(obj_panelPane.functionField_entryFieldSelected) + " : " + string(obj_panelPane.functionField_entryTagSelected) + ")";
-		}
-		if(isChunkOption){
-			tagText =  "   (" + string(obj_panelPane.functionField_chunkFieldSelected) + " : " + string(obj_panelPane.functionField_chunkTagSelected) + ")";
-		}
-
-	draw_set_color(merge_color(global.colorThemeText, global.colorThemeBG, 0.3));
-
-	draw_text(shortcutTextX - clipX, optionTextY - clipY, tagText);	
-	
+	if (currentOptionTag != "") {
+			if(global.userLangRTL){
+				
+				shortcutTextX += ascendWidth/2;
+				
+			}
+			else{
+				shortcutTextX -= ascendWidth/2;
+				
+			}
+		draw_set_color(fadedTextColor);
+		draw_text(shortcutTextX - clipX, optionTextY - clipY, currentOptionTag);	
 	}
 
 	draw_set_halign(fa_left);
 
 	
 	// click on option
-	var click = mouse_check_button_released(mb_left) || keyboard_check_released(vk_enter);
-	var clickCurrentOption = (mouseoverCurrentOption && ableToClick && click);
-	if (isExpandable && expandableTimer >= expandableTimerFull && ableToClick && mouseoverCurrentOption && !expandableTimerClicked) {
+	var prevOptionExpandable = (prevOptionClicked == i && isExpandable);
+	var click = (mouse_check_button_released(mb_left) && mouseoverThisDropDown && !multiDropDownCancel && !prevOptionExpandable) || keyboard_check_pressed(vk_enter);
+	if (scrollBarHolding) click = false;
+	var clickCurrentOption = (i == optionCurrent && ableToClick && click);
+	if (arrowKeySelection && click && i == optionCurrent) {
+		prevOptionClicked = -1;
+		clickCurrentOption = true;
+		isExpandable = false;
+	}
+
+
+	if (isExpandable && expandableTimer >= expandableTimerFull && ableToClick && i == optionCurrent && !expandableTimerClicked) {
 		expandableTimerClicked = true;
 		clickCurrentOption = true;
 	}
 	
-	if (clickCurrentOption && (prevOptionClicked != i || !isExpandable)) {
+	if (arrowKeySingleOptionSelect && ds_list_size(optionList) == 1) {
+		arrowKeySingleOptionSelect = false;
+		
+		clickCurrentOption = true;
+		with (obj_control) {
+			navWindowTaggingNextRow = true;
+			navWindowTaggingSingleOptionSelect = true;
+		}
+	}
+	
+	if (clickCurrentOption) {
 		prevOptionClicked = i;
+		
 		if(!unClickable){
 			optionCurrent = i;
 			var optionSelected = optionList[| i];
 			scr_dropDownSelect(optionSelected);
 		}
+		
+		if (!arrowKeySingleOptionSelect) {
+			with (obj_control) navWindowTaggingSingleOptionSelect = false;
+		}
 	}
+
+	
 	
 	// draw arrow if expandable
 	if (isExpandable) {
-		var expandArrowX = (global.lang_codes[| global.lang_index] == "he") ? floor(optionRectX1 + (sprite_get_width(spr_ascend) / 2)) : floor(optionRectX2 - (sprite_get_width(spr_ascend) / 2));
+		var expandArrowX = (global.userLangRTL) ? floor(optionRectX1 + (sprite_get_width(spr_ascend) / 2)) : floor(optionRectX2 - (sprite_get_width(spr_ascend) / 2));
 		var expandArrowY = floor(mean(optionRectY1, optionRectY2));
 		var arrowColor = (unClickable)? global.colorThemeSelected1 : global.colorThemeText;
-		if(global.lang_codes[| global.lang_index] == "he"){
+		if(global.userLangRTL){
 			draw_sprite_ext(spr_linkArrow, 0, expandArrowX - clipX, expandArrowY - clipY, arrowScale, arrowScale, 180, arrowColor, 1);
 		}
 		else{
@@ -462,6 +350,8 @@ for (var i = 0; i < optionListSize; i++) {
 		}
 	}
 }
+
+
 
 	
 
@@ -489,26 +379,34 @@ if (scrollBarHolding) {
 
 
 
-var mouseInDropDown = false;
-var dropDownInstanceNumber = instance_number(obj_dropDown);
-for (var i = 0; i < dropDownInstanceNumber; i++) {
-	var currentDropDown = instance_find(obj_dropDown, i);
-	if (point_in_rectangle(mouse_x, mouse_y, currentDropDown.x, currentDropDown.y, currentDropDown.x + currentDropDown.windowWidth, currentDropDown.y + currentDropDown.windowHeight)) {
-		mouseInDropDown = true;
-	}
+with(obj_control){
+	mouseoverDropDown = mouseInDropDown;
 }
 
 if (ableToMouseover and ableToClick and mouse_check_button_pressed(mb_left) 
 and !mouseInDropDown and !scrollBarHoldingDelay) {
+	var destroyDropDown = true;
 	if (room == rm_mainScreen) {
 		obj_menuBar.menuClickedIn = false;
 	} 
 	else if (room == rm_importScreen) {
 		obj_fieldSummaryWindow.clickedIn = false;
 	}
-	show_debug_message("obj_dropDown Draw ... destroying dropdowns");
-	with (obj_dropDown) {
-		instance_destroy();
+	else if (room == rm_importScreen) {
+		obj_fieldSummaryWindow.clickedIn = false;
+	}
+	
+	with(obj_control){
+		if(mouseoverInputBox){	
+			destroyDropDown = false;
+			show_debug_message("obj_dropDown Draw ... destroying dropdowns");
+
+		}
+	}
+	if(destroyDropDown){
+		with (obj_dropDown) {
+			instance_destroy();
+		}
 	}
 }
 scrollBarHoldingDelay = scrollBarHolding;
@@ -516,6 +414,27 @@ scrollBarHoldingDelay = scrollBarHolding;
 // press escape to destroy
 if (keyboard_check_released(vk_escape)) {
 	instance_destroy();
+}
+
+if (arrowKeySelection) {
+	if (keyboard_check(vk_up) && canPressUp) {
+		canPressUp = false;
+		alarm[5] = 7;
+		updateScroll = true;
+		if (optionCurrent > 0) optionCurrent--;
+		else optionCurrent = ds_list_size(optionList) - 1;
+	}
+	else if (keyboard_check(vk_down) && canPressDown) {
+		canPressDown = false;
+		updateScroll = true;
+		alarm[4] = 7;
+		if (optionCurrent < ds_list_size(optionList) - 1) optionCurrent++;
+		else optionCurrent = 0;
+		
+		if (ds_list_size(optionList) == 1) {
+			arrowKeySingleOptionSelect = true;
+		}
+	}
 }
 
 
