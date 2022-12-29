@@ -90,7 +90,7 @@ window_set_min_height(720);
 // CHANGE THIS VAR WHEN MAKING A BUILD
 // if build is true --> CJK fonts will be loaded
 // if build is false --> CJK fonts will not be loaded
-global.build = true;
+global.build = false;
 global.rezzles = true;
 
 global.buildType = "Windows_Website";

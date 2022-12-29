@@ -1,10 +1,8 @@
-
-
 function scr_deleteChain(chainID){
 	obj_chain.quickLinkDeleted = true;
 
 	if (!ds_map_exists(global.nodeMap,chainID)) {
-		show_debug_message("scr_deleteChain()... chainID does not exists in nodeMap, exiting...");
+		show_debug_message("scr_deleteChain()... chainID does not exist in nodeMap, exiting...");
 		exit;
 	}
 	

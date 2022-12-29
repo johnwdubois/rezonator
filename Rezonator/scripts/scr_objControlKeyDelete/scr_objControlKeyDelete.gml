@@ -11,9 +11,15 @@ function scr_objControlKeyDelete(){
 
 
 	if (global.ctrlHold) {
-		// Delete the entire chain if one is focused
-		if (ds_map_exists(global.nodeMap,obj_chain.currentFocusedChainID)) {
-			scr_deleteChain(obj_chain.currentFocusedChainID);
+		
+		// if there is a valid chain focused, prompt a dialogue box to confirm deletion
+		if (ds_map_exists(global.nodeMap, obj_chain.currentFocusedChainID) && obj_chain.currentFocusedChainID != "" && is_string(obj_chain.currentFocusedChainID)) {
+			if (!instance_exists(obj_dialogueBox)) {
+				instance_create_layer(x, y, "InstancesDialogue", obj_dialogueBox);
+				obj_control.selectedChainID = obj_chain.currentFocusedChainID;
+				obj_dialogueBox.clearChain = true;
+				obj_dialogueBox.questionWindowActive = true;
+			}
 		}
 	}
 	// If a normal delete, delete the singular focused link
