@@ -18,17 +18,7 @@ obj_control.hoverTokenID = "";
 
 var scrollTogetherButtonX = 100;
 var scrollTogetherButtonY = 100;
-var mapViewerButtonRectX1 = scrollTogetherButtonX - 15;
-var mapViewerButtonRectY1 = scrollTogetherButtonY - 15;
-var mapViewerButtonRectX2 = scrollTogetherButtonX + 15;
-var mapViewerButtonRectY2 = scrollTogetherButtonY + 15;
 
-var mouseOverMapViewer = point_in_rectangle(mouse_x, mouse_y, mapViewerButtonRectX1, mapViewerButtonRectY1, mapViewerButtonRectX2, mapViewerButtonRectY2)
-if (mouseOverMapViewer) {
-	if(device_mouse_check_button_released(0,mb_left)){
-		mapViewActive = !mapViewActive;
-	}
-}
 
 
 var camViewWidth = camera_get_view_width(camera_get_active());
@@ -36,16 +26,6 @@ var camViewHeight = camera_get_view_height(camera_get_active());
 draw_set_alpha(1);
 draw_set_color(global.colorThemeBG);
 draw_rectangle(0,0,camViewWidth,camViewHeight, false);
-draw_set_color(global.colorThemeBorders);
-//draw_rectangle(20,windowY,windowX,windowY + windowHeight, true);
-
-draw_set_color(global.colorThemeText);
-var checkBoxScale = 1* max(global.fontSize,3)/5;
-scr_drawRectWidth(mapViewerButtonRectX1, mapViewerButtonRectY1, mapViewerButtonRectX2, mapViewerButtonRectY2, 3, true);
-if(!mapViewActive) draw_sprite_ext(spr_checkmark, 0, mean(mapViewerButtonRectX1, mapViewerButtonRectX2), mean(mapViewerButtonRectY1, mapViewerButtonRectY2), checkBoxScale , checkBoxScale , 0, global.colorThemeText, 1);
-
-
-draw_text(mapViewerButtonRectX2 + 10, mapViewerButtonRectY1 - 10, (mapViewActive)? "Map View":"Grid View");
 
 
 
