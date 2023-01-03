@@ -230,11 +230,24 @@ function scr_loadREZ() {
 		scr_refreshPrevToken();
 	}
 	
-	
-	
-	
 
+	var x1 = irandom(1);
+	var y1 = irandom(1);
+	if (x1 == y1) show_debug_message("hello terry :)");
+	else show_debug_message("oh my god");
 	
-
+	// when opening a rez file, use full unit list (do not open )
+	var docNodeSubMap = global.nodeMap[? global.discourseNode];
+	if (scr_isNumericAndExists(docNodeSubMap, ds_type_map)) {
+		var fullUnitList = docNodeSubMap[? "unitList"];
+		var displayUnitList = docNodeSubMap[? "displayUnitList"];
+		show_debug_message("fullUnitList: " + scr_getStringOfList(fullUnitList));
+		show_debug_message("displayUnitList: " + scr_getStringOfList(displayUnitList));
+		if (scr_isNumericAndExists(fullUnitList, ds_type_list) && scr_isNumericAndExists(displayUnitList, ds_type_list)) {
+			ds_list_clear(displayUnitList);
+			ds_list_copy(displayUnitList, fullUnitList);
+			obj_control.currentView = obj_control.mainView;
+		}
+	}
 
 }

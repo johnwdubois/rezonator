@@ -70,7 +70,7 @@ function scr_drawDevVars(){
 	draw_text(devVarX, wordTopMargin + (strHeight * 35), "functionChainList_playShowID: " + string(obj_panelPane.functionChainList_playShowID));
 	
 	draw_text(devVarX - 580, wordTopMargin + (strHeight * 1), "showNav: " + string(obj_panelPane.showNav));
-	draw_text(devVarX - 580, wordTopMargin + (strHeight * 2), "sideLinkTokenID: " + string(sideLinkTokenID));
+	draw_text(devVarX - 580, wordTopMargin + (strHeight * 2), "currentView: " + string(obj_control.currentView));
 	draw_text(devVarX - 580, wordTopMargin + (strHeight * 3), "combineChainsFocused: " + string(combineChainsFocused));
 	draw_text(devVarX - 580, wordTopMargin + (strHeight * 4), "combineChainsSelected: " + string(combineChainsSelected));
 	draw_text(devVarX - 580, wordTopMargin + (strHeight * 5), "displayTokenField: " + string(global.displayTokenField));
