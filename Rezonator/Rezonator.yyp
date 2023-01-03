@@ -72,6 +72,7 @@
     {"id":{"name":"scr_tokenClicked","path":"scripts/scr_tokenClicked/scr_tokenClicked.yy",},"order":5,},
     {"id":{"name":"scr_jumpToTime","path":"scripts/scr_jumpToTime/scr_jumpToTime.yy",},"order":2,},
     {"id":{"name":"scr_panelPane_drawChains1ToManyInnerLoop","path":"scripts/scr_panelPane_drawChains1ToManyInnerLoop/scr_panelPane_drawChains1ToManyInnerLoop.yy",},"order":11,},
+    {"id":{"name":"scr_setTagJsonFieldList","path":"scripts/scr_setTagJsonFieldList/scr_setTagJsonFieldList.yy",},"order":4,},
     {"id":{"name":"scr_jumpToLineCalled","path":"scripts/scr_jumpToLineCalled/scr_jumpToLineCalled.yy",},"order":4,},
     {"id":{"name":"spr_filterTool","path":"sprites/spr_filterTool/spr_filterTool.yy",},"order":1,},
     {"id":{"name":"scr_sortSearchLists","path":"scripts/scr_sortSearchLists/scr_sortSearchLists.yy",},"order":9,},

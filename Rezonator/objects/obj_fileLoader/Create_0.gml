@@ -92,6 +92,6 @@ global.discoGridCopied = false;
 //}
 
 
-
+show_debug_message("fileloader Create, navTokenFieldList: " + scr_getStringOfList(obj_control.navTokenFieldList));
 // Used for auto-saving REZ's from CSVs
 alarm[6] = 10;

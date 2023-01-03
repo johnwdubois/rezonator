@@ -162,6 +162,8 @@ function scr_loadREZ() {
 					global.chainEntryFieldList = scr_loadListFromMap(map, "chainEntryFieldList", global.chainEntryFieldList);
 					global.chainFieldList = scr_loadListFromMap(map, "chainFieldList", global.chainFieldList);
 					obj_chain.cliqueList = scr_loadListFromMap(map, "cliqueList", obj_chain.cliqueList);
+					
+
 	
 		
 					// get displayTokenField & participantField
@@ -236,7 +238,7 @@ function scr_loadREZ() {
 	if (x1 == y1) show_debug_message("hello terry :)");
 	else show_debug_message("oh my god");
 	
-	// when opening a rez file, use full unit list (do not open )
+	// when opening a rez file, use full unit list (do not open)
 	var docNodeSubMap = global.nodeMap[? global.discourseNode];
 	if (scr_isNumericAndExists(docNodeSubMap, ds_type_map)) {
 		var fullUnitList = docNodeSubMap[? "unitList"];

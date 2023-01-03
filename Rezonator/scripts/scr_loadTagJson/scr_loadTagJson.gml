@@ -1,4 +1,7 @@
 function scr_loadTagJson(fileName){
+	
+	show_debug_message("scr_loadTagJson, fileName: " + string(fileName));
+	
 	if(!is_string(fileName)){
 		fileName = get_open_filename_ext("Tag file|*.json", "", global.rezonatorSchemaDirString, "Open Tag JSON");
 	}
@@ -67,18 +70,21 @@ function scr_loadTagJson(fileName){
 	var navTrack1to1FieldList = map[? "navTrack1to1FieldList"];
 	var navStack1to1FieldList = map[? "navStack1to1FieldList"];	
 	
-	if (scr_isNumericAndExists(navTokenFieldList, ds_type_list)) obj_control.navTokenFieldList = navTokenFieldList;
-	if (scr_isNumericAndExists(navUnitFieldList, ds_type_list)) obj_control.navUnitFieldList = navUnitFieldList;
-	if (scr_isNumericAndExists(navChunkFieldList, ds_type_list)) obj_control.navChunkFieldList = navChunkFieldList;
-	if (scr_isNumericAndExists(navRez1toManyFieldList, ds_type_list)) obj_control.chain1toManyColFieldListRez = navRez1toManyFieldList;
-	if (scr_isNumericAndExists(navTrack1toManyFieldList, ds_type_list)) obj_control.chain1toManyColFieldListTrack = navTrack1toManyFieldList;
-	if (scr_isNumericAndExists(navStack1toManyFieldList, ds_type_list)) obj_control.chain1toManyColFieldListStack = navStack1toManyFieldList;
-	if (scr_isNumericAndExists(navRez1to1FieldList, ds_type_list)) obj_control.chain1to1ColFieldListRez = navRez1to1FieldList;
-	if (scr_isNumericAndExists(navTrack1to1FieldList, ds_type_list)) obj_control.chain1to1ColFieldListTrack = navTrack1to1FieldList;
-	if (scr_isNumericAndExists(navStack1to1FieldList, ds_type_list)) obj_control.chain1to1ColFieldListStack = navStack1to1FieldList;
+	show_debug_message("scr_loadTagJson 1, navTokenFieldList: " + scr_getStringOfList(obj_control.navTokenFieldList));
+	
+	scr_setTagJsonFieldList(navTokenFieldList, obj_control.navTokenFieldList);
+	scr_setTagJsonFieldList(navUnitFieldList, obj_control.navUnitFieldList);
+	scr_setTagJsonFieldList(navChunkFieldList, obj_control.navChunkFieldList);
+	scr_setTagJsonFieldList(navRez1toManyFieldList, obj_control.chain1toManyColFieldListRez);
+	scr_setTagJsonFieldList(navTrack1toManyFieldList, obj_control.chain1toManyColFieldListTrack);
+	scr_setTagJsonFieldList(navStack1toManyFieldList, obj_control.chain1toManyColFieldListStack);
+	scr_setTagJsonFieldList(navRez1to1FieldList, obj_control.chain1to1ColFieldListRez);
+	scr_setTagJsonFieldList(navTrack1to1FieldList, obj_control.chain1to1ColFieldListTrack);
+	scr_setTagJsonFieldList(navStack1to1FieldList, obj_control.chain1to1ColFieldListStack);
+	
 	#endregion
 	
-	
+	show_debug_message("scr_loadTagJson 2, navTokenFieldList: " + scr_getStringOfList(obj_control.navTokenFieldList));
 
 
 	
