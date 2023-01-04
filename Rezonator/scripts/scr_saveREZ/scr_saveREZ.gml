@@ -33,6 +33,15 @@ function scr_saveREZ(autosave) {
 				exit;
 			}
 		}
+		else {
+			// if we have fileSaveName, but it is just the default REZ file directory, we prompt the user to save it in MyData
+			if (string_count(global.rezonatorREZFileDir, global.fileSaveName) > 0) {
+				if (!directory_exists(global.rezonatorMyREZFileDir)) directory_create(global.rezonatorMyREZFileDir);
+				if (directory_exists(global.rezonatorMyREZFileDir)) {
+					global.fileSaveName = get_save_filename_ext("REZ file|*.rez", "", global.rezonatorMyREZFileDir, "Save REZ");
+				}
+			}
+		}
 	}
 
 	// Prevent users from overwriting default discourse files

@@ -178,11 +178,9 @@ draw_set_valign(fa_middle);
 draw_text(floor(mean(openDirButtonX1, openDirButtonX2)), floor(mean(openDirButtonY1, openDirButtonY2)), openDirText);
 if (mouseoverOpenDirButton) {
 	if (mouse_check_button_released(mb_left)) {
-		if (directory_exists(global.rezonatorDirString)) {
-			var delimiter = os_type == os_macosx ? "/" : "\\"
-			var dir = global.rezonatorDirString + delimiter + "Data" + delimiter + "SBCorpus" + delimiter + "REZ";
-			show_debug_message("attempting to open folder: " + string(dir));
-			scr_openDirectory(dir);
+		if (directory_exists(global.rezonatorREZFileDir)) {
+			show_debug_message("attempting to open folder: " + string(global.rezonatorREZFileDir));
+			scr_openDirectory(global.rezonatorREZFileDir);
 		}
 		else {
 			show_message("This directory does not exist");

@@ -15,6 +15,8 @@ function scr_createRezDirectory() {
 	global.rezonatorDirString = global.documentsDirString + delimiter + "Rezonator" + delimiter + global.versionString;
 	global.rezonatorDefaultDiscourseDirString = global.rezonatorDirString + delimiter + "Data";
 	global.rezonatorSchemaDirString = global.rezonatorDirString + delimiter + "Schemas";
+	global.rezonatorREZFileDir = global.rezonatorDirString + delimiter + "Data" + delimiter + "SBCorpus" + delimiter + "REZ";
+	global.rezonatorMyREZFileDir = global.rezonatorDirString + delimiter + "Data" + delimiter + "MyData";
 	
 	// copy directory to user's Documents folder
 	ds_list_clear(global.dirCopyDebugList);
@@ -54,6 +56,10 @@ function scr_createRezDirectory() {
 	
 		if (!directory_exists(global.rezonatorSchemaDirString)) {
 			directory_create(global.rezonatorSchemaDirString);
+		}
+		
+		if (!directory_exists(global.rezonatorMyREZFileDir)) {
+			directory_create(global.rezonatorMyREZFileDir);
 		}
 	}
 }
