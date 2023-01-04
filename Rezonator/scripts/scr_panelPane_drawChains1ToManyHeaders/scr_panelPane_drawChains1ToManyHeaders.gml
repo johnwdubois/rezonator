@@ -75,7 +75,7 @@ function scr_panelPane_drawChains1ToManyHeaders(){
 					break;
 				case 1:
 					if (functionChainList_currentTab == functionChainList_tabStackBrush) {
-						colName = "participant"; // stacks
+						colName = scr_get_translation("participant"); // stacks
 					}
 					else {
 						colName = "tokenOrder"; // rez & track
@@ -83,7 +83,7 @@ function scr_panelPane_drawChains1ToManyHeaders(){
 					break;
 				case 2:
 					if (functionChainList_currentTab == functionChainList_tabStackBrush) {
-						colName = "menu_utterance"; // stacks
+						colName = scr_get_translation("menu_utterance"); // stacks
 					}
 					else {
 						colName = scr_get_translation("tag_text"); // rez & track

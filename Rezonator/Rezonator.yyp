@@ -41,7 +41,6 @@
     {"id":{"name":"spr_gridViewToggle","path":"sprites/spr_gridViewToggle/spr_gridViewToggle.yy",},"order":11,},
     {"id":{"name":"spr_justifyToggle","path":"sprites/spr_justifyToggle/spr_justifyToggle.yy",},"order":17,},
     {"id":{"name":"scr_randomChainColor","path":"scripts/scr_randomChainColor/scr_randomChainColor.yy",},"order":9,},
-    {"id":{"name":"libdlgmodule","path":"extensions/libdlgmodule/libdlgmodule.yy",},"order":3,},
     {"id":{"name":"scr_exportDiscourseTempGrid","path":"scripts/scr_exportDiscourseTempGrid/scr_exportDiscourseTempGrid.yy",},"order":12,},
     {"id":{"name":"scr_fieldChains1To1Options","path":"scripts/scr_fieldChains1To1Options/scr_fieldChains1To1Options.yy",},"order":65,},
     {"id":{"name":"spr_helpToggle","path":"sprites/spr_helpToggle/spr_helpToggle.yy",},"order":12,},

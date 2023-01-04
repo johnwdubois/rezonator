@@ -6,3 +6,5 @@ recentFilesWindowX2 = x;
 recentFilesWindowY2 = y;
 
 clickedIn = false;
+
+alarm[0] = 1;

@@ -15,10 +15,10 @@ var stringHeight = string_height("0");
 draw_set_color(global.colorThemeText);
 draw_set_halign(fa_left);
 
-scr_adaptFont(scr_get_translation("Recent Files"), "L");
-draw_text(recentFilesWindowX1, recentFilesWindowY1 - stringHeight, "Recent Files")
+var quickAccessTitle = scr_get_translation("menu_quick-access");
+scr_adaptFont(quickAccessTitle, "L");
+draw_text(recentFilesWindowX1, recentFilesWindowY1 - stringHeight, quickAccessTitle)
 
-//draw_line_width(recentFilesWindowX1,recentFilesWindowY1 - stringHeight/3,recentFilesWindowX1+ string_width("Recent Files"),recentFilesWindowY1 - stringHeight/3, 3);
 
 
 var mouseoverCancel = instance_exists(obj_dialogueBox) || instance_exists(obj_dropDown);
@@ -136,7 +136,7 @@ for (var i = 0; i < fileKeyListSize; i++) {
 }
 
 if(fileKeyListSize == 0 ){
-	draw_text(recentFilesWindowX1 + spaceWidth - clipX, floor(textY - clipY), "No recent files");
+	draw_text(recentFilesWindowX1 + spaceWidth - clipX, floor(textY - clipY), scr_get_translation("menu_no-recent"));
 }
 	
 // draw scrollbar only if we're not looking at field summary window

@@ -1,5 +1,3 @@
-
-
 function scr_addToRecentFiles(filePath){
 	
 	var fileName = filename_name(filePath);

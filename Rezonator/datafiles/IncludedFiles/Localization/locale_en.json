@@ -211,6 +211,8 @@
 	"menu_hide" : "Hide",
 	"menu_zoom" : "Zoom",
 	"menu_theme" : "Theme",
+	"menu_quick-access" : "Quick access",
+	"menu_no-recent" : "No recent files",
 	"help_description_link-word" : "Link word to chain",
 	"help_description_delete-link" : "Remove word from chain",
 	"help_description_track" : "Create track chain",

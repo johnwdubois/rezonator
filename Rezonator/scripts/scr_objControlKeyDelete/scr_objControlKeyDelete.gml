@@ -12,7 +12,7 @@ function scr_objControlKeyDelete(){
 
 	if (global.ctrlHold) {
 		
-		// if there is a valid chain focused, prompt a dialogue box to confirm deletion
+		// if there is a valid chain focused, prompt a dialogue box to confirm chain deletion
 		if (ds_map_exists(global.nodeMap, obj_chain.currentFocusedChainID) && obj_chain.currentFocusedChainID != "" && is_string(obj_chain.currentFocusedChainID)) {
 			if (!instance_exists(obj_dialogueBox)) {
 				instance_create_layer(x, y, "InstancesDialogue", obj_dialogueBox);
