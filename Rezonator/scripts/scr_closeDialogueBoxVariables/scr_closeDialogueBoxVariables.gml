@@ -94,6 +94,9 @@ function scr_closeDialogueBoxVariables(){
 			sideLinkTokenID = "";
 			openURLAbout = false;
 			openURLGuide = false;
+			deleteStack = false;
+			deleteRez = false;
+			deleteTrack = false;
 		}
 		with (obj_chain) {
 			mergeStackID = "";

@@ -362,6 +362,10 @@ function scr_dialogueConfirm(){
 				show_debug_message("scr_dialogueConfirm, openURLGuide");
 				url_open("https://johnwdubois.github.io/rezonator/");
 			}
+			
+			if (obj_control.deleteStack || obj_control.deleteRez || obj_control.deleteTrack) {
+				scr_deleteFromChain(true);
+			}
 		}
 		
 		scr_closeDialogueBoxVariables();

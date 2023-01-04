@@ -874,6 +874,10 @@ navWindowTaggingKeyboardInput = false;
 
 openURLGuide = false;
 openURLAbout = false;
+deleteStack = false;
+deleteRez = false;
+deleteTrack = false;
+
 
 sideLinkTokenID = "";
 

@@ -25,8 +25,28 @@ function scr_objControlKeyDelete(){
 	// If a normal delete, delete the singular focused link
 	else {
 
-	
-		scr_deleteFromChain(true);
+		if (is_string(obj_chain.currentFocusedChainID) && obj_chain.currentFocusedChainID != "") {
+			var focusedChainSubMap = global.nodeMap[? obj_chain.currentFocusedChainID];
+			if (scr_isNumericAndExists(focusedChainSubMap, ds_type_map)) {
+				var focusedChainSetIDList = focusedChainSubMap[? "setIDList"];
+				if (scr_isNumericAndExists(focusedChainSetIDList, ds_type_list)) {
+					if (ds_list_size(focusedChainSetIDList) >= 2) {
+						scr_deleteFromChain(true);
+					}
+					else {
+						var focusedChainType = focusedChainSubMap[? "type"];
+						if (focusedChainType == "resonance") obj_control.deleteRez = true;
+						else if (focusedChainType == "trail") obj_control.deleteTrack = true;
+						else if (focusedChainType == "stack") obj_control.deleteStack = true;
+						if (!instance_exists(obj_dialogueBox) && (obj_control.deleteRez || obj_control.deleteTrack || obj_control.deleteStack)) {
+							instance_create_layer(x, y, "InstancesDialogue", obj_dialogueBox);
+							obj_control.selectedChainID = obj_chain.currentFocusedChainID;
+							obj_dialogueBox.questionWindowActive = true;
+						}
+					}
+				}
+			}
+		}
 	
 		if (obj_chain.currentFocusedChunkID != "") {
 			scr_deleteChunk(obj_chain.currentFocusedChunkID);
