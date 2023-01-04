@@ -92,6 +92,8 @@ function scr_closeDialogueBoxVariables(){
 			saveBeforeGameEnd = false;
 			mergeToken = false;
 			sideLinkTokenID = "";
+			openURLAbout = false;
+			openURLGuide = false;
 		}
 		with (obj_chain) {
 			mergeStackID = "";

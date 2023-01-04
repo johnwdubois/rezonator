@@ -7,10 +7,20 @@ function scr_helpOptions(optionSelected) {
 			obj_panelPane.functionHelp_collapsed = !obj_panelPane.functionHelp_collapsed;
 			break;
 		case "menu_guide":// hide/show rez chains
-			url_open("https://johnwdubois.github.io/rezonator/");
+			if (!instance_exists(obj_dialogueBox)) {
+				instance_create_layer(x, y, "InstancesDialogue", obj_dialogueBox);
+				obj_dialogueBox.questionWindowActive = true;
+				obj_control.openURLGuide = true;
+			}
+			
 			break;
 		case "menu_about":// hide/show stack chains
-			url_open("http://rezonator.com/");
+			if (!instance_exists(obj_dialogueBox)) {
+				instance_create_layer(x, y, "InstancesDialogue", obj_dialogueBox);
+				obj_dialogueBox.questionWindowActive = true;
+				obj_control.openURLAbout = true;
+			}
+			
 			break;
 		default:
 			break;

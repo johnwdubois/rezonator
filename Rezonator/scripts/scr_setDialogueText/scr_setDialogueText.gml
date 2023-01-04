@@ -8,7 +8,15 @@ function scr_setDialogueText(){
 
 	
 	if(obj_dialogueBox.questionWindowActive){
-			
+		
+		if (instance_exists(obj_control)) {
+			if (obj_control.openURLAbout) {
+				descriptionText = scr_get_translation("msg_open-url-about");
+			}
+			if (obj_control.openURLGuide) {
+				descriptionText = scr_get_translation("msg_open-url-guide");
+			}
+		}
 		if(clearAllStacks) {
 			titleText = scr_get_translation("Clear Stacks");
 			descriptionText = scr_get_translation("msg_warning_clear_stacks");

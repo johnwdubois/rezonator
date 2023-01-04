@@ -872,6 +872,9 @@ navWindowTaggingEscape = false;
 navWindowTaggingSingleOptionSelect = false;
 navWindowTaggingKeyboardInput = false;
 
+openURLGuide = false;
+openURLAbout = false;
+
 sideLinkTokenID = "";
 
 mouseoverBackArrow = false;

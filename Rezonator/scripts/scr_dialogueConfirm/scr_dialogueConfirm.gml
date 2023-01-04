@@ -353,6 +353,15 @@ function scr_dialogueConfirm(){
 			if (obj_control.mergeToken) {
 				scr_mergeToken(obj_control.rightClickID);
 			}
+			
+			if (obj_control.openURLAbout) {
+				show_debug_message("scr_dialogueConfirm, openURLAbout");
+				url_open("http://rezonator.com/");
+			}
+			else if (obj_control.openURLGuide) {
+				show_debug_message("scr_dialogueConfirm, openURLGuide");
+				url_open("https://johnwdubois.github.io/rezonator/");
+			}
 		}
 		
 		scr_closeDialogueBoxVariables();
