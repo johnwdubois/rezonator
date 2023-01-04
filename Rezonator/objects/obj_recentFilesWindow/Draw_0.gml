@@ -53,20 +53,6 @@ for (var i = 0; i < fileKeyListSize; i++) {
 	
 	
 	
-			
-	var removeScale = 0.8;
-	var removeButtonWidth = sprite_get_width(spr_xButton)*removeScale; 
-	var removeButtonX2 = lineX2 - removeButtonWidth/2; 
-	var removeButtonX1 = removeButtonX2 - removeButtonWidth; 
-	var removeButtonY1 = lineY1 + removeButtonWidth/2; 
-	var removeButtonY2 = removeButtonY1 + removeButtonWidth; 
-
-	var mouseOverRemove = point_in_rectangle(mouse_x, mouse_y, removeButtonX1, removeButtonY1, removeButtonX2, removeButtonY2) && mouseOverWindow;
-	
-	
-	
-	
-	
 		
 	draw_set_color(global.colorThemeText);
 	// draw text for this cell
@@ -88,35 +74,79 @@ for (var i = 0; i < fileKeyListSize; i++) {
 		ds_list_delete(global.recentFilesList,i);			
 	}
 	
-	var mouseOverRow = point_in_rectangle(mouse_x, mouse_y, lineX1,lineY1,lineX2,lineY2) && mouseOverWindow;
-	if(mouseOverRow){
+	var mouseOverRow = point_in_rectangle(mouse_x, mouse_y, lineX1, lineY1, lineX2, lineY2) && mouseOverWindow;
+	if (mouseOverRow) {
 		draw_set_color(c_white);
 		draw_roundrect(lineX1 - clipX,lineY1 - clipY,lineX2 - clipX,lineY2 - clipY, false);
 		
-		if(mouseOverRemove){
+		// remove from recent files button
+		var removeScale = 0.8;
+		var removeButtonWidth = sprite_get_width(spr_xButton)*removeScale; 
+		var removeButtonX2 = lineX2 - removeButtonWidth/2; 
+		var removeButtonX1 = removeButtonX2 - removeButtonWidth; 
+		var removeButtonY1 = lineY1 + removeButtonWidth/2; 
+		var removeButtonY2 = removeButtonY1 + removeButtonWidth;
+		var mouseOverRemove = point_in_rectangle(mouse_x, mouse_y, removeButtonX1, removeButtonY1, removeButtonX2, removeButtonY2) && mouseOverWindow;
+		if (mouseOverRemove) {
 			draw_set_color(global.colorThemeSelected1);
-			draw_roundrect(removeButtonX1- clipX, removeButtonY1- clipY, removeButtonX2- clipX, removeButtonY2- clipY, false);
-		
-			if(mouse_check_button_released(mb_left)){
-			
+			draw_roundrect(removeButtonX1 - clipX, removeButtonY1 - clipY, removeButtonX2 - clipX, removeButtonY2 - clipY, false);
+			scr_createTooltip(floor(mean(removeButtonX1, removeButtonX2)), removeButtonY2, scr_get_translation("menu_remove-quick-access"), obj_tooltip.arrowFaceUp);
+			if (mouse_check_button_released(mb_left)) {
 				scr_deleteFromList(global.recentFilesList, fileKey);
 				scr_saveINI();
+			}
+		}	
 		
+		// copy filepath button
+		var copyButtonX2 = removeButtonX1 - (removeButtonWidth / 2);
+		var copyButtonY1 = removeButtonY1;
+		var copyButtonX1 = copyButtonX2 - removeButtonWidth;
+		var copyButtonY2 = removeButtonY2;
+		var mouseOverCopyFilePath = point_in_rectangle(mouse_x, mouse_y, copyButtonX1, copyButtonY1, copyButtonX2, copyButtonY2) && mouseOverWindow;
+		if (mouseOverCopyFilePath) {
+			draw_set_color(global.colorThemeSelected1);
+			draw_roundrect(copyButtonX1 - clipX, copyButtonY1 - clipY, copyButtonX2 - clipX, copyButtonY2 - clipY, false);
+			scr_createTooltip(floor(mean(copyButtonX1, copyButtonX2)), copyButtonY2, scr_get_translation("menu_copy-filepath"), obj_tooltip.arrowFaceUp);
+			if (mouse_check_button_released(mb_left)) {
+				clipboard_set_text(filePath);
 			}
 		}
+		draw_sprite_ext(spr_copyButton, 0, floor(mean(copyButtonX1, copyButtonX2)) - clipX, floor(mean(copyButtonY1, copyButtonY2)) - clipY, 1, 1, 0, global.colorThemeText, 1);
 		
-		if (mouse_check_button_released(mb_left) && (inputDelay == 0) && !mouseOverRemove) {
+		// show file button
+		var showFileButtonX2 = copyButtonX1 - (removeButtonWidth / 2);
+		var showFileButtonY1 = removeButtonY1;
+		var showFileButtonX1 = showFileButtonX2 - removeButtonWidth;
+		var showFileButtonY2 = removeButtonY2;
+		var mouseOverShowFilePath = point_in_rectangle(mouse_x, mouse_y, showFileButtonX1, showFileButtonY1, showFileButtonX2, showFileButtonY2) && mouseOverWindow;
+		if (mouseOverShowFilePath) {
+			draw_set_color(global.colorThemeSelected1);
+			draw_roundrect(showFileButtonX1 - clipX, showFileButtonY1 - clipY, showFileButtonX2 - clipX, showFileButtonY2 - clipY, false);
+			scr_createTooltip(floor(mean(showFileButtonX1, showFileButtonX2)), showFileButtonY2, os_type == os_windows ? scr_get_translation("menu_show-file-windows") : scr_get_translation("menu_show-file-macos"), obj_tooltip.arrowFaceUp);
+			if (mouse_check_button_released(mb_left)) {
+				var fileDir = string_replace_all(filePath, fileName, "");
+				scr_openDirectory(fileDir);
+			}
+		}
+		draw_sprite_ext(spr_openButton, 0, floor(mean(showFileButtonX1, showFileButtonX2)) - clipX, floor(mean(showFileButtonY1, showFileButtonY2)) - clipY, 1, 1, 0, global.colorThemeText, 1);
+		
+		
+		// click on row to open up file
+		if (mouse_check_button_released(mb_left) && (inputDelay == 0) && !mouseOverRemove && !mouseOverCopyFilePath && !mouseOverShowFilePath) {
 			global.selectedFile = filePath;
 			global.openProject = true
 			global.userName = obj_openingScreen.inputText;
 		}
+		
 	}
+	
+	
 	
 	draw_set_color(global.colorThemeText);
 	draw_set_halign(fa_left);
 	
-	if(mouseOverRow)draw_sprite_ext(spr_xButton,0,mean(removeButtonX1, removeButtonX2)- clipX,mean(removeButtonY1, removeButtonY2)- clipY,removeScale,removeScale,0,global.colorThemeText,1);
-
+	if (mouseOverRow) draw_sprite_ext(spr_xButton, 0, mean(removeButtonX1, removeButtonX2) - clipX, mean(removeButtonY1, removeButtonY2) - clipY, removeScale, removeScale, 0, global.colorThemeText, 1);
+	
 	scr_adaptFont(scr_get_translation(fileName), "L");
 	draw_text(fileTextX - clipX, floor(textY- stringHeight/2 - clipY), scr_get_translation(string(fileName)));
 	scr_adaptFont(scr_get_translation(fileName), "S");

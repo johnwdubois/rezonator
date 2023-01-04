@@ -31,7 +31,7 @@ function scr_summaryWindow() {
 		}
 		else if (i == 1) {
 			if (lineCount < 1) continue;
-			currentStr = scr_get_translation("label_total_line") + string(lineCount);
+			currentStr = scr_get_translation("label_total_line") + " " + string(lineCount);
 		}
 		else if (i == 2) {
 			if (blockCount < 1) continue;
@@ -39,7 +39,7 @@ function scr_summaryWindow() {
 		}
 		else if (i == 3) {
 			if (fieldCount < 1) continue;
-			currentStr = scr_get_translation("label_markers_found") + string(fieldCount);
+			currentStr = scr_get_translation("label_markers_found") + " " + string(fieldCount);
 		}
 		else if (i == 4) {
 			if (blockTypes < 1) continue;
