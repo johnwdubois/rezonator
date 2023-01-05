@@ -503,36 +503,19 @@ gridSpaceHorizontal = clamp(gridSpaceHorizontal, gridSpaceHorizontalMin, gridSpa
 gridSpaceVertical = clamp(gridSpaceVertical, gridSpaceVerticalMin, gridSpaceVerticalMax);
 
 
-
-if (keyboard_check(vk_alt) and keyboard_check(vk_shift) and keyboard_check_pressed(ord("Q")) ) {
-
-
+// exit with SHIFT+Q
+if (keyboard_check(vk_shift) and keyboard_check_pressed(ord("Q")) ) {
 	audio_stop_all();
-
-	
-	if (!allSaved) {
-		
-		if (os_type == os_macosx) {
-
-			with (obj_fileLoader) {
-				scr_saveREZ(false);
-			}
-		
-		}
-		else {
-			if (show_question(scr_get_translation("msg_warning_save-prompt"))) {
-				with (obj_fileLoader) {
-					scr_saveREZ(false);
-				}
-			}
-		}
+	if (allSaved) {
+		scr_saveINI();
+		keyboard_string = "";
+		show_debug_message("Going to openingScreen, obj_control Step");
+		room_goto(rm_openingScreen);
+		scr_loadINI();
 	}
-	
-	scr_saveINI();
-	keyboard_string = "";
-	show_debug_message("Going to openingScreen, obj_control Step");
-	room_goto(rm_openingScreen);
-	scr_loadINI();
+	else {
+		scr_fileOptions("menu_exit");
+	}
 }
 
 

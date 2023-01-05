@@ -60,18 +60,17 @@ ds_list_add(filterOptionList, "menu_filter",
 
 
 toolsOptionList = ds_list_create();
-ds_list_add(toolsOptionList,"menu_search", 
+ds_list_add(toolsOptionList,"menu_stacker",
+							"menu_search", 
 							"menu_track",
 							"menu_resonance",
-							"help_label_tag",
-							"menu_stacker");
+							"help_label_tag");
 
 settingsOptionList = ds_list_create();
-ds_list_add(settingsOptionList, "menu_user", 
+ds_list_add(settingsOptionList, "menu_language",
 								"menu_zoom",
-								"menu_theme",  
-								"menu_language", 
-								"menu_autosave", 
+								"menu_theme", 
+								"menu_autosave",
 								"menu_advanced"); // "Delete All","Autosave");
 
 helpOptionList = ds_list_create();
