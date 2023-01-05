@@ -20,13 +20,11 @@ function scr_drawToolPane(toolSprScale) {
 	var contextFlyoutExists = false;
 	var shapeFlyoutExists = false;
 	var justifyFlyoutExists = false;
-	var oneToOneFlyoutExists = false;
 	if (instance_exists(obj_flyout)) {
 		toolFlyoutExists = (obj_flyout.optionListType == global.optionListTypeToolButton);
 		contextFlyoutExists = (obj_flyout.optionListType == global.optionListTypeContext);
 		shapeFlyoutExists = (obj_flyout.optionListType == global.optionListTypeProse);
 		justifyFlyoutExists = (obj_flyout.optionListType == global.optionListTypeJustifyProse);
-		oneToOneFlyoutExists = (obj_flyout.optionListType == global.optionListType1to1);
 	}
 
 	
@@ -191,7 +189,7 @@ function scr_drawToolPane(toolSprScale) {
 	
 	var mouseoverOneToOne = point_in_rectangle(mouse_x, mouse_y, oneToOneButtonRectX1, oneToOneButtonRectY1, oneToOneButtonRectX2, oneToOneButtonRectY2) && !mouseoverCancel;
 	
-	if (mouseoverOneToOne || oneToOneFlyoutExists) {
+	if (mouseoverOneToOne) {
 		draw_set_color(c_white);
 		scr_drawRectWidth(oneToOneButtonRectX1, oneToOneButtonRectY1, oneToOneButtonRectX2, oneToOneButtonRectY2, mouseoverRectWidth , false);
 	}
@@ -200,9 +198,8 @@ function scr_drawToolPane(toolSprScale) {
 		scr_createTooltip(oneToOneButtonRectX1, oneToOneButtonY, !obj_panelPane.chainViewOneToMany ? scr_get_translation("option_one-to-one") : scr_get_translation("option_one-to-many"), obj_tooltip.arrowFaceRight);
 		
 		if (mouse_check_button_released(mb_left)) {
-			var oneToOneOptionList = ds_list_create();
-			ds_list_add(oneToOneOptionList, "option_one-to-one", "option_one-to-many");
-			scr_createFlyout(oneToOneButtonRectX1 - flyoutXBuffer, oneToOneButtonY, oneToOneOptionList, global.optionListType1to1, spr_oneToOneTool, false);
+			var current1ToMany = obj_panelPane.chainViewOneToMany;
+			with (obj_panelPane) chainViewOneToMany = !current1ToMany;
 		}
 	}
 	
