@@ -400,6 +400,7 @@ ds_map_add(global.checkDropdownMap, "menu_off", false);
 ds_map_add(global.checkDropdownMap, "word_tip", false);
 ds_map_add(global.checkDropdownMap, "help_label_tag", false);
 ds_map_add(global.checkDropdownMap, "tab_name_chunk", false);
+ds_map_add(global.checkDropdownMap, "menu_help", false);
 
 
 //checkmarkKeys = [];

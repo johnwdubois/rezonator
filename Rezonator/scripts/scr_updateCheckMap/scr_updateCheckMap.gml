@@ -42,6 +42,11 @@ function scr_updateCheckMap(optionText){
 				global.checkDropdownMap[?optionText] = !obj_control.hideChunks;
 			}
 		}
+		if (instance_exists(obj_panelPane)) {
+			if (optionListType == global.optionListTypeHelp) {
+				global.checkDropdownMap[? "menu_help"] = !obj_panelPane.functionHelp_collapsed;
+			}
+		}
 		if(instance_exists(obj_chain)){
 
 			ds_map_replace(global.checkDropdownMap, "menu_track-arrows", obj_chain.showTrackArrows);
