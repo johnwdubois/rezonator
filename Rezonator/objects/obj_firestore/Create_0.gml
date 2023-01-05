@@ -1,5 +1,4 @@
-coolMap = ds_map_create();
-
 newVersionStr = "";
 newestVersionNum = "";
-alarm[0] = 2;
+initialVersionCheck = false;
+if (room == rm_openingScreen) alarm[0] = 2;

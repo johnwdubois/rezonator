@@ -101,6 +101,11 @@ if (instance_exists(obj_openingScreen)) {
 		okText = "help_label_download";
 	}
 }
+else if (instance_exists(obj_control)) {
+	if (obj_control.downloadDialogue) {
+		okText = "help_label_download";
+	}
+}
 else if (noButtonActive) okText = "msg_yes";
 okText = scr_get_translation(okText);
 draw_text(floor(mean(okRectX1, okRectX2)), floor(mean(buttonY1, buttonY2)), okText);

@@ -97,6 +97,7 @@ function scr_closeDialogueBoxVariables(){
 			deleteStack = false;
 			deleteRez = false;
 			deleteTrack = false;
+			downloadDialogue = false;
 		}
 		with (obj_chain) {
 			mergeStackID = "";
@@ -115,6 +116,10 @@ function scr_closeDialogueBoxVariables(){
 			noPsentFound = false;
 			insertAnyNumber = false;
 			mergeUnitDifferingParticipants = false;
+			versionUpToDate = false;
+		}
+		with (obj_openingScreen) {
+			versionUpToDate = false;
 		}
 		mergeStack = false;
 		chunkAlreadyExists = false;

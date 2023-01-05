@@ -874,6 +874,8 @@ navWindowTaggingKeyboardInput = false;
 
 openURLGuide = false;
 openURLAbout = false;
+downloadDialogue = false;
+versionUpToDate = false;
 deleteStack = false;
 deleteRez = false;
 deleteTrack = false;

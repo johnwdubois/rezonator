@@ -1,9 +1,16 @@
 function scr_setDialogueText(){
 	
-	if (room == rm_openingScreen && descriptionText == "") {
-		titleText = instance_exists(obj_firestore) ? obj_firestore.newVersionStr : "";
-		descriptionText = scr_get_translation("msg_new-version-available");
-		exit;
+	if (room == rm_openingScreen) {
+		if (obj_openingScreen.downloadDialogue) {
+			titleText = instance_exists(obj_firestore) ? obj_firestore.newVersionStr : "";
+			descriptionText = scr_get_translation("msg_new-version-available");
+			exit;
+		}
+		else if (obj_openingScreen.versionUpToDate) {
+			titleText = global.versionString;
+			descriptionText = scr_get_translation("msg_version-up-to-date");
+			exit;
+		}
 	}
 
 	
@@ -27,6 +34,10 @@ function scr_setDialogueText(){
 			else if (obj_control.deleteStack) {
 				titleText = scr_get_translation("msg_clear-current-chain");
 				descriptionText = scr_get_translation("msg_warning_clear_focused_stack");
+			}
+			else if (obj_control.downloadDialogue) {
+				titleText = instance_exists(obj_firestore) ? obj_firestore.newVersionStr : "";
+				descriptionText = scr_get_translation("msg_new-version-available");
 			}
 		}
 		if(clearAllStacks) {
@@ -352,6 +363,10 @@ function scr_setDialogueText(){
 			if (obj_control.mergeUnitDifferingParticipants) {
 				titleText = "Merge units"; // localize
 				descriptionText = "Different participants: Cannot merge units"; // localize
+			}
+			if (obj_control.versionUpToDate) {
+				titleText = global.versionString;
+				descriptionText = scr_get_translation("msg_version-up-to-date");
 			}
 		}
 		if (mergeStack) {

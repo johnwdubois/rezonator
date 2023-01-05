@@ -318,6 +318,7 @@ ds_map_add(global.openingScreenDropDownMap, "menu_theme", true);
 ds_map_add(global.openingScreenDropDownMap, "menu_zoom", true);
 ds_map_add(global.openingScreenDropDownMap, "help_label_zoom-in", true);
 ds_map_add(global.openingScreenDropDownMap, "help_label_zoom-out", true);
+ds_map_add(global.openingScreenDropDownMap, "menu_check-updates", true);
 ds_map_add(global.openingScreenDropDownMap, "menu_language", true);
 ds_map_add(global.openingScreenDropDownMap, "menu_language-en", true);
 ds_map_add(global.openingScreenDropDownMap, "menu_language-ca", true);
@@ -429,6 +430,7 @@ global.dirCopyDebugList = ds_list_create();
 downloadDialogue = false;
 showDownloadDialogue = false;
 alreadyShownDownloadDialogue = false;
+versionUpToDate = false;
 
 global.CoNLLUwithMeta = false;
 global.schemaNavTokenFieldList = -1;

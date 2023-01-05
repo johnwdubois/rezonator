@@ -25,7 +25,12 @@ function scr_helpOptions(optionSelected) {
 			
 		case "menu_check-updates":
 			show_debug_message("Checking for update...");
-			
+			if (instance_exists(obj_firestore)) {
+				with (obj_firestore) {
+					var docPath = "Platforms/"+ string(global.buildType);
+					FirebaseFirestore(docPath).Read();
+				}
+			}
 			break;
 		default:
 			break;

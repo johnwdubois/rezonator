@@ -9,6 +9,14 @@ function scr_dialogueConfirm(){
 		instance_destroy();
 		exit;
 	}
+	else if (instance_exists(obj_control)) {
+		if (obj_control.downloadDialogue) {
+			url_open("https://rezonator.com/download/");
+		}
+		scr_closeDialogueBoxVariables();
+		instance_destroy();
+		exit;	
+	}
 	
 	// if this is an alert window, we just need to close out of the dialogue box
 	if (alertWindowActive) {

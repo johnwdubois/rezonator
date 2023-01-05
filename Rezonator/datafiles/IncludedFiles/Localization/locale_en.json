@@ -588,6 +588,7 @@
 	"msg_clear-resonance" : "Clear resonance chains",
 	"msg_clear-stacks" : "Clear stacks",
 	"msg_new-version-available" : "A new version of Rezonator is available! Would you like to download it?",
+	"msg_version-up-to-date" : "You are currently using the latest version of Rezonator",
 	"msg_open-url-about" : "You are about to open rezonator.com",
 	"msg_open-url-guide" : "You are about to open johnwdubois.github.io/rezonator/",
 	"label_version" : "Version"
