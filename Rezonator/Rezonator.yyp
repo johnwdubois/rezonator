@@ -372,6 +372,7 @@
     {"id":{"name":"scr_navOptions","path":"scripts/scr_navOptions/scr_navOptions.yy",},"order":43,},
     {"id":{"name":"scr_preImportInitiate","path":"scripts/scr_preImportInitiate/scr_preImportInitiate.yy",},"order":1,},
     {"id":{"name":"scr_chainDeselect","path":"scripts/scr_chainDeselect/scr_chainDeselect.yy",},"order":9,},
+    {"id":{"name":"window_command_hook","path":"extensions/window_command_hook/window_command_hook.yy",},"order":6,},
     {"id":{"name":"scr_fieldOptions","path":"scripts/scr_fieldOptions/scr_fieldOptions.yy",},"order":75,},
     {"id":{"name":"scr_setRezMap","path":"scripts/scr_setRezMap/scr_setRezMap.yy",},"order":29,},
     {"id":{"name":"scr_addToNodeMap","path":"scripts/scr_addToNodeMap/scr_addToNodeMap.yy",},"order":0,},
@@ -620,7 +621,6 @@
     {"id":{"name":"FirebaseREST_HTTP_Success_Firestore","path":"scripts/FirebaseREST_HTTP_Success_Firestore/FirebaseREST_HTTP_Success_Firestore.yy",},"order":19,},
     {"id":{"name":"scr_panelPane_drawChains1ToManyHeaders","path":"scripts/scr_panelPane_drawChains1ToManyHeaders/scr_panelPane_drawChains1ToManyHeaders.yy",},"order":14,},
     {"id":{"name":"obj_mapViewerNodeList","path":"objects/obj_mapViewerNodeList/obj_mapViewerNodeList.yy",},"order":8,},
-    {"id":{"name":"window_command_hook","path":"extensions/window_command_hook/window_command_hook.yy",},"order":2,},
     {"id":{"name":"obj_regular_expression_edge","path":"objects/obj_regular_expression_edge/obj_regular_expression_edge.yy",},"order":0,},
     {"id":{"name":"scr_setValueForAllChains","path":"scripts/scr_setValueForAllChains/scr_setValueForAllChains.yy",},"order":28,},
     {"id":{"name":"scr_expandableDropDownInit","path":"scripts/scr_expandableDropDownInit/scr_expandableDropDownInit.yy",},"order":1,},
@@ -933,6 +933,7 @@
     {"resourceType":"GMIncludedFile","resourceVersion":"1.0","name":"sbc059.rez","CopyToMask":-1,"filePath":"datafiles/IncludedFiles/Data/SBCorpus/REZ",},
     {"resourceType":"GMIncludedFile","resourceVersion":"1.0","name":"sbc060.rez","CopyToMask":-1,"filePath":"datafiles/IncludedFiles/Data/SBCorpus/REZ",},
     {"resourceType":"GMIncludedFile","resourceVersion":"1.0","name":"locale_en.json","CopyToMask":-1,"filePath":"datafiles/IncludedFiles/Localization",},
+    {"resourceType":"GMIncludedFile","resourceVersion":"1.0","name":"window_command_hook.html","CopyToMask":-1,"filePath":"datafiles",},
   ],
   "MetaData": {
     "IDEVersion": "2022.11.1.56",

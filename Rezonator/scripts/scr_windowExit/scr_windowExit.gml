@@ -1,5 +1,3 @@
-
-
 function scr_windowExit(){
 	
 	if (window_command_check(window_command_close)) {
