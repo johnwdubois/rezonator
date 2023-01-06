@@ -12,7 +12,7 @@ function scr_fillHelpMenuGrid(){
 		controlStr = "CMD";
 	}
 
-	var helpMenuHeight = 10;
+	var helpMenuHeight = 9;
 	ds_grid_resize(functionHelp_menuGrid, functionHelp_menuGridWidth, helpMenuHeight);
 
 	ds_grid_set(functionHelp_menuGrid, functionHelp_menuGrid_colName, 0, "help_header_link");
@@ -61,10 +61,6 @@ function scr_fillHelpMenuGrid(){
 	ds_grid_set(functionHelp_menuGrid, functionHelp_menuGrid_colCollapsed, 8, true);
 	ds_grid_set(functionHelp_menuGrid, functionHelp_menuGrid_colGrid, 8, functionHelp_helpGridAdvanced);
 
-	ds_grid_set(functionHelp_menuGrid, functionHelp_menuGrid_colName, 9, "menu_about");
-	ds_grid_set(functionHelp_menuGrid, functionHelp_menuGrid_colHide, 9, false);
-	ds_grid_set(functionHelp_menuGrid, functionHelp_menuGrid_colCollapsed, 9, true);
-	ds_grid_set(functionHelp_menuGrid, functionHelp_menuGrid_colGrid, 9, functionHelp_helpGridAbout);
 
 
 
@@ -342,18 +338,6 @@ function scr_fillHelpMenuGrid(){
 	ds_grid_set(functionHelp_helpGridAdvanced, functionHelp_helpGrid_colHide, 1, false);
 
 
-	var helpGridHeightAbout = 2;
-	ds_grid_resize(functionHelp_helpGridAbout, functionHelp_helpGridWidth, helpGridHeightAbout);
-
-	ds_grid_set(functionHelp_helpGridAbout, functionHelp_helpGrid_colKey, 0, "xxx");
-	ds_grid_set(functionHelp_helpGridAbout, functionHelp_helpGrid_colFunc, 0, "help_label_download");
-	ds_grid_set(functionHelp_helpGridAbout, functionHelp_helpGrid_colDesc, 0, "help_description_download");
-	ds_grid_set(functionHelp_helpGridAbout, functionHelp_helpGrid_colHide, 0, false);
-
-	ds_grid_set(functionHelp_helpGridAbout, functionHelp_helpGrid_colKey, 1, "xxx");
-	ds_grid_set(functionHelp_helpGridAbout, functionHelp_helpGrid_colFunc, 1, "help_label_about");
-	ds_grid_set(functionHelp_helpGridAbout, functionHelp_helpGrid_colDesc, 1, "help_description_rezonator-dot-com");
-	ds_grid_set(functionHelp_helpGridAbout, functionHelp_helpGrid_colHide, 1, false);
 
 
 

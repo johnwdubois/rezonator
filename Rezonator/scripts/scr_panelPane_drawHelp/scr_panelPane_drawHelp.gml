@@ -12,6 +12,8 @@ function scr_panelPane_drawHelp() {
 	var toggleButtonAmount = 2;
 	var helpMenuGridHeight = ds_grid_height(functionHelp_menuGrid);
 	var collapseButtonRad = string_height("A") * 0.5;
+	
+	var mouseoverCancel = instance_exists(obj_dropDown) || instance_exists(obj_dialogueBox) || mouseoverScrollBar || scrollBarHolding;
 
 
 
@@ -51,7 +53,7 @@ function scr_panelPane_drawHelp() {
 		functionHelp_helpWindowRectX2 = helpWindowX2;
 		functionHelp_helpWindowRectY2 = helpWindowY2;
 	
-		if (point_in_rectangle(mouse_x, mouse_y, helpWindowX1, helpWindowY1, helpWindowX2, helpWindowY2)) {
+		if (point_in_rectangle(mouse_x, mouse_y, helpWindowX1, helpWindowY1, helpWindowX2, helpWindowY2) && !mouseoverCancel) {
 			if (!functionHelp_collapsed) {
 				obj_control.mouseoverHelpPane = true;
 			}
@@ -211,7 +213,7 @@ function scr_panelPane_drawHelp() {
 							draw_set_color(global.colorThemeText);
 						
 							// Check for mouseoverHelp over content, if so, then show extra content
-							if(point_in_rectangle(mouse_x, mouse_y, cellRectX1, cellRectY1, cellRectX2, cellRectY2)) {
+							if (point_in_rectangle(mouse_x, mouse_y, cellRectX1, cellRectY1, cellRectX2, cellRectY2) && !mouseoverCancel) {
 								draw_rectangle(cellRectX1 - clipX, cellRectY1 - clipY, cellRectX2 - clipX, cellRectY2 + cellHeight - 1 - clipY, true);
 								if (j mod 2) {
 									draw_set_color(global.colorThemeBG);
