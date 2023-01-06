@@ -49,8 +49,8 @@ global.skipToImportScreen = false;
 global.skipToOpen = false;
 
 var defStr = "";
-defStr = (global.userName == "") ? scr_get_translation("msg_signin") : global.userName;
-global.inputBoxDefStr = defStr;
+defStr = (global.userName == "") ? "" : global.userName;
+global.inputBoxDefStr = "";
 
 scr_initializeFonts();
 scr_fontGlobalUpdate();

@@ -51,7 +51,7 @@ function scr_openingMenu() {
 	if (_selectOpenButton) {
 		global.newProject = false;
 		global.openProject = true;
-		global.userName = obj_openingScreen.inputText;
+		global.userName = obj_openingScreen.inputText == "" ? "Unknown" : obj_openingScreen.inputText;
 	}
 	
 	// draw open button
@@ -87,7 +87,7 @@ function scr_openingMenu() {
 		if (device_mouse_check_button_released(0, mb_left)) {
 			global.newProject = true;
 			global.openProject = false;
-			global.userName = obj_openingScreen.inputText;
+			global.userName = obj_openingScreen.inputText == "" ? "Unknown" : obj_openingScreen.inputText;
 		}
 	}
 	

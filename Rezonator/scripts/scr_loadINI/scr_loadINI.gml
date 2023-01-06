@@ -78,6 +78,7 @@ function scr_loadINI() {
 
 				if (global.rememberMe) {
 					global.userName = string(ds_map_find_value(map, "userName"));
+					if (!is_string(global.userName) || global.userName == "") global.userName = "Unknown";
 
 				}
 

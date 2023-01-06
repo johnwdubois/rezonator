@@ -1,10 +1,11 @@
-
-
 function scr_nodeMapSetChainValues(nodeID, chainName, chainColor, chainSeq) {
 	
 	// find subMap for this chain
 	var subMap = ds_map_find_value(global.nodeMap, nodeID);
 	if (ds_exists(subMap, ds_type_map)) {
+		
+		// get author
+		if (!is_string(global.userName) || global.userName == "") global.userName = "Unknown";
 		
 		// add chain values to subMap
 		ds_map_add(subMap, "name", chainName);
