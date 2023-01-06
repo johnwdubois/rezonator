@@ -108,6 +108,10 @@ function scr_closeDialogueBoxVariables(){
 			confirmStackCreate = false;
 			confirmStackName = false;
 		}
+		with (obj_openingScreen) {
+			openURLGuide = false;
+			openURLAbout = false;
+		}
 	}
 	if (alertWindowActive) {
 		with (obj_control) {

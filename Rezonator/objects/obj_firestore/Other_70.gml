@@ -40,7 +40,10 @@ if (async_load[? "type"] == "FirebaseFirestore_Document_Read") {
 					// recommend downloading new version
 					show_debug_message("CHECK OUT MY NEW REZONATOR PLEASE");
 					if (room == rm_openingScreen) {
-						with (obj_openingScreen) showDownloadDialogue = true;
+						with (obj_openingScreen) {
+							showDownloadDialogue = true;
+							alreadyShownDownloadDialogue = false;
+						}
 					}
 					else if (room == rm_mainScreen) {
 						if (!instance_exists(obj_dialogueBox)) {

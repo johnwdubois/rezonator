@@ -10,7 +10,8 @@ function scr_helpOptions(optionSelected) {
 			if (!instance_exists(obj_dialogueBox)) {
 				instance_create_layer(x, y, "InstancesDialogue", obj_dialogueBox);
 				obj_dialogueBox.questionWindowActive = true;
-				obj_control.openURLGuide = true;
+				with (obj_control) openURLGuide = true;
+				with (obj_openingScreen) openURLGuide = true;
 			}
 			
 			break;
@@ -18,7 +19,8 @@ function scr_helpOptions(optionSelected) {
 			if (!instance_exists(obj_dialogueBox)) {
 				instance_create_layer(x, y, "InstancesDialogue", obj_dialogueBox);
 				obj_dialogueBox.questionWindowActive = true;
-				obj_control.openURLAbout = true;
+				with (obj_control) openURLAbout = true;
+				with (obj_openingScreen) openURLAbout = true;
 			}
 			
 			break;

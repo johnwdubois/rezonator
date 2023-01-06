@@ -380,7 +380,7 @@
 	"error_unit" : "Unit",
 	"msg_error_loading" : "Error loading",
 	"menu_remember" : "Remember me",
-	"msg_signin" : "User sign In",
+	"msg_signin" : "User sign in",
 	"msg_saving-error" : "Error in saving",
 	"msg_saving-rez-directory" : "Error in saving. Please save outside of Rezonator program directory.",
 	"msg_saving-default-directory" : "Error in saving. Please save file outside of Default Discourse folder",
@@ -589,7 +589,7 @@
 	"msg_clear-stacks" : "Clear stacks",
 	"msg_new-version-available" : "A new version of Rezonator is available! Would you like to download it?",
 	"msg_version-up-to-date" : "You are currently using the latest version of Rezonator",
-	"msg_open-url-about" : "You are about to open rezonator.com",
-	"msg_open-url-guide" : "You are about to open johnwdubois.github.io/rezonator/",
+	"msg_open-url-about" : "Go to website: rezonator.com",
+	"msg_open-url-guide" : "Go to website: johnwdubois.github.io/rezonator/",
 	"label_version" : "Version"
 }

@@ -197,7 +197,7 @@ var openDirButtonX1 = recentFilesWindowX1;
 var openDirButtonY1 = recentFilesWindowY2 + string_height("A") * 0.5;
 var openDirButtonX2 = openDirButtonX1 + string_width("  " + openDirText);
 var openDirButtonY2 = openDirButtonY1 + string_height("A");
-var mouseoverOpenDirButton = point_in_rectangle(mouse_x, mouse_y, openDirButtonX1, openDirButtonY1, openDirButtonX2, openDirButtonY2);
+var mouseoverOpenDirButton = point_in_rectangle(mouse_x, mouse_y, openDirButtonX1, openDirButtonY1, openDirButtonX2, openDirButtonY2) && !mouseoverCancel;
 draw_set_color(mouseoverOpenDirButton ? c_white : c_ltgray);
 draw_roundrect(openDirButtonX1, openDirButtonY1, openDirButtonX2, openDirButtonY2, false);
 draw_set_color(c_gray);

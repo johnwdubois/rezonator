@@ -40,6 +40,11 @@ function scr_setDialogueText(){
 				descriptionText = scr_get_translation("msg_new-version-available");
 			}
 		}
+		else if (instance_exists(obj_openingScreen)) {
+			if (obj_openingScreen.openURLAbout) descriptionText = scr_get_translation("msg_open-url-about");
+			else if (obj_openingScreen.openURLGuide) descriptionText = scr_get_translation("msg_open-url-guide");
+		}
+		
 		if(clearAllStacks) {
 			titleText = scr_get_translation("Clear Stacks");
 			descriptionText = scr_get_translation("msg_warning_clear_stacks");

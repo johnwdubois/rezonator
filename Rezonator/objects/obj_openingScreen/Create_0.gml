@@ -431,6 +431,8 @@ downloadDialogue = false;
 showDownloadDialogue = false;
 alreadyShownDownloadDialogue = false;
 versionUpToDate = false;
+openURLGuide = false;
+openURLAbout = false;
 
 global.CoNLLUwithMeta = false;
 global.schemaNavTokenFieldList = -1;

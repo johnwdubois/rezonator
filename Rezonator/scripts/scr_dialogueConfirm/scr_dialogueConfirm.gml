@@ -5,6 +5,14 @@ function scr_dialogueConfirm(){
 		if (obj_openingScreen.downloadDialogue) {
 			url_open("https://rezonator.com/download/");
 		}
+		else if (obj_openingScreen.openURLAbout) {
+			show_debug_message("scr_dialogueConfirm, openURLAbout");
+			url_open("http://rezonator.com/");
+		}
+		else if (obj_openingScreen.openURLGuide) {
+			show_debug_message("scr_dialogueConfirm, openURLGuide");
+			url_open("https://johnwdubois.github.io/rezonator/");
+		}
 		scr_closeDialogueBoxVariables();
 		instance_destroy();
 		exit;
@@ -12,10 +20,10 @@ function scr_dialogueConfirm(){
 	else if (instance_exists(obj_control)) {
 		if (obj_control.downloadDialogue) {
 			url_open("https://rezonator.com/download/");
-		}
-		scr_closeDialogueBoxVariables();
-		instance_destroy();
-		exit;	
+			scr_closeDialogueBoxVariables();
+			instance_destroy();
+			exit;
+		}	
 	}
 	
 	// if this is an alert window, we just need to close out of the dialogue box
