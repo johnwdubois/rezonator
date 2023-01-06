@@ -131,7 +131,7 @@ function scr_openingMenu() {
 
 	if (mouseoverDocumenation && documentationButtonActive) {
 		if(mouse_check_button_released(mb_left)){
-			url_open("https://johnwdubois.github.io/rezonator/");
+			scr_URLOpenReliable("https://johnwdubois.github.io/rezonator/");
 		}
 	}
 

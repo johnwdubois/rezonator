@@ -3,15 +3,15 @@ function scr_dialogueConfirm(){
 	// check if they are trying to download newest version of rezonator
 	if (instance_exists(obj_openingScreen)) {
 		if (obj_openingScreen.downloadDialogue) {
-			url_open("https://rezonator.com/download/");
+			scr_URLOpenReliable("https://rezonator.com/download/");
 		}
 		else if (obj_openingScreen.openURLAbout) {
 			show_debug_message("scr_dialogueConfirm, openURLAbout");
-			url_open("http://rezonator.com/");
+			scr_URLOpenReliable("https://rezonator.com/about/");
 		}
 		else if (obj_openingScreen.openURLGuide) {
 			show_debug_message("scr_dialogueConfirm, openURLGuide");
-			url_open("https://johnwdubois.github.io/rezonator/");
+			scr_URLOpenReliable("https://johnwdubois.github.io/rezonator/");
 		}
 		scr_closeDialogueBoxVariables();
 		instance_destroy();
@@ -19,7 +19,7 @@ function scr_dialogueConfirm(){
 	}
 	else if (instance_exists(obj_control)) {
 		if (obj_control.downloadDialogue) {
-			url_open("https://rezonator.com/download/");
+			scr_URLOpenReliable("https://rezonator.com/download/");
 			scr_closeDialogueBoxVariables();
 			instance_destroy();
 			exit;
@@ -372,11 +372,11 @@ function scr_dialogueConfirm(){
 			
 			if (obj_control.openURLAbout) {
 				show_debug_message("scr_dialogueConfirm, openURLAbout");
-				url_open("http://rezonator.com/");
+				scr_URLOpenReliable("http://rezonator.com/about/");
 			}
 			else if (obj_control.openURLGuide) {
 				show_debug_message("scr_dialogueConfirm, openURLGuide");
-				url_open("https://johnwdubois.github.io/rezonator/");
+				scr_URLOpenReliable("https://johnwdubois.github.io/rezonator/");
 			}
 			
 			if (obj_control.deleteStack || obj_control.deleteRez || obj_control.deleteTrack) {

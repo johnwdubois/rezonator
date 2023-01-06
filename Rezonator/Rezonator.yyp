@@ -140,6 +140,7 @@
     {"id":{"name":"scr_prevTokenInSequence","path":"scripts/scr_prevTokenInSequence/scr_prevTokenInSequence.yy",},"order":1,},
     {"id":{"name":"scr_addtoTagSchemaList","path":"scripts/scr_addtoTagSchemaList/scr_addtoTagSchemaList.yy",},"order":3,},
     {"id":{"name":"scr_newToken","path":"scripts/scr_newToken/scr_newToken.yy",},"order":2,},
+    {"id":{"name":"scr_URLOpenReliable","path":"scripts/scr_URLOpenReliable/scr_URLOpenReliable.yy",},"order":34,},
     {"id":{"name":"scr_findNext","path":"scripts/scr_findNext/scr_findNext.yy",},"order":7,},
     {"id":{"name":"scr_showInNav","path":"scripts/scr_showInNav/scr_showInNav.yy",},"order":7,},
     {"id":{"name":"scr_fontSizeControl","path":"scripts/scr_fontSizeControl/scr_fontSizeControl.yy",},"order":0,},
