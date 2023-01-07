@@ -814,7 +814,6 @@
     {"resourceType":"GMIncludedFile","resourceVersion":"1.0","name":"sbc040.rez","CopyToMask":-1,"filePath":"datafiles/IncludedFiles/Data/SBCorpus/REZ",},
     {"resourceType":"GMIncludedFile","resourceVersion":"1.0","name":"sbc049.rez","CopyToMask":-1,"filePath":"datafiles/IncludedFiles/Data/SBCorpus/REZ",},
     {"resourceType":"GMIncludedFile","resourceVersion":"1.0","name":"locale_en.json","CopyToMask":-1,"filePath":"datafiles/IncludedFiles/Localization",},
-    {"resourceType":"GMIncludedFile","resourceVersion":"1.0","name":"window_command_hook.html","CopyToMask":-1,"filePath":"datafiles",},
     {"resourceType":"GMIncludedFile","resourceVersion":"1.0","name":"sbc007.rez","CopyToMask":-1,"filePath":"datafiles/IncludedFiles/Data/SBCorpus/REZ",},
     {"resourceType":"GMIncludedFile","resourceVersion":"1.0","name":"sbc008.rez","CopyToMask":-1,"filePath":"datafiles/IncludedFiles/Data/SBCorpus/REZ",},
     {"resourceType":"GMIncludedFile","resourceVersion":"1.0","name":"sbc009.rez","CopyToMask":-1,"filePath":"datafiles/IncludedFiles/Data/SBCorpus/REZ",},
