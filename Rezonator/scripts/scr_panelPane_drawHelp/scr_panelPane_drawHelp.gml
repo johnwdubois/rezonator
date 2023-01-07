@@ -213,7 +213,7 @@ function scr_panelPane_drawHelp() {
 							draw_set_color(global.colorThemeText);
 						
 							// Check for mouseoverHelp over content, if so, then show extra content
-							if (point_in_rectangle(mouse_x, mouse_y, cellRectX1, cellRectY1, cellRectX2, cellRectY2) && !mouseoverCancel) {
+							if (point_in_rectangle(mouse_x, mouse_y, cellRectX1, cellRectY1, cellRectX2, cellRectY2) && !mouseoverCancel && currentHelpGrid != functionHelp_helpGridShortcuts) {
 								draw_rectangle(cellRectX1 - clipX, cellRectY1 - clipY, cellRectX2 - clipX, cellRectY2 + cellHeight - 1 - clipY, true);
 								if (j mod 2) {
 									draw_set_color(global.colorThemeBG);

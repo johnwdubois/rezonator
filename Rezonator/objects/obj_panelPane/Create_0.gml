@@ -118,6 +118,7 @@ functionHelp_menuGrid_colGrid = 3;
 functionHelp_menuGrid = ds_grid_create(functionHelp_menuGridWidth, 0);
 functionHelp_helpGridRez = ds_grid_create(functionHelp_helpGridWidth, 0);
 functionHelp_helpGridNav = ds_grid_create(functionHelp_helpGridWidth, 0);
+functionHelp_helpGridShortcuts = ds_grid_create(functionHelp_helpGridWidth, 0);
 functionHelp_helpGridLink = ds_grid_create(functionHelp_helpGridWidth, 0);
 functionHelp_helpGridPick = ds_grid_create(functionHelp_helpGridWidth, 0);
 functionHelp_helpGridSearch = ds_grid_create(functionHelp_helpGridWidth, 0);
