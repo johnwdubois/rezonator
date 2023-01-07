@@ -1,4 +1,4 @@
 ///@description Activate Search
 if (shortcutsEnabled) {
-	scr_triggerSearch();
+	if (global.ctrlHold) scr_triggerSearch();
 }

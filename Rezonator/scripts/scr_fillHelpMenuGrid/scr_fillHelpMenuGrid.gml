@@ -12,7 +12,7 @@ function scr_fillHelpMenuGrid(){
 		controlStr = "CMD";
 	}
 
-	var helpMenuHeight = 9;
+	var helpMenuHeight = 10;
 	ds_grid_resize(functionHelp_menuGrid, functionHelp_menuGridWidth, helpMenuHeight);
 
 	ds_grid_set(functionHelp_menuGrid, functionHelp_menuGrid_colName, 0, "help_header_link");
@@ -50,16 +50,20 @@ function scr_fillHelpMenuGrid(){
 	ds_grid_set(functionHelp_menuGrid, functionHelp_menuGrid_colCollapsed, 6, true);
 	ds_grid_set(functionHelp_menuGrid, functionHelp_menuGrid_colGrid, 6, functionHelp_helpGridPlay);
 
-
 	ds_grid_set(functionHelp_menuGrid, functionHelp_menuGrid_colName, 7, "help_header_rightClick");
 	ds_grid_set(functionHelp_menuGrid, functionHelp_menuGrid_colHide, 7, false);
 	ds_grid_set(functionHelp_menuGrid, functionHelp_menuGrid_colCollapsed, 7, true);
 	ds_grid_set(functionHelp_menuGrid, functionHelp_menuGrid_colGrid, 7, functionHelp_helpGridRightClick);
-
-	ds_grid_set(functionHelp_menuGrid, functionHelp_menuGrid_colName, 8, "help_header_advanced");
+	
+	ds_grid_set(functionHelp_menuGrid, functionHelp_menuGrid_colName, 8, "menu_settings");
 	ds_grid_set(functionHelp_menuGrid, functionHelp_menuGrid_colHide, 8, false);
 	ds_grid_set(functionHelp_menuGrid, functionHelp_menuGrid_colCollapsed, 8, true);
-	ds_grid_set(functionHelp_menuGrid, functionHelp_menuGrid_colGrid, 8, functionHelp_helpGridAdvanced);
+	ds_grid_set(functionHelp_menuGrid, functionHelp_menuGrid_colGrid, 8, functionHelp_helpGridSettings);
+
+	ds_grid_set(functionHelp_menuGrid, functionHelp_menuGrid_colName, 9, "help_header_advanced");
+	ds_grid_set(functionHelp_menuGrid, functionHelp_menuGrid_colHide, 9, false);
+	ds_grid_set(functionHelp_menuGrid, functionHelp_menuGrid_colCollapsed, 9, true);
+	ds_grid_set(functionHelp_menuGrid, functionHelp_menuGrid_colGrid, 9, functionHelp_helpGridAdvanced);
 
 
 
@@ -146,71 +150,61 @@ function scr_fillHelpMenuGrid(){
 	ds_grid_set(functionHelp_helpGridPick, functionHelp_helpGrid_colDesc, 2, "help_description_align");
 	ds_grid_set(functionHelp_helpGridPick, functionHelp_helpGrid_colHide, 2, true);
 
-	var helpGridHeightSearch = 2;
-	ds_grid_resize(functionHelp_helpGridSearch, functionHelp_helpGridWidth, helpGridHeightSearch);
 
+	// SEARCH SECTION
+	ds_grid_resize(functionHelp_helpGridSearch, functionHelp_helpGridWidth, 2);
+
+	// Search -> Search
 	ds_grid_set(functionHelp_helpGridSearch, functionHelp_helpGrid_colKey, 0, "key_search");
 	ds_grid_set(functionHelp_helpGridSearch, functionHelp_helpGrid_colFunc, 0, "help_label_search");
 	ds_grid_set(functionHelp_helpGridSearch, functionHelp_helpGrid_colDesc, 0, "help_description_search-word");
 	ds_grid_set(functionHelp_helpGridSearch, functionHelp_helpGrid_colHide, 0, false);
 
+	// Search -> Go to line
 	ds_grid_set(functionHelp_helpGridSearch, functionHelp_helpGrid_colKey, 1, "key_go-to-line");
 	ds_grid_set(functionHelp_helpGridSearch, functionHelp_helpGrid_colFunc, 1, "help_label_go-to-line");
 	ds_grid_set(functionHelp_helpGridSearch, functionHelp_helpGrid_colDesc, 1, "help_description_go-to-line");
 	ds_grid_set(functionHelp_helpGridSearch, functionHelp_helpGrid_colHide, 1, false);
 
-	var helpGridHeightView = 8;
-	ds_grid_resize(functionHelp_helpGridView, functionHelp_helpGridWidth, helpGridHeightView);
 
-	ds_grid_set(functionHelp_helpGridView, functionHelp_helpGrid_colKey, 0, "key_change-view");
-	ds_grid_set(functionHelp_helpGridView, functionHelp_helpGrid_colFunc, 0, "help_label_search");
-	ds_grid_set(functionHelp_helpGridView, functionHelp_helpGrid_colDesc, 0, "help_description_search");
+	// VIEW SECTION
+	ds_grid_resize(functionHelp_helpGridView, functionHelp_helpGridWidth, 4);
+
+	// View -> Justify
+	ds_grid_set(functionHelp_helpGridView, functionHelp_helpGrid_colKey, 0, "key_justify");
+	ds_grid_set(functionHelp_helpGridView, functionHelp_helpGrid_colFunc, 0, "help_label_justify");
+	ds_grid_set(functionHelp_helpGridView, functionHelp_helpGrid_colDesc, 0, "help_description_justify");
 	ds_grid_set(functionHelp_helpGridView, functionHelp_helpGrid_colHide, 0, false);
-
-	ds_grid_set(functionHelp_helpGridView, functionHelp_helpGrid_colKey, 1, "key_justify");
-	ds_grid_set(functionHelp_helpGridView, functionHelp_helpGrid_colFunc, 1, "help_label_justify");
-	ds_grid_set(functionHelp_helpGridView, functionHelp_helpGrid_colDesc, 1, "help_description_justify");
+	
+	// View -> Prose
+	ds_grid_set(functionHelp_helpGridView, functionHelp_helpGrid_colKey, 1, "k");
+	ds_grid_set(functionHelp_helpGridView, functionHelp_helpGrid_colFunc, 1, "import_type_prose");
+	ds_grid_set(functionHelp_helpGridView, functionHelp_helpGrid_colDesc, 1, "help_description_prose");
 	ds_grid_set(functionHelp_helpGridView, functionHelp_helpGrid_colHide, 1, false);
 
-	ds_grid_set(functionHelp_helpGridView, functionHelp_helpGrid_colKey, 2, "key_word-format");
-	ds_grid_set(functionHelp_helpGridView, functionHelp_helpGrid_colFunc, 2, "help_label_transcript");
-	ds_grid_set(functionHelp_helpGridView, functionHelp_helpGrid_colDesc, 2, "help_description_word-format");
+	// View -> Word Tip
+	ds_grid_set(functionHelp_helpGridView, functionHelp_helpGrid_colKey, 2, "w");
+	ds_grid_set(functionHelp_helpGridView, functionHelp_helpGrid_colFunc, 2, "word_tip");
+	ds_grid_set(functionHelp_helpGridView, functionHelp_helpGrid_colDesc, 2, "help_description_word-tip");
 	ds_grid_set(functionHelp_helpGridView, functionHelp_helpGrid_colHide, 2, false);
-
-	ds_grid_set(functionHelp_helpGridView, functionHelp_helpGrid_colKey, 3, "key_narrow-columns");
-	ds_grid_set(functionHelp_helpGridView, functionHelp_helpGrid_colFunc, 3, "help_description_decrease");
-	ds_grid_set(functionHelp_helpGridView, functionHelp_helpGrid_colDesc, 3, "help_label_columns-narrow");
+	
+	// View -> Word Format
+	ds_grid_set(functionHelp_helpGridView, functionHelp_helpGrid_colKey, 3, "key_word-format");
+	ds_grid_set(functionHelp_helpGridView, functionHelp_helpGrid_colFunc, 3, "help_label_word-format2");
+	ds_grid_set(functionHelp_helpGridView, functionHelp_helpGrid_colDesc, 3, "help_description_word-format2");
 	ds_grid_set(functionHelp_helpGridView, functionHelp_helpGrid_colHide, 3, false);
 
-	ds_grid_set(functionHelp_helpGridView, functionHelp_helpGrid_colKey, 4, "key_wide-columns");
-	ds_grid_set(functionHelp_helpGridView, functionHelp_helpGrid_colFunc, 4, "help_description_increase");
-	ds_grid_set(functionHelp_helpGridView, functionHelp_helpGrid_colDesc, 4, "help_label_wide-columns");
-	ds_grid_set(functionHelp_helpGridView, functionHelp_helpGrid_colHide, 4, false);
 
-	ds_grid_set(functionHelp_helpGridView, functionHelp_helpGrid_colKey, 5, "key_low-rows");
-	ds_grid_set(functionHelp_helpGridView, functionHelp_helpGrid_colFunc, 5, "help_description_decrease-height");
-	ds_grid_set(functionHelp_helpGridView, functionHelp_helpGrid_colDesc, 5, "help_label_decrease_height");
-	ds_grid_set(functionHelp_helpGridView, functionHelp_helpGrid_colHide, 5, false);
+	// FILE SECTION
+	ds_grid_resize(functionHelp_helpGridFile, functionHelp_helpGridWidth, 2);
 
-	ds_grid_set(functionHelp_helpGridView, functionHelp_helpGrid_colKey, 6, "key_tall-rows");
-	ds_grid_set(functionHelp_helpGridView, functionHelp_helpGrid_colFunc, 6, "help_description_increase_height");
-	ds_grid_set(functionHelp_helpGridView, functionHelp_helpGrid_colDesc, 6, "help_label_tall-rows");
-	ds_grid_set(functionHelp_helpGridView, functionHelp_helpGrid_colHide, 6, false);
-
-	ds_grid_set(functionHelp_helpGridView, functionHelp_helpGrid_colKey, 7, "key_theme");
-	ds_grid_set(functionHelp_helpGridView, functionHelp_helpGrid_colFunc, 7, "help_description_theme");
-	ds_grid_set(functionHelp_helpGridView, functionHelp_helpGrid_colDesc, 7, "help_label_theme");
-	ds_grid_set(functionHelp_helpGridView, functionHelp_helpGrid_colHide, 7, false);
-
-
-	var helpGridHeightFile = 2;
-	ds_grid_resize(functionHelp_helpGridFile, functionHelp_helpGridWidth, helpGridHeightFile);
-
-	ds_grid_set(functionHelp_helpGridFile, functionHelp_helpGrid_colKey, 0, controlStr + "key_open");
+	// File -> Open
+	ds_grid_set(functionHelp_helpGridFile, functionHelp_helpGrid_colKey, 0, controlStr + "O");
 	ds_grid_set(functionHelp_helpGridFile, functionHelp_helpGrid_colFunc, 0, "help_label_open");
 	ds_grid_set(functionHelp_helpGridFile, functionHelp_helpGrid_colDesc, 0, "help_description_open-file");
-	ds_grid_set(functionHelp_helpGridFile, functionHelp_helpGrid_colHide, 0, true);
+	ds_grid_set(functionHelp_helpGridFile, functionHelp_helpGrid_colHide, 0, false);
 
+	// File -> Save
 	ds_grid_set(functionHelp_helpGridFile, functionHelp_helpGrid_colKey, 1, "key_save");
 	ds_grid_set(functionHelp_helpGridFile, functionHelp_helpGrid_colFunc, 1, "help_label_save");
 	ds_grid_set(functionHelp_helpGridFile, functionHelp_helpGrid_colDesc, 1, "help_description_save");
@@ -341,10 +335,8 @@ function scr_fillHelpMenuGrid(){
 
 
 
-	var helpGridHeightRightClick = 5;
-	ds_grid_resize(functionHelp_helpGridRightClick, functionHelp_helpGridWidth, helpGridHeightRightClick);
-
-
+	// RIGHT CLICK SECTION
+	ds_grid_resize(functionHelp_helpGridRightClick, functionHelp_helpGridWidth, 5);
 
 	ds_grid_set(functionHelp_helpGridRightClick, functionHelp_helpGrid_colKey, 0, "key_replace");
 	ds_grid_set(functionHelp_helpGridRightClick, functionHelp_helpGrid_colFunc, 0, "help_label_new_word");
@@ -356,12 +348,10 @@ function scr_fillHelpMenuGrid(){
 	ds_grid_set(functionHelp_helpGridRightClick, functionHelp_helpGrid_colDesc, 1, "help_description_delete-new-word");
 	ds_grid_set(functionHelp_helpGridRightClick, functionHelp_helpGrid_colHide, 1, false);
 
-
 	ds_grid_set(functionHelp_helpGridRightClick, functionHelp_helpGrid_colKey, 2, "key_chain_context-menu");
 	ds_grid_set(functionHelp_helpGridRightClick, functionHelp_helpGrid_colFunc, 2, "help_label_rename");
 	ds_grid_set(functionHelp_helpGridRightClick, functionHelp_helpGrid_colDesc, 2, "help_description_rename");
 	ds_grid_set(functionHelp_helpGridRightClick, functionHelp_helpGrid_colHide, 2, false);
-
 
 	ds_grid_set(functionHelp_helpGridRightClick, functionHelp_helpGrid_colKey, 3, "key_chain_context-menu");
 	ds_grid_set(functionHelp_helpGridRightClick, functionHelp_helpGrid_colFunc, 3, "help_label_delete_plain");
@@ -374,6 +364,40 @@ function scr_fillHelpMenuGrid(){
 	ds_grid_set(functionHelp_helpGridRightClick, functionHelp_helpGrid_colHide, 4, true);
 
 
+	// SETTINGS SECTION
+	ds_grid_resize(functionHelp_helpGridSettings, functionHelp_helpGridWidth, 5);
+	
+	// Settings -> Decrease column width
+	ds_grid_set(functionHelp_helpGridSettings, functionHelp_helpGrid_colKey, 0, "key_narrow-columns");
+	ds_grid_set(functionHelp_helpGridSettings, functionHelp_helpGrid_colFunc, 0, "help_description_decrease");
+	ds_grid_set(functionHelp_helpGridSettings, functionHelp_helpGrid_colDesc, 0, "help_label_columns-narrow");
+	ds_grid_set(functionHelp_helpGridSettings, functionHelp_helpGrid_colHide, 0, false);
+	
+	// Settings -> Increase column width
+	ds_grid_set(functionHelp_helpGridSettings, functionHelp_helpGrid_colKey, 1, "key_wide-columns");
+	ds_grid_set(functionHelp_helpGridSettings, functionHelp_helpGrid_colFunc, 1, "help_description_increase");
+	ds_grid_set(functionHelp_helpGridSettings, functionHelp_helpGrid_colDesc, 1, "help_label_wide-columns");
+	ds_grid_set(functionHelp_helpGridSettings, functionHelp_helpGrid_colHide, 1, false);
+	
+	// Settings -> Decrease line height
+	ds_grid_set(functionHelp_helpGridSettings, functionHelp_helpGrid_colKey, 2, "key_low-rows");
+	ds_grid_set(functionHelp_helpGridSettings, functionHelp_helpGrid_colFunc, 2, "help_description_decrease-height");
+	ds_grid_set(functionHelp_helpGridSettings, functionHelp_helpGrid_colDesc, 2, "help_label_decrease_height");
+	ds_grid_set(functionHelp_helpGridSettings, functionHelp_helpGrid_colHide, 2, false);
+	
+	// Settings -> Increase line height
+	ds_grid_set(functionHelp_helpGridSettings, functionHelp_helpGrid_colKey, 3, "key_tall-rows");
+	ds_grid_set(functionHelp_helpGridSettings, functionHelp_helpGrid_colFunc, 3, "help_description_increase_height");
+	ds_grid_set(functionHelp_helpGridSettings, functionHelp_helpGrid_colDesc, 3, "help_label_tall-rows");
+	ds_grid_set(functionHelp_helpGridSettings, functionHelp_helpGrid_colHide, 3, false);
+	
+	// Settings -> Select theme
+	ds_grid_set(functionHelp_helpGridSettings, functionHelp_helpGrid_colKey, 4, "key_theme");
+	ds_grid_set(functionHelp_helpGridSettings, functionHelp_helpGrid_colFunc, 4, "help_description_theme");
+	ds_grid_set(functionHelp_helpGridSettings, functionHelp_helpGrid_colDesc, 4, "help_label_theme");
+	ds_grid_set(functionHelp_helpGridSettings, functionHelp_helpGrid_colHide, 4, false);
+	
+	
 
 	var helpGridHeightRez = 21;
 	ds_grid_resize(functionHelp_helpGridRez, functionHelp_helpGridWidth, helpGridHeightRez);

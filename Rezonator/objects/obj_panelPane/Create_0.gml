@@ -127,6 +127,7 @@ functionHelp_helpGridMove = ds_grid_create(functionHelp_helpGridWidth, 0);
 functionHelp_helpGridPlay = ds_grid_create(functionHelp_helpGridWidth, 0);
 functionHelp_helpGridAdvanced = ds_grid_create(functionHelp_helpGridWidth, 0);
 functionHelp_helpGridRightClick = ds_grid_create(functionHelp_helpGridWidth, 0);
+functionHelp_helpGridSettings = ds_grid_create(functionHelp_helpGridWidth, 0);
 functionHelp_allCollapsed = true;
 
 functionHelp_helpWindowRectX1 = 0;
