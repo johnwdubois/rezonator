@@ -134,17 +134,17 @@ function scr_fillHelpMenuGrid(){
 
 	// Shortcuts -> Select wordform display
 	ds_grid_set(functionHelp_helpGridShortcuts, functionHelp_helpGrid_colKey, 11, "key_word-format");
-	ds_grid_set(functionHelp_helpGridShortcuts, functionHelp_helpGrid_colFunc, 11, "help_description_word-tip");
+	ds_grid_set(functionHelp_helpGridShortcuts, functionHelp_helpGrid_colFunc, 11, "help_shortcut_wordform-display");
 	ds_grid_set(functionHelp_helpGridShortcuts, functionHelp_helpGrid_colHide, 11, false);
-
-	// Shortcuts -> Edit wordform options
-	ds_grid_set(functionHelp_helpGridShortcuts, functionHelp_helpGrid_colKey, 12, controlStr + " w");
-	ds_grid_set(functionHelp_helpGridShortcuts, functionHelp_helpGrid_colFunc, 12, "help_shortcut_edit-wordform-options");
-	ds_grid_set(functionHelp_helpGridShortcuts, functionHelp_helpGrid_colHide, 12, false);
 	
 	// Shortcuts -> Insert zero before
-	ds_grid_set(functionHelp_helpGridShortcuts, functionHelp_helpGrid_colKey, 13, "z");
-	ds_grid_set(functionHelp_helpGridShortcuts, functionHelp_helpGrid_colFunc, 13, "help_shortcut_zero-before");
+	ds_grid_set(functionHelp_helpGridShortcuts, functionHelp_helpGrid_colKey, 12, "z");
+	ds_grid_set(functionHelp_helpGridShortcuts, functionHelp_helpGrid_colFunc, 12, "help_shortcut_zero-before");
+	ds_grid_set(functionHelp_helpGridShortcuts, functionHelp_helpGrid_colHide, 12, false);
+
+	// Shortcuts -> Insert zero after
+	ds_grid_set(functionHelp_helpGridShortcuts, functionHelp_helpGrid_colKey, 13, "SHIFT z");
+	ds_grid_set(functionHelp_helpGridShortcuts, functionHelp_helpGrid_colFunc, 13, "help_shortcut_zero-after");
 	ds_grid_set(functionHelp_helpGridShortcuts, functionHelp_helpGrid_colHide, 13, false);
 
 	// Shortcuts -> Insert zero after
