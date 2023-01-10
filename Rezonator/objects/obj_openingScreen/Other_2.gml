@@ -48,9 +48,8 @@ global.importGroupSchemaFile = "";
 global.skipToImportScreen = false;
 global.skipToOpen = false;
 
-var defStr = "";
-defStr = (global.userName == "") ? "" : global.userName;
-global.inputBoxDefStr = "";
+
+global.inputBoxDefStr = global.userName;
 
 scr_initializeFonts();
 scr_fontGlobalUpdate();

@@ -78,8 +78,8 @@ function scr_loadINI() {
 
 				if (global.rememberMe) {
 					global.userName = string(ds_map_find_value(map, "userName"));
-					if (!is_string(global.userName) || global.userName == "") global.userName = "Unknown";
-
+					if (!is_string(global.userName) || global.userName == "Unknown") global.userName = "";
+					show_debug_message("username from INI: " + string(global.userName));
 				}
 
 				global.previousRezDirectory = ds_map_find_value(map, "previousRezDirectory"); 
@@ -106,19 +106,6 @@ function scr_loadINI() {
 				
 				obj_control.gridSpaceRatio = (obj_control.gridSpaceVertical/obj_control.prevGridSpaceVertical);
 			
-				// Multiply each line's pixelY by the new ratio
-				ds_grid_multiply_region(obj_control.lineGrid, obj_control.lineGrid_colPixelYOriginal, 0, obj_control.lineGrid_colPixelYOriginal, ds_grid_height(obj_control.lineGrid), obj_control.gridSpaceRatio);
-			
-				var searchGridPopulated = ds_grid_height(obj_control.searchGrid);
-				var filterGridPopulated = ds_grid_height(obj_control.filterGrid);
-			
-				// If the search or filter grids are populated, then set their pixelY's as well
-				if(searchGridPopulated) {
-					ds_grid_multiply_region(obj_control.searchGrid, obj_control.lineGrid_colPixelYOriginal, 0, obj_control.lineGrid_colPixelYOriginal, ds_grid_height(obj_control.searchGrid), obj_control.gridSpaceRatio);
-				}
-				if(filterGridPopulated) {
-					ds_grid_multiply_region(obj_control.filterGrid, obj_control.lineGrid_colPixelYOriginal, 0, obj_control.lineGrid_colPixelYOriginal, ds_grid_height(obj_control.filterGrid), obj_control.gridSpaceRatio);
-				}
 				// reset the ratio
 				obj_control.prevGridSpaceVertical = obj_control.gridSpaceVertical;
 	
@@ -136,9 +123,6 @@ function scr_loadINI() {
 				if (is_undefined(obj_panelPane.showNavRight)) obj_panelPane.showNavRight = true;
 
 			}
-				
-				
-					
 		}
 	}
 
