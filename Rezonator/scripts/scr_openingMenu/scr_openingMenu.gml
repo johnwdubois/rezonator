@@ -13,7 +13,6 @@ function scr_openingMenu() {
 
 	var camWidth = camera_get_view_width(camera_get_active());
 	var camHeight = camera_get_view_height(camera_get_active());
-	draw_set_alpha(1);
 	draw_set_color(merge_color(global.colorThemeSelected1, c_white, .4));
 	draw_rectangle(0, 0, camWidth, camHeight, false);
 
@@ -148,46 +147,50 @@ function scr_openingMenu() {
 	var userSignInBoxX2 = camWidth * 0.95 ;	
 	var userSignInBoxY1 = camHeight * 0.85;
 	var userSignInBoxX1 = userSignInBoxX2 - stringWidth - stringBuffer*2 ;
-	var userSignInBoxY2 = userSignInBoxY1 + stringHeight*1.5;
+	var userSignInBoxY2 = userSignInBoxY1 + stringHeight * 1.5;
 
 
-	draw_set_color(global.colorThemeText);
-	draw_text(mean(userSignInBoxX1, userSignInBoxX2), userSignInBoxY2 + string_height(scr_get_translation("menu_remember"))/2, scr_get_translation("menu_remember"));
+	
 
-	draw_set_alpha(0.5);
 
-	if(string_length(obj_openingScreen.inputText) > 0 ){
+
+	if (string_length(obj_openingScreen.inputText) > 0) {
 		obj_openingScreen.clickedIn = true;
 	}
 
 
-	draw_set_alpha(1);
-	var rememberMeButtonWidth = camHeight*0.02;
+	
+	var rememberMeButtonWidth = stringHeight;
+	var rememberMeBoxX1 = userSignInBoxX1;
+	var rememberMeBoxY1 = userSignInBoxY2 + (stringHeight * 0.75);
+	var rememberMeBoxX2 = rememberMeBoxX1 + rememberMeButtonWidth;
+	var rememberMeBoxY2 = rememberMeBoxY1 + rememberMeButtonWidth;
+	
+	draw_set_color(global.colorThemeText);
+	draw_rectangle(rememberMeBoxX1, rememberMeBoxY1, rememberMeBoxX2, rememberMeBoxY2, true);
+	
+	draw_set_halign(fa_left);
+	draw_text(rememberMeBoxX1 + stringBuffer, floor(mean(rememberMeBoxY1, rememberMeBoxY2)), scr_get_translation("menu_remember"));
 
-	var remeberMeBoxX1 = mean(userSignInBoxX1, userSignInBoxX2) - string_width(scr_get_translation("menu_remember"))/2 - stringBuffer - rememberMeButtonWidth;
-	var remeberMeBoxY1 = userSignInBoxY2 + string_height(scr_get_translation("menu_remember"))/2 - rememberMeButtonWidth/2;
-	var remeberMeBoxX2 = remeberMeBoxX1 + rememberMeButtonWidth;
-	var remeberMeBoxY2 = remeberMeBoxY1 + rememberMeButtonWidth;
 
-
-	draw_rectangle(remeberMeBoxX1, remeberMeBoxY1, remeberMeBoxX2,remeberMeBoxY2, true);
+	
 	if (global.rememberMe) {
 		var checkScale = 0.6;
 		if (camWidth > 2000) checkScale = 1;
-		draw_sprite_ext(spr_checkmark, 0, floor(mean(remeberMeBoxX1, remeberMeBoxX2)), floor(mean(remeberMeBoxY1, remeberMeBoxY2)), checkScale, checkScale, 0, global.colorThemeBorders, 1);
+		draw_sprite_ext(spr_checkmark, 0, floor(mean(rememberMeBoxX1, rememberMeBoxX2)), floor(mean(rememberMeBoxY1, rememberMeBoxY2)), checkScale, checkScale, 0, global.colorThemeBorders, 1);
 	}
 
-	if (point_in_rectangle(mouse_x, mouse_y,userSignInBoxX1, userSignInBoxY1, userSignInBoxX2, userSignInBoxY2)){
-			if (device_mouse_check_button_released(0, mb_left)) {
-				obj_openingScreen.clickedIn = true;
-			}
+	if (point_in_rectangle(mouse_x, mouse_y, userSignInBoxX1, userSignInBoxY1, userSignInBoxX2, userSignInBoxY2)) {
+		if (device_mouse_check_button_released(0, mb_left)) {
+			obj_openingScreen.clickedIn = true;
+		}
 	}
 
 	// current chain boolean switch
-	else if (point_in_rectangle(mouse_x, mouse_y,remeberMeBoxX1, remeberMeBoxY1, remeberMeBoxX2, remeberMeBoxY2)){
-			if (device_mouse_check_button_released(0, mb_left)) {
-				global.rememberMe = !global.rememberMe;	
-			}
+	else if (point_in_rectangle(mouse_x, mouse_y,rememberMeBoxX1, rememberMeBoxY1, rememberMeBoxX2, rememberMeBoxY2)){
+		if (device_mouse_check_button_released(0, mb_left)) {
+			global.rememberMe = !global.rememberMe;	
+		}
 	}
 	else {
 		if (device_mouse_check_button_released(0, mb_left)) {

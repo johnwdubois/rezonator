@@ -190,6 +190,6 @@ function scr_inputBoxDraw(){
 	// prompt user signin
 	if (room == rm_openingScreen && str == "") {
 		draw_set_color(global.colorThemeSelected2);
-		draw_text(textBoxX + string_width(" "), textY, scr_get_translation("msg_signin"));
+		draw_text(textBoxX + string_width("  "), textY, scr_get_translation("msg_signin"));
 	}
 }
