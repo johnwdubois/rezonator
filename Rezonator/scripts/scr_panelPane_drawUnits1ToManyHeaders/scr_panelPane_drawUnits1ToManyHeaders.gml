@@ -9,8 +9,6 @@ function scr_panelPane_drawUnits1ToManyHeaders(){
 	var plusX = x;
 	var mouseoverCancel = !point_in_rectangle(mouse_x, mouse_y, x, y, x + windowWidth, y + windowHeight) || instance_exists(obj_dropDown) || instance_exists(obj_dialogueBox);
 	
-	scr_adaptFont("0", "M");
-	var spaceWidth = string_width(" ");
 	scr_surfaceStart();
 	
 	
@@ -49,7 +47,7 @@ function scr_panelPane_drawUnits1ToManyHeaders(){
 			draw_set_halign(fa_right);
 			headerTextX = headerRectX2 - (textMarginLeft) - dropDownButtonSize - (textMarginLeft * 2);
 		}
-		draw_text(headerTextX + spaceWidth - clipX, headerTextY - clipY, currentField);
+		draw_text(headerTextX - clipX, headerTextY - clipY, currentField);
 		draw_set_alpha(1);
 		
 		// draw displayToken button

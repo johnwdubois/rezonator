@@ -11,8 +11,6 @@ function scr_panelPane_drawUnits1To1Headers(){
 	var plusX = x;
 	var dropDownButtonSize = sprite_get_width(spr_dropDown);
 	var mouseoverCancel = !point_in_rectangle(mouse_x, mouse_y, x, y, x + windowWidth, y + windowHeight) || instance_exists(obj_dropDown) || instance_exists(obj_dialogueBox);
-	scr_adaptFont("0", "M");
-	var spaceWidth = string_width(" ");
 	
 	for (var i = 0; i < headerListSize; i++) {
 		
@@ -127,7 +125,7 @@ function scr_panelPane_drawUnits1To1Headers(){
 		draw_set_color(global.colorThemeText);
 	
 
-		draw_text(headerTextX + spaceWidth - clipX, headerTextY - clipY, currentField);
+		draw_text(headerTextX - clipX, headerTextY - clipY, currentField);
 	
 		plusX += colWidth;
 	}
