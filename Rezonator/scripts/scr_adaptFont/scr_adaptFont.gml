@@ -3,7 +3,7 @@
 
 function scr_adaptFont(inputString, size, isTitle){
 	var setTitleFont = false;
-	if(argument_count >2){
+	if (argument_count > 2) {
 		setTitleFont = isTitle;
 	}
 	// make sure we're dealing with a string
@@ -26,16 +26,16 @@ function scr_adaptFont(inputString, size, isTitle){
 		for (var i = 0;i <= letterCount; i++) {
 			var unicodeValue = ord(string_char_at(inputString,i));
 			// check if char is in CJK unicode range
-			if ( (12288 <= unicodeValue and unicodeValue <= 65535) or
+			if ((12288 <= unicodeValue and unicodeValue <= 65535) or
 			(131072 <= unicodeValue  and unicodeValue <= 183983) or
-			(194560 <= unicodeValue  and unicodeValue <= 195103) ){
+			(194560 <= unicodeValue  and unicodeValue <= 195103)) {
 
 				isCJK = true;
 				break;
 			
 			}
 			// check if char is in RTL unicode range
-			if ( 1424 <= unicodeValue and unicodeValue <= 1969 ||
+			if (1424 <= unicodeValue and unicodeValue <= 1969 ||
 			 1984 <= unicodeValue and unicodeValue <= 2143 ||
 			 2208 <= unicodeValue and unicodeValue <= 2303 ||
 			 64336 <= unicodeValue and unicodeValue <= 65023 ||
@@ -46,7 +46,7 @@ function scr_adaptFont(inputString, size, isTitle){
 			 125184 <= unicodeValue and unicodeValue <= 125279 ||
 			 126064 <= unicodeValue and unicodeValue <= 126143 ||
 			 126208 <= unicodeValue and unicodeValue <= 126287 ||
-			 126464 <= unicodeValue and unicodeValue <= 126719){
+			 126464 <= unicodeValue and unicodeValue <= 126719) {
 				isRTL = true;
 			}
 		}
@@ -61,67 +61,67 @@ function scr_adaptFont(inputString, size, isTitle){
 		
 		
 	// determine the font to set
-	if ( isCJK ){
+	if ( isCJK) {
 		if(size == "S"){
 			var fontScaledName = global.localeCJK_S_0;
-			if( global.fontSize == 0 ){
+			if (global.fontSize == 0) {
 				fontScaledName = global.localeCJK_S_0;
 			}
-			else if( global.fontSize == 1 ){
+			else if (global.fontSize == 1) {
 				fontScaledName = global.localeCJK_S_1;
 			} 
-			else if( global.fontSize == 2 ){
+			else if (global.fontSize == 2) {
 				fontScaledName = global.localeCJK_S_2;
 			}
-			else if( global.fontSize == 3 ){
+			else if (global.fontSize == 3) {
 				fontScaledName = global.localeCJK_S_3;
 			}
-			else if( global.fontSize == 4 ){
+			else if (global.fontSize == 4) {
 				fontScaledName = global.localeCJK_S_4;
 			}
-			else if( global.fontSize == 5 ){
+			else if (global.fontSize == 5) {
 				fontScaledName = global.localeCJK_S_5;
 			} 
 		}
 		if(size == "M"){
 			var fontScaledName = global.localeCJK_M_0;
-			if( global.fontSize == 0 ){
+			if (global.fontSize == 0) {
 				fontScaledName = global.localeCJK_M_0;
 			}
-			else if( global.fontSize == 1 ){
+			else if (global.fontSize == 1) {
 				fontScaledName = global.localeCJK_M_1;
 			} 
-			else if( global.fontSize == 2 ){
+			else if (global.fontSize == 2) {
 				fontScaledName = global.localeCJK_M_2;
 			}
-			else if( global.fontSize == 3 ){
+			else if (global.fontSize == 3) {
 				fontScaledName = global.localeCJK_M_3;
 			}
-			else if( global.fontSize == 4 ){
+			else if (global.fontSize == 4) {
 				fontScaledName = global.localeCJK_M_4;
 			}
-			else if( global.fontSize == 5 ){
+			else if (global.fontSize == 5) {
 				fontScaledName = global.localeCJK_M_5;
 			} 
 		}
 		if(size == "L"){
 			var fontScaledName = global.localeCJK_L_0;
-			if( global.fontSize == 0 ){
+			if (global.fontSize == 0) {
 				fontScaledName = global.localeCJK_L_0;
 			}
-			else if( global.fontSize == 1 ){
+			else if (global.fontSize == 1) {
 				fontScaledName = global.localeCJK_L_1;
 			} 
-			else if( global.fontSize == 2 ){
+			else if (global.fontSize == 2) {
 				fontScaledName = global.localeCJK_L_2;
 			}
-			else if( global.fontSize == 3 ){
+			else if (global.fontSize == 3) {
 				fontScaledName = global.localeCJK_L_3;
 			}
-			else if( global.fontSize == 4 ){
+			else if (global.fontSize == 4) {
 				fontScaledName = global.localeCJK_L_4;
 			}
-			else if( global.fontSize == 5 ){
+			else if (global.fontSize == 5) {
 				fontScaledName = global.localeCJK_L_5;
 			} 
 		}
@@ -134,64 +134,64 @@ function scr_adaptFont(inputString, size, isTitle){
 	else {
 		if(size == "S"){
 			var fontScaledName = global.localeEN_S_0;
-			if( global.fontSize == 0 ){
+			if (global.fontSize == 0) {
 				fontScaledName = global.localeEN_S_0;
 			}
-			else if( global.fontSize == 1 ){
+			else if (global.fontSize == 1) {
 				fontScaledName = global.localeEN_S_1;
 			} 
-			else if( global.fontSize == 2 ){
+			else if (global.fontSize == 2) {
 				fontScaledName = global.localeEN_S_2;
 			}
-			else if( global.fontSize == 3 ){
+			else if (global.fontSize == 3) {
 				fontScaledName = global.localeEN_S_3;
 			}
-			else if( global.fontSize == 4 ){
+			else if (global.fontSize == 4) {
 				fontScaledName = global.localeEN_S_4;
 			}
-			else if( global.fontSize == 5 ){
+			else if (global.fontSize == 5) {
 				fontScaledName = global.localeEN_S_5;
 			} 
 		}
 		if(size == "M"){
 			var fontScaledName = global.localeEN_M_0;
-			if( global.fontSize == 0 ){
+			if (global.fontSize == 0) {
 				fontScaledName = global.localeEN_M_0;
 			}
-			else if( global.fontSize == 1 ){
+			else if (global.fontSize == 1) {
 				fontScaledName = global.localeEN_M_1;
 			} 
-			else if( global.fontSize == 2 ){
+			else if (global.fontSize == 2) {
 				fontScaledName = global.localeEN_M_2;
 			}
-			else if( global.fontSize == 3 ){
+			else if (global.fontSize == 3) {
 				fontScaledName = global.localeEN_M_3;
 			}
-			else if( global.fontSize == 4 ){
+			else if (global.fontSize == 4) {
 				fontScaledName = global.localeEN_M_4;
 			}
-			else if( global.fontSize == 5 ){
+			else if (global.fontSize == 5) {
 				fontScaledName = global.localeEN_M_5;
 			} 
 		}
 		if(size == "L"){
 			var fontScaledName = global.localeEN_L_0;
-			if( global.fontSize == 0 ){
+			if (global.fontSize == 0) {
 				fontScaledName = global.localeEN_L_0;
 			}
-			else if( global.fontSize == 1 ){
+			else if (global.fontSize == 1) {
 				fontScaledName = global.localeEN_L_1;
 			} 
-			else if( global.fontSize == 2 ){
+			else if (global.fontSize == 2) {
 				fontScaledName = global.localeEN_L_2;
 			}
-			else if( global.fontSize == 3 ){
+			else if (global.fontSize == 3) {
 				fontScaledName = global.localeEN_L_3;
 			}
-			else if( global.fontSize == 4 ){
+			else if (global.fontSize == 4) {
 				fontScaledName = global.localeEN_L_4;
 			}
-			else if( global.fontSize == 5 ){
+			else if (global.fontSize == 5) {
 				fontScaledName = global.localeEN_L_5;
 			} 
 		}

@@ -425,6 +425,7 @@
     {"id":{"name":"scr_cliqueCheckChain","path":"scripts/scr_cliqueCheckChain/scr_cliqueCheckChain.yy",},"order":8,},
     {"id":{"name":"scr_textDirectionOptions","path":"scripts/scr_textDirectionOptions/scr_textDirectionOptions.yy",},"order":48,},
     {"id":{"name":"scr_zoomOptions","path":"scripts/scr_zoomOptions/scr_zoomOptions.yy",},"order":12,},
+    {"id":{"name":"scr_defaultINISettings","path":"scripts/scr_defaultINISettings/scr_defaultINISettings.yy",},"order":29,},
     {"id":{"name":"obj_gridListWindow","path":"objects/obj_gridListWindow/obj_gridListWindow.yy",},"order":11,},
     {"id":{"name":"scr_paneOptions","path":"scripts/scr_paneOptions/scr_paneOptions.yy",},"order":13,},
     {"id":{"name":"scr_justifyOptions","path":"scripts/scr_justifyOptions/scr_justifyOptions.yy",},"order":15,},

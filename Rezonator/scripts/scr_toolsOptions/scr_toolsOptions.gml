@@ -10,7 +10,7 @@ function scr_toolsOptions(optionSelected) {
 			ds_list_add(dropDownOptionList, "menu_keyword", "menu_clear");
 						
 			if (ds_list_size(dropDownOptionList) > 0) {
-				scr_createDropDown(obj_dropDown.x + obj_dropDown.windowWidth, obj_dropDown.y, dropDownOptionList, global.optionListTypeSearch);
+				scr_createDropDown(obj_dropDown.x + obj_dropDown.windowWidth, y + (optionSpacing * optionIndex), dropDownOptionList, global.optionListTypeSearch);
 			}
 			break;
 		case "menu_resonance":

@@ -1,7 +1,7 @@
 scr_createRezDirectory();
 
 global.currentDirString = global.rezonatorDirString;
-global.fontSize = 0;
+scr_defaultINISettings();
 
 //ini variables
 global.autosaveTimerFull = 600;

@@ -1,24 +1,25 @@
 function scr_saveINI() {
+	
 	var map = -1;
-
-
+	var fileName = "";
+	
 	if (os_type == os_macosx) {
-		var fileName = global.rezonatorDirString + "/~usersettings.ini";
+		fileName = global.rezonatorDirString + "/~usersettings.ini";
 	}
 	else {
-		var fileName = global.rezonatorDirString + "\\~usersettings.ini";
+		fileName = global.rezonatorDirString + "\\~usersettings.ini";
 	}
+	
 	// Check if the name is valid, or if the user exited the window
 	if (fileName == "" or fileName == "undefined") {
 		show_message(scr_get_translation("save_error"));
 		exit;
 	}
-
-
-	if(file_exists(fileName)){
+	
+	if (file_exists(fileName)) {
 		var wrapper = scr_loadJSONBuffer(fileName);
 		var list = ds_map_find_value(wrapper, "ROOT");
-		if(scr_isNumericAndExists(list, ds_type_list)){
+		if (scr_isNumericAndExists(list, ds_type_list)) {
 			map = list[|0];
 		}
 	}
@@ -26,7 +27,7 @@ function scr_saveINI() {
 
 	var rootList = ds_list_create();
 
-	if(!scr_isNumericAndExists(map,ds_type_map)) map = ds_map_create();
+	if (!scr_isNumericAndExists(map,ds_type_map)) map = ds_map_create();
 	ds_list_add(rootList, map);
 	ds_list_mark_as_map(rootList, ds_list_size(rootList) - 1);
 
@@ -35,32 +36,31 @@ function scr_saveINI() {
 	// create maps to hold copies of other maps we want in the REZ file
 	var recentFilesMapCopy = ds_map_create();
 
-	scr_setMap(map,"rememberMe",global.rememberMe)
+	map[? "rememberMe"] = global.rememberMe;
+	map[? "importType"] = global.importType;
+	map[? "readHintHide"] = global.readHintHide;
+	map[? "userName"] = global.userName;
+	map[? "autosaveTimerFull"] = global.autosaveTimerFull;
+	map[? "fontSize"] = global.fontSize;
 	
-	scr_setMap(map,"importType",global.importType);
-	scr_setMap(map,"readHintHide",global.readHintHide)
-	scr_setMap(map,"userName", global.userName);
-	scr_setMap(map,"autosaveTimerFull", global.autosaveTimerFull);
-	scr_setMap(map,"fontSize", global.fontSize);
-	if(room == rm_mainScreen){
-		scr_setMap(map,"lineHeight", obj_control.gridSpaceVertical);
-		scr_setMap(map,"columnWidth", obj_control.gridSpaceHorizontal);
-		scr_setMap(map,"proseWidth", obj_control.proseSpaceHorizontal);
-		scr_setMap(map,"showNav", obj_panelPane.showNav);
-		scr_setMap(map,"showNavLeft", obj_panelPane.showNavLeft);
-		scr_setMap(map,"showNavRight", obj_panelPane.showNavRight);
+	if (room == rm_mainScreen) {
+		map[? "lineHeight"] = obj_control.gridSpaceVertical;
+		map[? "columnWidth"] = obj_control.gridSpaceHorizontal;
+		map[? "proseWidth"] = obj_control.proseSpaceHorizontal;
+		map[? "showNav"] = obj_panelPane.showNav;
+		map[? "showNavLeft"] = obj_panelPane.showNavLeft;
+		map[? "showNavRight"] = obj_panelPane.showNavRight;
 	}
 	
 	
-
 	var tempList = ds_list_create();
 	if (global.previousLevelEstimates != undefined) {
 		ds_list_copy(tempList, global.previousLevelEstimates);
 	}
-	if(ds_map_exists(map,"previousLevelEstimates")){
+	if (ds_map_exists(map,"previousLevelEstimates")) {
 		ds_map_replace_list(map, "previousLevelEstimates", tempList);
 	}
-	else{
+	else {
 		ds_map_add_list(map, "previousLevelEstimates", tempList);
 	}
 	
@@ -68,28 +68,28 @@ function scr_saveINI() {
 	if (global.previousSpecialFields  != undefined) {
 		ds_list_copy(tempList2, global.previousSpecialFields);
 	}
-	if(ds_map_exists(map,"previousSpecialFields")){
+	if (ds_map_exists(map,"previousSpecialFields")) {
 		ds_map_replace_list(map, "previousSpecialFields", tempList2);
 	}
-	else{
+	else {
 		ds_map_add_list(map, "previousSpecialFields", tempList2);
 	}
 
 	
-	scr_setMap(map, "previousRezDirectory", global.previousRezDirectory);
-	scr_setMap(map, "previousImportDirectory", global.previousImportDirectory);
-	scr_setMap(map, "previousSaveDirectory", global.previousSaveDirectory);
-	scr_setMap(map, "previousAudioDirectory", global.previousAudioDirectory);
+	map[? "previousRezDirectory"] = global.previousRezDirectory;
+	map[? "previousImportDirectory"] = global.previousImportDirectory;
+	map[? "previousSaveDirectory"] = global.previousSaveDirectory;
+	map[? "previousAudioDirectory"] = global.previousAudioDirectory;
 		
 
 	var tempList3 = ds_list_create();
 	if (global.recentFilesList != undefined) {
 		ds_list_copy(tempList3, global.recentFilesList);
 	}
-	if(ds_map_exists(map,"recentFilesList")){
+	if (ds_map_exists(map,"recentFilesList")) {
 		ds_map_replace_list(map, "recentFilesList", tempList3);
 	}
-	else{
+	else {
 		ds_map_add_list(map, "recentFilesList", tempList3);
 	}
 
@@ -100,20 +100,20 @@ function scr_saveINI() {
 	}
 	ds_map_add_list(map, "usedImports", tempList4);
 	
-	if(ds_map_exists(map,"usedImports")){
+	if (ds_map_exists(map,"usedImports")) {
 		ds_map_replace_list(map, "usedImports", tempList4);
 	}
-	else{
+	else {
 		ds_map_add_list(map, "usedImports", tempList4);
 	}
 	
 
 	recentFilesMapCopy = json_decode(json_encode(global.recentFilesMap));
 	
-	if(ds_map_exists(map,"recentFilesMap")){
+	if (ds_map_exists(map,"recentFilesMap")) {
 		ds_map_replace_map(map, "recentFilesMap", recentFilesMapCopy);
 	}
-	else{
+	else {
 		ds_map_add_map(map, "recentFilesMap", recentFilesMapCopy);
 	}
 

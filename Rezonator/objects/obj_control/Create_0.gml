@@ -36,9 +36,11 @@ gridSpaceVertical = 60;
 prevGridSpaceVertical = gridSpaceVertical;
 gridSpaceRatio = 1;
 
-proseSpaceHorizontal = 100;
+
 proseSpaceHorizontalMin = 60;
 proseSpaceHorizontalMax = 400;
+proseSpaceHorizontal = proseSpaceHorizontalMin;
+
 
 // Set the speed of scrolling
 arrowSpeedMin = 17;
@@ -357,19 +359,6 @@ alarmRecentlyAddedWordMovedTriggered = false;
 // Safety check for height control
 canPressPlus = true;
 canPressMinus = true;
-
-// Unused variables for dark mode
-//darkTheme = false;
-//darkThemeBackColor = c_dkgray;
-//darkThemeTextColor = c_white;
-//lightThemeBackColor = c_white;
-//lightThemeTextColor = c_black;
-
-// Set global font info
-//global.fontSize = 0;
-
-// UNused variable
-//scrollFast = 0;
 
 // Set boundry for drawing on the left side of the screen
 leftScreenBound = 0;

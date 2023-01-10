@@ -1,5 +1,3 @@
-
-
 function scr_drawLogo(logoX, logoY, drawVersion){
 	
 	draw_set_alpha(1);
@@ -14,27 +12,27 @@ function scr_drawLogo(logoX, logoY, drawVersion){
 		scr_adaptFont(string(global.versionString), "S");
 		var versionTextX = 0;
 		var versionTextY = 0;
-		if(global.fontSize == 0){
+		if (global.fontSize == 0) {
 			versionTextX = logoX + sprite_get_width(spr_logo)* .185;
 			versionTextY = logoY + sprite_get_height(spr_logo)* .3;
 		}
-		else if(global.fontSize == 1){
+		else if (global.fontSize == 1) {
 			versionTextX = logoX + sprite_get_width(spr_logo)* .222;
 			versionTextY = logoY + sprite_get_height(spr_logo)* .36;
 		}
-		else if(global.fontSize == 2){
+		else if (global.fontSize == 2) {
 			versionTextX = logoX + sprite_get_width(spr_logo)* .26;
 			versionTextY = logoY + sprite_get_height(spr_logo)* .41;
 		}
-		else if(global.fontSize == 3){
+		else if (global.fontSize == 3) {
 			versionTextX = logoX + sprite_get_width(spr_logo)* .3;
 			versionTextY = logoY + sprite_get_height(spr_logo)* .48;
 		}
-		else if(global.fontSize == 4){
+		else if (global.fontSize == 4) {
 			versionTextX = logoX + sprite_get_width(spr_logo)* .332;
 			versionTextY = logoY + sprite_get_height(spr_logo)* .53;
 		}
-		else if(global.fontSize == 5){
+		else if(global.fontSize == 5) {
 			versionTextX = logoX + sprite_get_width(spr_logo)* .37;
 			versionTextY = logoY + sprite_get_height(spr_logo)* .58;
 		}
