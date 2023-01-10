@@ -237,7 +237,7 @@ function scr_panelPane_drawUnits1to1() {
 			draw_set_alpha(readOnlyField ? 0.7 : 1);
 			
 		    draw_text(textX - clipX, y + headerHeight + relativeScrollPlusY + textPlusY - clipY, currentStr);
-			 draw_set_alpha(1);
+			draw_set_alpha(1);
 		    // Get height of chain name
 		    textPlusY += strHeight;
 			

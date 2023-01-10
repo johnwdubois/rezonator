@@ -44,8 +44,8 @@ function scr_importTabbedTXT(delimiter) {
 	
 	if(!colListCreated){
 		for(i = 0; i < global.importGridWidth; i++){
-			var colName = " col";
-			ds_list_add(global.importGridColNameList, colName + " " + string(i));
+			var colName = "Col";
+			ds_list_add(global.importGridColNameList, colName + "_" + string(i));
 			ds_map_add(global.importGridColMap, colName, i);
 		}
 		colListCreated = true;
