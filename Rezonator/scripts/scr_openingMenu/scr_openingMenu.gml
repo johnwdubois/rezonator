@@ -136,8 +136,8 @@ function scr_openingMenu() {
 
 
 
-
-	var stringBuffer = string_width("   ");
+	var spaceWidth = string_width(" ");
+	var stringBuffer = spaceWidth * 3;
 	var signInXBuffer = 20;
 	var signInYBuffer = 25;
 	var signInText = scr_get_translation("msg_signin")
@@ -170,7 +170,7 @@ function scr_openingMenu() {
 	draw_rectangle(rememberMeBoxX1, rememberMeBoxY1, rememberMeBoxX2, rememberMeBoxY2, true);
 	
 	draw_set_halign(fa_left);
-	draw_text(rememberMeBoxX1 + stringBuffer, floor(mean(rememberMeBoxY1, rememberMeBoxY2)), scr_get_translation("menu_remember"));
+	draw_text(rememberMeBoxX2 + spaceWidth, floor(mean(rememberMeBoxY1, rememberMeBoxY2)), scr_get_translation("menu_remember"));
 
 
 	
