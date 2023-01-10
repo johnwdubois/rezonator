@@ -52,8 +52,8 @@ function scr_drawDevVars(){
 	draw_text(devVarX, wordTopMargin + (strHeight * 17), "showSpeakerName: " + string(showSpeakerName));
 	draw_text(devVarX, wordTopMargin + (strHeight * 18), "shortcutsEnabled: " + string(shortcutsEnabled));
 	draw_text(devVarX, wordTopMargin + (strHeight * 19), "mouseoverTagCell: " + string(mouseoverTagCell));
-	draw_text(devVarX, wordTopMargin + (strHeight * 20), "displayTokenList: " + scr_getStringOfList(obj_control.displayTokenList));
-	draw_text(devVarX, wordTopMargin + (strHeight * 21), "nodeMap size: " + string(ds_map_size(global.nodeMap)));
+	draw_text(devVarX, wordTopMargin + (strHeight * 20), "nodeMap size: " + string(ds_map_size(global.nodeMap)));
+	draw_text(devVarX, wordTopMargin + (strHeight * 21), "displayTokenList: " + scr_getStringOfList(obj_control.displayTokenList));
 	draw_text(devVarX, wordTopMargin + (strHeight * 22), "dragStartOriginalUnit: " + string(obj_chain.dragStartOriginalUnit));
 	draw_text(devVarX, wordTopMargin + (strHeight * 23), "dragStartOriginalChain: " + string(obj_chain.dragStartOriginalChain));
 	draw_text(devVarX, wordTopMargin + (strHeight * 24), "mouseoverPanelPane: " + string(mouseoverPanelPane));

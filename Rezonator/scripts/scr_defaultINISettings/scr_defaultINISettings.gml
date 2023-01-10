@@ -30,5 +30,8 @@ function scr_defaultINISettings(){
 	if (window_get_width() < displayWidth * displayRatio && window_get_height() < displayHeight * displayRatio) {
 		window_set_size(displayWidth * displayRatio, displayHeight * displayRatio);
 	}
+	
+	// center the window within the display
+	window_center();
 
 }

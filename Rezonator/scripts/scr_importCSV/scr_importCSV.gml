@@ -26,13 +26,21 @@ function scr_importCSV(filename) {
 		colHeader = colHeaderNew;
 		strLen = string_length(colHeader);
 		
+		// if the first column ends with a quotation mark, this is likely an error from load_csv
+		// so let's remove it
+		if (i == 0 && strLen >= 1) {
+			if (string_char_at(colHeader, strLen) == "\"") {
+				colHeader = string_delete(colHeader, strLen, 1);
+			}
+		}
 		
-		if (strLen > 0) {
+		if (strLen >= 1) {	
 			ds_list_add(global.importGridColNameList, colHeader);
 			ds_map_add(global.importGridColMap, colHeader, i);
+			show_debug_message("scr_importCSV, colHeader: " + string(colHeader));
 		}
 		else{
-			colHeader = "Col " + string(blankCount)
+			colHeader = "Col_" + string(blankCount)
 			ds_list_add(global.importGridColNameList, colHeader);
 			ds_map_add(global.importGridColMap, colHeader, i);
 			blankCount++;

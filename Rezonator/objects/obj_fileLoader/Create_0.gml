@@ -3,20 +3,25 @@ if (global.openProject) {
 	show_debug_message("obj_loadingControl Create ... loading REZ");
 	scr_loadREZ();
 }
-with(obj_control){
+with (obj_control) {
 	displayTokenList = ds_list_create();
 	
-	//Look for where global.displayTokenField changes in order to interact with this list
-	ds_list_add(displayTokenList, global.displayTokenField);
-	displayTokenListIndex = 0;	
-	
-	for(var i = 0; i < 3 and i < ds_list_size(global.tokenFieldList); i++){
-		scr_addToListOnce(displayTokenList, global.tokenFieldList[| i]);
+	// by default, add the displayToken field and (if available) the transcription field
+	scr_addToListOnce(displayTokenList, global.displayTokenField);
+	if (is_string(global.tokenImportTranscriptColName) && global.tokenImportTranscriptColName != "") {
+		scr_addToListOnce(displayTokenList, global.tokenImportTranscriptColName);
 	}
 	
+	displayTokenListIndex = 0;	
 	
-
+	// fill the wordform list up with up to 4 fields
+	var displayTokenListSize = min(ds_list_size(global.tokenFieldList), 4);
+	for (var i = 0; i < displayTokenListSize; i++) {
+		scr_addToListOnce(displayTokenList, global.tokenFieldList[| i]);
+	}
 }
+
+
 discourseProcessing = 0;
 fileLineRipListElement = 0;
 

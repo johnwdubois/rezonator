@@ -793,7 +793,6 @@
     {"resourceType":"GMIncludedFile","resourceVersion":"1.0","name":"owpl_turn2unit.json","CopyToMask":-1,"filePath":"datafiles/IncludedFiles/Schemas/Import",},
     {"resourceType":"GMIncludedFile","resourceVersion":"1.0","name":"conll_u.json","CopyToMask":-1,"filePath":"datafiles/IncludedFiles/Schemas/Import",},
     {"resourceType":"GMIncludedFile","resourceVersion":"1.0","name":"owpl_psent2unit.json","CopyToMask":-1,"filePath":"datafiles/IncludedFiles/Schemas/Import",},
-    {"resourceType":"GMIncludedFile","resourceVersion":"1.0","name":"owpl_sbc.json","CopyToMask":-1,"filePath":"datafiles/IncludedFiles/Schemas/Import",},
     {"resourceType":"GMIncludedFile","resourceVersion":"1.0","name":"post_build_step.bat","CopyToMask":0,"filePath":"datafiles",},
     {"resourceType":"GMIncludedFile","resourceVersion":"1.0","name":"post_build_step.sh","CopyToMask":0,"filePath":"datafiles",},
     {"resourceType":"GMIncludedFile","resourceVersion":"1.0","name":"post_package_step.bat","CopyToMask":0,"filePath":"datafiles",},
@@ -874,6 +873,7 @@
     {"resourceType":"GMIncludedFile","resourceVersion":"1.0","name":"sbc004.rez","CopyToMask":-1,"filePath":"datafiles/IncludedFiles/Data/SBCorpus/REZ",},
     {"resourceType":"GMIncludedFile","resourceVersion":"1.0","name":"sbc005.rez","CopyToMask":-1,"filePath":"datafiles/IncludedFiles/Data/SBCorpus/REZ",},
     {"resourceType":"GMIncludedFile","resourceVersion":"1.0","name":"sbc006.rez","CopyToMask":-1,"filePath":"datafiles/IncludedFiles/Data/SBCorpus/REZ",},
+    {"resourceType":"GMIncludedFile","resourceVersion":"1.0","name":"owpl_sbc.json","CopyToMask":-1,"filePath":"datafiles/IncludedFiles/Schemas/Import",},
   ],
   "MetaData": {
     "IDEVersion": "2022.11.1.56",

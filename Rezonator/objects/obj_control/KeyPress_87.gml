@@ -5,15 +5,10 @@ if (!shortcutsEnabled || dialogueBoxActive) {
 
 // if user is holding shift key, cycle the word for list
 if (keyboard_check(vk_shift)) {
-	if (ds_list_size(displayTokenList) == 1) exit;
-	if (displayTokenListIndex == ds_list_size(displayTokenList) - 1) {
-		global.displayTokenField = displayTokenList[| displayTokenListIndex];
-		displayTokenListIndex = 0;
-	}
-	else {
-		global.displayTokenField = displayTokenList[| displayTokenListIndex];
-		displayTokenListIndex++;	
-	}
+	displayTokenListIndex++;
+	if (displayTokenListIndex >= ds_list_size(displayTokenList)) displayTokenListIndex = 0;
+	if (displayTokenListIndex < 0) displayTokenList = 0;
+	global.displayTokenField = displayTokenList[| displayTokenListIndex];
 }
 else {
 	// if user is not holding shift, toggle the WordTip
