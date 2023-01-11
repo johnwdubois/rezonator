@@ -24,14 +24,5 @@ function scr_defaultINISettings(){
 	else {
 		global.fontSize = 5;
 	}
-	
-	// set the window to be at least 80% of the display by default
-	var displayRatio = 0.8;
-	if (window_get_width() < displayWidth * displayRatio && window_get_height() < displayHeight * displayRatio) {
-		window_set_size(displayWidth * displayRatio, displayHeight * displayRatio);
-	}
-	
-	// center the window within the display
-	window_center();
 
 }

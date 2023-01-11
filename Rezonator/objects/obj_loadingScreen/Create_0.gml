@@ -5,4 +5,7 @@ camHeight = camera_get_view_height(camera_get_active());
 
 myAlpha = 1;
 alphaDrop = false;
-alarm[0] = 8;
+//alarm[0] = 8;
+
+loadRatio = 0;
+loadRatioDest = 0;

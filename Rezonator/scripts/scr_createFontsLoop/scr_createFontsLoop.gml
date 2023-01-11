@@ -1,5 +1,3 @@
-
-
 function scr_createFontsLoop(){
 	
 
@@ -19,11 +17,12 @@ function scr_createFontsLoop(){
 			largeFontSize +=2;
 			CJKLoopIteration++;
 	
-			alarm[4] = 2;
+			alarm[4] = 8;
 		}
 		else {
 			scr_createFonts(CKJFont_file_name_full, 6);
 			global.fontsLoaded = true;
+			with (obj_loadingScreen) alarm[0] = 2;
 		}
 	}
 	else {

@@ -4,3 +4,12 @@
 with(obj_fileLoader){
 	drawAutosaveText = false;
 }
+
+// set the window to be at least 80% of the display by default
+var displayRatio = 0.8;
+if (window_get_width() < display_get_width() * displayRatio && window_get_height() < display_get_height() * displayRatio) {
+	window_set_size(display_get_width() * displayRatio, display_get_height() * displayRatio);
+}
+	
+// center the window within the display
+window_center();
