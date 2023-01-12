@@ -2,8 +2,11 @@
 	Purpose: Save all user created data into a special type of JSON file, a Rez file
 */
 function scr_saveREZ(autosave) {
-	exit;
 
+	var file = get_save_filename_ext("REZ file|*.rez", "", program_directory, "Save REZ");
+	show_debug_message("file: " + string(file));
+	exit;
+	
 	show_debug_message("scr_saveREZ, STARTING... " + scr_printTime());
 	show_debug_message("scr_saveREZ, autosave: " + string(autosave) + ", global.fileSaveName: " + string(global.fileSaveName));
 

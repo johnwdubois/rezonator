@@ -42,14 +42,14 @@ function scr_openingMenu() {
 	
 
 			var optionsList = ds_list_create();
-			ds_list_add(optionsList, "SBC001","SBC002","SBC003");
-			scr_createDropDown(mouse_x,mouse_y, optionsList,global.optionListTypeOpenFile);
+			ds_list_add(optionsList, "sbc001.rez", "sbc002.rez", "sbc003.rez", "sbc004.rez", "sbc005.rez", "sbc006.rez", "sbc007.rez", "sbc008.rez", "sbc009.rez", "sbc010.rez");
+			scr_createDropDown(mouse_x, mouse_y, optionsList, global.optionListTypeOpenFile);
 		}
 	}
 	
 	if (global.skipToMainScreen) {
 		global.skipToMainScreen = false;
-		scr_openSpecifiedFile("SBC002");
+		scr_openSpecifiedFile("sbc002.rez");
 	}
 	
 	

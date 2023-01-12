@@ -1,7 +1,21 @@
 function scr_fileOptions(optionSelected) {
+	
+	var optionIndex = ds_list_find_index(optionList, optionSelected);
 
 	switch (optionSelected)
 	{
+		case "Open":
+			
+			scr_destroyAllDropDownsOtherThanSelf();
+			var dropDownOptionList = ds_list_create();
+			ds_list_add(dropDownOptionList, "sbc001.rez", "sbc002.rez", "sbc003.rez", "sbc004.rez", "sbc005.rez", "sbc006.rez", "sbc007.rez", "sbc008.rez", "sbc009.rez", "sbc010.rez");
+						
+			if (ds_list_size(dropDownOptionList) > 0) {
+				scr_createDropDown(obj_dropDown.x + obj_dropDown.windowWidth, obj_dropDown.y + (obj_dropDown.optionSpacing * optionIndex), dropDownOptionList, global.optionListTypeOpenFile);
+			}
+		
+			break;
+		
 		case "help_label_open":
 		//room_instance_clear(rm_mainScreen);
 		
@@ -17,13 +31,30 @@ function scr_fileOptions(optionSelected) {
 			break;
 				
 		case "menu_save":
-			var instLoading = instance_create_layer(0, 0, "InstanceLoading", obj_loadingScreen);
-			instLoading.loadSprite = spr_saving;
+			
+			//var filepath = working_directory + "abc.txt"
+			//var file = file_text_open_write(filepath);
+			//file_text_write_string(file, "abc");
+			//file_text_close(file);
+			
+			//var fileread = file_text_open_read(filepath);
+			//show_message("line: " + file_text_readln(fileread));
+			//file_text_close(fileread);
+			
+			
+			//show_message("file: " + string(file));
+			//show_message("file exists: " + string(file_exists(filepath)));
+			
+			//download_file_inbrowser(filepath);
+			//var file = get_save_filename_ext("REZ file|*.rez", "", program_directory, "Save REZ");
+			//show_debug_message("file: " + string(file));
+			//var instLoading = instance_create_layer(0, 0, "InstanceLoading", obj_loadingScreen);
+			//instLoading.loadSprite = spr_saving;
 
-			obj_fileLoader.ableToHotkey = false;
-			with(obj_fileLoader){
-				alarm[0] = 3;
-			}
+			//obj_fileLoader.ableToHotkey = false;
+			//with(obj_fileLoader){
+			//	alarm[0] = 3;
+			//}
 			break;
 		case "menu_save-as":
 			var instLoading = instance_create_layer(0, 0, "InstanceLoading", obj_loadingScreen);
@@ -58,6 +89,8 @@ function scr_fileOptions(optionSelected) {
 				room_goto(rm_openingScreen);
 				scr_loadINI();
 			}
+			
+			instance_destroy();
 			break;
 			
 		case "menu_export":
@@ -68,6 +101,7 @@ function scr_fileOptions(optionSelected) {
 			with(obj_fileLoader){
 				alarm[5] = 2;
 			}
+			
 			
 			break;
 		case "option_clip":
@@ -120,6 +154,7 @@ function scr_fileOptions(optionSelected) {
 				scr_dialogueNo();
 			}
 
+			instance_destroy();
 			break;
 		default:
 			break;

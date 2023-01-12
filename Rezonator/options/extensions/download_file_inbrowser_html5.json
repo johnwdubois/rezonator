@@ -1,0 +1,9 @@
+{
+  "extensionId": {
+    "name": "download_file_inbrowser_html5",
+    "path": "extensions/download_file_inbrowser_html5/download_file_inbrowser_html5.yy"
+  },
+  "resourceVersion": "1.0",
+  "resourceType": "GMExtensionConfigSet",
+  "configurables": null
+}

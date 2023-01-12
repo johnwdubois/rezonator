@@ -1,5 +1,6 @@
 scr_fullScreenCam();
 
+show_debug_message("here!");
 
 scr_multiDropDownMouseover();
 

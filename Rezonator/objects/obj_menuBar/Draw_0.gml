@@ -278,3 +278,10 @@ if (drawDropShadow) {
 		draw_line(0, menuHeight, camWidth, menuHeight);
 	}
 }
+
+if (room == rm_mainScreen) {
+	draw_set_halign(fa_center);
+	draw_set_color(c_white);
+	draw_set_alpha(1);
+	draw_text(floor(camWidth / 2), floor(menuHeight / 2), string(global.html5filename));
+}

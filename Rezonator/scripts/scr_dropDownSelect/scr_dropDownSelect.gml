@@ -26,7 +26,6 @@ function scr_dropDownSelect(optionSelected) {
 	else if (optionListType == global.optionListTypeFile) //4
 	{
 	    scr_fileOptions(optionSelected);
-	    instance_destroy();
 	}
 	// advancedOptions
 	else if (optionListType == global.optionListTypeAdvanced) //5

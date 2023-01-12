@@ -15,9 +15,8 @@ scr_colorThemeGridInit();
 global.toolPaneWidth = 100;
 
 
-global.versionString = string(game_display_name);
-global.versionString = string_delete(global.versionString, 1, string_length("Rezonator"));
-global.versionString = "Version" + global.versionString;
+global.versionString = "Version 1.01";
+
 
 global.schemaFileName = "";
 
@@ -307,6 +306,7 @@ global.exitOut = false;
 // so we can look up the strings in this map to know whether or not to draw the expand arrow
 global.expandableDropDownMap = ds_map_create();
 ds_map_add(global.expandableDropDownMap, "menu_delete-all", true);
+ds_map_add(global.expandableDropDownMap, "Open", true);
 ds_map_add(global.expandableDropDownMap, "menu_window", true);
 ds_map_add(global.expandableDropDownMap, "menu_nav", true);
 ds_map_add(global.expandableDropDownMap, "menu_justify", true);
@@ -337,6 +337,7 @@ ds_map_add(global.expandableDropDownMap, "option_add-to-show", true);
 
 global.openingScreenDropDownMap = ds_map_create();
 ds_map_add(global.openingScreenDropDownMap, "menu_import", true);
+ds_map_add(global.openingScreenDropDownMap, "Open", true);
 ds_map_add(global.openingScreenDropDownMap, "menu_guide", true);
 ds_map_add(global.openingScreenDropDownMap, "menu_about", true);
 ds_map_add(global.openingScreenDropDownMap, "menu_theme", true);
@@ -356,9 +357,16 @@ ds_map_add(global.openingScreenDropDownMap, "menu_language-hy", true);
 ds_map_add(global.openingScreenDropDownMap, "menu_language-gu", true);
 ds_map_add(global.openingScreenDropDownMap, "menu_language-kk", true);
 ds_map_add(global.openingScreenDropDownMap, "menu_language-ru", true);
-ds_map_add(global.openingScreenDropDownMap, "SBC001", true);
-ds_map_add(global.openingScreenDropDownMap, "SBC002", true);
-ds_map_add(global.openingScreenDropDownMap, "SBC003", true);
+ds_map_add(global.openingScreenDropDownMap, "sbc001.rez", true);
+ds_map_add(global.openingScreenDropDownMap, "sbc002.rez", true);
+ds_map_add(global.openingScreenDropDownMap, "sbc003.rez", true);
+ds_map_add(global.openingScreenDropDownMap, "sbc004.rez", true);
+ds_map_add(global.openingScreenDropDownMap, "sbc005.rez", true);
+ds_map_add(global.openingScreenDropDownMap, "sbc006.rez", true);
+ds_map_add(global.openingScreenDropDownMap, "sbc007.rez", true);
+ds_map_add(global.openingScreenDropDownMap, "sbc008.rez", true);
+ds_map_add(global.openingScreenDropDownMap, "sbc009.rez", true);
+ds_map_add(global.openingScreenDropDownMap, "sbc010.rez", true);
 
 global.mainScreenDropDownMap = ds_map_create();
 ds_map_add(global.mainScreenDropDownMap, "menu_save", true);
@@ -467,7 +475,7 @@ global.CoNLLUwithMeta = false;
 global.schemaNavTokenFieldList = -1;
 global.schemaNavUnitFieldList = -1;
 
-alarm[6] = 1;
+alarm[6] = 2;
 
 
 global.includedTagSchemaFileList = ds_list_create();

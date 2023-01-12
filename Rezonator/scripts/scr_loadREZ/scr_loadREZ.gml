@@ -52,9 +52,9 @@ function scr_loadREZ(bufferString) {
 	//if (file_exists(fileName)) {
 		var wrapper = json_decode(bufferString);
 	
-		if (not ds_exists(wrapper, ds_type_map)) {
+		if (!scr_isNumericAndExists(wrapper, ds_type_map)) {
 			show_debug_message("Going to openingScreen, scr_loadREZ");
-			show_debug_message("Error loading " + fileName);
+			show_debug_message("Error loading, wrapper does not exist");
 			room_goto(rm_openingScreen);
 			exit;
 		}
@@ -63,7 +63,7 @@ function scr_loadREZ(bufferString) {
 	
 		if (is_undefined(list)) {
 			show_debug_message("Going to openingScreen, scr_loadREZ");
-			show_debug_message("Error loading " + fileName);
+			show_debug_message("Error loading, list is undefined");
 			room_goto(rm_openingScreen);
 			exit;
 		}

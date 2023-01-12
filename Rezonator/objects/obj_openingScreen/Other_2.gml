@@ -45,6 +45,8 @@ global.importGroupOutputDir = "";
 global.importGroupSchemaFile = "";
 global.skipToImportScreen = false;
 global.skipToMainScreen = true;
+global.skipToOpenFile = "";
+global.html5filename = "";
 
 var defStr = "";
 defStr = (global.userName == "") ? scr_get_translation("msg_signin") : global.userName;
@@ -92,5 +94,5 @@ global.build = true;
 global.rezzles = true;
 
 
-global.steamAPI = true;
+global.steamAPI = false;
 alarm[7] = 3;
