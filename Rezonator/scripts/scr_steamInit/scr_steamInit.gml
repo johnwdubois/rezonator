@@ -1,7 +1,6 @@
-
-
 function scr_steamInit(){
 	
+	if (global.html5) exit;
 	show_debug_message("scr_steamInit");
 	
 	if (steam_initialised()) {

@@ -1,6 +1,6 @@
-
-
 function scr_addtoTagSchemaList(){
+	
+	if (global.html5) exit;
 	
 	var delimiter = (os_type == os_macosx) ? "/" : "\\";
 	var tag_file_name = file_find_first( "IncludedFiles" + delimiter + "Schemas" + delimiter + "Tag" + delimiter + "tag*.json", 0 );		// find the first glossary file matching naming convention

@@ -1,3 +1,5 @@
+if (global.html5) instance_destroy();
+
 scr_scrollBarInit();
 inputDelay = 10;
 recentFilesWindowX1 = x;

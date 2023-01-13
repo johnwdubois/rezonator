@@ -2,7 +2,8 @@
 	Purpose: Instantiate all variables used by the openingScreen object
 */
 
-window_command_hook(window_command_close);
+
+if (!global.html5) window_command_hook(window_command_close);
 
 global.ctrlHold = false;
 

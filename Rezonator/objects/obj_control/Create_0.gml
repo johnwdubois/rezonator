@@ -881,3 +881,5 @@ createChunkNoChain = false;
 with (obj_alarm3) alarm[4] = 2;
 
 saveToFirebase = false;
+
+rezFileVersion = "";

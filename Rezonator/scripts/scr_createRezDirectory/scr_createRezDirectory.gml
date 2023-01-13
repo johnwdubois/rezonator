@@ -1,5 +1,15 @@
 function scr_createRezDirectory() {
 	
+	if (global.html5) {
+		global.rezonatorDirString = "";
+		global.documentsDirString = "";
+		global.rezonatorDefaultDiscourseDirString = "";
+		global.rezonatorSchemaDirString = "";
+		global.rezonatorREZFileDir = "";
+		global.rezonatorMyREZFileDir = "";
+		exit;
+	}
+	
 	// Create the colelction of folders and files the user will receive on downloading Rezonator
 	var userName = (os_type == os_macosx) ? "USER" : "USERNAME";
 	var userStr = environment_get_variable(userName);

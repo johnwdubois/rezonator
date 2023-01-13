@@ -1,9 +1,9 @@
-function scr_verifyRez(rezFileVerison){
+function scr_verifyRez(){
 	
-	show_debug_message("rezFileVerison:  "+ string(rezFileVerison))
-	rezFileVerison = string(rezFileVerison)
-	var firstNum = string_digits(rezFileVerison);
-	if(string_length(firstNum)> 0){	
+	show_debug_message("scr_verifyRez, rezFileVersion:  "+ string(obj_control.rezFileVersion));
+	obj_control.rezFileVersion = string(obj_control.rezFileVersion)
+	var firstNum = string_digits(obj_control.rezFileVersion);
+	if (string_length(firstNum) > 0) {
 		if(string_char_at(firstNum, 1) == "0"){
 			var inst = instance_create_layer(0, 0, "InstancesDialogue", obj_dialogueBox);
 			obj_dialogueBox.alertWindowActive = true;

@@ -200,7 +200,12 @@ function scr_adaptFont(inputString, size, isTitle){
 		}
 	}
 		
-	draw_set_font(fontScaledName);
+	if (global.html5) {
+		draw_set_font(fnt_test);
+	}
+	else {
+		draw_set_font(fontScaledName);
+	}
 	
 	// flip the string if it's RTL!
 	if (isRTL) inputString = scr_stringReverse(inputString);

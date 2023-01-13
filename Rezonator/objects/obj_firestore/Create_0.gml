@@ -1,3 +1,5 @@
+if (global.html5) instance_destroy();
+
 newVersionStr = "";
 newestVersionNum = "";
 initialVersionCheck = false;

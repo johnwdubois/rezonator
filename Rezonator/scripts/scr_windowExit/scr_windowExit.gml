@@ -1,5 +1,7 @@
 function scr_windowExit(){
 	
+	if (global.html5) exit;
+	
 	if (window_command_check(window_command_close)) {
 		
 		if (room == rm_mainScreen) {
