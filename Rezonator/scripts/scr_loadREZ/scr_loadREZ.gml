@@ -5,7 +5,6 @@ function scr_loadREZ() {
 		
 		var filename = working_directory + "IncludedFiles/sbc002.rez";
 		var fileExists = file_exists(filename);
-		show_message("filename: " + string(filename) + ", fileExists: " + string(fileExists));
 		
 		global.html5FileRipStr = "";
 		var file = file_text_open_read(filename);

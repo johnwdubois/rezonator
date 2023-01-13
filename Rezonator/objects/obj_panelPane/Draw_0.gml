@@ -3,6 +3,8 @@
 
 */
 
+exit;
+
 
 if (obj_control.gridView and currentFunction != functionHelp) {
 	exit;

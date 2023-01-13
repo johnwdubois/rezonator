@@ -1,10 +1,8 @@
-
-
 function scr_generateRandomHex(){
 	
 	// generate a random number and turn it into a hex string
-	var hexMin = 1000;
-	var hexMax = 1000000000000000;
+	var hexMin = 100;
+	var hexMax = 100000000;
 	var hex = irandom_range(hexMin, hexMax);
 	hex = scr_baseConvert(hex, 10, 16);
 	

@@ -2,7 +2,10 @@ function scr_URLOpenReliable(url){
 	
 	// GameMaker's url_open function is a bit unreliable for Windows,
 	// so we use execute shell to launch the browser
-	if (os_type == os_windows) {
+	if (global.html5) {
+		url_open(url);
+	}
+	else if (os_type == os_windows) {
 		
 		var _url = url;
 		var _path = game_save_id + "/shortcut.url";
