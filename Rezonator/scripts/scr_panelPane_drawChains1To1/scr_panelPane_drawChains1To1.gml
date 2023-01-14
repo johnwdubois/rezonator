@@ -1,5 +1,3 @@
-
-
 function scr_panelPane_drawChains1To1(){
 	
 	
@@ -61,7 +59,7 @@ function scr_panelPane_drawChains1To1(){
 	var listOfChainsSize = ds_list_size(listOfChains);
 	
 	
-	scr_surfaceStart();
+	if (!global.html5) scr_surfaceStart();
 	
 	
 	var strHeight = leftPaneStrHeight;
@@ -212,7 +210,7 @@ function scr_panelPane_drawChains1To1(){
 		global.colorThemeSelected1, global.colorThemeSelected2, spr_ascend, windowWidth, windowHeight);
 	
 	
-	scr_surfaceEnd();
+	if (!global.html5) scr_surfaceEnd();
 	
 	scr_panelPane_drawChains1To1Headers(chain1to1ColFieldList, chainType);
 	

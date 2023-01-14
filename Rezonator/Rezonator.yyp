@@ -138,6 +138,7 @@
     {"id":{"name":"spr_proseGridTool","path":"sprites/spr_proseGridTool/spr_proseGridTool.yy",},"order":3,},
     {"id":{"name":"scr_checkRTL","path":"scripts/scr_checkRTL/scr_checkRTL.yy",},"order":9,},
     {"id":{"name":"scr_prevTokenInSequence","path":"scripts/scr_prevTokenInSequence/scr_prevTokenInSequence.yy",},"order":1,},
+    {"id":{"name":"scr_loadLocaleFile","path":"scripts/scr_loadLocaleFile/scr_loadLocaleFile.yy",},"order":1,},
     {"id":{"name":"scr_addtoTagSchemaList","path":"scripts/scr_addtoTagSchemaList/scr_addtoTagSchemaList.yy",},"order":3,},
     {"id":{"name":"scr_newToken","path":"scripts/scr_newToken/scr_newToken.yy",},"order":2,},
     {"id":{"name":"scr_URLOpenReliable","path":"scripts/scr_URLOpenReliable/scr_URLOpenReliable.yy",},"order":34,},

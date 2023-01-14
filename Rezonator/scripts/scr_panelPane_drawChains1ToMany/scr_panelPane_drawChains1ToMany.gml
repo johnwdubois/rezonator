@@ -43,11 +43,11 @@ function scr_panelPane_drawChains1ToMany() {
 
 
 
-	scr_surfaceStart();
+	if (!global.html5) scr_surfaceStart();
 	
 	
 	if (!ds_exists(chain1toManyColFieldList, ds_type_list)) {
-		scr_surfaceEnd();
+		if (!global.html5) scr_surfaceEnd();
 		exit;
 	}
 
@@ -67,7 +67,7 @@ function scr_panelPane_drawChains1ToMany() {
 	
 	// make sure chain exists and that its submap exists
 	if (!scr_isNumericAndExists(chainSubMap, ds_type_map)) {
-		scr_surfaceEnd();
+		if (!global.html5) scr_surfaceEnd();
 		exit;
 	}
 	
@@ -85,7 +85,7 @@ function scr_panelPane_drawChains1ToMany() {
 	// make sure that we have a valid chain type
 	if (chainType != "resonance" && chainType != "trail" && chainType != "stack") {
 		functionChainContents_chainID = "";
-		scr_surfaceEnd();
+		if (!global.html5) scr_surfaceEnd();
 		exit;
 	}
 	
@@ -94,7 +94,7 @@ function scr_panelPane_drawChains1ToMany() {
 	|| (chainType == "trail" && functionChainList_currentTab != functionChainList_tabTrackBrush)
 	|| (chainType == "stack" && functionChainList_currentTab != functionChainList_tabStackBrush)) {
 		functionChainContents_chainID = "";
-		scr_surfaceEnd();
+		if (!global.html5) scr_surfaceEnd();
 		exit;
 	}
 	
@@ -227,6 +227,6 @@ function scr_panelPane_drawChains1ToMany() {
 
 	scr_scrollMouseControls(strHeight);
 
-	scr_surfaceEnd();
+	if (!global.html5) scr_surfaceEnd();
 
 }

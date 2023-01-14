@@ -29,8 +29,10 @@ function scr_insertColumnDropDown(fullFieldList, navFieldList, type){
 		for (var i = 0; i < entryFieldListSize; i++) {
 			var currentEntryField = fullFieldListAllTypes[| i];
 			var currentEntryFieldSubMap = fieldMap[? currentEntryField];
-			if (currentEntryFieldSubMap[? entryType]) {
-				ds_list_add(fullFieldList, currentEntryField);
+			if (scr_isNumericAndExists(currentEntryFieldSubMap, ds_type_map)) {
+				if (currentEntryFieldSubMap[? entryType]) {
+					ds_list_add(fullFieldList, currentEntryField);
+				}
 			}
 		}
 	}

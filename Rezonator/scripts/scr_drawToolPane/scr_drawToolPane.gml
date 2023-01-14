@@ -219,7 +219,7 @@ function scr_drawToolPane(toolSprScale) {
 	var audioButtonRectX2 = floor(toolButtonX + (toolSprWidth / 2) + toolButtonRectBuffer);
 	var audioButtonRectY2 = floor(audioButtonY + (toolSprHeight / 2) + toolButtonRectBuffer);
 	
-	var mouseoverAudio = point_in_rectangle(mouse_x, mouse_y, audioButtonRectX1, audioButtonRectY1, audioButtonRectX2, audioButtonRectY2) && !mouseoverCancel;
+	var mouseoverAudio = point_in_rectangle(mouse_x, mouse_y, audioButtonRectX1, audioButtonRectY1, audioButtonRectX2, audioButtonRectY2) && !global.html5 && !mouseoverCancel;
 	
 	if (mouseoverAudio) {
 		draw_set_color(c_white);
@@ -243,7 +243,7 @@ function scr_drawToolPane(toolSprScale) {
 	}
 	
 	// draw audio sprite
-	draw_sprite_ext(spr_audioTool, 0, toolButtonX, audioButtonY, toolSprScale, toolSprScale, 0, obj_audioUI.visible ? global.colorThemeRezPink : c_white, 1);
+	draw_sprite_ext(spr_audioTool, 0, toolButtonX, audioButtonY, toolSprScale, toolSprScale, 0, obj_audioUI.visible ? global.colorThemeRezPink : c_white, global.html5 ? 0.5 : 1);
 	
 	
 	

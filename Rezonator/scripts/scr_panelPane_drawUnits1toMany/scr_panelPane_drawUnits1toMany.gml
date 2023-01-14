@@ -1,6 +1,6 @@
 function scr_panelPane_drawUnits1toMany() {
 	
-	scr_surfaceStart();
+	if (!global.html5) scr_surfaceStart();
 
 	// Set opacity, alignment, and font of contents list
 	draw_set_alpha(1);
@@ -40,7 +40,7 @@ function scr_panelPane_drawUnits1toMany() {
 		}
 		if ((unitType == "unit" && obj_panelPane.functionChainList_currentTab == functionChainList_tabChunk)
 		|| (unitType == "chunk" && obj_panelPane.functionChainList_currentTab == functionChainList_tabLine)) {
-			scr_surfaceEnd();
+			if (!global.html5) scr_surfaceEnd();
 			exit;
 		}
 		
@@ -119,7 +119,7 @@ function scr_panelPane_drawUnits1toMany() {
 	draw_set_color(global.colorThemeBG);
 	draw_rectangle(x - clipX, y - clipY, x + windowWidth - clipX, y + headerHeight - clipY, false);
 	
-	scr_surfaceEnd();
+	if (!global.html5) scr_surfaceEnd();
 
 	// Allows use of arrow keys, pgUp/pgDwn, and ctrl+key in chain list if clicked in chainContents
 	if (clickedIn) {

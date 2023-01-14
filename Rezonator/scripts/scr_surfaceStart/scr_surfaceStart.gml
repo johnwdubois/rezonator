@@ -32,6 +32,14 @@ function scr_surfaceStart() {
 	if (mouse_check_button_released(mb_left)) {
 		windowResizeXHolding = false;
 		windowResizeYHolding = false;
+		with (obj_panelPaneL) {
+			windowResizeXHolding = false;
+			windowResizeYHolding = false;
+		}
+		with (obj_panelPaneR) {
+			windowResizeXHolding = false;
+			windowResizeYHolding = false;
+		}
 		
 		with (obj_control) {
 			mouseoverPanelPane = false;
@@ -50,6 +58,8 @@ function scr_surfaceStart() {
 				}
 				if (mouse_check_button_pressed(mb_left) && !instance_exists(obj_dropDown) ) {
 					windowResizeYHolding = true;
+					with (obj_panelPaneL) windowResizeYHolding = true;
+					with (obj_panelPaneR) windowResizeYHolding = true;
 				}
 			}
 		}

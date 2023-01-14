@@ -32,7 +32,7 @@ function scr_panelPane_drawChains1ToManyHeaders(){
 		}
 	}
 	
-	scr_surfaceStart();
+	if (!global.html5) scr_surfaceStart();
 	
 	if (scr_isNumericAndExists(chain1toManyColFieldList, ds_type_list)) {
 		
@@ -174,9 +174,11 @@ function scr_panelPane_drawChains1ToManyHeaders(){
 						for (var i = 0; i < entryFieldListSize; i++) {
 							var currentEntryField = global.chainEntryFieldList[| i];
 							var currentEntryFieldSubMap = global.entryFieldMap[? currentEntryField];
-							if (currentEntryFieldSubMap[? entryType]) {
-								if (ds_list_find_index(chain1toManyColFieldList, currentEntryField) == -1) {
-									allFieldsInNav = false;
+							if (scr_isNumericAndExists(currentEntryFieldSubMap, ds_type_map)) {
+								if (currentEntryFieldSubMap[? entryType]) {
+									if (ds_list_find_index(chain1toManyColFieldList, currentEntryField) == -1) {
+										allFieldsInNav = false;
+									}
 								}
 							}
 						}
@@ -227,7 +229,7 @@ function scr_panelPane_drawChains1ToManyHeaders(){
 		}
 	}
 	
-	scr_surfaceEnd();
+	if (!global.html5) scr_surfaceEnd();
 	
 	// draw horizontal line between headers and contents
 	draw_line(x , y + tabHeight , x + windowWidth , y + tabHeight);

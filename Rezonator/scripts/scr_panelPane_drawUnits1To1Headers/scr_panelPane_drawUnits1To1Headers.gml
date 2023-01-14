@@ -1,6 +1,6 @@
 function scr_panelPane_drawUnits1To1Headers(){
 	
-	scr_surfaceStart();
+	if (!global.html5) scr_surfaceStart();
 	
 	var headerList = obj_control.navUnitFieldList;
 	var headerListSize = ds_list_size(headerList);
@@ -135,6 +135,6 @@ function scr_panelPane_drawUnits1To1Headers(){
 	draw_set_color(global.colorThemeBorders);
 	draw_rectangle(x - clipX, y - clipY, x + windowWidth - clipX, y + headerHeight - clipY, true);
 	
-	scr_surfaceEnd();
+	if (!global.html5) scr_surfaceEnd();
 
 }

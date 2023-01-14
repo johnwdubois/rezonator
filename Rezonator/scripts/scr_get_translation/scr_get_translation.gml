@@ -7,8 +7,6 @@ function scr_get_translation(key){
 	// look for the key in the current language's map
 	// if we can find the translation, return the translation
 	
-	if (global.html5) return key;
-	
 	if (variable_global_exists("locale_gloss") && ds_map_exists( global.locale_gloss, key )) {
 		var outputString = ds_map_find_value( global.locale_gloss, key );
 		var letterCount = string_length(outputString);
