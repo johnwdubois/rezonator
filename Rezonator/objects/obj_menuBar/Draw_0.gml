@@ -232,7 +232,7 @@ var fpsTextX = minimizeX1- sizeOfButtons;
 
 
 draw_set_color(c_white);
-if(instance_exists(obj_control)){
+if (instance_exists(obj_control)) {
 	if (obj_control.showFPS) {
 		if(!obj_control.allSaved){
 			fpsTextX = saveIconX1 - string_width("0");
@@ -267,8 +267,13 @@ if(instance_exists(obj_control)){
 		saveTextAlpha = 1;	
 	}
 
-
-
+	// draw filename if in browser
+	if (global.html5) {
+		draw_set_halign(fa_center);
+		draw_set_valign(fa_middle);
+		draw_set_color(c_white);
+		draw_text(floor(camWidth / 2), floor(mean(menuHeaderRectX1, menuHeaderRectX2)), string(global.html5RezFile));
+	}
 }
 
 

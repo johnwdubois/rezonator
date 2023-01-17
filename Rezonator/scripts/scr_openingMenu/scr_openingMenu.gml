@@ -46,11 +46,26 @@ function scr_openingMenu() {
 		_selectOpenButton = true;
 	}
 	
+	// if opening an html5 rez file, we just need the filename string
+	if (global.html5 && is_string(global.html5RezFile) && global.html5RezFile != "") {
+		_selectOpenButton = true;
+	}
+	
 	// if the user clicks the open button (or has used the Open option from the menu bar)
 	if (_selectOpenButton) {
-		global.newProject = false;
-		global.openProject = true;
-		global.userName = obj_openingScreen.inputText == "" ? "Unknown" : obj_openingScreen.inputText;
+		if (global.html5 && (!is_string(global.html5RezFile) || global.html5RezFile == "")) {
+			var html5RezFileOptionList = ds_list_create();
+			for (var i = 1; i <= 10; i++) {
+				var numStrPrepend = i == 10 ? "0" : "00";
+				ds_list_add(html5RezFileOptionList, "sbc" + numStrPrepend + string(i));
+			}
+			scr_createDropDown(mouse_x, mouse_y, html5RezFileOptionList, global.optionListTypeHTML5REZFile);
+		}
+		else {
+			global.newProject = false;
+			global.openProject = true;
+			global.userName = obj_openingScreen.inputText == "" ? "Unknown" : obj_openingScreen.inputText;
+		}
 	}
 	
 	// draw open button

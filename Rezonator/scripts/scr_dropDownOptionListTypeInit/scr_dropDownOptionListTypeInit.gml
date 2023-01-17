@@ -85,6 +85,7 @@ function scr_dropDownOptionListTypeInit(){
 	global.optionListTypeSplitTokenField = 92;
 	global.optionListTypeAddEndnote = 93;
 	global.optionListTypeTurnStacker = 94;
+	global.optionListTypeHTML5REZFile = 95;
 
 
 }

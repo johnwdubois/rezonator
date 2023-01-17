@@ -1,5 +1,6 @@
 with (obj_control) {
 	if (ds_grid_height(unitGrid) < 1) {
+		if (global.html5) global.html5RezFile = "";
 		show_message(scr_get_translation("msg_warning_import_error"));
 		audio_stop_all();
 		show_debug_message("Going to openingScreen, obj_alarm Alarm 4");

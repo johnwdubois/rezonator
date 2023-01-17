@@ -16,6 +16,7 @@ global.locale_map		= ds_map_create();		// create a dictionary that stores the gl
 global.locale_gloss		= ds_map_create();		// create a dictionary that stores the glossary for a single language
 
 global.html5 = os_browser != browser_not_a_browser;
+global.html5RezFile = "";
 global.html5FileRipStr = "";
 
 var delimiter = (os_type == os_windows) ? "\\" : "/";

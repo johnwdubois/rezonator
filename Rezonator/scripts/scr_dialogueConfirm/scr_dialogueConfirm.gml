@@ -354,6 +354,7 @@ function scr_dialogueConfirm(){
 				with(obj_fileLoader) scr_saveREZ(false);
 				global.skipToImportScreen = obj_control.saveBeforeImporting;
 				global.skipToOpen = obj_control.saveBeforeOpening;
+				if (global.html5) global.html5RezFile = "";
 				show_debug_message("Going to openingScreen, scr_dialogueConfirm");
 				room_goto(rm_openingScreen);
 				scr_loadINI();

@@ -2,24 +2,27 @@ function scr_loadREZ() {
 	
 	if (global.html5) {
 		
+		var filename = working_directory + "IncludedFiles/Data/SBCorpus/REZ_beautify/" + global.html5RezFile + ".rez";
+		if (file_exists(filename)) {
+			global.html5FileRipStr = "";
+			var file = file_text_open_read(filename);
+			while (!file_text_eof(file)) {
+				var line = file_text_readln(file);
+				line = string_replace_all(line, "\n", "");
+				line = string_replace_all(line, "\r", "");
+				line = string_replace_all(line, "	", "");
+				global.html5FileRipStr += line;
+			}
+			file_text_close(file);
 		
-		var filename = working_directory + "IncludedFiles/sbc002.rez";
-		var fileExists = file_exists(filename);
-		
-		global.html5FileRipStr = "";
-		var file = file_text_open_read(filename);
-		while (!file_text_eof(file)) {
-			var line = file_text_readln(file);
-			line = string_replace_all(line, "\n", "");
-			line = string_replace_all(line, "\r", "");
-			line = string_replace_all(line, "	", "");
-			global.html5FileRipStr += line;
+			var decode = json_decode(global.html5FileRipStr);
+			scr_loadREZHandleWrapper(decode);
 		}
-		file_text_close(file);
-		
-		var decode = json_decode(global.html5FileRipStr);
-		
-		scr_loadREZHandleWrapper(decode);		
+		else {
+			show_message("ERROR. " + string(global.html5RezFile) + " does not exist");
+			if (global.html5) global.html5RezFile = "";
+			room_goto(rm_openingScreen);
+		}
 		exit;
 	}
 	

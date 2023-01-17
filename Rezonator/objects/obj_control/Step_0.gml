@@ -509,6 +509,7 @@ if (keyboard_check(vk_shift) and keyboard_check_pressed(ord("Q")) ) {
 	if (allSaved) {
 		scr_saveINI();
 		keyboard_string = "";
+		if (global.html5) global.html5RezFile = "";
 		show_debug_message("Going to openingScreen, obj_control Step");
 		room_goto(rm_openingScreen);
 		scr_loadINI();

@@ -21,6 +21,7 @@ function scr_dialogueNo(){
 				if (obj_control.saveBeforeExiting || obj_control.saveBeforeImporting || obj_control.saveBeforeOpening) {
 					global.skipToImportScreen = obj_control.saveBeforeImporting;
 					global.skipToOpen = obj_control.saveBeforeOpening;
+					if (global.html5) global.html5RezFile = "";
 					show_debug_message("Going to openingScreen, scr_dialogueNo");
 					room_goto(rm_openingScreen);
 					scr_loadINI();

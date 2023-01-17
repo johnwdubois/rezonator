@@ -2,6 +2,7 @@ function scr_loadREZHandleWrapper(wrapper){
 	
 	if (!scr_isNumericAndExists(wrapper, ds_type_map)) {
 		show_message("scr_loadREZHandleWrapper ERROR, wrapper is not a map");
+		if (global.html5) global.html5RezFile = "";
 		room_goto(rm_openingScreen);
 		exit;
 	}
@@ -9,6 +10,7 @@ function scr_loadREZHandleWrapper(wrapper){
 	var list = ds_map_find_value(wrapper, "ROOT");
 	if (!scr_isNumericAndExists(list, ds_type_list)) {
 		show_message("scr_loadREZHandleWrapper ERROR, rootlist is not a list");
+		if (global.html5) global.html5RezFile = "";
 		room_goto(rm_openingScreen);
 		exit;
 	}
