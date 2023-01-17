@@ -201,7 +201,12 @@ function scr_adaptFont(inputString, size, isTitle){
 	}
 		
 	if (global.html5) {
-		draw_set_font(fnt_test);
+		if (global.fontSize == 0) draw_set_font(fnt_nonCJK_size1);
+		else if (global.fontSize == 1) draw_set_font(fnt_nonCJK_size2);
+		else if (global.fontSize == 2) draw_set_font(fnt_nonCJK_size3);
+		else if (global.fontSize == 3) draw_set_font(fnt_nonCJK_size4);
+		else if (global.fontSize == 4) draw_set_font(fnt_nonCJK_size5);
+		else if (global.fontSize == 5) draw_set_font(fnt_nonCJK_size6);
 	}
 	else {
 		draw_set_font(fontScaledName);

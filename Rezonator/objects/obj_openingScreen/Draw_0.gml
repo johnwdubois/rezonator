@@ -24,7 +24,7 @@ if (obj_openingScreen.showDevVars) {
 	draw_text((camera_get_view_width(camera_get_active()) / 2) + (sprite_get_width(spr_logo) / 2) - 500, (camera_get_view_height(camera_get_active()) / 4) + (sprite_get_height(spr_logo) / 2) + 50, programDirStr);
 	draw_text((camera_get_view_width(camera_get_active()) / 2) + (sprite_get_width(spr_logo) / 2) - 500, (camera_get_view_height(camera_get_active()) / 4) + (sprite_get_height(spr_logo) / 2) + 100, currentDirStr);
 	
-	draw_text(20, 20, "global.fontSize: " + string(global.fontSize));
+	draw_text(20, 20, "openingScreen, global.fontSize: " + string(global.fontSize));
 }
 
 

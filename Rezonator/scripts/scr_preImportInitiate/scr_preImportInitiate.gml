@@ -1,7 +1,4 @@
-
-
 function scr_preImportInitiate(){
-	show_debug_message("scr_preImportInitiate RAN")
 	// preImport map will have a node for every type of import
 	global.preImportMap = ds_map_create();
 	var importTypeListSize = ds_list_size(global.importTypeList);

@@ -119,7 +119,7 @@ function scr_zoomOptions(optionSelected) {
 		case "help_label_zoom-out":
 			
 			if(room == rm_openingScreen){
-				if(global.fontSize != 0) global.fontSize--;
+				if (global.fontSize != 0) global.fontSize--;
 				exit;
 			}
 			

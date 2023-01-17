@@ -86,7 +86,7 @@ function scr_stringReverse(inputString){
 			}
 			previousUnicodeValue = unicodeValue;
 		}
-		show_debug_message("input:  "+ string(inputString) + "   -  reversed: "+string(newString))
+		//show_debug_message("input:  "+ string(inputString) + "   -  reversed: "+string(newString))
 		ds_map_add(global.reverseStrMap, inputString, newString);
 		return newString;
 	}

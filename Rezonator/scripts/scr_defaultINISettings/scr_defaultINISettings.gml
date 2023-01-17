@@ -24,5 +24,7 @@ function scr_defaultINISettings(){
 	else {
 		global.fontSize = 5;
 	}
+	
+	show_debug_message("scr_defaultINISettings, fontSize: " + string(global.fontSize));
 
 }

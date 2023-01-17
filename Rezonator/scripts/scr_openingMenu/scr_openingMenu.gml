@@ -65,8 +65,7 @@ function scr_openingMenu() {
 	draw_set_color(mouseOverOpen ? global.colorThemeBG : global.colorThemeText);
 	draw_sprite_ext(spr_openingMenuOpen, global.fontSize, mean(openProjectButtonX1,openProjectButtonX2), openProjectButtonY1 + (openProjectButtonY2 - openProjectButtonY1) * 0.38, spriteScale, spriteScale, 0, merge_color(global.colorThemeRezPurple, global.colorThemeBG, hoverColorMergeOpen), 1);
 	scr_adaptFont(scr_get_translation("menu_import"), "L", true);
-	//draw_text(floor(mean(openProjectButtonX1, openProjectButtonX2)), openProjectButtonY1 + (openProjectButtonY2 - openProjectButtonY1)*.8, scr_get_translation("help_label_open"));
-	draw_text(floor(mean(openProjectButtonX1, openProjectButtonX2)), openProjectButtonY1 + (openProjectButtonY2 - openProjectButtonY1)*.8, "Open");
+	draw_text(floor(mean(openProjectButtonX1, openProjectButtonX2)), openProjectButtonY1 + (openProjectButtonY2 - openProjectButtonY1)*.8, scr_get_translation("help_label_open"));
 	
 
 

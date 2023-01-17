@@ -1,6 +1,5 @@
-
-
 function scr_languageOptions(optionSelected){
+	
 	switch(optionSelected){
 
 		case "menu_language-en":
@@ -93,6 +92,7 @@ function scr_languageOptions(optionSelected){
 		break;
 		
 	}
+	
 	scr_fontGlobalUpdate();
 	scr_preImportInitiate();
 	

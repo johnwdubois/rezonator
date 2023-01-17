@@ -1,5 +1,6 @@
 function scr_loadINI() {
 
+	if (global.html5) exit;
 
 	if (os_type == os_macosx) {
 		var fileName = global.rezonatorDirString + "/~usersettings.ini";
@@ -93,7 +94,6 @@ function scr_loadINI() {
 				global.previousLevelEstimates = ds_map_find_value(map, "previousLevelEstimates");
 			
 				global.fontSize = ds_map_find_value(map, "fontSize");
-
 				
 			}		
 			else if(room  == rm_mainScreen){

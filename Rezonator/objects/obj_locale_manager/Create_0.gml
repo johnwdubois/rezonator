@@ -31,22 +31,18 @@ if (true) {
 	show_debug_message("OS locale: " + native_locale_code);
 
 	if (global.html5) {
-		//var filepath = working_directory + "IncludedFiles/Localization/locale_en.json"
-		//show_message("exists: " + string(file_exists(filepath)));
-		//var file = file_text_open_read(filepath);
-		//var json_str	= "";									// create an empty variable
-		//var j = 0;
-		//while ( !file_text_eof(file) )					// until the end of file is reached
-		//{
-		//	json_str += file_text_read_string(file);		// add to json_str the content of each file
-		//	file_text_readln(file);
-		//	j++;
-		//}
-		//file_text_close(file);
-		//show_message( "Loaded locale_map from " + string(j) + " lines of text." );
-		
+		scr_loadLocaleFile("locale_ca.json", delimiter);
 		scr_loadLocaleFile("locale_en.json", delimiter);
 		scr_loadLocaleFile("locale_es.json", delimiter);
+		scr_loadLocaleFile("locale_gu.json", delimiter);
+		scr_loadLocaleFile("locale_he.json", delimiter);
+		scr_loadLocaleFile("locale_hy.json", delimiter);
+		scr_loadLocaleFile("locale_it.json", delimiter);
+		scr_loadLocaleFile("locale_ja.json", delimiter);
+		scr_loadLocaleFile("locale_kk.json", delimiter);
+		scr_loadLocaleFile("locale_ru.json", delimiter);
+		scr_loadLocaleFile("locale_vi.json", delimiter);
+		scr_loadLocaleFile("locale_zh.json", delimiter);
 	}
 	else {
 		var locale_file_name = file_find_first("IncludedFiles" + delimiter + "Localization" + delimiter + "locale_*.json", 0 );		// find the first glossary file matching naming convention
