@@ -180,29 +180,31 @@ function scr_openingMenu() {
 	var rememberMeBoxY1 = userSignInBoxY2 + (stringHeight * 0.75);
 	var rememberMeBoxX2 = rememberMeBoxX1 + rememberMeButtonWidth;
 	var rememberMeBoxY2 = rememberMeBoxY1 + rememberMeButtonWidth;
+	var mouseoverRememberMeBox = point_in_rectangle(mouse_x, mouse_y,rememberMeBoxX1, rememberMeBoxY1, rememberMeBoxX2, rememberMeBoxY2) && !global.html5;
 	
-	draw_set_color(global.colorThemeText);
-	draw_rectangle(rememberMeBoxX1, rememberMeBoxY1, rememberMeBoxX2, rememberMeBoxY2, true);
+	if (!global.html5) {
+		draw_set_color(global.colorThemeText);
+		draw_rectangle(rememberMeBoxX1, rememberMeBoxY1, rememberMeBoxX2, rememberMeBoxY2, true);
 	
-	draw_set_halign(fa_left);
-	draw_text(rememberMeBoxX2 + spaceWidth, floor(mean(rememberMeBoxY1, rememberMeBoxY2)), scr_get_translation("menu_remember"));
-
-
-	
-	if (global.rememberMe) {
-		var checkScale = 0.6;
-		if (camWidth > 2000) checkScale = 1;
-		draw_sprite_ext(spr_checkmark, 0, floor(mean(rememberMeBoxX1, rememberMeBoxX2)), floor(mean(rememberMeBoxY1, rememberMeBoxY2)), checkScale, checkScale, 0, global.colorThemeBorders, 1);
+		draw_set_halign(fa_left);
+		draw_text(rememberMeBoxX2 + spaceWidth, floor(mean(rememberMeBoxY1, rememberMeBoxY2)), scr_get_translation("menu_remember"));
+		
+		if (global.rememberMe) {
+			var checkScale = 0.6;
+			if (camWidth > 2000) checkScale = 1;
+			draw_sprite_ext(spr_checkmark, 0, floor(mean(rememberMeBoxX1, rememberMeBoxX2)), floor(mean(rememberMeBoxY1, rememberMeBoxY2)), checkScale, checkScale, 0, global.colorThemeBorders, 1);
+		}
 	}
+
+	
+
 
 	if (point_in_rectangle(mouse_x, mouse_y, userSignInBoxX1, userSignInBoxY1, userSignInBoxX2, userSignInBoxY2)) {
 		if (device_mouse_check_button_released(0, mb_left)) {
 			obj_openingScreen.clickedIn = true;
 		}
 	}
-
-	// current chain boolean switch
-	else if (point_in_rectangle(mouse_x, mouse_y,rememberMeBoxX1, rememberMeBoxY1, rememberMeBoxX2, rememberMeBoxY2)){
+	else if (mouseoverRememberMeBox) {
 		if (device_mouse_check_button_released(0, mb_left)) {
 			global.rememberMe = !global.rememberMe;	
 		}

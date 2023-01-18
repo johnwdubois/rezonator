@@ -17,7 +17,8 @@ global.toolPaneWidth = 100;
 
 
 global.versionString = string(game_display_name);
-global.versionString = string_delete(global.versionString, 1, string_length("Rezonator"));
+global.versionString = string_replace_all(global.versionString, "Rezonator", "");
+global.versionString = string_replace_all(global.versionString, "Web ", "");
 global.versionString = "Version" + global.versionString;
 
 global.schemaFileName = "";
@@ -411,6 +412,7 @@ ds_map_add(global.html5RestrictedMap, "menu_media", true);
 ds_map_add(global.html5RestrictedMap, "menu_export", true);
 ds_map_add(global.html5RestrictedMap, "menu_check-updates", true);
 ds_map_add(global.html5RestrictedMap, "menu_import", true);
+ds_map_add(global.html5RestrictedMap, "menu_autosave", true);
 
 
 

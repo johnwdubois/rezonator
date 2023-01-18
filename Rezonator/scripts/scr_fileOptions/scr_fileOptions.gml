@@ -1,6 +1,7 @@
 function scr_fileOptions(optionSelected) {
 	
-	var optionIndex = ds_list_find_index(optionList, optionSelected);
+	var optionIndex = -1;
+	if (instance_exists(obj_dropDown)) optionIndex = ds_list_find_index(optionList, optionSelected);
 
 	switch (optionSelected)
 	{
@@ -54,7 +55,9 @@ function scr_fileOptions(optionSelected) {
 		case "help_label_open":
 		
 			if (global.html5) {
-				scr_createDropDown(obj_dropDown.x + windowWidth, obj_dropDown.y + (optionIndex * obj_dropDown.optionSpacing), scr_getSBClist(), global.optionListTypeHTML5REZFile);
+				if (instance_exists(obj_dropDown)) {
+					scr_createDropDown(obj_dropDown.x + windowWidth, obj_dropDown.y + (optionIndex * obj_dropDown.optionSpacing), scr_getSBClist(), global.optionListTypeHTML5REZFile);
+				}
 			}
 			else if (room == rm_mainScreen) {
 				if (!instance_exists(obj_dialogueBox)) {
