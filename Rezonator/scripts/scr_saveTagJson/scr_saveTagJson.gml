@@ -1,6 +1,9 @@
-
-
 function scr_saveTagJson(){
+	
+	if (global.html5) {
+		show_message("Saving Tag JSON is currently not available for browser use.");
+		exit;
+	}
 	
 	var fileName = get_save_filename_ext("Tag file|*.json", "tag", global.rezonatorSchemaDirString, "Save Tag JSON");
 	

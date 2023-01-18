@@ -61,156 +61,153 @@ function scr_adaptFont(inputString, size, isTitle){
 		
 		
 	// determine the font to set
-	if ( isCJK) {
-		if(size == "S"){
-			var fontScaledName = global.localeCJK_S_0;
+	var fontScaledName = global.localeEN_M_0;
+	if (isCJK) {
+		// CJK SMALL
+		if (size == "S") {
+			fontScaledName = global.localeCJK_S_0;
 			if (global.fontSize == 0) {
-				fontScaledName = global.localeCJK_S_0;
+				fontScaledName = global.html5 ? fnt_CJK_size1 : global.localeCJK_S_0;
 			}
 			else if (global.fontSize == 1) {
-				fontScaledName = global.localeCJK_S_1;
+				fontScaledName = global.html5 ? fnt_CJK_size2 : global.localeCJK_S_1;
 			} 
 			else if (global.fontSize == 2) {
-				fontScaledName = global.localeCJK_S_2;
+				fontScaledName = global.html5 ? fnt_CJK_size3 : global.localeCJK_S_2;
 			}
 			else if (global.fontSize == 3) {
-				fontScaledName = global.localeCJK_S_3;
+				fontScaledName = global.html5 ? fnt_CJK_size4 : global.localeCJK_S_3;
 			}
 			else if (global.fontSize == 4) {
-				fontScaledName = global.localeCJK_S_4;
+				fontScaledName = global.html5 ? fnt_CJK_size5 : global.localeCJK_S_4;
 			}
 			else if (global.fontSize == 5) {
-				fontScaledName = global.localeCJK_S_5;
+				fontScaledName = global.html5 ? fnt_CJK_size6 : global.localeCJK_S_5;
 			} 
 		}
-		if(size == "M"){
-			var fontScaledName = global.localeCJK_M_0;
+		// CJK MEDIUM
+		else if (size == "M") {
+			fontScaledName = global.localeCJK_M_0;
 			if (global.fontSize == 0) {
-				fontScaledName = global.localeCJK_M_0;
+				fontScaledName = global.html5 ? fnt_CJK_size1 : global.localeCJK_M_0;
 			}
 			else if (global.fontSize == 1) {
-				fontScaledName = global.localeCJK_M_1;
+				fontScaledName = global.html5 ? fnt_CJK_size2 : global.localeCJK_M_1;
 			} 
 			else if (global.fontSize == 2) {
-				fontScaledName = global.localeCJK_M_2;
+				fontScaledName = global.html5 ? fnt_CJK_size3 : global.localeCJK_M_2;
 			}
 			else if (global.fontSize == 3) {
-				fontScaledName = global.localeCJK_M_3;
+				fontScaledName = global.html5 ? fnt_CJK_size4 : global.localeCJK_M_3;
 			}
 			else if (global.fontSize == 4) {
-				fontScaledName = global.localeCJK_M_4;
+				fontScaledName = global.html5 ? fnt_CJK_size5 : global.localeCJK_M_4;
 			}
 			else if (global.fontSize == 5) {
-				fontScaledName = global.localeCJK_M_5;
+				fontScaledName = global.html5 ? fnt_CJK_size6 : global.localeCJK_M_5;
 			} 
 		}
-		if(size == "L"){
-			var fontScaledName = global.localeCJK_L_0;
+		// CJK LARGE
+		else if (size == "L") {
+			fontScaledName = global.localeCJK_L_0;
 			if (global.fontSize == 0) {
-				fontScaledName = global.localeCJK_L_0;
+				fontScaledName = global.html5 ? fnt_CJK_size1 : global.localeCJK_L_0;
 			}
 			else if (global.fontSize == 1) {
-				fontScaledName = global.localeCJK_L_1;
+				fontScaledName = global.html5 ? fnt_CJK_size2 : global.localeCJK_L_1;
 			} 
 			else if (global.fontSize == 2) {
-				fontScaledName = global.localeCJK_L_2;
+				fontScaledName = global.html5 ? fnt_CJK_size3 : global.localeCJK_L_2;
 			}
 			else if (global.fontSize == 3) {
-				fontScaledName = global.localeCJK_L_3;
+				fontScaledName = global.html5 ? fnt_CJK_size4 : global.localeCJK_L_3;
 			}
 			else if (global.fontSize == 4) {
-				fontScaledName = global.localeCJK_L_4;
+				fontScaledName = global.html5 ? fnt_CJK_size5 : global.localeCJK_L_4;
 			}
 			else if (global.fontSize == 5) {
-				fontScaledName = global.localeCJK_L_5;
+				fontScaledName = global.html5 ? fnt_CJK_size6 : global.localeCJK_L_5;
 			} 
 		}
-		if(setTitleFont){
-			fontScaledName = global.localeCJK_Title;
+		if (setTitleFont) {
+			fontScaledName = global.html5 ? fnt_CJK_size3 : global.localeCJK_Title;
 		}
+	}
+	else {
+		// NON-CJK SMALL
+		if (size == "S") {
+			fontScaledName = global.localeEN_S_0;
+			if (global.fontSize == 0) {
+				fontScaledName = global.html5 ? fnt_nonCJK_size1 : global.localeEN_S_0;
+			}
+			else if (global.fontSize == 1) {
+				fontScaledName = global.html5 ? fnt_nonCJK_size2 : global.localeEN_S_1;
+			} 
+			else if (global.fontSize == 2) {
+				fontScaledName = global.html5 ? fnt_nonCJK_size3 : global.localeEN_S_2;
+			}
+			else if (global.fontSize == 3) {
+				fontScaledName = global.html5 ? fnt_nonCJK_size4 : global.localeEN_S_3;
+			}
+			else if (global.fontSize == 4) {
+				fontScaledName = global.html5 ? fnt_nonCJK_size5 : global.localeEN_S_4;
+			}
+			else if (global.fontSize == 5) {
+				fontScaledName = global.html5 ? fnt_nonCJK_size6 : global.localeEN_S_5;
+			} 
+		}
+		// NON-CJK MEDIUM
+		else if (size == "M") {
+			fontScaledName = global.localeEN_M_0;
+			if (global.fontSize == 0) {
+				fontScaledName = global.html5 ? fnt_nonCJK_size1 : global.localeEN_M_0;
+			}
+			else if (global.fontSize == 1) {
+				fontScaledName = global.html5 ? fnt_nonCJK_size2 : global.localeEN_M_1;
+			} 
+			else if (global.fontSize == 2) {
+				fontScaledName = global.html5 ? fnt_nonCJK_size3 : global.localeEN_M_2;
+			}
+			else if (global.fontSize == 3) {
+				fontScaledName = global.html5 ? fnt_nonCJK_size4 : global.localeEN_M_3;
+			}
+			else if (global.fontSize == 4) {
+				fontScaledName = global.html5 ? fnt_nonCJK_size5 : global.localeEN_M_4;
+			}
+			else if (global.fontSize == 5) {
+				fontScaledName = global.html5 ? fnt_nonCJK_size6 : global.localeEN_M_5;
+			} 
+		}
+		// NON-CJK LARGE
+		else if(size == "L") {
+			fontScaledName = global.localeEN_L_0;
+			if (global.fontSize == 0) {
+				fontScaledName = global.html5 ? fnt_nonCJK_size1 : global.localeEN_L_0;
+			}
+			else if (global.fontSize == 1) {
+				fontScaledName = global.html5 ? fnt_nonCJK_size2 : global.localeEN_L_1;
+			} 
+			else if (global.fontSize == 2) {
+				fontScaledName = global.html5 ? fnt_nonCJK_size3 : global.localeEN_L_2;
+			}
+			else if (global.fontSize == 3) {
+				fontScaledName = global.html5 ? fnt_nonCJK_size4 : global.localeEN_L_3;
+			}
+			else if (global.fontSize == 4) {
+				fontScaledName = global.html5 ? fnt_nonCJK_size5 : global.localeEN_L_4;
+			}
+			else if (global.fontSize == 5) {
+				fontScaledName = global.html5 ? fnt_nonCJK_size6 : global.localeEN_L_5;
+			} 
+		}
+		if (setTitleFont) {
+			fontScaledName = global.html5 ? fnt_nonCJK_size3 : global.localeEN_Title;
+		}
+	}
+	
+	
+	draw_set_font(fontScaledName);
 
-	}
-		
-	else {
-		if(size == "S"){
-			var fontScaledName = global.localeEN_S_0;
-			if (global.fontSize == 0) {
-				fontScaledName = global.localeEN_S_0;
-			}
-			else if (global.fontSize == 1) {
-				fontScaledName = global.localeEN_S_1;
-			} 
-			else if (global.fontSize == 2) {
-				fontScaledName = global.localeEN_S_2;
-			}
-			else if (global.fontSize == 3) {
-				fontScaledName = global.localeEN_S_3;
-			}
-			else if (global.fontSize == 4) {
-				fontScaledName = global.localeEN_S_4;
-			}
-			else if (global.fontSize == 5) {
-				fontScaledName = global.localeEN_S_5;
-			} 
-		}
-		if(size == "M"){
-			var fontScaledName = global.localeEN_M_0;
-			if (global.fontSize == 0) {
-				fontScaledName = global.localeEN_M_0;
-			}
-			else if (global.fontSize == 1) {
-				fontScaledName = global.localeEN_M_1;
-			} 
-			else if (global.fontSize == 2) {
-				fontScaledName = global.localeEN_M_2;
-			}
-			else if (global.fontSize == 3) {
-				fontScaledName = global.localeEN_M_3;
-			}
-			else if (global.fontSize == 4) {
-				fontScaledName = global.localeEN_M_4;
-			}
-			else if (global.fontSize == 5) {
-				fontScaledName = global.localeEN_M_5;
-			} 
-		}
-		if(size == "L"){
-			var fontScaledName = global.localeEN_L_0;
-			if (global.fontSize == 0) {
-				fontScaledName = global.localeEN_L_0;
-			}
-			else if (global.fontSize == 1) {
-				fontScaledName = global.localeEN_L_1;
-			} 
-			else if (global.fontSize == 2) {
-				fontScaledName = global.localeEN_L_2;
-			}
-			else if (global.fontSize == 3) {
-				fontScaledName = global.localeEN_L_3;
-			}
-			else if (global.fontSize == 4) {
-				fontScaledName = global.localeEN_L_4;
-			}
-			else if (global.fontSize == 5) {
-				fontScaledName = global.localeEN_L_5;
-			} 
-		}
-		if(setTitleFont){
-			fontScaledName = global.localeEN_Title;
-		}
-	}
-		
-	if (global.html5) {
-		if (global.fontSize == 0) draw_set_font(fnt_nonCJK_size1);
-		else if (global.fontSize == 1) draw_set_font(fnt_nonCJK_size2);
-		else if (global.fontSize == 2) draw_set_font(fnt_nonCJK_size3);
-		else if (global.fontSize == 3) draw_set_font(fnt_nonCJK_size4);
-		else if (global.fontSize == 4) draw_set_font(fnt_nonCJK_size5);
-		else if (global.fontSize == 5) draw_set_font(fnt_nonCJK_size6);
-	}
-	else {
-		draw_set_font(fontScaledName);
-	}
 	
 	// flip the string if it's RTL!
 	if (isRTL) inputString = scr_stringReverse(inputString);
