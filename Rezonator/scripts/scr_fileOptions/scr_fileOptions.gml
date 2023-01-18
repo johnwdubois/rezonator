@@ -1,4 +1,6 @@
 function scr_fileOptions(optionSelected) {
+	
+	var optionIndex = ds_list_find_index(optionList, optionSelected);
 
 	switch (optionSelected)
 	{
@@ -11,6 +13,7 @@ function scr_fileOptions(optionSelected) {
 			with(obj_fileLoader){
 				alarm[0] = 3;
 			}
+			instance_destroy();
 			break;
 		case "menu_save-as":
 			var instLoading = instance_create_layer(0, 0, "InstanceLoading", obj_loadingScreen);
@@ -21,6 +24,7 @@ function scr_fileOptions(optionSelected) {
 			with(obj_fileLoader){
 				alarm[0] = 3;
 			}
+			instance_destroy();
 			break;
 		case "menu_import":
 			
@@ -43,11 +47,16 @@ function scr_fileOptions(optionSelected) {
 				room_goto(rm_openingScreen);
 				scr_loadINI();
 			}
+			
+			instance_destroy();
 			break;
 		
 		case "help_label_open":
 		
-			if (room == rm_mainScreen) {
+			if (global.html5) {
+				scr_createDropDown(obj_dropDown.x + windowWidth, obj_dropDown.y + (optionIndex * obj_dropDown.optionSpacing), scr_getSBClist(), global.optionListTypeHTML5REZFile);
+			}
+			else if (room == rm_mainScreen) {
 				if (!instance_exists(obj_dialogueBox)) {
 					var inst = instance_create_layer(x, y, "InstancesDialogue", obj_dialogueBox);
 					inst.questionWindowActive = true;
@@ -66,6 +75,7 @@ function scr_fileOptions(optionSelected) {
 				scr_loadINI();
 			}
 		
+			if (!global.html5) instance_destroy();
 			break;
 			
 		case "menu_export":
@@ -77,6 +87,7 @@ function scr_fileOptions(optionSelected) {
 				alarm[5] = 2;
 			}
 			
+			instance_destroy();
 			break;
 		case "option_clip":
 			if (!obj_control.dialogueBoxActive) {
@@ -91,6 +102,7 @@ function scr_fileOptions(optionSelected) {
 			}
 			obj_dialogueBox.inputWindowActive = true;
 
+			instance_destroy();
 			break;
 		case "menu_media":
 
@@ -112,6 +124,7 @@ function scr_fileOptions(optionSelected) {
 			
 			}
 
+			instance_destroy();
 			break;	
 		case "menu_exit":
 
@@ -128,6 +141,7 @@ function scr_fileOptions(optionSelected) {
 				if (obj_control.allSaved) scr_dialogueNo();
 			}
 
+			instance_destroy();
 			break;
 		default:
 			break;

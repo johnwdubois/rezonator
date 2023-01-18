@@ -54,12 +54,7 @@ function scr_openingMenu() {
 	// if the user clicks the open button (or has used the Open option from the menu bar)
 	if (_selectOpenButton) {
 		if (global.html5 && (!is_string(global.html5RezFile) || global.html5RezFile == "")) {
-			var html5RezFileOptionList = ds_list_create();
-			for (var i = 1; i <= 10; i++) {
-				var numStrPrepend = i == 10 ? "0" : "00";
-				ds_list_add(html5RezFileOptionList, "sbc" + numStrPrepend + string(i));
-			}
-			scr_createDropDown(mouse_x, mouse_y, html5RezFileOptionList, global.optionListTypeHTML5REZFile);
+			scr_createDropDown(mouse_x, mouse_y, scr_getSBClist(), global.optionListTypeHTML5REZFile);
 		}
 		else {
 			global.newProject = false;
@@ -99,9 +94,14 @@ function scr_openingMenu() {
 		draw_rectangle(newProjectButtonX1, newProjectButtonY1, newProjectButtonX2, newProjectButtonY2, false);
 	
 		if (device_mouse_check_button_released(0, mb_left)) {
-			global.newProject = true;
-			global.openProject = false;
-			global.userName = obj_openingScreen.inputText == "" ? "Unknown" : obj_openingScreen.inputText;
+			if (global.html5) {
+				show_message("Import is currently not available for browser use.")
+			}
+			else {
+				global.newProject = true;
+				global.openProject = false;
+				global.userName = obj_openingScreen.inputText == "" ? "Unknown" : obj_openingScreen.inputText;
+			}
 		}
 	}
 	

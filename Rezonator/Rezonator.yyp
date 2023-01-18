@@ -211,6 +211,7 @@
     {"id":{"name":"spr_copyButton","path":"sprites/spr_copyButton/spr_copyButton.yy",},"order":40,},
     {"id":{"name":"scr_splitTokenHelper","path":"scripts/scr_splitTokenHelper/scr_splitTokenHelper.yy",},"order":12,},
     {"id":{"name":"scr_stackerBranch","path":"scripts/scr_stackerBranch/scr_stackerBranch.yy",},"order":5,},
+    {"id":{"name":"scr_getSBClist","path":"scripts/scr_getSBClist/scr_getSBClist.yy",},"order":35,},
     {"id":{"name":"scr_gridViewerDynamicWidth","path":"scripts/scr_gridViewerDynamicWidth/scr_gridViewerDynamicWidth.yy",},"order":4,},
     {"id":{"name":"scr_setIDandFieldToChange","path":"scripts/scr_setIDandFieldToChange/scr_setIDandFieldToChange.yy",},"order":10,},
     {"id":{"name":"scr_deleteTreeBranch","path":"scripts/scr_deleteTreeBranch/scr_deleteTreeBranch.yy",},"order":10,},

@@ -272,7 +272,8 @@ if (instance_exists(obj_control)) {
 		draw_set_halign(fa_center);
 		draw_set_valign(fa_middle);
 		draw_set_color(c_white);
-		draw_text(floor(camWidth / 2), floor(mean(menuHeaderRectX1, menuHeaderRectX2)), string(global.html5RezFile));
+		draw_set_alpha(1);
+		draw_text(floor(camWidth / 2), floor(mean(menuHeaderRectY1, menuHeaderRectY2)), string(global.html5RezFile));
 	}
 }
 

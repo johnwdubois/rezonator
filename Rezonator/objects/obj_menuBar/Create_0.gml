@@ -74,8 +74,7 @@ ds_list_add(settingsOptionList, "menu_language",
 								"menu_advanced"); // "Delete All","Autosave");
 
 helpOptionList = ds_list_create();
-ds_list_add(helpOptionList, "menu_help",
-							"menu_check-updates",
+ds_list_add(helpOptionList, "menu_check-updates",
 							"menu_guide",
 							"menu_about");
 

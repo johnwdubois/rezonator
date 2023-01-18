@@ -404,6 +404,15 @@ ds_map_add(global.checkDropdownMap, "help_label_tag", false);
 ds_map_add(global.checkDropdownMap, "tab_name_chunk", false);
 ds_map_add(global.checkDropdownMap, "menu_help", false);
 
+global.html5RestrictedMap = ds_map_create();
+ds_map_add(global.html5RestrictedMap, "menu_save", true);
+ds_map_add(global.html5RestrictedMap, "menu_save-as", true);
+ds_map_add(global.html5RestrictedMap, "menu_media", true);
+ds_map_add(global.html5RestrictedMap, "menu_export", true);
+ds_map_add(global.html5RestrictedMap, "menu_check-updates", true);
+ds_map_add(global.html5RestrictedMap, "menu_import", true);
+
+
 
 //checkmarkKeys = [];
 //ds_map_keys_to_array(global.checkDropdownMap, checkmarkKeys);

@@ -113,7 +113,8 @@ for (var i = 0; i < optionListSize; i++) {
 	var hasCheck = scr_dropDownHasCheckmark(currentOptionRaw);
 	var isOpeningScreenOption = ds_map_exists(global.openingScreenDropDownMap, currentOptionRaw)
 	|| optionListType == global.optionListTypeTagSchema || optionListType == global.optionListTypeHTML5REZFile;
-	var unClickable = (room == rm_openingScreen && !isOpeningScreenOption);
+	var isHTML5Restricted = ds_map_exists(global.html5RestrictedMap, currentOptionRaw);
+	var unClickable = (room == rm_openingScreen && !isOpeningScreenOption) || (global.html5 && isHTML5Restricted);
 	var fadedTextColor = merge_color(global.colorThemeText, global.colorThemeBG, unClickable ? 0.6 : 0.3);
 	
 	// optionRect coordinates

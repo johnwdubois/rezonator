@@ -5,6 +5,13 @@ function scr_saveREZ(autosave) {
 
 	show_debug_message("scr_saveREZ, STARTING... " + scr_printTime());
 	show_debug_message("scr_saveREZ, autosave: " + string(autosave) + ", global.fileSaveName: " + string(global.fileSaveName));
+	
+	if (global.html5) {
+		if (!autosave) {
+			show_message("Saving is currently not available for browser use");
+		}
+		exit;
+	}
 
 	// get fileSaveName if we don't already have it
 	if (not autosave) {
