@@ -372,15 +372,14 @@ function scr_dialogueConfirm(){
 			}
 			
 			if (obj_control.openURLAbout) {
-				show_debug_message("scr_dialogueConfirm, openURLAbout");
 				scr_URLOpenReliable("http://rezonator.com/about/");
 			}
 			else if (obj_control.openURLGuide) {
-				show_debug_message("scr_dialogueConfirm, openURLGuide");
 				scr_URLOpenReliable("https://johnwdubois.github.io/rezonator/");
 			}
 			
 			if (obj_control.deleteStack || obj_control.deleteRez || obj_control.deleteTrack) {
+				show_debug_message("dialogueConfirm, currentFocusedChainID: " + string(obj_chain.currentFocusedChainID));
 				scr_deleteFromChain(true);
 			}
 		}
