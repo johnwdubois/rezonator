@@ -196,7 +196,7 @@ function scr_panelPane_drawChains1ToMany() {
 				
 			// loop across to draw all of the column values for this entry
 			var currentTagMap = currentEntrySubMap[? "tagMap"];
-			scr_panelPane_drawChains1ToManyInnerLoop(chain1toManyColFieldList, currentEntry, currentID, currentTagMap, textPlusY, rectY1, rectY2, highlightEntryRect, mouseoverHeader, mouseoverScrollBar);
+			scr_panelPane_drawChains1ToManyInnerLoop(chain1toManyColFieldList, chainID, currentEntry, currentID, currentTagMap, textPlusY, rectY1, rectY2, highlightEntryRect, mouseoverHeader, mouseoverScrollBar);
 			textPlusY += strHeight;
 		}
 	}

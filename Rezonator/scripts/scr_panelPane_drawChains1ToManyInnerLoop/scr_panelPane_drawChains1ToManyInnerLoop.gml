@@ -1,4 +1,4 @@
-function scr_panelPane_drawChains1ToManyInnerLoop(chain1toManyColFieldList, entry, ID, currentEntryTagMap, textPlusY, rectY1, rectY2, highlight, mouseoverHeader, mouseoverScrollBar){
+function scr_panelPane_drawChains1ToManyInnerLoop(chain1toManyColFieldList, chain, entry, ID, currentEntryTagMap, textPlusY, rectY1, rectY2, highlight, mouseoverHeader, mouseoverScrollBar){
 
 	// NOTE: for stacks, the ID variable will be a unitID
 	
@@ -87,6 +87,9 @@ function scr_panelPane_drawChains1ToManyInnerLoop(chain1toManyColFieldList, entr
 				if (functionChainList_currentTab == functionChainList_tabRezBrush) cellText = currentEntryTagMap[? "RezSeq"];
 				else if (functionChainList_currentTab == functionChainList_tabTrackBrush) cellText = currentEntryTagMap[? "TrailSeq"];
 				else if (functionChainList_currentTab == functionChainList_tabStackBrush) cellText = currentEntryTagMap[? "StackSeq"];
+				
+				// if this field is not numeric, we will run the sorter/auto-tagger on this chain again
+				if (!is_numeric(cellText)) scr_sortVizSetIDList(chain);
 				break;
 			// unitSeq
 			case 1:
