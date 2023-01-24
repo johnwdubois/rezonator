@@ -410,7 +410,7 @@ function scr_dropDownSelect(optionSelected) {
 		scr_turnStackerOptions(optionSelected);
 		with (obj_dropDown) instance_destroy();
 	}
-	else if (optionListType == global.optionListTypeHTML5REZFile) //94
+	else if (optionListType == global.optionListTypeHTML5REZFile) //95
 	{
 		scr_html5RezFileOptions(optionSelected);
 		with (obj_dropDown) instance_destroy();

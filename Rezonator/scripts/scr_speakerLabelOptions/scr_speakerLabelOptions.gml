@@ -1,10 +1,14 @@
 function scr_speakerLabelOptions(optionSelected) {
+	
 	var optionIndex = ds_list_find_index(optionList, optionSelected);
+	var unitSubMap = global.nodeMap[? obj_control.rightClickID];
+	var docSubMap = global.nodeMap[? global.discourseNode];
+	var unitList = docSubMap[? "unitList"];
+	
 	with (obj_panelPane) {
 		if (currentFunction == functionChainList) {
 			
 			if (optionSelected == "option_create-tree" || optionSelected == "option_create-tree-unit") {
-				var unitSubMap = global.nodeMap[? obj_control.rightClickID];
 				if (scr_isNumericAndExists(unitSubMap, ds_type_map)) {
 					var tokenList = ds_list_create();
 					var entryList = unitSubMap[? "entryList"];
@@ -22,7 +26,6 @@ function scr_speakerLabelOptions(optionSelected) {
 				instance_destroy(obj_dropDown);
 			}
 			else if (optionSelected == "option_create-tree-stack") {
-				var unitSubMap = global.nodeMap[? obj_control.rightClickID];
 				if (scr_isNumericAndExists(unitSubMap, ds_type_map)) {
 					var inChainsList = unitSubMap[? "inChainsList"];
 					if (ds_list_size(inChainsList) > 0) {
@@ -32,7 +35,6 @@ function scr_speakerLabelOptions(optionSelected) {
 				instance_destroy(obj_dropDown);
 			}
 			else if (optionSelected == "option_merge-stack") {
-				var unitSubMap = global.nodeMap[? obj_control.rightClickID];
 				if (scr_isNumericAndExists(unitSubMap, ds_type_map)) {
 					var inChainsList = unitSubMap[? "inChainsList"];
 					if (ds_list_size(inChainsList) > 0) {
@@ -72,7 +74,6 @@ function scr_speakerLabelOptions(optionSelected) {
 			else if (optionSelected == "Tag Chain") {
 				// set field/tags
 				if (obj_control.rightClickID != "") {
-					var unitSubMap = global.nodeMap[? obj_control.rightClickID];
 					if(scr_isNumericAndExists(unitSubMap, ds_type_map)){
 					
 						var inChainsList = unitSubMap[? "inChainsList"];
@@ -101,7 +102,6 @@ function scr_speakerLabelOptions(optionSelected) {
 			else if (optionSelected == "Tag Unit") {
 				// set field/tags
 				if (obj_control.rightClickID != "") {
-					var unitSubMap = global.nodeMap[? obj_control.rightClickID];
 					if(scr_isNumericAndExists(unitSubMap, ds_type_map)){
 						if (obj_panelPane.functionField_unitFieldSelected != "" && obj_panelPane.functionField_unitTagSelected != ""
 						&& is_string(obj_panelPane.functionField_unitFieldSelected) && is_string(obj_panelPane.functionField_unitTagSelected)) {
@@ -119,7 +119,6 @@ function scr_speakerLabelOptions(optionSelected) {
 			else if (optionSelected == "Tag Entry") {
 				// set field/tags
 				if (obj_control.rightClickID != "") {
-					var unitSubMap = global.nodeMap[? obj_control.rightClickID];
 					if(scr_isNumericAndExists(unitSubMap, ds_type_map)){
 						var inChainsList = unitSubMap[? "inChainsList"];
 						var inChainsListSize = ds_list_size(inChainsList);
@@ -198,8 +197,6 @@ function scr_speakerLabelOptions(optionSelected) {
 				
 				// put the rightclick unit and the previous unit into mergeUnitList and call merge unit!
 				ds_list_clear(obj_control.mergeUnitList);
-				var docSubMap = global.nodeMap[? global.discourseNode];
-				var unitList = docSubMap[? "unitList"];
 				var rightClickUnitIndex = ds_list_find_index(unitList, obj_control.rightClickID);
 				if (rightClickUnitIndex >= 1) {
 					var prevUnit = unitList[| rightClickUnitIndex - 1];
@@ -239,6 +236,21 @@ function scr_speakerLabelOptions(optionSelected) {
 		if (optionSelected == "option_sync-unit-tab") {
 			scr_showInNav(obj_control.rightClickID);
 			with (obj_dropDown) instance_destroy();
+		}
+	}
+	
+	if (optionSelected == "menu_edit") {
+		var dropDownOptionList = ds_list_create();
+		
+		// give "merge up", "move up", and "move down" options only if this unit is not first/last unit
+		if (unitList[| 0] != obj_control.rightClickID) {
+			ds_list_add(dropDownOptionList, "option_merge-unit", "option_move-unit-up");
+		}
+		if (unitList[| ds_list_size(unitList) - 1] != obj_control.rightClickID) {
+			ds_list_add(dropDownOptionList, "option_move-unit-down");
+		}
+		if (ds_list_size(dropDownOptionList) > 0) {
+			scr_createDropDown(obj_dropDown.x + obj_dropDown.windowWidth, obj_dropDown.y + (obj_dropDown.optionSpacing * optionIndex), dropDownOptionList, global.optionListTypeSpeakerLabel);
 		}
 	}
 

@@ -9,9 +9,8 @@ function scr_tokenRightClicked(){
 		obj_chain.currentFocusedEntryID = "";
 		
 		var tokenInChainsList = tokenSubMap[?"inChainsList"];
-		var unitID = tokenSubMap[?"unit"]
-		
-		var unitSubMap = global.nodeMap[?unitID];
+		var unitID = tokenSubMap[?"unit"];
+		var unitSubMap = global.nodeMap[? unitID];
 		var entryList = unitSubMap[?"entryList"];
 		var firstEntry = entryList[| 0];
 		var firstEntrySubMap = global.nodeMap[? firstEntry];
@@ -47,11 +46,10 @@ function scr_tokenRightClicked(){
 		}
 		
 		// add the rest of the dropdown options
-		ds_list_add(dropDownOptionList, "word_tip", "option_zero", "help_label_new_token", "Add endnote", "option_delete-token", "option_split-token"); // localize
-		if (!isFirstToken) ds_list_add(dropDownOptionList, "option_merge-token", "option_split-unit");
+		ds_list_add(dropDownOptionList, "word_tip", "option_zero"); //"help_label_new_token", "Add endnote", "option_delete-token", "option_split-token"); // localize
 		if (!isLastToken) ds_list_add(dropDownOptionList, "option_extend-chunk-next");
 		if (!isFirstToken) ds_list_add(dropDownOptionList, "option_extend-chunk-previous");
-		ds_list_add(dropDownOptionList, "tab_name_tag");
+		ds_list_add(dropDownOptionList, "tab_name_tag", "menu_edit");
 		
 		// Create the dropdown
 		if (ds_list_size(dropDownOptionList) > 0 and obj_control.ableToCreateDropDown) {

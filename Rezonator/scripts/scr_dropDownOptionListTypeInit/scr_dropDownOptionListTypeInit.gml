@@ -87,5 +87,4 @@ function scr_dropDownOptionListTypeInit(){
 	global.optionListTypeTurnStacker = 94;
 	global.optionListTypeHTML5REZFile = 95;
 
-
 }

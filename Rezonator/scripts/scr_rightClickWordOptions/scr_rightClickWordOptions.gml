@@ -1,6 +1,8 @@
 function scr_rightClickWordOptions(optionSelected) {
 	
 	var optionIndex = ds_list_find_index(optionList, optionSelected);
+	var tokenSubMap = global.nodeMap[? obj_control.rightClickID];
+
 	
 	if (optionSelected == "help_label_split-word") {
 		scr_destroyAllDropDownsOtherThanSelf();
@@ -78,7 +80,7 @@ function scr_rightClickWordOptions(optionSelected) {
 	else if (optionSelected == "Tag Chain") {
 		// set field/tags
 		if (obj_control.rightClickID != "") {
-			var tokenSubMap = global.nodeMap[? obj_control.rightClickID];
+			
 			if(scr_isNumericAndExists(tokenSubMap, ds_type_map)){
 					
 				var inChainsList = tokenSubMap[? "inChainsList"];
@@ -250,7 +252,23 @@ function scr_rightClickWordOptions(optionSelected) {
 		scr_destroyAllDropDownsOtherThanSelf();
 		var dropDownOptionList = ds_list_create();
 		ds_list_add(dropDownOptionList, ",", ".", "?", "—", "--");
-		scr_createDropDown(obj_dropDown.x + obj_dropDown.windowWidth, obj_dropDown.y + (obj_dropDown.optionSpacing * optionIndex), dropDownOptionList, global.optionListTypeAddEndnote);
+		scr_createDropDown(obj_dropDown.x + obj_dropDown.windowWidth, y + (obj_dropDown.optionSpacing * optionIndex), dropDownOptionList, global.optionListTypeAddEndnote);
+	}
+	else if (optionSelected == "menu_edit") {
+		scr_destroyAllDropDownsOtherThanSelf();
+		
+		var unitID = tokenSubMap[? "unit"];
+		var unitSubMap = global.nodeMap[? unitID];
+		var unitEntryList = unitSubMap[? "entryList"];
+		var unitFirstEntry = unitEntryList[| 0];
+		var unitFirstEntrySubMap = global.nodeMap[? unitFirstEntry];
+		var isFirstToken = (unitFirstEntrySubMap[? "token"] == obj_control.rightClickID);
+		
+		var dropDownOptionList = ds_list_create();
+		ds_list_add(dropDownOptionList, "help_label_new_token", "Add endnote", "option_delete-token", "option_split-token");
+		if (!isFirstToken) ds_list_add(dropDownOptionList, "option_merge-token", "option_split-unit");
+		
+		scr_createDropDown(obj_dropDown.x + obj_dropDown.windowWidth, obj_dropDown.y + (obj_dropDown.optionSpacing * optionIndex), dropDownOptionList, global.optionListTypeRightClickWord);
 	}
 	else if (optionSelected == "option_extend-chunk-previous") {
 		scr_extendChunk(obj_control.rightClickID, true);

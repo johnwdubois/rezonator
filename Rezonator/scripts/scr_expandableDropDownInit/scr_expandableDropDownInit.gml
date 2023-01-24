@@ -143,5 +143,9 @@ function scr_expandableDropDownInit(){
 	ds_list_add(hideChainsList, global.optionListTypeView);
 	ds_map_add_list(global.expandableDropDownMap, "menu_chains_pl", hideChainsList);
 	
+	var editList = ds_list_create();
+	ds_list_add(editList, global.optionListTypeRightClickWord, global.optionListTypeSpeakerLabel);
+	ds_map_add_list(global.expandableDropDownMap, "menu_edit", editList);
+	
 
 }
