@@ -42,14 +42,16 @@ ds_list_add(editOptionList, "menu_delete-all",
 							"menu_go-to-time");
 
 viewOptionList = ds_list_create();
-ds_list_add(viewOptionList, "menu_window", 
+ds_list_add(viewOptionList, "menu_navigation", 
+							"menu_toolbar",
+							"word_tip",
 							"menu_justify",
 							"menu_prose",
-							"menu_hide",
-							"word_tip",
+							"text_dir",
 							"tab_name_chunk",
 							"arrheads",
-							"text_dir");
+							"menu_chains_pl"
+							);
 
 filterOptionList = ds_list_create();
 ds_list_add(filterOptionList, "menu_filter",

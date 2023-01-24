@@ -139,5 +139,9 @@ function scr_expandableDropDownInit(){
 	ds_list_add(insertColumnList, global.optionListTypeFieldUnits1ToMany, global.optionListTypeFieldUnits1To1, global.optionListTypeFieldChains1ToMany, global.optionListTypeFieldChains1To1);
 	ds_map_add_list(global.expandableDropDownMap, "Insert column", insertColumnList);
 	
+	var hideChainsList = ds_list_create();
+	ds_list_add(hideChainsList, global.optionListTypeView);
+	ds_map_add_list(global.expandableDropDownMap, "menu_chains_pl", hideChainsList);
+	
 
 }

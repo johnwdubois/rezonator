@@ -372,6 +372,7 @@ ds_map_add(global.keyboardShortcutMap, "menu_developer", "ALT+SHIFT+D");
 global.checkDropdownMap = ds_map_create();
 ds_map_add(global.checkDropdownMap, "menu_resonance", false);
 ds_map_add(global.checkDropdownMap, "menu_track", false);
+ds_map_add(global.checkDropdownMap, "menu_stack", false);
 ds_map_add(global.checkDropdownMap, "menu_read", false);
 ds_map_add(global.checkDropdownMap, "menu_left", false);
 ds_map_add(global.checkDropdownMap, "menu_right", false);
@@ -382,7 +383,6 @@ ds_map_add(global.checkDropdownMap, "menu_right-to-left", false);
 ds_map_add(global.checkDropdownMap, "menu_track-arrows", false);
 ds_map_add(global.checkDropdownMap, "menu_rez-arrows", false);
 ds_map_add(global.checkDropdownMap, "Track", false); // localize
-ds_map_add(global.checkDropdownMap, "menu_stack", false);
 ds_map_add(global.checkDropdownMap, "menu_language-en", false);
 ds_map_add(global.checkDropdownMap, "menu_language-ca", false);
 ds_map_add(global.checkDropdownMap, "menu_language-es", false);
@@ -404,6 +404,8 @@ ds_map_add(global.checkDropdownMap, "word_tip", false);
 ds_map_add(global.checkDropdownMap, "help_label_tag", false);
 ds_map_add(global.checkDropdownMap, "tab_name_chunk", false);
 ds_map_add(global.checkDropdownMap, "menu_help", false);
+ds_map_add(global.checkDropdownMap, "menu_navigation", false);
+ds_map_add(global.checkDropdownMap, "menu_toolbar", false);
 
 global.html5RestrictedMap = ds_map_create();
 ds_map_add(global.html5RestrictedMap, "menu_save", true);

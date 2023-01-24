@@ -1,5 +1,3 @@
-
-
 function scr_updateCheckMap(optionText){
 	with(obj_dropDown){
 		if(instance_exists(obj_wordTip)){
@@ -38,15 +36,36 @@ function scr_updateCheckMap(optionText){
 				ds_map_replace(global.checkDropdownMap, "menu_prose", true);
 			}
 			
-			if(optionText == "tab_name_chunk"){
-				global.checkDropdownMap[?optionText] = !obj_control.hideChunks;
+			if (optionText == "tab_name_chunk") {
+				global.checkDropdownMap[? optionText] = !obj_control.hideChunks;
+			}
+			if (optionListType == global.optionListTypeHide) {
+				show_debug_message("here!!!!!!!!");
+				if (optionText == "menu_resonance") {
+					var resonanceList = global.nodeMap[? "resonanceList"];
+					global.checkDropdownMap[? "menu_resonance"] = (ds_list_size(resonanceList) != ds_list_size(obj_control.hiddenRezChainList) || ds_list_size(resonanceList) < 1);
+				}
+				else if (optionText == "menu_track") {
+					var trailList = global.nodeMap[? "trailList"];
+					global.checkDropdownMap[? "menu_track"] = (ds_list_size(trailList) != ds_list_size(obj_control.hiddenTrackChainList) || ds_list_size(trailList) < 1);
+				}
+				else if (optionText == "menu_stack") {
+					var stackList = global.nodeMap[? "stackList"];
+					global.checkDropdownMap[? "menu_stack"] = (ds_list_size(stackList) != ds_list_size(obj_control.hiddenStackChainList) || ds_list_size(stackList) < 1);
+				}
 			}
 		}
 		if (instance_exists(obj_panelPane)) {
 			if (optionListType == global.optionListTypeHelp) {
 				global.checkDropdownMap[? "menu_help"] = !obj_panelPane.functionHelp_collapsed;
 			}
+			else if (optionListType == global.optionListTypeView) {
+				global.checkDropdownMap[? "menu_navigation"] = obj_panelPane.showNav;
+				global.checkDropdownMap[? "menu_toolbar"] = obj_toolPane.showTool;
+			}
 		}
+		
+		
 		if(instance_exists(obj_chain)){
 
 			ds_map_replace(global.checkDropdownMap, "menu_track-arrows", obj_chain.showTrackArrows);

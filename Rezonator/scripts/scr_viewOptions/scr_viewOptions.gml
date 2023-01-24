@@ -4,6 +4,21 @@ function scr_viewOptions(optionSelected) {
 
 	switch (optionSelected)
 	{
+		case "menu_navigation":
+			var showNavOriginal = obj_panelPane.showNav;
+			with (obj_panelPane) {
+				showNav = !showNavOriginal;
+				showNavLeft = showNav;
+				showNavRight = showNav;
+			}
+		break;
+		
+		case "menu_toolbar":
+			with (obj_toolPane) {
+				showTool = !showTool;
+			}
+		break;
+		
 		case "menu_window":
 			scr_destroyAllDropDownsOtherThanSelf();
 			var dropDownOptionList = ds_list_create();
@@ -21,7 +36,7 @@ function scr_viewOptions(optionSelected) {
 			ds_list_add(dropDownOptionList, "menu_left", "menu_right");
 						
 			if (ds_list_size(dropDownOptionList) > 0) {
-				scr_createDropDown(obj_dropDown.x + obj_dropDown.windowWidth, obj_dropDown.y + (obj_dropDown.optionSpacing), dropDownOptionList, global.optionListTypeJustify);
+				scr_createDropDown(obj_dropDown.x + obj_dropDown.windowWidth, obj_dropDown.y + (obj_dropDown.optionSpacing * optionIndex), dropDownOptionList, global.optionListTypeJustify);
 			}
 		break;
 	
@@ -35,7 +50,7 @@ function scr_viewOptions(optionSelected) {
 			}
 		break;
 	
-		case "menu_hide":
+		case "menu_chains_pl":
 			scr_destroyAllDropDownsOtherThanSelf();
 			var dropDownOptionList = ds_list_create();
 			ds_list_add(dropDownOptionList, "menu_track", "menu_resonance", "menu_stack");
