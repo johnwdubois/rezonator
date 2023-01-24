@@ -478,6 +478,7 @@
 	"question_save_before_import" : "Save before importing new file?",
 	"question_save_before_open" : "Save before opening file?",
 	"question_save_before_exit" : "Save before exiting?",
+	"question_delete-chunk" : "Would you like to delete this chunk?",
 	"msg_numbers_only" : "Error: Numbers only",
 	"msg_input_any_number" : "Insert number",
 	"msg_specify_line" : "Line number",

@@ -38,7 +38,7 @@ function scr_panelPane_drawChains1ToManyHeaders(){
 		
 		// draw headers for chainContents columns
 		var chainContents1toManyFieldListSize = ds_list_size(chain1toManyColFieldList);
-		var colAmount = 3 + chainContents1toManyFieldListSize;
+		var colAmount = 4 + chainContents1toManyFieldListSize;
 		var colWidth = windowWidth / chain1toMColAmount;
 		var i = 0;
 		
@@ -48,7 +48,7 @@ function scr_panelPane_drawChains1ToManyHeaders(){
 			var headerRectX1 = x + (colWidth * i) + scrollHorPlusX;
 			var headerRectY1 = y;
 			var headerRectX2 = headerRectX1 + colWidth;
-			if (colAmount == 3 && i == 2) {
+			if (colAmount == 4 && i == 3) {
 				var headerRectX2 = headerRectX1 + (windowWidth);	
 			}
 			var headerRectY2 = headerRectY1 + tabHeight;
@@ -71,17 +71,22 @@ function scr_panelPane_drawChains1ToManyHeaders(){
 			var colName = "";
 			switch (i) {
 				case 0:
-					colName = "unitSeq";
+					if (functionChainList_currentTab == functionChainList_tabRezBrush) colName = "RezSeq";
+					else if (functionChainList_currentTab == functionChainList_tabTrackBrush) colName = "TrackSeq";
+					else if (functionChainList_currentTab == functionChainList_tabStackBrush) colName = "StackSeq";
 					break;
 				case 1:
+					colName = "UnitSeq";
+					break;
+				case 2:
 					if (functionChainList_currentTab == functionChainList_tabStackBrush) {
 						colName = scr_get_translation("participant"); // stacks
 					}
 					else {
-						colName = "tokenOrder"; // rez & track
+						colName = "TokenOrder"; // rez & track
 					}
 					break;
-				case 2:
+				case 3:
 					if (functionChainList_currentTab == functionChainList_tabStackBrush) {
 						colName = scr_get_translation("menu_utterance"); // stacks
 					}
@@ -137,12 +142,14 @@ function scr_panelPane_drawChains1ToManyHeaders(){
 		
 		
 			// headers for dynamic columns
-			if (i >= 3) {
-				var currentField = ds_list_find_value(chain1toManyColFieldList, i - 3);
+			if (i >= 4) {
+				var currentField = ds_list_find_value(chain1toManyColFieldList, i - 4);
 				if (is_string(currentField)) {
 					colName = currentField;
 				}
-			
+				else {
+					currentField = string(currentField);
+				}
 
 				if (mouseoverColHeader) {
 					scr_createTooltip(mean(headerRectX1, headerRectX2), headerRectY2, scr_get_translation("msg_change_field"), obj_tooltip.arrowFaceUp);
@@ -162,10 +169,10 @@ function scr_panelPane_drawChains1ToManyHeaders(){
 					if (mouse_check_button_released(mb_left)) {
 						with (obj_panelPane) {
 							fieldChains1ToManyChainType = chainType;
-							chosenCol = i - 3;
+							chosenCol = i - 4;
 						}
 						obj_control.chain1toManyEntryToChange = "";
-						obj_control.chain1ToManyColFieldToChange = i - 3;
+						obj_control.chain1ToManyColFieldToChange = i - 4;
 						obj_control.chain1toManyFieldToChange = currentField;
 						
 						// check if all the fields that apply to this chainType are in the navFieldList

@@ -1,35 +1,32 @@
-function scr_panelPane_drawChains1ToManyInnerLoop(chain1toManyColFieldList, entry, ID, currentTagMap, textPlusY, rectY1, rectY2, highlight, mouseoverHeader, mouseoverScrollBar){
+function scr_panelPane_drawChains1ToManyInnerLoop(chain1toManyColFieldList, entry, ID, currentEntryTagMap, textPlusY, rectY1, rectY2, highlight, mouseoverHeader, mouseoverScrollBar){
 
 	// NOTE: for stacks, the ID variable will be a unitID
 	
 	// make sure this is a valid ID
-	if (!is_string(ID)) {
-		exit;
-	}
+	if (!is_string(ID)) exit;
 	
 	var isChunk = scr_isChunk(ID);
 	var unitID = "";
 	var tokenID = "";
 	var lineStateLTR = (obj_control.drawLineState == obj_control.lineState_ltr);
-	var IDsubMap = global.nodeMap[?ID];
-	var type = IDsubMap[?"type"];
-	if(type == "unit"){
+	var IDsubMap = global.nodeMap[? ID];
+	var type = IDsubMap[? "type"];
+	if (type == "unit") {
 		unitID = ID;
-		var entryList = IDsubMap[?"entryList"];
-		var firstEntry = entryList[|0];
-		var entrySubMap = global.nodeMap[?firstEntry];
-		tokenID = entrySubMap[?"token"];
+		var entryList = IDsubMap[? "entryList"];
+		var firstEntry = entryList[| 0];
+		var entrySubMap = global.nodeMap[? firstEntry];
+		tokenID = entrySubMap[? "token"];
 	}
-	else if(type == "token"){	
-		unitID = IDsubMap[?"unit"];
+	else if (type == "token") {
+		unitID = IDsubMap[? "unit"];
 		tokenID = ID;
 	}
-	else if(type == "chunk"){
-
+	else if (type == "chunk") {
 		tokenID = scr_getFirstWordOfChunk(ID);
-		var firstTokenSubMap = global.nodeMap[?tokenID];
-		if(scr_isNumericAndExists(firstTokenSubMap,ds_type_map)){
-			unitID = firstTokenSubMap[?"unit"];
+		var firstTokenSubMap = global.nodeMap[? tokenID];
+		if (scr_isNumericAndExists(firstTokenSubMap, ds_type_map)) {
+			unitID = firstTokenSubMap[? "unit"];
 		}
 	}
 	
@@ -47,7 +44,7 @@ function scr_panelPane_drawChains1ToManyInnerLoop(chain1toManyColFieldList, entr
 	
 	// loop across horizontally along the chainContents window, getting each field for each entry
 	var chainContents1toManyFieldListSize = ds_list_size(chain1toManyColFieldList);
-	var colAmount = 3 + chainContents1toManyFieldListSize;
+	var colAmount = 4 + chainContents1toManyFieldListSize;
 	for (var i = 0; i < colAmount; i++) {
 
 		// draw rectangle to prevent text overlapping
@@ -59,46 +56,53 @@ function scr_panelPane_drawChains1ToManyInnerLoop(chain1toManyColFieldList, entr
 		draw_set_alpha(1);
 		draw_set_color(merge_color(functionChainContents_BGColor, global.colorThemeBG, (highlight) ? 0.75 : 0.9));
 		draw_rectangle(cellRectX1 - clipX, cellRectY1 - clipY, cellRectX2 - clipX, cellRectY2 - clipY, false);
+		var tagMap = undefined;
+		if (!scr_isNumericAndExists(unitSubMap, ds_type_map)) continue;
+		if (!scr_isNumericAndExists(tokenSubMap, ds_type_map)) continue;
 		if (functionChainList_currentTab == functionChainList_tabStackBrush) {
-			var tagMap = unitSubMap[?"tagMap"];
+			tagMap = unitSubMap[? "tagMap"];
 		}
 		else{
-			if(!scr_isNumericAndExists(tokenSubMap,ds_type_map)) continue;
-				var tagMap = tokenSubMap[?"tagMap"];
+			tagMap = tokenSubMap[? "tagMap"];
 		}
 		
 		// check if this field is read only
 		var currentField = "";
 		var readOnlyField = false;
-		if (i < 3) readOnlyField = true;
+		if (i < 4) readOnlyField = true;
 		else {
-			currentField = chain1toManyColFieldList[| i - 3];
+			currentField = chain1toManyColFieldList[| i - 4];
 			var currentFieldSubMap = entryTagMap[? currentField];
 			if (scr_isNumericAndExists(currentFieldSubMap, ds_type_map)) {
 				if (!ds_map_exists(currentFieldSubMap, "tagSet")) readOnlyField = true;
-				if(currentFieldSubMap[?"readOnly"]) readOnlyField = true;
+				if (currentFieldSubMap[? "readOnly"]) readOnlyField = true;
 			}
 		}
 		
 		// get string of data
 		var cellText = "";
 		switch (i) {
-			// unitSeq
+			// RezSeq / TrailSeq / StackSeq
 			case 0:
-				if(!scr_isNumericAndExists(unitSubMap, ds_type_map)) continue;
-				cellText = string(unitSubMap[?"unitSeq"]);
+				if (functionChainList_currentTab == functionChainList_tabRezBrush) cellText = currentEntryTagMap[? "RezSeq"];
+				else if (functionChainList_currentTab == functionChainList_tabTrackBrush) cellText = currentEntryTagMap[? "TrailSeq"];
+				else if (functionChainList_currentTab == functionChainList_tabStackBrush) cellText = currentEntryTagMap[? "StackSeq"];
+				break;
+			// unitSeq
+			case 1:
+				cellText = string(unitSubMap[? "unitSeq"]);
 				break;
 			// tokenSeq / speaker
-			case 1:
+			case 2:
 				if (functionChainList_currentTab == functionChainList_tabStackBrush) {
-					cellText = string(tagMap[?global.participantField]);
+					cellText = string(tagMap[? global.participantField]);
 				}
 				else {
-					cellText = string(tokenSubMap[?"tokenOrder"]);
+					cellText = string(tokenSubMap[? "tokenOrder"]);
 				}
 				break;
 			// text
-			case 2:
+			case 3:
 				if (functionChainList_currentTab == functionChainList_tabStackBrush) {
 					// getting the text for a unit
 					if (!scr_isNumericAndExists(entryList, ds_type_list)) break;
@@ -110,14 +114,13 @@ function scr_panelPane_drawChains1ToManyInnerLoop(chain1toManyColFieldList, entr
 					}
 				}
 				else {
-					
 					if (isChunk) {
 						// getting the text for a chunk
 						cellText = scr_getChunkText(ID);
 					}
 					else {
 						// getting the text for a token
-						cellText = tagMap[?global.displayTokenField];
+						cellText = tagMap[? global.displayTokenField];
 					}
 				}
 				break;
@@ -125,30 +128,30 @@ function scr_panelPane_drawChains1ToManyInnerLoop(chain1toManyColFieldList, entr
 		
 		
 		// dynamic columns
-		if (i >= 3) {
+		if (i >= 4) {
 			// make sure field is a string
 			if (!is_string(currentField)) continue;
 		
 			// look up currentField in tagMap
-			if (scr_isNumericAndExists(currentTagMap, ds_type_map)) {	
-				if (ds_map_exists(currentTagMap, currentField)) {
-					cellText = ds_map_find_value(currentTagMap, currentField);
+			if (scr_isNumericAndExists(currentEntryTagMap, ds_type_map)) {	
+				if (ds_map_exists(currentEntryTagMap, currentField)) {
+					cellText = ds_map_find_value(currentEntryTagMap, currentField);
 				}
 			}
 			
-			scr_chainTagDropDown(global.entryFieldMap, currentField, entry, cellRectX1, cellRectY1, cellRectX2, cellRectY2, mouseoverCell, (i == colAmount - 1),cellText);
+			scr_chainTagDropDown(global.entryFieldMap, currentField, entry, cellRectX1, cellRectY1, cellRectX2, cellRectY2, mouseoverCell, (i == colAmount - 1), cellText);
 		}
 		
 		// get coordinates for text
 		// text coordinates
-		if(lineStateLTR){
+		if (lineStateLTR) {
 			draw_set_halign(fa_left);
 			var textX = x + (i * colWidth) + xBuffer + scrollHorPlusX;
 		}
-		else{
+		else {
 			draw_set_halign(fa_right);
-			var textX = floor(x + ((i+1) * colWidth) - xBuffer) + scrollHorPlusX;
-			if(mouseoverCell ){
+			var textX = floor(x + ((i + 1) * colWidth) - xBuffer) + scrollHorPlusX;
+			if (mouseoverCell) {
 				textX = textX - dropDownButtonWidth;
 			}
 		}
@@ -160,10 +163,9 @@ function scr_panelPane_drawChains1ToManyInnerLoop(chain1toManyColFieldList, entr
 		drawStr = string_replace_all(drawStr, "\r", "");
 		drawStr = string_replace_all(drawStr, "\n", "");
 		
-		if(mouseoverCell){
+		if (mouseoverCell) {
 			obj_control.hoverTextCopy = drawStr;
 		}
-		
 		
 		// finally, draw the string in the cell
 		draw_set_color(global.colorThemeText);

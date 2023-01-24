@@ -1,7 +1,7 @@
 {
   "resourceType": "GMScript",
   "resourceVersion": "1.0",
-  "name": "scr_generateRandomHex",
+  "name": "scr_generateRandomID",
   "isDnD": false,
   "isCompatibility": false,
   "parent": {

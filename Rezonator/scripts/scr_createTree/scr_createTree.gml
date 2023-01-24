@@ -14,7 +14,7 @@ function scr_createTree(tokenList){
 	}
 	
 	// get ID for this tree, and give it a subMap within the treeMap
-	var treeNode = scr_generateRandomHex();
+	var treeNode = scr_generateRandomID();
 	//show_debug_message("scr_createTree, treeNode: " + string(treeNode) + ", tokenList: " + scr_getStringOfList(tokenList));
 	ds_map_add_map(global.treeMap, treeNode, ds_map_create());
 

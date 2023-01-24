@@ -1,5 +1,3 @@
-
-
 function scr_setEntryAutoTags(grid, gridCol, vizSetIDList, chainType){
 	
 	var gridHeight = ds_grid_height(grid);
@@ -72,7 +70,7 @@ function scr_setEntryAutoTags(grid, gridCol, vizSetIDList, chainType){
 					if(isChunk){
 						var currentDisplayStr = scr_getChunkText(currentChunk);
 						var chunkSubMap = global.nodeMap[?currentChunk];
-						currentTokenCount = ds_list_size(chunkSubMap[?"tokenList"]);
+						currentTokenCount = ds_list_size(chunkSubMap[? "tokenList"]);
 					}
 					else{
 						if(scr_isNumericAndExists(tokenSubMap, ds_type_map)){
@@ -90,10 +88,16 @@ function scr_setEntryAutoTags(grid, gridCol, vizSetIDList, chainType){
 
 				}
 			}
+			
+			var seqField = "";
+			if (chainType == "resonance") seqField = "RezSeq";
+			else if (chainType == "trail") seqField = "TrailSeq";
+			else if (chainType == "stack") seqField = "StackSeq";
 
 			// set auto-tags
 			var currentTagMap = currentEntrySubMap[? "tagMap"];
 			if (scr_isNumericAndExists(currentTagMap, ds_type_map)) {
+				if (seqField != "") currentTagMap[? seqField] = i + 1;
 				currentTagMap[? "gapUnits"] = currentGapUnits;
 				currentTagMap[? "gapWords"] = currentGapWords;
 				currentTagMap[? "charCount"] = currentCharCount;

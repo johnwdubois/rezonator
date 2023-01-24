@@ -5,7 +5,7 @@ function scr_addToNodeMap(type){
 	// type variable should be a string that declares what "type" of Node this is
 	// for example, "Chain", "Link", "Unit", etc.
 	
-	var nodeKey = scr_generateRandomHex();
+	var nodeKey = scr_generateRandomID();
 	
 	// now that we have the key for the Node, we need its value which
 	// is another sub-map. this map will contain any attributes we want

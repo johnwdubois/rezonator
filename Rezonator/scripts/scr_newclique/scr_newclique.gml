@@ -1,7 +1,7 @@
 function scr_newClique(chainID, unitID){
 
 	// create clique and its submap
-	var newCliqueID = scr_generateRandomHex();
+	var newCliqueID = scr_generateRandomID();
 	var newCliqueSubMap = ds_map_create();
 	ds_map_add_map(global.cliqueMap, newCliqueID, newCliqueSubMap);
 	ds_list_add(obj_chain.cliqueList, newCliqueID);

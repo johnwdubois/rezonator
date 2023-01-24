@@ -45,7 +45,7 @@ function scr_createNewSearch(searchTermList){
 				var searchNodeList = global.nodeMap[?"searchNodeList"];
 				if(scr_isNumericAndExists(searchNodeList, ds_type_list)){
 					
-					var nodeKey = scr_generateRandomHex();
+					var nodeKey = scr_generateRandomID();
 
 					var sizeOfSearchList = ds_list_size(searchNodeList) + 1;
 	

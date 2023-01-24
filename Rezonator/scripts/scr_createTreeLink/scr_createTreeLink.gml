@@ -14,7 +14,7 @@ function scr_createTreeLink(clickedEntry){
 	show_debug_message("focusedEntrySubMap: " + json_encode(focusedEntrySubMap));
 
 	//create Link node for Tree
-	var linkID = scr_generateRandomHex();
+	var linkID = scr_generateRandomID();
 	var linkMap = ds_map_create();
 	
 	//set source and goal

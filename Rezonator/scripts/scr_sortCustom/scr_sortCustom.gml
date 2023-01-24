@@ -38,7 +38,7 @@ function scr_sortCustom(chainID){
 		show_debug_message("scr_sortCustom, fieldList does not exist");
 		exit;
 	}
-	var fieldName = fieldList[| fieldIndex - 3];
+	var fieldName = fieldList[| fieldIndex - 4];
 
 	
 
@@ -71,12 +71,17 @@ function scr_sortCustom(chainID){
 		
 		// get value to sort
 		if (fieldIndex == 0) {
-			currentVal = currentEntryUnitSeq;
+			if (chainType == "resonance") currentVal = currentEntryTagMap[? "RezSeq"];
+			else if (chainType == "trail") currentVal = currentEntryTagMap[? "TrailSeq"];
+			else if (chainType == "stack") currentVal = currentEntryTagMap[? "StackSeq"];
 		}
 		else if (fieldIndex == 1) {
-			currentVal = (chainType == "stack") ? currentEntryUnitTagMap[? global.participantField] : currentEntryTokenSeq;
+			currentVal = currentEntryUnitSeq;
 		}
 		else if (fieldIndex == 2) {
+			currentVal = (chainType == "stack") ? currentEntryUnitTagMap[? global.participantField] : currentEntryTokenSeq;
+		}
+		else if (fieldIndex == 3) {
 			if (chainType == "stack") {
 				currentVal = scr_getUnitText(currentEntryUnitSubMap);
 			}
@@ -86,7 +91,7 @@ function scr_sortCustom(chainID){
 			}
 		}
 		else {
-			var field = fieldList[| fieldIndex - 3];
+			var field = fieldList[| fieldIndex - 4];
 
 			if (ds_map_exists(currentEntryTagMap, field)) {
 				currentVal = currentEntryTagMap[? field];

@@ -96,7 +96,7 @@ function scr_cliqueGeneration(){
 	}
 	else{
 		if(ds_list_size(obj_chain.encounteredChainList) > 0){
-			var cliqueID = scr_generateRandomHex();
+			var cliqueID = scr_generateRandomID();
 			var cliqueName = "Clique " + string(obj_chain.cliqueCount);
 			var cliqueChainList = ds_list_create();
 			var cliqueUnitList = ds_list_create();

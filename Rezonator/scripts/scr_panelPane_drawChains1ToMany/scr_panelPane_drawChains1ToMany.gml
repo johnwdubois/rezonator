@@ -46,7 +46,7 @@ function scr_panelPane_drawChains1ToMany() {
 	if (!global.html5) scr_surfaceStart();
 	
 	
-	if (!ds_exists(chain1toManyColFieldList, ds_type_list)) {
+	if (!scr_isNumericAndExists(chain1toManyColFieldList, ds_type_list)) {
 		if (!global.html5) scr_surfaceEnd();
 		exit;
 	}
@@ -135,8 +135,6 @@ function scr_panelPane_drawChains1ToMany() {
 				textPlusY += strHeight;
 				break;
 			}
-			
-//y + textMarginTop + textPlusY - (strHeight / 2) + scrollPlusY;
 						
 			// Get map of current entry
 			var currentEntry = functionChainContents_IDList[| i];
@@ -217,7 +215,7 @@ function scr_panelPane_drawChains1ToMany() {
 	}
 
 	var colWidth = windowWidth / chain1toMColAmount;
-	scr_scrollBarHorizontal(ds_list_size(chain1toManyColFieldList) + 3, colWidth, global.colorThemeSelected1, global.colorThemeSelected2,
+	scr_scrollBarHorizontal(ds_list_size(chain1toManyColFieldList) + 4, colWidth, global.colorThemeSelected1, global.colorThemeSelected2,
 		global.colorThemeSelected1, global.colorThemeSelected2, spr_ascend, windowWidth, windowHeight);
 	scr_scrollBar(scrollBarListSize, focusedElementY, strHeight, tabHeight,
 		scrollBarBackColor, global.colorThemeSelected2,

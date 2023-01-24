@@ -23,7 +23,7 @@ function scr_separateChunk(){
 		var tokenID = tokenList[|i];
 		show_debug_message(string(tokenID))
 		// get random hex and make a subMap for each entry
-		var currentEntry = scr_generateRandomHex();
+		var currentEntry = scr_generateRandomID();
 		var currentEntrySubMap = ds_map_create();
 		var currentTokenList = ds_list_create();
 		ds_list_add(currentTokenList,tokenID);

@@ -7,7 +7,7 @@ function scr_createTreeEntry(treeID, tokenID, order, addToTokenList){
 	var treeTokenList = treeSubMap[? "tokenList"];
 	
 	// get random hex and make a subMap for each entry
-	var currentEntry = scr_generateRandomHex();
+	var currentEntry = scr_generateRandomID();
 	var currentEntrySubMap = ds_map_create();
 	var currentTokenList = ds_list_create();
 	ds_list_add(currentTokenList, tokenID);
