@@ -6,7 +6,9 @@
 
 var camWidth = camera_get_view_width(camera_get_active());
 var camHeight = camera_get_view_height(camera_get_active());
-toolSpriteScale = clamp(camWidth / 2500, 0.6, 1);
+var toolbarHeight = camHeight - y;
+var _toolSpriteScale = (toolbarHeight / 10) / 100;
+toolSpriteScale = clamp(_toolSpriteScale, 0.25, 1);
 var toolSprWidth = sprite_get_width(spr_toolsNew) * toolSpriteScale;
 
 
@@ -30,7 +32,7 @@ if (obj_toolPane.showTool) {
 	draw_rectangle(x, y, camWidth,camHeight, true);
 	mouseOverToolPane = point_in_rectangle(mouse_x,mouse_y, x, y, camWidth,camHeight);
 
-	scr_drawToolPane(toolSpriteScale);
+	scr_drawToolPane();
 }
 
 

@@ -108,8 +108,8 @@ function scr_loadREZHandleWrapper(wrapper){
 	
 		
 				// get displayTokenField & participantField
-				var getDisplayTokenField = ds_map_find_value(map, "displayTokenField");
-				var getParticipantField = ds_map_find_value(map, "participantField");
+				var getDisplayTokenField = map[? "tokenImportDisplayTokenColName"];
+				var getParticipantField = map[? "participantField"];
 				if (is_string(getDisplayTokenField)) global.displayTokenField = getDisplayTokenField;
 				if (is_string(getParticipantField)) global.participantField = getParticipantField;
 					

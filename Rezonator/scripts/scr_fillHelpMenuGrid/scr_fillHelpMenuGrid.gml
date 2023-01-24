@@ -128,7 +128,7 @@ function scr_fillHelpMenuGrid(){
 	ds_grid_set(functionHelp_helpGridShortcuts, functionHelp_helpGrid_colHide, 9, false);
 	
 	// Shortcuts -> Word tips
-	ds_grid_set(functionHelp_helpGridShortcuts, functionHelp_helpGrid_colKey, 10, "w");
+	ds_grid_set(functionHelp_helpGridShortcuts, functionHelp_helpGrid_colKey, 10, "SHIFT w");
 	ds_grid_set(functionHelp_helpGridShortcuts, functionHelp_helpGrid_colFunc, 10, "help_description_word-tip");
 	ds_grid_set(functionHelp_helpGridShortcuts, functionHelp_helpGrid_colHide, 10, false);
 
