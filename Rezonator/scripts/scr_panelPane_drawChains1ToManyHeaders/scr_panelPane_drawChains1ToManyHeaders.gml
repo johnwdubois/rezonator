@@ -72,7 +72,7 @@ function scr_panelPane_drawChains1ToManyHeaders(){
 			switch (i) {
 				case 0:
 					if (functionChainList_currentTab == functionChainList_tabRezBrush) colName = "RezSeq";
-					else if (functionChainList_currentTab == functionChainList_tabTrackBrush) colName = "TrackSeq";
+					else if (functionChainList_currentTab == functionChainList_tabTrackBrush) colName = "TrailSeq";
 					else if (functionChainList_currentTab == functionChainList_tabStackBrush) colName = "StackSeq";
 					break;
 				case 1:
