@@ -126,17 +126,19 @@ function scr_drawToolPane() {
 	}
 	
 	// draw highlight rect
-	if (obj_control.currentView == obj_control.filterView || obj_control.currentView == obj_control.quickFilterView) {
+	var anyContextEnabled = obj_panelPane.functionFilter_peek[0] || obj_panelPane.functionFilter_peek[1] || obj_panelPane.functionFilter_peek[2];
+	var contextButtonColor = anyContextEnabled ? filterButtonColor : c_white;
+	if (anyContextEnabled && (obj_control.currentView == obj_control.filterView || obj_control.currentView == obj_control.quickFilterView)) {
 		draw_set_color(global.colorThemeBG);
 		draw_roundrect(toolbarButtonX1, contextButtonRectY1, toolbarButtonX2, contextButtonRectY2, false);
 	}
 	
-	if (obj_panelPane.functionFilter_peek[0]) draw_sprite_ext(spr_contextTool, 1, toolButtonX, contextButtonY, toolSpriteScale, toolSpriteScale, 0, filterButtonColor, 1);
-	if (obj_panelPane.functionFilter_peek[1]) draw_sprite_ext(spr_contextTool, 2, toolButtonX, contextButtonY, toolSpriteScale, toolSpriteScale, 0, filterButtonColor, 1);
-	if (obj_panelPane.functionFilter_peek[2]) draw_sprite_ext(spr_contextTool, 3, toolButtonX, contextButtonY, toolSpriteScale, toolSpriteScale, 0, filterButtonColor, 1);
+	if (obj_panelPane.functionFilter_peek[0]) draw_sprite_ext(spr_contextTool, 1, toolButtonX, contextButtonY, toolSpriteScale, toolSpriteScale, 0, contextButtonColor, 1);
+	if (obj_panelPane.functionFilter_peek[1]) draw_sprite_ext(spr_contextTool, 2, toolButtonX, contextButtonY, toolSpriteScale, toolSpriteScale, 0, contextButtonColor, 1);
+	if (obj_panelPane.functionFilter_peek[2]) draw_sprite_ext(spr_contextTool, 3, toolButtonX, contextButtonY, toolSpriteScale, toolSpriteScale, 0, contextButtonColor, 1);
 	
 	// draw context sprite
-	draw_sprite_ext(spr_contextTool, 0, toolButtonX, contextButtonY, toolSpriteScale, toolSpriteScale, 0, filterButtonColor, 1);
+	draw_sprite_ext(spr_contextTool, 0, toolButtonX, contextButtonY, toolSpriteScale, toolSpriteScale, 0, contextButtonColor, 1);
 
 	
 	
@@ -319,12 +321,15 @@ function scr_drawToolPane() {
 	var homeButtonRectY1 = floor(homeButtonY - (toolSprHeight / 2) - toolButtonRectBuffer);
 	var homeButtonRectY2 = floor(homeButtonY + (toolSprHeight / 2) + toolButtonRectBuffer);
 	var mouseoverHome = point_in_rectangle(mouse_x, mouse_y, toolbarButtonX1, homeButtonRectY1, toolbarButtonX2, homeButtonRectY2) && !mouseoverCancel;
-	draw_sprite_ext(spr_home, toolImageIndex, toolButtonX, homeButtonY, toolSpriteScale, toolSpriteScale, 0, c_white, 1);
-	if (mouseoverHome) {
+	var inHomeView = obj_control.currentView == obj_control.mainView;
+	draw_sprite_ext(spr_home, toolImageIndex, toolButtonX, homeButtonY, toolSpriteScale, toolSpriteScale, 0, c_white, inHomeView ? 0.5 : 1);
+	if (mouseoverHome && !inHomeView) {
 		draw_set_color(c_white);
 		scr_drawRectWidth(toolbarButtonX1, homeButtonRectY1, toolbarButtonX2, homeButtonRectY2, mouseoverRectWidth , false);
+	}
+	if (mouseoverHome) {
 		scr_createTooltip(toolbarButtonX1, homeButtonY, scr_get_translation("menu_home"), obj_tooltip.arrowFaceRight);
-		if (mouse_check_button_released(mb_left)) {
+		if (mouse_check_button_released(mb_left) && !inHomeView) {
 			if (obj_control.currentView != obj_control.mainView) {
 				obj_control.currentView = obj_control.mainView;
 				scr_disableFilter();
