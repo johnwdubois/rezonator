@@ -1,6 +1,6 @@
 
 
-function scr_getSearchLists(searchTermList){
+function scr_getSearchLists(searchTermList) {
 	
 	var listOfResultLists = ds_list_create();
 	
@@ -22,7 +22,7 @@ function scr_getSearchLists(searchTermList){
 	
 	
 	
-	if(obj_control.regExCheck){
+	if (obj_control.regExCheck) {
 		// if user input regEx string
 		obj_control.RegEx = ds_list_create();
 
@@ -40,35 +40,35 @@ function scr_getSearchLists(searchTermList){
 	var stackChainTokenIDList = ds_list_create();
 	var chainTokenIDList = ds_list_create();
 	
-	if(obj_control.searchRange == "option_current-chain"){
+	if (obj_control.searchRange == "option_current-chain") {
 		focusedChainTokenIDList = scr_getTokensOfChain(obj_chain.currentFocusedChainID);
 	}
-	else if(obj_control.searchRange != "option_current-chain" && obj_control.searchRange != "option_doc") {
+	else if (obj_control.searchRange != "option_current-chain" && obj_control.searchRange != "option_doc") {
 		
 		var listOfChains = "";
-		if(obj_control.searchRange == "menu_stacks_pl"){
-			listOfChains = global.nodeMap[?"stackList"];
+		if (obj_control.searchRange == "menu_stacks_pl") {
+			listOfChains = global.nodeMap[? "stackList"];
 			var listToAddTo = stackChainTokenIDList;
 		}
-		else if(obj_control.searchRange == "menu_rez_chains_pl"){
-			listOfChains = global.nodeMap[?"resonanceList"];
+		else if (obj_control.searchRange == "menu_rez_chains_pl") {
+			listOfChains = global.nodeMap[? "resonanceList"];
 			var listToAddTo = rezChainTokenIDList;
 		}
-		else if(obj_control.searchRange == "option_trails"){
-			listOfChains = global.nodeMap[?"trailList"];
+		else if (obj_control.searchRange == "option_trails") {
+			listOfChains = global.nodeMap[? "trailList"];
 			var listToAddTo = trackChainTokenIDList;
 		}
 		else{
 			show_debug_message("NO RANGE GIVEN")
-			listOfChains = global.nodeMap[?"resonanceList"];
+			listOfChains = global.nodeMap[? "resonanceList"];
 			var listToAddTo = rezChainTokenIDList;
 		}
 		
 		var chainListSize = ds_list_size(listOfChains);
-		for(var i = 0 ; i < chainListSize; i++){
+		for (var i = 0 ; i < chainListSize; i++) {
 			var currentTokenList = scr_getTokensOfChain(listOfChains[| i]);
 			var tokenListSize = ds_list_size(currentTokenList);
-			for(var j = 0 ; j < tokenListSize; j ++){
+			for (var j = 0 ; j < tokenListSize; j++) {
 				ds_list_add(listToAddTo,currentTokenList[| j]);
 			}	
 			
@@ -114,41 +114,41 @@ function scr_getSearchLists(searchTermList){
 				// check for current chain range
 				if (obj_control.searchRange != "option_doc") {
 					
-					if(obj_control.searchRange == "menu_stacks_pl"){
+					if (obj_control.searchRange == "menu_stacks_pl") {
 						ds_list_copy(chainTokenIDList, stackChainTokenIDList);
 					}
-					else if(obj_control.searchRange == "menu_rez_chains_pl"){
+					else if (obj_control.searchRange == "menu_rez_chains_pl") {
 						ds_list_copy(chainTokenIDList, rezChainTokenIDList);
 					}
-					else if(obj_control.searchRange == "option_trails"){
+					else if (obj_control.searchRange == "option_trails") {
 						ds_list_copy(chainTokenIDList, trackChainTokenIDList);
 					}
-					else if(obj_control.searchRange == "option_current-chain"){
+					else if (obj_control.searchRange == "option_current-chain") {
 						ds_list_copy(chainTokenIDList, focusedChainTokenIDList);
 					}
 					
 					
-					if (scr_isNumericAndExists(chainTokenIDList, ds_type_list)){
+					if (scr_isNumericAndExists(chainTokenIDList, ds_type_list)) {
 						var inChainMatch = (ds_list_find_index(chainTokenIDList, currentToken) >= 0)
-						if(inChainMatch){
+						if (inChainMatch) {
 							// reg ex check
 							if (obj_control.regExCheck) {
-								if (scr_isNumericAndExists(obj_control.RegEx, ds_type_list)){
+								if (scr_isNumericAndExists(obj_control.RegEx, ds_type_list)) {
 									var regExMatch = (scr_regularExpressionMatch(obj_control.RegEx, currentDisplayStr));
-									if(regExMatch){
+									if (regExMatch) {
 										scr_addToListOnce(searchUnitList, currentUnit);
 										scr_addToListOnce(searchTokenList, currentToken);
 									}
 								}
 							}
-							else if(obj_control.caseSensitive){
-								if(caseSensitiveMatch){
+							else if (obj_control.caseSensitive) {
+								if (caseSensitiveMatch) {
 									scr_addToListOnce(searchUnitList, currentUnit);
 									scr_addToListOnce(searchTokenList, currentToken);
 								}
 							}
 							else{
-								if(nonCaseSensitiveMatch){
+								if (nonCaseSensitiveMatch) {
 									scr_addToListOnce(searchUnitList, currentUnit);
 									scr_addToListOnce(searchTokenList, currentToken);
 								}
@@ -160,9 +160,9 @@ function scr_getSearchLists(searchTermList){
 				else{
 					// reg ex check
 					if (obj_control.regExCheck) {
-						if (scr_isNumericAndExists(obj_control.RegEx, ds_type_list)){
+						if (scr_isNumericAndExists(obj_control.RegEx, ds_type_list)) {
 							var regExMatch = (scr_regularExpressionMatch(obj_control.RegEx, currentDisplayStr));
-							if(regExMatch){
+							if (regExMatch) {
 								scr_addToListOnce(searchUnitList, currentUnit);
 								scr_addToListOnce(searchTokenList, currentToken);
 							}
@@ -170,13 +170,13 @@ function scr_getSearchLists(searchTermList){
 					}
 
 					// case sensitive check
-					else if(obj_control.caseSensitive){ 
+					else if (obj_control.caseSensitive) { 
 						if (caseSensitiveMatch) {
 							scr_addToListOnce(searchUnitList, currentUnit);
 							scr_addToListOnce(searchTokenList, currentToken);
 						}
 					}
-					else if(nonCaseSensitiveMatch || caseSensitiveMatch){
+					else if (nonCaseSensitiveMatch || caseSensitiveMatch) {
 						scr_addToListOnce(searchUnitList, currentUnit);
 						scr_addToListOnce(searchTokenList, currentToken);
 					}

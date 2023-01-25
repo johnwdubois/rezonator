@@ -1,6 +1,6 @@
 
 
-function scr_importGridToNodeMap_plainText(row){
+function scr_importGridToNodeMap_plainText(row) {
 
 	// make sure row is still in range
 	if (row >= importGridHeight) exit;
@@ -22,9 +22,9 @@ function scr_importGridToNodeMap_plainText(row){
 	var unitSubMap = global.nodeMap[? unitNode];
 	ds_list_add(unitList, unitNode);
 	
-	var unitFieldMap = global.nodeMap[?"unitTagMap"];
-	var tokenFieldMap = global.nodeMap[?"tokenTagMap"];
-	if(row == 0){
+	var unitFieldMap = global.nodeMap[? "unitTagMap"];
+	var tokenFieldMap = global.nodeMap[? "tokenTagMap"];
+	if (row == 0) {
 		
 		var newUnitFieldMap = ds_map_create();
 		ds_map_add_map(unitFieldMap, "~unitStr", newUnitFieldMap);

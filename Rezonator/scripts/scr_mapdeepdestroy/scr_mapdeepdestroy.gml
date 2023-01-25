@@ -1,4 +1,4 @@
-function scr_mapDeepDestroy(map){
+function scr_mapDeepDestroy(map) {
 	
 	// clears map, and also destroys and data structures that were in the map
 	while (ds_map_size(map) > 0) {

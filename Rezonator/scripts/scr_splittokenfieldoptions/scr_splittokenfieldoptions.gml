@@ -1,4 +1,4 @@
-function scr_splitTokenFieldOptions(optionSelected){
+function scr_splitTokenFieldOptions(optionSelected) {
 	
 	with (obj_control) {
 		splitTokenField = optionSelected;

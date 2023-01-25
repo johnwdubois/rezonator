@@ -1,11 +1,11 @@
 
 
-function scr_linkTagOptions(optionSelected){
+function scr_linkTagOptions(optionSelected) {
 	
 	// check if user is clearing tag
 	var clearTag = (optionSelected == "menu_clear");
 
-	if(optionSelected == "msg_create_tag"){
+	if (optionSelected == "msg_create_tag") {
 		obj_control.newCustomTagLink = true;
 		obj_control.dialogueBoxActive = true;
 		obj_control.tokenFieldToChange = obj_control.linkFieldSelected;
@@ -23,7 +23,7 @@ function scr_linkTagOptions(optionSelected){
 		var newTagValue = clearTag ? "" : optionSelected;
 		linkTagMap[? obj_control.linkFieldSelected] = newTagValue;
 		if (!clearTag) {
-			with(obj_panelPane){
+			with(obj_panelPane) {
 				functionField_linkFieldSelected = obj_control.linkFieldSelected;
 				functionField_linkTagSelected = optionSelected;
 			}

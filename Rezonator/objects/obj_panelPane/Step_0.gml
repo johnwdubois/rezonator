@@ -33,10 +33,10 @@ else {
 }
 
 if (keyboard_check_pressed(ord("N")) and global.ctrlHold) {
-	with(obj_panelPane){
+	with(obj_panelPane) {
 		showNav = not showNav;
 
-		if(showNav){
+		if (showNav) {
 			showNavRight = true;	
 			showNavLeft = true;
 		}

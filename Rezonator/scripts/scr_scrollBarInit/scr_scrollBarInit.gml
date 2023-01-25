@@ -1,6 +1,6 @@
 
 
-function scr_scrollBarInit(){
+function scr_scrollBarInit() {
 	
 	// scrollbar variables
 	scrollBarHolding = false;

@@ -9,7 +9,7 @@ if (global.ctrlHold and keyboard_check_pressed(ord("S")) and ableToHotkey) {
 	ableToHotkey = false;
 	var instLoading = instance_create_layer(0, 0, "InstanceLoading", obj_loadingScreen);
 	instLoading.loadSprite = spr_saving;
-	with(obj_fileLoader){
+	with(obj_fileLoader) {
 		alarm[0] = 1;
 	}
 
@@ -19,7 +19,7 @@ if (!global.ctrlHold and not ableToHotkey) {
 	ableToHotkey = true;
 }
 
-if(drawAutosaveText){
+if (drawAutosaveText) {
 	var camWidth = camera_get_view_width(view_camera[0]);
 	var camHeight = camera_get_view_height(view_camera[0]);
 	var savingText = scr_get_translation("msg_warning_saving");

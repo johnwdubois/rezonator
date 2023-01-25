@@ -2,7 +2,7 @@ function scr_exportGrids() {
 	
 	// Get the default name for the CSV folder
 	var filenameNoExt = filename_change_ext(global.fileSaveName, "");
-	if(global.fileSaveName == "undefined" or is_undefined(global.fileSaveName)){
+	if (global.fileSaveName == "undefined" or is_undefined(global.fileSaveName)) {
 		filenameNoExt = filename_change_ext(global.importFilename, "");
 	}
 	var exportDirDefault = filenameNoExt + " CSV Export";
@@ -126,8 +126,8 @@ function scr_exportGrids() {
 	
 	
 
-	if(global.steamAPI){
-		if(!steam_get_achievement("SA_export")){
+	if (global.steamAPI) {
+		if (!steam_get_achievement("SA_export")) {
 			steam_set_achievement("SA_export");
 		}
 	}

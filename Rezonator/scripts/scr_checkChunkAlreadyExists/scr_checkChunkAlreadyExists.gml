@@ -1,4 +1,4 @@
-function scr_checkChunkAlreadyExists(chunkID, tokenList){
+function scr_checkChunkAlreadyExists(chunkID, tokenList) {
 	
 	var chunkList = global.nodeMap[? "chunkList"];
 	if (scr_isNumericAndExists(chunkList, ds_type_list)) {

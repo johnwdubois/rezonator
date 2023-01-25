@@ -1,6 +1,6 @@
 
 
-function scr_isStrRTL(str){
+function scr_isStrRTL(str) {
 	
 	// loop through the string and check if it has any RTL characters
 	var RTL = false;
@@ -21,7 +21,7 @@ function scr_isStrRTL(str){
 			 125184 <= unicodeValue and unicodeValue <= 125279 ||
 			 126064 <= unicodeValue and unicodeValue <= 126143 ||
 			 126208 <= unicodeValue and unicodeValue <= 126287 ||
-			 126464 <= unicodeValue and unicodeValue <= 126719){
+			 126464 <= unicodeValue and unicodeValue <= 126719) {
 			RTL = true;
 			show_debug_message( string(str) + ":   "+ string(unicodeValue));
 		}

@@ -1,4 +1,4 @@
-function scr_panelPane_drawChains1To1(){
+function scr_panelPane_drawChains1To1() {
 	
 	
 	// get the instance ID for the chainList pane so we can easily reference it
@@ -96,7 +96,7 @@ function scr_panelPane_drawChains1To1(){
 		var fieldHasTagSet = false;
 		if (scr_isNumericAndExists(currentFieldSubMap, ds_type_map)) {
 			fieldHasTagSet = ds_map_exists(currentFieldSubMap, "tagSet");
-			if(currentFieldSubMap[?"readOnly"]) fieldHasTagSet = false;
+			if (currentFieldSubMap[? "readOnly"]) fieldHasTagSet = false;
 		}
 		
 		
@@ -164,12 +164,12 @@ function scr_panelPane_drawChains1To1(){
 			draw_set_alpha(1);
 			draw_set_color(global.colorThemeText);
 			
-			if(lineStateLTR){
+			if (lineStateLTR) {
 				var textX = floor(cellRectX1 + (textMarginLeft));
 			}
 			else{
 				var textX = floor(cellRectX2 - (textMarginLeft));
-				if(drawDropDowns && mouseoverCell){
+				if (drawDropDowns && mouseoverCell) {
 					textX = textX - dropDownButtonWidth;
 				}
 			}
@@ -179,7 +179,7 @@ function scr_panelPane_drawChains1To1(){
 				textX -= global.scrollBarWidth;
 			}
 			
-			if(mouseoverCell){
+			if (mouseoverCell) {
 				obj_control.hoverTextCopy = tagStr;
 			}
 			

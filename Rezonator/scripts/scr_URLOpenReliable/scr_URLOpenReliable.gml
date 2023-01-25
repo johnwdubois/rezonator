@@ -1,4 +1,4 @@
-function scr_URLOpenReliable(url){
+function scr_URLOpenReliable(url) {
 	
 	// GameMaker's url_open function is a bit unreliable for Windows,
 	// so we use execute shell to launch the browser

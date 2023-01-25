@@ -1,4 +1,4 @@
-function scr_turnStackerOptions(optionSelected){
+function scr_turnStackerOptions(optionSelected) {
 	
 	var confirmStack = false;
 	var stackChainList = global.nodeMap[? "stackList"];

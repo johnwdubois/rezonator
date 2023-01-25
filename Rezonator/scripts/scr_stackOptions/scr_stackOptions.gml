@@ -11,7 +11,7 @@ function scr_stackOptions(optionSelected) {
 			with (obj_toolPane) {
 				if (currentMode == modeRead) {
 					currentMode = modeTrack;
-					if(obj_control.currentView == obj_control.searchView) {
+					if (obj_control.currentView == obj_control.searchView) {
 						obj_toolPane.setModeSearch = obj_toolPane.modeTrack;
 					}
 					else {

@@ -1,4 +1,4 @@
-function scr_cycleDetection(chainID){
+function scr_cycleDetection(chainID) {
 	
 	show_debug_message("scr_cycleDetection: START" + string(scr_printTime()) + "   ~"+string(chainID));
 	
@@ -29,13 +29,13 @@ function scr_cycleDetection(chainID){
 				var setList = chainSubMap[? "setIDList"];
 				var lastEntry = setList[| (ds_list_size(setList)-1)];
 				var entrySubMap = global.nodeMap[? lastEntry];
-				entrySubMap[?"stretch"] = true;
+				entrySubMap[? "stretch"] = true;
 				show_debug_message("scr_cycleDetection, CYCLE DETECTED in chain: " + string(chainID));
 				exit;
 			}
 			else {
 				var chainOrderListSize = ds_list_size(chainOrderList);
-				for(var i = 0;  i < chainOrderListSize; i++){
+				for (var i = 0;  i < chainOrderListSize; i++) {
 					//get current chain chain order List and call again
 					scr_cycleDetection(chainOrderList[|i]);
 				}

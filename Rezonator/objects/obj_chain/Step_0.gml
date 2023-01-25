@@ -23,7 +23,7 @@ if (ds_map_exists(global.nodeMap, currentFocusedChainID)) {
 					var currentWordID = ds_map_find_value(currentEntrySubMap, "token");
 					focusedEntryChunkFirstWord = scr_getFirstWordOfChunk(currentWordID);
 					//set grid stuff if is not a chunk
-					if(focusedEntryChunkFirstWord < 0){
+					if (focusedEntryChunkFirstWord < 0) {
 								
 						var isVisible = ds_grid_get(obj_control.wordDrawGrid, obj_control.wordDrawGrid_colVisible, currentWordID - 1);
 						var isChunk = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colWordState, currentWordID - 1);

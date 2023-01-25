@@ -1,6 +1,6 @@
 
 
-function scr_cliqueStackerLoop(){
+function scr_cliqueStackerLoop() {
 	
 	var cliqueMap = global.nodeMap[? "cliqueMap"];
 	var cliqueList = obj_chain.cliqueList;
@@ -39,8 +39,8 @@ function scr_cliqueStackerLoop(){
 		}
 	}
 	
-	if(global.steamAPI){
-		if(!steam_get_achievement("SA_clique")){
+	if (global.steamAPI) {
+		if (!steam_get_achievement("SA_clique")) {
 			steam_set_achievement("SA_clique");
 		}
 	}

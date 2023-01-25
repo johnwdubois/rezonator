@@ -69,7 +69,7 @@ function scr_panelPane_drawTabs() {
 		}
 		
 		draw_set_color(global.colorThemeSelected1);
-		if(mouseoverTab){
+		if (mouseoverTab) {
 			draw_set_color(merge_color(global.colorThemeSelected1, global.colorThemeBG, 0.5));
 		}
 		draw_roundrect(tabRectX1+edgeBufferX , tabRectY1+edgeBufferY, tabRectX2-edgeBufferX, tabRectY2+edgeBufferY, false);
@@ -199,9 +199,9 @@ function scr_panelPane_drawTabs() {
 				
 				
 			if (functionChainList_currentTab != functionChainList_tabShow) {
-				if(functionChainList_playShowID != ""){
+				if (functionChainList_playShowID != "") {
 					scr_setValueForAllChains("stack", "filter", false);
-					with(obj_panelPane){
+					with(obj_panelPane) {
 						functionChainList_playShowID = "";
 					}
 					scr_disableFilter();

@@ -1,6 +1,6 @@
 
 
-function scr_createTree(tokenList){
+function scr_createTree(tokenList) {
 	
 	// make sure tokenList and treeList exist
 	if (!scr_isNumericAndExists(tokenList, ds_type_list)) {

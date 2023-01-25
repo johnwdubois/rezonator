@@ -160,8 +160,8 @@ for (var i = 0; i < optionListSize; i++) {
 	if (multiDropDownCancel) mouseoverCurrentOption = false;
 	if (!mouseMoved) mouseoverCurrentOption = false;
 	
-	if(mouseoverCurrentOption){
-		if(optionCurrent != i){
+	if (mouseoverCurrentOption) {
+		if (optionCurrent != i) {
 			var dropDownsWithGreaterLevelExists = false;
 			var myLevel = level;
 			with (obj_dropDown) {
@@ -176,7 +176,7 @@ for (var i = 0; i < optionListSize; i++) {
 			scr_destroyAllDropDownsOtherThanSelf();
 		}
 		optionCurrent = i;
-		with(obj_control){
+		with(obj_control) {
 			mouseoverDropDownOption = currentOptionRaw;
 		}
 	}
@@ -219,7 +219,7 @@ for (var i = 0; i < optionListSize; i++) {
 			}
 		}
 	}
-	if(unClickable){
+	if (unClickable) {
 		draw_set_color(global.colorThemeSelected2);
 	}
 	
@@ -230,18 +230,18 @@ for (var i = 0; i < optionListSize; i++) {
 	var optionTextY = floor(mean(optionRectY1, optionRectY2));
 	var shortcutTextX = (global.userLangRTL) ? floor(optionRectX1 + textBuffer) : floor(optionRectX2 - textBuffer);
 	scr_adaptFont(scr_get_translation(currentOptionTranslated), "M");
-	if(global.userLangRTL) draw_set_halign(fa_right);
+	if (global.userLangRTL) draw_set_halign(fa_right);
 
 	// draw text for current option
 	draw_text(optionTextX - clipX, floor(optionTextY - clipY), currentOptionTranslated);
 	
 	// draw shortcut text
 	draw_set_halign( (global.userLangRTL) ? fa_left : fa_right);
-	if(currentOptionShortcut != ""){
+	if (currentOptionShortcut != "") {
 		draw_set_color(fadedTextColor);
 		scr_adaptFont(scr_get_translation(currentOptionShortcut), "S");
-		if(isExpandable){
-			if(global.userLangRTL){
+		if (isExpandable) {
+			if (global.userLangRTL) {
 				
 				shortcutTextX += ascendWidth;
 				
@@ -263,9 +263,9 @@ for (var i = 0; i < optionListSize; i++) {
 	var checkX = (global.userLangRTL) ? 
 				floor(optionRectX1 + (sprite_get_width(spr_checkmark) / 2)) : floor(optionRectX2 - (sprite_get_width(spr_checkmark) / 2));
 	var checkY = floor(mean(optionRectY1, optionRectY2));
-	if(hasCheck){
-		if(currentOptionShortcut != ""){
-			if(global.userLangRTL){
+	if (hasCheck) {
+		if (currentOptionShortcut != "") {
+			if (global.userLangRTL) {
 				draw_sprite_ext(spr_checkmark, 0, checkX - clipX + string_width(currentOptionShortcut) + textBuffer, checkY - clipY, 0.8, 0.8, 0, c_black, 1);
 			}
 			else{
@@ -280,7 +280,7 @@ for (var i = 0; i < optionListSize; i++) {
 	
 	//add tag info to option
 	if (currentOptionTag != "") {
-			if(global.userLangRTL){
+			if (global.userLangRTL) {
 				
 				shortcutTextX += ascendWidth/2;
 				
@@ -326,7 +326,7 @@ for (var i = 0; i < optionListSize; i++) {
 	if (clickCurrentOption) {
 		prevOptionClicked = i;
 		
-		if(!unClickable){
+		if (!unClickable) {
 			optionCurrent = i;
 			var optionSelected = optionList[| i];
 			scr_dropDownSelect(optionSelected);
@@ -344,7 +344,7 @@ for (var i = 0; i < optionListSize; i++) {
 		var expandArrowX = (global.userLangRTL) ? floor(optionRectX1 + (sprite_get_width(spr_ascend) / 2)) : floor(optionRectX2 - (sprite_get_width(spr_ascend) / 2));
 		var expandArrowY = floor(mean(optionRectY1, optionRectY2));
 		var arrowColor = (unClickable)? global.colorThemeSelected1 : global.colorThemeText;
-		if(global.userLangRTL){
+		if (global.userLangRTL) {
 			draw_sprite_ext(spr_linkArrow, 0, expandArrowX - clipX, expandArrowY - clipY, arrowScale, arrowScale, 180, arrowColor, 1);
 		}
 		else{
@@ -381,7 +381,7 @@ if (scrollBarHolding) {
 
 
 
-with(obj_control){
+with(obj_control) {
 	mouseoverDropDown = mouseInDropDown;
 }
 
@@ -398,14 +398,14 @@ and !mouseInDropDown and !scrollBarHoldingDelay) {
 		obj_fieldSummaryWindow.clickedIn = false;
 	}
 	
-	with(obj_control){
-		if(mouseoverInputBox){	
+	with(obj_control) {
+		if (mouseoverInputBox) {	
 			destroyDropDown = false;
 			show_debug_message("obj_dropDown Draw ... destroying dropdowns");
 
 		}
 	}
-	if(destroyDropDown){
+	if (destroyDropDown) {
 		with (obj_dropDown) {
 			instance_destroy();
 		}

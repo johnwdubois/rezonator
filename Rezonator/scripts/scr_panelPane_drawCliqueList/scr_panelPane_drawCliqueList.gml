@@ -1,4 +1,4 @@
-function scr_panelPane_drawCliqueList(){
+function scr_panelPane_drawCliqueList() {
 	
 
 	var strHeight = string_height("0") * 1.5;
@@ -32,7 +32,7 @@ function scr_panelPane_drawCliqueList(){
 	draw_set_alpha(1);
 	
 	global.cliqueMap = global.nodeMap[? "cliqueMap"];
-	if(!scr_isNumericAndExists(global.cliqueMap, ds_type_map)){
+	if (!scr_isNumericAndExists(global.cliqueMap, ds_type_map)) {
 		scr_surfaceEnd();
 		exit;
 	}

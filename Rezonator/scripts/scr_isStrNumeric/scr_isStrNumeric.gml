@@ -1,4 +1,4 @@
-function scr_isStrNumeric(str){
+function scr_isStrNumeric(str) {
 
 	// first let's make sure it's a string
 	if (!is_string(str)) return false;

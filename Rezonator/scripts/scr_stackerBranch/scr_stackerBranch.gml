@@ -1,4 +1,4 @@
-function scr_stackerBranch(){
+function scr_stackerBranch() {
 	
 	show_debug_message("scr_stackerBranch, stackerMode: " + string(obj_stacker.stackerMode));
 	if (instance_exists(obj_dialogueBox) && instance_exists(obj_inputBox)) {
@@ -13,7 +13,7 @@ function scr_stackerBranch(){
 	
 	if (obj_toolPane.currentMode == obj_toolPane.modeRead) {
 		obj_toolPane.currentMode = obj_toolPane.modeTrack;
-		if(obj_control.currentView == obj_control.searchView) {
+		if (obj_control.currentView == obj_control.searchView) {
 			obj_toolPane.setModeSearch = obj_toolPane.modeTrack;
 		}
 		else {

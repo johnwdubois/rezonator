@@ -16,17 +16,17 @@ function scr_tokenMarkerOptions(optionSelected) {
 	else if (optionSelected == "option_add-to-tag-set") {
 		scr_tokenTagMapOptions("option_add-to-tag-set");
 	}
-	else if(optionSelected == "Set as Transcription"){
+	else if (optionSelected == "Set as Transcription") {
 		
 		show_debug_message("scr_tokenMarkerOptions ... Set Transcription")
 		global.tokenImportTranscriptColName = ds_list_find_value(global.tokenImportColNameList, obj_control.tokenImportColToChange);
 		
 	
 	}
-	else if(optionSelected == "Remove Column"){
+	else if (optionSelected == "Remove Column") {
 		
 	}
-	else if(optionSelected == "Add Column"){
+	else if (optionSelected == "Add Column") {
 		
 	}
 

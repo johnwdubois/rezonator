@@ -1,6 +1,6 @@
 
 
-function scr_preImportFileTypeWindow(){
+function scr_preImportFileTypeWindow() {
 
 	var camWidth = camera_get_view_width(camera_get_active());
 	var camHeight = camera_get_view_height(camera_get_active());
@@ -93,9 +93,9 @@ function scr_preImportFileTypeWindow(){
 		var mouseOverOption = point_in_rectangle(mouse_x,mouse_y, tableX1,boxY1,tableX2,boxY2) && !mouseoverCancel;
 		
 		
-		if(ds_grid_get(preImportInfoGrid, global.preImportInfoGrid_colChoose, i) == false){
+		if (ds_grid_get(preImportInfoGrid, global.preImportInfoGrid_colChoose, i) == false) {
 			draw_set_color(global.colorThemeSelected1);
-			if(mouseOverOption){
+			if (mouseOverOption) {
 				draw_set_color(merge_color(global.colorThemeSelected1, c_white, .4));
 				draw_rectangle(tableX1,boxY1,tableX2,boxY2, false);
 			}
@@ -116,12 +116,12 @@ function scr_preImportFileTypeWindow(){
 		var currentImportTypeSelected = (global.importType == currentImportType);
 		
 		
-		if(mouseOverOption){
-			if(device_mouse_check_button(0,mb_left)){
+		if (mouseOverOption) {
+			if (device_mouse_check_button(0,mb_left)) {
 				global.importType = currentImportType;
 			}
 		}
-		if(currentImportTypeSelected){
+		if (currentImportTypeSelected) {
 			draw_set_color(rezonatorPink);
 			draw_line_width(tableX1, boxY1, tableX1, boxY2, 4);
 		}

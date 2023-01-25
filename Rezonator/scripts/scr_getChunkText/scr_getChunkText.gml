@@ -1,6 +1,6 @@
 
 
-function scr_getChunkText(chunkID){
+function scr_getChunkText(chunkID) {
 	
 	// this function will return a concatenated string of the tokens in the chunkID, for the specified tokenField
 	var chunkText = "";
@@ -11,7 +11,7 @@ function scr_getChunkText(chunkID){
 
 
 	if (global.displayTokenField != "" && is_string(global.displayTokenField)) {
-		if (scr_isNumericAndExists(chunkSubMap, ds_type_map)){
+		if (scr_isNumericAndExists(chunkSubMap, ds_type_map)) {
 			var tokenList = chunkSubMap[? "tokenList"];
 			var tokenListSize = ds_list_size(tokenList);
 			
@@ -21,7 +21,7 @@ function scr_getChunkText(chunkID){
 				var currentTokenID = tokenList[| i];
 				var tokenSubMap = global.nodeMap[?currentTokenID];
 				if (scr_isNumericAndExists(tokenSubMap, ds_type_map)) {
-					var tokenTagMap = tokenSubMap[?"tagMap"];
+					var tokenTagMap = tokenSubMap[? "tagMap"];
 					var currentTokenStr = tokenTagMap[?global.displayTokenField];
 					chunkText += string(currentTokenStr);
 					if (!rtl && i < tokenListSize - 1) chunkText += " ";

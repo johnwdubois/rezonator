@@ -1,6 +1,6 @@
 
 
-function scr_fieldSummaryWindow(tokenCountX, markerPercentX, soloX, splitX, rowHeight, spaceWidth){
+function scr_fieldSummaryWindow(tokenCountX, markerPercentX, soloX, splitX, rowHeight, spaceWidth) {
 	
 	scrollPlusY = obj_importMappingTagInfo.scrollPlusY;
 	var plusY = fieldSummaryWindowY1 + (rowHeight * 1.5);

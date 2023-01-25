@@ -1,4 +1,4 @@
-function scr_inputBoxCreate(strDefault){
+function scr_inputBoxCreate(strDefault) {
 	
 	// get dimensions for input window (windowHeight will adjust based on font size)
 	textBoxX = -200;

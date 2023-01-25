@@ -1,11 +1,11 @@
 
 
-function scr_treeEntryOptions(optionSelected){
+function scr_treeEntryOptions(optionSelected) {
 	
-	if(optionSelected == "option_delete-branch"){
+	if (optionSelected == "option_delete-branch") {
 		scr_deleteTreeBranch()
 	}
-	if(optionSelected == "option_delete-entry"){
+	if (optionSelected == "option_delete-entry") {
 		scr_deleteTreeEntry()
 	}
 	

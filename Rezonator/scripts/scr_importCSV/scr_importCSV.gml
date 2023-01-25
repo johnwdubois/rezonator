@@ -1,6 +1,6 @@
 function scr_importCSV(filename) {
 	// Begin the import process of a single user specified CSV file
-	if(!scr_isNumericAndExists(global.importGridColMap, ds_type_map)){
+	if (!scr_isNumericAndExists(global.importGridColMap, ds_type_map)) {
 		global.importGridColMap = ds_map_create();
 	}
 

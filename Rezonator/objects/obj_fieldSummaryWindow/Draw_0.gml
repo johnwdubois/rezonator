@@ -30,7 +30,7 @@ draw_roundrect(changeGridButtonRectX1, changeGridButtonRectY1, changeGridButtonR
 draw_sprite_ext(spr_ascend,0,mean(changeGridButtonRectX1,changeGridButtonRectX2), mean(changeGridButtonRectY1,changeGridButtonRectY2),1,1,(clickedIn)? 180:0,global.colorThemeSelected1,1);
 
 var mouseOverChangeGrid = point_in_rectangle(mouse_x, mouse_y, changeGridButtonRectX1, changeGridButtonRectY1, changeGridButtonRectX2, changeGridButtonRectY2);
-if(clickedIn or mouseOverChangeGrid){
+if (clickedIn or mouseOverChangeGrid) {
 	draw_set_color(global.colorThemeSelected1);
 	scr_drawRectWidth(changeGridButtonRectX1+ buttonBuffer, changeGridButtonRectY1+ buttonBuffer, changeGridButtonRectX2- buttonBuffer, changeGridButtonRectY2 - buttonBuffer,3, true);
 }

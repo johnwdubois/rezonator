@@ -1,31 +1,31 @@
 
 
-function scr_deleteTreeEntry(){
+function scr_deleteTreeEntry() {
 	
 	show_debug_message("scr_deleteTreeEntry");
 	
 	obj_control.deleteEntryPressed = true;
 	show_debug_message(string(obj_chain.currentFocusedEntryID))
-	if(obj_chain.currentFocusedEntryID == "") {
+	if (obj_chain.currentFocusedEntryID == "") {
 		exit;
 	}
 	
 	var treeSubMap = global.treeMap[? obj_panelPane.functionTree_treeSelected];
 	if (!scr_isNumericAndExists(treeSubMap, ds_type_map)) exit;
 	
-	var treeLinkList = treeSubMap[?"linkIDList"];
+	var treeLinkList = treeSubMap[? "linkIDList"];
 	var sourceEntryID = "";
 	var indexOfLink = -1;
 	var goalLinkList = -1;
 	
 	var focusedEntrySubMap = global.treeMap[? obj_chain.currentFocusedEntryID];
-	if(scr_isNumericAndExists(focusedEntrySubMap,ds_type_map)){
+	if (scr_isNumericAndExists(focusedEntrySubMap,ds_type_map)) {
 		var linkID = focusedEntrySubMap[? "sourceLink"];
 		var focusedGoalLinkList = focusedEntrySubMap[? "goalLinkList"];
 		
 		var linkSubMap = global.treeMap[? linkID];
 		//if a source link exists
-		if(scr_isNumericAndExists(linkSubMap,ds_type_map)){
+		if (scr_isNumericAndExists(linkSubMap,ds_type_map)) {
 			sourceEntryID = linkSubMap[? "source"];
 			var sourceEntrySubMap = global.treeMap[? sourceEntryID];
 		
@@ -43,11 +43,11 @@ function scr_deleteTreeEntry(){
 		
 		
 		var focusedGoalLinkListSize = ds_list_size(focusedGoalLinkList);
-		for(var i = 0 ; i < focusedGoalLinkListSize; i++){
+		for (var i = 0 ; i < focusedGoalLinkListSize; i++) {
 			var currentGoalLink = focusedGoalLinkList[| i];
 			var currentGoalLinkSubMap = global.treeMap[? currentGoalLink];
 			
-			if(scr_isNumericAndExists(currentGoalLinkSubMap,ds_type_map)){
+			if (scr_isNumericAndExists(currentGoalLinkSubMap,ds_type_map)) {
 				
 				/*
 				var goalEntry =  currentGoalLinkSubMap[? "goal"];
@@ -55,7 +55,7 @@ function scr_deleteTreeEntry(){
 				goalEntrySubMap[? "level"] = goalEntrySubMap[? "level"] -1;
 				*/
 				
-				if(sourceEntryID != ""){
+				if (sourceEntryID != "") {
 					/*
 					currentGoalLinkSubMap[? "source"] = sourceEntryID;
 					scr_addToListOnce(goalLinkList, currentGoalLink);
@@ -79,7 +79,7 @@ function scr_deleteTreeEntry(){
 					for (var j = 0; j < focusedGoalLinkListSize; j++) {
 						var currentGoalLinkDelete = focusedGoalLinkList[| j];
 						var currentGoalLinkDeleteSubMap = global.treeMap[? currentGoalLinkDelete];
-						if(!scr_isNumericAndExists(currentGoalLinkDeleteSubMap, ds_type_map)){exit;}
+						if (!scr_isNumericAndExists(currentGoalLinkDeleteSubMap, ds_type_map)) {exit;}
 						var currentGoalLinkDeleteEntry = currentGoalLinkDeleteSubMap[? "goal"];
 						var currentGoalLinkDeleteEntrySubMap = global.treeMap[? currentGoalLinkDeleteEntry];
 						ds_map_delete(global.treeMap, currentGoalLinkDelete);
@@ -101,7 +101,7 @@ function scr_deleteTreeEntry(){
 		focusedEntrySubMap[? "sourceLink"] = "";
 		ds_list_clear(focusedGoalLinkList);
 	}
-	if(sourceEntryID != ""){
+	if (sourceEntryID != "") {
 		obj_chain.currentFocusedEntryID = sourceEntryID;
 	}
 	else{

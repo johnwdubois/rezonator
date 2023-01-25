@@ -1,4 +1,4 @@
-function scr_panelPane_drawChunks1To1(){
+function scr_panelPane_drawChunks1To1() {
 	
 	// draw BG
 	draw_set_color(global.colorThemeBG);
@@ -70,7 +70,7 @@ function scr_panelPane_drawChunks1To1(){
 			var currentFieldSubMap = tokenTagMap[? currentField];
 			if (scr_isNumericAndExists(currentFieldSubMap, ds_type_map)) {
 				if (!ds_map_exists(currentFieldSubMap, "tagSet")) readOnlyField = true;
-				if(currentFieldSubMap[?"readOnly"]) readOnlyField = true;
+				if (currentFieldSubMap[? "readOnly"]) readOnlyField = true;
 			}
 			
 			// get coordinates for cell rectangle
@@ -122,7 +122,7 @@ function scr_panelPane_drawChunks1To1(){
 			}
 			
 			
-			if(mouseoverCell){
+			if (mouseoverCell) {
 				obj_control.hoverTextCopy = tagStr;
 			}
 			
@@ -134,7 +134,7 @@ function scr_panelPane_drawChunks1To1(){
 			draw_set_color(global.colorThemeText);
 			
 			var textX = 0;
-			if(lineStateLTR){
+			if (lineStateLTR) {
 				textX = floor(cellRectX1 + (textMarginLeft));
 			}
 			else{

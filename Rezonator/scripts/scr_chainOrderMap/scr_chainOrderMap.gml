@@ -1,6 +1,6 @@
 
 
-function scr_chainOrderMap(){
+function scr_chainOrderMap() {
 	
 	show_debug_message("scr_chainOrderMap, START" + scr_printTime());
 	

@@ -1,4 +1,4 @@
-function scr_insertColOptions(optionSelected){
+function scr_insertColOptions(optionSelected) {
 	
 	var navFieldList = -1;
 	var pos = obj_panelPane.chosenCol;

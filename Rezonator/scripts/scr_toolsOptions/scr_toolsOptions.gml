@@ -21,7 +21,7 @@ function scr_toolsOptions(optionSelected) {
 			}
 			with (obj_toolPane) {
 				currentMode = modeRez;
-				if(obj_control.currentView == obj_control.searchView) {
+				if (obj_control.currentView == obj_control.searchView) {
 					obj_toolPane.setModeSearch = obj_toolPane.modeRez;
 				}
 				else {
@@ -41,7 +41,7 @@ function scr_toolsOptions(optionSelected) {
 			}
 			with (obj_toolPane) {
 				currentMode = modeTrack;
-				if(obj_control.currentView == obj_control.searchView) {
+				if (obj_control.currentView == obj_control.searchView) {
 					obj_toolPane.setModeSearch = obj_toolPane.modeTrack;
 				}
 				else {
@@ -54,15 +54,15 @@ function scr_toolsOptions(optionSelected) {
 			}
 			break;
 		case "help_label_tag":
-			with(obj_panelPane){
-				if(currentFunction = functionChainList){
+			with(obj_panelPane) {
+				if (currentFunction = functionChainList) {
 					functionChainList_currentTab = functionChainList_tabField;
 				}
 			}
-			with (obj_toolPane){
+			with (obj_toolPane) {
 				currentMode = modeRead;
 			}
-			with(obj_dropDown){
+			with(obj_dropDown) {
 				instance_destroy();	
 			}
 			break;

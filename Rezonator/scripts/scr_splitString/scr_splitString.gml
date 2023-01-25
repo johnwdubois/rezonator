@@ -4,7 +4,7 @@ function scr_splitString() {
 
 	// scr_splitString(:string, delimiter:string, ?list<string>):list<string>
 	var oldString = argument[0];
-	if(oldString == undefined){
+	if (oldString == undefined) {
 		exit;
 	}
 	var delimiter = argument[1];
@@ -28,15 +28,15 @@ function scr_splitString() {
 
 	ds_list_add(newList, oldString);
 
-	if(global.plainText){
+	if (global.plainText) {
 	
 		var newListSize = ds_list_size(newList);
-		for (var i = 0; i < newListSize; i++ ){
+		for (var i = 0; i < newListSize; i++ ) {
 			var tempList = ds_list_create();
 			var token = ds_list_find_value(newList, i);
 			tempList = scr_splitStringTabs(token, chr(9));
 			var tempListSize = ds_list_size(tempList);
-			for(var j = 0; j < tempListSize; j++ ){
+			for (var j = 0; j < tempListSize; j++ ) {
 				ds_list_add(finalList, ds_list_find_value(tempList, j));
 			}
 	

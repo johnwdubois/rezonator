@@ -1,4 +1,4 @@
-function scr_checkUnitStillInClique(unitID, entryDeleted){
+function scr_checkUnitStillInClique(unitID, entryDeleted) {
 	
 	var unitSubMap = global.nodeMap[? unitID];
 	var unitEntryList = unitSubMap[? "entryList"];

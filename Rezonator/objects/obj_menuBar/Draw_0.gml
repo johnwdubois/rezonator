@@ -6,10 +6,10 @@ var camWidth = camera_get_view_width(camera_get_active());
 
 // draw drop shadow if both nav windows are hidden
 var drawDropShadow = true;
-if(instance_exists(obj_panelPane)){
+if (instance_exists(obj_panelPane)) {
 	drawDropShadow = !obj_panelPane.showNav || (!obj_panelPane.showNavLeft && !obj_panelPane.showNavRight);
 }
-if(instance_exists(obj_control)){
+if (instance_exists(obj_control)) {
 	if (drawDropShadow) scr_dropShadow(-10, 0, camWidth - global.toolPaneWidth, menuHeight);
 }
 else{
@@ -42,7 +42,7 @@ for (var menuHeaderLoop = 0; menuHeaderLoop < menuBarGridHeight; menuHeaderLoop+
 	scr_adaptFont(scr_get_translation(headerString),"M");
 	menuWidth = string_width(scr_get_translation(headerString))*1.5;
 	prevXBuffer = xBuffer;
-	if(global.userLangRTL){
+	if (global.userLangRTL) {
 		xBuffer -= menuWidth;
 	}else{
 		xBuffer += menuWidth;
@@ -61,20 +61,20 @@ for (var menuHeaderLoop = 0; menuHeaderLoop < menuBarGridHeight; menuHeaderLoop+
 		draw_set_alpha(1);
 		draw_roundrect(menuHeaderRectX1 + roundedRectBuffer, menuHeaderRectY1 + roundedRectBuffer/2-20, menuHeaderRectX2 - roundedRectBuffer, menuHeaderRectY2 - roundedRectBuffer, false);
 
-		with(obj_control){
+		with(obj_control) {
 			mouseoverPanelPane = true;	
 		}
 
 		
-		with(obj_dropDown){
-			if(dropDownOptionList != optionList){
+		with(obj_dropDown) {
+			if (dropDownOptionList != optionList) {
 				instance_destroy();	
 			}
 		}
-		if(mouse_check_button_released(mb_left) and menuClickedIn){
+		if (mouse_check_button_released(mb_left) and menuClickedIn) {
 			menuClickedIn = false;
 		}
-		else if(mouse_check_button_released(mb_left) or menuClickedIn){
+		else if (mouse_check_button_released(mb_left) or menuClickedIn) {
 			menuClickedIn = true;
 			
 			ds_grid_set_region(menuBarGrid, menuBarGrid_colMouseOver, 0, menuBarGrid_colMouseOver, menuBarGridHeight, false);
@@ -82,7 +82,7 @@ for (var menuHeaderLoop = 0; menuHeaderLoop < menuBarGridHeight; menuHeaderLoop+
 			
 			
 			if (ds_list_size(dropDownOptionList) > 0 and instance_number(obj_dropDown) == 0) {
-				if(global.userLangRTL){
+				if (global.userLangRTL) {
 					scr_createDropDown(menuHeaderRectX2, menuHeight, dropDownOptionList, currentOptionListType, true);
 				}
 				else{
@@ -119,7 +119,7 @@ var sizeOfButtons = menuHeight * 0.6
 	var maximizeY1 = maximizeY2 - sizeOfButtons;
 
 
-if(instance_exists(obj_control)){
+if (instance_exists(obj_control)) {
 	draw_set_color(c_white);
 
 
@@ -127,7 +127,7 @@ if(instance_exists(obj_control)){
 
 	draw_circle(floor(mean(maximizeX1, maximizeX2)),floor(mean(maximizeY1, maximizeY2)), sizeOfButtons/2 , true);
 
-	if(mouseOverMax){
+	if (mouseOverMax) {
 		draw_circle(floor(mean(maximizeX1, maximizeX2)),floor(mean(maximizeY1, maximizeY2)), sizeOfButtons/2 , false);
 		draw_set_color(global.colorThemeText);
 		scr_createTooltip(floor(mean(maximizeX1, maximizeX2)), maximizeY2, scr_get_translation("option_maximize"), obj_tooltip.arrowFaceUp);
@@ -141,7 +141,7 @@ if(instance_exists(obj_control)){
 		}
 	}
 
-	if(global.userLangRTL){
+	if (global.userLangRTL) {
 		scr_drawRectWidth(maximizeX1 - sizeOfButtons/4,maximizeY1+sizeOfButtons/4,maximizeX2 + sizeOfButtons/4, maximizeY2-sizeOfButtons/4, 2 , false)
 	}else{
 		scr_drawRectWidth(maximizeX1 +sizeOfButtons/4,maximizeY1+sizeOfButtons/4,maximizeX2 - sizeOfButtons/4, maximizeY2-sizeOfButtons/4, 2 , false)
@@ -154,18 +154,18 @@ if(instance_exists(obj_control)){
 	var minimizeX2 = (global.userLangRTL) ? maximizeX1 + sizeOfButtons/2 : maximizeX1 - sizeOfButtons/2;
 	var minimizeX1 = (global.userLangRTL) ? minimizeX2 + sizeOfButtons : minimizeX2 - sizeOfButtons;
 	var minimizeY2 = maximizeY2
-if(instance_exists(obj_control)){
+if (instance_exists(obj_control)) {
 	draw_set_color(c_white);
 
 	var mouseOverMin = point_in_circle(mouse_x, mouse_y,floor(mean(minimizeX1, minimizeX2)),floor(mean(minimizeY1, minimizeY2)),sizeOfButtons/2 );
 
 	draw_circle(floor(mean(minimizeX1, minimizeX2)),floor(mean(minimizeY1, minimizeY2)), sizeOfButtons/2, true);
 
-	if(mouseOverMin){
+	if (mouseOverMin) {
 		draw_circle(floor(mean(minimizeX1, minimizeX2)),floor(mean(minimizeY1, minimizeY2)), sizeOfButtons/2 , false);
 		draw_set_color(global.colorThemeText);
 		scr_createTooltip(floor(mean(minimizeX1, minimizeX2)), minimizeY2, scr_get_translation("option_minimize"), obj_tooltip.arrowFaceUp);
-		if(mouse_check_button_released(mb_left)){
+		if (mouse_check_button_released(mb_left)) {
 			with (obj_panelPane) {
 				showNav = false;
 				showNavRight = false;
@@ -193,19 +193,19 @@ var langTextY2 = fpsTextY + (sizeOfSave/2);
 draw_set_color(c_white);
 var mouseOverLang = (global.userLangRTL) ? point_in_rectangle(mouse_x,mouse_y,langTextX2,langTextY1,langTextX1,langTextY2) : point_in_rectangle(mouse_x,mouse_y,langTextX1,langTextY1,langTextX2,langTextY2);
 if (instance_exists(obj_dropDown)) mouseOverLang = false;
-if(mouseOverLang){
+if (mouseOverLang) {
 	//draw_set_color(global.colorThemeText);
-	if(global.userLangRTL){
+	if (global.userLangRTL) {
 		scr_createTooltip(langTextX2, mean(langTextY1,langTextY2), scr_get_translation("menu_language"),obj_tooltip.arrowFaceLeft);
 	}else{
 		scr_createTooltip(langTextX1, mean(langTextY1,langTextY2), scr_get_translation("menu_language"),obj_tooltip.arrowFaceRight);
 	}
-	if(mouse_check_button_released(mb_left)){
+	if (mouse_check_button_released(mb_left)) {
 		var dropDownOptionList = ds_list_create();
 		ds_list_add(dropDownOptionList, "menu_language-en", "menu_language-ca", "menu_language-es", "menu_language-gu", "menu_language-he", "menu_language-hy", "menu_language-it", "menu_language-ja", "menu_language-kk", "menu_language-ru", "menu_language-vi", "menu_language-zh");
 						
 		if (ds_list_size(dropDownOptionList) > 0) {
-			if(global.userLangRTL){
+			if (global.userLangRTL) {
 				scr_createDropDown(langTextX2, langTextY2, dropDownOptionList, global.optionListTypeLanguage);
 			}
 			else{
@@ -234,7 +234,7 @@ var fpsTextX = minimizeX1- sizeOfButtons;
 draw_set_color(c_white);
 if (instance_exists(obj_control)) {
 	if (obj_control.showFPS) {
-		if(!obj_control.allSaved){
+		if (!obj_control.allSaved) {
 			fpsTextX = saveIconX1 - string_width("0");
 		}
 		draw_set_halign(fa_right);
@@ -247,18 +247,18 @@ if (instance_exists(obj_control)) {
 	draw_set_valign(fa_middle);
 
 
-	if(obj_control.allSaved){
+	if (obj_control.allSaved) {
 		saveTextAlpha -= 0.01;
 		saveTextAlpha = clamp(saveTextAlpha,0 ,1);
 		draw_set_alpha(saveTextAlpha);	
-		if(global.userLangRTL){
+		if (global.userLangRTL) {
 			draw_text(saveIconX1 + string_width("0"), fpsTextY, scr_get_translation("Saved!"));   // felt too close to lang button, so I added string_width("0")
 		}else{
 			draw_text(saveIconX2,fpsTextY, scr_get_translation("Saved!"));
 		}
 	}
 	else{
-		if(global.userLangRTL) and point_in_rectangle(mouse_x, mouse_y,saveIconX2,saveIconY1,saveIconX1,saveIconY2 ){
+		if (global.userLangRTL) and point_in_rectangle(mouse_x, mouse_y,saveIconX2,saveIconY1,saveIconX1,saveIconY2 ) {
 			scr_createTooltip(saveIconX1,fpsTextY, scr_get_translation("Unsaved Changes!"), obj_tooltip.arrowFaceLeft);
 		}else if (point_in_rectangle(mouse_x, mouse_y,saveIconX1,saveIconY1,saveIconX2,saveIconY2 )) {
 			scr_createTooltip(saveIconX1,fpsTextY, scr_get_translation("Unsaved Changes!"), obj_tooltip.arrowFaceRight);
@@ -286,7 +286,7 @@ if (instance_exists(obj_control)) {
 if (drawDropShadow) {
 	draw_set_alpha(1);
 	draw_set_color(global.colorThemeBorders);
-	if(instance_exists(obj_control)){
+	if (instance_exists(obj_control)) {
 		draw_line(0, menuHeight, camWidth - global.toolPaneWidth, menuHeight);
 	}
 	else{

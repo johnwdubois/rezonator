@@ -6,7 +6,7 @@ function scr_dialogueBoxNewCustomTagToken() {
 	
 	// get submap for this field
 	var tokenTagMap = global.nodeMap[? "tokenTagMap"];
-	if(obj_panelPane.functionChainList_currentTab == obj_panelPane.functionChainList_tabChunk && !obj_panelPane.chainViewOneToMany){
+	if (obj_panelPane.functionChainList_currentTab == obj_panelPane.functionChainList_tabChunk && !obj_panelPane.chainViewOneToMany) {
 		var fieldSubMap = tokenTagMap[? obj_control.chunk1to1FieldToChange];
 	}
 	else{
@@ -38,11 +38,11 @@ function scr_dialogueBoxNewCustomTagToken() {
 	scr_sortList(tagSet);
 	
 	//add this to selected token if not in tag pane
-	if(obj_panelPane.functionChainList_currentTab != obj_panelPane.functionChainList_tabField){
-		if(obj_panelPane.functionChainList_currentTab == obj_panelPane.functionChainList_tabChunk && !obj_panelPane.chainViewOneToMany){
+	if (obj_panelPane.functionChainList_currentTab != obj_panelPane.functionChainList_tabField) {
+		if (obj_panelPane.functionChainList_currentTab == obj_panelPane.functionChainList_tabChunk && !obj_panelPane.chainViewOneToMany) {
 			// get the chunkToChange's submap, and that chunks's tagmap
 			var chunkSubMap = global.nodeMap[? obj_control.chunk1to1ChunkToChange];
-			if(scr_isNumericAndExists(chunkSubMap, ds_type_map)){
+			if (scr_isNumericAndExists(chunkSubMap, ds_type_map)) {
 				var chunkTagMap = chunkSubMap[? "tagMap"];
 				// set the new value in this token's tagmap
 				chunkTagMap[? obj_control.chunk1to1FieldToChange] = newTag;
@@ -52,11 +52,11 @@ function scr_dialogueBoxNewCustomTagToken() {
 		else{
 			// get the tokenToChange's submap, and that token's tagmap
 			var tokenSubMap = global.nodeMap[? obj_control.tokenToChange];
-			if(scr_isNumericAndExists(tokenSubMap, ds_type_map)){
+			if (scr_isNumericAndExists(tokenSubMap, ds_type_map)) {
 				var tokenTagMap = tokenSubMap[? "tagMap"];
 				// set the new value in this token's tagmap
-				if(global.steamAPI){
-					if(!steam_get_achievement("SA_tag-token")){
+				if (global.steamAPI) {
+					if (!steam_get_achievement("SA_tag-token")) {
 						steam_set_achievement("SA_tag-token");
 					}
 				}

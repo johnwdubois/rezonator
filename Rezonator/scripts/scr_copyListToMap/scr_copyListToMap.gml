@@ -1,6 +1,6 @@
 
 
-function scr_copyListToMap(sourceList, map, key){
+function scr_copyListToMap(sourceList, map, key) {
 	
 	var copyList = ds_list_create();
 	if (scr_isNumericAndExists(sourceList, ds_type_list)) {

@@ -1,4 +1,4 @@
-function scr_openFileRefreshCliques(){
+function scr_openFileRefreshCliques() {
 	
 	// when opening a rez file, we need to make sure that every rezchain is in a clique
 	var resonanceList = global.nodeMap[? "resonanceList"];

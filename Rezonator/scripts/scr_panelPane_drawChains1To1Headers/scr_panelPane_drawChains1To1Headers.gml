@@ -1,4 +1,4 @@
-function scr_panelPane_drawChains1To1Headers(chain1to1ColFieldList, chainType){
+function scr_panelPane_drawChains1To1Headers(chain1to1ColFieldList, chainType) {
 	
 	var entryType = "";
 	if (chainType == "resonance") entryType = "rez";
@@ -30,7 +30,7 @@ function scr_panelPane_drawChains1To1Headers(chain1to1ColFieldList, chainType){
 		draw_set_color(global.colorThemeBG);
 		draw_rectangle(headerRectX1 - clipX, headerRectY1 - clipY, headerRectX2 - clipX, headerRectY1 + headerHeight - clipY, false);
 		draw_set_color(global.colorThemeBorders);
-		if(i > 0){
+		if (i > 0) {
 			draw_line(headerRectX1 - clipX, headerRectY1 - clipY, headerRectX1 - clipX, headerRectY2 - clipY);
 		}
 		
@@ -56,14 +56,14 @@ function scr_panelPane_drawChains1To1Headers(chain1to1ColFieldList, chainType){
 		draw_text(headerTextX - clipX, headerTextY - clipY, currentField);
 		
 		// draw lines for dividing columns
-		if(lineStateLTR){	
-			if(i > 0){
+		if (lineStateLTR) {	
+			if (i > 0) {
 				draw_set_color(global.colorThemeBorders);
 				draw_line_width(headerRectX1 - clipX, y - clipY, headerRectX1 - clipX, y + windowHeight - clipY, 1);
 			}
 		}
 		else{
-			if(i > 0 && i < chain1to1ColFieldListSize){
+			if (i > 0 && i < chain1to1ColFieldListSize) {
 				draw_set_color(global.colorThemeBorders);
 				draw_line_width(headerRectX1 + 1 - clipX, y - clipY, headerRectX1 + 1 - clipX, y + windowHeight - clipY, 1);
 			}
@@ -76,7 +76,7 @@ function scr_panelPane_drawChains1To1Headers(chain1to1ColFieldList, chainType){
 			
 			// draw underline
 			var underlineX1 = headerTextX;
-			if(lineStateLTR){
+			if (lineStateLTR) {
 				var underlineX2 = headerTextX + string_width(currentField);
 			}
 			else{

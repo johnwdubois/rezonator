@@ -1,6 +1,6 @@
 
 
-function scr_refreshDisplayCol(){
+function scr_refreshDisplayCol() {
 	
 	show_debug_message("scr_refreshDisplayCol");
 	

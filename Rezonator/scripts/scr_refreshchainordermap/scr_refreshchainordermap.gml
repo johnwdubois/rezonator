@@ -1,4 +1,4 @@
-function scr_refreshChainOrderMap(cliqueID){
+function scr_refreshChainOrderMap(cliqueID) {
 	
 	show_debug_message("scr_refreshChainOrderMap, cliqueID: " + string(cliqueID));
 	var cliqueSubMap = global.cliqueMap[? cliqueID];

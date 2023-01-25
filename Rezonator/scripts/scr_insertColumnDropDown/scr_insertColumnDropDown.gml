@@ -1,4 +1,4 @@
-function scr_insertColumnDropDown(fullFieldList, navFieldList, type){
+function scr_insertColumnDropDown(fullFieldList, navFieldList, type) {
 	
 	var optionSpacingMulti = ds_list_find_index(optionList, "Insert column");
 	scr_destroyAllDropDownsOtherThanSelf();

@@ -1,11 +1,11 @@
 
 
-function scr_deleteTreeBranch(){
+function scr_deleteTreeBranch() {
 	show_debug_message("scr_deleteTreeBranch  called....");
 	
 	//get tree entry lists
 	var treeSubMap = global.treeMap[? obj_panelPane.functionTree_treeSelected];
-	var treeSetIDList = treeSubMap[?"setIDList"];
+	var treeSetIDList = treeSubMap[? "setIDList"];
 
 	
 	//get token list of selected entry
@@ -16,13 +16,13 @@ function scr_deleteTreeBranch(){
 	//time to delete source link if there is one to detach from tree
 	var sourceLink = selectedEntrySubMap[? "sourceLink"];
 	var linkSubMap = global.treeMap[? sourceLink];
-	if(scr_isNumericAndExists(linkSubMap, ds_type_map)){
+	if (scr_isNumericAndExists(linkSubMap, ds_type_map)) {
 	
 		var sourceEntry = linkSubMap[? "source"];
 		var goalEntry = linkSubMap[? "goal"];
 
 		var sourceEntrySubMap = global.treeMap[? sourceEntry];
-		if(scr_isNumericAndExists(sourceEntrySubMap, ds_type_map)){
+		if (scr_isNumericAndExists(sourceEntrySubMap, ds_type_map)) {
 			scr_deleteFromList(sourceEntrySubMap[? "goalLinkList"], sourceLink);
 		}
 

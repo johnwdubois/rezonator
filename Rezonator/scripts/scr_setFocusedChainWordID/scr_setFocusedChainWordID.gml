@@ -1,6 +1,6 @@
 
 
-function scr_setFocusedChainWordID(){
+function scr_setFocusedChainWordID() {
 	
 	if (ds_map_exists(global.nodeMap, currentFocusedChainID) && currentFocusedChainID != "") {
 		var chainMap = global.nodeMap[? currentFocusedChainID];

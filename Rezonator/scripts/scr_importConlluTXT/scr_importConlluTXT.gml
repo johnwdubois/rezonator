@@ -81,26 +81,26 @@ function scr_importConlluTXT(filename) {
 				var listOfColumnsSize = ds_list_size(listOfColumns);
 				/*
 				// Take out any spaces or blank tokens
-				for(var i = 0; i <= listOfColumnsSize; i++){
-					if(ds_list_find_value(listOfColumns,i) == "" or ds_list_find_value(listOfColumns,i) == " "){
+				for (var i = 0; i <= listOfColumnsSize; i++) {
+					if (ds_list_find_value(listOfColumns,i) == "" or ds_list_find_value(listOfColumns,i) == " ") {
 						ds_list_delete(listOfColumns,i);
 						i -= 1;
 					}
 				}
 				*/
 				// Increase the width of the import grid to accomodate new columns
-				if(widthOfImportGrid <= ds_list_size(listOfColumns)){
+				if (widthOfImportGrid <= ds_list_size(listOfColumns)) {
 					var i = widthOfImportGrid;
 					var indexOfColNameList = 0;
 				
-					if(!tokensAdded){
+					if (!tokensAdded) {
 						nextItterator = widthOfImportGrid;
 						widthOfImportGrid += ds_list_size(listOfColumns);
 						global.importGridWidth = widthOfImportGrid;
 						tokensAdded =true;
 					}
 
-					while( i < global.importGridWidth){
+					while( i < global.importGridWidth) {
 
 						if (indexOfColNameList >= ds_list_size(CoNLLUColNameList)) {
 							var colName = " Col " + string(i);
@@ -128,14 +128,14 @@ function scr_importConlluTXT(filename) {
 			
 				// place tokens into the import grid
 				var listOfColumnsSize = ds_list_size(listOfColumns);
-				for(var i = nextItterator; i < nextItterator+listOfColumnsSize; i++){
+				for (var i = nextItterator; i < nextItterator+listOfColumnsSize; i++) {
 		
 					var fullColString = string(ds_list_find_value(listOfColumns,i-nextItterator));
 					// if the piece has more then one token, make it into a list
 					var colStringList = ds_list_create();
 					colStringList = scr_splitString(fullColString, " ");
 			
-					if(ds_list_size(colStringList) > 1){
+					if (ds_list_size(colStringList) > 1) {
 						ds_grid_set(global.importGrid, i , ds_grid_height(global.importGrid) -1, colStringList);
 					}
 					ds_grid_set(global.importGrid, i , row, fullColString);

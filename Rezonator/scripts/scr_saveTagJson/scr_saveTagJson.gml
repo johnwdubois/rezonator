@@ -1,4 +1,4 @@
-function scr_saveTagJson(){
+function scr_saveTagJson() {
 	
 	if (global.html5) {
 		show_message("Saving Tag JSON is currently not available for browser use.");

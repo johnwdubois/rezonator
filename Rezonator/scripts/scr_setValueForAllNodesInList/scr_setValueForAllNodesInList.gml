@@ -1,6 +1,6 @@
 
 
-function scr_setValueForAllNodesInList(nodeList, key, value){
+function scr_setValueForAllNodesInList(nodeList, key, value) {
 	
 	// this function goes through all the nodes in the given nodeList
 	// and sets the given key/value pair

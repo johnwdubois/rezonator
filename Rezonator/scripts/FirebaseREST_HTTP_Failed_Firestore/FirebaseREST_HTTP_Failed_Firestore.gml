@@ -1,33 +1,33 @@
 function FirebaseREST_HTTP_Failed_Firestore()
 {
-	var map_error = json_decode(async_load[?"result"])
-	if(ds_exists(map_error,ds_type_map))
+	var map_error = json_decode(async_load[? "result"])
+	if (ds_exists(map_error,ds_type_map))
 	{
 		var map = map_error
-		if(ds_map_exists(map,"default"))//Some times this is a list....
+		if (ds_map_exists(map,"default"))//Some times this is a list....
 		{
-			if(map[?"default"] = "")
+			if (map[? "default"] = "")
 				errorMessage = ""
 			else
 			{
-				var list = map[?"default"]
-				if(scr_isNumericAndExists(list, ds_type_list))
-				if(ds_list_size(list))
+				var list = map[? "default"]
+				if (scr_isNumericAndExists(list, ds_type_list))
+				if (ds_list_size(list))
 					map = list[|0]
 				
-				if(ds_map_exists(map,"error"))
-				if(ds_map_exists(map[?"error"],"message"))
-					errorMessage = map[?"error"][?"message"]
+				if (ds_map_exists(map,"error"))
+				if (ds_map_exists(map[? "error"],"message"))
+					errorMessage = map[? "error"][? "message"]
 			}
 		}
 		else
-		if(ds_map_exists(map,"error"))
-		if(is_string(map[?"error"]))
-			errorMessage = map[?"error"]
+		if (ds_map_exists(map,"error"))
+		if (is_string(map[? "error"]))
+			errorMessage = map[? "error"]
 		else
-		if(ds_exists(map[?"error"],ds_type_map))
-		if(ds_map_exists(map[?"error"],"message"))
-			errorMessage = map[?"error"][?"message"]
+		if (ds_exists(map[? "error"],ds_type_map))
+		if (ds_map_exists(map[? "error"],"message"))
+			errorMessage = map[? "error"][? "message"]
 		
 		ds_map_destroy(map_error)
 	}

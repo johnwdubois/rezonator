@@ -1,4 +1,4 @@
-function scr_updateDisplayTokenList(field){
+function scr_updateDisplayTokenList(field) {
 	
 	// make sure this is a valid field
 	show_debug_message("scr_updateDisplayTokenList, field: " + string(field));	

@@ -50,7 +50,7 @@ function scr_loadREZ() {
 
 	var filename = "";
 
-	if(global.selectedFile != ""){
+	if (global.selectedFile != "") {
 		var fileName = global.selectedFile;
 		
 	}

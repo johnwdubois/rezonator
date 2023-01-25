@@ -1,4 +1,4 @@
-function scr_disableFilter(){
+function scr_disableFilter() {
 
 	with (obj_control) {		
 		quickPickedChainID = "";
@@ -18,8 +18,8 @@ function scr_disableFilter(){
 	if (drawRangeUnit == "") drawRangeUnit = displayUnitList[|0];
 	var drawRangeUnitSubMap = global.nodeMap[?drawRangeUnit];
 	var drawRangeUnitSeq = 0;
-	if(scr_isNumericAndExists(drawRangeUnitSubMap,ds_type_map)){
-		drawRangeUnitSeq = drawRangeUnitSubMap[?"unitSeq"];
+	if (scr_isNumericAndExists(drawRangeUnitSubMap,ds_type_map)) {
+		drawRangeUnitSeq = drawRangeUnitSubMap[? "unitSeq"];
 	}
 	var unitList = discourseSubMap[? "unitList"];
 	
@@ -32,14 +32,14 @@ function scr_disableFilter(){
 	
 
 	var unitListSize = ds_list_size(unitList);
-	for(var i = 0; i < unitListSize; i ++){
+	for (var i = 0; i < unitListSize; i++) {
 		
 		var currentUnit = unitList[|i];
 		var currentUnitSubMap = global.nodeMap[?currentUnit];
-		if(scr_isNumericAndExists(currentUnitSubMap,ds_type_map)){
-			var unitSeq = currentUnitSubMap[?"unitSeq"];	
+		if (scr_isNumericAndExists(currentUnitSubMap,ds_type_map)) {
+			var unitSeq = currentUnitSubMap[? "unitSeq"];	
 
-			if(unitSeq < drawRangeUnitSeq){
+			if (unitSeq < drawRangeUnitSeq) {
 				currentUnitSubMap[? "pixelY"] = -9999;
 			}
 			else{

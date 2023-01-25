@@ -30,7 +30,7 @@ function scr_panelPane_drawLineTranslationLoopClipped() {
 	// Not doing a surface here so it can scroll along with the left Navwindow
 	
 	var discourseSubMap = global.nodeMap[?global.discourseNode];
-	var unitList = discourseSubMap[?"unitList"];
+	var unitList = discourseSubMap[? "unitList"];
 	var unitListSize = ds_list_size(unitList);
 	
 	
@@ -46,13 +46,13 @@ function scr_panelPane_drawLineTranslationLoopClipped() {
 		// Get grid info of current chain
 		var currentUnitID = unitList[|i];
 		var unitSubMap = global.nodeMap[?currentUnitID];
-		if(!scr_isNumericAndExists(unitSubMap, ds_type_map)){ continue;}
-			var unitTagMap = unitSubMap[?"tagMap"];
+		if (!scr_isNumericAndExists(unitSubMap, ds_type_map)) { continue;}
+			var unitTagMap = unitSubMap[? "tagMap"];
 			var lineSpeaker = unitTagMap[?global.participantField];
 
 		var currentLineWordString = "";
 
-		if(global.currentTranslation != undefined and global.currentTranslation != "") {
+		if (global.currentTranslation != undefined and global.currentTranslation != "") {
 			currentLineWordString = unitTagMap[?global.currentTranslation];
 		}
 	
@@ -88,13 +88,13 @@ function scr_panelPane_drawLineTranslationLoopClipped() {
 		
 		var drawingSpeaker = false;
 		
-		if(is_string(lineSpeaker)){
+		if (is_string(lineSpeaker)) {
 		//Color codes the line lists for User
-			if(string_length(lineSpeaker) > 0){
+			if (string_length(lineSpeaker) > 0) {
 				
 				var speakerColor = global.colorMap[? lineSpeaker];
 				drawingSpeaker = true;
-				if(is_undefined(speakerColor)){
+				if (is_undefined(speakerColor)) {
 					//error in epaker color found
 					speakerColor = c_red;
 				}
@@ -112,7 +112,7 @@ function scr_panelPane_drawLineTranslationLoopClipped() {
 		draw_set_color(global.colorThemeBG);
 		draw_line_width(windowWidth/3 - 10, lineNameRectY1 - clipY, windowWidth/3 - 10, lineNameRectY2 - clipY - 2, 1);
 		draw_set_color(global.colorThemeText);
-		if(is_string(currentLineWordString)){
+		if (is_string(currentLineWordString)) {
 			scr_adaptFont(currentLineWordString, "M");
 			var textXPos = (drawingSpeaker) ? lineNameRectX1 + (windowWidth/3): unitColX2 + (textMarginLeft);
 			draw_set_alpha(1);

@@ -40,7 +40,7 @@ function scr_zoomOptions(optionSelected) {
 			
 			obj_control.prevCenterDisplayRow = scr_currentTopLine();
 		
-			if(obj_control.gridSpaceVertical < obj_control.gridSpaceVerticalMax) {
+			if (obj_control.gridSpaceVertical < obj_control.gridSpaceVerticalMax) {
 			
 				obj_control.gridSpaceVertical += 10;
 				// Don't go above the max
@@ -51,7 +51,7 @@ function scr_zoomOptions(optionSelected) {
 				scr_jumpToUnitTop(obj_control.prevCenterDisplayRow);
 				// reset the ratio
 				obj_control.prevGridSpaceVertical = obj_control.gridSpaceVertical;
-				if(obj_control.arrowSpeed < obj_control.arrowSpeedMax) {
+				if (obj_control.arrowSpeed < obj_control.arrowSpeedMax) {
 					obj_control.arrowSpeed++;	
 				}
 			}
@@ -61,7 +61,7 @@ function scr_zoomOptions(optionSelected) {
 		
 			obj_control.prevCenterDisplayRow = scr_currentTopLine();
 
-			if(obj_control.gridSpaceVertical > obj_control.gridSpaceVerticalMin) {
+			if (obj_control.gridSpaceVertical > obj_control.gridSpaceVerticalMin) {
 				obj_control.gridSpaceVertical -= 10;
 				// Don't go above the max
 				obj_control.gridSpaceVertical = max(obj_control.gridSpaceVertical, obj_control.gridSpaceVerticalMin);
@@ -71,7 +71,7 @@ function scr_zoomOptions(optionSelected) {
 				scr_jumpToUnitTop(obj_control.prevCenterDisplayRow);
 				// reset the ratio
 				obj_control.prevGridSpaceVertical = obj_control.gridSpaceVertical;
-				if(obj_control.arrowSpeed > obj_control.arrowSpeedMin) {
+				if (obj_control.arrowSpeed > obj_control.arrowSpeedMin) {
 					obj_control.arrowSpeed--;	
 				}
 			
@@ -80,15 +80,15 @@ function scr_zoomOptions(optionSelected) {
 			break;
 		case "help_label_zoom-in":
 		
-			if(room == rm_openingScreen){
-				if(global.fontSize != 5) global.fontSize++;
+			if (room == rm_openingScreen) {
+				if (global.fontSize != 5) global.fontSize++;
 				exit;
 			}
 			
 			//vertical
 			obj_control.prevCenterDisplayRow = scr_currentTopLine();
 		
-			if(obj_control.gridSpaceVertical < obj_control.gridSpaceVerticalMax) {
+			if (obj_control.gridSpaceVertical < obj_control.gridSpaceVerticalMax) {
 				obj_control.gridSpaceVertical += 10;
 				// Don't go above the max
 				obj_control.gridSpaceVertical = min(obj_control.gridSpaceVertical, obj_control.gridSpaceVerticalMax);
@@ -98,7 +98,7 @@ function scr_zoomOptions(optionSelected) {
 				scr_jumpToUnitTop(obj_control.prevCenterDisplayRow);
 				// reset the ratio
 				obj_control.prevGridSpaceVertical = obj_control.gridSpaceVertical;
-				if(obj_control.arrowSpeed < obj_control.arrowSpeedMax) {
+				if (obj_control.arrowSpeed < obj_control.arrowSpeedMax) {
 					obj_control.arrowSpeed++;	
 				}
 			}
@@ -118,7 +118,7 @@ function scr_zoomOptions(optionSelected) {
 			
 		case "help_label_zoom-out":
 			
-			if(room == rm_openingScreen){
+			if (room == rm_openingScreen) {
 				if (global.fontSize != 0) global.fontSize--;
 				exit;
 			}
@@ -127,7 +127,7 @@ function scr_zoomOptions(optionSelected) {
 			//Vertical
 			obj_control.prevCenterDisplayRow = scr_currentTopLine();
 
-			if(obj_control.gridSpaceVertical > obj_control.gridSpaceVerticalMin) {
+			if (obj_control.gridSpaceVertical > obj_control.gridSpaceVerticalMin) {
 				obj_control.gridSpaceVertical -= 10;
 				// Don't go above the max
 				obj_control.gridSpaceVertical = max(obj_control.gridSpaceVertical, obj_control.gridSpaceVerticalMin);
@@ -137,7 +137,7 @@ function scr_zoomOptions(optionSelected) {
 				scr_jumpToUnitTop(obj_control.prevCenterDisplayRow);
 				// reset the ratio
 				obj_control.prevGridSpaceVertical = obj_control.gridSpaceVertical;
-				if(obj_control.arrowSpeed > obj_control.arrowSpeedMin) {
+				if (obj_control.arrowSpeed > obj_control.arrowSpeedMin) {
 					obj_control.arrowSpeed--;	
 				}
 			}

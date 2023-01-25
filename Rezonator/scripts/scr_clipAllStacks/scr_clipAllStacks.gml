@@ -1,12 +1,12 @@
-function scr_clipAllStacks(stackChainList){
+function scr_clipAllStacks(stackChainList) {
 	var stackChainListSize = ds_list_size(stackChainList);
-	if(stackChainListSize > 0){
+	if (stackChainListSize > 0) {
 	
 		obj_control.clipStackDir = get_save_filename_ext("New Clip Folder|*.", "", program_directory, "Create Clip Folder");
 
 		directory_create(obj_control.clipStackDir);
 	
-		for(var i = 0; i < stackChainListSize; i++){
+		for (var i = 0; i < stackChainListSize; i++) {
 			var currentStack = stackChainList[|i];
 			var currentStackSubMap = global.nodeMap[? currentStack];
 
@@ -23,7 +23,7 @@ function scr_clipAllStacks(stackChainList){
 			if (string_count(">", obj_control.clipStackName) > 0) obj_control.clipStackName = string_replace_all(obj_control.clipStackName, ">", "");
 			if (string_count("|", obj_control.clipStackName) > 0) obj_control.clipStackName = string_replace_all(obj_control.clipStackName, "|", "");
 			
-			if(string_length(obj_control.clipStackName) < 1){
+			if (string_length(obj_control.clipStackName) < 1) {
 				obj_control.clipStackName = scr_get_translation("help_label_stack") + string(i);
 			}
 		

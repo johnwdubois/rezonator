@@ -1,6 +1,6 @@
 
 
-function scr_deleteAllChains(chainList){
+function scr_deleteAllChains(chainList) {
 	
 	show_debug_message("scr_deleteAllChains");
 	if (!scr_isNumericAndExists(chainList, ds_type_list)) {

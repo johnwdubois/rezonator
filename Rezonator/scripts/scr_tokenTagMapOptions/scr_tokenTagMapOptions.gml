@@ -8,7 +8,7 @@ function scr_tokenTagMapOptions(optionSelected) {
 	// check if user is clearing tag
 	var clearTag = (optionSelected == "menu_clear");
 
-	if (optionSelected == "option_add-to-tag-set"){
+	if (optionSelected == "option_add-to-tag-set") {
 
 		obj_control.newCustomTagToken = true;
 		obj_control.dialogueBoxActive = true;
@@ -23,7 +23,7 @@ function scr_tokenTagMapOptions(optionSelected) {
 		show_debug_message(" scr_tokenTagMapOptions    token to change: " + string(obj_control.tokenToChange));
 		var repeatAmount = 1;
 		var repeatCounter = 0;
-		if(obj_control.multiWordTag){
+		if (obj_control.multiWordTag) {
 			var searchSubMap = global.searchMap[? obj_panelPane.functionSearchList_searchSelected];
 			if (scr_isNumericAndExists(searchSubMap, ds_type_map)) {
 				var selectedTokenList = searchSubMap[? "selectedTokenList"];
@@ -34,19 +34,19 @@ function scr_tokenTagMapOptions(optionSelected) {
 			}
 			repeatAmount = ds_list_size(selectedTokenList);
 		}
-		repeat(repeatAmount){
-			if(obj_control.multiWordTag){
+		repeat(repeatAmount) {
+			if (obj_control.multiWordTag) {
 				obj_control.tokenToChange = selectedTokenList[|repeatCounter]
 			}
 			// get the tokenToChange's submap, and that token's tagmap
 			var tokenSubMap = global.nodeMap[? obj_control.tokenToChange];
 			var type = "";
-			if(scr_isNumericAndExists(tokenSubMap,ds_type_map)){
-				type = tokenSubMap[?"type"];
+			if (scr_isNumericAndExists(tokenSubMap,ds_type_map)) {
+				type = tokenSubMap[? "type"];
 				var tokenTagMap = tokenSubMap[? "tagMap"];
 				// set the new value in this token's tagmap
-				if(global.steamAPI){
-					if(!steam_get_achievement("SA_tag-token")){
+				if (global.steamAPI) {
+					if (!steam_get_achievement("SA_tag-token")) {
 						steam_set_achievement("SA_tag-token");
 					}
 				}
@@ -55,8 +55,8 @@ function scr_tokenTagMapOptions(optionSelected) {
 			}
 			
 			if (!clearTag) {
-				with(obj_panelPane){
-					if(type == "token"){
+				with(obj_panelPane) {
+					if (type == "token") {
 						functionField_tokenTagSelected = optionSelected;
 						functionField_tokenFieldSelected = obj_control.tokenFieldToChange;
 					}
@@ -73,7 +73,7 @@ function scr_tokenTagMapOptions(optionSelected) {
 		obj_control.tokenToChange = "";
 		obj_control.multiWordTag = false;
 	}
-	with(obj_dropDown){
+	with(obj_dropDown) {
 		instance_destroy();
 	}
 }

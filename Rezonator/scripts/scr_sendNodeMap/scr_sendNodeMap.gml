@@ -1,6 +1,6 @@
 
 
-function scr_sendNodeMap(){
+function scr_sendNodeMap() {
 
 show_debug_message("scr_submitScore called!~");
 

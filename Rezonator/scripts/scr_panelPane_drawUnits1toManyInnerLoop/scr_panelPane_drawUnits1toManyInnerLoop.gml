@@ -1,4 +1,4 @@
- function scr_panelPane_drawUnits1toManyInnerLoop(tokenID, drawDropDowns, strHeight, textPlusY, cellRectY1, cellRectY2, highlight){
+ function scr_panelPane_drawUnits1toManyInnerLoop(tokenID, drawDropDowns, strHeight, textPlusY, cellRectY1, cellRectY2, highlight) {
 
 	var tokenSubMap = global.nodeMap[? tokenID];
 	var tagMap = tokenSubMap[? "tagMap"];
@@ -50,12 +50,12 @@
 		draw_rectangle(cellRectX1 - clipX, cellRectY1 - clipY, cellRectX2 - clipX, cellRectY2 - clipY, false);
 		
 		// text coordinates
-		if(lineStateLTR){
+		if (lineStateLTR) {
 			var textX = floor(cellRectX1 + spaceWidth);
 		}
 		else{
 			var textX = floor(cellRectX2 - spaceWidth);
-			if(drawDropDowns && mouseoverCell && !isTildaField){
+			if (drawDropDowns && mouseoverCell && !isTildaField) {
 				textX = textX - dropDownButtonWidth;
 			}
 		}
@@ -70,7 +70,7 @@
 		var currentFieldSubMap = tokenTagMap[? currentField];
 		if (scr_isNumericAndExists(currentFieldSubMap, ds_type_map)) {
 			if (!ds_map_exists(currentFieldSubMap, "tagSet")) readOnlyField = true;
-			if(currentFieldSubMap[?"readOnly"]) readOnlyField = true;
+			if (currentFieldSubMap[? "readOnly"]) readOnlyField = true;
 		}
 		
 		// draw text	

@@ -14,7 +14,7 @@ function scr_importTabbedTXT(delimiter) {
 		var listOfColumnsSize = ds_list_size(listOfColumns);
 		
 		
-		if(widthOfImportGrid <= ds_list_size(listOfColumns)){
+		if (widthOfImportGrid <= ds_list_size(listOfColumns)) {
 			widthOfImportGrid = ds_list_size(listOfColumns);
 			global.importGridWidth = widthOfImportGrid
 
@@ -24,7 +24,7 @@ function scr_importTabbedTXT(delimiter) {
 		ds_grid_resize(global.importGrid, global.importGridWidth, ds_grid_height(global.importGrid)+1);
 	
 		var listOfColumnsSize = ds_list_size(listOfColumns);
-		for(var i = 0; i < listOfColumnsSize; i++){
+		for (var i = 0; i < listOfColumnsSize; i++) {
 		
 			var fullColString = string(ds_list_find_value(listOfColumns,i));
 			
@@ -33,7 +33,7 @@ function scr_importTabbedTXT(delimiter) {
 			var colStringList = ds_list_create();
 			colStringList = scr_splitString(fullColString, " ");
 		
-			if(ds_list_size(colStringList) > 1){
+			if (ds_list_size(colStringList) > 1) {
 				ds_grid_set(global.importGrid, i , ds_grid_height(global.importGrid) -1, colStringList);
 			}
 			ds_grid_set(global.importGrid, i , ds_grid_height(global.importGrid) -1, fullColString);
@@ -42,8 +42,8 @@ function scr_importTabbedTXT(delimiter) {
 		j++;
 	}
 	
-	if(!colListCreated){
-		for(i = 0; i < global.importGridWidth; i++){
+	if (!colListCreated) {
+		for (i = 0; i < global.importGridWidth; i++) {
 			var colName = "Col";
 			ds_list_add(global.importGridColNameList, colName + "_" + string(i));
 			ds_map_add(global.importGridColMap, colName, i);

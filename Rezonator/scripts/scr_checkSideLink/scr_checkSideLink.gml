@@ -1,6 +1,6 @@
 
 
-function scr_checkSideLink(chainID, tokenID){
+function scr_checkSideLink(chainID, tokenID) {
 	
 	var tokenSubMap = global.nodeMap[? tokenID];
 	if (scr_isChunk(tokenID)) tokenSubMap = global.nodeMap[? scr_getFirstWordOfChunk(tokenID)];

@@ -1,4 +1,4 @@
-function scr_filterDropDownList(fullList, subList, filterStr){
+function scr_filterDropDownList(fullList, subList, filterStr) {
 	
 	var curIndex = -1;
 	with (obj_inputBox) curIndex = cursorIndex;

@@ -8,7 +8,7 @@ function scr_chainTagDropDown(fieldMap, field, IDtoChange, cellRectX1, cellRectY
 										
 		// check whether this field has a tagSet
 		var fieldHasTagSet = ds_map_exists(fieldTagSubMap, "tagSet");
-		var fieldReadOnly = fieldTagSubMap[?"readOnly"];
+		var fieldReadOnly = fieldTagSubMap[? "readOnly"];
 		if (mouseoverCell && !instance_exists(obj_dialogueBox)) {
 			// dropDown button for editing tags
 

@@ -4,7 +4,7 @@
 
 function scr_newChain(ID) {
 	
-	if(obj_toolPane.currentMode == obj_toolPane.modeRead) exit;
+	if (obj_toolPane.currentMode == obj_toolPane.modeRead) exit;
 	if (obj_control.mouseoverBackArrowStopClick || obj_control.mouseoverBackArrow) exit;
 	
 	show_debug_message("ID before: " + string(ID));
@@ -31,7 +31,7 @@ function scr_newChain(ID) {
 			chainSeq = obj_chain.rezChainNameCounter;
 			chainName = "Rez " + string(chainSeq);
 			chainType = "resonance";
-			if(obj_control.shapeStartText == true) {
+			if (obj_control.shapeStartText == true) {
 				obj_control.shapeStartText = false;
 				obj_control.shape = obj_control.shapeBlock;
 			}
@@ -144,8 +144,8 @@ function scr_newChain(ID) {
 			alarm[4] = 2;
 		}
 	}
-	if(global.steamAPI){
-		if(!steam_get_achievement("SA_chain")){
+	if (global.steamAPI) {
+		if (!steam_get_achievement("SA_chain")) {
 			steam_set_achievement("SA_chain");
 		}
 	}

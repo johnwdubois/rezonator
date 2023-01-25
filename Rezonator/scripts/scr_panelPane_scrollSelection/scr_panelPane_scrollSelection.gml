@@ -1,4 +1,4 @@
-function scr_panelPane_scrollSelection(focusedElementY, strHeight){
+function scr_panelPane_scrollSelection(focusedElementY, strHeight) {
 	
 	var leftPaneInst = -1;
 	var rightPaneInst = -1;

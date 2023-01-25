@@ -1,4 +1,4 @@
-function scr_drawDevVars(){
+function scr_drawDevVars() {
 	
 	// drawing settings
 	draw_set_color(global.colorThemeSelected2);

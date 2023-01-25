@@ -1,4 +1,4 @@
-function scr_panelPane_drawSearchList(){
+function scr_panelPane_drawSearchList() {
 
 		
 	var strHeight = string_height("0") * 1.5;
@@ -64,7 +64,7 @@ function scr_panelPane_drawSearchList(){
 	
 	// make sure search map exists
 	global.searchMap = global.nodeMap[? "searchMap"];
-	if(!scr_isNumericAndExists(global.searchMap, ds_type_map)){
+	if (!scr_isNumericAndExists(global.searchMap, ds_type_map)) {
 		scr_surfaceEnd();
 		exit;
 	}
@@ -82,12 +82,12 @@ function scr_panelPane_drawSearchList(){
 		
 		var currentSearchName = currentSearchSubMap[? "name"];
 		var currentSearchTermList = currentSearchSubMap[? "searchTermList"];
-		var searchField = currentSearchSubMap[?"field"];
-		var searchRange = currentSearchSubMap[?"range"];
-		var searchRegEX = currentSearchSubMap[?"regex"];
-		var searchCaseSensitive = currentSearchSubMap[?"caseSensitive"];
+		var searchField = currentSearchSubMap[? "field"];
+		var searchRange = currentSearchSubMap[? "range"];
+		var searchRegEX = currentSearchSubMap[? "regex"];
+		var searchCaseSensitive = currentSearchSubMap[? "caseSensitive"];
 		var currentSearchSelected = (functionSearchList_searchSelected == currentSearch);
-		if(currentSearchSelected){
+		if (currentSearchSelected) {
 			currentSelectedSearchIndex = i;
 		}
 		
@@ -161,7 +161,7 @@ function scr_panelPane_drawSearchList(){
 		draw_set_color(rectColor);
 		draw_rectangle(regExColX - clipX, searchRectY1 - clipY, caseSensitiveColX - clipX, searchRectY2 - clipY, false);
 		draw_set_color(textColor);
-		if(searchRegEX){
+		if (searchRegEX) {
 			draw_sprite_ext(spr_checkmark, 0, mean(regExColX, regExColX+ regExColWidth)- clipX, mean(searchRectY1,searchRectY2) - clipY,1,1,0,global.colorThemeBorders,1);
 		}
 
@@ -169,7 +169,7 @@ function scr_panelPane_drawSearchList(){
 		draw_set_color(rectColor);
 		draw_rectangle(caseSensitiveColX - clipX, searchRectY1 - clipY, deleteColX - clipX, searchRectY2 - clipY, false);
 		draw_set_color(textColor);
-		if(searchCaseSensitive){
+		if (searchCaseSensitive) {
 			draw_sprite_ext(spr_checkmark, 0, mean(caseSensitiveColX, caseSensitiveColX+ caseSensitiveColWidth)- clipX, mean(searchRectY1,searchRectY2) - clipY,1,1,0,global.colorThemeBorders,1);
 		}
 
@@ -342,7 +342,7 @@ function scr_panelPane_drawSearchList(){
 	// Allows use of arrow keys, pgUp/pgDwn, and ctrl+key in chain list if clicked in chainList
 	var instToScroll = self.id;
 	if (clickedIn) {
-		if (mouse_wheel_up()){
+		if (mouse_wheel_up()) {
 			scrollPlusYDest += strHeight/2;
 		}
 		if ( keyboard_check(vk_up) and (holdUp < 2 or holdUp > 30)) {
@@ -352,7 +352,7 @@ function scr_panelPane_drawSearchList(){
 			}
 		}
 		
-		if (mouse_wheel_down()){
+		if (mouse_wheel_down()) {
 			scrollPlusYDest -= strHeight/2;
 		}
 		

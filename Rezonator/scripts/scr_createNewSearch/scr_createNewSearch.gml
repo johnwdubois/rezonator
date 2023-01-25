@@ -1,14 +1,14 @@
 
 
-function scr_createNewSearch(searchTermList){
+function scr_createNewSearch(searchTermList) {
 	
-	if(scr_isNumericAndExists(global.searchMap,ds_type_map)){
+	if (scr_isNumericAndExists(global.searchMap,ds_type_map)) {
 	
 
 		var searchTermListCopy = ds_list_create();
-		if(ds_list_size(searchTermList) >= 2){
-			if(global.steamAPI){
-				if(!steam_get_achievement("SA_mw-search")){
+		if (ds_list_size(searchTermList) >= 2) {
+			if (global.steamAPI) {
+				if (!steam_get_achievement("SA_mw-search")) {
 					steam_set_achievement("SA_mw-search");
 				}
 			}
@@ -25,9 +25,9 @@ function scr_createNewSearch(searchTermList){
 		var unitListSize = ds_list_size(displayUnitList);
 		var counter = 0;
 		show_debug_message("unitListSize:  " +string(unitListSize));
-		repeat(unitListSize){
+		repeat(unitListSize) {
 			show_debug_message(string(counter) + ":  "+string(displayUnitList[|counter]));
-			if(!is_string(displayUnitList[|counter])){
+			if (!is_string(displayUnitList[|counter])) {
 				ds_list_delete(displayUnitList,counter);
 			}
 			else{
@@ -35,15 +35,15 @@ function scr_createNewSearch(searchTermList){
 			}
 		}
 	
-		if(scr_isNumericAndExists(displayTokenList, ds_type_list)){
+		if (scr_isNumericAndExists(displayTokenList, ds_type_list)) {
 
-			if(ds_list_size(displayTokenList) > 0){
+			if (ds_list_size(displayTokenList) > 0) {
 				var selectedTokenList = ds_list_create();
 				//global.displayTokenField = obj_control.searchField;
 				// type variable should be a string that declares what "type" of Node this is
 				// for example, "Chain", "Link", "Unit", etc.
-				var searchNodeList = global.nodeMap[?"searchNodeList"];
-				if(scr_isNumericAndExists(searchNodeList, ds_type_list)){
+				var searchNodeList = global.nodeMap[? "searchNodeList"];
+				if (scr_isNumericAndExists(searchNodeList, ds_type_list)) {
 					
 					var nodeKey = scr_generateRandomID();
 
@@ -90,8 +90,8 @@ function scr_createNewSearch(searchTermList){
 					//add to searchNodeList 
 					ds_list_add(searchNodeList, nodeKey);
 	
-					show_debug_message("searchTermList  " + scr_getStringOfList(subMap[?"searchTermList"]));
-					with(obj_panelPane){
+					show_debug_message("searchTermList  " + scr_getStringOfList(subMap[? "searchTermList"]));
+					with(obj_panelPane) {
 						functionSearchList_searchSelected = nodeKey;
 					}
 				}

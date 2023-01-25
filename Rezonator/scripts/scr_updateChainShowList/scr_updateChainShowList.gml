@@ -1,6 +1,6 @@
 
 
-function scr_updateChainShowList(inChainsList, inEntryList, chainShowList, inBoxList,tokenID,rectX1,rectY1,rectX2,rectY2, mouseOverToken){
+function scr_updateChainShowList(inChainsList, inEntryList, chainShowList, inBoxList,tokenID,rectX1,rectY1,rectX2,rectY2, mouseOverToken) {
 	
 	// get size of inChainsList
 	var inChainsListSize = 0;
@@ -40,8 +40,8 @@ function scr_updateChainShowList(inChainsList, inEntryList, chainShowList, inBox
 			
 			
 			// get cool chain vars
-			var chainColor = chainSubMap[?"chainColor"];
-			var chainType = chainSubMap[?"type"];
+			var chainColor = chainSubMap[? "chainColor"];
+			var chainType = chainSubMap[? "type"];
 			var chainVisible = chainSubMap[? "visible"];
 				
 			// draw filled in rect if this is the focused entry of the focused chain

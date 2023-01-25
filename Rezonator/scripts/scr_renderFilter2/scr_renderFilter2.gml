@@ -1,4 +1,4 @@
-function scr_renderFilter2(){
+function scr_renderFilter2() {
 	
 	show_debug_message("scr_renderFilter2!");
 	
@@ -21,8 +21,8 @@ function scr_renderFilter2(){
 	var search = (obj_control.currentView == obj_control.searchView);
 	if (search) {
 		var searchSubMap = global.searchMap[?obj_panelPane.functionSearchList_searchSelected];
-		if(!scr_isNumericAndExists(searchSubMap,ds_type_map)){exit;}
-		var displayUnitList = searchSubMap[?"displayUnitList"];
+		if (!scr_isNumericAndExists(searchSubMap,ds_type_map)) {exit;}
+		var displayUnitList = searchSubMap[? "displayUnitList"];
 		show_debug_message("scr_renderFilter2 search: " + string(obj_panelPane.functionSearchList_searchSelected));
 		list = displayUnitList;
 		show_debug_message("scr_renderFilter2 search, list: " + scr_getStringOfList(list));
@@ -99,7 +99,7 @@ function scr_renderFilter2(){
 						var currentTokenID = currentEntrySubMap[? "token"];
 						if (scr_isChunk(currentTokenID)) currentTokenID = scr_getFirstWordOfChunk(currentTokenID);
 						var tokenSubMap = global.nodeMap[? currentTokenID];
-						if (scr_isNumericAndExists(tokenSubMap, ds_type_map)){
+						if (scr_isNumericAndExists(tokenSubMap, ds_type_map)) {
 							var currentUnitID = tokenSubMap[? "unit"];
 							var currentUnitSubMap = global.nodeMap[? currentUnitID];	
 							if (scr_isNumericAndExists(currentUnitSubMap, ds_type_map)) {
@@ -127,7 +127,7 @@ function scr_renderFilter2(){
 	
 	//context above
 	if (obj_panelPane.functionFilter_peek[0]) {
-		for(var i = 0; i < indexOfFirst; i++){
+		for (var i = 0; i < indexOfFirst; i++) {
 			var currentUnitID = unitList[|i];
 			var currentUnitSubMap = global.nodeMap[? currentUnitID];
 			currentUnitSubMap[? "active"] = true;
@@ -136,7 +136,7 @@ function scr_renderFilter2(){
 	}
 	//context between
 	if (obj_panelPane.functionFilter_peek[1]) {
-		for(var i = indexOfFirst; i < indexOfLast; i++){
+		for (var i = indexOfFirst; i < indexOfLast; i++) {
 			var currentUnitID = unitList[|i];
 			var currentUnitSubMap = global.nodeMap[? currentUnitID];
 			currentUnitSubMap[? "active"] = true;
@@ -146,7 +146,7 @@ function scr_renderFilter2(){
 	//context below
 	if (obj_panelPane.functionFilter_peek[2]) {
 		var sizeOfUnitList = ds_list_size(unitList);
-		for(var i = indexOfLast; i < sizeOfUnitList; i++){
+		for (var i = indexOfLast; i < sizeOfUnitList; i++) {
 			var currentUnitID = unitList[|i];
 			var currentUnitSubMap = global.nodeMap[? currentUnitID];
 			currentUnitSubMap[? "active"] = true;
@@ -163,16 +163,16 @@ function scr_renderFilter2(){
 	var displayUnitList = discourseSubMap[? "displayUnitList"];
 	var drawRangeUnit = displayUnitList[|0];
 	var drawRangeUnitSubMap = global.nodeMap[?drawRangeUnit];
-	var drawRangeUnitSeq = drawRangeUnitSubMap[?"unitSeq"];
+	var drawRangeUnitSeq = drawRangeUnitSubMap[? "unitSeq"];
 	
 	var unitListSize = ds_list_size(unitList);
-	for(var i = 0; i < unitListSize; i ++){
+	for (var i = 0; i < unitListSize; i++) {
 		
 		var currentUnit = unitList[|i];
 		var currentUnitSubMap = global.nodeMap[?currentUnit];
-		var unitSeq = currentUnitSubMap[?"unitSeq"];	
+		var unitSeq = currentUnitSubMap[? "unitSeq"];	
 
-		if(unitSeq < drawRangeUnitSeq){
+		if (unitSeq < drawRangeUnitSeq) {
 			currentUnitSubMap[? "pixelY"] = -9999;
 		}
 		else{

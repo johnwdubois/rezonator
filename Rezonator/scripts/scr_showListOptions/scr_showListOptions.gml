@@ -1,4 +1,4 @@
-function scr_showListOptions(optionSelected){
+function scr_showListOptions(optionSelected) {
 	
 	var selectedShow = obj_control.selectedChainID;
 	var selectedShowSubMap = global.nodeMap[? selectedShow];

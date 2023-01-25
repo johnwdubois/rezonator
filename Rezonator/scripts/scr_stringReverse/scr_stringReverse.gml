@@ -1,6 +1,6 @@
 
 
-function scr_stringReverse(inputString){
+function scr_stringReverse(inputString) {
 	
 	if (ds_map_exists(global.reverseStrMap, inputString)) {
 		return ds_map_find_value(global.reverseStrMap, inputString);
@@ -13,9 +13,9 @@ function scr_stringReverse(inputString){
 		var isRTL = false;
 		var isPrevRTL = false;
 		var previousUnicodeValue = 1425;
-		for(var i = letterCount;i > 0; i--){
+		for (var i = letterCount;i > 0; i--) {
 			var charToAdd = string_char_at(inputString,i);
-			if(charToAdd == "\n" ||charToAdd == "\r" ){continue;}
+			if (charToAdd == "\n" ||charToAdd == "\r" ) {continue;}
 			var unicodeValue = ord(string_char_at(inputString,i));
 			
 			
@@ -30,7 +30,7 @@ function scr_stringReverse(inputString){
 			 125184 <= unicodeValue and unicodeValue <= 125279 ||
 			 126064 <= unicodeValue and unicodeValue <= 126143 ||
 			 126208 <= unicodeValue and unicodeValue <= 126287 ||
-			 126464 <= unicodeValue and unicodeValue <= 126719){
+			 126464 <= unicodeValue and unicodeValue <= 126719) {
 				isRTL = true;
 			}
 			else{
@@ -47,7 +47,7 @@ function scr_stringReverse(inputString){
 			 125184 <= previousUnicodeValue and previousUnicodeValue <= 125279 ||
 			 126064 <= previousUnicodeValue and previousUnicodeValue <= 126143 ||
 			 126208 <= previousUnicodeValue and previousUnicodeValue <= 126287 ||
-			 126464 <= previousUnicodeValue and previousUnicodeValue <= 126719){
+			 126464 <= previousUnicodeValue and previousUnicodeValue <= 126719) {
 				isPrevRTL = true;
 			}
 			else{
@@ -55,12 +55,12 @@ function scr_stringReverse(inputString){
 			}
 			
 			
-			if(!isRTL){
+			if (!isRTL) {
 				nonReverseChars+=charToAdd
-				if(i == 1){
+				if (i == 1) {
 					var nonReverseletterCount = string_length(nonReverseChars);
-					for(var j = nonReverseletterCount;j > 0; j--){
-						if(j == nonReverseletterCount){
+					for (var j = nonReverseletterCount;j > 0; j--) {
+						if (j == nonReverseletterCount) {
 							newNonReverseChars += " ";
 						}
 						newNonReverseChars += string_char_at(nonReverseChars,j);
@@ -72,9 +72,9 @@ function scr_stringReverse(inputString){
 				}
 			}
 			else{
-				if(!isPrevRTL){
+				if (!isPrevRTL) {
 					var nonReverseletterCount = string_length(nonReverseChars);
-					for(var j = nonReverseletterCount;j > 0; j--){
+					for (var j = nonReverseletterCount;j > 0; j--) {
 						newNonReverseChars += string_char_at(nonReverseChars,j);
 					}
 					newString += newNonReverseChars;

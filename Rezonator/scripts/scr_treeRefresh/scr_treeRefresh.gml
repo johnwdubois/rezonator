@@ -1,6 +1,6 @@
 
 
-function scr_treeRefresh(treeSubMap){
+function scr_treeRefresh(treeSubMap) {
 	
 	var setIDList = treeSubMap[? "setIDList"];
 	var setIDListSize = ds_list_size(setIDList);

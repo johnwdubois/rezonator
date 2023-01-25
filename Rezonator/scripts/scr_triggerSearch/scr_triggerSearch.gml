@@ -1,6 +1,6 @@
 
 
-function scr_triggerSearch(){
+function scr_triggerSearch() {
 
 	
 	with (obj_control) {

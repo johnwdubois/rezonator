@@ -1,6 +1,6 @@
 
 
-function scr_combineChains(focusedChain, clickedChain){
+function scr_combineChains(focusedChain, clickedChain) {
 	
 	show_debug_message("scr_combineChains: " + string(focusedChain) + ", " + string(clickedChain));
 	
@@ -19,29 +19,29 @@ function scr_combineChains(focusedChain, clickedChain){
 	}
 	
 
-	var focusedChainEntryList = focusedChainSubMap[?"setIDList"];
-	var focusedChainLinkIDList = focusedChainSubMap[?"linkIDList"];
-	var clickedChainEntryList = clickedChainSubMap[?"setIDList"];
-	var clickedChainLinkIDList = clickedChainSubMap[?"linkIDList"];
+	var focusedChainEntryList = focusedChainSubMap[? "setIDList"];
+	var focusedChainLinkIDList = focusedChainSubMap[? "linkIDList"];
+	var clickedChainEntryList = clickedChainSubMap[? "setIDList"];
+	var clickedChainLinkIDList = clickedChainSubMap[? "linkIDList"];
 	var focusedChainEntry = focusedChainEntryList[|0];
 	var clickedChainRoot = "";
 	
 	var clickedChainEntryListSize = ds_list_size(clickedChainEntryList);
 	var clickedChainLinkIDListSize = ds_list_size(clickedChainLinkIDList);
 	
-	for(var i = 0 ; i < clickedChainEntryListSize; i++){
+	for (var i = 0 ; i < clickedChainEntryListSize; i++) {
 		var currentEntry = clickedChainEntryList[|i];
 		var currentEntrySubMap = global.nodeMap[?currentEntry];
-		if(currentEntrySubMap[?"sourceLink"] == ""){
+		if (currentEntrySubMap[? "sourceLink"] == "") {
 			clickedChainRoot = currentEntry;
 		}
 		//update the chain id of each entry in clicked chain
-		currentEntrySubMap[?"chain"] = focusedChain;
+		currentEntrySubMap[? "chain"] = focusedChain;
 		
 		//update token/unit relevant to chain
 		var IDToUpdate = ds_map_find_value(currentEntrySubMap, (focusedChainType == "stack") ? "unit" : "token");
 		var IDSubMap = global.nodeMap[?IDToUpdate];
-		var IDInChainList = IDSubMap[?"inChainsList"];
+		var IDInChainList = IDSubMap[? "inChainsList"];
 		scr_deleteFromList(IDInChainList, clickedChain);
 		scr_addToListOnce(IDInChainList, focusedChain);
 		
@@ -49,7 +49,7 @@ function scr_combineChains(focusedChain, clickedChain){
 		scr_addToListOnce(focusedChainEntryList,currentEntry);
 	}
 	
-	for(var i = 0 ; i < clickedChainLinkIDListSize; i++){
+	for (var i = 0 ; i < clickedChainLinkIDListSize; i++) {
 		var currentLink = clickedChainLinkIDList[|i];
 		scr_addToListOnce(focusedChainLinkIDList,currentLink);
 	}

@@ -1,4 +1,4 @@
-function scr_loadLocaleFile(locale_file_name, delimiter){
+function scr_loadLocaleFile(locale_file_name, delimiter) {
 
 	var locale_file_name_full = "IncludedFiles" + delimiter + "Localization" + delimiter + locale_file_name;
 	show_debug_message("Loading locale file: " + locale_file_name_full );

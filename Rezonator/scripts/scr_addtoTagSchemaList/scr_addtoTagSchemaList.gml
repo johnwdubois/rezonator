@@ -1,4 +1,4 @@
-function scr_addtoTagSchemaList(){
+function scr_addtoTagSchemaList() {
 	
 	if (global.html5) exit;
 	

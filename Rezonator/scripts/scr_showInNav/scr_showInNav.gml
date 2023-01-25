@@ -1,4 +1,4 @@
-function scr_showInNav(nodeID){
+function scr_showInNav(nodeID) {
 	
 	obj_panelPane.showNav = true;
 	obj_panelPane.showNavLeft = true;
@@ -12,8 +12,8 @@ function scr_showInNav(nodeID){
 	if (nodeType == "chunk") {
 		obj_control.switchToTab = obj_panelPane.functionChainList_tabChunk;
 		//scroll to position after switching
-		with(obj_alarm2){ alarm[0] = 3;}
-		with(obj_panelPane){
+		with(obj_alarm2) { alarm[0] = 3;}
+		with(obj_panelPane) {
 			functionChainList_chunkSelected = nodeID;
 		}
 	}
@@ -27,8 +27,8 @@ function scr_showInNav(nodeID){
 		obj_control.switchToTab = obj_panelPane.functionChainList_tabLine;
 		obj_control.showInNavID = unitID;
 		//scroll to position after switching
-		with(obj_alarm2){ alarm[0] = 3;}
-		with(obj_panelPane){
+		with(obj_alarm2) { alarm[0] = 3;}
+		with(obj_panelPane) {
 		if (is_numeric(functionChainList_focusedUnitIndex)) functionChainList_focusedUnitIndex = unitIndex;
 			functionChainList_focusedUnit = unitID;
 		}
@@ -41,8 +41,8 @@ function scr_showInNav(nodeID){
 		
 		obj_control.switchToTab = obj_panelPane.functionChainList_tabLine;
 		//scroll to position after switching
-		with(obj_alarm2){ alarm[0] = 3;}
-		with(obj_panelPane){
+		with(obj_alarm2) { alarm[0] = 3;}
+		with(obj_panelPane) {
 			if (is_numeric(functionChainList_focusedUnitIndex)) functionChainList_focusedUnitIndex = unitIndex;
 			functionChainList_focusedUnit = nodeID;
 		}

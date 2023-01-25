@@ -1,9 +1,9 @@
 /// @description Create Sent Stacks
 
 
-if(obj_toolPane.currentMode == obj_toolPane.modeRead) {
+if (obj_toolPane.currentMode == obj_toolPane.modeRead) {
 	obj_toolPane.currentMode = obj_toolPane.modeTrack;	
-	if(obj_control.currentView == obj_control.searchView) {
+	if (obj_control.currentView == obj_control.searchView) {
 		obj_toolPane.setModeSearch = obj_toolPane.modeTrack;
 	}
 	else {

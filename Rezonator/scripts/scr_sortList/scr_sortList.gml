@@ -1,5 +1,5 @@
-function scr_sortList(list){
-	if(!scr_isNumericAndExists(list, ds_type_list)){exit;}
+function scr_sortList(list) {
+	if (!scr_isNumericAndExists(list, ds_type_list)) {exit;}
 	var listSize = ds_list_size(list);
 	var tempGridWidth = 2;
 	var tempStrGrid = ds_grid_create(tempGridWidth, 0);
@@ -7,7 +7,7 @@ function scr_sortList(list){
 	var tempGrid_colVal = 0;
 	var tempGrid_colModVal = 1;	
 	
-	for(var i = 0; i < listSize; i++){
+	for (var i = 0; i < listSize; i++) {
 		var currentValue = list[|i];
 		var currentModValue = "";
 
@@ -35,11 +35,11 @@ function scr_sortList(list){
 	
 
 	var tempStrGridHeight = ds_grid_height(tempStrGrid)
-	for(var i = 0; i < tempStrGridHeight; i++){
+	for (var i = 0; i < tempStrGridHeight; i++) {
 		ds_list_add(list, tempStrGrid[# tempGrid_colVal,i]);
 	}
 	var tempDigitGridHeight = ds_grid_height(tempDigitGrid)
-	for(var i = 0; i < tempDigitGridHeight; i++){
+	for (var i = 0; i < tempDigitGridHeight; i++) {
 		ds_list_add(list, tempDigitGrid[# tempGrid_colVal,i]);
 	}
 

@@ -28,7 +28,7 @@ function scr_newToken(newTokenStr, refTokenID) {
 	var newTokenSubMap = global.nodeMap[? newTokenID];
 	
 
-	var unitEntryList = unitSubMap[?"entryList"];
+	var unitEntryList = unitSubMap[? "entryList"];
 	var indexToAdd = -1;
 	
 	// find which index in the unit's entryList the refToken is at
@@ -80,10 +80,10 @@ function scr_newToken(newTokenStr, refTokenID) {
 		currentTokenSubMap[? "docTokenSeq"]++;
 	}
 	
-	if(obj_chain.currentFocusedChainID != ""){
+	if (obj_chain.currentFocusedChainID != "") {
 		var chainSubMap = global.nodeMap[?obj_chain.currentFocusedChainID];
-		if(scr_isNumericAndExists(chainSubMap, ds_type_map)){
-			if(chainSubMap[?"type"] != "stack"){
+		if (scr_isNumericAndExists(chainSubMap, ds_type_map)) {
+			if (chainSubMap[? "type"] != "stack") {
 				scr_newLink(newTokenID);
 			}
 		}

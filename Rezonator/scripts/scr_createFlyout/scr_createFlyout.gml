@@ -1,6 +1,6 @@
 
 
-function scr_createFlyout(flyoutX, flyoutY, optionList, optionListType, sprite, drawBG){
+function scr_createFlyout(flyoutX, flyoutY, optionList, optionListType, sprite, drawBG) {
 	
 	var dropDownHeight = ds_list_size(optionList) * string_height("0") * 1.25;
 	var camViewHeight = camera_get_view_height(view_get_camera(0));

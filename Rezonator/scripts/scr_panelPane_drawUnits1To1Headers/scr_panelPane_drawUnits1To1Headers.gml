@@ -1,4 +1,4 @@
-function scr_panelPane_drawUnits1To1Headers(){
+function scr_panelPane_drawUnits1To1Headers() {
 	
 	if (!global.html5) scr_surfaceStart();
 	
@@ -32,14 +32,14 @@ function scr_panelPane_drawUnits1To1Headers(){
 		draw_rectangle(headerRectX1 - clipX, headerRectY1 - clipY, headerRectX2 - clipX, headerRectY2 - clipY, false);
 		
 		// draw vertical lines dividing columns
-		if(lineStateLTR){	
-			if(i > 0){
+		if (lineStateLTR) {	
+			if (i > 0) {
 				draw_set_color(global.colorThemeBorders);
 				draw_line_width(headerRectX1 - clipX, headerRectY1 - clipY, headerRectX1 - clipX, y + windowHeight - clipY, 1);
 			}
 		}
 		else{
-			if(i < headerListSize){
+			if (i < headerListSize) {
 				draw_set_color(global.colorThemeBorders);
 				draw_line_width(headerRectX1 + 1 - clipX, headerRectY1 - clipY, headerRectX1 + 1 - clipX, y + windowHeight - clipY, 1);
 			}
@@ -63,7 +63,7 @@ function scr_panelPane_drawUnits1To1Headers(){
 			
 			// draw underline
 			var underlineX1 = headerTextX;
-			if(lineStateLTR){
+			if (lineStateLTR) {
 				var underlineX2 = headerTextX + string_width(currentField);
 			}
 			else{

@@ -1,4 +1,4 @@
-function scr_navWindowGetTagValue(){
+function scr_navWindowGetTagValue() {
 	
 	var value = "";
 

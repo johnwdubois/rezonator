@@ -1,4 +1,4 @@
-function scr_getVersion(){
+function scr_getVersion() {
 	show_debug_message("scr_getVersion!~");
 
 	var _body = "";

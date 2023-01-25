@@ -1,19 +1,19 @@
 function scr_fieldOptions(optionSelected, type) {
 	var optionIndex = ds_list_find_index(optionList, optionSelected);
 	if (optionSelected == "option_create-new-field") {
-		if(type == "Token"){
+		if (type == "Token") {
 			obj_control.newCustomFieldToken = true;
 		}
-		if(type == "Unit"){
+		if (type == "Unit") {
 			obj_control.newCustomFieldUnit = true;
 		}
-		else if(type == "Entry"){
+		else if (type == "Entry") {
 			obj_control.newCustomFieldEntry = true;
 		}
-		else if(type == "Chain"){
+		else if (type == "Chain") {
 			obj_control.newCustomFieldChain = true;
 		}
-		else if(type == "Chunk"){
+		else if (type == "Chunk") {
 			obj_control.newCustomFieldChunk = true;
 		}
 		obj_control.dialogueBoxActive = true;
@@ -28,28 +28,28 @@ function scr_fieldOptions(optionSelected, type) {
 	else {
 		scr_destroyAllDropDownsOtherThanSelf();
 		var currentOptionListType = global.optionListTypeTokenTagMap;
-		if(type == "Token"){
+		if (type == "Token") {
 			var indexOfList = ds_list_find_index(global.tokenFieldList, optionSelected);
-			var fieldMap = global.nodeMap[?"tokenTagMap"];
+			var fieldMap = global.nodeMap[? "tokenTagMap"];
 		}
-		else if(type == "Unit"){
+		else if (type == "Unit") {
 			var indexOfList = ds_list_find_index(obj_control.unitFieldList, optionSelected);
-			var fieldMap = global.nodeMap[?"unitTagMap"];
+			var fieldMap = global.nodeMap[? "unitTagMap"];
 			currentOptionListType = global.optionListTypeUnitTagMap;
 		}
-		else if(type == "Entry"){
+		else if (type == "Entry") {
 			var indexOfList = ds_list_find_index(global.chainEntryFieldList, optionSelected);
-			var fieldMap = global.nodeMap[?"entryTagMap"];
+			var fieldMap = global.nodeMap[? "entryTagMap"];
 			currentOptionListType = global.optionListTypeEntryTagMap;
 		}
-		else if(type == "Chain"){
+		else if (type == "Chain") {
 			var indexOfList = ds_list_find_index(global.chainFieldList, optionSelected);
-			var fieldMap = global.nodeMap[?"chainTagMap"];
+			var fieldMap = global.nodeMap[? "chainTagMap"];
 			currentOptionListType = global.optionListTypeChainTagMap;
 		}
-		else if(type == "Chunk"){
+		else if (type == "Chunk") {
 			var indexOfList = ds_list_find_index(obj_control.chunkFieldList, optionSelected);
-			var fieldMap = global.nodeMap[?"tokenTagMap"];
+			var fieldMap = global.nodeMap[? "tokenTagMap"];
 		}
 		var mapsize = ds_map_size(fieldMap);
 		var tokenFieldSubMap = fieldMap[? optionSelected];

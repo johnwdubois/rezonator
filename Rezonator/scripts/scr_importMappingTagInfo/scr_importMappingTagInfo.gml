@@ -287,7 +287,7 @@ function scr_importMappingTagInfo() {
 							var dropDownOptionList = ds_list_create();
 						
 							if (currentLevel == global.levelUnit) {
-								if(global.importType == global.importType_TabDelimited){
+								if (global.importType == global.importType_TabDelimited) {
 									ds_list_add(dropDownOptionList, "unit_start", "unit_end");
 								}
 								else{
@@ -450,13 +450,13 @@ function scr_importMappingTagInfo() {
 				draw_rectangle(checkboxRectX1- clipX, checkboxRectY1- clipY, checkboxRectX2- clipX, checkboxRectY2- clipY, true);
 				var mouseoverCheckbox = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, checkboxRectX1, checkboxRectY1, checkboxRectX2, checkboxRectY2) && !mouseoverHeaderRegion && !mouseoverScrollBar;
 				var currentField = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colMarker, j);
-				if(ds_list_find_index(global.importFieldTagList,currentField) != -1){
+				if (ds_list_find_index(global.importFieldTagList,currentField) != -1) {
 					draw_sprite_ext(spr_checkmark,0,textX - clipX,textY - clipY, .8,.8,0,global.colorThemeBorders,1);
 				}
-				if (mouseoverCheckbox){
-					if(mouse_check_button_pressed(mb_left)){
+				if (mouseoverCheckbox) {
+					if (mouse_check_button_pressed(mb_left)) {
 						
-						if(ds_list_find_index(global.importFieldTagList,currentField) == -1){
+						if (ds_list_find_index(global.importFieldTagList,currentField) == -1) {
 							scr_addToListOnce(global.importFieldTagList, currentField, true);
 						}
 						else{

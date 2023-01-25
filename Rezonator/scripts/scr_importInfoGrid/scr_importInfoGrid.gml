@@ -13,14 +13,14 @@ function scr_importInfoGrid() {
 	
 			var currentExample = "";
 		
-			for(var j = 0; j < importGridHeight; j++){
+			for (var j = 0; j < importGridHeight; j++) {
 			
 
 				currentExample = ds_grid_get(global.importGrid, i, j);
 			
 	
 	
-				if(i==0){
+				if (i==0) {
 					ds_grid_resize(global.plainTextInfoGrid, global.plainTextInfoGridWidth, ds_grid_height(global.plainTextInfoGrid) + 1);
 					ds_grid_set(global.plainTextInfoGrid, global.plainTextInfoGrid_colText, j, currentExample);
 				}

@@ -25,7 +25,7 @@ if (!scr_isNumericAndExists(displayUnitList, ds_type_list)) {
 	if (scr_isNumericAndExists(discourseSubMap, ds_type_map)) {
 		 var docDisplayUnitList = discourseSubMap[? "displayUnitList"];
 		 
-		 if(ds_list_size(docDisplayUnitList) > 1){
+		 if (ds_list_size(docDisplayUnitList) > 1) {
 			 displayUnitList = docDisplayUnitList;
 		 }
 		 else{
@@ -113,21 +113,21 @@ if (!gridView) {
 		if ((keyboard_check(vk_down) && navWindowTaggingID == "") or mouse_wheel_down()) {
 			var holdPos = false;
 			
-			with(obj_audioUI){
-				if(audioJumpOnWordClick){
+			with(obj_audioUI) {
+				if (audioJumpOnWordClick) {
 					holdPos = true;
-					if(keyboard_check_pressed(vk_down)){
+					if (keyboard_check_pressed(vk_down)) {
 						
-						if(closestUnit != ""){
+						if (closestUnit != "") {
 						
 							var docNode = global.nodeMap[?global.discourseNode];
-							var totalUnitList = docNode[?"unitList"];
+							var totalUnitList = docNode[? "unitList"];
 						
 							var nextUnitIndex = min(ds_list_find_index(totalUnitList,closestUnit) + 1, ds_list_size(totalUnitList)-1);
 							var nextUnit = totalUnitList[|nextUnitIndex];
 							scr_audioJumpToUnit(nextUnit);
 							scr_jumpToUnitTop(nextUnit);
-							if(audioPaused){
+							if (audioPaused) {
 								audioPaused = !audioPaused;
 							}
 						}
@@ -135,7 +135,7 @@ if (!gridView) {
 				}
 			}
 			
-			if(holdDownArrowKey == 0 and not mouse_wheel_down() && !holdPos) {
+			if (holdDownArrowKey == 0 and not mouse_wheel_down() && !holdPos) {
 
 				scrollSpeed = -gridSpaceVertical;
 
@@ -147,18 +147,18 @@ if (!gridView) {
 				}
 
 			}
-			else if(mouse_wheel_down()) {
+			else if (mouse_wheel_down()) {
 				scrollSpeed = -(min(arrowSpeed, 25) * 1.5);
 
 			}
-			if(holdDownArrowKey > 45) {
+			if (holdDownArrowKey > 45) {
 					holdArrowMod = 2;
 			}
-			if(holdDownArrowKey > 75) {
+			if (holdDownArrowKey > 75) {
 				holdArrowMod = 3;
 			}
 	
-			if(!holdPos){
+			if (!holdPos) {
 				holdDownArrowKey++;
 			}
 			if (mouse_wheel_down()) {
@@ -167,21 +167,21 @@ if (!gridView) {
 		}
 		if ((keyboard_check(vk_up) && navWindowTaggingID == "") or mouse_wheel_up()) {
 			var holdPos = false;
-			with(obj_audioUI){
-				if(audioJumpOnWordClick){
+			with(obj_audioUI) {
+				if (audioJumpOnWordClick) {
 					holdPos = true;
-					if(keyboard_check_pressed(vk_up)){
+					if (keyboard_check_pressed(vk_up)) {
 	
-						if(closestUnit != ""){
+						if (closestUnit != "") {
 						
 							var docNode = global.nodeMap[?global.discourseNode];
-							var totalUnitList = docNode[?"unitList"];
+							var totalUnitList = docNode[? "unitList"];
 						
 							var prevUnitIndex = max(ds_list_find_index(totalUnitList,closestUnit) - 1, 0);
 							var prevUnit = totalUnitList[|prevUnitIndex];
 							scr_audioJumpToUnit(prevUnit);
 							scr_jumpToUnitTop(prevUnit);
-							if(audioPaused){
+							if (audioPaused) {
 								audioPaused = !audioPaused;
 							}
 						}
@@ -189,7 +189,7 @@ if (!gridView) {
 				}
 			}
 			
-			if(holdUpArrowKey == 0 and not mouse_wheel_up() && !holdPos) {
+			if (holdUpArrowKey == 0 and not mouse_wheel_up() && !holdPos) {
 			
 				scrollSpeed = gridSpaceVertical;
 			
@@ -201,18 +201,18 @@ if (!gridView) {
 				}
 			
 			}
-			else if(mouse_wheel_up()) {
+			else if (mouse_wheel_up()) {
 				scrollSpeed = (min(arrowSpeed, 25) *1.5);
 			
 			}
-			if(holdUpArrowKey > 45) {
+			if (holdUpArrowKey > 45) {
 					holdArrowMod = 2;
 			}
-			if(holdUpArrowKey > 75) {
+			if (holdUpArrowKey > 75) {
 				holdArrowMod = 3;
 			}
 		
-			if(!holdPos){
+			if (!holdPos) {
 				holdUpArrowKey++;
 			}
 			if (mouse_wheel_up()) {
@@ -229,10 +229,10 @@ if (!gridView) {
 					// will need to make this the difference with windowHeight to scale with PanelPanes
 					scrollSpeed -= camera_get_view_height(view_get_camera(0)) - wordTopMargin - (gridSpaceVertical);//(((camera_get_view_height(camera_get_active()) - instance_find(obj_panelPane,0).windowHeight)) - obj_menuBar.menuHeight) * 0.9;//* 0.8;
 				}
-				if(holdPgDn > 45) {
+				if (holdPgDn > 45) {
 					holdPgMod = 3;
 				}
-				if(holdPgDn > 75) {
+				if (holdPgDn > 75) {
 					holdPgMod = 2;
 				}
 				holdPgDn++;
@@ -241,10 +241,10 @@ if (!gridView) {
 				if (holdPgUp == 0 or (holdPgUp > 15 and holdPgUp % holdPgMod == 0)) {
 					scrollSpeed += camera_get_view_height(view_get_camera(0)) - wordTopMargin - (gridSpaceVertical);//(((camera_get_view_height(camera_get_active()) - instance_find(obj_panelPane,0).windowHeight)) - obj_menuBar.menuHeight) * 0.9;//* 0.8;
 				}
-				if(holdPgUp > 45) {
+				if (holdPgUp > 45) {
 					holdPgMod = 3;
 				}
-				if(holdPgUp > 75) {
+				if (holdPgUp > 75) {
 					holdPgMod = 2;
 				}
 				holdPgUp++;
@@ -261,11 +261,11 @@ if (!gridView) {
 			scrollSpeed = 0;
 		}
 	
-		if(flickVelY != 0) {
+		if (flickVelY != 0) {
 			flick_power = abs(flickVelY);
 			flick_direction = sign(flickVelY);
 	
-			if(flick_power > flick_power_reduction_each_step) {
+			if (flick_power > flick_power_reduction_each_step) {
 				 scrollPlusYDest += (( flick_power / flick_power_calibration) * flick_direction);
 				 flickVelY -= flick_power_reduction_each_step * flick_direction;
 	
@@ -275,7 +275,7 @@ if (!gridView) {
 			}
 		}
 	
-		if(scrollPlusYDest != undefined && scrollSpeed != undefined){
+		if (scrollPlusYDest != undefined && scrollSpeed != undefined) {
 			scrollPlusYDest += scrollSpeed;
 		}
 
@@ -339,12 +339,12 @@ if (!gridView) {
 		
 			if (keyboard_check_pressed(vk_right) and !global.ctrlHold and !dialogueBoxActive && navWindowTaggingID == "") {
 				var holdPos = false;
-				with(obj_audioUI){
-					if(audioJumpOnWordClick){
+				with(obj_audioUI) {
+					if (audioJumpOnWordClick) {
 						holdPos = true;
 					}
 				}
-				if(!holdPos){
+				if (!holdPos) {
 					scrollPlusXDest -= gridSpaceHorizontal;
 				}
 			}
@@ -353,17 +353,17 @@ if (!gridView) {
 			
 			if (keyboard_check_pressed(vk_left) and !global.ctrlHold and !dialogueBoxActive && navWindowTaggingID == "") {
 				var holdPos = false;
-				with(obj_audioUI){
-					if(audioJumpOnWordClick){
+				with(obj_audioUI) {
+					if (audioJumpOnWordClick) {
 						holdPos = true;
 						scr_audioJumpToUnit(closestUnit);
 						scr_jumpToUnitTop(closestUnit);
-						if(audioPaused){
+						if (audioPaused) {
 							audioPaused = !audioPaused;
 						}
 					}
 				}
-				if(!holdPos){
+				if (!holdPos) {
 					scrollPlusXDest += gridSpaceHorizontal;
 				}
 			}
@@ -409,12 +409,12 @@ var filterGridPopulated = ds_grid_height(filterGrid);
 
 // Culprit
 if (shortcutsEnabled) {
-	if(os_type == os_macosx){
+	if (os_type == os_macosx) {
 		if (keyboard_check(vk_shift) and !global.ctrlHold) {
 			if (keyboard_check(24) and canPressPlus) {
 				
 				canPressPlus = false;
-				if(gridSpaceVertical < gridSpaceVerticalMax) {
+				if (gridSpaceVertical < gridSpaceVerticalMax) {
 					gridSpaceVertical += 10;
 					// Don't go above the max
 					gridSpaceVertical = min(gridSpaceVertical, gridSpaceVerticalMax);
@@ -423,7 +423,7 @@ if (shortcutsEnabled) {
 					
 					// reset the ratio
 					prevGridSpaceVertical = gridSpaceVertical;
-					if(arrowSpeed < arrowSpeedMax) {
+					if (arrowSpeed < arrowSpeedMax) {
 						arrowSpeed++;	
 					}
 				}
@@ -434,7 +434,7 @@ if (shortcutsEnabled) {
 			if (keyboard_check(109) and canPressMinus) {
 			
 				canPressMinus = false;
-				if(gridSpaceVertical > gridSpaceVerticalMin) {
+				if (gridSpaceVertical > gridSpaceVerticalMin) {
 					gridSpaceVertical -= 10;
 					// Don't go below the min
 					gridSpaceVertical = max(gridSpaceVertical, gridSpaceVerticalMin);
@@ -443,7 +443,7 @@ if (shortcutsEnabled) {
 			
 					// reset the ratio
 					prevGridSpaceVertical = gridSpaceVertical;
-					if(arrowSpeed > arrowSpeedMin) {
+					if (arrowSpeed > arrowSpeedMin) {
 						arrowSpeed--;	
 					}
 				}
@@ -457,7 +457,7 @@ if (shortcutsEnabled) {
 			if (keyboard_check_direct(187) and canPressPlus) {
 
 				canPressPlus = false;
-				if(gridSpaceVertical < gridSpaceVerticalMax) {
+				if (gridSpaceVertical < gridSpaceVerticalMax) {
 					gridSpaceVertical += 10;
 					// Don't go above the max
 					gridSpaceVertical = min(gridSpaceVertical, gridSpaceVerticalMax);
@@ -466,7 +466,7 @@ if (shortcutsEnabled) {
 
 					// reset the ratio
 					prevGridSpaceVertical = gridSpaceVertical;
-					if(arrowSpeed < arrowSpeedMax) {
+					if (arrowSpeed < arrowSpeedMax) {
 						arrowSpeed *= gridSpaceRatio;	
 					}
 				}
@@ -478,7 +478,7 @@ if (shortcutsEnabled) {
 
 			if (keyboard_check_direct(189) and canPressMinus) {
 				canPressMinus = false;
-				if(gridSpaceVertical > gridSpaceVerticalMin) {
+				if (gridSpaceVertical > gridSpaceVerticalMin) {
 					gridSpaceVertical -= 10;
 					// Don't go below the min
 					gridSpaceVertical = max(gridSpaceVertical, gridSpaceVerticalMin);
@@ -487,7 +487,7 @@ if (shortcutsEnabled) {
 			
 					// reset the ratio
 					prevGridSpaceVertical = gridSpaceVertical;
-					if(arrowSpeed > arrowSpeedMin) {
+					if (arrowSpeed > arrowSpeedMin) {
 						arrowSpeed *= gridSpaceRatio;	
 					}
 				}
@@ -558,7 +558,7 @@ if (obj_panelPane.showNav) {
 		}
 		
 		// check for mouse over search pane
-		if (obj_control.dialogueBoxActive && point_in_rectangle(mouse_x, mouse_y, camera_get_view_width(camera_get_active()) /2 - 250, camera_get_view_height(camera_get_active())/2 - 125 + 30, camera_get_view_width(camera_get_active()) /2 + 250, camera_get_view_height(camera_get_active())/2 + 125)){
+		if (obj_control.dialogueBoxActive && point_in_rectangle(mouse_x, mouse_y, camera_get_view_width(camera_get_active()) /2 - 250, camera_get_view_height(camera_get_active())/2 - 125 + 30, camera_get_view_width(camera_get_active()) /2 + 250, camera_get_view_height(camera_get_active())/2 + 125)) {
 			mouseoverPanelPane = true;		
 		}
 	
@@ -649,8 +649,8 @@ and shortcutsEnabled and mouseoverTagShortcut == "" and currentActiveLineGrid !=
 
 
 
-if (keyboard_check_pressed(ord("Y")) and global.ctrlHold){
-	with(obj_fileLoader){
+if (keyboard_check_pressed(ord("Y")) and global.ctrlHold) {
+	with(obj_fileLoader) {
 		alarm[7] = 2;
 	}
 }
@@ -658,7 +658,7 @@ if (keyboard_check_pressed(ord("Y")) and global.ctrlHold){
 
 var fileCaptionString = string(game_display_name)
 //display current file name in window caption
-if(global.fileSaveName == "undefined" or is_undefined(global.fileSaveName)){
+if (global.fileSaveName == "undefined" or is_undefined(global.fileSaveName)) {
 	fileCaptionString = string(game_display_name) + " - " + filename_name(global.importFilename);
 }
 else{

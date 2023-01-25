@@ -10,7 +10,7 @@ function scr_deleteChunk(chunkID) {
 	if (!scr_isNumericAndExists(chunkSubMap, ds_type_map)) exit;
 	
 	// remove this chunk from all chains that it is in, then destroy the inChainsList
-	var inChainsList = chunkSubMap[?"inChainsList"];
+	var inChainsList = chunkSubMap[? "inChainsList"];
 	if (scr_isNumericAndExists(inChainsList, ds_type_list)) {
 		while (ds_list_size(inChainsList) > 0) {
 			var currentChain = inChainsList[| 0];
@@ -37,7 +37,7 @@ function scr_deleteChunk(chunkID) {
 		for (var i = 0; i < tokenListSize; i++) {
 			var currentToken = tokenList[| i];
 			var tokenSubMap = global.nodeMap[?currentToken];
-			var currentTokenInBoxList = tokenSubMap[?"inChunkList"];
+			var currentTokenInBoxList = tokenSubMap[? "inChunkList"];
 			if (scr_isNumericAndExists(currentTokenInBoxList, ds_type_list)) {
 				scr_deleteFromList(currentTokenInBoxList, chunkID);
 			}

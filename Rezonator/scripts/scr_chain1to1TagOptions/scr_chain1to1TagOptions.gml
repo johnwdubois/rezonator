@@ -1,4 +1,4 @@
-function scr_chain1To1TagOptions(optionSelected){
+function scr_chain1To1TagOptions(optionSelected) {
 	
 	// check if user is clearing tag
 	var clearTag = (optionSelected == "menu_clear");
@@ -32,13 +32,13 @@ function scr_chain1To1TagOptions(optionSelected){
 	}
 	else {
 		var fieldSubMap = global.chainFieldMap[?fieldToChange];
-		var readOnly =  fieldSubMap[?"readOnly"];
-		if(readOnly) exit;
+		var readOnly =  fieldSubMap[? "readOnly"];
+		if (readOnly) exit;
 		// set the selected tag in this chain's tagmap
 		var newTagValue = clearTag ? "" : optionSelected;
 		scr_setMap(chainTagMap, fieldToChange, newTagValue);
 		if (!clearTag) {
-			with(obj_panelPane){
+			with(obj_panelPane) {
 				functionField_chainTagSelected = newTagValue;
 				functionField_chainFieldSelected = fieldToChange;
 			}

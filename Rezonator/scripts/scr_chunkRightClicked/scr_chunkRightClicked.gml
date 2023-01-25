@@ -1,14 +1,14 @@
-function scr_chunkRightClicked(){
+function scr_chunkRightClicked() {
 	
 	if (instance_exists(obj_control) and !instance_exists(obj_dialogueBox)) {
 		
 		var chunkSubMap = global.nodeMap[? obj_control.rightClickID];
-		if(!scr_isNumericAndExists(chunkSubMap, ds_type_map)){exit;}
+		if (!scr_isNumericAndExists(chunkSubMap, ds_type_map)) {exit;}
 		//deselect tree pane chain entities
 		obj_panelPane.functionTree_treeLinkSelected = "";
 		obj_chain.currentFocusedEntryID = "";
 		
-		var chunkInChainsList = chunkSubMap[?"inChainsList"];
+		var chunkInChainsList = chunkSubMap[? "inChainsList"];
 
 		obj_control.rightClicked = true;
 		obj_control.wideDropDown = true;
@@ -24,7 +24,7 @@ function scr_chunkRightClicked(){
 				var chainSubMap = global.nodeMap[?chainID];
 				var chainType = "";
 				if (scr_isNumericAndExists(chainSubMap, ds_type_map)) {
-					chainType = chainSubMap[?"type"];
+					chainType = chainSubMap[? "type"];
 					obj_control.inChain = true;
 					if (chainType == "trail") ds_list_add(dropDownOptionList, "option_rename-trail");
 					else if (chainType == "resonance") ds_list_add(dropDownOptionList, "option_rename-resonance");

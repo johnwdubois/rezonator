@@ -1,4 +1,4 @@
-function scr_newClique(chainID, unitID){
+function scr_newClique(chainID, unitID) {
 
 	// create clique and its submap
 	var newCliqueID = scr_generateRandomID();

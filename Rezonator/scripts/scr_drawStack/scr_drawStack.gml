@@ -1,4 +1,4 @@
-function scr_drawStack(unitID, unitSubMap, camWidth, pixelY){
+function scr_drawStack(unitID, unitSubMap, camWidth, pixelY) {
 	
 	// get chainID
 	var unitsInChainsList = unitSubMap[? "inChainsList"];	
@@ -57,7 +57,7 @@ function scr_drawStack(unitID, unitSubMap, camWidth, pixelY){
 		draw_rectangle(stackRectX1, stackRectY1-1, stackRectX2, stackRectY2-2, false);
 	}
 	
-	if(obj_control.unitFlash > 0 and unitID == obj_control.unitToFlash){
+	if (obj_control.unitFlash > 0 and unitID == obj_control.unitToFlash) {
 		obj_control.unitFlash--;
 		draw_set_color(merge_color(global.colorThemeGrid_colSelected1, c_white, 0.5));
 		draw_set_alpha(obj_control.unitFlash/obj_control.flashTime);

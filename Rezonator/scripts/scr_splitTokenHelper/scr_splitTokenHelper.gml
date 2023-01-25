@@ -1,4 +1,4 @@
-function scr_splitTokenHelper(inputText){
+function scr_splitTokenHelper(inputText) {
 	
 	
 	show_debug_message("Reached scr_splitTokenHelper..." + inputText);
@@ -6,7 +6,7 @@ function scr_splitTokenHelper(inputText){
 	var splitField = obj_control.splitTokenField;
 	var origTokenID = obj_control.rightClickID;
 	var origSubMap = global.nodeMap[?origTokenID];
-	var origTagMap = origSubMap[?"tagMap"];
+	var origTagMap = origSubMap[? "tagMap"];
 	var beforeVal = obj_control.before;
 	obj_control.before = false;
 	if (string_count(" ", inputText) > 0) {

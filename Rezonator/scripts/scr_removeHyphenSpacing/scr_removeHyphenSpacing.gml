@@ -1,6 +1,6 @@
 
 
-function scr_removeHyphenSpacing(str){
+function scr_removeHyphenSpacing(str) {
 	
 	str = string(str);
 	var strLen = string_length(str);

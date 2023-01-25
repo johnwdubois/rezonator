@@ -1,6 +1,6 @@
 
 
-function scr_removeFromTagSetOptions(optionSelected, type){
+function scr_removeFromTagSetOptions(optionSelected, type) {
 	
 	// determine tagMap based on type
 	var tagMap = -1;

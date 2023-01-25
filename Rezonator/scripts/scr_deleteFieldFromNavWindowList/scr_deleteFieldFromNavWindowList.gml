@@ -1,6 +1,6 @@
 
 
-function scr_deleteFieldFromNavWindowList(navWindowFieldList, fieldList, fieldName){
+function scr_deleteFieldFromNavWindowList(navWindowFieldList, fieldList, fieldName) {
 	
 	if (!scr_isNumericAndExists(navWindowFieldList, ds_type_list)) {
 		show_debug_message("scr_deleteFieldFromNavWindowList ... navWindowFieldList does not exist");
@@ -17,12 +17,12 @@ function scr_deleteFieldFromNavWindowList(navWindowFieldList, fieldList, fieldNa
 	if (placeInNavList != -1) {
 		var i = 0;
 		var isInNavList = (ds_list_find_index(navWindowFieldList, fieldList[|i]) == -1);
-		while (!isInNavList and i < fieldListSize - 1){
+		while (!isInNavList and i < fieldListSize - 1) {
 			i++;
 			isInNavList = (ds_list_find_index(navWindowFieldList, fieldList[|i]) == -1);
 	
 		}
-		if(fieldList[|i] != undefined){
+		if (fieldList[|i] != undefined) {
 			ds_list_replace(navWindowFieldList,placeInNavList, fieldList[|i] );
 		}
 		else{

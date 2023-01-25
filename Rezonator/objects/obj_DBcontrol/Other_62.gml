@@ -145,12 +145,12 @@ switch(_packet_type) {
 			ds_map_destroy(_result_map);
 			#endregion
 			
-			if(is_string(newestVersionNum)){
-				if(string_length(newestVersionNum) > 0 ){
+			if (is_string(newestVersionNum)) {
+				if (string_length(newestVersionNum) > 0 ) {
 				var newVersionString = "Version " + string(newestVersionNum);
 				show_debug_message("global.versionString: " + string(global.versionString) + " , newestVersionNum: " + newVersionString); 
 				
-					if(newVersionString != global.versionString){
+					if (newVersionString != global.versionString) {
 						//reccomend downloading new version
 						show_debug_message("GETT THE NEW ONE DUMMY");
 							

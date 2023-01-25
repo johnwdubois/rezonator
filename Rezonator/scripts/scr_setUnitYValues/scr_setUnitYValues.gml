@@ -1,6 +1,6 @@
 
 
-function scr_setUnitYValues(unitID){
+function scr_setUnitYValues(unitID) {
 	
 	show_debug_message("scr_setUnitYValues, unitID: " + string(unitID));
 	if (unitID == "" || !is_string(unitID)) exit;
@@ -11,13 +11,13 @@ function scr_setUnitYValues(unitID){
 	
 	if (unitIndex >= 0) {
 		var displayUnitListSize = ds_list_size(displayUnitList);
-		for(var i = 0; i < displayUnitListSize; i ++){
+		for (var i = 0; i < displayUnitListSize; i++) {
 		
 			var currentUnit = displayUnitList[|i];
 			var currentUnitSubMap = global.nodeMap[?currentUnit];
-			if(scr_isNumericAndExists(currentUnitSubMap,ds_type_map)){
+			if (scr_isNumericAndExists(currentUnitSubMap,ds_type_map)) {
 
-				if(i < unitIndex){
+				if (i < unitIndex) {
 					currentUnitSubMap[? "pixelY"] = -500;
 				}
 				else{

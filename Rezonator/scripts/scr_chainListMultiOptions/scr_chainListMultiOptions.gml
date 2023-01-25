@@ -1,4 +1,4 @@
-function scr_chainListMultiOptions(optionSelected){
+function scr_chainListMultiOptions(optionSelected) {
 	
 	var optionIndex = ds_list_find_index(optionList, optionSelected);
 	
@@ -9,12 +9,12 @@ function scr_chainListMultiOptions(optionSelected){
 	var filterList = "";
 	
 	
-	if(obj_panelPane.functionChainList_currentTab == obj_panelPane.functionChainList_tabRezBrush){
+	if (obj_panelPane.functionChainList_currentTab == obj_panelPane.functionChainList_tabRezBrush) {
 		currentSelectedChainList = obj_control.selectedRezChainList;
 		visibleList = obj_control.hiddenRezChainList;
 		filterList = obj_chain.filteredRezChainList;
 	}
-	else if(obj_panelPane.functionChainList_currentTab == obj_panelPane.functionChainList_tabTrackBrush){
+	else if (obj_panelPane.functionChainList_currentTab == obj_panelPane.functionChainList_tabTrackBrush) {
 		currentSelectedChainList = obj_control.selectedTrackChainList;
 		visibleList = obj_control.hiddenTrackChainList;
 		filterList = obj_chain.filteredTrackChainList;
@@ -39,7 +39,7 @@ function scr_chainListMultiOptions(optionSelected){
 	else if (optionSelected == "help_label_delete_plain") {
 		
 		/*
-		while(ds_list_size(currentSelectedChainList) > 0){
+		while(ds_list_size(currentSelectedChainList) > 0) {
 			scr_deleteChain(currentSelectedChainList[|0])
 		}
 		*/
@@ -52,7 +52,7 @@ function scr_chainListMultiOptions(optionSelected){
 		
 	}
 	else if (optionSelected == "menu_filter") {
-		for(var i = 0 ; i < currentSelectedChainListSize; i++){
+		for (var i = 0 ; i < currentSelectedChainListSize; i++) {
 			var currentChain = currentSelectedChainList[|i];
 			var currentChainSubMap = global.nodeMap[?currentChain];
 			currentChainSubMap[? "filter"] = true;
@@ -61,21 +61,21 @@ function scr_chainListMultiOptions(optionSelected){
 		with (obj_dropDown)  instance_destroy();
 	}
 	else if (optionSelected == "menu_hide") {
-		for(var i = 0 ; i < currentSelectedChainListSize; i++){
+		for (var i = 0 ; i < currentSelectedChainListSize; i++) {
 			var currentChain = currentSelectedChainList[|i];
 			var currentChainSubMap = global.nodeMap[?currentChain];
-			currentChainSubMap[?"visible"] = false;
+			currentChainSubMap[? "visible"] = false;
 			scr_addToListOnce(visibleList,currentChain);
 		}
 		with (obj_dropDown)  instance_destroy();
 	}
-	else if ( optionSelected == "option_clip" ){					
+	else if ( optionSelected == "option_clip" ) {					
 		// Create a clip file based on that Stack
 		scr_clipAllStacks(obj_control.selectedStackChainList);			
 		// Destory the Dropdown
 		instance_destroy(obj_dropDown);
 	}
-	else if ( optionSelected == "option_create-tree"){
+	else if ( optionSelected == "option_create-tree") {
 		scr_treeAllStacks(obj_control.selectedStackChainList);
 	
 		// Destory the Dropdown

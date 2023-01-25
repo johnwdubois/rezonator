@@ -1,4 +1,4 @@
-function scr_extendChunk(ID, extendToPrev){
+function scr_extendChunk(ID, extendToPrev) {
 	
 	// make sure we have a valid submap
 	var subMap = global.nodeMap[? ID];

@@ -1,15 +1,15 @@
 
 
-function scr_arrowOptions(optionSelected){
+function scr_arrowOptions(optionSelected) {
 	switch(optionSelected)
 	{
 		case "menu_all":
-			if(obj_chain.showTrackArrows and obj_chain.showRezArrows){
+			if (obj_chain.showTrackArrows and obj_chain.showRezArrows) {
 				obj_chain.showTrackArrows = false;
 				obj_chain.showRezArrows = false;
 				break;
 			}
-			else if(!obj_chain.showTrackArrows and !obj_chain.showRezArrows){
+			else if (!obj_chain.showTrackArrows and !obj_chain.showRezArrows) {
 				obj_chain.showTrackArrows = true;
 				obj_chain.showRezArrows = true;	
 				break;

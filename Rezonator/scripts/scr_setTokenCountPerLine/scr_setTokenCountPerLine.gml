@@ -1,6 +1,6 @@
 
 
-function scr_setTokenCountPerLine(){
+function scr_setTokenCountPerLine() {
 	
 	global.tokenCountTotal = 0;
 	

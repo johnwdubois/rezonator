@@ -1,6 +1,6 @@
 
 
-function scr_refreshPrevToken(){
+function scr_refreshPrevToken() {
 	
 	// recalculate prevToken for all tokens
 	var docSubMap = global.nodeMap[? global.discourseNode];

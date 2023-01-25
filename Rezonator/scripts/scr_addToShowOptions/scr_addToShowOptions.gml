@@ -1,6 +1,6 @@
 
 
-function scr_addToShowOptions(optionSelected){
+function scr_addToShowOptions(optionSelected) {
 	
 	// add the selected chain to the show's setList
 	var showID = obj_panelPane.functionChainContents_showID;
@@ -13,14 +13,14 @@ function scr_addToShowOptions(optionSelected){
 			var setList = ds_map_find_value(showSubMap, "setIDList");
 			if (is_numeric(setList)) {
 				if (ds_exists(setList, ds_type_list)) {
-					if(ds_list_find_index(setList,optionSelected) == -1){
+					if (ds_list_find_index(setList,optionSelected) == -1) {
 						ds_list_add(setList, optionSelected);
-						with(obj_panelPane){
+						with(obj_panelPane) {
 							errorText = ""
 						}
 					}
 					else{
-						with(obj_panelPane){
+						with(obj_panelPane) {
 							errorText = "Stack already in Show"
 							alarm[8] = 240;
 						}

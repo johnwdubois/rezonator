@@ -1,6 +1,6 @@
 
 
-function scr_setMap(map, key, value){
+function scr_setMap(map, key, value) {
 	
 	// if the key is not in the map, add it with the given value
 	// if the key is already in the map, replace its value with the new value

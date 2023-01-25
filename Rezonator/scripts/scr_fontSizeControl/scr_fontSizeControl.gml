@@ -3,7 +3,7 @@ function scr_fontSizeControl() {
 	
 	global.userLangRTL = (global.lang_codes[| global.lang_index] == "he");
 
-	if(os_type == os_macosx){
+	if (os_type == os_macosx) {
 			// Adjust the font size
 		if (global.ctrlHold and keyboard_check_pressed(vk_subtract)
 		or (global.ctrlHold and keyboard_check_direct(109)) and canPressPlus) {
@@ -15,7 +15,7 @@ function scr_fontSizeControl() {
 				//Vertical				
 				obj_control.prevCenterDisplayRow = scr_currentTopLine();
 
-				if(obj_control.gridSpaceVertical > obj_control.gridSpaceVerticalMin) {
+				if (obj_control.gridSpaceVertical > obj_control.gridSpaceVerticalMin) {
 					obj_control.gridSpaceVertical -= 10;
 					// Don't go above the max
 					obj_control.gridSpaceVertical = max(obj_control.gridSpaceVertical, obj_control.gridSpaceVerticalMin);
@@ -25,7 +25,7 @@ function scr_fontSizeControl() {
 					scr_jumpToUnitTop(obj_control.prevCenterDisplayRow);
 					// reset the ratio
 					obj_control.prevGridSpaceVertical = obj_control.gridSpaceVertical;
-					if(obj_control.arrowSpeed > obj_control.arrowSpeedMin) {
+					if (obj_control.arrowSpeed > obj_control.arrowSpeedMin) {
 						obj_control.arrowSpeed--;	
 					}
 				}
@@ -56,7 +56,7 @@ function scr_fontSizeControl() {
 				//vertical
 				obj_control.prevCenterDisplayRow = scr_currentTopLine();
 		
-				if(obj_control.gridSpaceVertical < obj_control.gridSpaceVerticalMax) {
+				if (obj_control.gridSpaceVertical < obj_control.gridSpaceVerticalMax) {
 					obj_control.gridSpaceVertical += 10;
 					// Don't go above the max
 					obj_control.gridSpaceVertical = min(obj_control.gridSpaceVertical, obj_control.gridSpaceVerticalMax);
@@ -66,7 +66,7 @@ function scr_fontSizeControl() {
 					scr_jumpToUnitTop(obj_control.prevCenterDisplayRow);
 					// reset the ratio
 					obj_control.prevGridSpaceVertical = obj_control.gridSpaceVertical;
-					if(obj_control.arrowSpeed < obj_control.arrowSpeedMax) {
+					if (obj_control.arrowSpeed < obj_control.arrowSpeedMax) {
 						obj_control.arrowSpeed++;	
 					}
 				}
@@ -106,7 +106,7 @@ function scr_fontSizeControl() {
 				//Vertical				
 				obj_control.prevCenterDisplayRow = scr_currentTopLine();
 
-				if(obj_control.gridSpaceVertical > obj_control.gridSpaceVerticalMin) {
+				if (obj_control.gridSpaceVertical > obj_control.gridSpaceVerticalMin) {
 					obj_control.gridSpaceVertical -= 10;
 					// Don't go above the max
 					obj_control.gridSpaceVertical = max(obj_control.gridSpaceVertical, obj_control.gridSpaceVerticalMin);
@@ -116,7 +116,7 @@ function scr_fontSizeControl() {
 					scr_jumpToUnitTop(obj_control.prevCenterDisplayRow);
 					// reset the ratio
 					obj_control.prevGridSpaceVertical = obj_control.gridSpaceVertical;
-					if(obj_control.arrowSpeed > obj_control.arrowSpeedMin) {
+					if (obj_control.arrowSpeed > obj_control.arrowSpeedMin) {
 						obj_control.arrowSpeed--;	
 					}
 				}
@@ -147,7 +147,7 @@ function scr_fontSizeControl() {
 				//vertical
 				obj_control.prevCenterDisplayRow = scr_currentTopLine();
 		
-				if(obj_control.gridSpaceVertical < obj_control.gridSpaceVerticalMax) {
+				if (obj_control.gridSpaceVertical < obj_control.gridSpaceVerticalMax) {
 					obj_control.gridSpaceVertical += 10;
 					// Don't go above the max
 					obj_control.gridSpaceVertical = min(obj_control.gridSpaceVertical, obj_control.gridSpaceVerticalMax);
@@ -157,7 +157,7 @@ function scr_fontSizeControl() {
 					scr_jumpToUnitTop(obj_control.prevCenterDisplayRow);
 					// reset the ratio
 					obj_control.prevGridSpaceVertical = obj_control.gridSpaceVertical;
-					if(obj_control.arrowSpeed < obj_control.arrowSpeedMax) {
+					if (obj_control.arrowSpeed < obj_control.arrowSpeedMax) {
 						obj_control.arrowSpeed++;	
 					}
 				}

@@ -22,7 +22,7 @@ function scr_searchOptions(optionSelected) {
 
 		case "menu_clear":// clear search
 			
-			with(obj_panelPane){
+			with(obj_panelPane) {
 			
 				functionSearchList_searchSelected = "";
 			

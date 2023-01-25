@@ -1,11 +1,11 @@
-function scr_addToChainFieldMap(map, key, tagSet, rezTag, trackTag, stackTag){
+function scr_addToChainFieldMap(map, key, tagSet, rezTag, trackTag, stackTag) {
 	// make sure field/key isn't in the map already
 	if (ds_map_exists(map, key)) {
 		show_debug_message("scr_addToChainFieldMap ... " + string(key) + " already exists in entryFieldMap");
 		exit;
 	}
 	
-	if(map == global.linkFieldMap){
+	if (map == global.linkFieldMap) {
 		// add this field to either the linkMap
 		var fieldList = global.linkFieldList;
 		scr_addToListOnce(fieldList, key);
@@ -16,19 +16,19 @@ function scr_addToChainFieldMap(map, key, tagSet, rezTag, trackTag, stackTag){
 		scr_addToListOnce(fieldList, key);
 	}
 	
-	if(room == rm_mainScreen){
+	if (room == rm_mainScreen) {
 	
 		//add to nav window list if is right type and has space
 		var sizeOfchainFieldList = (map == global.chainFieldMap) ? ds_list_size(obj_control.chain1to1ColFieldListRez): ds_list_size(obj_control.chain1toManyColFieldListRez);
 		
-		if(rezTag){
-			if (map == global.chainFieldMap){ 
-				if(sizeOfchainFieldList < 6){
+		if (rezTag) {
+			if (map == global.chainFieldMap) { 
+				if (sizeOfchainFieldList < 6) {
 					scr_addToListOnce(obj_control.chain1to1ColFieldListRez, key);
 				}
 			}
 			else{
-				if(sizeOfchainFieldList < 3){
+				if (sizeOfchainFieldList < 3) {
 					scr_addToListOnce(obj_control.chain1toManyColFieldListRez, key);
 				}
 			}
@@ -36,14 +36,14 @@ function scr_addToChainFieldMap(map, key, tagSet, rezTag, trackTag, stackTag){
 		}
 		sizeOfchainFieldList = (map == global.chainFieldMap) ? ds_list_size(obj_control.chain1to1ColFieldListTrack): ds_list_size(obj_control.chain1toManyColFieldListTrack);
 		
-		if(trackTag){
-			if (map == global.chainFieldMap){ 
-				if(sizeOfchainFieldList < 6){
+		if (trackTag) {
+			if (map == global.chainFieldMap) { 
+				if (sizeOfchainFieldList < 6) {
 					scr_addToListOnce(obj_control.chain1to1ColFieldListTrack, key);
 				}
 			}
 			else{
-				if(sizeOfchainFieldList < 3){
+				if (sizeOfchainFieldList < 3) {
 					scr_addToListOnce(obj_control.chain1toManyColFieldListTrack, key);
 				}
 			}
@@ -51,15 +51,15 @@ function scr_addToChainFieldMap(map, key, tagSet, rezTag, trackTag, stackTag){
 		}
 		sizeOfchainFieldList = (map == global.chainFieldMap) ? ds_list_size(obj_control.chain1to1ColFieldListStack): ds_list_size(obj_control.chain1toManyColFieldListStack);
 		
-		if(stackTag){
+		if (stackTag) {
 				
-			if (map == global.chainFieldMap){
-				if(sizeOfchainFieldList < 6){
+			if (map == global.chainFieldMap) {
+				if (sizeOfchainFieldList < 6) {
 					scr_addToListOnce(obj_control.chain1to1ColFieldListStack, key);
 				}
 			}
 			else{
-				if(sizeOfchainFieldList < 3){
+				if (sizeOfchainFieldList < 3) {
 					scr_addToListOnce(obj_control.chain1toManyColFieldListStack, key);
 				}
 			}
@@ -76,7 +76,7 @@ function scr_addToChainFieldMap(map, key, tagSet, rezTag, trackTag, stackTag){
 		ds_map_add_list(subMap, "tagSet", tagSet);
 	}
 	
-	if(map != global.linkFieldMap){
+	if (map != global.linkFieldMap) {
 	
 		// set whether this tag can be applied to rez/track/stack
 		// rezTag, trackTag, and stackTag should all be boolean values

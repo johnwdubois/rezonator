@@ -4,7 +4,7 @@
 	exit;
 //}
 
-if(not keyboard_check(vk_alt) and not keyboard_check(vk_shift) and global.ctrlHold){
+if (not keyboard_check(vk_alt) and not keyboard_check(vk_shift) and global.ctrlHold) {
 
 if (!obj_control.dialogueBoxActive) {
 	keyboard_string = "";

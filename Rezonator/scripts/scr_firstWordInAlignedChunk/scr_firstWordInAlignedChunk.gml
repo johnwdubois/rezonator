@@ -1,6 +1,6 @@
 
 
-function scr_firstWordInAlignedChunk(tokenID){
+function scr_firstWordInAlignedChunk(tokenID) {
 	
 	// if this word is the first word in an aligned chunk,
 	// then return the chainID for the aligned chain on that chunk
@@ -10,7 +10,7 @@ function scr_firstWordInAlignedChunk(tokenID){
 	var tokenSubMap =  global.nodeMap[?tokenID];
 	
 	if (scr_isNumericAndExists(tokenSubMap, ds_type_map)) {
-		var tokenInChunkList = tokenSubMap[?"inChunkList"];
+		var tokenInChunkList = tokenSubMap[? "inChunkList"];
 		if (scr_isNumericAndExists(tokenInChunkList, ds_type_list)) {
 			var tokenInChunkListSize = ds_list_size(tokenInChunkList);
 			for (var i = 0; i < tokenInChunkListSize; i++) {

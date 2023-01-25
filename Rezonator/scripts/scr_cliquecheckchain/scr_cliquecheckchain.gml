@@ -1,4 +1,4 @@
-function scr_cliqueCheckChain(chain, cliqueChainList, cliqueUnitList){
+function scr_cliqueCheckChain(chain, cliqueChainList, cliqueUnitList) {
 	
 	var discoveredUnitList = ds_list_create();
 	var chainSubMap = global.nodeMap[? chain];

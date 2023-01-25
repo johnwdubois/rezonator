@@ -1,4 +1,4 @@
-function scr_cliqueCheckUnit(unit, cliqueChainList, cliqueUnitList){
+function scr_cliqueCheckUnit(unit, cliqueChainList, cliqueUnitList) {
 
 	var unitSubMap = global.nodeMap[? unit];
 	var unitEntryList = unitSubMap[? "entryList"];

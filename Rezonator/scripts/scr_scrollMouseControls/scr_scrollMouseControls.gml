@@ -1,6 +1,6 @@
 
 
-function scr_scrollMouseControls(distance){
+function scr_scrollMouseControls(distance) {
 	// Allows use of arrow keys, pgUp/pgDwn, and ctrl+key in chain list if clicked in chainContents
 	if (clickedIn) {
 	

@@ -1,4 +1,4 @@
-function scr_linkClickOptions(optionSelected){
+function scr_linkClickOptions(optionSelected) {
 	var optionIndex = ds_list_find_index(optionList, optionSelected);
 	show_debug_message("scr_linkClickOptions, optionSelected: " + string(optionSelected));
 	
@@ -16,7 +16,7 @@ function scr_linkClickOptions(optionSelected){
 		scr_deleteTreeLink();
 		instance_destroy();
 	}
-	else if (optionSelected == "Tag Link"){
+	else if (optionSelected == "Tag Link") {
 
 		scr_destroyAllDropDownsOtherThanSelf();
 		var dropDownOptionList = ds_list_create();

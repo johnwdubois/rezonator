@@ -1,7 +1,7 @@
 function scr_jumpToUnit(unitOrSeq) {
 	
 	show_debug_message("scr_jumpToUnit: " + string(unitOrSeq));
-	if( unitOrSeq == "" || unitOrSeq == undefined ){exit;}
+	if ( unitOrSeq == "" || unitOrSeq == undefined ) {exit;}
 	
 	// get display unit list
 	var discourseSubMap = global.nodeMap[? global.discourseNode];

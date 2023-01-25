@@ -1,4 +1,4 @@
-function scr_setDialogueText(){
+function scr_setDialogueText() {
 	
 	if (room == rm_openingScreen) {
 		if (obj_openingScreen.downloadDialogue) {
@@ -14,7 +14,7 @@ function scr_setDialogueText(){
 	}
 
 	
-	if(obj_dialogueBox.questionWindowActive){
+	if (obj_dialogueBox.questionWindowActive) {
 		
 		if (instance_exists(obj_control)) {
 			if (obj_control.openURLAbout) {
@@ -48,23 +48,23 @@ function scr_setDialogueText(){
 			else if (obj_openingScreen.openURLGuide) descriptionText = scr_get_translation("msg_open-url-guide");
 		}
 		
-		if(clearAllStacks) {
+		if (clearAllStacks) {
 			titleText = scr_get_translation("Clear Stacks");
 			descriptionText = scr_get_translation("msg_warning_clear_stacks");
 		}
-		if(clearAllRez) {
+		if (clearAllRez) {
 			titleText = scr_get_translation("Clear Rez Chains");
 			descriptionText = scr_get_translation("msg_warning_clear_rez");
 		}
-		if(clearAllTracks) {
+		if (clearAllTracks) {
 			titleText = scr_get_translation("Clear Track Chains");
 			descriptionText =  scr_get_translation("msg_warning_clear_track");
 		}
-		if(clearAllLinks) {
+		if (clearAllLinks) {
 			titleText = scr_get_translation("Clear All Chains");
 			descriptionText = scr_get_translation("msg_warning_clear_chains");
 		}
-		if(clearAllChunks){
+		if (clearAllChunks) {
 			titleText = scr_get_translation("Clear All Chunks");
 			descriptionText = scr_get_translation("This will remove all chunks created");
 		}
@@ -79,21 +79,21 @@ function scr_setDialogueText(){
 		if (confirmSideLink) {
 			descriptionText = scr_get_translation("msg_side-link");
 		}
-		if(mergeUnit){
+		if (mergeUnit) {
 			var unitSeq1 = 0;
 			var unitSeq2 = 0;
 			var mergeUnitPreviewStr = "";
 			var mergeUnitListSize = ds_list_size(obj_control.mergeUnitList);
-			for(var i = 0; i < mergeUnitListSize; i++){
+			for (var i = 0; i < mergeUnitListSize; i++) {
 				var currentUnitID = obj_control.mergeUnitList[|i];
 				var currentUnitSubMap = global.nodeMap[?currentUnitID];
-				if(scr_isNumericAndExists(currentUnitSubMap,ds_type_map)){
+				if (scr_isNumericAndExists(currentUnitSubMap,ds_type_map)) {
 					
-					if(i == 0){
-						unitSeq1 = currentUnitSubMap[?"unitSeq"];
+					if (i == 0) {
+						unitSeq1 = currentUnitSubMap[? "unitSeq"];
 					}
 					else{
-						unitSeq2 = currentUnitSubMap[?"unitSeq"];
+						unitSeq2 = currentUnitSubMap[? "unitSeq"];
 					}
 					
 					mergeUnitPreviewStr += string(scr_getUnitText(currentUnitSubMap));
@@ -116,23 +116,23 @@ function scr_setDialogueText(){
 		}
 		if (deleteToken) {
 			var tokenSubMap = global.nodeMap[? obj_control.rightClickID];
-			var tokenTagMap = tokenSubMap[?"tagMap"];
+			var tokenTagMap = tokenSubMap[? "tagMap"];
 			var displayToken = tokenTagMap[?global.displayTokenField];
 			titleText = "Delete selected token?";
 			descriptionText = string(displayToken);
 		}
 		
-		if(splitUnit){
+		if (splitUnit) {
 			var unitSeq = 0;
 			var splitUnitPreviewStr = "";
 			var tokenSubMap = global.nodeMap[? obj_control.rightClickID];
-			var unitID = tokenSubMap[?"unit"];
-			var tokenTagMap = tokenSubMap[?"tagMap"];
+			var unitID = tokenSubMap[? "unit"];
+			var tokenTagMap = tokenSubMap[? "tagMap"];
 			var displayToken = tokenTagMap[?global.displayTokenField];
 
 			var currentUnitSubMap = global.nodeMap[? unitID];
-			if(scr_isNumericAndExists(currentUnitSubMap,ds_type_map)){
-				unitSeq = currentUnitSubMap[?"unitSeq"];
+			if (scr_isNumericAndExists(currentUnitSubMap,ds_type_map)) {
+				unitSeq = currentUnitSubMap[? "unitSeq"];
 				
 				// get preview of split units
 				var unitEntryList = currentUnitSubMap[? "entryList"];
@@ -160,7 +160,7 @@ function scr_setDialogueText(){
 			titleText = scr_get_translation("help_label_delete_plain")+ " "+ scr_get_translation("menu_show");
 			descriptionText =  scr_get_translation("You are about to delete this show");
 		}
-		if(layerLink) {
+		if (layerLink) {
 			titleText = scr_get_translation("help_label_link");
 			descriptionText = scr_get_translation("masg_warning_layer_link");
 		}
@@ -192,7 +192,7 @@ function scr_setDialogueText(){
 		}
 		if (removeSearch) {
 			var searchSubMap = global.searchMap[?searchToBeRemoved];
-			var searchTermList = searchSubMap[?"searchTermList"];
+			var searchTermList = searchSubMap[? "searchTermList"];
 			titleText = scr_get_translation("msg_remove") + " " + scr_get_translation("menu_search");
 			descriptionText = scr_get_translation("msg_remove-search") + ": " + scr_getStringOfList(searchTermList);
 		}
@@ -240,7 +240,7 @@ function scr_setDialogueText(){
 					var rightClickTokenTagMap = rightClickTokenSubMap[? "tagMap"];
 					var rightClickTokenDisplayStr = rightClickTokenTagMap[? global.displayTokenField];
 					var docMap = global.nodeMap[?global.discourseNode];
-					var tokenList = docMap[?"tokenList"];
+					var tokenList = docMap[? "tokenList"];
 					var prevTokenID = tokenList[|ds_list_find_index(tokenList, obj_control.rightClickID) - 1];
 					var prevTokenSubMap = global.nodeMap[? prevTokenID];
 					var prevTokenTagMap = prevTokenSubMap[? "tagMap"];
@@ -257,7 +257,7 @@ function scr_setDialogueText(){
 	
 	}
 		
-	if(obj_dialogueBox.inputWindowActive){
+	if (obj_dialogueBox.inputWindowActive) {
 	
 		//Setting input prompt
 		if (obj_control.changeAuthor) {
@@ -269,7 +269,7 @@ function scr_setDialogueText(){
 			descriptionText = scr_get_translation("msg_input_new-string");
 		}
 		if (obj_control.replace) {
-			if(obj_control.splitWord){
+			if (obj_control.splitWord) {
 				titleText = scr_get_translation("help_label_split-word");
 				descriptionText = scr_get_translation("msg_input_split_words");
 			}
@@ -282,7 +282,7 @@ function scr_setDialogueText(){
 			titleText = scr_get_translation("option_new-token");
 		}
 		
-		if(obj_control.caption){
+		if (obj_control.caption) {
 			titleText = scr_get_translation("msg_input_caption");
 			descriptionText = scr_get_translation("msg_input_caption");
 		}	
@@ -299,7 +299,7 @@ function scr_setDialogueText(){
 		}
 		
 		if (obj_control.gPressed) {
-			if(obj_control.goToTime){
+			if (obj_control.goToTime) {
 				titleText = scr_get_translation("msg_time_search");
 				descriptionText = scr_get_translation("msg_input_time-jump");
 			}
@@ -329,9 +329,9 @@ function scr_setDialogueText(){
 			descriptionText = scr_get_translation("search_beginning-line");
 		}
 		
-		if(obj_control.fPressed) {
+		if (obj_control.fPressed) {
 			// draw background text
-			if(obj_control.regExCheck){
+			if (obj_control.regExCheck) {
 				titleText = scr_get_translation("search_dialogue_regEx");
 				descriptionText = "";//scr_get_translation("msg_input_regex");
 			}

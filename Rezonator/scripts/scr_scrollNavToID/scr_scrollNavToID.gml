@@ -1,4 +1,4 @@
-function scr_scrollNavToID(tab, ID, leftPane){
+function scr_scrollNavToID(tab, ID, leftPane) {
 	
 	show_debug_message("scr_scrollNavToID, tab: " + string(tab) + ", ID: " + string(ID));
 	

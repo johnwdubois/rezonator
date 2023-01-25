@@ -160,7 +160,7 @@ function scr_panelPane_drawChainsList() {
 
 								var currentUnitID = ds_map_find_value(currentEntrySubMap, "unit");
 								var currentUnitSubMap = global.nodeMap[?currentUnitID];
-								if(scr_isNumericAndExists(currentUnitSubMap,ds_type_map)) {
+								if (scr_isNumericAndExists(currentUnitSubMap,ds_type_map)) {
 									currentChainCaption += scr_getUnitText(currentUnitSubMap) + " ";
 								}
 								if (string_width(currentChainCaption) > windowWidth) break;
@@ -476,7 +476,7 @@ function scr_panelPane_drawChainsList() {
 	var instToScroll = (drawScrollbar) ? self.id : chainContentsPanelPaneInst;
 
 /*var updated = false;
-	if(!drawScrollbar and updated == false){
+	if (!drawScrollbar and updated == false) {
 		var currentPaneScroll =0;
 			with (self.id) {
 					currentPaneScroll = max(abs(focusedElementY - (y + headerHeight + strHeight)) + strHeight, strHeight);
@@ -746,7 +746,7 @@ function scr_panelPane_drawChainsList() {
 				scr_createTooltip(moreOptionsX, moreOptionsY + optionsIconRad, "More", obj_tooltip.arrowFaceUp);
 				if (mouse_check_button_pressed(mb_left)) {
 					var dropDownOptionList = ds_list_create();
-					if(obj_panelPane.functionChainList_currentTab == obj_panelPane.functionChainList_tabStackBrush){
+					if (obj_panelPane.functionChainList_currentTab == obj_panelPane.functionChainList_tabStackBrush) {
 						ds_list_add(dropDownOptionList, "option_add-to-show");
 					}
 					ds_list_add(dropDownOptionList, "help_label_delete_plain", "menu_filter", "menu_hide", "option_clip");

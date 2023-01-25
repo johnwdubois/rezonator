@@ -1,10 +1,10 @@
-function scr_verifyRez(){
+function scr_verifyRez() {
 	
 	show_debug_message("scr_verifyRez, rezFileVersion:  "+ string(obj_control.rezFileVersion));
 	obj_control.rezFileVersion = string(obj_control.rezFileVersion)
 	var firstNum = string_digits(obj_control.rezFileVersion);
 	if (string_length(firstNum) > 0) {
-		if(string_char_at(firstNum, 1) == "0"){
+		if (string_char_at(firstNum, 1) == "0") {
 			var inst = instance_create_layer(0, 0, "InstancesDialogue", obj_dialogueBox);
 			obj_dialogueBox.alertWindowActive = true;
 			obj_dialogueBox.descriptionText = scr_get_translation("msg_error-previous-version");
@@ -119,34 +119,34 @@ function scr_verifyRez(){
 		if (!is_numeric(treeList)) {
 			ds_map_add_list(global.nodeMap, "treeList", ds_list_create());
 		}
-		if(is_numeric(linkFieldList)){
+		if (is_numeric(linkFieldList)) {
 			global.linkFieldList = linkFieldList;
 		}
 
 
 		//no tree map found
-		if(is_undefined(global.nodeMap[? "treeMap"])){
+		if (is_undefined(global.nodeMap[? "treeMap"])) {
 			global.treeMap = ds_map_create();
 			ds_map_add(global.treeMap, "type", "map");
 			scr_addToListOnce(nodeList,"treeMap");
 		}
 	
 		//no clique map found
-		if(is_undefined(global.nodeMap[? "cliqueMap"])){
+		if (is_undefined(global.nodeMap[? "cliqueMap"])) {
 			global.cliqueMap = ds_map_create();
 			ds_map_add(global.cliqueMap, "type", "map");
 			scr_addToListOnce(nodeList,"cliqueMap");
 		}
 	
 		//no search map found
-		if(is_undefined(global.nodeMap[? "searchMap"])){
+		if (is_undefined(global.nodeMap[? "searchMap"])) {
 			global.searchMap = ds_map_create();
 			ds_map_add(global.searchMap, "type", "map");
 			scr_addToListOnce(nodeList,"searchMap");
 		}
 	
 		//no color map found
-		if(is_undefined(global.nodeMap[? "colorMap"])){
+		if (is_undefined(global.nodeMap[? "colorMap"])) {
 			show_debug_message("no color map found");
 			global.colorMap = ds_map_create();
 			ds_map_add(global.colorMap, "type", "map");

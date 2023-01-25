@@ -1,6 +1,6 @@
 
 
-function scr_removeChainFromLists(chainID, chainType){
+function scr_removeChainFromLists(chainID, chainType) {
 	
 	// remove chain from filter/selected/visible list if necessary
 	var listOfChains = -1;

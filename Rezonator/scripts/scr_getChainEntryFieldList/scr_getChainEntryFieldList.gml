@@ -1,6 +1,6 @@
 
 
-function scr_getChainEntryFieldList(chainType){
+function scr_getChainEntryFieldList(chainType) {
 	
 	var list = ds_list_create();
 	

@@ -1,4 +1,4 @@
-function scr_getSBClist(){
+function scr_getSBClist() {
 	
 	var sbclist = ds_list_create();
 	for (var i = 1; i <= 10; i++) {

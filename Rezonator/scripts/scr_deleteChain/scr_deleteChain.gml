@@ -1,4 +1,4 @@
-function scr_deleteChain(chainID){
+function scr_deleteChain(chainID) {
 	obj_chain.quickLinkDeleted = true;
 
 	if (!ds_map_exists(global.nodeMap,chainID)) {
@@ -27,7 +27,7 @@ function scr_deleteChain(chainID){
 	// remove every entry from this chain
 	var sizeOfEntryList = ds_list_size(setIDList);
 	while (sizeOfEntryList > 0 and scr_isNumericAndExists(chainSubMap, ds_type_map)) {
-		if(sizeOfEntryList == 1){
+		if (sizeOfEntryList == 1) {
 			obj_chain.quickLinkDeleted = false;
 		} 
 		var currentEntry = ds_list_find_value(setIDList, 0);
@@ -49,12 +49,12 @@ function scr_deleteChain(chainID){
 	scr_removeChainFromLists(chainID, chainType);
 	
 	
-	var showList = global.nodeMap[?"showList"];
+	var showList = global.nodeMap[? "showList"];
 	var totalShows = ds_list_size(showList);
-	for(var i = 0; i < totalShows; i++){
+	for (var i = 0; i < totalShows; i++) {
 		var showID = showList[|i];
 		var showSubMap = global.nodeMap[?showID];
-		var setIDList = showSubMap[?"setIDList"];
+		var setIDList = showSubMap[? "setIDList"];
 		scr_deleteFromList(setIDList, chainID);
 	}
 	

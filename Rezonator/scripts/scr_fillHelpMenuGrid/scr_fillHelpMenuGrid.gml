@@ -1,6 +1,6 @@
 
 
-function scr_fillHelpMenuGrid(){
+function scr_fillHelpMenuGrid() {
 
 	// Display the help menu when activated
 	if (currentFunction != functionHelp) {
@@ -348,7 +348,7 @@ function scr_fillHelpMenuGrid(){
 	ds_grid_set(functionHelp_helpGridMove, functionHelp_helpGrid_colHide, 4, false);
 
 	var correctKey = "";
-	if(os_type == os_macosx){
+	if (os_type == os_macosx) {
 		correctKey = "Option";
 	}
 	else{
@@ -422,7 +422,7 @@ function scr_fillHelpMenuGrid(){
 	var helpGridHeightAdvanced = 2;
 	ds_grid_resize(functionHelp_helpGridAdvanced, functionHelp_helpGridWidth, helpGridHeightAdvanced);
 	var altOption = "";
-	if( os_type = os_macosx){
+	if ( os_type = os_macosx) {
 		altOption = "Option";
 	}
 	else{

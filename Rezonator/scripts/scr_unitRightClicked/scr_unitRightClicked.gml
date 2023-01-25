@@ -1,4 +1,4 @@
-function scr_unitRightClicked(){
+function scr_unitRightClicked() {
 	
 	var unitSubMap = global.nodeMap[? obj_control.rightClickID];
 	if (!scr_isNumericAndExists(unitSubMap, ds_type_map)) exit;

@@ -1,4 +1,4 @@
-function scr_addToRecentFiles(filePath){
+function scr_addToRecentFiles(filePath) {
 	
 	var fileName = filename_name(filePath);
 	
@@ -7,7 +7,7 @@ function scr_addToRecentFiles(filePath){
 	//update key list
 	scr_addToListOnce(global.recentFilesList,string(fileName), true);
 	var recentFilesListSize = ds_list_size(global.recentFilesList);
-	while(recentFilesListSize > 20){
+	while(recentFilesListSize > 20) {
 		
 		ds_map_delete(global.recentFilesMap,global.recentFilesList[|recentFilesListSize-1]);
 		ds_list_delete(global.recentFilesList,recentFilesListSize-1);
@@ -27,16 +27,16 @@ function scr_addToRecentFiles(filePath){
 	var timeString = string(string(actualHour)+":"+ actualMinute + " " + endString);
 	show_debug_message(dateString);
 	show_debug_message(timeString);
-	fileMap[?"Date"] = dateString + " "+ timeString;
-	fileMap[?"FileName"] = fileName;
-	fileMap[?"FilePath"] = filePath;
+	fileMap[? "Date"] = dateString + " "+ timeString;
+	fileMap[? "FileName"] = fileName;
+	fileMap[? "FilePath"] = filePath;
 	
 	var col = make_color_hsv(random_range(0, 255), random_range(125, 255), random_range(200, 255));
 	col = merge_color(col, c_white, 0.5);
 	
-	fileMap[?"Color"] = col;
+	fileMap[? "Color"] = col;
 	
-	if(ds_map_exists(global.recentFilesMap, fileName)){
+	if (ds_map_exists(global.recentFilesMap, fileName)) {
 		ds_map_replace_map(global.recentFilesMap, fileName, fileMap);
 	}
 	else{

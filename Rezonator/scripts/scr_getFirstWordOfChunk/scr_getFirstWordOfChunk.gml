@@ -1,6 +1,6 @@
 
 
-function scr_getFirstWordOfChunk(chunkID){
+function scr_getFirstWordOfChunk(chunkID) {
 	
 	var firstWord = -1;
 	

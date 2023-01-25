@@ -1,4 +1,4 @@
-function scr_updateCheckMap(optionText){
+function scr_updateCheckMap(optionText) {
 	with (obj_dropDown) {
 		if (instance_exists(obj_wordTip)) {
 			if (optionText == "word_tip") {
@@ -71,19 +71,19 @@ function scr_updateCheckMap(optionText){
 			global.checkDropdownMap[? "menu_rez-arrows"] = obj_chain.showRezArrows;
 			
 		}
-		if(optionListType == global.optionListTypeTools and instance_exists(obj_toolPane)){
+		if (optionListType == global.optionListTypeTools and instance_exists(obj_toolPane)) {
 
-			if(obj_toolPane.currentMode == obj_toolPane.modeRead){
+			if (obj_toolPane.currentMode == obj_toolPane.modeRead) {
 				global.checkDropdownMap[? "menu_track"] = false;
 				global.checkDropdownMap[? "menu_resonance"] = false;
 				global.checkDropdownMap[? "help_label_tag"] = true;
 			}
-			if(obj_toolPane.currentMode == obj_toolPane.modeRez){
+			if (obj_toolPane.currentMode == obj_toolPane.modeRez) {
 				global.checkDropdownMap[? "menu_track"] = false;
 				global.checkDropdownMap[? "menu_resonance"] = true;
 				global.checkDropdownMap[? "help_label_tag"] = false;
 			}
-			if(obj_toolPane.currentMode == obj_toolPane.modeTrack){
+			if (obj_toolPane.currentMode == obj_toolPane.modeTrack) {
 				global.checkDropdownMap[? "menu_track"] = true;
 				global.checkDropdownMap[? "menu_resonance"] = false;
 				global.checkDropdownMap[? "help_label_tag"] = false;
@@ -134,10 +134,10 @@ function scr_updateCheckMap(optionText){
 				global.checkDropdownMap[? "menu_30-min"] = false;
 				break;
 		}
-		if(string_pos("menu_language-", optionText) == 1){
+		if (string_pos("menu_language-", optionText) == 1) {
 			var currentLangCode = string_copy(optionText, 1, string_length(optionText));
 			currentLangCode = string_delete(currentLangCode, 1, string_length("menu_language-"));
-			if(currentLangCode == global.lang_codes[| global.lang_index]){
+			if (currentLangCode == global.lang_codes[| global.lang_index]) {
 				global.checkDropdownMap[? optionText] = true;
 			}
 			else{

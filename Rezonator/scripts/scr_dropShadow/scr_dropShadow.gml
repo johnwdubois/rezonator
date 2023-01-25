@@ -1,4 +1,4 @@
-function scr_dropShadow(rectX1, rectY1, rectX2, rectY2){
+function scr_dropShadow(rectX1, rectY1, rectX2, rectY2) {
 	
 	var maxAlpha = 1;
 	if (object_index == obj_dropDown) {

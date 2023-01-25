@@ -1,6 +1,6 @@
 
 
-function scr_createTreeLink(clickedEntry){
+function scr_createTreeLink(clickedEntry) {
 
 	
 	var clickedEntrySubMap = global.treeMap[? clickedEntry];
@@ -35,13 +35,13 @@ function scr_createTreeLink(clickedEntry){
 	
 	//update clicked entry sub map
 	clickedEntrySubMap[? "sourceLink"] = linkID;
-	clickedEntrySubMap[? "level"] = focusedEntrySubMap[?"level"]+1;
+	clickedEntrySubMap[? "level"] = focusedEntrySubMap[? "level"]+1;
 	
 	//update tree subamp
-	ds_list_add(treeSubMap[?"linkIDList"], linkID);
+	ds_list_add(treeSubMap[? "linkIDList"], linkID);
 	
 	// big tree achievement
-	if(global.steamAPI){
+	if (global.steamAPI) {
 		var currentMaxTreeHeight = steam_get_stat_int("SA_tree-height");
 		var currentTreeHeight = clickedEntrySubMap[? "level"];
 		

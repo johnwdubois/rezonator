@@ -1,6 +1,6 @@
 
 
-function scr_setFieldRelations(){
+function scr_setFieldRelations() {
 	
 
 	var strikeMaximum = max(1,floor( ds_grid_height(global.importGrid) * .02));
@@ -58,7 +58,7 @@ function scr_setFieldRelations(){
 							var fieldToCheckTokenCount = ds_list_find_value(currentTokenCountList,k);
 							var strikeCounter = ds_grid_get(global.fieldRelationHelperGrid,colIndex, rowIndex);
 							//check if token counts are the same and if they are add to one-to-one list
-							if(currentTokenCount != fieldToCheckTokenCount ){
+							if (currentTokenCount != fieldToCheckTokenCount ) {
 								
 								
 								
@@ -82,7 +82,7 @@ function scr_setFieldRelations(){
 								
 							
 							//check if token counts are the same and if they are add to one-to-one list
-							if(currentTokenCount == fieldToCheckTokenCount ){
+							if (currentTokenCount == fieldToCheckTokenCount ) {
 									strikeCounter++;
 									ds_list_add(oneToOneFieldList, fieldToCheck);
 									ds_grid_set(global.fieldRelationHelperGrid,colIndex, rowIndex, strikeCounter);
@@ -98,7 +98,7 @@ function scr_setFieldRelations(){
 							var fieldToCheckTokenCount = ds_list_find_value(currentTokenCountList,k);
 							var strikeCounter = ds_grid_get(global.fieldRelationHelperGrid,colIndex, rowIndex);
 							//check if token counts are the same and if they are add to one-to-one list
-							if(currentTokenCount == fieldToCheckTokenCount ){
+							if (currentTokenCount == fieldToCheckTokenCount ) {
 								strikeCounter ++;
 								ds_list_add(oneToOneFieldList, fieldToCheck);
 								show_debug_message("added: " + string(fieldToCheck) + "  to " + string(currentField)+ "'s oneToOneList fields list");

@@ -16,7 +16,7 @@ scr_adaptFont(text, "L", true);
 draw_text(camWidth / 2, camHeight * 0.3, text);
 
 
-if(room == rm_openingScreen){
+if (room == rm_openingScreen) {
 	
 	var loadingBarBackX1 = (camera_get_view_width(camera_get_active()) / 4);
 	var loadingBarBackY1 = (camera_get_view_height(camera_get_active()) - camera_get_view_height(camera_get_active()) / 4);

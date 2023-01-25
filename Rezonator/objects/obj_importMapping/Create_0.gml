@@ -92,7 +92,7 @@ levelEstimateColumnSelected = global.tagInfoGrid_colLevelSchema;
 gridList = ds_list_create();
 ds_list_add(gridList, "import_field-info", "import_source");
 
-if(global.importType == global.importType_IGT){
+if (global.importType == global.importType_IGT) {
 ds_list_add(gridList,"import_block-type", "import_blocks", "import_field-relations");
 
 }

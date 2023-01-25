@@ -1,6 +1,6 @@
 
 
-function scr_deleteFromList(list, item){
+function scr_deleteFromList(list, item) {
 	
 	// this script provides an easy way to make sure you are removing something from a list
 	// even if it is in the list multiple times!

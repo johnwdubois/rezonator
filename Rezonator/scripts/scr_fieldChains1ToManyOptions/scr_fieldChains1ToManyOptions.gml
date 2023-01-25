@@ -1,4 +1,4 @@
-function scr_fieldChains1ToManyOptions(optionSelected){
+function scr_fieldChains1ToManyOptions(optionSelected) {
 	
 	var optionSpacingMulti = ds_list_find_index(optionList, optionSelected);
 	var navFieldList = -1;

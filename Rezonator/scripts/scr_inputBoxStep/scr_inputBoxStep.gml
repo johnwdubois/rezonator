@@ -1,6 +1,6 @@
-function scr_inputBoxStep(){
+function scr_inputBoxStep() {
 	
-	if(!instance_exists(obj_dialogueBox) && room != rm_openingScreen && !navWindowTagging) instance_destroy();
+	if (!instance_exists(obj_dialogueBox) && room != rm_openingScreen && !navWindowTagging) instance_destroy();
 	if (room == rm_mainScreen) with (obj_control) shortcutsEnabled = false;
 	var fontSize = navWindowTagging ? "S" : "M";
 	
@@ -17,8 +17,8 @@ function scr_inputBoxStep(){
 	var keyRightPressed = keyboard_check_pressed(vk_right) && windowFocused;
 	var keyEnterPressed = keyboard_check_pressed(vk_enter) && windowFocused;
 	var keyEscapePressed = keyboard_check_pressed(vk_escape) && windowFocused;
-	if(dragging && !mouse_check_button(mb_left)){
-		with(obj_control){
+	if (dragging && !mouse_check_button(mb_left)) {
+		with(obj_control) {
 			alarm[1] = 1;
 		}
 	}

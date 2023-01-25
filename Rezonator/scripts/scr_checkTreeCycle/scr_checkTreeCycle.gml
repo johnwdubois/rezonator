@@ -1,22 +1,22 @@
 
 
-function scr_checkTreeCycle(clickedEntry){
+function scr_checkTreeCycle(clickedEntry) {
 	var isCycle = false;
 	
 	var focusedEntrySubMap = global.treeMap[? obj_chain.currentFocusedEntryID];
-	if(!scr_isNumericAndExists(focusedEntrySubMap, ds_type_map)){exit;}
+	if (!scr_isNumericAndExists(focusedEntrySubMap, ds_type_map)) {exit;}
 	
 	var sourceEntry = "";
 	
 	var sourceLink = focusedEntrySubMap[? "sourceLink"];
 	
 	//if root not found keep looking
-	while(sourceLink != ""){
+	while(sourceLink != "") {
 		
 	
 		var sourceLinkSubMap = global.treeMap[? sourceLink];
 	
-		sourceEntry = sourceLinkSubMap[?"source"];
+		sourceEntry = sourceLinkSubMap[? "source"];
 	
 		var sourceEntrySubMap = global.treeMap[? sourceEntry];
 	
@@ -25,7 +25,7 @@ function scr_checkTreeCycle(clickedEntry){
 	}
 	
 	//check if first entry (found root) is the entry we clicked on cycle detected
-	if(clickedEntry == sourceEntry){
+	if (clickedEntry == sourceEntry) {
 		isCycle = true;
 	}
 

@@ -14,13 +14,13 @@ if (importGridRow >= ds_grid_height(global.importGrid) && !finished) {
 	// copy unitList into displayUnitList
 	ds_list_copy(displayUnitList, unitList);
 	scr_addToListOnce(global.usedImports,global.importType);
-	if(global.steamAPI){
+	if (global.steamAPI) {
 		var currentUsedImports = steam_get_stat_int("SA_imports");
 		var usedImportSize = ds_list_size(global.usedImports);
-		if(usedImportSize > currentUsedImports){
+		if (usedImportSize > currentUsedImports) {
 			steam_set_stat_int("SA_imports",usedImportSize);
-			if(steam_get_stat_int("SA_imports") >= 7 ){
-				if(!steam_get_achievement("SA_all-impots")){
+			if (steam_get_stat_int("SA_imports") >= 7 ) {
+				if (!steam_get_achievement("SA_all-impots")) {
 					steam_set_achievement("SA_all-impots");
 				}
 			}

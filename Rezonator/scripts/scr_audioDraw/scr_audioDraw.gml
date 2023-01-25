@@ -117,7 +117,7 @@ function scr_audioDraw() {
 		bookmarkStartTime = audioPos;
 		audio_sound_set_track_position(audioSound, bookmarkStartTime);
 		bookmarkEndTime = -1;
-		if(audioPaused) {
+		if (audioPaused) {
 			audioPaused = !audioPaused;
 		}
 
@@ -136,7 +136,7 @@ function scr_audioDraw() {
 	draw_rectangle(seekBarX1, seekBarY1, playheadX, seekBarY2, false);
 	
 		// Draw audio Bookmark
-	if(bookmarkStartTime > -1) {
+	if (bookmarkStartTime > -1) {
 		
 		//Draw bookmarks
 		bookmarkX = ((real(bookmarkStartTime) * real(seekBarWidth)) / audioLength) + seekBarX1;
@@ -286,8 +286,8 @@ function scr_audioDraw() {
 				audioPos = 0;
 				audioPaused = true;
 				
-				if(global.steamAPI){
-					if(!steam_get_achievement("SA_play-audio")){
+				if (global.steamAPI) {
+					if (!steam_get_achievement("SA_play-audio")) {
 						steam_set_achievement("SA_play-audio");
 					}
 				}
@@ -319,31 +319,31 @@ function scr_audioDraw() {
 	if (!volumeHolding) volumeSliderX = (audioVolume * volumeBarWidth) + volumeBarX1;
 	volumeSliderY = mean(volumeBarY1, volumeBarY2);
 
-	if(volumeHolding or mouseoverVolumebar){
+	if (volumeHolding or mouseoverVolumebar) {
 		draw_set_color(fillInColor);
 		draw_set_circle_precision(64);
 		draw_circle(volumeSliderX, volumeSliderY, volumeRad, false);
 		draw_set_alpha(1);
 	}
 	var audioScale = 0.25;
-	if((volumeBarWidth + sprite_get_width(spr_audioTool)*audioScale) <= maxSpace){
+	if ((volumeBarWidth + sprite_get_width(spr_audioTool)*audioScale) <= maxSpace) {
 		draw_sprite_ext(spr_audioTool,0,volumeBarX1 - sprite_get_width(spr_audioTool)*audioScale, floor(mean(volumeBarY1, volumeBarY2)), audioScale,audioScale,0,c_white,1)
 	}
 	
-	if(mouseoverVolumebar){
-		if(mouse_check_button(mb_left)){
+	if (mouseoverVolumebar) {
+		if (mouse_check_button(mb_left)) {
 			volumeHolding = true;
 		}
 	}
-	if(!mouse_check_button(mb_left)){
+	if (!mouse_check_button(mb_left)) {
 		volumeHolding = false;
 	}
 	
-	if(volumeHolding){
+	if (volumeHolding) {
 		volumeSliderX = clamp(mouse_x,volumeBarX1,volumeBarX2);
 		audioVolume = (volumeSliderX - volumeBarX1) / volumeBarWidth;
 	}
-	if(audioSound != -1 && audioFileExists){
+	if (audioSound != -1 && audioFileExists) {
 		audio_sound_gain(audioSound, audioVolume, 0);
 	}
 	

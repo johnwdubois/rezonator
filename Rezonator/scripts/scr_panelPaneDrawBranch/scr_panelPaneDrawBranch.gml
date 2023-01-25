@@ -1,4 +1,4 @@
-function scr_panelPaneDrawBranch(){
+function scr_panelPaneDrawBranch() {
 	
 	var camWidth = camera_get_view_width(camera_get_active());
 	obj_control.mouseoverTagCell = false;
@@ -183,12 +183,12 @@ function scr_panelPaneDrawBranch(){
 			
 			
 		case functionHelp:
-			if (obj_toolPane.showTool){
-				if(!obj_panelPane.functionHelp_collapsed){
+			if (obj_toolPane.showTool) {
+				if (!obj_panelPane.functionHelp_collapsed) {
 					scr_panelPane_drawHelp();
 				}
 			}
-			if(not obj_control.scrollBarHolding and not scrollBarHolding) {
+			if (not obj_control.scrollBarHolding and not scrollBarHolding) {
 				alarm[6] = 1;	
 			}
 			else {
@@ -203,7 +203,7 @@ function scr_panelPaneDrawBranch(){
 			
 		case functionTabs:
 
-			if(obj_panelPane.showNav){
+			if (obj_panelPane.showNav) {
 				draw_set_color(global.colorThemeBG);
 				draw_rectangle(x, y, x + windowWidth, y + windowHeight, false);
 		

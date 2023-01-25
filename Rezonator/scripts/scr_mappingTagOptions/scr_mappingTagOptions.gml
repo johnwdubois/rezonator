@@ -33,7 +33,7 @@ function scr_mappingTagOptions(optionSelected) {
 	// update error column
 	obj_importMapping.updatedErrorCol = false;
 
-	with(obj_dropDown){
+	with(obj_dropDown) {
 		instance_destroy();
 	}
 

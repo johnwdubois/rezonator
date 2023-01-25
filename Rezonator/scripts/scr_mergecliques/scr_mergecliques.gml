@@ -1,4 +1,4 @@
-function scr_mergeCliques(clique1, clique2){
+function scr_mergeCliques(clique1, clique2) {
 
 
 	// first, let's determine which clique should "eat" the other: cliqueA should eat cliqueB

@@ -1,4 +1,4 @@
-function scr_dialogueConfirm(){
+function scr_dialogueConfirm() {
 	
 	// check if they are trying to download newest version of rezonator
 	if (instance_exists(obj_openingScreen)) {
@@ -36,7 +36,7 @@ function scr_dialogueConfirm(){
 		exit;
 	}
 
-	if (inputWindowActive){
+	if (inputWindowActive) {
 		
 		var chainSubMap = undefined;
 		var chainType = "";
@@ -86,7 +86,7 @@ function scr_dialogueConfirm(){
 							
 
 
-			if(obj_control.goToTime){
+			if (obj_control.goToTime) {
 				scr_jumpToTime(obj_control.inputText);
 			}
 			else{
@@ -185,7 +185,7 @@ function scr_dialogueConfirm(){
 			}
 		}
 		
-		if (obj_control.caption){
+		if (obj_control.caption) {
 			if (is_numeric(chainSubMap)) {
 				if (ds_exists(chainSubMap, ds_type_map)) {
 					ds_map_replace(chainSubMap, "caption", obj_control.inputText);
@@ -250,9 +250,9 @@ function scr_dialogueConfirm(){
 		if (clearAllChunks) {
 				
 			// delete all track chunks!!
-			var chunkListSize = global.nodeMap[?"chunkList"];
-			repeat(chunkListSize){
-				scr_deleteChunk(global.nodeMap[?"chunkList"][|0]);
+			var chunkListSize = global.nodeMap[? "chunkList"];
+			repeat(chunkListSize) {
+				scr_deleteChunk(global.nodeMap[? "chunkList"][|0]);
 			}
 			
 		}
@@ -280,16 +280,16 @@ function scr_dialogueConfirm(){
 		}
 		
 		
-		if(mergeUnit){
+		if (mergeUnit) {
 			scr_mergeUnit();
 		}
-		if(splitUnit){
+		if (splitUnit) {
 			scr_splitUnit(obj_control.rightClickID, false);
 		}
-		if(swapUnitUp){
+		if (swapUnitUp) {
 			scr_swapAdjacentUnit(true);
 		}
-		else if(swapUnitDown){
+		else if (swapUnitDown) {
 			scr_swapAdjacentUnit(false);
 		}
 	
@@ -303,7 +303,7 @@ function scr_dialogueConfirm(){
 			else if (obj_panelPane.functionChainList_currentTab == obj_panelPane.functionChainList_tabStackBrush) selectedChainList = obj_control.selectedStackChainList;
 			
 			if (scr_isNumericAndExists(selectedChainList, ds_type_list)) {
-				while(ds_list_size(selectedChainList) > 0){
+				while(ds_list_size(selectedChainList) > 0) {
 					scr_deleteChain(selectedChainList[| 0])
 				}
 			}
@@ -322,7 +322,7 @@ function scr_dialogueConfirm(){
 		}
 		
 			
-		if(layerLink) {
+		if (layerLink) {
 			
 			// Take the saved wordID & click on it
 			obj_control.layerLinkAllow = true;
@@ -331,7 +331,7 @@ function scr_dialogueConfirm(){
 			}
 		}
 		
-		if(combineChains){
+		if (combineChains) {
 			scr_combineChains(obj_control.combineChainsFocused, obj_control.combineChainsSelected);
 		}
 		

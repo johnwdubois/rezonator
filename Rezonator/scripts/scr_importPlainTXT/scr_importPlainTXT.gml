@@ -30,7 +30,7 @@ function scr_importPlainTXT() {
 	
 		if (scr_isStrOnlyWhitespace(lineInFile)) {
 			
-			if(global.importType == global.importType_Paragraph){
+			if (global.importType == global.importType_Paragraph) {
 				ds_grid_resize(global.importGrid, global.importGridWidth, ds_grid_height(global.importGrid) + 1);
 				var row = ds_grid_height(global.importGrid) - 1;
 				var colVal = string_copy(lineInFile, 0 , string_length(lineInFile));				

@@ -1,6 +1,6 @@
 
 
-function scr_fontSlider(){
+function scr_fontSlider() {
 	
 	var sliderX2 = saveIconX1 - (sizeOfSave / 2);
 	var sliderX1 = sliderX2 - (camWidth * 0.07);

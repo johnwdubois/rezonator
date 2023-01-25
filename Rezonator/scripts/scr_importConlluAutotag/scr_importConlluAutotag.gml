@@ -1,10 +1,10 @@
 
 
-function scr_importConlluAutotag(){
+function scr_importConlluAutotag() {
 	
 	
 	//var skip = false;
-	//if(skip){
+	//if (skip) {
 	//	exit;	
 	//}
 	var trackField = global.conlluAutotagColName;
@@ -13,33 +13,33 @@ function scr_importConlluAutotag(){
 	
 	show_debug_message("scr_importConlluAutotag... ");
 	var docSubMap = global.nodeMap[?global.discourseNode];
-	var tokenList = docSubMap[?"tokenList"];
+	var tokenList = docSubMap[? "tokenList"];
 	var entityMap = ds_map_create();
 	ds_list_add(global.nodeMap[? "nodeList"], "entityMap");
 	ds_map_add_map(global.nodeMap, "entityMap", entityMap);
-	for(var i = 0; i < ds_list_size(tokenList); i++){ //Map of entities in coreference
+	for (var i = 0; i < ds_list_size(tokenList); i++) { //Map of entities in coreference
 		var currentToken = tokenList[|i];
 		var currentTokenSubMap = global.nodeMap[?currentToken];
-		var currentTokenTagMap = currentTokenSubMap[?"tagMap"];
+		var currentTokenTagMap = currentTokenSubMap[? "tagMap"];
 		var currentMiscString = currentTokenTagMap[?trackField]; //Might have to use scr_isNumericAndExists later on
 		var currentTokenList = ds_list_create();
 		ds_list_add(currentTokenList, currentToken);
 
 		//show_debug_message(currentMiscString);
 		
-		if(!is_string(currentMiscString)){ //undefined guard
+		if (!is_string(currentMiscString)) { //undefined guard
 			continue;
 		}
 		
-		if(string_pos("Entity=", currentMiscString) != 0){ //verifies that there is an entity being referenced
+		if (string_pos("Entity=", currentMiscString) != 0) { //verifies that there is an entity being referenced
 			
 			//need to clean up the coreference string to create a key
 			
 			var currentEntityKey = string_replace(currentMiscString, "Entity=", "");
-			if(string_pos("Discourse=", currentMiscString) != 0){
+			if (string_pos("Discourse=", currentMiscString) != 0) {
 				currentEntityKey = string_delete(currentEntityKey,1,string_pos("|", currentEntityKey));
 			}
-			if(string_pos("XML=", currentMiscString) != 0){
+			if (string_pos("XML=", currentMiscString) != 0) {
 				var xmlIndex = string_pos("XML=", currentEntityKey);
 				currentEntityKey = string_delete(currentEntityKey, xmlIndex, string_length(currentEntityKey) - xmlIndex);
 			}
@@ -52,7 +52,7 @@ function scr_importConlluAutotag(){
 			
 			var keyList = ds_list_create();
 			//case of more than one entity being referenced in a token
-			if(string_count("(",currentEntityKey) > 1 or string_count(")",currentEntityKey) > 1){
+			if (string_count("(",currentEntityKey) > 1 or string_count(")",currentEntityKey) > 1) {
 				//string split or character iteration over misc string
 				scr_splitStringConlluTag(currentEntityKey, keyList);
 			}
@@ -61,10 +61,10 @@ function scr_importConlluAutotag(){
 			}
 			show_debug_message("keylist: "+ scr_getStringOfList(keyList));
 			var keyListSize = ds_list_size(keyList);
-			for(var j = 0; j < keyListSize; j++){
+			for (var j = 0; j < keyListSize; j++) {
 				currentEntityKey = keyList[|j];
-				if(string_pos(")", currentEntityKey) != 0 and string_pos("(", currentEntityKey) == 0) continue;
-				if(string_pos("(", currentEntityKey) != 0 and string_pos(")", currentEntityKey) == 0){ // checking for an open parentheses without a close
+				if (string_pos(")", currentEntityKey) != 0 and string_pos("(", currentEntityKey) == 0) continue;
+				if (string_pos("(", currentEntityKey) != 0 and string_pos(")", currentEntityKey) == 0) { // checking for an open parentheses without a close
 					currentEntityKey = string_replace_all(currentEntityKey, "(", "");
 					currentEntityKey = string_replace_all(currentEntityKey, ")", "");
 					ds_list_clear(currentTokenList);
@@ -72,19 +72,19 @@ function scr_importConlluAutotag(){
 					var nextTokenIndex = i+1;
 					var subToken = tokenList[|nextTokenIndex];
 					var subTokenSubMap = global.nodeMap[?subToken];
-					var subTokenTagMap = subTokenSubMap[?"tagMap"];
+					var subTokenTagMap = subTokenSubMap[? "tagMap"];
 					var subMiscString = subTokenTagMap[?trackField];
 					var endString = currentEntityKey + ")";
 					//show_debug_message("endString = " + endString);
 					ds_list_add(currentTokenList, subToken);
-					while(string_pos(endString, subMiscString) == 0){
+					while(string_pos(endString, subMiscString) == 0) {
 						subToken = tokenList[|nextTokenIndex];
 						//show_debug_message("subToken = " + string(subToken));
-						if(is_undefined(subToken)){
+						if (is_undefined(subToken)) {
 							break;	
 						}
 						subTokenSubMap = global.nodeMap[?subToken];
-						subTokenTagMap = subTokenSubMap[?"tagMap"];
+						subTokenTagMap = subTokenSubMap[? "tagMap"];
 						subMiscString = subTokenTagMap[?trackField];
 						ds_list_add(currentTokenList, subToken);
 						nextTokenIndex++;
@@ -92,7 +92,7 @@ function scr_importConlluAutotag(){
 				}
 				currentEntityKey = string_replace_all(currentEntityKey, "(", "");
 				currentEntityKey = string_replace_all(currentEntityKey, ")", "");
-				if(ds_map_exists(entityMap, currentEntityKey)){
+				if (ds_map_exists(entityMap, currentEntityKey)) {
 					ds_list_add(entityMap[?currentEntityKey], currentTokenList);
 					ds_list_mark_as_list(entityMap[?currentEntityKey],ds_list_size(entityMap[?currentEntityKey]) - 1)
 				}
@@ -108,26 +108,26 @@ function scr_importConlluAutotag(){
 	//iterate through map
 	var entityMapSize = ds_map_size(entityMap);
 	var key = ds_map_find_first(entityMap);
-	for(var i = 0; i < entityMapSize; i++){
+	for (var i = 0; i < entityMapSize; i++) {
 		var currentEntityList = entityMap[?key];
 		
 		//show_debug_message(string(key));
 		//show_debug_message(scr_getStringOfList(currentEntityList));
 		
-		for(var j = 0; j < ds_list_size(currentEntityList); j++){ //iterate through the list of tokens in each entity
+		for (var j = 0; j < ds_list_size(currentEntityList); j++) { //iterate through the list of tokens in each entity
 			var currentEntitySubList = currentEntityList[|j];
 			var currentFirstTokenID = currentEntitySubList[|0];
 			var currentFirstTokenSubMap = global.nodeMap[?currentFirstTokenID];
-			var currentUnit = currentFirstTokenSubMap[?"unit"];
+			var currentUnit = currentFirstTokenSubMap[? "unit"];
 			if (j == 0) { // have to check this qualifier
 				scr_newChain(currentFirstTokenID);
 				
 				// NAMING FUNCTIONALITY GOES HERE
 				// get obj_chain.currentFocusedChainID for naming
 				var newChainSubMap = global.nodeMap[?obj_chain.currentFocusedChainID];
-				newChainSubMap[?"name"] = key;
+				newChainSubMap[? "name"] = key;
 			}
-			if(ds_list_size(currentEntitySubList) > 1){
+			if (ds_list_size(currentEntitySubList) > 1) {
 				//this is the condition for creating chunks, might have to put this if statement somewhere else
 				var currentEntitySubListSize = ds_list_size(currentEntitySubList);
 				obj_control.inRectTokenIDList = currentEntitySubList;
@@ -138,9 +138,9 @@ function scr_importConlluAutotag(){
 				scr_createChunk();
 			}
 			else{
-				var inChunkList = currentFirstTokenSubMap[?"inChunkList"];
+				var inChunkList = currentFirstTokenSubMap[? "inChunkList"];
 				scr_newLink(currentFirstTokenID);
-				//if(ds_list_size(inChunkList) == 0){
+				//if (ds_list_size(inChunkList) == 0) {
 				//	scr_newLink(currentFirstTokenID);
 				//}
 			}

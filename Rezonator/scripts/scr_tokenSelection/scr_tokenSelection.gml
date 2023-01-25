@@ -17,7 +17,7 @@ function scr_tokenSelection(optionSelected) {
 	// change the field list
 	var colListIndex = obj_panelPane.chosenCol;
 	var optionSelectedPrevIndex = ds_list_find_index(navFieldList, optionSelected);
-	if(optionSelectedPrevIndex >= 0 && colListIndex != optionSelectedPrevIndex){
+	if (optionSelectedPrevIndex >= 0 && colListIndex != optionSelectedPrevIndex) {
 		scr_listSwap(navFieldList, colListIndex, optionSelectedPrevIndex);
 	}
 	else if (optionSelectedPrevIndex == -1) {

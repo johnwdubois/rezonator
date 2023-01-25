@@ -1,6 +1,6 @@
 
 
-function scr_chain1To1HeaderRightClickOptions(optionSelected){
+function scr_chain1To1HeaderRightClickOptions(optionSelected) {
 	
 	switch (optionSelected) {
 		case "option_create-new-field":

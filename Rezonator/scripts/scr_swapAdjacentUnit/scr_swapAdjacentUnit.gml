@@ -1,4 +1,4 @@
-function scr_swapAdjacentUnit(swapUp){
+function scr_swapAdjacentUnit(swapUp) {
 	
 	// get lists from docNode
 	var docSubMap = global.nodeMap[? global.discourseNode];

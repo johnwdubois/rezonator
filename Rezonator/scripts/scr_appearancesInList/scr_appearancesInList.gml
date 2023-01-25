@@ -1,6 +1,6 @@
 
 
-function scr_appearancesInList(list, val){
+function scr_appearancesInList(list, val) {
 	
 	// returns how many times val appears in list
 	

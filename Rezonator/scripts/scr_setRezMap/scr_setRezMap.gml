@@ -1,37 +1,37 @@
-function scr_setRezMap(stackID, par){
+function scr_setRezMap(stackID, par) {
 
 	var chainMap = ds_map_create();
 	var stackSubMap = global.nodeMap[?stackID];
-	if(!scr_isNumericAndExists(stackSubMap, ds_type_map)){exit;}
+	if (!scr_isNumericAndExists(stackSubMap, ds_type_map)) {exit;}
 
 	var unitList = scr_getChainTempList(stackID,true);
 	
 	var unitListSize = ds_list_size(unitList);
 	
-	for(var i = 0; i < unitListSize; i ++){
+	for (var i = 0; i < unitListSize; i++) {
 	
 		var currentUnit = unitList[|i];
 		var currentUnitSubMap = global.nodeMap[?currentUnit];
 		var entryList = currentUnitSubMap[? "entryList"];
-		if(!scr_isNumericAndExists(entryList, ds_type_list)){exit;}
+		if (!scr_isNumericAndExists(entryList, ds_type_list)) {exit;}
 		var entryListSize = ds_list_size(entryList);
 
-		for(var j = 0; j < entryListSize; j++){
+		for (var j = 0; j < entryListSize; j++) {
 			var currentEntry = entryList[|j];
 			var currentEntrySubMap = global.nodeMap[?currentEntry];
-			var currentToken = currentEntrySubMap[?"token"];
+			var currentToken = currentEntrySubMap[? "token"];
 			
 			var currentTokenSubMap = global.nodeMap[?currentToken];
 			
-			var tagMap = currentTokenSubMap[?"tagMap"];
+			var tagMap = currentTokenSubMap[? "tagMap"];
 			var displayString = tagMap[?global.displayTokenField];
-			var inChainsList = currentTokenSubMap[?"inChainsList"];
+			var inChainsList = currentTokenSubMap[? "inChainsList"];
 			var inChainsListSize = ds_list_size(inChainsList);
-			for(var k = 0; k < inChainsListSize; k++){
+			for (var k = 0; k < inChainsListSize; k++) {
 			
 				var currentChainID = inChainsList[|k];
 				
-				if(ds_map_exists(chainMap,currentChainID)){
+				if (ds_map_exists(chainMap,currentChainID)) {
 					var chainList = chainMap[?currentChainID];
 					scr_addToListOnce(chainList, displayString)
 				}
@@ -50,17 +50,17 @@ function scr_setRezMap(stackID, par){
 	
 	var totalScore = 0;
 	
-	repeat(chainMapSize){
+	repeat(chainMapSize) {
 		
 		var chainList = chainMap[?key];
 		var chainSubMap = global.nodeMap[?key];
 		
 		var chainListSize = ds_list_size(chainList);
 		
-		for(var i = 0; i < chainListSize; i++){
+		for (var i = 0; i < chainListSize; i++) {
 			
 			var currentToken = chainList[|i];
-			if(!ds_map_exists(tokenMap,currentToken)){
+			if (!ds_map_exists(tokenMap,currentToken)) {
 				var tokenList = ds_list_create();
 				ds_list_add(tokenList,currentToken);
 				ds_map_add_list(tokenMap,currentToken,tokenList);
@@ -69,15 +69,15 @@ function scr_setRezMap(stackID, par){
 				var tokenList = tokenMap[?currentToken];
 			}
 			
-			for(var j = 0; j < chainListSize; j++){	
+			for (var j = 0; j < chainListSize; j++) {	
 				var currentTokenToAdd = chainList[|j];
-				if(j == i){continue;}
+				if (j == i) {continue;}
 				scr_addToListOnce(tokenList,currentTokenToAdd);
 			}
 			
 		}
 		
-		var entryList = chainSubMap[?"setIDList"];
+		var entryList = chainSubMap[? "setIDList"];
 		
 		var entryListSize = ds_list_size(entryList);
 		totalScore += power(entryListSize,2);
@@ -107,7 +107,7 @@ function scr_setRezMap(stackID, par){
 	/*
 	var stackUnitList = scr_getChainTempList(stackID, false);
 	var deleteChainList = ds_list_create();
-	var rezList = global.nodeMap[?"resonanceList"];
+	var rezList = global.nodeMap[? "resonanceList"];
 	var rezListSize = ds_list_size(rezList);
 	for (var i = 0; i < rezListSize; i++) {
 		var currentRezChain = rezList[| i];

@@ -1,9 +1,9 @@
 
 
-function scr_drawBoolHover(boolObject){
+function scr_drawBoolHover(boolObject) {
 	var currentStateString = "";
 					
-	if(boolObject){
+	if (boolObject) {
 		currentStateString = scr_get_translation("msg_enabled");
 	}
 	else{

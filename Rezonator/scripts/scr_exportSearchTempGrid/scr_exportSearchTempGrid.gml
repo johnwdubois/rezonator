@@ -1,6 +1,6 @@
 
 
-function scr_exportSearchTempGrid(){
+function scr_exportSearchTempGrid() {
 	
 	var grid = ds_grid_create(3, 0);
 	var grid_colName = 0;

@@ -1,6 +1,6 @@
 
 
-function scr_createTreeFromStack(chainID){
+function scr_createTreeFromStack(chainID) {
 	
 	show_debug_message("scr_createTreeFromStack, chainID: " + string(chainID));
 

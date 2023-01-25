@@ -1,21 +1,21 @@
-function scr_cliqueGeneration(){
+function scr_cliqueGeneration() {
 
 	var encounteredTokenListSize = ds_list_size(obj_chain.encounteredTokenList);
 
-	repeat(encounteredTokenListSize){
+	repeat(encounteredTokenListSize) {
 		var tokenListID = obj_chain.encounteredTokenList[| 0];
 		var tokenID = (scr_isChunk(tokenListID)) ? scr_getFirstWordOfChunk(tokenListID): tokenListID;
 		var tokenSubMap = global.nodeMap[? tokenID];
 		var unitID = tokenSubMap[? "unit"];
 	
-		if(ds_list_find_index(obj_chain.traversedUnitList, unitID) == -1){
+		if (ds_list_find_index(obj_chain.traversedUnitList, unitID) == -1) {
 		
 			var unitSubMap =  global.nodeMap[? unitID];
 			var entryList = unitSubMap[? "entryList"];
 			
 			var entryListSize = ds_list_size(entryList);
 
-			for(var i = 0; i < entryListSize; i ++){
+			for (var i = 0; i < entryListSize; i++) {
 				var entryID = entryList[| i];
 				var entrySubMap = global.nodeMap[? entryID];
 				var tokenID = entrySubMap[? "token"];
@@ -24,10 +24,10 @@ function scr_cliqueGeneration(){
 				
 				var inChainsListSize = ds_list_size(inChainsList);
 			
-				for(var j = 0; j < inChainsListSize; j ++){
+				for (var j = 0; j < inChainsListSize; j++) {
 					var currentChainID = inChainsList[|j];
-					if(ds_list_find_index(global.nodeMap[? "resonanceList"], currentChainID) >= 0){
-						if(ds_list_find_index(obj_chain.encounteredUnitList, unitID) == -1){
+					if (ds_list_find_index(global.nodeMap[? "resonanceList"], currentChainID) >= 0) {
+						if (ds_list_find_index(obj_chain.encounteredUnitList, unitID) == -1) {
 							scr_addToListOnce(obj_chain.encounteredChainList, currentChainID);
 						}
 					}
@@ -36,16 +36,16 @@ function scr_cliqueGeneration(){
 				var inChunkList = tokenSubMap[? "inChunkList"];
 				var inChunkListSize = ds_list_size(inChunkList);
 			
-				for(var j = 0; j < inChunkListSize; j ++){
+				for (var j = 0; j < inChunkListSize; j++) {
 					var chunkID =  inChunkList[|j];
 					if (scr_getFirstWordOfChunk(chunkID) == tokenID) {
 						var chunkSubMap = global.nodeMap[? chunkID];
 						var chunkInChainsList = chunkSubMap[? "inChainsList"];
 						var chunkInChainsListSize = ds_list_size(chunkInChainsList);
-						for(var k = 0; k < chunkInChainsListSize; k ++){
+						for (var k = 0; k < chunkInChainsListSize; k++) {
 							var currentChainID = chunkInChainsList[|k];
-							if(ds_list_find_index(global.nodeMap[? "resonanceList"], currentChainID) >= 0){
-								if(ds_list_find_index(obj_chain.encounteredUnitList, unitID) == -1){
+							if (ds_list_find_index(global.nodeMap[? "resonanceList"], currentChainID) >= 0) {
+								if (ds_list_find_index(obj_chain.encounteredUnitList, unitID) == -1) {
 									scr_addToListOnce(obj_chain.encounteredChainList, currentChainID);
 								}
 							}
@@ -66,16 +66,16 @@ function scr_cliqueGeneration(){
 
 	var encounteredChainListSize = ds_list_size(obj_chain.encounteredChainList);
 	var i = 0;
-	repeat(encounteredChainListSize){
+	repeat(encounteredChainListSize) {
 		var currentChainSubMap = global.nodeMap[? obj_chain.encounteredChainList[|i]];
-		var setList = currentChainSubMap[?"setIDList"];
+		var setList = currentChainSubMap[? "setIDList"];
 		var setListSize = ds_list_size(setList);
-		for(var j = 0; j < setListSize; j++){
+		for (var j = 0; j < setListSize; j++) {
 			var rezNodeID = setList[|j];
 			var rezNode = global.nodeMap[? rezNodeID];
 
 			var tokenID = rezNode[? "token"];
-			if(scr_isChunk(tokenID)){
+			if (scr_isChunk(tokenID)) {
 				var tokenSubMap = global.nodeMap[? scr_getFirstWordOfChunk(tokenID)];
 			}
 			else{
@@ -83,7 +83,7 @@ function scr_cliqueGeneration(){
 			}
 			if (!scr_isNumericAndExists(tokenSubMap, ds_type_map)) continue;
 			var unitID = tokenSubMap[? "unit"];
-			if(ds_list_find_index(obj_chain.traversedUnitList, unitID) == -1){
+			if (ds_list_find_index(obj_chain.traversedUnitList, unitID) == -1) {
 				scr_addToListOnce(obj_chain.encounteredTokenList,tokenID);
 			}
 		}
@@ -91,11 +91,11 @@ function scr_cliqueGeneration(){
 		i++
 	}
 
-	if(ds_list_size(obj_chain.encounteredTokenList) > 0){
+	if (ds_list_size(obj_chain.encounteredTokenList) > 0) {
 		scr_cliqueGeneration();
 	}
 	else{
-		if(ds_list_size(obj_chain.encounteredChainList) > 0){
+		if (ds_list_size(obj_chain.encounteredChainList) > 0) {
 			var cliqueID = scr_generateRandomID();
 			var cliqueName = "Clique " + string(obj_chain.cliqueCount);
 			var cliqueChainList = ds_list_create();
@@ -113,7 +113,7 @@ function scr_cliqueGeneration(){
 			ds_map_add_map(global.cliqueMap, cliqueID, cliqueSubMap);
 	
 			var traversedUnitListSize = ds_list_size(obj_chain.traversedUnitList);
-			for(var i = 0 ; i < traversedUnitListSize; i ++){
+			for (var i = 0 ; i < traversedUnitListSize; i++) {
 				scr_addToListOnce(obj_chain.encounteredUnitList,obj_chain.traversedUnitList[|i]);
 			}
 		

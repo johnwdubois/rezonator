@@ -16,7 +16,7 @@ if (instance_exists(leftPaneInst)) {
 	}
 }
 
-with(obj_control){
+with(obj_control) {
 	mouseoverInputBox = false;
 }
 with (obj_dropDown) {
@@ -54,13 +54,13 @@ var currentFieldSubMap = fieldTagMap[?field];
 var isLockedField = scr_checkLockedField(field);
 var tagSet = "";
 if (scr_isNumericAndExists(currentFieldSubMap,ds_type_map)) {
-	tagSet = currentFieldSubMap[?"tagSet"]
+	tagSet = currentFieldSubMap[? "tagSet"]
 }
 var allowSetString = true;
 show_debug_message("lockedField = "+ string(isLockedField));
-if(isLockedField){
-	if(scr_isNumericAndExists(tagSet, ds_type_list)){
-		if(ds_list_find_index(tagSet,tag) == -1 && tag != ""){
+if (isLockedField) {
+	if (scr_isNumericAndExists(tagSet, ds_type_list)) {
+		if (ds_list_find_index(tagSet,tag) == -1 && tag != "") {
 			allowSetString = false;
 		}
 	}
@@ -68,7 +68,7 @@ if(isLockedField){
 show_debug_message("allowSetString = "+ string(allowSetString));
 
 // set tag value in map
-if(allowSetString){
+if (allowSetString) {
 	var idSubMap = global.nodeMap[? setID];
 	if (scr_isNumericAndExists(idSubMap, ds_type_map)) {
 		var tagMap = idSubMap[? "tagMap"];

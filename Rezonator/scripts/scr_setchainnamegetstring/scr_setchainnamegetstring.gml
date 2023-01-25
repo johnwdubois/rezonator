@@ -1,4 +1,4 @@
-function scr_setChainNameGetString(){
+function scr_setChainNameGetString() {
 	
 	var stringToSet = "";
 	if (obj_control.rightClickID != "" && is_string(obj_control.rightClickID)) {

@@ -1,4 +1,4 @@
-function scr_removeBadQuotes(str, subStr){
+function scr_removeBadQuotes(str, subStr) {
 	
 	var strCopy = str;
 	show_debug_message("scr_removeBadQuotes, str: " + string(str) + ", subStr: " +string(subStr));

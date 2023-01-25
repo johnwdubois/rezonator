@@ -4,7 +4,7 @@
 function scr_gridViewDrawBackArrow() {
 	
 	//Prevent drawing and clicking if a Dropdown is onscreen
-	if(instance_exists(obj_dropDown)) {
+	if (instance_exists(obj_dropDown)) {
 		exit;
 	}
 	
@@ -66,9 +66,9 @@ function scr_gridViewDrawBackArrow() {
 	}
 	
 	// Draw the arrow sprite
-	if(global.colorTheme == 0){
+	if (global.colorTheme == 0) {
 		draw_sprite_ext(spr_backArrow, 0, backArrowX, backArrowY, spriteSize, spriteSize, 0, global.colorThemeBorders, 1);
-	}else if(global.colorTheme == 1){      // dark mode, create a white back arrow
+	}else if (global.colorTheme == 1) {      // dark mode, create a white back arrow
 		draw_sprite_ext(spr_backArrowWhite, 0, backArrowX, backArrowY, spriteSize, spriteSize, 0, global.colorThemeBorders, 1);
 	}
 

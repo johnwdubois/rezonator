@@ -1,6 +1,6 @@
 
 
-function scr_panelPane_drawSearch1ToMany(){
+function scr_panelPane_drawSearch1ToMany() {
 
 
 	var lineStateLTR = (obj_control.drawLineState == obj_control.lineState_ltr);
@@ -19,7 +19,7 @@ function scr_panelPane_drawSearch1ToMany(){
 	var unitColWidth = windowWidth * 0.1;
 	var hitColWidth = windowWidth * 0.05;
 	var contextColWidth = windowWidth * 0.35;
-	if(scr_isNumericAndExists(global.searchMap, ds_type_map)){
+	if (scr_isNumericAndExists(global.searchMap, ds_type_map)) {
 		var searchSubMap = global.searchMap[? obj_panelPane.functionSearchList_searchSelected];
 		if (scr_isNumericAndExists(searchSubMap, ds_type_map)) {
 			var searchTermList = searchSubMap[? "searchTermList"];
@@ -31,13 +31,13 @@ function scr_panelPane_drawSearch1ToMany(){
 				}
 			}
 			
-			var tokenTokenList = searchSubMap[?"displayTokenList"];
+			var tokenTokenList = searchSubMap[? "displayTokenList"];
 			if (scr_isNumericAndExists(tokenTokenList, ds_type_list)) {
 				var tokenTokenListSize = ds_list_size(tokenTokenList);
 				for (var i = 0; i < tokenTokenListSize; i++) {
 					var tokenID = tokenTokenList[| i];
 					var tokenSubMap = global.nodeMap[?tokenID]
-					var tokenTagMap = tokenSubMap[?"tagMap"];
+					var tokenTagMap = tokenSubMap[? "tagMap"];
 					var currentTokenStr = tokenTagMap[?global.displayTokenField];
 					var strWidth = string_width(currentTokenStr) + (spaceWidth * 2);
 					hitColWidth = max(hitColWidth, strWidth);
@@ -87,20 +87,20 @@ function scr_panelPane_drawSearch1ToMany(){
 	var tokenDisplayListSize = 0;
 	var selectedTokenList = "";
 	
-	if(scr_isNumericAndExists( global.searchMap, ds_type_map)){
+	if (scr_isNumericAndExists( global.searchMap, ds_type_map)) {
 		// get the search list & make sure it exists
 		var searchSubMap = global.searchMap[? obj_panelPane.functionSearchList_searchSelected];
 		if (scr_isNumericAndExists(searchSubMap, ds_type_map)) {
 			
 
-			var tokenDisplayList = searchSubMap[?"displayTokenList"];
-			var selectedTokenList = searchSubMap[?"selectedTokenList"];
-			var displayUnitList = searchSubMap[?"displayUnitList"];
+			var tokenDisplayList = searchSubMap[? "displayTokenList"];
+			var selectedTokenList = searchSubMap[? "selectedTokenList"];
+			var displayUnitList = searchSubMap[? "displayUnitList"];
 			tokenDisplayListSize = ds_list_size(tokenDisplayList);
 	
 	
 			var discourseNodeSubMap = global.nodeMap[?global.discourseNode];
-			var tokenList = discourseNodeSubMap[?"tokenList"];
+			var tokenList = discourseNodeSubMap[? "tokenList"];
 	
 			scr_surfaceStart();
 	
@@ -133,16 +133,16 @@ function scr_panelPane_drawSearch1ToMany(){
 				var unitTagMap = "";
 				var displayUnitStr = "";
 				var unitSubMap = global.nodeMap[? currentUnitID];
-				if(scr_isNumericAndExists(unitSubMap, ds_type_map)){
-					unitSeq = unitSubMap[?"unitSeq"];
-					unitTagMap = unitSubMap[?"tagMap"];
+				if (scr_isNumericAndExists(unitSubMap, ds_type_map)) {
+					unitSeq = unitSubMap[? "unitSeq"];
+					unitTagMap = unitSubMap[? "tagMap"];
 					displayUnitStr = unitTagMap[?global.participantField];
 				}
 				
 				var currentTokenIndex = ds_list_find_index(tokenList, currentToken);
 				var currentTokenSelected = (functionSearchList_tokenSelected == currentToken);
 				var currentTokenChecked = (ds_list_find_index(selectedTokenList, currentToken) != -1);
-				if(currentTokenSelected){
+				if (currentTokenSelected) {
 					currentSelectedTokenIndex = i;
 				}
 				var beforeTokenList = ds_list_create();
@@ -151,15 +151,15 @@ function scr_panelPane_drawSearch1ToMany(){
 				var itterator = 1;
 				var totalLineCount = (windowWidth/string_width("A"))/2;
 				var charCount = 0;
-				while(charCount < totalLineCount && itterator < 100){
+				while(charCount < totalLineCount && itterator < 100) {
 					var newTokenID = tokenList[| currentTokenIndex - itterator];
 					var newTokenSubMap = global.nodeMap[? newTokenID];
-					if(scr_isNumericAndExists(newTokenSubMap, ds_type_map)){
+					if (scr_isNumericAndExists(newTokenSubMap, ds_type_map)) {
 						var newTokenTagMap = newTokenSubMap[? "tagMap"];
 						var newTokenText = newTokenTagMap[? global.displayTokenField];
 						var tokenCharCount = string_length(newTokenText);
 						charCount += tokenCharCount;
-						if(newTokenText != undefined && newTokenText != ""){
+						if (newTokenText != undefined && newTokenText != "") {
 							ds_list_add(beforeTokenList, newTokenText);
 						}
 					}
@@ -167,15 +167,15 @@ function scr_panelPane_drawSearch1ToMany(){
 				}
 				itterator = 1;
 				charCount = 0;
-				while(charCount < totalLineCount && itterator < 100){
+				while(charCount < totalLineCount && itterator < 100) {
 					var newTokenID = tokenList[| currentTokenIndex + itterator];
 					var newTokenSubMap = global.nodeMap[? newTokenID];
-					if(scr_isNumericAndExists(newTokenSubMap, ds_type_map)){
+					if (scr_isNumericAndExists(newTokenSubMap, ds_type_map)) {
 						var newTokenTagMap = newTokenSubMap[? "tagMap"];
 						var newTokenText = newTokenTagMap[? global.displayTokenField];
 						var tokenCharCount = string_length(newTokenText);
 						charCount += tokenCharCount;
-						if(newTokenText != undefined && newTokenText != ""){
+						if (newTokenText != undefined && newTokenText != "") {
 							ds_list_add(afterTokenList, newTokenText);
 						}
 					}
@@ -315,7 +315,7 @@ function scr_panelPane_drawSearch1ToMany(){
 				
 				// click on checkbox
 				if (mouseoverCheckbox && mouse_check_button_released(mb_left)) {
-					if(currentTokenChecked){
+					if (currentTokenChecked) {
 						scr_deleteFromList(selectedTokenList,currentToken);
 					}
 					else{
@@ -397,7 +397,7 @@ function scr_panelPane_drawSearch1ToMany(){
 	draw_text(headerTextX, headerTextY, colName);
 	var allChainsSelected = false;
 	var someChainsSelected = false;
-	if(scr_isNumericAndExists(selectedTokenList, ds_type_list)){
+	if (scr_isNumericAndExists(selectedTokenList, ds_type_list)) {
 		allChainsSelected = (tokenDisplayListSize == ds_list_size(selectedTokenList) && tokenDisplayListSize > 0);
 		someChainsSelected = (tokenDisplayListSize > ds_list_size(selectedTokenList) && ds_list_size(selectedTokenList) > 0 && tokenDisplayListSize > 0);
 
@@ -418,12 +418,12 @@ function scr_panelPane_drawSearch1ToMany(){
 				
 			// click on checkbox header
 			if (mouse_check_button_released(mb_left)) {
-				if(allChainsSelected){
+				if (allChainsSelected) {
 					ds_list_clear(selectedTokenList);
 				}
 				else{
 					var i = 0
-					repeat(tokenDisplayListSize){
+					repeat(tokenDisplayListSize) {
 						scr_addToListOnce(selectedTokenList, tokenDisplayList[|i]);
 						i++
 					}
@@ -534,13 +534,13 @@ function scr_panelPane_drawSearch1ToMany(){
 			
 		var newTokenSubMap = global.nodeMap[?newSelectedToken];
 				
-		if(scr_isNumericAndExists(newTokenSubMap, ds_type_map)){
+		if (scr_isNumericAndExists(newTokenSubMap, ds_type_map)) {
 			scrollPlusYDest += sizeOfLine;	
 			
-			with(obj_panelPane){
+			with(obj_panelPane) {
 				functionSearchList_tokenSelected = newSelectedToken;
 			}
-			var newUnitID = newTokenSubMap[?"unit"];
+			var newUnitID = newTokenSubMap[? "unit"];
 
 			scr_jumpToUnitTop(newUnitID);				
 
@@ -560,7 +560,7 @@ function scr_panelPane_drawSearch1ToMany(){
 	draw_set_valign(fa_middle);
 	draw_text(floor(mean(showNextButtonX1, showNextButtonX2)), floor(mean(showNextButtonY1, showNextButtonY2)), showNextButtonText);
 	
-	if(mouseoverShowNextButton){scr_createTooltip(mean(showNextButtonX1, showNextButtonX2),showNextButtonY2, scr_get_translation("find_next"),obj_tooltip.arrowFaceUp);}
+	if (mouseoverShowNextButton) {scr_createTooltip(mean(showNextButtonX1, showNextButtonX2),showNextButtonY2, scr_get_translation("find_next"),obj_tooltip.arrowFaceUp);}
 	
 
 	if (mouse_check_button_released(mb_left) && mouseoverShowNextButton) {
@@ -568,13 +568,13 @@ function scr_panelPane_drawSearch1ToMany(){
 			
 		var newTokenSubMap = global.nodeMap[?newSelectedToken];
 				
-		if(scr_isNumericAndExists(newTokenSubMap, ds_type_map)){
+		if (scr_isNumericAndExists(newTokenSubMap, ds_type_map)) {
 			scrollPlusYDest -= sizeOfLine;
 			
-			with(obj_panelPane){
+			with(obj_panelPane) {
 				functionSearchList_tokenSelected = newSelectedToken;
 			}
-			var newUnitID = newTokenSubMap[?"unit"];
+			var newUnitID = newTokenSubMap[? "unit"];
 
 			scr_jumpToUnitTop(newUnitID);
 					
@@ -616,14 +616,14 @@ function scr_panelPane_drawSearch1ToMany(){
 	// Allows use of arrow keys, pgUp/pgDwn, and ctrl+key in chain list if clicked in chainList
 
 	if (clickedIn) {
-		if (mouse_wheel_up()){
+		if (mouse_wheel_up()) {
 			scrollPlusYDest += sizeOfLine/2;
 		}
 		if ( keyboard_check(vk_up) and (holdUp < 2 or holdUp > 30)) {
 			scrollPlusYDest += sizeOfLine;
 		}
 		
-		if (mouse_wheel_down()){
+		if (mouse_wheel_down()) {
 			scrollPlusYDest -= sizeOfLine/2;
 		}
 		

@@ -102,7 +102,7 @@ function scr_panelPane_drawUnits1to1() {
 			var currentFieldSubMap = unitTagMap[? currentField];
 			if (scr_isNumericAndExists(currentFieldSubMap, ds_type_map)) {
 				if (!ds_map_exists(currentFieldSubMap, "tagSet")) readOnlyField = true;
-				if(currentFieldSubMap[?"readOnly"]) readOnlyField = true;
+				if (currentFieldSubMap[? "readOnly"]) readOnlyField = true;
 			}
 	
 		    //Check mouse clicks to focus a line in the list
@@ -138,11 +138,11 @@ function scr_panelPane_drawUnits1to1() {
 
 			// dropdown buttons
 			var dropDownButtonX1 = colRectX2 - sprite_get_width(spr_dropDown) - 4;
-			if (lineStateLTR){
-				if(i == headerListSize - 1) dropDownButtonX1 -= global.scrollBarWidth;
+			if (lineStateLTR) {
+				if (i == headerListSize - 1) dropDownButtonX1 -= global.scrollBarWidth;
 			}
 			else {
-				if(i == 0) dropDownButtonX1 -= global.scrollBarWidth;
+				if (i == 0) dropDownButtonX1 -= global.scrollBarWidth;
 			}
 				
 			var dropDownButtonY1 = unitRectY1;
@@ -167,8 +167,8 @@ function scr_panelPane_drawUnits1to1() {
 			draw_rectangle(colRectX1 - clipX, colRectY1 - clipY, colRectX2 - clipX, colRectY2 - clipY, false);
 			
 			var mouseOverCell = scr_pointInRectangleClippedWindow(mouse_x,mouse_y, colRectX1, unitRectY1, colRectX2, unitRectY2) && !mouseoverCancel;
-			if(mouseOverCell){
-				if(!readOnlyField){
+			if (mouseOverCell) {
+				if (!readOnlyField) {
 					draw_sprite_ext(spr_dropDown, 0, mean(dropDownButtonX1, dropDownButtonX2) - clipX, mean(unitRectY1, unitRectY2) - clipY, 1, 1, 0, global.colorThemeText, 1);
 				}
 				obj_control.hoverTextCopy = currentStr;
@@ -218,12 +218,12 @@ function scr_panelPane_drawUnits1to1() {
 					// text coordinates
 			
 				
-			if(lineStateLTR){
+			if (lineStateLTR) {
 				var textX = floor(colRectX1 + textMarginLeft);
 			}
 			else{
 				var textX = floor(colRectX2 - textMarginLeft);
-				if(drawDropDowns && mouseoverunitRect ){
+				if (drawDropDowns && mouseoverunitRect ) {
 					textX = textX - dropDownButtonWidth;
 				}
 			}

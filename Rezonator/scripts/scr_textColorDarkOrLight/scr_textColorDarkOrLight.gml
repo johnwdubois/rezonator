@@ -1,6 +1,6 @@
 
 
-function scr_textColorDarkOrLight(color){
+function scr_textColorDarkOrLight(color) {
 	
 	var r = color_get_red(color);
 	var g = color_get_green(color);

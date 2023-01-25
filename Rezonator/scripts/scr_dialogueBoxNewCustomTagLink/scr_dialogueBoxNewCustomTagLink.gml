@@ -28,16 +28,16 @@ function scr_dialogueBoxNewCustomTagLink() {
 	
 	
 	//add this to selected unit if not in tag pane
-	if(obj_panelPane.functionChainList_currentTab != obj_panelPane.functionChainList_tabField){
+	if (obj_panelPane.functionChainList_currentTab != obj_panelPane.functionChainList_tabField) {
 		// get the unitToChange's submap, and that unit's tagmap
 		var linkSubMap = global.treeMap[? obj_panelPane.functionTree_treeLinkSelected];
-		if(scr_isNumericAndExists(linkSubMap, ds_type_map)){
+		if (scr_isNumericAndExists(linkSubMap, ds_type_map)) {
 			var linkTagMap = linkSubMap[? "tagMap"];
 			// set the new value in this unit's tagmap
 			linkTagMap[? obj_control.tokenFieldToChange] = newTag;
 		}
-		with(obj_panelPane){ functionTree_treeLinkSelected = ""; }
-		with(obj_panelPane){
+		with(obj_panelPane) { functionTree_treeLinkSelected = ""; }
+		with(obj_panelPane) {
 			functionField_linkFieldSelected = obj_control.tokenFieldToChange;
 			functionField_linkTagSelected = newTag;
 		}

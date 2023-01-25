@@ -1,6 +1,6 @@
 
 
-function scr_deleteField(fieldName){
+function scr_deleteField(fieldName) {
 
 	// determine the list that this field is in
 	var chainViewOneToMany = obj_panelPane.chainViewOneToMany;
@@ -52,7 +52,7 @@ function scr_deleteField(fieldName){
 		var tokenTagMap =  global.nodeMap[? "linkTagMap"];
 	}
 
-	if(!scr_isNumericAndExists(fieldList, ds_type_list)){exit;}
+	if (!scr_isNumericAndExists(fieldList, ds_type_list)) {exit;}
 	
 	// delete field from field list
 	scr_deleteFromList(fieldList, fieldName);

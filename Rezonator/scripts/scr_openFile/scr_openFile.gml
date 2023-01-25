@@ -2,7 +2,7 @@ function scr_openFile() {
 	
 	show_debug_message("global.importType: " + string(global.importType));
 
-	if(global.previousImportDirectory == ""){
+	if (global.previousImportDirectory == "") {
 	
 		var discourseDirString = global.rezonatorDirString + "\\Data\\SBCorpus\\Transcript";
 		if (os_type == os_macosx) {

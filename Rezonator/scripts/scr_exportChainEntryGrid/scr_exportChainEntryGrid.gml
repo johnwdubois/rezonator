@@ -1,6 +1,6 @@
 
 
-function scr_exportChainEntryGrid(chainList, headerList){
+function scr_exportChainEntryGrid(chainList, headerList) {
 	
 	show_debug_message("scr_exportChainEntryGrid ... headerList: " + scr_getStringOfList(headerList));
 	

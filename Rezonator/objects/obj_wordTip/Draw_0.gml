@@ -6,31 +6,31 @@ var validUnitTip = unitTipDisplay && (obj_control.hoverUnitID != "");
 
 if (validWordTip || validUnitTip) {
 
-	if(obj_control.hoverTokenID != ""){
+	if (obj_control.hoverTokenID != "") {
 		// Make the box display the word at the mouse cursor
 		currentID = obj_control.hoverTokenID;
 	}
-	else if(obj_control.hoverChunkID != ""){
+	else if (obj_control.hoverChunkID != "") {
 		currentID = obj_control.hoverChunkID;
 	}
-	else if(obj_control.hoverUnitID != ""){
+	else if (obj_control.hoverUnitID != "") {
 		currentID = obj_control.hoverUnitID;
 	}
-	else if(obj_panelPane.functionTree_treeLinkMouseover != ""){
+	else if (obj_panelPane.functionTree_treeLinkMouseover != "") {
 		currentID = obj_panelPane.functionTree_treeLinkMouseover;	
 	}
 	
 	x = floor(mouse_x + mouseCursorWidth);
 	y = floor(mouse_y + mouseCursorHeight);
 
-	if(obj_panelPane.functionTree_treeLinkMouseover != ""){
+	if (obj_panelPane.functionTree_treeLinkMouseover != "") {
 		var IDSubMap = global.treeMap[?currentID];
 	}
 	else{
 		var IDSubMap = global.nodeMap[?currentID];
 	}
-	var IDType = IDSubMap[?"type"];
-	var tagMap = IDSubMap[?"tagMap"];
+	var IDType = IDSubMap[? "type"];
+	var tagMap = IDSubMap[? "tagMap"];
 	var plusY = 0;
 
 
@@ -41,20 +41,20 @@ if (validWordTip || validUnitTip) {
 	var sizeOfFieldList = 0;
 	var fieldList = -1;
 	
-	if(IDType == "unit"){
+	if (IDType == "unit") {
 		fieldList = obj_control.unitFieldList;
 	}
-	else if(IDType == "token"){
+	else if (IDType == "token") {
 		fieldList = obj_control.tokenFieldList;
 	}
-	else if(IDType == "chunk"){
+	else if (IDType == "chunk") {
 		fieldList = obj_control.chunkFieldList;
 	}
-	else if(IDType == "treeLink"){
+	else if (IDType == "treeLink") {
 		fieldList = global.linkFieldList;
 	}
 	
-	if(!scr_isNumericAndExists(fieldList, ds_type_list)){exit;}
+	if (!scr_isNumericAndExists(fieldList, ds_type_list)) {exit;}
 	
 	sizeOfFieldList = ds_list_size(fieldList);
 
@@ -130,15 +130,15 @@ if (validWordTip || validUnitTip) {
 	var col1X = boxX1 + 5
 	var col2X = boxX1 + colX2Max; 
 	var valueY = boxY1 + string_height(string("0"))/2;
-	if(obj_control.drawLineState == obj_control.lineState_rtl){
+	if (obj_control.drawLineState == obj_control.lineState_rtl) {
 		col1X -= boxWidth;
 		col2X -= boxWidth;
 	}
 	// Draw the attribute grid
-	for(var i = 0; i < sizeOfFieldList; i++)
+	for (var i = 0; i < sizeOfFieldList; i++)
 	{		
 		/*
-		if(i == 0){
+		if (i == 0) {
 			// Draw the headers
 			var headerTextY = mean(boxY1 + lineHeight, boxY1);
 			draw_text(col1X,floor(headerTextY), "Attribute");
@@ -164,20 +164,20 @@ if (validWordTip || validUnitTip) {
 				if (IDType == "token") {
 					selectedTag = obj_panelPane.functionField_tokenTagSelected;
 				}
-				else if(IDType == "unit"){
+				else if (IDType == "unit") {
 					selectedTag = obj_panelPane.functionField_unitTagSelected;
 				}
-				else if(IDType == "chunk"){
+				else if (IDType == "chunk") {
 					selectedTag = obj_panelPane.functionField_chunkTagSelected;
 				}
-				else if(IDType == "treeLink"){
+				else if (IDType == "treeLink") {
 					selectedTag = obj_panelPane.functionField_linkTagSelected;
 				}
 				
 				if (scr_get_translation(selectedTag) == scr_get_translation("menu_clear")) {
 					scr_createTooltip(boxX2, mean(rectY1, rectY2), "Clear tag", obj_tooltip.arrowFaceLeft);
 				}
-				else if(is_string(selectedTag) && selectedTag != "" && selectedTag != fieldValue){
+				else if (is_string(selectedTag) && selectedTag != "" && selectedTag != fieldValue) {
 					scr_createTooltip(boxX2, mean(rectY1, rectY2), "Quick tag: " + string(selectedTag), obj_tooltip.arrowFaceLeft);
 				}
 				
@@ -196,12 +196,12 @@ if (validWordTip || validUnitTip) {
 		// Draw the attribute value to the right
 		draw_text(col2X, floor(valueY), fieldValue);
 		
-		//if(!scr_isStrRTL(string(fieldValue)))
+		//if (!scr_isStrRTL(string(fieldValue)))
 		//	draw_text(col2X, floor(valueY), fieldValue);
 		//else
 		//	draw_text(col2X, floor(valueY), scr_stringReverse(fieldValue));
 			
-		if(i < sizeOfFieldList){
+		if (i < sizeOfFieldList) {
 			valueY += lineHeight;
 		}
 	

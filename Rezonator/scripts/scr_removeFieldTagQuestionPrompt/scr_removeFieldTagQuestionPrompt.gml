@@ -1,6 +1,6 @@
 
 
-function scr_removeFieldTagQuestionPrompt(fieldOrTag, unitOrChain, oneManyOrOneOne, optionSelected){
+function scr_removeFieldTagQuestionPrompt(fieldOrTag, unitOrChain, oneManyOrOneOne, optionSelected) {
 	
 	show_debug_message("scr_removeFieldTagQuestionPromp... fieldOrTag: " + string(fieldOrTag) + ", unitOrChain: " + string(unitOrChain) + ", oneManyOrOneOne: " + string(oneManyOrOneOne) + ", optionSelected: " + string(optionSelected));
 

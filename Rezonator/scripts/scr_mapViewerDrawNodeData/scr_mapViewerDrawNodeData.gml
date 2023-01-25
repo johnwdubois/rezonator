@@ -1,6 +1,6 @@
 
 
-function scr_mapViewerDrawNodeData(){
+function scr_mapViewerDrawNodeData() {
 
 	scr_adaptFont("0", "M");
 	draw_set_halign(fa_left);
@@ -101,13 +101,13 @@ function scr_mapViewerDrawNodeData(){
 					draw_text(subTextX - clipX, subTextY - clipY, subsubMapKey + ":    " + subsubMapValStr);
 					
 					var subsubMapKey = ds_map_find_next(subMapVal, subsubMapKey);
-					if (j < subsubMapSize - 1){
+					if (j < subsubMapSize - 1) {
 						plusY += strHeight;
 						scrollBarSize ++;
 					}
 				}
 			}
-			else if(isMap && scr_isNumericAndExists(subMapVal, ds_type_list)){
+			else if (isMap && scr_isNumericAndExists(subMapVal, ds_type_list)) {
 				subMapValStr = "";
 				plusY += strHeight;
 				scrollBarSize ++;
@@ -138,7 +138,7 @@ function scr_mapViewerDrawNodeData(){
 					draw_set_color(global.colorThemeSelected2);
 					draw_text(subTextX - clipX, subTextY - clipY, subMapKey + ":    " + subListStr);
 					
-					if (j < subListSize - 1){
+					if (j < subListSize - 1) {
 						plusY += strHeight;
 						scrollBarSize ++;
 					}

@@ -1,4 +1,4 @@
-function scr_createChunk(){
+function scr_createChunk() {
 	
 	show_debug_message("....scr_createChunk, mouseoverPanelPane: " + string(obj_control.mouseoverPanelPane) + ", delayInput: " + string(global.delayInput) + ", obj_control.rightClickID: " + string(obj_control.rightClickID));
 	
@@ -62,10 +62,10 @@ function scr_createChunk(){
 					
 					var chunkListSize =  ds_list_size(currentTokenInChunkList);
 					//find highestNestedlevel for all chunks
-					for(var j  = 0 ; j < chunkListSize; j++){
+					for (var j  = 0 ; j < chunkListSize; j++) {
 						var currentChunk = currentTokenInChunkList[|j]
 						//skip over newest created chunk while calculating nesting
-						if(currentChunk == chunkID){continue;}
+						if (currentChunk == chunkID) {continue;}
 						var currentChunkSubMap = global.nodeMap[? currentChunk];
 						var currentChunkNest = currentChunkSubMap[? "nest"];
 						
@@ -82,8 +82,8 @@ function scr_createChunk(){
 						var currentChunkEndDocOrder = currentChunkLastTokenSubMap[? "docTokenSeq"];
 						
 						//the chunk is encapsulating the new chunk
-						if(currentChunkStartDocOrder <= startDocOrder && currentChunkEndDocOrder >= endDocOrder){
-							if(currentChunkNest < lowestEncapsulatingNest) {
+						if (currentChunkStartDocOrder <= startDocOrder && currentChunkEndDocOrder >= endDocOrder) {
+							if (currentChunkNest < lowestEncapsulatingNest) {
 								lowestEncapsulatingChunk = currentChunk;
 								lowestEncapsulatingNest = currentChunkNest;
 							}
@@ -91,8 +91,8 @@ function scr_createChunk(){
 						
 						
 						////the new chunk is contains any part of the currentChunk
-						else if(startDocOrder <= currentChunkStartDocOrder  && endDocOrder >= currentChunkEndDocOrder){
-							if(currentChunkNest > highestEncapsulatedNest) {
+						else if (startDocOrder <= currentChunkStartDocOrder  && endDocOrder >= currentChunkEndDocOrder) {
+							if (currentChunkNest > highestEncapsulatedNest) {
 								highestEncapsulatedChunk = currentChunk;
 								highestEncapsulatedNest = currentChunkNest;
 							}
@@ -100,7 +100,7 @@ function scr_createChunk(){
 						
 						//check the semi encapsulated tokens
 						else if ((currentChunkStartDocOrder >= startDocOrder && currentChunkStartDocOrder <= endDocOrder) xor (currentChunkEndDocOrder >= startDocOrder && currentChunkEndDocOrder <= endDocOrder)) {
-							if(currentChunkNest > highestEncapsulatedNest) {
+							if (currentChunkNest > highestEncapsulatedNest) {
 								highestEncapsulatedChunk = currentChunk;
 								highestEncapsulatedNest = currentChunkNest;
 								show_debug_message("SEMI ENCAPSULATED");
@@ -115,7 +115,7 @@ function scr_createChunk(){
 			}
 		}
 		
-		if(lowestEncapsulatingChunk == ""){
+		if (lowestEncapsulatingChunk == "") {
 			// give the chunk it's nested level
 			chunkSubMap[? "nest"] = highestNest + 1;
 			show_debug_message("no lowestEncapsulatingChunk");
@@ -215,7 +215,7 @@ function scr_createChunk(){
 					}
 					else {
 						var focusedChainSubMap = global.nodeMap[? obj_chain.currentFocusedChainID];
-						if (focusedChainSubMap[?"type"] != "stack") {
+						if (focusedChainSubMap[? "type"] != "stack") {
 							scr_newLink(chunkID);
 						}
 						else {

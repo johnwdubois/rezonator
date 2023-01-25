@@ -1,11 +1,11 @@
-function scr_cellEdit(ID, field, mouseoverCell, mouseoverDropDown, x1, y1, x2, y2, str, type){
+function scr_cellEdit(ID, field, mouseoverCell, mouseoverDropDown, x1, y1, x2, y2, str, type) {
 	var isDragging = false;
-	with(obj_inputBox){
+	with(obj_inputBox) {
 		isDragging = dragging;
 	}
 	
 	// create input box for tagging if user clicks on cell
-	if(mouseoverCell){
+	if (mouseoverCell) {
 		obj_control.hoverTextCopy = str;
 		obj_control.mouseoverTagCell = true;
 
@@ -27,7 +27,7 @@ function scr_cellEdit(ID, field, mouseoverCell, mouseoverDropDown, x1, y1, x2, y
 			else if (x2 > x + windowWidth) {
 				scrollHorPlusXDest -= abs(x2 - (x + windowWidth));
 			}
-			if(obj_control.doubleClickTimer > 0){
+			if (obj_control.doubleClickTimer > 0) {
 				obj_control.navWindowTaggingFocusHeavy = true;
 					
 				var nodeMapKey = "";
@@ -59,8 +59,8 @@ function scr_cellEdit(ID, field, mouseoverCell, mouseoverDropDown, x1, y1, x2, y
 					var tagMap = global.nodeMap[? nodeMapKey];
 					var fieldSubMap = tagMap[? field];
 					var fieldHasTagSet = scr_checkForTagSet(fieldSubMap);
-					var readOnly =  fieldSubMap[?"readOnly"];
-					if(fieldHasTagSet && !readOnly){
+					var readOnly =  fieldSubMap[? "readOnly"];
+					if (fieldHasTagSet && !readOnly) {
 						// get the tagSet for this field
 						var tagSet = fieldSubMap[? "tagSet"];
 						// create dropdown

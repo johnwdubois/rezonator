@@ -1,6 +1,6 @@
 
 
-function scr_chainSetSelected(chainID, selected){
+function scr_chainSetSelected(chainID, selected) {
 
 	// get chain, make sure it exists
 	var chainSubMap = global.nodeMap[? chainID];

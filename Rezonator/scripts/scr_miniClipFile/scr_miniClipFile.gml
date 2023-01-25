@@ -1,6 +1,6 @@
 
 
-function scr_miniClipFile(chosenUnitList){
+function scr_miniClipFile(chosenUnitList) {
 	var discourseSubMap = global.nodeMap[? global.discourseNode];
 	var unitList = discourseSubMap[? "unitList"];
 	show_debug_message("scr_miniClipFile ... list of units: " + scr_getStringOfList(chosenUnitList));
@@ -71,7 +71,7 @@ function scr_miniClipFile(chosenUnitList){
 		
 		// get current unit, make sure it exists
 		var currentUnit = unitList[| i];
-		if(ds_list_find_index(chosenUnitList, currentUnit) == -1){continue;}
+		if (ds_list_find_index(chosenUnitList, currentUnit) == -1) {continue;}
 		show_debug_message("scr_miniClipFile ... copying unit " + string(currentUnit));
 		var currentUnitSubMap = json_decode(json_encode(global.nodeMap[? currentUnit]));
 		if (!scr_isNumericAndExists(currentUnitSubMap, ds_type_map)) {

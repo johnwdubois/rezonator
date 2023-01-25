@@ -1,6 +1,6 @@
 
 
-function scr_importIGT(){
+function scr_importIGT() {
 	
 	// Fill up BlockGrid & BlockTypeGrid
 	scr_identifyBlocks();

@@ -1,4 +1,4 @@
-function scr_panelPane_drawChunkList(){
+function scr_panelPane_drawChunkList() {
 
 	var drawScrollbar = chainViewOneToMany;
 	var strHeight = string_height("0") * 1.5;
@@ -86,23 +86,23 @@ function scr_panelPane_drawChunkList(){
 		var mouseoverRowRect = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, rowRectX1, rowRectY1, rowRectX2, rowRectY2) && !mouseoverScrollBar && !scrollBarHolding && !mouseoverHeaderRegion && !instance_exists(obj_dropDown) && !instance_exists(obj_dialogueBox);
 		var textY = floor(mean(rowRectY1, rowRectY2));
 		
-		if(mouseoverRowRect){
+		if (mouseoverRowRect) {
 			obj_control.hoverTextCopy = currentChunkNest;
 		}
 		var mouseOverNameRect = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, nameColX, rowRectY1, nameColX + nameColWidth, rowRectY2) && !mouseoverScrollBar && !scrollBarHolding && !mouseoverHeaderRegion && !instance_exists(obj_dropDown) && !instance_exists(obj_dialogueBox);
-		if(mouseOverNameRect){
+		if (mouseOverNameRect) {
 			obj_control.hoverTextCopy = currentChunkName;
 		}
 		var mouseOverTextRect = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, textColX, rowRectY1, textColX + textColWidth, rowRectY2) && !mouseoverScrollBar && !scrollBarHolding && !mouseoverHeaderRegion && !instance_exists(obj_dropDown) && !instance_exists(obj_dialogueBox);
-		if(mouseOverTextRect){
+		if (mouseOverTextRect) {
 			obj_control.hoverTextCopy = scr_getChunkText(currentChunk);
 		}
 		var mouseOverUnitRect = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, unitColX, rowRectY1, unitColX + unitColWidth, rowRectY2) && !mouseoverScrollBar && !scrollBarHolding && !mouseoverHeaderRegion && !instance_exists(obj_dropDown) && !instance_exists(obj_dialogueBox);
-		if(mouseOverUnitRect){
+		if (mouseOverUnitRect) {
 			obj_control.hoverTextCopy = currentChunkUnitSeq;
 		}
 		var mouseOverIndexRect = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, numColX, rowRectY1, numColX + numColWidth, rowRectY2) && !mouseoverScrollBar && !scrollBarHolding && !mouseoverHeaderRegion && !instance_exists(obj_dropDown) && !instance_exists(obj_dialogueBox);
-		if(mouseOverIndexRect){
+		if (mouseOverIndexRect) {
 			obj_control.hoverTextCopy = string(i + 1);
 		}
 	

@@ -14,7 +14,7 @@ function scr_createStackOptions(optionSelected) {
 		case "Default":
 			// need to make this into custom message
 			show_message(scr_get_translation("msg_drag-speaker"));
-			if(obj_toolPane.currentMode == obj_toolPane.modeRead ) {
+			if (obj_toolPane.currentMode == obj_toolPane.modeRead ) {
 				obj_toolPane.currentMode = obj_toolPane.modeTrack;	
 			}
 			obj_control.mouseoverPanelPane = false;

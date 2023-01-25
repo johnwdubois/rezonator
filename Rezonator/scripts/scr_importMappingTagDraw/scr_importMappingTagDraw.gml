@@ -23,11 +23,11 @@ function scr_importMappingTagDraw() {
 
 
 	var tagGridHeight = ds_grid_height(global.tagInfoGrid);
-	for (var j = 0 ; j < 2; j++){
-		for (var i = 0 ; i < tagGridHeight; i++ ){
-			if( j == 0 ){	
+	for (var j = 0 ; j < 2; j++) {
+		for (var i = 0 ; i < tagGridHeight; i++ ) {
+			if ( j == 0 ) {	
 				var cutTest = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colKey, i);
-				if(cutTest == "option_display-token"){
+				if (cutTest == "option_display-token") {
 					obj_importMapping.canContinueDisplayToken = true;
 					i = tagGridHeight;
 				}

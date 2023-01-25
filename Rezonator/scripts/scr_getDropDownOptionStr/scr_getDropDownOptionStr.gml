@@ -1,26 +1,26 @@
-function scr_getDropDownOptionStr(optionStr){
+function scr_getDropDownOptionStr(optionStr) {
 	
 	var fullOptionStr = optionStr;
 	
 	
 	// special cases
-	if(optionListType == global.optionListTypeSearchChain){
+	if (optionListType == global.optionListTypeSearchChain) {
 		//get name of chain instead
-		if(optionStr != "Create New Chain"){
+		if (optionStr != "Create New Chain") {
 			var chainSubMap = global.nodeMap[?optionStr];
-			var chainName = chainSubMap[?"name"];
+			var chainName = chainSubMap[? "name"];
 			fullOptionStr = chainName;
 		}
 	}
-	else if(optionListType == global.optionListTypeAddToShow){
+	else if (optionListType == global.optionListTypeAddToShow) {
 		//get name of chain instead
 		var chainSubMap = global.nodeMap[?optionStr];
-		var chainName = chainSubMap[?"name"];
+		var chainName = chainSubMap[? "name"];
 		fullOptionStr = chainName;
 	}
-	else if(optionListType == global.optionListTypeTagSchema){
+	else if (optionListType == global.optionListTypeTagSchema) {
 		//get name of file instead
-		if(optionStr != "Custom tag schema"){
+		if (optionStr != "Custom tag schema") {
 			fullOptionStr = filename_name(optionStr);
 		}
 	}

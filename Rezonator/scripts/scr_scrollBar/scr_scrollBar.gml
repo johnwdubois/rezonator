@@ -83,7 +83,7 @@ function scr_scrollBar(listSize, focusedElementY, strHeight, marginTop, scrollBa
 	
 	// adjust for whether mouse is near
 	var holdOffset = 0;
-	if(mouseoverScrollBar || scrollBarHolding){
+	if (mouseoverScrollBar || scrollBarHolding) {
 		holdOffset = global.scrollBarWidth/8;
 	}
 	scrollBarX1 -= holdOffset;

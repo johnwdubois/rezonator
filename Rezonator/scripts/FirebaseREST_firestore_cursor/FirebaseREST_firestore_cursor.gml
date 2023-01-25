@@ -7,9 +7,9 @@ function FirebaseREST_firestore_cursor(value,before) {
 	ds_list_add(list,FirebaseREST_firestore_value(value))
 	ds_list_mark_as_map(list,0)
 	ds_map_add_list(map,"values",list)
-	if(before)
-		map[?"before"] = "true"
+	if (before)
+		map[? "before"] = "true"
 	else
-		map[?"before"] = "false"
+		map[? "before"] = "false"
 	return map
 }

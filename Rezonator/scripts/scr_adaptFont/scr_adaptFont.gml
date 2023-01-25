@@ -1,7 +1,7 @@
 // Call this script every time before using draw_text
 // This script handles setting text size for different fonts and reversing strings for RTL fonts
 
-function scr_adaptFont(inputString, size, isTitle){
+function scr_adaptFont(inputString, size, isTitle) {
 	var setTitleFont = false;
 	if (argument_count > 2) {
 		setTitleFont = isTitle;
@@ -179,7 +179,7 @@ function scr_adaptFont(inputString, size, isTitle){
 			} 
 		}
 		// NON-CJK LARGE
-		else if(size == "L") {
+		else if (size == "L") {
 			fontScaledName = global.localeEN_L_0;
 			if (global.fontSize == 0) {
 				fontScaledName = global.html5 ? fnt_nonCJK_size1 : global.localeEN_L_0;

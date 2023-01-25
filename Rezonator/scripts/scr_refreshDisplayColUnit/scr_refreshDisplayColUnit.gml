@@ -1,6 +1,6 @@
 
 
-function scr_refreshDisplayColUnit(unitID){
+function scr_refreshDisplayColUnit(unitID) {
 	
 
 	var startJustify = scr_checkNativeJustification();

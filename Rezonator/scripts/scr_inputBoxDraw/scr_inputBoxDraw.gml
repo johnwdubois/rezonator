@@ -1,4 +1,4 @@
-function scr_inputBoxDraw(){
+function scr_inputBoxDraw() {
 	
 	// set text positions and window height
 	var fontSize = navWindowTagging ? "S" : "M";
@@ -25,17 +25,17 @@ function scr_inputBoxDraw(){
 	}
 	
 	var isLockedField = false;
-	if(instance_exists(obj_control)){
+	if (instance_exists(obj_control)) {
 		var fieldTagMap = scr_getFieldMap();
 		var currentFieldSubMap = fieldTagMap[?obj_control.navWindowTaggingField];
-		if(scr_isNumericAndExists(currentFieldSubMap,ds_type_map)){
-			isLockedField = currentFieldSubMap[?"locked"];
+		if (scr_isNumericAndExists(currentFieldSubMap,ds_type_map)) {
+			isLockedField = currentFieldSubMap[? "locked"];
 		}
 	}
 
 	// click in window to focus it
 	var mouseoverWindow = point_in_rectangle(mouse_x, mouse_y, textBoxX, textBoxY, textBoxX + windowWidth, textBoxY + windowHeight);
-	with(obj_control){
+	with(obj_control) {
 		mouseoverInputBox = mouseoverWindow;
 	}
 	if (mouse_check_button_pressed(mb_left)) {
@@ -51,14 +51,14 @@ function scr_inputBoxDraw(){
 		}
 		
 		if (navWindowTagging && !mouseoverWindow && instance_exists(obj_control)) {
-			if(!obj_control.mouseoverDropDown){
+			if (!obj_control.mouseoverDropDown) {
 				instance_destroy();
 			}
 		}
 	}
-	if(!windowFocused && navWindowTagging && !mouse_check_button(mb_left)){
+	if (!windowFocused && navWindowTagging && !mouse_check_button(mb_left)) {
 		inputBoxCancel += 1;
-		if(inputBoxCancel > 10){
+		if (inputBoxCancel > 10) {
 			show_debug_message("NO FOCUS MUST DESTROY");
 			instance_destroy();
 		}
@@ -112,7 +112,7 @@ function scr_inputBoxDraw(){
 	if (mouse_check_button_released(mb_left)) {
 		validDrag = true;
 		
-		//with(obj_control){alarm[1] = 1;}
+		//with(obj_control) {alarm[1] = 1;}
 		
 		// double click to select word
 		if (doubleClick) {
@@ -171,9 +171,9 @@ function scr_inputBoxDraw(){
 	// end clipping for text
 	scr_surfaceEnd();
 	
-	if(isLockedField){
+	if (isLockedField) {
 		var spriteScale = .8;
-		if(sprite_get_height(spr_lock) * spriteScale  > windowHeight){
+		if (sprite_get_height(spr_lock) * spriteScale  > windowHeight) {
 			spriteScale = .6;
 		}
 		draw_sprite_ext(spr_lock,0,textBoxX+windowWidth - sprite_get_width(spr_lock)/2, textBoxY+windowHeight/2,spriteScale,spriteScale,0,global.colorThemeText,.5);

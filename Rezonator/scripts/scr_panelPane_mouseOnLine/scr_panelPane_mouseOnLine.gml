@@ -4,7 +4,7 @@ function scr_panelPane_mouseOnLine(rectX1, rectY1, rectX2, rectY2, unitID, i, li
 	var mouseoverLineName = (scr_pointInRectangleClippedWindow(mouse_x, mouse_y, rectX1, rectY1, rectX2, rectY2) && !mouseoverHeaderRegion && !mouseoverScrollBar
 							&& !instance_exists(obj_dropDown) && !instance_exists(obj_dialogueBox));
 	
-	if(mouseoverLineName){
+	if (mouseoverLineName) {
 		obj_control.hoverTextCopy = currentUnitText;
 	}
 	
@@ -29,7 +29,7 @@ function scr_panelPane_mouseOnLine(rectX1, rectY1, rectX2, rectY2, unitID, i, li
 		} 
 	}
 	
-	if(mouse_check_button_released(mb_left) && obj_audioUI.audioSound != -1 && file_exists(obj_audioUI.audioFile) && mouseoverLineName  && obj_audioUI.audioJumpOnWordClick){	
+	if (mouse_check_button_released(mb_left) && obj_audioUI.audioSound != -1 && file_exists(obj_audioUI.audioFile) && mouseoverLineName  && obj_audioUI.audioJumpOnWordClick) {	
 		scr_audioJumpToUnit(obj_panelPane.functionChainList_highlightUnit);
 		obj_audioUI.audioPaused = false;
 	}

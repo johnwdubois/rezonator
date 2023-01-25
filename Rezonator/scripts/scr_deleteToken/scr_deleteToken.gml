@@ -1,4 +1,4 @@
-function scr_deleteToken(tokenID){
+function scr_deleteToken(tokenID) {
 	
 	// get token submap and make sure it exists
 	show_debug_message("scr_deleteToken ... tokenID: " + string(tokenID));
@@ -42,7 +42,7 @@ function scr_deleteToken(tokenID){
 	}
 	
 	// remove this token from all chains that it is in
-    var inChainsList = tokenSubMap[?"inChainsList"];
+    var inChainsList = tokenSubMap[? "inChainsList"];
     if (scr_isNumericAndExists(inChainsList, ds_type_list)) {
         while (ds_list_size(inChainsList) > 0) {
             obj_chain.currentFocusedChainID = inChainsList[| 0];

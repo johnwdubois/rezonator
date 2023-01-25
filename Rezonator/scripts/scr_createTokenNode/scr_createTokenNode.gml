@@ -1,6 +1,6 @@
 
 
-function scr_createTokenNode(discourseTokenSeq, textToDisplay, newTokenSeq, newDisplayCol, unitID){
+function scr_createTokenNode(discourseTokenSeq, textToDisplay, newTokenSeq, newDisplayCol, unitID) {
 	// make token node
 	var currentTokenNode = scr_addToNodeMap("token");
 	var currentTokenSubMap = global.nodeMap[? currentTokenNode];

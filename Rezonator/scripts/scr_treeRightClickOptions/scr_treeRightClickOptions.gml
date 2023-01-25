@@ -1,6 +1,6 @@
 
 
-function scr_treeRightClickOptions(optionSelected){
+function scr_treeRightClickOptions(optionSelected) {
 	
 	var selectedTree = obj_panelPane.functionTree_treeSelected;
 	var selectedTreeSubMap = global.treeMap[? selectedTree];

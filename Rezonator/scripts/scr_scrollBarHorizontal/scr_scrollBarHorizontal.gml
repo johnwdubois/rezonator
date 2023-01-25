@@ -31,7 +31,7 @@ function scr_scrollBarHorizontal(listSize,colWidth,scrollBackColor, scrollBarCol
 
 
 	var dontDraw = (scrollBarHorWidth == scrollBarHorWidthMax)
-	if(dontDraw) currentAlpha = 0;
+	if (dontDraw) currentAlpha = 0;
 	draw_set_alpha(currentAlpha);
 	
 	// For clicking and dragging scrollbar
@@ -78,7 +78,7 @@ function scr_scrollBarHorizontal(listSize,colWidth,scrollBackColor, scrollBarCol
 	scrollBarHorPlusX = clamp(scrollBarHorPlusX, buttonSize, windowWidth - buttonSize);
 	
 	var holdOffset = 0;
-	if(mouseoverHorScrollBar || scrollBarHorHolding){
+	if (mouseoverHorScrollBar || scrollBarHorHolding) {
 		holdOffset = global.scrollBarWidth/8;
 	}
 

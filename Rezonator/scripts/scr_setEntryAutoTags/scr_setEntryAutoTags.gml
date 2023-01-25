@@ -1,4 +1,4 @@
-function scr_setEntryAutoTags(grid, gridCol, vizSetIDList, chainType){
+function scr_setEntryAutoTags(grid, gridCol, vizSetIDList, chainType) {
 	
 	var gridHeight = ds_grid_height(grid);
 	var prevUnitSeq = -1;
@@ -23,7 +23,7 @@ function scr_setEntryAutoTags(grid, gridCol, vizSetIDList, chainType){
 				
 				isChunk = scr_isChunk(currentToken);
 				
-				if(isChunk){
+				if (isChunk) {
 					currentChunk = currentToken;
 					currentToken = scr_getFirstWordOfChunk(currentToken);
 				}
@@ -67,13 +67,13 @@ function scr_setEntryAutoTags(grid, gridCol, vizSetIDList, chainType){
 					}
 					
 					
-					if(isChunk){
+					if (isChunk) {
 						var currentDisplayStr = scr_getChunkText(currentChunk);
 						var chunkSubMap = global.nodeMap[?currentChunk];
 						currentTokenCount = ds_list_size(chunkSubMap[? "tokenList"]);
 					}
 					else{
-						if(scr_isNumericAndExists(tokenSubMap, ds_type_map)){
+						if (scr_isNumericAndExists(tokenSubMap, ds_type_map)) {
 							var tokenTagMap = tokenSubMap[? "tagMap"];
 							var currentDisplayStr = tokenTagMap[? global.displayTokenField];
 						}

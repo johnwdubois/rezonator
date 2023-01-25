@@ -23,7 +23,7 @@ function scr_markAutoExceptions() {
 			}
 		}
 		if (global.importType == global.importType_IGT) {
-			if(firstToken == "#"){
+			if (firstToken == "#") {
 				ds_grid_set(global.importTXTLineGrid, global.importTXTLineGrid_colException, i, true);
 			}
 		}

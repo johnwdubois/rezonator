@@ -1,6 +1,6 @@
 
 
-function scr_readFileUTF8(filename){
+function scr_readFileUTF8(filename) {
 	
 	show_debug_message("scr_readFileUTF8 ... START, " + scr_printTime());
 	
@@ -28,7 +28,7 @@ function scr_readFileUTF8(filename){
 	while (buffer_tell(buffer) < size) {
 		var currentLetter = utf8_read(buffer);
 		totalBufferCharCount++;
-		if(currentLetter != "\n"){
+		if (currentLetter != "\n") {
 			textUTF8 += currentLetter;
 		}
 		else{
@@ -36,14 +36,14 @@ function scr_readFileUTF8(filename){
 			textUTF8 = "";
 		}
 	}
-	if(currentLetter != "\n"){
+	if (currentLetter != "\n") {
 		textUTF8 += currentLetter;
 	}
 	ds_list_add(lineList, textUTF8);
 	buffer_delete(buffer);
 
 	//check two file sizes for differences
-	if(totalGMCharCount != totalBufferCharCount){
+	if (totalGMCharCount != totalBufferCharCount) {
 		show_debug_message("This file contains characters that are not encoded in UTF-8. Some characters may be missing in Rezonator.")
 	}
 	

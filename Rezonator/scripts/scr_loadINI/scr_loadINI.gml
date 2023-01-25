@@ -49,30 +49,30 @@ function scr_loadINI() {
 			var map = ds_list_find_value(list, i);
 		
 		
-			if(room == rm_openingScreen){
+			if (room == rm_openingScreen) {
 
 				global.rememberMe = ds_map_find_value(map, "rememberMe");
 				
-				if(ds_map_find_value(map, "importType") != undefined){
+				if (ds_map_find_value(map, "importType") != undefined) {
 					global.importType = ds_map_find_value(map, "importType");
 				}
 			
-				if(ds_map_find_value(map, "readHintHide") != undefined){
+				if (ds_map_find_value(map, "readHintHide") != undefined) {
 					global.readHintHide = ds_map_find_value(map, "readHintHide");
 				}
 			
-				if(ds_map_find_value(map, "autosaveTimerFull") != undefined){
+				if (ds_map_find_value(map, "autosaveTimerFull") != undefined) {
 					global.autosaveTimerFull = ds_map_find_value(map, "autosaveTimerFull");
 					global.autosaveTimer = global.autosaveTimerFull;
 				}
 				
-				if(ds_map_find_value(map, "recentFilesMap") != undefined){
+				if (ds_map_find_value(map, "recentFilesMap") != undefined) {
 					global.recentFilesMap = ds_map_find_value(map, "recentFilesMap");
 				}
-				if(ds_map_find_value(map, "recentFilesList") != undefined){
+				if (ds_map_find_value(map, "recentFilesList") != undefined) {
 					global.recentFilesList = ds_map_find_value(map, "recentFilesList");
 				}
-				if(ds_map_find_value(map, "usedImports") != undefined){
+				if (ds_map_find_value(map, "usedImports") != undefined) {
 					global.usedImports = ds_map_find_value(map, "usedImports");
 				}
 
@@ -96,7 +96,7 @@ function scr_loadINI() {
 				global.fontSize = ds_map_find_value(map, "fontSize");
 				
 			}		
-			else if(room  == rm_mainScreen){
+			else if (room  == rm_mainScreen) {
 			
 
 				obj_control.gridSpaceVertical = ds_map_find_value(map, "lineHeight"); 

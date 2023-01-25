@@ -1,6 +1,6 @@
 
 
-function scr_updateFilteredChainLists(){
+function scr_updateFilteredChainLists() {
 	
 	show_debug_message("scr_updateFilteredChainLists");
 	

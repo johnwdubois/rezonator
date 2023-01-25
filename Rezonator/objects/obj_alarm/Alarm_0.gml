@@ -2,10 +2,10 @@
 show_debug_message("obj_alarm Alarm 0");
 
 var tagListSize = ds_list_size(global.selectedTagSchemaFileList);
-if(tagListSize > 0){
+if (tagListSize > 0) {
 	
 	
-	for(var i = 0; i < tagListSize; i++){
+	for (var i = 0; i < tagListSize; i++) {
 		
 		var currentTagSchemaFile = global.selectedTagSchemaFileList[|i];
 		show_debug_message("currentTagSchemaFile: " + string(currentTagSchemaFile) + ", exists: " + string(file_exists(currentTagSchemaFile)));

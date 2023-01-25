@@ -1,4 +1,4 @@
-function scr_removeTokensInChunkFromChain(chunkID, chainID){
+function scr_removeTokensInChunkFromChain(chunkID, chainID) {
 	
 	show_debug_message("scr_removeTokensInChunkFromChain, chunkID: " + string(chunkID) + ", chainID: " + string(chainID));
 	

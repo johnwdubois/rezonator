@@ -1,6 +1,6 @@
 
 
-function scr_initializeFonts(){
+function scr_initializeFonts() {
 		// find font file
 		var delimiter = (os_type == os_macosx) ? "/" : "\\";
 		var font_file_name = file_find_first( working_directory + "IncludedFiles" + delimiter + "Fonts" + delimiter + "*.ttf", 0 );		// find the ttf file

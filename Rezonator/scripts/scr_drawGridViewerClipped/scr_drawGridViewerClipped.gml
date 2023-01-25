@@ -179,7 +179,7 @@ function scr_drawGridViewerClipped() {
 				draw_line(windowX1 - clipX, currentCellRectY2 - clipY, windowX2 - clipX, currentCellRectY2 - clipY);
 			}
 		
-			if(focusedRow == gridLoopRow && focusedCol == gridLoopCol) {
+			if (focusedRow == gridLoopRow && focusedCol == gridLoopCol) {
 				draw_set_color(c_yellow);
 				draw_set_alpha(0.3);
 				draw_rectangle(currentCellRectX1 - clipX, currentCellRectY1 - clipY, colRectX2, currentCellRectY2 - clipY, false);
@@ -429,7 +429,7 @@ function scr_drawGridViewerClipped() {
 	draw_text(windowX1, windowY1 - strHeight - 40 - (string_height("0") * 2), "fps: " + string(fps));
 
 
-	if(point_in_rectangle(mouse_x,mouse_y, windowX1, windowY1 ,windowX2, windowY2)){
+	if (point_in_rectangle(mouse_x,mouse_y, windowX1, windowY1 ,windowX2, windowY2)) {
 
 		if (not obj_control.mouseoverHelpPane and !instance_exists(obj_dropDown)) {
 			// mousewheel input

@@ -1,6 +1,6 @@
 
 
-function scr_directoryCopy(sourceDir, destDir, debugTab){
+function scr_directoryCopy(sourceDir, destDir, debugTab) {
 	
 	var dbMessage = debugTab + "scr_directoryCopy START ... sourceDir: " + string(sourceDir) + ", destDir: " + string(destDir);
 	ds_list_add(global.dirCopyDebugList, dbMessage);

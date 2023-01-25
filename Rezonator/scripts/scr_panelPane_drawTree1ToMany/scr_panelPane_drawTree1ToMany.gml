@@ -1,10 +1,10 @@
-function scr_panelPane_drawTree1ToMany(){
+function scr_panelPane_drawTree1ToMany() {
 	var ltr = (obj_control.drawLineState == obj_control.lineState_ltr);
 	ds_list_clear(obj_control.inRectEntryIDList);
 
 	var mouseOverEntryID = "";
 	// get tree submap, make sure it exists
-	if(!scr_isNumericAndExists(global.treeMap, ds_type_map)){exit;}
+	if (!scr_isNumericAndExists(global.treeMap, ds_type_map)) {exit;}
 	var treeSubMap = global.treeMap[? functionTree_treeSelected];
 	if (!scr_isNumericAndExists(treeSubMap, ds_type_map)) exit;
 	var setIDList = treeSubMap[? "setIDList"];
@@ -50,7 +50,7 @@ function scr_panelPane_drawTree1ToMany(){
 	
 	var maxLevel = -1;
 	if (ds_map_exists(treeSubMap, "maxLevel")) {
-		maxLevel = treeSubMap[?"maxLevel"];
+		maxLevel = treeSubMap[? "maxLevel"];
 	}
 		
 
@@ -60,7 +60,7 @@ function scr_panelPane_drawTree1ToMany(){
 	
 	// loop over entries, draw each entry at its respective row (level)
 	var i = (ltr)? 0 : setIDListSize-1;
-	repeat(setIDListSize){
+	repeat(setIDListSize) {
 		
 		// get current entry and all its goodies
 		var currentEntry = setIDList[| i];
@@ -68,10 +68,10 @@ function scr_panelPane_drawTree1ToMany(){
 		var tokenList = currentEntrySubMap[? "tokenList"];
 		var tokenListSize = ds_list_size(tokenList);
 		var currentDisplayToken = "";
-		for(var j = 0; j < tokenListSize; j ++){
+		for (var j = 0; j < tokenListSize; j++) {
 			var currentToken = tokenList[|j];
 			var currentTokenSubMap = global.nodeMap[? currentToken];
-			if(!scr_isNumericAndExists(currentTokenSubMap, ds_type_map)){continue;}
+			if (!scr_isNumericAndExists(currentTokenSubMap, ds_type_map)) {continue;}
 			var currentTokenTagMap = currentTokenSubMap[? "tagMap"];
 			currentDisplayToken += (" " + string(currentTokenTagMap[? global.displayTokenField]));
 		}
@@ -97,10 +97,10 @@ function scr_panelPane_drawTree1ToMany(){
 		var tokenY2 = floor(currentEntryY + realStrheight/1.8 + currentScrollPlusY);
 		
 		// save pixel values to map for drawing links
-		currentEntrySubMap[?"entryX1"] = tokenX1;
-		currentEntrySubMap[?"entryY1"] = tokenY1;
-		currentEntrySubMap[?"entryX2"] = tokenX2;
-		currentEntrySubMap[?"entryY2"] = tokenY2;
+		currentEntrySubMap[? "entryX1"] = tokenX1;
+		currentEntrySubMap[? "entryY1"] = tokenY1;
+		currentEntrySubMap[? "entryX2"] = tokenX2;
+		currentEntrySubMap[? "entryY2"] = tokenY2;
 		
 		
 		if (tokenX2 < x || tokenX1 > x + windowWidth) {
@@ -116,7 +116,7 @@ function scr_panelPane_drawTree1ToMany(){
 		draw_set_alpha(1);
 		draw_set_color(global.colorThemeBG);
 		draw_roundrect_ext(tokenX1 - clipX, tokenY1 - clipY, tokenX2 - clipX, tokenY2 - clipY, 20,20, false);
-		if(obj_chain.currentFocusedEntryID == currentEntry){
+		if (obj_chain.currentFocusedEntryID == currentEntry) {
 			draw_set_color(global.colorThemeRezPink);
 			scr_drawRectWidth(tokenX1 - clipX, tokenY1 - clipY, tokenX2 - clipX, tokenY2 - clipY, 2,true);
 		}
@@ -124,7 +124,7 @@ function scr_panelPane_drawTree1ToMany(){
 
 		//mouse over for entry
 		var mouseOverEntry = (point_in_rectangle(mouse_x, mouse_y,tokenX1,tokenY1,tokenX2,tokenY2) && mouseOverEntryID == "") && !mouseoverCancel;
-		if(mouseOverEntry){
+		if (mouseOverEntry) {
 			
 			mouseOverEntryID = currentEntry;
 			
@@ -132,23 +132,23 @@ function scr_panelPane_drawTree1ToMany(){
 			draw_set_color(global.colorThemeSelected1);
 			draw_roundrect_ext(tokenX1 - clipX, tokenY1 - clipY, tokenX2 - clipX, tokenY2 - clipY, 20,20,false);
 			
-			if(obj_chain.currentFocusedEntryID == currentEntry){
+			if (obj_chain.currentFocusedEntryID == currentEntry) {
 				draw_set_color(global.colorThemeRezPink);
 				scr_drawRectWidth(tokenX1 - clipX, tokenY1 - clipY, tokenX2 - clipX, tokenY2 - clipY, 2,true);
 			}
 			
 			// click to focus entry
-			if(device_mouse_check_button_released(0,mb_left) && !instance_exists(obj_dropDown) && functionTree_treeMouseoverArea){
-				with(obj_panelPane){
+			if (device_mouse_check_button_released(0,mb_left) && !instance_exists(obj_dropDown) && functionTree_treeMouseoverArea) {
+				with(obj_panelPane) {
 					functionTree_treeLinkSelected = "";
 				}
 				var isCycle = false;
 				//allow clicking on root level
-				if(currentLevel == 0) {
-					if(obj_chain.currentFocusedEntryID != ""){
-						if(obj_chain.currentFocusedEntryID != currentEntry){
+				if (currentLevel == 0) {
+					if (obj_chain.currentFocusedEntryID != "") {
+						if (obj_chain.currentFocusedEntryID != currentEntry) {
 							isCycle = scr_checkTreeCycle(currentEntry);
-							if(!isCycle){
+							if (!isCycle) {
 								scr_createTreeLink(currentEntry);
 								obj_chain.currentFocusedEntryID = currentEntry;
 								
@@ -175,7 +175,7 @@ function scr_panelPane_drawTree1ToMany(){
 				obj_chain.currentFocusedChainID = "";
 				
 			}
-			if(device_mouse_check_button_released(0,mb_right) && !instance_exists(obj_dropDown) && functionTree_treeMouseoverArea){
+			if (device_mouse_check_button_released(0,mb_right) && !instance_exists(obj_dropDown) && functionTree_treeMouseoverArea) {
 				obj_chain.currentFocusedChainID = "";
 				obj_chain.currentFocusedEntryID = currentEntry;
 				
@@ -207,9 +207,9 @@ function scr_panelPane_drawTree1ToMany(){
 	scr_drawTreeLinks();
 	
 		
-	if(functionTree_treeLinkMouseover == "" && mouseOverEntryID == "" && functionTree_treeMouseoverLinkArea){
-		if(device_mouse_check_button_released(0,mb_left) && !instance_exists(obj_dropDown) && functionTree_treeMouseoverArea){
-			with(obj_panelPane){
+	if (functionTree_treeLinkMouseover == "" && mouseOverEntryID == "" && functionTree_treeMouseoverLinkArea) {
+		if (device_mouse_check_button_released(0,mb_left) && !instance_exists(obj_dropDown) && functionTree_treeMouseoverArea) {
+			with(obj_panelPane) {
 				functionTree_treeLinkSelected = "";
 			}
 			obj_chain.currentFocusedEntryID = "";
@@ -217,7 +217,7 @@ function scr_panelPane_drawTree1ToMany(){
 		}
 	}
 	
-	treeSubMap[?"maxLevel"] = maxLevel;
+	treeSubMap[? "maxLevel"] = maxLevel;
 
 	// draw horizontal lines for each row
 	draw_set_color(global.colorThemeBG);
@@ -256,7 +256,7 @@ function scr_panelPane_drawTree1ToMany(){
 	plusX = originalPlusX;
 	var maxPlusX = plusX;
 	var i = (ltr)? 0 : setIDListSize-1;
-	repeat(setIDListSize){
+	repeat(setIDListSize) {
 	//for (var i = 0; i < setIDListSize; i++) {
 		
 		var currentEntry = setIDList[| i];
@@ -264,10 +264,10 @@ function scr_panelPane_drawTree1ToMany(){
 		var tokenList = currentEntrySubMap[? "tokenList"];
 		var tokenListSize = ds_list_size(tokenList);
 		currentDisplayToken = "";
-		for(var j = 0; j < tokenListSize; j ++){
+		for (var j = 0; j < tokenListSize; j++) {
 			var currentToken = tokenList[|j];
 			var currentTokenSubMap = global.nodeMap[? currentToken];
-			if(!scr_isNumericAndExists(currentTokenSubMap, ds_type_map)){continue;}
+			if (!scr_isNumericAndExists(currentTokenSubMap, ds_type_map)) {continue;}
 			var currentTokenTagMap = currentTokenSubMap[? "tagMap"];
 			currentDisplayToken += (" " + string(currentTokenTagMap[? global.displayTokenField]));
 		}
@@ -300,7 +300,7 @@ function scr_panelPane_drawTree1ToMany(){
 
 		
 		//mouse over for entry
-		var mouseOverEntry = point_in_rectangle(mouse_x, mouse_y,tokenX1,tokenY1,tokenX2,tokenY2) && mouseOverEntryID == "" && currentEntrySubMap[?"level"] == -1 && !instance_exists(obj_dropDown) && !instance_exists(obj_dialogueBox) && !mouseoverHorScrollBar && !scrollBarHorHolding;
+		var mouseOverEntry = point_in_rectangle(mouse_x, mouse_y,tokenX1,tokenY1,tokenX2,tokenY2) && mouseOverEntryID == "" && currentEntrySubMap[? "level"] == -1 && !instance_exists(obj_dropDown) && !instance_exists(obj_dialogueBox) && !mouseoverHorScrollBar && !scrollBarHorHolding;
 		
 		// check if this entry should be added to entryRectList
 		var mouseRectExists = (obj_control.mouseHoldRectX1 >= 10 && obj_control.mouseHoldRectY1 >= 0);
@@ -314,7 +314,7 @@ function scr_panelPane_drawTree1ToMany(){
 			}
 		}
 
-		if(mouseOverEntry){
+		if (mouseOverEntry) {
 			
 			mouseOverEntryID = currentEntry;
 			draw_set_alpha(1);
@@ -325,16 +325,16 @@ function scr_panelPane_drawTree1ToMany(){
 			
 			
 			// click on entry
-			if(device_mouse_check_button_released(0,mb_left) && !instance_exists(obj_dropDown) && ds_list_size(obj_control.entryRectListCopy) <= 1 && !functionTree_treeMouseoverLinkArea && functionTree_treeMouseoverArea){
+			if (device_mouse_check_button_released(0,mb_left) && !instance_exists(obj_dropDown) && ds_list_size(obj_control.entryRectListCopy) <= 1 && !functionTree_treeMouseoverLinkArea && functionTree_treeMouseoverArea) {
 			
-				if(obj_chain.currentFocusedEntryID == ""){
-					currentEntrySubMap[?"level"] = 0;
+				if (obj_chain.currentFocusedEntryID == "") {
+					currentEntrySubMap[? "level"] = 0;
 				}
 				else{
-					if(obj_chain.currentFocusedEntryID != currentEntry){
-						if(currentEntrySubMap[?"level"] == -1){
+					if (obj_chain.currentFocusedEntryID != currentEntry) {
+						if (currentEntrySubMap[? "level"] == -1) {
 							scr_createTreeLink(currentEntry);
-							var nextLevelHeight = (currentEntrySubMap[?"level"] - 1) * strHeight;
+							var nextLevelHeight = (currentEntrySubMap[? "level"] - 1) * strHeight;
 							
 							
 							show_debug_message(nextLevelHeight)
@@ -348,7 +348,7 @@ function scr_panelPane_drawTree1ToMany(){
 						}
 					}
 				}
-				with(obj_panelPane){
+				with(obj_panelPane) {
 					functionTree_treeLinkSelected = "";
 				}
 				obj_chain.currentFocusedEntryID = currentEntry;
@@ -356,8 +356,8 @@ function scr_panelPane_drawTree1ToMany(){
 			}
 			
 			//right click on leaf entry
-			if(device_mouse_check_button_released(0,mb_right) && !instance_exists(obj_dropDown) && functionTree_treeMouseoverArea){
-				if(tokenListSize > 1){
+			if (device_mouse_check_button_released(0,mb_right) && !instance_exists(obj_dropDown) && functionTree_treeMouseoverArea) {
+				if (tokenListSize > 1) {
 					obj_control.rightClickID = currentEntry;
 					var dropDownOptionList = ds_list_create();
 					ds_list_add(dropDownOptionList, "option_separate-chunk");
@@ -374,7 +374,7 @@ function scr_panelPane_drawTree1ToMany(){
 		
 	
 		draw_set_color(global.colorThemeText);
-		draw_set_alpha((currentEntrySubMap[?"level"] >= 0) ? 0.5 : 1);
+		draw_set_alpha((currentEntrySubMap[? "level"] >= 0) ? 0.5 : 1);
 		draw_set_halign(fa_center);
 		scr_adaptFont(currentDisplayToken, "M");
 		draw_text(floor(mean(tokenX1, tokenX2)) - clipX, leafTextY - clipY, currentDisplayToken);
@@ -460,37 +460,37 @@ function scr_panelPane_drawTree1ToMany(){
 		//	scrollHorPlusXDest -= 8;
 		//}
 
-		if(scr_isNumericAndExists(focusedEntrySubMap, ds_type_map)){
-			var focusedEntryLevel = focusedEntrySubMap[?"level"];
-			var focusedEntryOrder = focusedEntrySubMap[?"order"];
+		if (scr_isNumericAndExists(focusedEntrySubMap, ds_type_map)) {
+			var focusedEntryLevel = focusedEntrySubMap[? "level"];
+			var focusedEntryOrder = focusedEntrySubMap[? "order"];
 			
 			if (keyboard_check_released(vk_left)) {
 				var newEntryToFocus = "";
 				var sameLevelList = ds_list_create();
-				var entryList = treeSubMap[?"setIDList"];
+				var entryList = treeSubMap[? "setIDList"];
 				var entryListSize = ds_list_size(entryList);
-				for(var i = 0 ; i < entryListSize; i++){
+				for (var i = 0 ; i < entryListSize; i++) {
 					var currentEntry = entryList[|i];
 					var entrySubMap = global.treeMap[?currentEntry];
-					var entryLevel = entrySubMap[?"level"];
-					if(entryLevel == focusedEntryLevel){
+					var entryLevel = entrySubMap[? "level"];
+					if (entryLevel == focusedEntryLevel) {
 						scr_addToListOnce(sameLevelList,currentEntry)
 					}
 				}
 				var sameLevelListSize = ds_list_size(sameLevelList);
 				var maxEntryLevel = -1;
 				var closestNode = "";
-				for(var i  = 0; i < sameLevelListSize; i++){
+				for (var i  = 0; i < sameLevelListSize; i++) {
 					var currentEntry = sameLevelList[|i];
 					var entrySubMap = global.treeMap[?currentEntry];
-					var entryOrder = entrySubMap[?"order"];
-					if( entryOrder < focusedEntryOrder && entryOrder > maxEntryLevel){
+					var entryOrder = entrySubMap[? "order"];
+					if ( entryOrder < focusedEntryOrder && entryOrder > maxEntryLevel) {
 							closestNode = currentEntry;
 							maxEntryLevel = entryOrder;
 					}			
 				}
 				ds_list_destroy(sameLevelList);
-				if(closestNode != "" && is_string(closestNode)){
+				if (closestNode != "" && is_string(closestNode)) {
 					obj_chain.currentFocusedEntryID = closestNode;
 					obj_control.updateScroll = true;
 				}
@@ -500,30 +500,30 @@ function scr_panelPane_drawTree1ToMany(){
 			if (keyboard_check_released(vk_right)) {
 				var newEntryToFocus = "";
 				var sameLevelList = ds_list_create();
-				var entryList = treeSubMap[?"setIDList"];
+				var entryList = treeSubMap[? "setIDList"];
 				var entryListSize = ds_list_size(entryList);
-				for(var i = 0 ; i < entryListSize; i++){
+				for (var i = 0 ; i < entryListSize; i++) {
 					var currentEntry = entryList[|i];
 					var entrySubMap = global.treeMap[?currentEntry];
-					var entryLevel = entrySubMap[?"level"];
-					if(entryLevel == focusedEntryLevel){
+					var entryLevel = entrySubMap[? "level"];
+					if (entryLevel == focusedEntryLevel) {
 						scr_addToListOnce(sameLevelList,currentEntry)
 					}
 				}
 				var sameLevelListSize = ds_list_size(sameLevelList);
 				var maxEntryLevel = 99999999999999999;
 				var closestNode = "";
-				for(var i  = 0; i < sameLevelListSize; i++){
+				for (var i  = 0; i < sameLevelListSize; i++) {
 					var currentEntry = sameLevelList[|i];
 					var entrySubMap = global.treeMap[?currentEntry];
-					var entryOrder = entrySubMap[?"order"];
-					if( entryOrder > focusedEntryOrder && entryOrder < maxEntryLevel){
+					var entryOrder = entrySubMap[? "order"];
+					if ( entryOrder > focusedEntryOrder && entryOrder < maxEntryLevel) {
 							closestNode = currentEntry;
 							maxEntryLevel = entryOrder;
 					}			
 				}
 				ds_list_destroy(sameLevelList);
-				if(closestNode != "" && is_string(closestNode)){
+				if (closestNode != "" && is_string(closestNode)) {
 					obj_chain.currentFocusedEntryID = closestNode;
 					obj_control.updateScroll = true;
 				}
@@ -531,35 +531,35 @@ function scr_panelPane_drawTree1ToMany(){
 			}
 			
 			if (keyboard_check_released(vk_up)) {
-				var sourceLinkID = focusedEntrySubMap[?"sourceLink"];
-				if(sourceLinkID != "" && is_string(sourceLinkID)){
+				var sourceLinkID = focusedEntrySubMap[? "sourceLink"];
+				if (sourceLinkID != "" && is_string(sourceLinkID)) {
 					var linkSubMap = global.treeMap[?sourceLinkID];
-					obj_chain.currentFocusedEntryID = linkSubMap[?"source"];
+					obj_chain.currentFocusedEntryID = linkSubMap[? "source"];
 					
 				}
 			}
 			if (keyboard_check_released(vk_down)) {
-				var goalLinkID = focusedEntrySubMap[?"goalLinkList"][|0];
-				if(goalLinkID != "" && is_string(goalLinkID)){
+				var goalLinkID = focusedEntrySubMap[? "goalLinkList"][|0];
+				if (goalLinkID != "" && is_string(goalLinkID)) {
 					var linkSubMap = global.treeMap[?goalLinkID];
-					obj_chain.currentFocusedEntryID = linkSubMap[?"goal"];
+					obj_chain.currentFocusedEntryID = linkSubMap[? "goal"];
 				}
 			}
 		}
 	}
 	
-	if(obj_control.updateScroll){
-		if(obj_chain.currentFocusedEntryID != ""){
+	if (obj_control.updateScroll) {
+		if (obj_chain.currentFocusedEntryID != "") {
 			var entrySubMap =  global.treeMap[?obj_chain.currentFocusedEntryID];
-			var entryX = mean(entrySubMap[?"entryX1"],entrySubMap[?"entryX2"]);
-			if(entryX< x + originalPlusX + 50){
+			var entryX = mean(entrySubMap[? "entryX1"],entrySubMap[? "entryX2"]);
+			if (entryX< x + originalPlusX + 50) {
 				scrollHorPlusXDest += 50;
 			}
-			else if(entryX>  x + windowWidth - global.scrollBarWidth - 50){
+			else if (entryX>  x + windowWidth - global.scrollBarWidth - 50) {
 				scrollHorPlusXDest -= 50;
 			}
 			
-			if(x + originalPlusX + 50 < entryX and entryX < x + windowWidth - global.scrollBarWidth - 50){
+			if (x + originalPlusX + 50 < entryX and entryX < x + windowWidth - global.scrollBarWidth - 50) {
 				obj_control.updateScroll = false;
 			}
 		}
@@ -568,9 +568,9 @@ function scr_panelPane_drawTree1ToMany(){
 	
 
 	
-	if(keyboard_check_released(vk_escape)){
+	if (keyboard_check_released(vk_escape)) {
 		obj_chain.currentFocusedEntryID = "";
-		with(obj_panelPane){
+		with(obj_panelPane) {
 			functionTree_treeLinkSelected = "";
 		}
 	}

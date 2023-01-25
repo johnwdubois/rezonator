@@ -1,4 +1,4 @@
-function scr_tagInputBoxSetPos(ID, field, x1, y1, x2, y2){
+function scr_tagInputBoxSetPos(ID, field, x1, y1, x2, y2) {
 
 	if (obj_control.navWindowTaggingField == field && obj_control.navWindowTaggingID == ID) {
 		if (instance_exists(obj_inputBox)) {
@@ -47,7 +47,7 @@ function scr_tagInputBoxSetPos(ID, field, x1, y1, x2, y2){
 		}
 		
 		
-		with(obj_dropDown){
+		with(obj_dropDown) {
 			x = x1;
 			y = y2;
 		}

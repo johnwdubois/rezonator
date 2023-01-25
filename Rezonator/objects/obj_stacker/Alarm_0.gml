@@ -7,7 +7,7 @@ global.fileSaveName = get_save_filename_ext("REZ file|*.rez", "", program_direct
 
 var fileNumIndex = string_pos(".", global.fileSaveName);
 var originalFileName = global.fileSaveName;
-while (randLine2 <= endLine && randLine1 < endLine && fileNameNumber < 4){ 
+while (randLine2 <= endLine && randLine1 < endLine && fileNameNumber < 4) { 
 	obj_fileLoader.subLineGridBeginning = randLine1;
 	obj_fileLoader.subLineGridEnd = randLine2;
 
@@ -17,7 +17,7 @@ while (randLine2 <= endLine && randLine1 < endLine && fileNameNumber < 4){
 
 	var instLoading = instance_create_layer(0, 0, "InstanceLoading", obj_loadingScreen);
 	instLoading.loadSprite = spr_saving;
-	with(obj_fileLoader){
+	with(obj_fileLoader) {
 		alarm[0] = 2;
 	}
 	randLine1 = randLine2 + 1;

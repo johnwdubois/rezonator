@@ -1,6 +1,6 @@
 
 
-function scr_toggleFilterForAllChains(chainType){
+function scr_toggleFilterForAllChains(chainType) {
 	
 	// get list of chains & list of filtered chains for this specific chain type
 	var listOfChains = -1;

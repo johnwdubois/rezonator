@@ -1,11 +1,11 @@
 
 
-function scr_getUnitTextStupid(unitSubMap){
+function scr_getUnitTextStupid(unitSubMap) {
 	
 	// get entryList for this unit
 	var unitText = "";
 	var entryList = unitSubMap[? "entryList"];
-	if(!scr_isNumericAndExists(entryList, ds_type_list)){return "";}
+	if (!scr_isNumericAndExists(entryList, ds_type_list)) {return "";}
 	var entryListSize = ds_list_size(entryList);
 	var i = (obj_control.drawLineState == obj_control.lineState_ltr)? 0 : entryListSize-2;
 	
@@ -23,7 +23,7 @@ function scr_getUnitTextStupid(unitSubMap){
 		// concatenate the UnitText string
 		unitText += scr_adaptFont(currentDisplayStr, "M");
 		
-		if(obj_control.drawLineState == obj_control.lineState_ltr){ i++; }
+		if (obj_control.drawLineState == obj_control.lineState_ltr) { i++; }
 		else{i--;}
 	}
 	

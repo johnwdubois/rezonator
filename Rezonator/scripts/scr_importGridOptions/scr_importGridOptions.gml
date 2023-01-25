@@ -1,7 +1,7 @@
 
 
-function scr_importGridOptions(optionSelected){
-	switch(optionSelected){
+function scr_importGridOptions(optionSelected) {
+	switch(optionSelected) {
 		
 		case "import_field-info":
 			obj_importMapping.currentGridName = "import_field-info";

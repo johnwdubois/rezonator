@@ -1,6 +1,6 @@
 
 
-function scr_setValueForSelectedNodes(type, key, value){
+function scr_setValueForSelectedNodes(type, key, value) {
 	
 	// determine which selected list to use
 	var selectedList = -1;

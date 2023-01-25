@@ -4,7 +4,7 @@ function scr_randomStackerLoop() {
 	var currentUnitList = ds_list_create();
 	ds_list_clear(currentUnitList);
 	var discourseSubMap = global.nodeMap[?global.discourseNode];
-	var unitList = discourseSubMap[?"unitList"];
+	var unitList = discourseSubMap[? "unitList"];
 	var unitListSize = ds_list_size(unitList);
 	var amountOfLines = floor(random(7));
 	//Starting at the top of the unitImportGrid
@@ -20,7 +20,7 @@ function scr_randomStackerLoop() {
 			currentUnitID = unitList[|importLoop];
 			currentUnitSubMap = global.nodeMap[?currentUnitID];
 
-			if((amountOfLines > 0)){
+			if ((amountOfLines > 0)) {
 				ds_list_add(currentUnitList, currentUnitID);
 				importLoop++;
 			}
@@ -42,7 +42,7 @@ function scr_randomStackerLoop() {
 			var inRectUnitIDListSize = ds_list_size(currentUnitList);
 			for (var quickStackLoop = 0; quickStackLoop < inRectUnitIDListSize; quickStackLoop++) {
 				var currentUnitID = ds_list_find_value(currentUnitList, quickStackLoop);
-					if(currentUnitID != prevUnitID) {
+					if (currentUnitID != prevUnitID) {
 					
 					obj_toolPane.currentTool = obj_toolPane.toolStackBrush;
 					with (obj_chain) {

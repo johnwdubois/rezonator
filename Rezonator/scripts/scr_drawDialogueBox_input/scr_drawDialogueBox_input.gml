@@ -1,10 +1,10 @@
-function scr_drawDialogueBox_input(){
+function scr_drawDialogueBox_input() {
 
 	// draw title text
-	if(!instance_exists(obj_inputBox)){
+	if (!instance_exists(obj_inputBox)) {
 		instance_create_layer(0,0,"InstancesInput", obj_inputBox);
 	}
-	with(obj_inputBox){
+	with(obj_inputBox) {
 		textBoxX = floor(obj_dialogueBox.boxRectX1 + (obj_dialogueBox.boxWidth * 0.1));
 		
 		if (obj_dialogueBox.descriptionText != "") {
@@ -124,7 +124,7 @@ function scr_drawDialogueBox_input(){
 		*/
 
 		
-		if(!obj_control.regExCheck){
+		if (!obj_control.regExCheck) {
 			// case-sensitive checkbox
 			var caseCheckboxX1 = obj_inputBox.textBoxX;
 			var caseCheckboxY1 = rangeRectY2 + dropDownXBuffer;
@@ -171,7 +171,7 @@ function scr_drawDialogueBox_input(){
 		}
 		
 		// insert before boolean switch
-		if (point_in_rectangle(mouse_x, mouse_y, insertBeforeBoxRectX1, insertBeforeBoxRectY1, insertBeforeBoxRectX2, insertBeforeBoxRectY2)){
+		if (point_in_rectangle(mouse_x, mouse_y, insertBeforeBoxRectX1, insertBeforeBoxRectY1, insertBeforeBoxRectX2, insertBeforeBoxRectY2)) {
 			if (mouse_check_button_pressed(mb_left)) {
 				obj_control.before = !obj_control.before;
 			}

@@ -1,17 +1,17 @@
-function scr_tokenRightClicked(){
+function scr_tokenRightClicked() {
 	
 	if (instance_exists(obj_control) and !instance_exists(obj_dialogueBox)) {
 		
 		var tokenSubMap = global.nodeMap[?obj_control.rightClickID];
-		if(!scr_isNumericAndExists(tokenSubMap, ds_type_map)){exit;}
+		if (!scr_isNumericAndExists(tokenSubMap, ds_type_map)) {exit;}
 		//deselect tree pane chain entities
 		obj_panelPane.functionTree_treeLinkSelected = "";
 		obj_chain.currentFocusedEntryID = "";
 		
-		var tokenInChainsList = tokenSubMap[?"inChainsList"];
-		var unitID = tokenSubMap[?"unit"];
+		var tokenInChainsList = tokenSubMap[? "inChainsList"];
+		var unitID = tokenSubMap[? "unit"];
 		var unitSubMap = global.nodeMap[? unitID];
-		var entryList = unitSubMap[?"entryList"];
+		var entryList = unitSubMap[? "entryList"];
 		var firstEntry = entryList[| 0];
 		var firstEntrySubMap = global.nodeMap[? firstEntry];
 		var lastEntry = entryList[| ds_list_size(entryList) - 1];
@@ -30,7 +30,7 @@ function scr_tokenRightClicked(){
 		
 		// Options for a word in a Chain
 		var tokenInChainsListSize = ds_list_size(tokenInChainsList);
-		for(var i = 0; i < ds_list_size(tokenInChainsList); i++){
+		for (var i = 0; i < ds_list_size(tokenInChainsList); i++) {
 			var chainID = tokenInChainsList[| i];
 			var chainSubMap = global.nodeMap[? chainID];
 			if (scr_isNumericAndExists(chainSubMap, ds_type_map)) {

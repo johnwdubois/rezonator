@@ -1,4 +1,4 @@
-function scr_loadListFromMap(map, key, list){
+function scr_loadListFromMap(map, key, list) {
 	
 	// get list, if supplied
 	var listFromMap = map[? key];

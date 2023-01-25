@@ -1,4 +1,4 @@
-function scr_removeFromChunk(chunkID, removeFromStart){
+function scr_removeFromChunk(chunkID, removeFromStart) {
 	
 	show_debug_message("scr_removeFromChunk, chunkID: " + string(chunkID) + ", removeFromStart: " + string(removeFromStart));
 	

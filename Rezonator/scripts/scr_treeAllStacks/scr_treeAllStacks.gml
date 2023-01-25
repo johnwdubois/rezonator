@@ -1,10 +1,10 @@
-function scr_treeAllStacks(stackChainList){
+function scr_treeAllStacks(stackChainList) {
 	var stackChainListSize = ds_list_size(stackChainList);
 	
-	for(var i = 0; i < stackChainListSize; i++){
+	for (var i = 0; i < stackChainListSize; i++) {
 		var tokenList = ds_list_create();
 		var stackSubMap = global.nodeMap[? stackChainList[|i]];
-		var setIDList = stackSubMap[?"setIDList"];
+		var setIDList = stackSubMap[? "setIDList"];
 		var setIDListSize = ds_list_size(setIDList);
 
 		for (var j = 0; j < setIDListSize; j++) {

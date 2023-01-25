@@ -1,8 +1,8 @@
 
 
-function scr_treeLeafOptions(optionSelected){
+function scr_treeLeafOptions(optionSelected) {
 	
-	if(optionSelected == "option_separate-chunk"){
+	if (optionSelected == "option_separate-chunk") {
 		scr_separateChunk();
 	}
 	

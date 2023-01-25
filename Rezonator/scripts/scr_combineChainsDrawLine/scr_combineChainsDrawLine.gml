@@ -1,6 +1,6 @@
 
 
-function scr_combineChainsDrawLine(inChainsList){
+function scr_combineChainsDrawLine(inChainsList) {
 	
 	// make sure that the focused chain is not in the inChainsList
 	if (ds_list_find_index(inChainsList, obj_chain.currentFocusedChainID) >= 0) {
@@ -53,7 +53,7 @@ function scr_combineChainsDrawLine(inChainsList){
 		}
 		
 		// call alarm to show question box
-		with(obj_alarm){
+		with(obj_alarm) {
 			alarm[9] = 3;
 		}
 	}

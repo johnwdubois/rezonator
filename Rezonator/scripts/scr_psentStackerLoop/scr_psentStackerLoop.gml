@@ -1,4 +1,4 @@
-function scr_psentStackerLoop(){
+function scr_psentStackerLoop() {
 
 
 	// Set script variables
@@ -19,15 +19,15 @@ function scr_psentStackerLoop(){
 	
 	
 	var discourseSubMap = global.nodeMap[?global.discourseNode];
-	var unitList = discourseSubMap[?"unitList"];
+	var unitList = discourseSubMap[? "unitList"];
 	var unitListSize = ds_list_size(unitList);
 	var listOfKeys = ds_list_create();
 	for (var i = 0; i < unitListSize; i++) {
 		var currentUnit = unitList[|i];
 		var currentUnitSubMap = global.nodeMap[?currentUnit];
-		var unitTagMap = currentUnitSubMap[?"tagMap"];
+		var unitTagMap = currentUnitSubMap[? "tagMap"];
 		currentPsent = unitTagMap[?global.psentDelimField];
-		if(ds_map_exists(psentMap, currentPsent)){
+		if (ds_map_exists(psentMap, currentPsent)) {
 			scr_addToListOnce(psentMap[?currentPsent], currentUnit);
 		}
 		else{
@@ -40,11 +40,11 @@ function scr_psentStackerLoop(){
 	}
 	
 	var listOfKeysSize = ds_list_size(listOfKeys);
-	for(var i = 0; i < listOfKeysSize; i++){
+	for (var i = 0; i < listOfKeysSize; i++) {
 		var currentPsent = listOfKeys[|i];
 		var unitToStackList =  psentMap[?currentPsent];
 		var unitToStackListSize = ds_list_size(unitToStackList);
-		for(var j = 0; j < unitToStackListSize; j++){
+		for (var j = 0; j < unitToStackListSize; j++) {
 			scr_unitClicked(unitToStackList[|j]);
 		}
 

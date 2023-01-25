@@ -1,4 +1,4 @@
-function scr_createFontsLoop(){
+function scr_createFontsLoop() {
 	
 
 	

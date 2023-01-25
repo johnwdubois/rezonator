@@ -1,6 +1,6 @@
 
 
-function scr_1to1Options(optionSelected){
+function scr_1to1Options(optionSelected) {
 	
 	var leftPaneInst = -1;
 	var rightPaneInst = -1;

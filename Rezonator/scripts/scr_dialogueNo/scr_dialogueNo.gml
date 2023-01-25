@@ -1,11 +1,11 @@
-function scr_dialogueNo(){
+function scr_dialogueNo() {
 	
 	show_debug_message("scr_dialogueNo");
 	
 	with (obj_dialogueBox) {
 	
 		
-		if(questionWindowActive){
+		if (questionWindowActive) {
 		
 			if (instance_exists(obj_stacker)) {
 				if (obj_stacker.confirmStackCreate) {

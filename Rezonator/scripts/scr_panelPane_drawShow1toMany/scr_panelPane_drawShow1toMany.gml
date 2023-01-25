@@ -1,6 +1,6 @@
 
 
-function scr_panelPane_drawShow1toMany(){
+function scr_panelPane_drawShow1toMany() {
 	
 	scr_surfaceStart();
 	
@@ -81,7 +81,7 @@ function scr_panelPane_drawShow1toMany(){
 					draw_text(floor(nameColX + textBuffer) - clipX, floor(mean(chainRectY1, chainRectY2)) - clipY, string(currentChainName));
 							
 							
-					if(mouseoverChainRect){
+					if (mouseoverChainRect) {
 							
 						// sequence arrows
 						var showSeqUpArrow = (i > 0);
@@ -100,7 +100,7 @@ function scr_panelPane_drawShow1toMany(){
 
 						var trashAlpha = .5;
 								
-						if(functionChainList_playShowID != showID){
+						if (functionChainList_playShowID != showID) {
 								
 							// mouseover & click on sequence arrows
 							if (mouseOverDel) {
@@ -142,7 +142,7 @@ function scr_panelPane_drawShow1toMany(){
 						
 					textPlusY += strHeight;
 							
-					if(chainIsFiltered){
+					if (chainIsFiltered) {
 						focusedLineY1 = chainRectY1;
 						focusedLineY2 = chainRectY2;
 					}
@@ -202,7 +202,7 @@ function scr_panelPane_drawShow1toMany(){
 
 	
 	
-	if(focusedLineY1 != 0 && focusedLineY2 != 0){
+	if (focusedLineY1 != 0 && focusedLineY2 != 0) {
 		draw_set_color(global.colorThemeText);
 		draw_line_width(x- clipX, focusedLineY1- clipY, x+windowWidth- clipX, focusedLineY1- clipY, 3);
 		draw_line_width(x- clipX, focusedLineY2- clipY, x+windowWidth- clipX, focusedLineY2- clipY, 3);
@@ -333,7 +333,7 @@ function scr_panelPane_drawShow1toMany(){
 		if (isPlaying) {
 			if (mouse_check_button_released(mb_left) && mouseoverShowPrevButton) {
 			
-				if(currentChainIndex > 0){				
+				if (currentChainIndex > 0) {				
 					scr_setValueForAllChains("stack","filter", false);
 									
 					// Filter the first current stack
@@ -353,7 +353,7 @@ function scr_panelPane_drawShow1toMany(){
 				}
 				else{
 					scr_setValueForAllChains("stack", "filter", false);
-					with(obj_panelPane){
+					with(obj_panelPane) {
 						functionChainList_playShowID = "";
 					}				
 					with (obj_control) {
@@ -367,12 +367,12 @@ function scr_panelPane_drawShow1toMany(){
 
 		// show buttons (Stop) 
 		var mouseoverShowStopButton = point_in_rectangle(mouse_x, mouse_y, showStopButtonX1, showStopButtonY1, showStopButtonX2, showStopButtonY2);
-		if(isPlaying){
+		if (isPlaying) {
 			showStopButtonText =  "  ■  ";
-			if(mouseoverShowStopButton){scr_createTooltip(mean(showStopButtonX1, showStopButtonX2),mean(showStopButtonY1, showStopButtonY2), scr_get_translation("option_stop"),obj_tooltip.arrowFaceUp);}
+			if (mouseoverShowStopButton) {scr_createTooltip(mean(showStopButtonX1, showStopButtonX2),mean(showStopButtonY1, showStopButtonY2), scr_get_translation("option_stop"),obj_tooltip.arrowFaceUp);}
 		}
 		else{
-			if(mouseoverShowStopButton){scr_createTooltip(mean(showStopButtonX1, showStopButtonX2),showStopButtonY2, scr_get_translation("help_label_play"),obj_tooltip.arrowFaceUp);}
+			if (mouseoverShowStopButton) {scr_createTooltip(mean(showStopButtonX1, showStopButtonX2),showStopButtonY2, scr_get_translation("help_label_play"),obj_tooltip.arrowFaceUp);}
 		}
 				
 		draw_set_color(merge_color(global.colorThemeSelected1, global.colorThemeBG, mouseoverShowStopButton ? 0.0 : 0.5));
@@ -384,10 +384,10 @@ function scr_panelPane_drawShow1toMany(){
 	
 		if (mouse_check_button_released(mb_left) && mouseoverShowStopButton) {
 			
-			if(isPlaying){
+			if (isPlaying) {
 				// stop show!
 				scr_setValueForAllChains("stack","filter", false);
-				with(obj_panelPane){
+				with(obj_panelPane) {
 					functionChainList_playShowID = "";
 				}
 				with (obj_control) {
@@ -408,7 +408,7 @@ function scr_panelPane_drawShow1toMany(){
 					}
 				}
 					
-				if(setListSize > 0){
+				if (setListSize > 0) {
 							
 					with (obj_panelPane) {
 						functionChainList_playShowID = functionChainContents_showID;
@@ -420,8 +420,8 @@ function scr_panelPane_drawShow1toMany(){
 					var currentStackID = setList[| 0];
 					show_debug_message("currentStackID : "+ string(currentStackID));
 
-					if(ds_list_find_index(obj_chain.filteredStackChainList,currentStackID) == -1){
-						if(currentStackID != undefined){
+					if (ds_list_find_index(obj_chain.filteredStackChainList,currentStackID) == -1) {
+						if (currentStackID != undefined) {
 							ds_list_add(obj_chain.filteredStackChainList,currentStackID);
 							var chainSubMap = global.nodeMap[? currentStackID];
 							if (scr_isNumericAndExists(chainSubMap,ds_type_map)) {
@@ -449,20 +449,20 @@ function scr_panelPane_drawShow1toMany(){
 		draw_set_valign(fa_middle);
 		draw_text(floor(mean(showNextButtonX1, showNextButtonX2)- clipX), floor(mean(showNextButtonY1, showNextButtonY2)- clipY), showNextButtonText);
 	
-		if(mouseoverShowNextButton){scr_createTooltip(mean(showNextButtonX1, showNextButtonX2),showNextButtonY2, scr_get_translation("help_label_next"),obj_tooltip.arrowFaceUp);}
+		if (mouseoverShowNextButton) {scr_createTooltip(mean(showNextButtonX1, showNextButtonX2),showNextButtonY2, scr_get_translation("help_label_next"),obj_tooltip.arrowFaceUp);}
 	
-		if(isPlaying){
+		if (isPlaying) {
 			if (mouse_check_button_released(mb_left) && mouseoverShowNextButton) {
 
-				if(currentChainIndex < setListSize-1 && currentChainIndex != -1){
+				if (currentChainIndex < setListSize-1 && currentChainIndex != -1) {
 									
 					scr_setValueForAllChains("stack","filter", false);
 									
 					// Filter the first current stack
 					var currentStackID = setList[| currentChainIndex + 1];
 
-					if(ds_list_find_index(obj_chain.filteredStackChainList,currentStackID) == -1){
-						if(currentStackID != undefined){
+					if (ds_list_find_index(obj_chain.filteredStackChainList,currentStackID) == -1) {
+						if (currentStackID != undefined) {
 							ds_list_add(obj_chain.filteredStackChainList,currentStackID);
 							var chainSubMap = global.nodeMap[? currentStackID];
 							if (scr_isNumericAndExists(chainSubMap,ds_type_map)) {
@@ -477,7 +477,7 @@ function scr_panelPane_drawShow1toMany(){
 				}
 				else{
 					scr_setValueForAllChains("stack","filter", false);
-					with(obj_panelPane){
+					with(obj_panelPane) {
 						functionChainList_playShowID = "";
 					}
 					with (obj_control) {

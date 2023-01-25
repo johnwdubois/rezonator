@@ -1,6 +1,6 @@
 
 
-function scr_exportDiscourseTempGrid(headerList, fieldList){
+function scr_exportDiscourseTempGrid(headerList, fieldList) {
 	
 	// get list of all nodes
 	var discourseSubMap = global.nodeMap[? global.discourseNode];

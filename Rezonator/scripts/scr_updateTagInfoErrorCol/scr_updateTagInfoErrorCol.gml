@@ -1,6 +1,6 @@
 
 
-function scr_updateTagInfoErrorCol(){
+function scr_updateTagInfoErrorCol() {
 	
 	show_debug_message("scr_updateTagInfoErrorCol() ... START");
 	
@@ -31,7 +31,7 @@ function scr_updateTagInfoErrorCol(){
 	show_debug_message("scr_updateTagInfoErrorCol() ... pre-loop, canContinueToken1to1: " + string(obj_importMapping.canContinueToken1to1) + " ... canContinueWord1to1: " + string(obj_importMapping.canContinueWord1to1));
 			
 	var tagGridHeight = ds_grid_height(global.tagInfoGrid);
-	for(var i  = 0; i <= tagGridHeight; i++) {
+	for (var i  = 0; i <= tagGridHeight; i++) {
 		var currentField = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colMarker, i);
 		var currentFieldIndex = ds_list_find_index(global.importGridColNameList, currentField)-2;
 		var currentLevel = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colLevel, i);

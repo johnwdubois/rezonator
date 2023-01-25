@@ -1,6 +1,6 @@
 // Draws the scroll together button in grid view and handles funtionality, calls funtion to draw both grids
 
-if (notRefreshed){
+if (notRefreshed) {
 	alarm[0] = 1;
 	alarm[1] = 1;
 	notRefreshed = false;
@@ -37,7 +37,7 @@ draw_set_valign(fa_middle);
 //for (var i = 0; i < currentGrids; i++) {
 //	windowX[i] = ((window_get_width() / currentGrids) * i) + 20;
 //	windowWidth[i] = (window_get_width() / currentGrids) - 20;
-if(!obj_gridViewer.mapViewActive){
+if (!obj_gridViewer.mapViewActive) {
 	scr_drawGridViewerClipped();
 }
 scr_gridViewDrawBackArrow();

@@ -8,13 +8,13 @@ function scr_audioJumpToUnit(unitID) {
 		
 			if (unitID != "" or unitID != undefined) {
 				var unitSubMap = global.nodeMap[?unitID];
-				if(!scr_isNumericAndExists(unitSubMap, ds_type_map)){
+				if (!scr_isNumericAndExists(unitSubMap, ds_type_map)) {
 						show_debug_message("unitSubMap failed");
 						exit;
 						}
 				
-				var unitStart = unitSubMap[?"unitStart"];
-				if(string_length(string_digits(unitStart)) < 1){
+				var unitStart = unitSubMap[? "unitStart"];
+				if (string_length(string_digits(unitStart)) < 1) {
 						show_debug_message("unit start failed");
 						exit;
 					}

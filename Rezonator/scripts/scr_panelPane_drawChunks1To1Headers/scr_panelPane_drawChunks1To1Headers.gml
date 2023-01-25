@@ -1,4 +1,4 @@
-function scr_panelPane_drawChunks1To1Headers(fieldList){
+function scr_panelPane_drawChunks1To1Headers(fieldList) {
 	
 	if (!global.html5) scr_surfaceStart();
 	
@@ -28,7 +28,7 @@ function scr_panelPane_drawChunks1To1Headers(fieldList){
 		
 		
 		draw_set_color(global.colorThemeBorders);
-		if(i > 0 ){
+		if (i > 0 ) {
 			draw_line(headerRectX1 - clipX, headerRectY1 - clipY, headerRectX1 - clipX, headerRectY2 - clipY);
 		}
 		// draw line to separate column headers from data
@@ -91,14 +91,14 @@ function scr_panelPane_drawChunks1To1Headers(fieldList){
 		draw_text(headerTextX - clipX, headerTextY - clipY, currentField);
 		
 		// draw lines for dividing columns
-		if(lineStateLTR){	
-			if(i > 0){
+		if (lineStateLTR) {	
+			if (i > 0) {
 				draw_set_color(global.colorThemeBorders);
 				draw_line_width(headerRectX1 - clipX, y - clipY, headerRectX1 - clipX, y + windowHeight - clipY, 1);
 			}
 		}
 		else{
-			if(i > 0 && i < fieldListSize){
+			if (i > 0 && i < fieldListSize) {
 				draw_set_color(global.colorThemeBorders);
 				draw_line_width(headerRectX1 + 1 - clipX, y - clipY, headerRectX1 + 1 - clipX, y + windowHeight - clipY, 1);
 			}

@@ -1,6 +1,6 @@
 
 
-function scr_identifyBlocks(){
+function scr_identifyBlocks() {
 	
 	var lineExitedOn = 0;
 	show_debug_message("starting scr_identifyBlocks... time is: " + scr_printTime());

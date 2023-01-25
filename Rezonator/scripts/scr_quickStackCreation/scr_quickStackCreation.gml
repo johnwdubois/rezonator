@@ -1,6 +1,6 @@
 
 
-function scr_quickStackCreation(){
+function scr_quickStackCreation() {
 	
 	// make sure the first unit clicked on is the first unit in the list
 	scr_deleteFromList(inRectUnitIDList, obj_chain.dragStartOriginalUnit);
@@ -46,8 +46,8 @@ function scr_quickStackCreation(){
 		scr_chainDeselect();
 	}
 
-	if(global.steamAPI){
-		if(!steam_get_achievement("SA_quicklink")){
+	if (global.steamAPI) {
+		if (!steam_get_achievement("SA_quicklink")) {
 			steam_set_achievement("SA_quicklink");
 		}
 	}

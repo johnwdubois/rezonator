@@ -1,4 +1,4 @@
-function scr_splitToken(splitTokenID){
+function scr_splitToken(splitTokenID) {
 	
 	with (obj_control) splitTokenField = global.displayTokenField;
 	

@@ -1,4 +1,4 @@
-function scr_groupStackerLoop(){
+function scr_groupStackerLoop() {
 	
 	global.delayInput = 0;
 	
@@ -38,7 +38,7 @@ function scr_groupStackerLoop(){
 	var currentGroupOrder = ds_grid_get(global.importGrid, groupCol, 0);
 	var previousGroupOrder = ds_grid_get(global.importGrid, groupCol, 0);
 	var discourseSubMap = global.nodeMap[?global.discourseNode];
-	var unitList = discourseSubMap[?"unitList"];
+	var unitList = discourseSubMap[? "unitList"];
 
 	//Starting at the top of the unitImportGrid
 	for (var importLoop = 0; importLoop < importGridHeight; importLoop++) {
@@ -67,7 +67,7 @@ function scr_groupStackerLoop(){
 			var inRectUnitIDListSize = ds_list_size(currentUnitList);
 			for (var quickStackLoop = 0; quickStackLoop < inRectUnitIDListSize; quickStackLoop++) {
 				var currentUnitID = ds_list_find_value(currentUnitList, quickStackLoop);
-					if(currentUnitID != prevUnitID) {
+					if (currentUnitID != prevUnitID) {
 	
 					obj_toolPane.currentTool = obj_toolPane.toolStackBrush;
 					with (obj_chain) {

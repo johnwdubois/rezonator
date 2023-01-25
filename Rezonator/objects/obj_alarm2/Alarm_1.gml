@@ -15,7 +15,7 @@ with (obj_control) {
 		
 	var translationListSize = ds_list_size(global.translationList);
 	var hasTranslation = (translationListSize > 0);
-	if(hasTranslation){
+	if (hasTranslation) {
 		ds_list_insert(obj_control.panelPaneTabList, 2, obj_panelPane.functionChainList_tabTranslations);
 	}
 }

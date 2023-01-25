@@ -1,4 +1,4 @@
-function scr_adjustTokenSpacing(numToAdd){
+function scr_adjustTokenSpacing(numToAdd) {
 
 	if (instance_exists(obj_control)) {
 		with (obj_control) {

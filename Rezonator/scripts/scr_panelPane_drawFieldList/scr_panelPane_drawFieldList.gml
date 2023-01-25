@@ -1,4 +1,4 @@
-function scr_panelPane_drawFieldList(){
+function scr_panelPane_drawFieldList() {
 
 	
 	draw_set_alpha(1);
@@ -62,7 +62,7 @@ function scr_panelPane_drawFieldList(){
 
 	
 	// make sure the field list is valid
-	if (scr_isNumericAndExists(fieldList, ds_type_list) && scr_isNumericAndExists(fieldMap, ds_type_map)){
+	if (scr_isNumericAndExists(fieldList, ds_type_list) && scr_isNumericAndExists(fieldMap, ds_type_map)) {
 
 		var fieldListSize = ds_list_size(fieldList);
 
@@ -129,8 +129,8 @@ function scr_panelPane_drawFieldList(){
 							}
 							with(obj_panelPane) functionField_tokenFieldSelected = currentField;
 						}
-						else if(fieldPaneSwitchButton == fieldPaneEntryMode){
-							if(functionField_entryFieldSelected != currentField){
+						else if (fieldPaneSwitchButton == fieldPaneEntryMode) {
+							if (functionField_entryFieldSelected != currentField) {
 								with(obj_panelPane) functionField_entryTagSelected = "";
 							}
 							with(obj_panelPane) functionField_entryFieldSelected = currentField;
@@ -141,20 +141,20 @@ function scr_panelPane_drawFieldList(){
 							}
 							with(obj_panelPane) functionField_unitFieldSelected = currentField;
 						}
-						else if(fieldPaneSwitchButton == fieldPaneChainMode){
-							if(functionField_chainFieldSelected != currentField){
+						else if (fieldPaneSwitchButton == fieldPaneChainMode) {
+							if (functionField_chainFieldSelected != currentField) {
 								with(obj_panelPane) functionField_chainTagSelected = "";
 							}
 							with(obj_panelPane) functionField_chainFieldSelected = currentField;
 						}
-						else if(fieldPaneSwitchButton == fieldPaneChunkMode){
-							if(functionField_chunkFieldSelected != currentField){
+						else if (fieldPaneSwitchButton == fieldPaneChunkMode) {
+							if (functionField_chunkFieldSelected != currentField) {
 								with(obj_panelPane) functionField_chunkTagSelected = "";
 							}
 							with(obj_panelPane) functionField_chunkFieldSelected = currentField;
 						}
-						else if(fieldPaneSwitchButton == fieldPaneLinkMode){
-							if(functionField_linkFieldSelected != currentField){
+						else if (fieldPaneSwitchButton == fieldPaneLinkMode) {
+							if (functionField_linkFieldSelected != currentField) {
 								with(obj_panelPane) functionField_linkTagSelected = "";
 							}
 							with(obj_panelPane) functionField_linkFieldSelected = currentField;
@@ -169,19 +169,19 @@ function scr_panelPane_drawFieldList(){
 				if (fieldPaneSwitchButton == fieldPaneTokenMode) {
 					if (functionField_tokenFieldSelected == currentField) fieldSelected = true;
 				}
-				else if(fieldPaneSwitchButton == fieldPaneEntryMode) {
+				else if (fieldPaneSwitchButton == fieldPaneEntryMode) {
 					if (functionField_entryFieldSelected == currentField) fieldSelected = true;
 				}
 				else if (fieldPaneSwitchButton == fieldPaneUnitMode) {
 					if (functionField_unitFieldSelected == currentField) fieldSelected = true;
 				}
-				else if(fieldPaneSwitchButton == fieldPaneChainMode) {
+				else if (fieldPaneSwitchButton == fieldPaneChainMode) {
 					if (functionField_chainFieldSelected == currentField) fieldSelected = true;
 				}
-				else if(fieldPaneSwitchButton == fieldPaneChunkMode) {
+				else if (fieldPaneSwitchButton == fieldPaneChunkMode) {
 					if (functionField_chunkFieldSelected == currentField) fieldSelected = true;
 				}
-				else if(fieldPaneSwitchButton == fieldPaneLinkMode) {
+				else if (fieldPaneSwitchButton == fieldPaneLinkMode) {
 					if (functionField_linkFieldSelected == currentField) fieldSelected = true;
 				}
 				
@@ -220,14 +220,14 @@ function scr_panelPane_drawFieldList(){
 				var lockButtonX = mean(lockColX, lockColX + lockColWidth);
 				var lockButtonY = currentRowY1 + (strHeight * 0.5);
 				var mouseOverLock = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, lockColX, currentRowY1, lockColX + lockColWidth, currentRowY2) && !mouseoverCancel && mouseoverRow;
-				var fieldLocked = currentFieldSubMap[?"locked"];
+				var fieldLocked = currentFieldSubMap[? "locked"];
 				if (!is_bool(fieldLocked)) fieldLocked = false;
 				
 				// get coordinates for readonly button
 				var readOnlyButtonX = mean(readOnlyColX, readOnlyColX + readOnlyColWidth);
 				var readOnlyButtonY = currentRowY1 + (strHeight * 0.5);
 				var mouseOverReadOnly = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, readOnlyColX, currentRowY1, readOnlyColX + readOnlyColWidth, currentRowY2) && !mouseoverCancel && mouseoverRow;
-				var fieldReadOnly = currentFieldSubMap[?"readOnly"];
+				var fieldReadOnly = currentFieldSubMap[? "readOnly"];
 				if (!is_bool(fieldReadOnly)) fieldReadOnly = false;
 
 								
@@ -257,18 +257,18 @@ function scr_panelPane_drawFieldList(){
 					draw_set_color(global.colorThemeSelected1);
 					draw_rectangle(lockColX - clipX, currentRowY1 - clipY, lockColX + lockColWidth - clipX, currentRowY2 - clipY, false);
 					if (mouse_check_button_released(mb_left)) {
-						currentFieldSubMap[?"locked"] = !currentFieldSubMap[?"locked"];
+						currentFieldSubMap[? "locked"] = !currentFieldSubMap[? "locked"];
 					
 					}
 					scr_createTooltip(lockButtonX, currentRowY2, fieldLocked ? "Unlock tags" : "Lock tags", obj_tooltip.arrowFaceUp);
 				}
 				// mouseover & click on lock button
 				else if (mouseOverReadOnly) {
-					if(removable){
+					if (removable) {
 						draw_set_color(global.colorThemeSelected1);
 						draw_rectangle(readOnlyColX - clipX, currentRowY1 - clipY, readOnlyColX + readOnlyColWidth - clipX, currentRowY2 - clipY, false);
 						if (mouse_check_button_released(mb_left)) {
-							currentFieldSubMap[?"readOnly"] = !currentFieldSubMap[?"readOnly"];
+							currentFieldSubMap[? "readOnly"] = !currentFieldSubMap[? "readOnly"];
 					
 						}
 					}
@@ -276,15 +276,15 @@ function scr_panelPane_drawFieldList(){
 				}
 			
 
-				if(mouseoverRow || fieldSelected){
+				if (mouseoverRow || fieldSelected) {
 					draw_sprite_ext(spr_trash, 0, delButtonX - clipX, delButtonY - clipY, .7, .7, 0, global.colorThemeText, trashAlpha);
 					draw_sprite_ext(spr_lock, !fieldLocked, lockButtonX - clipX, lockButtonY - clipY, .7, .7, 0, global.colorThemeText, 1);
 					draw_sprite_ext(spr_readOnly, fieldReadOnly, readOnlyButtonX - clipX, readOnlyButtonY - clipY, .6, .6, 0, global.colorThemeText, 1);
 				}
-				if(fieldLocked){
+				if (fieldLocked) {
 					draw_sprite_ext(spr_lock, !fieldLocked, lockButtonX - clipX, lockButtonY - clipY, .7, .7, 0, global.colorThemeText, 1);
 				}
-				if(fieldReadOnly){
+				if (fieldReadOnly) {
 					draw_sprite_ext(spr_readOnly, fieldReadOnly, readOnlyButtonX - clipX, readOnlyButtonY - clipY, .6, .6, 0, global.colorThemeText, 1);
 				}
 
@@ -296,18 +296,18 @@ function scr_panelPane_drawFieldList(){
 				// draw field name
 				draw_text(floor(fieldNameColX + textBuffer) - clipX, textY - clipY, string(currentField));
 				
-				if (fieldPaneSwitchButton == fieldPaneChainMode || fieldPaneSwitchButton == fieldPaneEntryMode ){
-					var inRez = currentFieldSubMap[?"rez"];
-					var inStack = currentFieldSubMap[?"card"];
-					var inTrail = currentFieldSubMap[?"track"];
+				if (fieldPaneSwitchButton == fieldPaneChainMode || fieldPaneSwitchButton == fieldPaneEntryMode ) {
+					var inRez = currentFieldSubMap[? "rez"];
+					var inStack = currentFieldSubMap[? "card"];
+					var inTrail = currentFieldSubMap[? "track"];
 					var chainList = ds_list_create();
-					if(inRez){
+					if (inRez) {
 						ds_list_add(chainList,"Resonance");
 					}
-					if(inTrail){
+					if (inTrail) {
 						ds_list_add(chainList,"Trail");
 					}
-					if(inStack){
+					if (inStack) {
 						ds_list_add(chainList,"Stack");
 					}
 					// draw field name
@@ -403,7 +403,7 @@ function scr_panelPane_drawFieldList(){
 	draw_set_color(global.colorThemeBorders);
 	draw_rectangle(fieldNameColX, y, x + windowWidth, y + headerHeight, true);
 
-	if (fieldPaneSwitchButton == fieldPaneChainMode || fieldPaneSwitchButton == fieldPaneEntryMode ){
+	if (fieldPaneSwitchButton == fieldPaneChainMode || fieldPaneSwitchButton == fieldPaneEntryMode ) {
 		draw_set_color(global.colorThemeText);
 		draw_text(floor(typeColX + textBuffer), headerTextY, scr_get_translation("Type"));
 	}
@@ -433,11 +433,11 @@ function scr_panelPane_drawFieldList(){
 	
 	var mouseOverSave = point_in_rectangle(mouse_x,mouse_y,saveRectX1,saveRectY1,saveRectX2,saveRectY2) && !mouseoverCancel;
 	
-	if(mouseOverSave){
+	if (mouseOverSave) {
 		draw_set_color(global.colorThemeSelected1);
 		draw_set_alpha(0.7);
 		draw_roundrect(mean(saveRectX1,saveRectX2)-optionsIconRad,mean(saveRectY1,saveRectY2)-optionsIconRad,mean(saveRectX1,saveRectX2)+optionsIconRad,mean(saveRectY1,saveRectY2)+optionsIconRad, false);
-		if(device_mouse_check_button_released(0,mb_left)){
+		if (device_mouse_check_button_released(0,mb_left)) {
 			scr_saveTagJson();
 		}
 		scr_createTooltip(saveSpriteX, saveRectY2,scr_get_translation("option_save-tag-json"), obj_tooltip.arrowFaceUp);
@@ -456,11 +456,11 @@ function scr_panelPane_drawFieldList(){
 	
 	var mouseOverload = point_in_rectangle(mouse_x,mouse_y,loadRectX1,loadRectY1,loadRectX2,loadRectY2) && !mouseoverCancel;
 	
-	if(mouseOverload){
+	if (mouseOverload) {
 		draw_set_color(global.colorThemeSelected1);
 		draw_set_alpha(0.7)
 		draw_roundrect(mean(loadRectX1,loadRectX2)-optionsIconRad,mean(loadRectY1,loadRectY2)-optionsIconRad,mean(loadRectX1,loadRectX2)+optionsIconRad,mean(loadRectY1,loadRectY2)+optionsIconRad, false);
-		if(device_mouse_check_button_released(0,mb_left)){
+		if (device_mouse_check_button_released(0,mb_left)) {
 			if (global.html5) {
 				show_message("Loading Tag JSON is currently not available for browser use.");
 				exit;
@@ -489,12 +489,12 @@ function scr_panelPane_drawFieldList(){
 	var mouseoverMoreChain = scr_pointInRectangleClippedWindow(mouse_x,mouse_y,moreOptionsX1,moreOptionsY1,moreOptionsX2,moreOptionsY2) && !mouseoverCancel;
 	var mouseoverMoreChainEffect = false;
 	
-	if(mouseoverMoreChain){
+	if (mouseoverMoreChain) {
 		mouseoverMoreChainEffect = true;		
-		if(mouse_check_button_pressed(mb_left)){
+		if (mouse_check_button_pressed(mb_left)) {
 			var dropDownOptionList = ds_list_create();
 			var width = 0;
-			if(instance_exists(obj_dropDown)){
+			if (instance_exists(obj_dropDown)) {
 			width = obj_dropDown.windowWidth
 			}
 			ds_list_add(dropDownOptionList, fieldPaneTokenMode,fieldPaneUnitMode,fieldPaneChainMode,fieldPaneEntryMode,fieldPaneChunkMode,fieldPaneLinkMode);

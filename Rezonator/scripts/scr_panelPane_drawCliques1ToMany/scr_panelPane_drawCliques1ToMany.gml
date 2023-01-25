@@ -1,6 +1,6 @@
 
 
-function scr_panelPane_drawCliques1ToMany(){
+function scr_panelPane_drawCliques1ToMany() {
 	
 	var headerHeight = functionTabs_tabHeight;
 	var textBuffer = 8;
@@ -151,7 +151,7 @@ function scr_panelPane_drawCliques1ToMany(){
 		var colWidth = 0;
 		var colName = "";
 		// get coordinates for header rect
-		if(i == 0){
+		if (i == 0) {
 			colWidth = numColWidth;
 			colName = "#";
 		}
@@ -190,7 +190,7 @@ function scr_panelPane_drawCliques1ToMany(){
 		draw_text(headerTextX, headerTextY, colName);
 
 		draw_set_color(global.colorThemeBorders);
-		if(i != 0) draw_line_width(headerRectX1, y, headerRectX1, y + windowHeight, 1);
+		if (i != 0) draw_line_width(headerRectX1, y, headerRectX1, y + windowHeight, 1);
 		
 		headerPlusX += colWidth;
 	}

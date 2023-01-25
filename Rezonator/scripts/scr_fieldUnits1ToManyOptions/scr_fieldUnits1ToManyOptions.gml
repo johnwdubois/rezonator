@@ -1,4 +1,4 @@
-function scr_fieldUnits1ToManyOptions(optionSelected){
+function scr_fieldUnits1ToManyOptions(optionSelected) {
 	
 	var optionSpacingMulti = ds_list_find_index(optionList, optionSelected);
 	var navFieldList = obj_control.selectFieldChunk ? obj_control.navChunkFieldList : obj_control.navTokenFieldList;

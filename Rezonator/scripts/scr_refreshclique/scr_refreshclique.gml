@@ -1,4 +1,4 @@
-function scr_refreshClique(cliqueID){
+function scr_refreshClique(cliqueID) {
 	
 	show_debug_message("scr_refreshClique: " + string(cliqueID));
 	var cliqueSubMap = global.cliqueMap[? cliqueID];	

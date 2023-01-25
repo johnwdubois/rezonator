@@ -1,6 +1,6 @@
 
 
-function scr_drawNodeList(){
+function scr_drawNodeList() {
 
 	
 	var nodeList = (string_length(nodeListSearch) > 0) ? subNodeList : global.nodeMap[? "nodeList"];
@@ -89,7 +89,7 @@ function scr_drawNodeList(){
 		
 	// scroll with arrow keys
 	if (nodeListSize > 0) {
-		if((keyboard_check(vk_down) or keyboard_check(vk_up)) and alarm_get(0) == -1){
+		if ((keyboard_check(vk_down) or keyboard_check(vk_up)) and alarm_get(0) == -1) {
 			alarm[0] = 5;
 		}
 		if (keyboard_check_pressed(vk_up)) {
@@ -162,10 +162,10 @@ function scr_drawNodeList(){
 	
 
 	
-	if (global.ctrlHold and keyboard_check_pressed(vk_down)){
+	if (global.ctrlHold and keyboard_check_pressed(vk_down)) {
 		scrollPlusYDest -= 999999;
 	}
-	if (global.ctrlHold and keyboard_check_pressed(vk_up)){
+	if (global.ctrlHold and keyboard_check_pressed(vk_up)) {
 		scrollPlusYDest += 999999;
 	}
 	

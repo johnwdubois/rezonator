@@ -1,4 +1,4 @@
-function scr_refreshCliques(){
+function scr_refreshCliques() {
 	
 	//scr_refreshCliques2();
 	exit;
@@ -19,16 +19,16 @@ function scr_refreshCliques(){
 	var cliqueListSize = ds_list_size(obj_chain.cliqueList);
 	
 	var cliqueSubMap = -1;
-	for(var i = 0 ; i < cliqueListSize; i ++){
+	for (var i = 0 ; i < cliqueListSize; i++) {
 		cliqueSubMap = global.cliqueMap[? obj_chain.cliqueList[| i ]];
-		if(ds_map_exists(cliqueSubMap, obj_chain.currentFocusedChainID)){
+		if (ds_map_exists(cliqueSubMap, obj_chain.currentFocusedChainID)) {
 			obj_chain.currentClique = obj_chain.cliqueList[| i ];
 			break;
 		}
 		
 	}
 	
-	if(scr_isNumericAndExists(cliqueSubMap,ds_type_map)){
+	if (scr_isNumericAndExists(cliqueSubMap,ds_type_map)) {
 		scr_cycleDetection(obj_chain.currentFocusedChainID);
 	}
 	ds_list_clear(obj_chain.encounteredChainList);

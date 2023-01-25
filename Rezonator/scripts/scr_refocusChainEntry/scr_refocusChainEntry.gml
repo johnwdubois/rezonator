@@ -1,6 +1,6 @@
 
 
-function scr_refocusChainEntry(ID){
+function scr_refocusChainEntry(ID) {
 	
 	show_debug_message("scr_refocusChainEntry, ID: " + string(ID));
 	
@@ -9,26 +9,26 @@ function scr_refocusChainEntry(ID){
 	var tokenID = "";
 	var chunkID = "";
 	var IDsubMap = global.nodeMap[?ID];
-	var type = IDsubMap[?"type"];
-	if(type == "unit"){
+	var type = IDsubMap[? "type"];
+	if (type == "unit") {
 		unitID = ID
-		var entryList = IDsubMap[?"entryList"];
+		var entryList = IDsubMap[? "entryList"];
 		var firstEntry = entryList[|0];
 		var entrySubMap = global.nodeMap[?firstEntry];
-		if(scr_isNumericAndExists(entrySubMap, ds_type_map)){
-			tokenID = entrySubMap[?"token"]
+		if (scr_isNumericAndExists(entrySubMap, ds_type_map)) {
+			tokenID = entrySubMap[? "token"]
 		}
 	}
-	else if(type == "token"){	
-		unitID = IDsubMap[?"unit"];
+	else if (type == "token") {	
+		unitID = IDsubMap[? "unit"];
 		tokenID = ID
 	}
-	else if(type == "chunk"){
+	else if (type == "chunk") {
 		chunkID = ID;
 		tokenID = scr_getFirstWordOfChunk(ID);
 		var tokenSubMap = global.nodeMap[?tokenID];
 		if (scr_isNumericAndExists(tokenSubMap, ds_type_map)) {
-			unitID = tokenSubMap[?"unit"];
+			unitID = tokenSubMap[? "unit"];
 		}
 		else {
 			unitID = "";
@@ -44,7 +44,7 @@ function scr_refocusChainEntry(ID){
 		var chainSubMap = ds_map_find_value(global.nodeMap, obj_chain.currentFocusedChainID);
 		var chainSetList = ds_map_find_value(chainSubMap, "setIDList");
 		var chainType = ds_map_find_value(chainSubMap, "type");
-		var effectColor = chainSubMap[?"chainColor"];
+		var effectColor = chainSubMap[? "chainColor"];
 		
 		// loop through this chain's entry list to find the entry with the correct word
 		var chainSetListSize = ds_list_size(chainSetList);
@@ -52,7 +52,7 @@ function scr_refocusChainEntry(ID){
 			var currentChainEntry = ds_list_find_value(chainSetList, i);
 			var currentChainEntrySubMap = ds_map_find_value(global.nodeMap, currentChainEntry);
 			var currentChainEntryID = ds_map_find_value(currentChainEntrySubMap, (chainType == "stack") ? "unit" : "token");
-			var currentChainEntryType = currentChainEntrySubMap[?"type"];
+			var currentChainEntryType = currentChainEntrySubMap[? "type"];
 			
 			
 			if (tokenID == currentChainEntryID or unitID == currentChainEntryID or chunkID == currentChainEntryID) {
@@ -61,18 +61,18 @@ function scr_refocusChainEntry(ID){
 			
 			/*
 			drawing of rez/tracks chains come back later
-			if(chainType == "resonance" or chainType == "trail"){
-				if(!scr_isChunk(currentChainEntryTokenID)){
+			if (chainType == "resonance" or chainType == "trail") {
+				if (!scr_isChunk(currentChainEntryTokenID)) {
 					
 					var wordDrawCol = currentChainEntryType == "rez" ? obj_control.wordDrawGrid_colBorder : obj_control.wordDrawGrid_colBorderRounded;
 					ds_grid_set(obj_control.wordDrawGrid, wordDrawCol, currentChainEntryTokenID - 1, true);
-					if(currentChainEntryType == "rez" ){
-						if(ds_grid_get(obj_control.wordDrawGrid, obj_control.wordDrawGrid_colBorderRounded, currentChainEntryTokenID - 1)){
+					if (currentChainEntryType == "rez" ) {
+						if (ds_grid_get(obj_control.wordDrawGrid, obj_control.wordDrawGrid_colBorderRounded, currentChainEntryTokenID - 1)) {
 							ds_grid_set(obj_control.wordDrawGrid, obj_control.wordDrawGrid_colBorderRounded, currentChainEntryTokenID - 1, false);
 						}
 					}
-					if(currentChainEntryType == "track" ){
-						if(ds_grid_get(obj_control.wordDrawGrid, obj_control.wordDrawGrid_colBorder, currentChainEntryTokenID - 1)){
+					if (currentChainEntryType == "track" ) {
+						if (ds_grid_get(obj_control.wordDrawGrid, obj_control.wordDrawGrid_colBorder, currentChainEntryTokenID - 1)) {
 							ds_grid_set(obj_control.wordDrawGrid, obj_control.wordDrawGrid_colBorder, currentChainEntryTokenID - 1, false);
 						}
 					}

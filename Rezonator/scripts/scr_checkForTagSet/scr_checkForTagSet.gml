@@ -1,4 +1,4 @@
-function scr_checkForTagSet(fieldSubMap){
+function scr_checkForTagSet(fieldSubMap) {
 	
 	// check whether this field has a tagSet
 	var fieldHasTagSet = false;

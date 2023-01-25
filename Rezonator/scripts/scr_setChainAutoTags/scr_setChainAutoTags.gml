@@ -1,4 +1,4 @@
-function scr_setChainAutoTags(chainID, chainSubMap){
+function scr_setChainAutoTags(chainID, chainSubMap) {
 	
 	var tagMap = ds_map_find_value(chainSubMap, "tagMap");
 	if (!scr_isNumericAndExists(tagMap, ds_type_map)) exit;

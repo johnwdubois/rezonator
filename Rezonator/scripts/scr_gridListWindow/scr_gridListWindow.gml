@@ -97,25 +97,25 @@ function scr_gridListWindow() {
 		
 		
 
-		if(point_in_rectangle(mouse_x,mouse_y, currentCellX1, currentCellY1 + scrollPlusY ,currentCellX2, currentCellY2 + scrollPlusY)){
+		if (point_in_rectangle(mouse_x,mouse_y, currentCellX1, currentCellY1 + scrollPlusY ,currentCellX2, currentCellY2 + scrollPlusY)) {
 			mouseOverGrid = i;
 		}
 		
 		
 		
-		if( mouseOverGrid == i ){
+		if ( mouseOverGrid == i ) {
 			draw_set_color(global.colorThemeSelected1);
 			draw_set_alpha(.5);
 			draw_rectangle(currentCellX1 - clipX, currentCellY1 - clipY + scrollPlusY ,currentCellX2 - clipX, currentCellY2 - clipY + scrollPlusY, false );
 			
-			if(mouse_check_button_released(mb_left)){
+			if (mouse_check_button_released(mb_left)) {
 				currentGrid = currentGridListValue;
 				obj_gridViewer.grid = currentGrid;
 			}
 		}
 		
 		
-		if(currentGrid  == currentGridListValue){
+		if (currentGrid  == currentGridListValue) {
 			draw_set_color(global.colorThemeSelected1);
 			draw_set_alpha(.5);
 			draw_rectangle(currentCellX1 - clipX, currentCellY1 - clipY + scrollPlusY ,currentCellX2 - clipX, currentCellY2 - clipY + scrollPlusY, false );
@@ -141,7 +141,7 @@ function scr_gridListWindow() {
 
 	scr_surfaceEnd();
 	
-	if(point_in_rectangle(mouse_x,mouse_y, gridListInfoWindowRectX1, gridListInfoWindowRectY1 ,gridListInfoWindowRectX2, gridListInfoWindowRectY2)){
+	if (point_in_rectangle(mouse_x,mouse_y, gridListInfoWindowRectX1, gridListInfoWindowRectY1 ,gridListInfoWindowRectX2, gridListInfoWindowRectY2)) {
 
 		
 		if (not obj_control.mouseoverHelpPane and !instance_exists(obj_dropDown)) {

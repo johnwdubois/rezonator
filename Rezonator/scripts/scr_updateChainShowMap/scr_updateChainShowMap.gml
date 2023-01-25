@@ -1,6 +1,6 @@
 
 
-function scr_updateChainShowMap(chainID, entryID, tokenID){
+function scr_updateChainShowMap(chainID, entryID, tokenID) {
 
 	var chainShowSubMap = obj_chain.chainShowMap[? chainID];
 	var chainShowMapList = -1;

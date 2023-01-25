@@ -144,7 +144,7 @@ function scr_openingMenu() {
 	draw_text(floor(mean(documentationButtonX1, documentationButtonX2)), documentationButtonY1 + (documentationButtonY2 - documentationButtonY1)*.8, documentationStr);
 
 	if (mouseoverDocumenation && documentationButtonActive) {
-		if(mouse_check_button_released(mb_left)){
+		if (mouse_check_button_released(mb_left)) {
 			scr_URLOpenReliable("https://johnwdubois.github.io/rezonator/");
 		}
 	}

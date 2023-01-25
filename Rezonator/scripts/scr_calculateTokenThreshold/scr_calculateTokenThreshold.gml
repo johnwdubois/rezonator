@@ -1,6 +1,6 @@
 
 
-function scr_calculateTokenThreshold(){
+function scr_calculateTokenThreshold() {
 	
 	if (global.importType == global.importType_IGT) {
 		var displayTokenRow = ds_grid_value_y(global.tagInfoGrid,global.tagInfoGrid_colKey, 0, global.tagInfoGrid_colKey, ds_grid_height(global.tagInfoGrid), "option_display-token");

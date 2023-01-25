@@ -4,23 +4,23 @@ function FirebaseREST_Firestore_jsonDecode(json_data)
 {
 	//fields -> Key -> stringValue,integerValue,doubleValue -> value
 
-	if(is_undefined(json_data) or json_data == "")
+	if (is_undefined(json_data) or json_data == "")
 		return json_stringify({yyundefined1:"yyundefined1"})
 
 	var map = ds_map_create()
 	//show_debug_message("FirebaseREST_Firestore_jsonDecode:   " + string(json_data))
 	var map_data = json_decode(json_data)
 
-	if(!ds_exists(map_data,ds_type_map))
+	if (!ds_exists(map_data,ds_type_map))
 	{
 		ds_map_destroy(map)
 		return json_stringify({yyundefined2:"yyundefined2"})
 	}
 
-	if(ds_map_exists(map_data,"error"))
+	if (ds_map_exists(map_data,"error"))
 	{
-		var map_error = map_data[?"error"]
-		if(map_error[?"code"] == 404)
+		var map_error = map_data[? "error"]
+		if (map_error[? "code"] == 404)
 		{
 			ds_map_destroy(map_data)
 			ds_map_destroy(map)
@@ -29,7 +29,7 @@ function FirebaseREST_Firestore_jsonDecode(json_data)
 	}
 	
 	
-	if(!ds_map_exists(map_data,"fields"))
+	if (!ds_map_exists(map_data,"fields"))
 	{
 		//show_debug_message("map_data does not contain fields");
 		ds_map_destroy(map)
@@ -38,7 +38,7 @@ function FirebaseREST_Firestore_jsonDecode(json_data)
 	}
 	
 
-	var map_fields = map_data[?"fields"]
+	var map_fields = map_data[? "fields"]
 	//show_debug_message("map_fields: " + json_encode(map_fields));
 
 	var key = ds_map_find_first(map_fields)

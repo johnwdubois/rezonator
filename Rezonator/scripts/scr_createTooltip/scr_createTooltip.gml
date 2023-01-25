@@ -3,7 +3,7 @@
 
 // arrowFaceDirection should be obj_tooltip.arrowFaceLeft, ...Right, ...up, or ...down
 
-function scr_createTooltip(tipX, tipY, tipText, arrowFaceDirection){
+function scr_createTooltip(tipX, tipY, tipText, arrowFaceDirection) {
 	
 	with (obj_tooltip) {	
 		text = tipText;

@@ -1,4 +1,4 @@
-function scr_dropDownOptionListTypeInit(){
+function scr_dropDownOptionListTypeInit() {
 	
 	global.optionListTypeSort = 0;
 	global.optionListTypeChainList = 1;

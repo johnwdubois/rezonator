@@ -2,7 +2,7 @@
 // Author: Giorgia Troiani
 // Last update : 2020 - 11 - 04
 
-function scr_get_translation(key){
+function scr_get_translation(key) {
 	
 	// look for the key in the current language's map
 	// if we can find the translation, return the translation
@@ -11,7 +11,7 @@ function scr_get_translation(key){
 		var outputString = ds_map_find_value( global.locale_gloss, key );
 		var letterCount = string_length(outputString);
 		var isRTL = false;
-		for(var i = 0; i <= letterCount; i++){
+		for (var i = 0; i <= letterCount; i++) {
 			
 			var unicodeValue = ord(string_char_at(outputString,i));
 
@@ -30,7 +30,7 @@ function scr_get_translation(key){
 					isRTL = true;
 			}
 		}
-		if(isRTL){outputString = scr_stringReverse(outputString)}
+		if (isRTL) {outputString = scr_stringReverse(outputString)}
 		return outputString;
 	}
 	else if (room == rm_mainScreen) {

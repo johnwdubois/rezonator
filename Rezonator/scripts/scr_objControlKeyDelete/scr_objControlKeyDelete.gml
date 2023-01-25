@@ -1,4 +1,4 @@
-function scr_objControlKeyDelete(){
+function scr_objControlKeyDelete() {
 
 	// putting this stuff in its own script so that it's the same for Windows & Mac
 	
@@ -63,15 +63,15 @@ function scr_objControlKeyDelete(){
 			scr_deleteChunk(obj_chain.currentFocusedChunkID);
 		}
 		
-		with(obj_panelPane){
-			if(functionChainList_currentTab == functionChainList_tabShow && functionChainContents_showID != ""){
+		with(obj_panelPane) {
+			if (functionChainList_currentTab == functionChainList_tabShow && functionChainContents_showID != "") {
 				scr_deleteShow(obj_control.selectedChainID);
 			}	
-			if(functionChainList_currentTab == functionChainList_tabTree && obj_panelPane.functionTree_treeLinkSelected != ""){
+			if (functionChainList_currentTab == functionChainList_tabTree && obj_panelPane.functionTree_treeLinkSelected != "") {
 				scr_deleteTreeLink();
 				exit;
 			}
-			if(functionChainList_currentTab == functionChainList_tabTree && obj_control.deleteEntryPressed == false){
+			if (functionChainList_currentTab == functionChainList_tabTree && obj_control.deleteEntryPressed == false) {
 				scr_deleteTreeEntry();
 				exit;
 			}

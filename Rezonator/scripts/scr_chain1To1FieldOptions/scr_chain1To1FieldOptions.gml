@@ -1,4 +1,4 @@
-function scr_chain1To1FieldOptions(optionSelected){
+function scr_chain1To1FieldOptions(optionSelected) {
 	
 	var chain1to1ColFieldList = -1;
 	with (obj_panelPane) {

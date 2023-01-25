@@ -1,4 +1,4 @@
-function scr_expandableDropDownInit(){
+function scr_expandableDropDownInit() {
 	
 	// this map tells Rezonator what dropdowns expand to further dropdowns
 	// so we can look up the strings in this map to know whether or not to draw the expand arrow

@@ -1,6 +1,6 @@
 
 
-function scr_editOptions(optionSelected){
+function scr_editOptions(optionSelected) {
 
 	switch (optionSelected)
 	{

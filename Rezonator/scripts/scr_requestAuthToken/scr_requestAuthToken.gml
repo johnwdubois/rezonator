@@ -1,4 +1,4 @@
-function scr_requestAuthToken(){
+function scr_requestAuthToken() {
 show_debug_message("scr_requestAuthToken called!~");
 
 //body

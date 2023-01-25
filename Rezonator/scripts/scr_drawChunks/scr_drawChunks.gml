@@ -1,4 +1,4 @@
-function scr_drawChunks(){
+function scr_drawChunks() {
 	
 	
 	draw_set_halign(fa_center);
@@ -20,9 +20,9 @@ function scr_drawChunks(){
 		
 		// get submap of chunk and make sure it exists
 		var currentNestList = obj_chain.chunkShowMap[? string(i)];
-		if(!scr_isNumericAndExists(currentNestList,ds_type_list)){continue;}
+		if (!scr_isNumericAndExists(currentNestList,ds_type_list)) {continue;}
 		var currentNestListSize = ds_list_size(currentNestList);
-		for(var j = 0; j < currentNestListSize; j++){
+		for (var j = 0; j < currentNestListSize; j++) {
 			var currentChunkID = currentNestList[| j];
 			scr_addToListOnce(chunkShowList, currentChunkID);
 			var currentChunkSubMap = global.nodeMap[? currentChunkID];
@@ -42,8 +42,8 @@ function scr_drawChunks(){
 			var currentChunkFirstTokenSubMap = global.nodeMap[?currentChunkFirstTokenID];
 			var currentChunkLastTokenSubMap = global.nodeMap[?currentChunkLastTokenID];
 		
-			var currentChunkFirstTokenTagMap = currentChunkFirstTokenSubMap[?"tagMap"];
-			var currentChunkLastTokenTagMap = currentChunkLastTokenSubMap[?"tagMap"];
+			var currentChunkFirstTokenTagMap = currentChunkFirstTokenSubMap[? "tagMap"];
+			var currentChunkLastTokenTagMap = currentChunkLastTokenSubMap[? "tagMap"];
 		
 		
 		
@@ -90,7 +90,7 @@ function scr_drawChunks(){
 			if (is_numeric(firstTokenX)) chunkRectX1 = firstTokenX - chunkXBorder;
 			if (is_numeric(lastTokenX)) chunkRectX2 = lastTokenX + chunkXBorder;
 		
-			if(obj_control.justify == obj_control.justifyLeft){
+			if (obj_control.justify == obj_control.justifyLeft) {
 				chunkRectX2 = chunkRectX2 + lastTokenStrWidth;
 			}
 			else{
@@ -110,7 +110,7 @@ function scr_drawChunks(){
 
 			if (displayUnit != "" and is_string(displayUnit)) {
 				var unitSubMap = global.nodeMap[?displayUnit];
-				var pixelY = unitSubMap[?"pixelY"]
+				var pixelY = unitSubMap[? "pixelY"]
 				chunkRectY1 = pixelY - strHeight;
 				chunkRectY2 = pixelY + strHeight;
 			}
@@ -130,7 +130,7 @@ function scr_drawChunks(){
 			// draw BG rect
 			draw_set_color(global.colorThemeBG);
 			draw_set_alpha(1);
-			if(!obj_control.hideChunks or currentChunkInChainsListSize != 0 ){
+			if (!obj_control.hideChunks or currentChunkInChainsListSize != 0 ) {
 				draw_rectangle(chunkRectX1, chunkRectY1, chunkRectX2, chunkRectY2, false);
 			}
 		
@@ -176,7 +176,7 @@ function scr_drawChunks(){
 			if (obj_chain.currentFocusedChunkID == currentChunkID || obj_chain.mouseLineWordID == currentChunkID || obj_chain.mouseLineWordID == scr_getFirstWordOfChunk(currentChunkID)) {
 				draw_set_color(colorOfRect);
 				draw_set_alpha(.5);
-				if((typeOfChain == "trail")){
+				if ((typeOfChain == "trail")) {
 					draw_roundrect(chunkRectX1, chunkRectY1, chunkRectX2, chunkRectY2, false);	
 				}
 				else{
@@ -187,8 +187,8 @@ function scr_drawChunks(){
 	}
 	
 	// unfocus chunks if user clicks anywhere else
-	if(!obj_chain.mouseOverAnyChunk && obj_panelPane.functionChainList_chunkMouseover == ""){
-		if(device_mouse_check_button_released(0, mb_left)){
+	if (!obj_chain.mouseOverAnyChunk && obj_panelPane.functionChainList_chunkMouseover == "") {
+		if (device_mouse_check_button_released(0, mb_left)) {
 			obj_chain.currentFocusedChunkID = "";
 		}
 	}
@@ -250,7 +250,7 @@ function scr_drawChunks(){
 			}
 			
 			
-			if(keyboard_check(vk_shift)){
+			if (keyboard_check(vk_shift)) {
 				if (obj_panelPane.functionField_chainFieldSelected != "" && obj_panelPane.functionField_chainTagSelected != ""
 				&& is_string(obj_panelPane.functionField_chainFieldSelected) && is_string(obj_panelPane.functionField_chainTagSelected)) {
 				
@@ -261,14 +261,14 @@ function scr_drawChunks(){
 						var currentChainSubMap = global.nodeMap[? currentChainID];
 				
 						if (scr_isNumericAndExists(currentChainSubMap, ds_type_map)) {
-							var tagMap = currentChainSubMap[?"tagMap"];
+							var tagMap = currentChainSubMap[? "tagMap"];
 							tagMap[? obj_panelPane.functionField_chainFieldSelected] = obj_panelPane.functionField_chainTagSelected;
 						}
 					}
 					show_debug_message("TAGGIN THAT CHAIN BB");
 				}
 			}
-			else if(keyboard_check(vk_alt)){
+			else if (keyboard_check(vk_alt)) {
 				if (obj_panelPane.functionField_entryFieldSelected != "" && obj_panelPane.functionField_entryTagSelected != ""
 				&& is_string(obj_panelPane.functionField_entryFieldSelected) && is_string(obj_panelPane.functionField_entryTagSelected)) {
 				
@@ -277,19 +277,19 @@ function scr_drawChunks(){
 						var currentChainID = hoverChunkInChainsList[| i];
 						var currentChainSubMap = global.nodeMap[? currentChainID];
 				
-						var setIDList = currentChainSubMap[?"setIDList"];
+						var setIDList = currentChainSubMap[? "setIDList"];
 						var setIDListSize = ds_list_size(setIDList);
 					
-						for(var j = 0; j < setIDListSize;j ++){
+						for (var j = 0; j < setIDListSize;j++) {
 						
 							var currentEntry = setIDList[|j];
 							var entrySubMap = global.nodeMap[?currentEntry];
 						
-							var entryTokenID = entrySubMap[?"token"];
+							var entryTokenID = entrySubMap[? "token"];
 						
-							if(entryTokenID == obj_control.hoverChunkID){
-								var tagMap = entrySubMap[?"tagMap"];
-								if(scr_isNumericAndExists(tagMap,ds_type_map)){
+							if (entryTokenID == obj_control.hoverChunkID) {
+								var tagMap = entrySubMap[? "tagMap"];
+								if (scr_isNumericAndExists(tagMap,ds_type_map)) {
 									tagMap[?obj_panelPane.functionField_entryFieldSelected] = obj_panelPane.functionField_entryTagSelected;
 								}	
 							}
@@ -307,7 +307,7 @@ function scr_drawChunks(){
 				&& is_string(obj_panelPane.functionField_chunkFieldSelected) && is_string(obj_panelPane.functionField_chunkTagSelected)) {
 					var chunkTagMap = currentChunkSubMap[? "tagMap"];
 					if (scr_isNumericAndExists(chunkTagMap, ds_type_map)) {
-						if(obj_panelPane.functionField_chunkTagSelected == scr_get_translation("menu_clear")){
+						if (obj_panelPane.functionField_chunkTagSelected == scr_get_translation("menu_clear")) {
 							chunkTagMap[? obj_panelPane.functionField_chunkFieldSelected] = "";
 						}
 						else{
@@ -424,7 +424,7 @@ function scr_drawChunks(){
 				draw_set_color(global.colorThemeSelected1);
 				draw_set_alpha(.5);
 				if (is_numeric(highlightChunkX1) && is_numeric(highlightChunkY1) && is_numeric(highlightChunkX2) && is_numeric(highlightChunkY2)) {
-					if((typeOfChain == "trail")){
+					if ((typeOfChain == "trail")) {
 						draw_roundrect(highlightChunkX1, highlightChunkY1, highlightChunkX2, highlightChunkY2, false);	
 					}
 					else{

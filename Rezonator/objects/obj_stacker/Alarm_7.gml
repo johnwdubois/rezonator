@@ -12,9 +12,9 @@ for (var tokenColLoop = 0; tokenColLoop < tokenImportColNameListSize; tokenColLo
 }
 
 var tokenImportGridHeight = ds_grid_height(global.tokenImportGrid);
-for(var endNoteLoop = 0; endNoteLoop < tokenImportGridHeight; endNoteLoop++) {
+for (var endNoteLoop = 0; endNoteLoop < tokenImportGridHeight; endNoteLoop++) {
 	var possibleEndNoteTag = ds_grid_get(global.tokenImportGrid, endCol, endNoteLoop);
-	if(possibleEndNoteTag != "") {
+	if (possibleEndNoteTag != "") {
 		if (ds_grid_height(endNoteTagsGrid) > 0) {
 			for (var possibleEndTagsLoop = 0; possibleEndTagsLoop < ds_grid_height(endNoteTagsGrid); possibleEndTagsLoop++) {
 				if (possibleEndNoteTag == ds_grid_get(endNoteTagsGrid, endNoteTagsGrid_colTag, possibleEndTagsLoop)) {

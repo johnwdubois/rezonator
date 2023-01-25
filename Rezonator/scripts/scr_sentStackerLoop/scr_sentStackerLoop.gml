@@ -1,4 +1,4 @@
-function scr_sentStackerLoop(){
+function scr_sentStackerLoop() {
 	
 	show_debug_message("scr_sentStackerLoop");
 
@@ -21,14 +21,14 @@ function scr_sentStackerLoop(){
 	var currentTurnOrder = 0;
 	var previousTurnOrder = 0;
 	var discourseSubMap = global.nodeMap[?global.discourseNode];
-	var unitList = discourseSubMap[?"unitList"];
+	var unitList = discourseSubMap[? "unitList"];
 	var unitListSize = ds_list_size(unitList);
 	
 	//Starting at the top of the unitImportGrid
 	for (var importLoop = 0; importLoop < unitListSize; importLoop++) {
 		var currentUnit = unitList[|importLoop];
 		var currentUnitSubMap = global.nodeMap[?currentUnit];
-		var unitTagMap = currentUnitSubMap[?"tagMap"];
+		var unitTagMap = currentUnitSubMap[? "tagMap"];
 		currentTurnOrder = unitTagMap[?global.participantField];
 		show_debug_message(currentTurnOrder);
 		previousTurnOrder = currentTurnOrder;
@@ -38,9 +38,9 @@ function scr_sentStackerLoop(){
 			currentUnit = unitList[|importLoop];
 
 			currentUnitSubMap = global.nodeMap[?currentUnit];
-			unitTagMap = currentUnitSubMap[?"tagMap"];
+			unitTagMap = currentUnitSubMap[? "tagMap"];
 			currentTurnOrder = unitTagMap[?global.participantField];
-			if((currentTurnOrder == previousTurnOrder)){
+			if ((currentTurnOrder == previousTurnOrder)) {
 				ds_list_add(currentUnitList, currentUnit);
 				importLoop++;
 			}
@@ -61,7 +61,7 @@ function scr_sentStackerLoop(){
 			var inRectUnitIDListSize = ds_list_size(currentUnitList);
 			for (var quickStackLoop = 0; quickStackLoop < inRectUnitIDListSize; quickStackLoop++) {
 				var currentUnitID = ds_list_find_value(currentUnitList, quickStackLoop);
-					if(currentUnitID != prevUnitID) {
+					if (currentUnitID != prevUnitID) {
 					
 					obj_toolPane.currentTool = obj_toolPane.toolStackBrush;
 					with (obj_chain) {

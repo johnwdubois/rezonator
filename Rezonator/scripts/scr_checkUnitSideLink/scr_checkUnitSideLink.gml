@@ -1,4 +1,4 @@
-function scr_checkUnitSideLink(unitID, chainID){
+function scr_checkUnitSideLink(unitID, chainID) {
 	
 	// if this function finds an entry within the chain that already exists on the given unit, return true
 	// otherwise return false

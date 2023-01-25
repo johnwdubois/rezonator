@@ -1,4 +1,4 @@
-function scr_panelPane_drawUnits1ToManyHeaders(){
+function scr_panelPane_drawUnits1ToManyHeaders() {
 	
 	var headerList = obj_control.navTokenFieldList;
 	var headerListSize = ds_list_size(headerList);
@@ -67,7 +67,7 @@ function scr_panelPane_drawUnits1ToManyHeaders(){
 			// draw underline
 			var underlineX1 = headerTextX;
 			var underlineX2 = 0;
-			if(lineStateLTR){
+			if (lineStateLTR) {
 				underlineX2 = headerTextX + string_width(currentField);
 			}
 			else{

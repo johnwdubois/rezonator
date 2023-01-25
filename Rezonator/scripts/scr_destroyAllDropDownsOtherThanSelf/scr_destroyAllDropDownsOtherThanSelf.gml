@@ -1,10 +1,10 @@
 
 
-function scr_destroyAllDropDownsOtherThanSelf(){
+function scr_destroyAllDropDownsOtherThanSelf() {
 	var selfID = self;
 	var myLevel = level;
 	with (obj_dropDown) {
-		if(level > myLevel){
+		if (level > myLevel) {
 
 			instance_destroy();
 

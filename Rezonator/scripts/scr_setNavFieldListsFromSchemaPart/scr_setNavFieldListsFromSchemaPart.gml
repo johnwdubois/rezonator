@@ -1,6 +1,6 @@
 
 
-function scr_setNavFieldListsFromSchemaPart(schemaFieldList, fullFieldList, navFieldList){
+function scr_setNavFieldListsFromSchemaPart(schemaFieldList, fullFieldList, navFieldList) {
 	
 	show_debug_message("schemaFieldList: " + scr_getStringOfList(schemaFieldList));
 	show_debug_message("fullFieldList: " + scr_getStringOfList(fullFieldList));

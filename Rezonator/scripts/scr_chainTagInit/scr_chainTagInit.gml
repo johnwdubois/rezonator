@@ -1,18 +1,18 @@
 
 
-function scr_chainTagInit(){
+function scr_chainTagInit() {
 	
 	// initialize chain/entry field map
 	global.chainFieldMap = ds_map_create();
 	global.entryFieldMap = ds_map_create();
 	
-	global.chainFieldMap[?"type"] =  "map";
-	global.entryFieldMap[?"type"] =  "map";
+	global.chainFieldMap[? "type"] =  "map";
+	global.entryFieldMap[? "type"] =  "map";
 	
 	ds_map_add_map(global.nodeMap,"chainTagMap",global.chainFieldMap);
 	ds_map_add_map(global.nodeMap,"entryTagMap",global.entryFieldMap);
 	
-	ds_list_add(global.nodeMap[?"nodeList"], "chainTagMap", "entryTagMap");
+	ds_list_add(global.nodeMap[? "nodeList"], "chainTagMap", "entryTagMap");
 	
 	// list of all of the chain/entry level fields
 	global.chainFieldList = ds_list_create();

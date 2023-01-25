@@ -1,6 +1,6 @@
 
 
-function scr_deleteFromChainVoidCheck(chainID, deletedTokenID, deletedTokenPushBack){
+function scr_deleteFromChainVoidCheck(chainID, deletedTokenID, deletedTokenPushBack) {
 	
 	show_debug_message("scr_deleteFromChainVoidCheck() chainID " + string(chainID) + ", deletedTokenID: " + string(deletedTokenID) + ", deletedTokenPushBack: " + string(deletedTokenPushBack));
 	
@@ -158,7 +158,7 @@ function scr_deleteFromChainVoidCheck(chainID, deletedTokenID, deletedTokenPushB
 				if (!scr_isNumericAndExists(currentEntrySubMap, ds_type_map)) continue;
 				
 				var currentTokenID = currentEntrySubMap[? "token"];			
-				if(scr_isChunk(currentTokenID)){
+				if (scr_isChunk(currentTokenID)) {
 					currentTokenID = scr_getFirstWordOfChunk(currentTokenID);
 				}
 				var currentTokenSubMap = global.nodeMap[? currentTokenID];

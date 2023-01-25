@@ -1,6 +1,6 @@
 
 
-function scr_setMouseLineWordID(){
+function scr_setMouseLineWordID() {
 	
 	// set which word the mouse line (pickwhip) should be coming out of
 	// we do this by checking the focused chain's focused entry
@@ -14,7 +14,7 @@ function scr_setMouseLineWordID(){
 				var focusedEntrySubMap = global.nodeMap[? focusedEntry];
 				if (scr_isNumericAndExists(focusedEntrySubMap, ds_type_map)) {
 					var focusedEntryTokenID = focusedEntrySubMap[? "token"];
-					if(scr_isChunk(focusedEntryTokenID)){
+					if (scr_isChunk(focusedEntryTokenID)) {
 						focusedEntryTokenID = scr_getFirstWordOfChunk(focusedEntryTokenID);
 					}
 					mouseLineWordID = focusedEntryTokenID;

@@ -1,6 +1,6 @@
 
 
-function scr_getFilterList(concatenate){
+function scr_getFilterList(concatenate) {
 	
 	// returns the filter list that corresponds to whatever tab you're on (rez, track, or stack)
 	// returns filteredRezList by default

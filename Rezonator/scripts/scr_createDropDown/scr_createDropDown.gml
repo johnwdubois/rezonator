@@ -1,6 +1,6 @@
 // Create Dropdown Lists
 
-function scr_createDropDown(dropDownX, dropDownY, dropDownOptionList, dropDownOptionListType){
+function scr_createDropDown(dropDownX, dropDownY, dropDownOptionList, dropDownOptionListType) {
 	
 	// validate dropdownoptionlist
 	if (!scr_isNumericAndExists(dropDownOptionList, ds_type_list)) {
@@ -30,13 +30,13 @@ function scr_createDropDown(dropDownX, dropDownY, dropDownOptionList, dropDownOp
 	ds_list_copy(dropDownInst.originalOptionList, dropDownOptionList);
 	dropDownInst.optionListType = dropDownOptionListType;
 	dropDownInst.level = instance_number(obj_dropDown);
-	with(obj_dropDown){
+	with(obj_dropDown) {
 		
 		var maxStrWidth = originalWindowWidth;
 		for (var i = 0; i < dropDownOptionListSize; i++) {
 			var currentOptionStr = string(ds_list_find_value(optionList, i));
 			var shortcutStr = "";
-			if(ds_map_exists(global.keyboardShortcutMap, currentOptionStr)){
+			if (ds_map_exists(global.keyboardShortcutMap, currentOptionStr)) {
 				shortcutStr = ds_map_find_value(global.keyboardShortcutMap, currentOptionStr);	
 			}
 	
@@ -53,16 +53,16 @@ function scr_createDropDown(dropDownX, dropDownY, dropDownOptionList, dropDownOp
 	
 	if (object_index == obj_dropDown) dropDownInst.prevDropDown = self.id;
 	if (object_index == obj_menuBar) dropDownInst.myAlpha = 1;
-	//if(global.userLangRTL and instance_number(obj_dropDown) == 1){
+	//if (global.userLangRTL and instance_number(obj_dropDown) == 1) {
 	//		dropDownInst.x -= dropDownInst.windowWidth;
 	//	}
-	//	if(global.userLangRTL and instance_number(obj_dropDown) == 2){
+	//	if (global.userLangRTL and instance_number(obj_dropDown) == 2) {
 	//		dropDownInst.x -= 2*windowWidth;
 	//	}
 		
-	if(global.userLangRTL){
+	if (global.userLangRTL) {
 		dropDownInst.x -= instance_number(obj_dropDown) * dropDownInst.windowWidth;
-		if(instance_number(obj_dropDown) == 3){
+		if (instance_number(obj_dropDown) == 3) {
 			dropDownInst.x += dropDownInst.windowWidth;	
 		}
 	}

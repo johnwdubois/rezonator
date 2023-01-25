@@ -1,22 +1,22 @@
-function scr_lockFields(){
+function scr_lockFields() {
 	var fieldMap = "";
 	var fieldListSize = 0;
 	show_debug_message("scr_lockFields, tokenFieldList: " + scr_getStringOfList(obj_control.tokenFieldList));
 	
 	fieldListSize = ds_list_size(obj_control.tokenFieldList);
 	fieldMap = global.nodeMap[? "tokenTagMap"];
-	for(var i = 0; i < fieldListSize; i++){
+	for (var i = 0; i < fieldListSize; i++) {
 		var currentField = obj_control.tokenFieldList[|i];
 		var currentFieldMap = fieldMap[?currentField];
-		if(!ds_map_exists(currentFieldMap, "locked")){
-			currentFieldMap[?"locked"] = false;
+		if (!ds_map_exists(currentFieldMap, "locked")) {
+			currentFieldMap[? "locked"] = false;
 		}
-		if(!ds_map_exists(currentFieldMap, "readOnly")){
-			currentFieldMap[?"readOnly"] = false;
+		if (!ds_map_exists(currentFieldMap, "readOnly")) {
+			currentFieldMap[? "readOnly"] = false;
 		}
-		var tagSet = currentFieldMap[?"tagSet"];
-		if(!scr_isNumericAndExists(tagSet,ds_type_list)){
-			currentFieldMap[?"readOnly"] = true
+		var tagSet = currentFieldMap[? "tagSet"];
+		if (!scr_isNumericAndExists(tagSet,ds_type_list)) {
+			currentFieldMap[? "readOnly"] = true
 		}
 		scr_sortList(tagSet);
 	}
@@ -25,19 +25,19 @@ function scr_lockFields(){
 	
 	fieldListSize = ds_list_size(obj_control.unitFieldList);
 	fieldMap = global.nodeMap[? "unitTagMap"];
-	for(var i = 0; i < fieldListSize; i++){
+	for (var i = 0; i < fieldListSize; i++) {
 		var currentField = obj_control.unitFieldList[|i];
 		var currentFieldMap = fieldMap[?currentField];
-		if(!ds_map_exists(currentFieldMap, "locked")){
-			currentFieldMap[?"locked"] = false;
-			if(currentField == global.participantField) currentFieldMap[?"locked"] = true;
+		if (!ds_map_exists(currentFieldMap, "locked")) {
+			currentFieldMap[? "locked"] = false;
+			if (currentField == global.participantField) currentFieldMap[? "locked"] = true;
 		}
-		if(!ds_map_exists(currentFieldMap, "readOnly")){
-			currentFieldMap[?"readOnly"] = false;
+		if (!ds_map_exists(currentFieldMap, "readOnly")) {
+			currentFieldMap[? "readOnly"] = false;
 		}
-		var tagSet = currentFieldMap[?"tagSet"];
-		if(!scr_isNumericAndExists(tagSet,ds_type_list)){
-			currentFieldMap[?"readOnly"] = true
+		var tagSet = currentFieldMap[? "tagSet"];
+		if (!scr_isNumericAndExists(tagSet,ds_type_list)) {
+			currentFieldMap[? "readOnly"] = true
 		}
 		scr_sortList(tagSet);
 	}
@@ -46,18 +46,18 @@ function scr_lockFields(){
 	
 	fieldListSize = ds_list_size(global.chainEntryFieldList);
 	fieldMap = global.nodeMap[? "entryTagMap"];
-	for(var i = 0; i < fieldListSize; i++){
+	for (var i = 0; i < fieldListSize; i++) {
 		var currentField = global.chainEntryFieldList[|i];
 		var currentFieldMap = fieldMap[?currentField];
-		if(!ds_map_exists(currentFieldMap, "locked")){
-			currentFieldMap[?"locked"] = false;
+		if (!ds_map_exists(currentFieldMap, "locked")) {
+			currentFieldMap[? "locked"] = false;
 		}
-		if(!ds_map_exists(currentFieldMap, "readOnly")){
-			currentFieldMap[?"readOnly"] = false;
+		if (!ds_map_exists(currentFieldMap, "readOnly")) {
+			currentFieldMap[? "readOnly"] = false;
 		}
-		var tagSet = currentFieldMap[?"tagSet"];
-		if(!scr_isNumericAndExists(tagSet,ds_type_list)){
-			currentFieldMap[?"readOnly"] = true
+		var tagSet = currentFieldMap[? "tagSet"];
+		if (!scr_isNumericAndExists(tagSet,ds_type_list)) {
+			currentFieldMap[? "readOnly"] = true
 		}
 		scr_sortList(tagSet);
 	}
@@ -66,18 +66,18 @@ function scr_lockFields(){
 	
 	fieldListSize = ds_list_size(global.chainFieldList);
 	fieldMap = global.nodeMap[? "chainTagMap"];
-	for(var i = 0; i < fieldListSize; i++){
+	for (var i = 0; i < fieldListSize; i++) {
 		var currentField = global.chainFieldList[|i];
 		var currentFieldMap = fieldMap[?currentField];
-		if(!ds_map_exists(currentFieldMap, "locked")){
-			currentFieldMap[?"locked"] = false;
+		if (!ds_map_exists(currentFieldMap, "locked")) {
+			currentFieldMap[? "locked"] = false;
 		}
-		if(!ds_map_exists(currentFieldMap, "readOnly")){
-			currentFieldMap[?"readOnly"] = false;
+		if (!ds_map_exists(currentFieldMap, "readOnly")) {
+			currentFieldMap[? "readOnly"] = false;
 		}
-		var tagSet = currentFieldMap[?"tagSet"];
-		if(!scr_isNumericAndExists(tagSet,ds_type_list)){
-			currentFieldMap[?"readOnly"] = true
+		var tagSet = currentFieldMap[? "tagSet"];
+		if (!scr_isNumericAndExists(tagSet,ds_type_list)) {
+			currentFieldMap[? "readOnly"] = true
 		}
 		scr_sortList(tagSet);
 	}
@@ -86,20 +86,20 @@ function scr_lockFields(){
 	
 	fieldListSize = ds_list_size(obj_control.chunkFieldList);
 	fieldMap = global.nodeMap[? "tokenTagMap"];
-	for(var i = 0; i < fieldListSize; i++){
+	for (var i = 0; i < fieldListSize; i++) {
 		var currentField = obj_control.chunkFieldList[|i];
 		var currentFieldMap = fieldMap[?currentField];
-		if(!ds_map_exists(currentFieldMap, "locked")){
-			currentFieldMap[?"locked"] = false;
+		if (!ds_map_exists(currentFieldMap, "locked")) {
+			currentFieldMap[? "locked"] = false;
 		}
-		if(!ds_map_exists(currentFieldMap, "readOnly")){
-			currentFieldMap[?"readOnly"] = false;
+		if (!ds_map_exists(currentFieldMap, "readOnly")) {
+			currentFieldMap[? "readOnly"] = false;
 		}
 		
-		var tagSet = currentFieldMap[?"tagSet"];
+		var tagSet = currentFieldMap[? "tagSet"];
 
-		if(!scr_isNumericAndExists(tagSet,ds_type_list)){
-			currentFieldMap[?"readOnly"] = true
+		if (!scr_isNumericAndExists(tagSet,ds_type_list)) {
+			currentFieldMap[? "readOnly"] = true
 		}
 		scr_sortList(tagSet);
 	}
@@ -108,18 +108,18 @@ function scr_lockFields(){
 	
 	fieldListSize = ds_list_size(global.linkFieldList);
 	fieldMap = global.nodeMap[? "linkTagMap"];
-	for(var i = 0; i < fieldListSize; i++){
+	for (var i = 0; i < fieldListSize; i++) {
 		var currentField = global.linkFieldList[|i];
 		var currentFieldMap = fieldMap[?currentField];
-		if(!ds_map_exists(currentFieldMap, "locked")){
-			currentFieldMap[?"locked"] = false;
+		if (!ds_map_exists(currentFieldMap, "locked")) {
+			currentFieldMap[? "locked"] = false;
 		}
-		if(!ds_map_exists(currentFieldMap, "readOnly")){
-			currentFieldMap[?"readOnly"] = false;
+		if (!ds_map_exists(currentFieldMap, "readOnly")) {
+			currentFieldMap[? "readOnly"] = false;
 		}
-		var tagSet = currentFieldMap[?"tagSet"];
-		if(!scr_isNumericAndExists(tagSet,ds_type_list)){
-			currentFieldMap[?"readOnly"] = true
+		var tagSet = currentFieldMap[? "tagSet"];
+		if (!scr_isNumericAndExists(tagSet,ds_type_list)) {
+			currentFieldMap[? "readOnly"] = true
 		}
 		scr_sortList(tagSet);
 	}

@@ -1,6 +1,6 @@
 
 
-function scr_tokenCalculateVoid(tokenID){
+function scr_tokenCalculateVoid(tokenID) {
 	
 	var tokenSubMap = global.nodeMap[? tokenID];
 

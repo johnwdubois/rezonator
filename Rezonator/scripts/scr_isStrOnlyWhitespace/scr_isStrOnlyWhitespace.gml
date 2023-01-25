@@ -1,6 +1,6 @@
 
 
-function scr_isStrOnlyWhitespace(str){
+function scr_isStrOnlyWhitespace(str) {
 	
 	// returns whether a given string is entirely comprised of spaces or tabs
 	

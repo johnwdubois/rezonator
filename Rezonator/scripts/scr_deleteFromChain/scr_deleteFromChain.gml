@@ -19,10 +19,10 @@ function scr_deleteFromChain(sortVizSetList) {
 	var chainInCliqueID = chainSubMap[? "inClique"];
 	
 	
-	if(chainType == "trail"){
+	if (chainType == "trail") {
 		obj_toolPane.currentMode = obj_toolPane.modeTrack;
 	}
-	else if(chainType == "resonance" || chainType == "stack"){
+	else if (chainType == "resonance" || chainType == "stack") {
 		obj_toolPane.currentMode = obj_toolPane.modeRez;
 	}
 	else{
@@ -89,14 +89,14 @@ function scr_deleteFromChain(sortVizSetList) {
 				var focusedEntryToken = focusedEntrySubMap[? "token"];
 				scr_removeChainFromInChainsList(obj_chain.currentFocusedChainID, focusedEntry, focusedEntryToken);
 				
-				if(focusedEntryType == "rez"){
-					if(obj_chain.quickLinkDeleted == false){
+				if (focusedEntryType == "rez") {
+					if (obj_chain.quickLinkDeleted == false) {
 						scr_refreshCliqueDelete(chainInCliqueID, obj_chain.currentFocusedChainID, focusedEntry);
 						scr_refreshCliques();
 					}
 				}
 			}
-			else if (focusedEntryType == "card"){
+			else if (focusedEntryType == "card") {
 				var focusedEntryUnit = focusedEntrySubMap[? "unit"];
 				scr_removeChainFromInChainsList(obj_chain.currentFocusedChainID, focusedEntry, focusedEntryUnit);
 			}
@@ -157,14 +157,14 @@ function scr_deleteFromChain(sortVizSetList) {
 			// remove the focusedEntry from this token's inChainsList (if it is a rez or track)
 			if (focusedEntryType == "rez" || focusedEntryType == "track") {
 				scr_removeChainFromInChainsList(obj_chain.currentFocusedChainID, focusedEntry, focusedEntryToken);
-				if(focusedEntryType == "rez" ){
-					if(obj_chain.quickLinkDeleted == false){
+				if (focusedEntryType == "rez" ) {
+					if (obj_chain.quickLinkDeleted == false) {
 						scr_refreshCliqueDelete(chainInCliqueID, obj_chain.currentFocusedChainID, focusedEntry);
 						scr_refreshCliques();
 					}
 				}
 			}
-			else if (focusedEntryType == "card"){
+			else if (focusedEntryType == "card") {
 				var focusedEntryUnit = focusedEntrySubMap[? "unit"];
 				scr_removeChainFromInChainsList(obj_chain.currentFocusedChainID, focusedEntry, focusedEntryUnit);
 			}
@@ -258,14 +258,14 @@ function scr_deleteFromChain(sortVizSetList) {
 	// removed chain from focusedEntry's word's inChainsList (if it is a rez or track)
 	if (focusedEntryType == "rez" || focusedEntryType == "track") {
 		scr_removeChainFromInChainsList(obj_chain.currentFocusedChainID, focusedEntry, focusedEntryToken);
-		if(focusedEntryType == "rez" ){
-			if(obj_chain.quickLinkDeleted == false){
+		if (focusedEntryType == "rez" ) {
+			if (obj_chain.quickLinkDeleted == false) {
 				scr_refreshCliqueDelete(chainInCliqueID, obj_chain.currentFocusedChainID, focusedEntry);
 				scr_refreshCliques();
 			}
 		}
 	}
-	else if (focusedEntryType == "card"){
+	else if (focusedEntryType == "card") {
 		var focusedEntryUnit = ds_map_find_value(focusedEntrySubMap, "unit");
 		scr_removeChainFromInChainsList(obj_chain.currentFocusedChainID, focusedEntry, focusedEntryUnit);
 	}

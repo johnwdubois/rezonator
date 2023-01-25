@@ -1,6 +1,6 @@
 
 
-function scr_panelPane_drawTreeList(){
+function scr_panelPane_drawTreeList() {
 	
 	var ltr = (obj_control.drawLineState == obj_control.lineState_ltr);
 	var strHeight = string_height("0") * 1.5;
@@ -134,9 +134,9 @@ function scr_panelPane_drawTreeList(){
 		var tokenListSize = ds_list_size(tokenList);
 		var j = (ltr) ? 0 : tokenListSize-1;
 		var textRepeatCount = min(tokenListSize, maxTokenListSize);
-		repeat(textRepeatCount){
+		repeat(textRepeatCount) {
 			var currentTokenSubMap = global.nodeMap[? tokenList[| j]];
-			if(!scr_isNumericAndExists(currentTokenSubMap, ds_type_map)){j = (ltr) ? j+1: j-1;continue;}
+			if (!scr_isNumericAndExists(currentTokenSubMap, ds_type_map)) {j = (ltr) ? j+1: j-1;continue;}
 			var tokenTagMap = currentTokenSubMap[? "tagMap"];
 			fullTreeStr += (string(tokenTagMap[? global.displayTokenField]) + " ");
 			j = (ltr) ? j+1: j-1;

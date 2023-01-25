@@ -1,6 +1,6 @@
 
 
-function scr_quickLinkCreation(){
+function scr_quickLinkCreation() {
 	obj_chain.quickLinkCreated = true;
 	var quickLinkTokenIDList = inRectTokenIDList;
 	show_debug_message("scr_quickLinkCreation() ... quickLinkTokenIDList: " + scr_getStringOfList(quickLinkTokenIDList));
@@ -168,8 +168,8 @@ function scr_quickLinkCreation(){
 	ds_grid_destroy(gridOfFutureChains);
 	
 	scr_refreshCliques();
-	if(global.steamAPI){
-		if(!steam_get_achievement("SA_quicklink")){
+	if (global.steamAPI) {
+		if (!steam_get_achievement("SA_quicklink")) {
 			steam_set_achievement("SA_quicklink");
 		}
 	}

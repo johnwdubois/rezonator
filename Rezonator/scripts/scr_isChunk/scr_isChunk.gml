@@ -1,6 +1,6 @@
 
 
-function scr_isChunk(chunkID){
+function scr_isChunk(chunkID) {
 	
 	var isChunk = false;
 	

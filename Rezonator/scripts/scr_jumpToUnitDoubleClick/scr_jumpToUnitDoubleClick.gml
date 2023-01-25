@@ -1,6 +1,6 @@
 
 
-function scr_jumpToUnitDoubleClick(unitID){
+function scr_jumpToUnitDoubleClick(unitID) {
 
 	with (obj_control) {
 		if (doubleClickTimer > -1) {

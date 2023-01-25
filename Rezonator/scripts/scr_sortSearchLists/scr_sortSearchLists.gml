@@ -1,6 +1,6 @@
 
 
-function scr_sortSearchLists(resultsList){
+function scr_sortSearchLists(resultsList) {
 
 
 	var unitList = resultsList[|0];
@@ -11,12 +11,12 @@ function scr_sortSearchLists(resultsList){
 	var tempGrid = ds_grid_create(3,tokenListSize);
 
 
-	for(var i = 0 ; i < tokenListSize; i++){
+	for (var i = 0 ; i < tokenListSize; i++) {
 
 		var currentToken = tokenList[|i];
 		var tokenSubMap = global.nodeMap[?currentToken];
 	
-		var discourseOrder = tokenSubMap[?"docTokenSeq"];
+		var discourseOrder = tokenSubMap[? "docTokenSeq"];
 
 		tempGrid[# 0,i] = unitList[|i];
 		tempGrid[# 1,i] = tokenList[|i];
@@ -29,7 +29,7 @@ function scr_sortSearchLists(resultsList){
 	ds_list_clear(unitList);
 	ds_list_clear(tokenList);
 
-	for(var i = 0 ; i < tokenListSize; i++){
+	for (var i = 0 ; i < tokenListSize; i++) {
 
 		unitList[|i] = tempGrid[# 0,i];
 		tokenList[|i] = tempGrid[# 1,i];

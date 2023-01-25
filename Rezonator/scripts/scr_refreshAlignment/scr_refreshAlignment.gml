@@ -1,6 +1,6 @@
 
 
-function scr_refreshAlignment(){
+function scr_refreshAlignment() {
 	
 	// refresh alignment for all rez chains
 	var rezChainList = global.nodeMap[? "resonanceList"];

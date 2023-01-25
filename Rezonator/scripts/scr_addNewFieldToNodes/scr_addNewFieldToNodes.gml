@@ -1,4 +1,4 @@
-function scr_addNewFieldToNodes(type, field){
+function scr_addNewFieldToNodes(type, field) {
 	
 	var chainList = ds_list_create();
 	var entryList = ds_list_create();
@@ -8,7 +8,7 @@ function scr_addNewFieldToNodes(type, field){
 	if (type == "token") nodeList = docNode[? "tokenList"];
 	else if (type == "unit") nodeList = docNode[? "unitList"];
 	else if (type == "chunk") nodeList = global.nodeMap[? "chunkList"];
-	else if (type == "Link"){
+	else if (type == "Link") {
 		
 		var treeList = global.nodeMap[? "treeList"];
 		var treeListSize = ds_list_size(treeList);

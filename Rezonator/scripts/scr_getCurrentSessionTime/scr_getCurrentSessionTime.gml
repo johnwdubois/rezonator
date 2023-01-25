@@ -1,6 +1,6 @@
 
 
-function scr_getCurrentSessionTime(){
+function scr_getCurrentSessionTime() {
 	
 	with (obj_control) {
 		currentSessionLength = current_time - sessionStartTime;

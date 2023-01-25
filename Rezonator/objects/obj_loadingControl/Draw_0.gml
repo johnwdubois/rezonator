@@ -13,9 +13,9 @@ draw_text(camWidth * 0.5, camHeight * 0.1, "Importing : " + string(filename_name
 
 draw_set_halign(fa_left);
 
-for(var i = 0; i < 6; i++){
+for (var i = 0; i < 6; i++) {
 	var textRow = importGridRow - i;
-	if(textRow >= 0 && textRow < importGridHeight){
+	if (textRow >= 0 && textRow < importGridHeight) {
 		var currentLineText = (global.importType == global.importType_CSV) ? global.importCSVGrid[# indexOfDisplayToken, importGridRow - i] : global.importTXTLineGrid[# 0, importGridRow - i];
 		draw_text(camWidth * 0.35, camHeight * 0.2 + (i *string_height(currentLineText)* 1.5), currentLineText);
 		draw_text(camWidth * 0.3, camHeight * 0.2 + (i *string_height(currentLineText)* 1.5), string(textRow));

@@ -1,4 +1,4 @@
-function scr_clearNavWindowTagging(destroyInputBox){
+function scr_clearNavWindowTagging(destroyInputBox) {
 	
 	if (destroyInputBox) {
 		if (obj_control.navWindowTaggingField != "" && obj_control.navWindowTaggingID != "") {

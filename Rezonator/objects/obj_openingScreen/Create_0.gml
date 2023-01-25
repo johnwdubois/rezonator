@@ -421,7 +421,7 @@ ds_map_add(global.html5RestrictedMap, "menu_autosave", true);
 
 //checkmarkKeys = [];
 //ds_map_keys_to_array(global.checkDropdownMap, checkmarkKeys);
-//for(var i = 0; i < array_length(checkmarkKeys); i++){
+//for (var i = 0; i < array_length(checkmarkKeys); i++) {
 //	show_debug_message(checkmarkKeys[i]);
 //}
 

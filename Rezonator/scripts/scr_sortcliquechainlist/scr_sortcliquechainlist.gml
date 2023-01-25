@@ -1,4 +1,4 @@
-function scr_sortCliqueChainList(cliqueID){
+function scr_sortCliqueChainList(cliqueID) {
 	
 	// sort the clique's chain list!
 	var resonanceList = global.nodeMap[? "resonanceList"];

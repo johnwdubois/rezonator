@@ -1,4 +1,4 @@
-function scr_drawLogo(logoX, logoY, drawVersion){
+function scr_drawLogo(logoX, logoY, drawVersion) {
 	
 	draw_set_alpha(1);
 	var logoSpr = global.html5 ? spr_logoWeb : spr_logo;
@@ -33,7 +33,7 @@ function scr_drawLogo(logoX, logoY, drawVersion){
 			versionTextX = logoX + sprite_get_width(logoSpr)* .332;
 			versionTextY = logoY + sprite_get_height(logoSpr)* .53;
 		}
-		else if(global.fontSize == 5) {
+		else if (global.fontSize == 5) {
 			versionTextX = logoX + sprite_get_width(logoSpr)* .37;
 			versionTextY = logoY + sprite_get_height(logoSpr)* .58;
 		}

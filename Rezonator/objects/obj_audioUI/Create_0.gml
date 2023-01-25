@@ -51,7 +51,7 @@ mouseOverAudioUI = false;
 bookmarkStartTime = -1;
 bookmarkEndTime = -1;
 
-if(obj_fileLoader.importedAudioFile != ""){
+if (obj_fileLoader.importedAudioFile != "") {
 	audioFile = obj_fileLoader.importedAudioFile;
 	audioStream = audio_create_stream(audioFile);
 	audioSound = audio_play_sound(audioStream, 100, false);

@@ -1,6 +1,6 @@
 
 
-function scr_setWordTopMargin(){
+function scr_setWordTopMargin() {
 	
 	var menuBarHeight = 0;
 	if (instance_exists(obj_menuBar)) {

@@ -1,6 +1,6 @@
 
 
-function scr_discourseSort(tokenList){
+function scr_discourseSort(tokenList) {
 	var dummyList = ds_list_create();
 	// get set list from chain
 	var tokenListSize = ds_list_size(tokenList);
@@ -25,8 +25,8 @@ function scr_discourseSort(tokenList){
 			
 			
 		var currentUnitSubMap = currentTokenSubMap[? "unit"];   
-		if(scr_isNumericAndExists(currentUnitSubMap, ds_type_map)){
-			currentUnitSeq = currentUnitSubMap[?"unitSeq"];//= ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colUnitID, currentWordID - 1);
+		if (scr_isNumericAndExists(currentUnitSubMap, ds_type_map)) {
+			currentUnitSeq = currentUnitSubMap[? "unitSeq"];//= ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colUnitID, currentWordID - 1);
 		}
 
 		currentWordOrder = currentTokenSubMap[? "docTokenSeq"];//= ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colWordSeq, currentWordID - 1);

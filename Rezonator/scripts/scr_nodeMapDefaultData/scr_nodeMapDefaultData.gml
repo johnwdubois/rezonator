@@ -1,6 +1,6 @@
 
 
-function scr_nodeMapDefaultData(){
+function scr_nodeMapDefaultData() {
 	// add chainLists to nodeMap
 	ds_map_add_list(global.nodeMap, "resonanceList", ds_list_create());
 	ds_map_add_list(global.nodeMap, "trailList", ds_list_create());

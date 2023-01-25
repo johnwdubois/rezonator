@@ -14,7 +14,7 @@ function scr_chain1ToManyFieldOptions(optionSelected) {
 		
 		var colListIndex = obj_control.chain1ToManyColFieldToChange;
 		var optionSelectedPrevIndex = ds_list_find_index(chain1toManyColFieldList,optionSelected);
-		if(optionSelectedPrevIndex >= 0 && colListIndex != optionSelectedPrevIndex){
+		if (optionSelectedPrevIndex >= 0 && colListIndex != optionSelectedPrevIndex) {
 			scr_listSwap(chain1toManyColFieldList, colListIndex, optionSelectedPrevIndex);
 		}
 		else if (optionSelectedPrevIndex == -1) {

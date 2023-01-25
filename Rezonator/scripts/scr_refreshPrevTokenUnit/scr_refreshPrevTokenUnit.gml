@@ -1,4 +1,4 @@
-function scr_refreshPrevTokenUnit(unitID){
+function scr_refreshPrevTokenUnit(unitID) {
 	
 	var unitSubMap = global.nodeMap[? unitID];
 	if (!scr_isNumericAndExists(unitSubMap, ds_type_map)) exit;

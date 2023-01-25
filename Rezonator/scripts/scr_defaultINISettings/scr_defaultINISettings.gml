@@ -1,4 +1,4 @@
-function scr_defaultINISettings(){
+function scr_defaultINISettings() {
 	
 	var displayWidth = display_get_width();
 	var displayHeight = display_get_height();

@@ -74,15 +74,15 @@ function scr_speakerLabelOptions(optionSelected) {
 			else if (optionSelected == "Tag Chain") {
 				// set field/tags
 				if (obj_control.rightClickID != "") {
-					if(scr_isNumericAndExists(unitSubMap, ds_type_map)){
+					if (scr_isNumericAndExists(unitSubMap, ds_type_map)) {
 					
 						var inChainsList = unitSubMap[? "inChainsList"];
 						var inChainsListSize = ds_list_size(inChainsList);
 
-						for(var i = 0; i < inChainsListSize; i++){
+						for (var i = 0; i < inChainsListSize; i++) {
 							var currentChainID = inChainsList[| i];
 							var chainSubMap = global.nodeMap[? currentChainID];						
-							if(scr_isNumericAndExists(chainSubMap, ds_type_map)){
+							if (scr_isNumericAndExists(chainSubMap, ds_type_map)) {
 								var chainType = chainSubMap[? "type"];							
 								if (obj_panelPane.functionField_chainFieldSelected != "" && obj_panelPane.functionField_chainTagSelected != ""
 								&& is_string(obj_panelPane.functionField_chainFieldSelected) && is_string(obj_panelPane.functionField_chainTagSelected)) {
@@ -102,7 +102,7 @@ function scr_speakerLabelOptions(optionSelected) {
 			else if (optionSelected == "Tag Unit") {
 				// set field/tags
 				if (obj_control.rightClickID != "") {
-					if(scr_isNumericAndExists(unitSubMap, ds_type_map)){
+					if (scr_isNumericAndExists(unitSubMap, ds_type_map)) {
 						if (obj_panelPane.functionField_unitFieldSelected != "" && obj_panelPane.functionField_unitTagSelected != ""
 						&& is_string(obj_panelPane.functionField_unitFieldSelected) && is_string(obj_panelPane.functionField_unitTagSelected)) {
 							var unitTagMap = unitSubMap[? "tagMap"];
@@ -119,29 +119,29 @@ function scr_speakerLabelOptions(optionSelected) {
 			else if (optionSelected == "Tag Entry") {
 				// set field/tags
 				if (obj_control.rightClickID != "") {
-					if(scr_isNumericAndExists(unitSubMap, ds_type_map)){
+					if (scr_isNumericAndExists(unitSubMap, ds_type_map)) {
 						var inChainsList = unitSubMap[? "inChainsList"];
 						var inChainsListSize = ds_list_size(inChainsList);
 					
-						for(var i = 0; i < inChainsListSize; i++){
+						for (var i = 0; i < inChainsListSize; i++) {
 							var currentChainID = inChainsList[| i];
 							var chainSubMap = global.nodeMap[? currentChainID];	
 						
-							if(scr_isNumericAndExists(chainSubMap, ds_type_map)){
+							if (scr_isNumericAndExists(chainSubMap, ds_type_map)) {
 								var chainType = chainSubMap[? "type"];		
 							
 	
 								var chainSetList = chainSubMap[? "setIDList"];
 								var sizeOfSetList = ds_list_size(chainSetList);
 								 
-								for(var j = 0 ; j < sizeOfSetList ; j ++){
+								for (var j = 0 ; j < sizeOfSetList ; j++) {
 									var currentEntry = chainSetList[|j];
 									var currentEntrySubMap = global.nodeMap[?currentEntry];
 									
-									if(scr_isNumericAndExists(currentEntrySubMap , ds_type_map)){
-										var currentunitID = currentEntrySubMap[?"unit"];
+									if (scr_isNumericAndExists(currentEntrySubMap , ds_type_map)) {
+										var currentunitID = currentEntrySubMap[? "unit"];
 										
-										if(currentunitID == obj_control.rightClickID){
+										if (currentunitID == obj_control.rightClickID) {
 											if (obj_panelPane.functionField_entryFieldSelected != "" && obj_panelPane.functionField_entryTagSelected != ""
 											&& is_string(obj_panelPane.functionField_entryFieldSelected) && is_string(obj_panelPane.functionField_entryTagSelected)) {
 												var currentEntryTagMap = currentEntrySubMap[? "tagMap"];
@@ -163,13 +163,13 @@ function scr_speakerLabelOptions(optionSelected) {
 			}
 			else if (optionSelected == "tab_name_tag") {
 				obj_control.unitToChange =	obj_control.rightClickID;
-				with(obj_dropDown){
+				with(obj_dropDown) {
 					scr_destroyAllDropDownsOtherThanSelf();
 				}
 				var dropDownOptionList = ds_list_create();
 				// localize
 				ds_list_add(dropDownOptionList, "Tag Unit");
-				if(obj_control.inChain){
+				if (obj_control.inChain) {
 					// localize
 					ds_list_add(dropDownOptionList, "Tag Chain", "Tag Entry");
 				}

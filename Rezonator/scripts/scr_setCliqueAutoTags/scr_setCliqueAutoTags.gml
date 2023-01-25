@@ -1,4 +1,4 @@
-function scr_setCliqueAutoTags(cliqueID){
+function scr_setCliqueAutoTags(cliqueID) {
 	
 	if (is_string(cliqueID) && cliqueID != "") {
 		var cliqueSubMap = global.cliqueMap[? cliqueID];

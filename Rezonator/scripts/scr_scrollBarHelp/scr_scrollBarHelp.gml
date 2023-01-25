@@ -58,7 +58,7 @@ function scr_scrollBarHelp(listSize, focusedElementY, strHeight, marginTop, scro
 
 
 	var holdOffset = 0;
-	if(mouseOverScrollBar || scrollBarHolding){
+	if (mouseOverScrollBar || scrollBarHolding) {
 		holdOffset = global.scrollBarWidth/8;
 	}
 

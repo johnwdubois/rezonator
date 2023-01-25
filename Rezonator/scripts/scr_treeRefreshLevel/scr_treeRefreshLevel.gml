@@ -1,6 +1,6 @@
 
 
-function scr_treeRefreshLevel(treeSubMap, entry, level){
+function scr_treeRefreshLevel(treeSubMap, entry, level) {
 	show_debug_message("LOOP ON LEVEL: " + string(level))
 	// get tree & entry, make sure they exist
 	if (!scr_isNumericAndExists(treeSubMap, ds_type_map)) exit;

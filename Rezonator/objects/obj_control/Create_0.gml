@@ -1,8 +1,8 @@
 /*
 	Purpose: Instantiate all variables used by control objects
 */
-if(global.steamAPI){
-	if(!steam_get_achievement("SA_open-file")){
+if (global.steamAPI) {
+	if (!steam_get_achievement("SA_open-file")) {
 		steam_set_achievement("SA_open-file");
 	}
 }
@@ -768,7 +768,7 @@ with (obj_alarm2) alarm[1] = 2;
 displayUnitList = -1
 
 
-if(global.participantField != "" && is_string(global.participantField) ){
+if (global.participantField != "" && is_string(global.participantField) ) {
 	scr_showSpeakerName(true);
 }
 
@@ -776,7 +776,7 @@ selectFieldChunk = false;
 searchField = global.displayTokenField;
 searchRange = "option_doc";
 
-if(global.RTLFound){
+if (global.RTLFound) {
 
 	drawLineState = lineState_rtl;
 	justify = justifyRight;
@@ -831,7 +831,7 @@ mergeUnitList = ds_list_create();
 
 global.inputBoxDefStr = "";
 //set up tags from schema a frame after loading
-with(obj_alarm){
+with(obj_alarm) {
 	alarm[0] = 1;
 }
 scr_loadINI();

@@ -1,8 +1,8 @@
-function scr_closeDialogueBoxVariables(){
+function scr_closeDialogueBoxVariables() {
 	
 	show_debug_message("scr_closeDialogueBoxVariables");
 	
-	if(inputWindowActive){
+	if (inputWindowActive) {
 		with (obj_control) {
 			newWordCreated =false
 			fPressed = false;
@@ -48,7 +48,7 @@ function scr_closeDialogueBoxVariables(){
 			confirmStackName = false;
 		}
 	}
-	if(questionWindowActive){
+	if (questionWindowActive) {
 		
 		questionWindowActive = false;
 		clearAllStacks = false;

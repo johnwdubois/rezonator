@@ -1,7 +1,7 @@
 function scr_jumpToUnitTop(unitOrSeq) {
 	
 	show_debug_message("scr_jumpToUnitTop: " + string(unitOrSeq));
-	if( unitOrSeq == "" || unitOrSeq == undefined ){exit;}
+	if ( unitOrSeq == "" || unitOrSeq == undefined ) {exit;}
 	
 	// get display unit list
 	var discourseSubMap = global.nodeMap[? global.discourseNode];
@@ -45,7 +45,7 @@ function scr_jumpToUnitTop(unitOrSeq) {
 	obj_control.refreshYValuesUnit = unitID;
 	with (obj_alarm2) alarm[9] = 2;
 	
-	if(!obj_control.offIndex){
+	if (!obj_control.offIndex) {
 		obj_control.unitFlash = obj_control.flashTime;
 		obj_control.unitToFlash = unitID;
 	}

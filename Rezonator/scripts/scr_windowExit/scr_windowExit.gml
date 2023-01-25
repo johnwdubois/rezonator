@@ -1,4 +1,4 @@
-function scr_windowExit(){
+function scr_windowExit() {
 	
 	if (global.html5) exit;
 	

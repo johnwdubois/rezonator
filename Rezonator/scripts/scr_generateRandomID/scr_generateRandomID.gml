@@ -1,4 +1,4 @@
-function scr_generateRandomID(){
+function scr_generateRandomID() {
 	
 	// generate a random number and turn it into a hex string
 	var str = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";

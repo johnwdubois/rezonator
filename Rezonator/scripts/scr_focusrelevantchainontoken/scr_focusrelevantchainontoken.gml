@@ -1,11 +1,11 @@
-function scr_focusRelevantChainOnToken(tokenID, chainType){
+function scr_focusRelevantChainOnToken(tokenID, chainType) {
 	
 	show_debug_message("scr_focusRelevantChainOnToken, tokenID: " + string(tokenID) + ", chainType: " + string(chainType));
 	// find the correct chain and focus it
 	var tokenSubMap = global.nodeMap[? obj_control.rightClickID];
 	var tokenInChainsList = tokenSubMap[? "inChainsList"];
 	var tokenInChainsListSize = ds_list_size(tokenInChainsList);
-	for(var i = 0; i < ds_list_size(tokenInChainsList); i++){
+	for (var i = 0; i < ds_list_size(tokenInChainsList); i++) {
 		var currentChainID = tokenInChainsList[| i];
 		var currentChainSubMap = global.nodeMap[? currentChainID];
 		if (scr_isNumericAndExists(currentChainSubMap, ds_type_map)) {

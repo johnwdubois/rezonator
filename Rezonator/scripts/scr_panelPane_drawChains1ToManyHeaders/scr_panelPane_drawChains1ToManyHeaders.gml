@@ -1,4 +1,4 @@
-function scr_panelPane_drawChains1ToManyHeaders(){
+function scr_panelPane_drawChains1ToManyHeaders() {
 	
 	var lineStateLTR = (obj_control.drawLineState == obj_control.lineState_ltr);
 	var textMarginLeft = 8;
@@ -7,7 +7,7 @@ function scr_panelPane_drawChains1ToManyHeaders(){
 	var mouseoverCancel = !point_in_rectangle(mouse_x, mouse_y, x, y, x + windowWidth, y + windowHeight) || instance_exists(obj_dropDown) || instance_exists(obj_dialogueBox);
 	
 	var sortArrowScale = 0.4;
-	if(camWidth > 2000){sortArrowScale *= 1.25;}
+	if (camWidth > 2000) {sortArrowScale *= 1.25;}
 	var tabHeight = functionTabs_tabHeight;
 	var chain1toManyColFieldList = -1;
 	var chainType = "";
@@ -61,7 +61,7 @@ function scr_panelPane_drawChains1ToManyHeaders(){
 			
 			// get coordinates for header text
 			var headerTextX = floor(headerRectX1 + textMarginLeft);
-			if (!lineStateLTR){
+			if (!lineStateLTR) {
 				draw_set_halign(fa_right);
 				headerTextX = headerRectX2 - (textMarginLeft)
 			}
@@ -156,7 +156,7 @@ function scr_panelPane_drawChains1ToManyHeaders(){
 					
 					// draw underline
 					var underlineX1 = headerTextX;
-					if(lineStateLTR){
+					if (lineStateLTR) {
 						var underlineX2 = headerTextX + string_width(currentField);
 					}
 					else{
@@ -225,7 +225,7 @@ function scr_panelPane_drawChains1ToManyHeaders(){
 		
 	
 			
-			if(i > 0){
+			if (i > 0) {
 				draw_set_color(global.colorThemeBorders);
 				draw_line(headerRectX1 - clipX, y - clipY, headerRectX1 - clipX, y + windowHeight - clipY);
 			}

@@ -1,6 +1,6 @@
 
 
-function scr_addToNodeMap(type){
+function scr_addToNodeMap(type) {
 	
 	// type variable should be a string that declares what "type" of Node this is
 	// for example, "Chain", "Link", "Unit", etc.
@@ -18,7 +18,7 @@ function scr_addToNodeMap(type){
 	// add Node to NodeMap
 	ds_map_add_map(global.nodeMap, nodeKey, subMap);
 	
-	ds_list_add(global.nodeMap[?"nodeList"], nodeKey);
+	ds_list_add(global.nodeMap[? "nodeList"], nodeKey);
 	
 	// return unique ID as random hex string (nodeKey)
 	return nodeKey;

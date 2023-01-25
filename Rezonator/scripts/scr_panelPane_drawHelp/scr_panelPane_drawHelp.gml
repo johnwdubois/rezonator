@@ -92,13 +92,13 @@ function scr_panelPane_drawHelp() {
 			draw_circle(gridCollapseButtonAllX - clipX, gridCollapseButtonAllY - clipY, collapseButtonRad, false);
 			if (device_mouse_check_button_released(0, mb_left)) {
 			
-				for(var i = 0; i < helpMenuGridHeight; i++) {
+				for (var i = 0; i < helpMenuGridHeight; i++) {
 					// Skip past sections already changed
-					if((obj_panelPane.functionHelp_allCollapsed and not ds_grid_get(functionHelp_menuGrid, functionHelp_menuGrid_colCollapsed, i)) or (not obj_panelPane.functionHelp_allCollapsed and ds_grid_get(functionHelp_menuGrid, functionHelp_menuGrid_colCollapsed, i))) {
+					if ((obj_panelPane.functionHelp_allCollapsed and not ds_grid_get(functionHelp_menuGrid, functionHelp_menuGrid_colCollapsed, i)) or (not obj_panelPane.functionHelp_allCollapsed and ds_grid_get(functionHelp_menuGrid, functionHelp_menuGrid_colCollapsed, i))) {
 						continue;	
 					}
 					// Set this section to open/close
-					if(not ds_grid_get(functionHelp_menuGrid, functionHelp_menuGrid_colHide, i)) {
+					if (not ds_grid_get(functionHelp_menuGrid, functionHelp_menuGrid_colHide, i)) {
 						ds_grid_set(functionHelp_menuGrid, functionHelp_menuGrid_colCollapsed, i, not ds_grid_get(functionHelp_menuGrid, functionHelp_menuGrid_colCollapsed, i));
 					}
 				}
@@ -127,7 +127,7 @@ function scr_panelPane_drawHelp() {
 			// Check to see if section should be hidden or not
 			if (not ds_grid_get(functionHelp_menuGrid, functionHelp_menuGrid_colHide, i)) {
 				// Space the sections evenly
-				if(i != 0) {
+				if (i != 0) {
 					cellPlusY += string_height("M");
 				}
 				// Draw the function title text
@@ -178,7 +178,7 @@ function scr_panelPane_drawHelp() {
 						itemSize++;
 					
 						// Do not draw hidden contents
-						if(not ds_grid_get(currentHelpGrid, functionHelp_helpGrid_colHide, j)) {
+						if (not ds_grid_get(currentHelpGrid, functionHelp_helpGrid_colHide, j)) {
 				
 							var cellRectX1 = helpWindowX1 + textBuffer;
 							var cellRectY1 = helpWindowY1 + (textBuffer * 2) + functionHelp_plusY + cellPlusY + scrollPlusY;
@@ -206,7 +206,7 @@ function scr_panelPane_drawHelp() {
 							var currentStrDesc = ds_grid_get(currentHelpGrid, functionHelp_helpGrid_colDesc, j);
 							scr_adaptFont(scr_get_translation(currentStrKey), "S");
 							draw_text(floor(cellRectX1 + textBuffer - clipX), floor(mean(cellRectY1, cellRectY2) - clipY), scr_get_translation(currentStrKey));
-							if(currentStrFunc == "help_label_download" || currentStrFunc == "help_label_about") {
+							if (currentStrFunc == "help_label_download" || currentStrFunc == "help_label_about") {
 								draw_set_color(c_blue);
 							}
 							draw_text(floor(mean(cellRectX1, cellRectX2) + textBuffer - clipX), floor(mean(cellRectY1, cellRectY2) - clipY), scr_get_translation(currentStrFunc));
@@ -228,11 +228,11 @@ function scr_panelPane_drawHelp() {
 								draw_text(floor(cellRectX1 + textBuffer - clipX), floor(mean(cellRectY1 + cellHeight, cellRectY2 + cellHeight) - clipY), scr_get_translation(currentStrDesc));
 								cellPlusY += (2 * cellHeight);
 							
-								if(device_mouse_check_button_released(0, mb_left)) { // Clicking the About sections will open the user's browser to one of these two URL's
-									if(currentStrFunc == "help_label_download") {
+								if (device_mouse_check_button_released(0, mb_left)) { // Clicking the About sections will open the user's browser to one of these two URL's
+									if (currentStrFunc == "help_label_download") {
 										scr_URLOpenReliable("https://rezonator.com/download/");
 									}
-									else if (currentStrFunc == "help_label_about"){
+									else if (currentStrFunc == "help_label_about") {
 										scr_URLOpenReliable("https://rezonator.com/");
 									}
 								}
@@ -258,13 +258,13 @@ function scr_panelPane_drawHelp() {
 
 	for (var i = 0; i < toggleButtonAmount; i++) {
 		//draw tooltips
-		if(obj_panelPane.hoverTime[i] == obj_toolPane.hoverTimeLimit){
+		if (obj_panelPane.hoverTime[i] == obj_toolPane.hoverTimeLimit) {
 			obj_toolPane.ToolTipPosX = mouse_x;
 			obj_toolPane.ToolTipPosY = mouse_y;
 		}
-		else if(obj_panelPane.hoverTime[i] > obj_toolPane.hoverTimeLimit){
+		else if (obj_panelPane.hoverTime[i] > obj_toolPane.hoverTimeLimit) {
 			/*if (i == 0) {
-				if(obj_control.wordTokenView){
+				if (obj_control.wordTokenView) {
 					displayString = "Token View"
 				}
 				else{

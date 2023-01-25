@@ -1,6 +1,6 @@
 
 
-function scr_fillFieldLevelMap(){
+function scr_fillFieldLevelMap() {
 	show_debug_message("scr_fillFieldLevelMap");
 	
 	// store the level for every field in a map, so they can be quickly referenced by name

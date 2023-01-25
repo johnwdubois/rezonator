@@ -1,6 +1,6 @@
 
 
-function scr_sortFilterList(filterUnitList){
+function scr_sortFilterList(filterUnitList) {
 	// sort filterUnitList based on discourse time
 	var filterUnitListSize = ds_list_size(filterUnitList);
 	var sortFilterTempGrid = ds_grid_create(2, filterUnitListSize);

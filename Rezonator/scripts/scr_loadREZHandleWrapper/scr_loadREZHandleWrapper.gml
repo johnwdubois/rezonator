@@ -1,4 +1,4 @@
-function scr_loadREZHandleWrapper(wrapper){
+function scr_loadREZHandleWrapper(wrapper) {
 	
 	if (!scr_isNumericAndExists(wrapper, ds_type_map)) {
 		show_message("scr_loadREZHandleWrapper ERROR, wrapper is not a map");
@@ -42,19 +42,19 @@ function scr_loadREZHandleWrapper(wrapper){
 				global.unitImportUnitStartColName = ds_map_find_value(map, "unitImportUnitStartColName");
 				global.tokenImportTranscriptColName = ds_map_find_value(map, "tokenImportTranscriptColName");
 				global.tokenImportDisplayTokenColName = ds_map_find_value(map, "tokenImportDisplayTokenColName");
-				with(obj_panelPane){
+				with(obj_panelPane) {
 					functionChainList_focusedUnit = ds_map_find_value(map, "functionChainList_focusedUnit");
 					functionChainList_focusedUnitIndex = ds_map_find_value(map, "functionChainList_focusedUnitSeq");
 				}
 					
-				if(global.tokenImportDisplayTokenColName == undefined ){
+				if (global.tokenImportDisplayTokenColName == undefined ) {
 					global.tokenImportDisplayTokenColName = "~text";
 				}
 					
 					
 				global.translationList = ds_map_find_value(map, "translationList");
 				var lineState = ds_map_find_value(map, "textDirection");
-				if(is_string(lineState)){
+				if (is_string(lineState)) {
 					obj_control.drawLineState = lineState;						
 				}
 				
@@ -77,7 +77,7 @@ function scr_loadREZHandleWrapper(wrapper){
 					show_debug_message("scr_loadREZ() ... global.nodeMap is undefined");
 					global.nodeMap = ds_map_create();
 				}
-				if(!scr_isNumericAndExists( global.nodeMap[?"nodeList"], ds_type_list)){
+				if (!scr_isNumericAndExists( global.nodeMap[? "nodeList"], ds_type_list)) {
 					var nodeList = ds_list_create();
 					ds_map_add_list(global.nodeMap, "nodeList", nodeList);
 				}
@@ -145,7 +145,7 @@ function scr_loadREZHandleWrapper(wrapper){
 				if (ds_map_exists(map, "audioFile")) {
 					var audioFile = map[? "audioFile"];
 					show_debug_message("audioFile: " + string(audioFile))
-					if (file_exists(audioFile)){
+					if (file_exists(audioFile)) {
 						obj_fileLoader.importedAudioFile = audioFile;
 						show_debug_message("obj_fileLoader.importedAudioFile:  "+string(obj_fileLoader.importedAudioFile));
 					}

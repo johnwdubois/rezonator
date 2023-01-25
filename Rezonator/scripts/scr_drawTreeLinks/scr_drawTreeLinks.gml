@@ -1,21 +1,21 @@
-function scr_drawTreeLinks(){
+function scr_drawTreeLinks() {
 	
 
 	var treeSubMap = global.treeMap[? obj_panelPane.functionTree_treeSelected];
-	var linkList = treeSubMap[?"linkIDList"];
+	var linkList = treeSubMap[? "linkIDList"];
 	with (obj_panelPane) functionTree_treeLinkMouseover = "";
 	var mouseoverLinkColor = c_blue;
 	var mouseoverCancel = scrollBarHorHolding || scrollBarHolding || mouseoverHorScrollBar || mouseoverScrollBar || instance_exists(obj_dropDown) || instance_exists(obj_dialogueBox);
 	
 	var linkListSize = ds_list_size(linkList);
-	for(var i = 0; i < linkListSize; i++){
+	for (var i = 0; i < linkListSize; i++) {
 		
 		// get the source & goal of this link, make sure both are entries that exist
 		var currentLink = linkList[| i];
 		var linkSubMap = global.treeMap[? currentLink];
-		if(!scr_isNumericAndExists(linkSubMap,ds_type_map)){continue;}
-		var source = linkSubMap[?"source"];
-		var goal = linkSubMap[?"goal"];
+		if (!scr_isNumericAndExists(linkSubMap,ds_type_map)) {continue;}
+		var source = linkSubMap[? "source"];
+		var goal = linkSubMap[? "goal"];
 		var sourceSubMap = global.treeMap[? source];
 		var goalSubMap = global.treeMap[? goal];
 		if (!scr_isNumericAndExists(sourceSubMap,ds_type_map) or !scr_isNumericAndExists(goalSubMap,ds_type_map)) continue;
@@ -46,7 +46,7 @@ function scr_drawTreeLinks(){
 		
 		// click on link
 		if (mouseover) {
-			if(mouse_check_button_released(mb_left)){
+			if (mouse_check_button_released(mb_left)) {
 				obj_chain.currentFocusedEntryID = "";
 				with (obj_panelPane) functionTree_treeLinkSelected = currentLink;
 				// set field/tags if in read mode
@@ -54,7 +54,7 @@ function scr_drawTreeLinks(){
 				&& is_string(obj_panelPane.functionField_linkFieldSelected) && is_string(obj_panelPane.functionField_linkTagSelected)) {
 					var linkTagMap = linkSubMap[? "tagMap"];
 					if (scr_isNumericAndExists(linkTagMap, ds_type_map)) {
-						if(obj_panelPane.functionField_linkTagSelected == scr_get_translation("menu_clear")){
+						if (obj_panelPane.functionField_linkTagSelected == scr_get_translation("menu_clear")) {
 							linkTagMap[? obj_panelPane.functionField_linkFieldSelected] = "";
 						}
 						else{

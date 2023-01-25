@@ -1,6 +1,6 @@
 
 
-function scr_insertToListOnce(list, pos, value){
+function scr_insertToListOnce(list, pos, value) {
 	
 	// insert into list at specific position, but only 
 	// if the list does not contain the value already

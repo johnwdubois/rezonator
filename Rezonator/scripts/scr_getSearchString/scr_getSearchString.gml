@@ -4,10 +4,10 @@ function scr_getSearchString(list, reversed) {
 	if (!ds_exists(list, ds_type_list)) return "list does not exist: " + string(list);
 	
 	var str = "";
-	if (!ds_list_empty(list)){
+	if (!ds_list_empty(list)) {
 		var listSize = ds_list_size(list);
 		
-		if(reversed){
+		if (reversed) {
 			for (var i = listSize; i > 0; i--) {
 				str += string(ds_list_find_value(list, i-1));
 	

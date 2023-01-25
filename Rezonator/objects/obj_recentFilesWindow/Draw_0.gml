@@ -1,4 +1,4 @@
-if(global.newProject)exit;
+if (global.newProject)exit;
 // setup coordinates for field summary window
 recentFilesWindowX1 = camera_get_view_width(camera_get_active()) * 0.1;
 recentFilesWindowY1 = camera_get_view_height(camera_get_active()) * 0.7;
@@ -62,14 +62,14 @@ for (var i = 0; i < fileKeyListSize; i++) {
 	var fileName = "";
 	var fileDate = "";
 	var color = c_black;
-	if(scr_isNumericAndExists(fileMap, ds_type_map)){
-		filePath = fileMap[?"FilePath"];
-		fileName = fileMap[?"FileName"];
-		fileDate = fileMap[?"Date"];
-		color = fileMap[?"Color"];
+	if (scr_isNumericAndExists(fileMap, ds_type_map)) {
+		filePath = fileMap[? "FilePath"];
+		fileName = fileMap[? "FileName"];
+		fileDate = fileMap[? "Date"];
+		color = fileMap[? "Color"];
 	}
 	
-	if(!file_exists(filePath)){
+	if (!file_exists(filePath)) {
 		ds_map_delete(global.recentFilesMap,global.recentFilesList[|i]);
 		ds_list_delete(global.recentFilesList,i);			
 	}
@@ -165,7 +165,7 @@ for (var i = 0; i < fileKeyListSize; i++) {
 	plusY += rowHeight;
 }
 
-if(fileKeyListSize == 0 ){
+if (fileKeyListSize == 0 ) {
 	draw_text(recentFilesWindowX1 + spaceWidth - clipX, floor(textY - clipY), scr_get_translation("menu_no-recent"));
 }
 	

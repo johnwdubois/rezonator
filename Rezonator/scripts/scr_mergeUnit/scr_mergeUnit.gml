@@ -1,4 +1,4 @@
-function scr_mergeUnit(){
+function scr_mergeUnit() {
 	
 	if (ds_list_size(obj_control.mergeUnitList) < 2) {
 		show_debug_message("scr_mergeUnit, not enough units");
@@ -64,23 +64,23 @@ function scr_mergeUnit(){
 	
 	
 	//first unit has a stack
-	if(unit2InChainsListSize >= 1){
+	if (unit2InChainsListSize >= 1) {
 		//and second unit doesn't has a stack
-		if(unit1InChainsListSize == 0){
+		if (unit1InChainsListSize == 0) {
 			//we adjust the broken enttry in the first unit's chain to poin to new unit;
 			for (var i = 0; i < unit2InChainsListSize; ++i) {
 			    var currentStack = unit2InChainsList[|i];
 				var stackSubMap = global.nodeMap[?currentStack];
-				if(scr_isNumericAndExists(stackSubMap,ds_type_map)){
-					var entryList = stackSubMap[?"setIDList"];
+				if (scr_isNumericAndExists(stackSubMap,ds_type_map)) {
+					var entryList = stackSubMap[? "setIDList"];
 					var entryListSize = ds_list_size(entryList);
 					for (var j = 0; j < entryListSize; ++j) {
 					     var currentCard = entryList[|j];
 						 var cardMap = global.nodeMap[?currentCard];
 						 
-						 var cardUnit = cardMap[?"unit"];
-						 if(cardUnit == unit2ID){
-							cardMap[?"unit"] = unit1ID;
+						 var cardUnit = cardMap[? "unit"];
+						 if (cardUnit == unit2ID) {
+							cardMap[? "unit"] = unit1ID;
 							scr_addToListOnce(unit1InChainsList,currentStack);
 						 }
 					}

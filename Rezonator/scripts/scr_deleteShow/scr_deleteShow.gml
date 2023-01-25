@@ -1,6 +1,6 @@
 
 
-function scr_deleteShow(showID){
+function scr_deleteShow(showID) {
 
 
 
@@ -35,7 +35,7 @@ function scr_deleteShow(showID){
 	scr_deleteFromList(ds_map_find_value(global.nodeMap, "showList"), showID);
 	
 		//show that is being deleted is also current show playing
-	if(chainSubMap == currentShowSubMap){
+	if (chainSubMap == currentShowSubMap) {
 		
 		//get filtered stackID
 		var currentFilteredChain = ds_list_find_value(obj_chain.filteredStackChainList, 0);

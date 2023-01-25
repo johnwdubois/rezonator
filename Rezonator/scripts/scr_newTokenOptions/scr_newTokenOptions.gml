@@ -61,7 +61,7 @@ function scr_newTokenOptions(optionSelected) {
 		obj_control.recentlyAddedEndnote = optionSelected;
 	}
 
-	with(obj_dropDown){
+	with(obj_dropDown) {
 		instance_destroy();
 	}
 

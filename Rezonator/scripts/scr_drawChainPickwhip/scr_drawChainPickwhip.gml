@@ -1,6 +1,6 @@
 
 
-function scr_drawChainPickwhip(){
+function scr_drawChainPickwhip() {
 	
 	var mouseLineX = undefined;
 	var mouseLineY = undefined;
@@ -11,8 +11,8 @@ function scr_drawChainPickwhip(){
 		if (mouseLineWordID != "") {
 				
 			var mouseLineTokenSubMap = global.nodeMap[?mouseLineWordID];
-			var mouseLineTokenTagSubMap = mouseLineTokenSubMap[?"tagMap"];
-			var mouseLineUnitId = mouseLineTokenSubMap[?"unit"];
+			var mouseLineTokenTagSubMap = mouseLineTokenSubMap[? "tagMap"];
+			var mouseLineUnitId = mouseLineTokenSubMap[? "unit"];
 			var mouseLineUnitSubMap = global.nodeMap[?mouseLineUnitId];
 				
 				
@@ -20,8 +20,8 @@ function scr_drawChainPickwhip(){
 			var mouseLineWordStringHeight = string_height(string(mouseLineTokenTagSubMap[?global.displayTokenField]));
 				
 				
-			var wordPixelX = mouseLineTokenSubMap[?"pixelX"];
-			var wordPixelY = mouseLineUnitSubMap[?"pixelY"];
+			var wordPixelX = mouseLineTokenSubMap[? "pixelX"];
+			var wordPixelY = mouseLineUnitSubMap[? "pixelY"];
 		
 					
 			if (is_numeric(wordPixelX) and is_numeric(wordPixelY)) {

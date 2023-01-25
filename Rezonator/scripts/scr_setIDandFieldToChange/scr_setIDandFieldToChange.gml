@@ -1,4 +1,4 @@
-function scr_setIDandFieldToChange(ID, field, type){
+function scr_setIDandFieldToChange(ID, field, type) {
 	
 	if (type == "unit") {
 		obj_control.unitToChange = ID;

@@ -1,6 +1,6 @@
 
 
-function scr_exportChainTempGrid(chainList){
+function scr_exportChainTempGrid(chainList) {
 	
 	var chainListSize = ds_list_size(chainList);
 
@@ -49,7 +49,7 @@ function scr_exportChainTempGrid(chainList){
 		
 		// add entry tags to trackGrid
 		var chainEntryFieldListSize = ds_list_size(global.chainFieldList);
-		if(i == 0){
+		if (i == 0) {
 			ds_grid_resize(grid, ds_grid_width(grid)+chainEntryFieldListSize-1, ds_grid_height(grid));
 		}
 

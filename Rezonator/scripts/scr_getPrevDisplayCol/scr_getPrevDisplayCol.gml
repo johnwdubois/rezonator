@@ -1,6 +1,6 @@
 
 
-function scr_getPrevDisplayCol(tokenID){
+function scr_getPrevDisplayCol(tokenID) {
 	
 	// really quick way to grab the previous token's display col
 	

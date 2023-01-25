@@ -1,6 +1,6 @@
 
 
-function scr_createTreeEntry(treeID, tokenID, order, addToTokenList){
+function scr_createTreeEntry(treeID, tokenID, order, addToTokenList) {
 	
 	var treeSubMap = global.treeMap[? treeID];
 	var treeSetIDList = treeSubMap[? "setIDList"];

@@ -1,6 +1,6 @@
 
 
-function scr_getChainTempList(chainID, sorted){
+function scr_getChainTempList(chainID, sorted) {
 	
 	// get chain submap and make sure it exists
 	var chainSubMap = ds_map_find_value(global.nodeMap, chainID);

@@ -81,19 +81,19 @@ function scr_rightClickWordOptions(optionSelected) {
 		// set field/tags
 		if (obj_control.rightClickID != "") {
 			
-			if(scr_isNumericAndExists(tokenSubMap, ds_type_map)){
+			if (scr_isNumericAndExists(tokenSubMap, ds_type_map)) {
 					
 				var inChainsList = tokenSubMap[? "inChainsList"];
 				var inChainsListSize = ds_list_size(inChainsList);
 					
 					
-				for(var i = 0; i < inChainsListSize; i++){
+				for (var i = 0; i < inChainsListSize; i++) {
 					var currentChainID = inChainsList[| i];
 					var chainSubMap = global.nodeMap[? currentChainID];						
-					if(scr_isNumericAndExists(chainSubMap, ds_type_map)){
+					if (scr_isNumericAndExists(chainSubMap, ds_type_map)) {
 						var chainType = chainSubMap[? "type"];							
-						if((chainType == "trail" && obj_toolPane.currentMode == obj_toolPane.modeTrack or obj_toolPane.currentMode == obj_toolPane.modeRead)
-						or (chainType == "resonance" && obj_toolPane.currentMode == obj_toolPane.modeRez or obj_toolPane.currentMode == obj_toolPane.modeRead)){
+						if ((chainType == "trail" && obj_toolPane.currentMode == obj_toolPane.modeTrack or obj_toolPane.currentMode == obj_toolPane.modeRead)
+						or (chainType == "resonance" && obj_toolPane.currentMode == obj_toolPane.modeRez or obj_toolPane.currentMode == obj_toolPane.modeRead)) {
 							if (obj_panelPane.functionField_chainFieldSelected != "" && obj_panelPane.functionField_chainTagSelected != ""
 							&& is_string(obj_panelPane.functionField_chainFieldSelected) && is_string(obj_panelPane.functionField_chainTagSelected)) {
 								var chainTagMap = chainSubMap[? "tagMap"];
@@ -113,30 +113,30 @@ function scr_rightClickWordOptions(optionSelected) {
 		// set field/tags
 		if (obj_control.rightClickID != "") {
 			var tokenSubMap = global.nodeMap[? obj_control.rightClickID];
-			if(scr_isNumericAndExists(tokenSubMap, ds_type_map)){
+			if (scr_isNumericAndExists(tokenSubMap, ds_type_map)) {
 				var inChainsList = tokenSubMap[? "inChainsList"];
 				var inChainsListSize = ds_list_size(inChainsList);
 					
-				for(var i = 0; i < inChainsListSize; i++){
+				for (var i = 0; i < inChainsListSize; i++) {
 					var currentChainID = inChainsList[| i];
 					var chainSubMap = global.nodeMap[? currentChainID];	
 						
-					if(scr_isNumericAndExists(chainSubMap, ds_type_map)){
+					if (scr_isNumericAndExists(chainSubMap, ds_type_map)) {
 						var chainType = chainSubMap[? "type"];		
 							
-						if((chainType == "trail" && obj_toolPane.currentMode == obj_toolPane.modeTrack or obj_toolPane.currentMode == obj_toolPane.modeRead)
-						or (chainType == "resonance" && obj_toolPane.currentMode == obj_toolPane.modeRez or obj_toolPane.currentMode == obj_toolPane.modeRead)){
+						if ((chainType == "trail" && obj_toolPane.currentMode == obj_toolPane.modeTrack or obj_toolPane.currentMode == obj_toolPane.modeRead)
+						or (chainType == "resonance" && obj_toolPane.currentMode == obj_toolPane.modeRez or obj_toolPane.currentMode == obj_toolPane.modeRead)) {
 								var chainSetList = chainSubMap[? "setIDList"];
 								var sizeOfSetList = ds_list_size(chainSetList);
 								 
-							for(var j = 0 ; j < sizeOfSetList ; j ++){
+							for (var j = 0 ; j < sizeOfSetList ; j++) {
 								var currentEntry = chainSetList[|j];
 								var currentEntrySubMap = global.nodeMap[?currentEntry];
 									
-								if(scr_isNumericAndExists(currentEntrySubMap , ds_type_map)){
-									var currentTokenID = currentEntrySubMap[?"token"];
+								if (scr_isNumericAndExists(currentEntrySubMap , ds_type_map)) {
+									var currentTokenID = currentEntrySubMap[? "token"];
 										
-									if(currentTokenID == obj_control.rightClickID){
+									if (currentTokenID == obj_control.rightClickID) {
 										if (obj_panelPane.functionField_entryFieldSelected != "" && obj_panelPane.functionField_entryTagSelected != ""
 										&& is_string(obj_panelPane.functionField_entryFieldSelected) && is_string(obj_panelPane.functionField_entryTagSelected)) {
 											var currentEntryTagMap = currentEntrySubMap[? "tagMap"];
@@ -159,13 +159,13 @@ function scr_rightClickWordOptions(optionSelected) {
 		// set field/tags
 		if (obj_control.rightClickID != "") {
 			var tokenSubMap = global.nodeMap[? obj_control.rightClickID];
-			if(scr_isNumericAndExists(tokenSubMap, ds_type_map)){
+			if (scr_isNumericAndExists(tokenSubMap, ds_type_map)) {
 				if (obj_panelPane.functionField_tokenFieldSelected != "" && obj_panelPane.functionField_tokenTagSelected != ""
 				&& is_string(obj_panelPane.functionField_tokenFieldSelected) && is_string(obj_panelPane.functionField_tokenTagSelected)) {
 					var tokenTagMap = tokenSubMap[? "tagMap"];
 					if (scr_isNumericAndExists(tokenTagMap, ds_type_map)) {
-						if(global.steamAPI){
-							if(!steam_get_achievement("SA_tag-token")){
+						if (global.steamAPI) {
+							if (!steam_get_achievement("SA_tag-token")) {
 								steam_set_achievement("SA_tag-token");
 							}
 						}
@@ -183,7 +183,7 @@ function scr_rightClickWordOptions(optionSelected) {
 		obj_control.tokenToChange =	obj_control.rightClickID;
 		scr_destroyAllDropDownsOtherThanSelf();
 		var dropDownOptionList = ds_list_create();
-		if(obj_control.inChunk){
+		if (obj_control.inChunk) {
 			// localize
 			ds_list_add(dropDownOptionList, "Tag Chunk");
 		}
@@ -191,7 +191,7 @@ function scr_rightClickWordOptions(optionSelected) {
 			// localize
 			ds_list_add(dropDownOptionList, "Tag Token");
 		}
-		if(obj_control.inChain){
+		if (obj_control.inChain) {
 			// localize
 			ds_list_add(dropDownOptionList, "Tag Chain", "Tag Entry");
 		}
@@ -202,8 +202,8 @@ function scr_rightClickWordOptions(optionSelected) {
 	else if (optionSelected == "option_delete-chunk") {
 		obj_control.deleteChunkWord = true;
 		var chunkSubMap = global.nodeMap[?obj_control.rightClickID];
-		var inChainsList = chunkSubMap[?"inChainsList"];
-		if(ds_list_size(inChainsList) > 0){
+		var inChainsList = chunkSubMap[? "inChainsList"];
+		if (ds_list_size(inChainsList) > 0) {
 			scr_deleteFromChain(true);
 		}
 		scr_deleteChunk(obj_control.rightClickID);
@@ -242,7 +242,7 @@ function scr_rightClickWordOptions(optionSelected) {
 		scr_splitToken(obj_control.rightClickID);
 	}
 	else if (optionSelected == "option_merge-token") {
-		if(!instance_exists(obj_dialogueBox)){
+		if (!instance_exists(obj_dialogueBox)) {
 			instance_create_layer(x, y, "InstancesDialogue", obj_dialogueBox);
 			obj_dialogueBox.questionWindowActive = true;
 			obj_control.mergeToken = true;

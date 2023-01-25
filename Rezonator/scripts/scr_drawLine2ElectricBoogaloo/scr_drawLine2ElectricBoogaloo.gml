@@ -1,4 +1,4 @@
-function scr_drawLine2ElectricBoogaloo(){
+function scr_drawLine2ElectricBoogaloo() {
 	
 	
 	scr_adaptFont("0", "M");
@@ -18,7 +18,7 @@ function scr_drawLine2ElectricBoogaloo(){
 	var unitList = discourseSubMap[? "unitList"];
 	
 	if (!scr_isNumericAndExists(displayUnitList, ds_type_list)) {
-		if(scr_isNumericAndExists(unitList, ds_type_list)){
+		if (scr_isNumericAndExists(unitList, ds_type_list)) {
 			displayUnitList = ds_list_create();
 			ds_list_copy(displayUnitList, unitList);
 			discourseSubMap[? "displayUnitList"] = displayUnitList;
@@ -52,7 +52,7 @@ function scr_drawLine2ElectricBoogaloo(){
 	}
 	
 	// clear lists that are meant to be refreshed each frame
-	if(scr_isNumericAndExists(obj_chain.chainShowMap, ds_type_map)){
+	if (scr_isNumericAndExists(obj_chain.chainShowMap, ds_type_map)) {
 		ds_map_clear(obj_chain.chainShowMap);
 		ds_map_add(obj_chain.chainShowMap, "type", "map");
 	}
@@ -64,7 +64,7 @@ function scr_drawLine2ElectricBoogaloo(){
 	for (var i = 0; i < chunkShowMapSize; i++) {
 		var currentNest = string(i);
 		var currentNestList = obj_chain.chunkShowMap[? currentNest];
-		if(scr_isNumericAndExists(currentNestList, ds_type_list)){
+		if (scr_isNumericAndExists(currentNestList, ds_type_list)) {
 			ds_list_destroy(currentNestList);
 		}
 	}
@@ -87,8 +87,8 @@ function scr_drawLine2ElectricBoogaloo(){
 	var oobRectX1 = (justify == justifyLeft) ? 0 : camWidth;
 	var oobRectY1 = 0;
 	var oobRectX2 = 0;			
-	if(justify == justifyLeft){
-		if((drawLineState == lineState_rtl && shape == shapeBlock)){
+	if (justify == justifyLeft) {
+		if ((drawLineState == lineState_rtl && shape == shapeBlock)) {
 			oobRectX2 = wordLeftMargin - scrollPlusX - gridSpaceHorizontal;
 		}
 		else{
@@ -194,8 +194,8 @@ function scr_drawLine2ElectricBoogaloo(){
 		unitPlusY += gridSpaceVertical;
 	}
 	
-	if(!obj_control.mouseoverSpeakerLabel and obj_control.hoverTokenID == "" and obj_control.hoverChunkID == "" and !obj_control.mouseoverPanelPane and !(instance_exists(obj_dropDown) and obj_control.rightClicked) and !instance_exists(obj_dialogueBox)){
-		if(device_mouse_check_button_released(0, mb_left)){
+	if (!obj_control.mouseoverSpeakerLabel and obj_control.hoverTokenID == "" and obj_control.hoverChunkID == "" and !obj_control.mouseoverPanelPane and !(instance_exists(obj_dropDown) and obj_control.rightClicked) and !instance_exists(obj_dialogueBox)) {
+		if (device_mouse_check_button_released(0, mb_left)) {
 			if (global.delayInput <= 0) {
 				scr_chainDeselect();
 			}
@@ -206,7 +206,7 @@ function scr_drawLine2ElectricBoogaloo(){
 	var speakerLabelColXListSize = ds_list_size(speakerLabelColXList);
 	for (var i = 0; i < speakerLabelColXListSize; i++) {
 		var currentSectionX2 = speakerLabelColXList[| i];
-		if( i == 0 ){
+		if ( i == 0 ) {
 			currentSectionX2 -= 1;
 		}
 		draw_set_color(global.colorThemeBG);
@@ -220,7 +220,7 @@ function scr_drawLine2ElectricBoogaloo(){
 				obj_control.hoverUnitID = unitClosestToMouse;
 			}
 			
-			if(mouse_check_button_released(mb_left) && obj_audioUI.audioSound != -1 && file_exists(obj_audioUI.audioFile) &&!scrollBarHolding){
+			if (mouse_check_button_released(mb_left) && obj_audioUI.audioSound != -1 && file_exists(obj_audioUI.audioFile) &&!scrollBarHolding) {
 				
 				scr_audioJumpToUnit(unitClosestToMouse);
 				obj_audioUI.audioPaused = false;

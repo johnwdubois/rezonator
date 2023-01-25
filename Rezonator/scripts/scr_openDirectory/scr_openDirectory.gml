@@ -1,4 +1,4 @@
-function scr_openDirectory(dirName){
+function scr_openDirectory(dirName) {
 	
 	execute_shell_simple(dirName);
 	/*

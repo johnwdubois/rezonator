@@ -1,6 +1,6 @@
 
 
-function scr_exportLinkTempGrid(){
+function scr_exportLinkTempGrid() {
 	
 	var nodeList = global.nodeMap[? "nodeList"];
 	if (!scr_isNumericAndExists(nodeList, ds_type_list)) exit;

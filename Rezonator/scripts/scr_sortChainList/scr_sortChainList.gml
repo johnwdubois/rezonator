@@ -1,6 +1,6 @@
 
 
-function scr_sortChainList(chainType, list){
+function scr_sortChainList(chainType, list) {
 	
 	// sort a list of chains based on their order in the full chain list
 	

@@ -1,13 +1,13 @@
-function scr_tokenClicked(tokenID){
+function scr_tokenClicked(tokenID) {
 	
 	if (global.delayInput > 0) exit;
 	
 	// get this token's submap and make sure it exists
 	var tokenSubMap = global.nodeMap[?tokenID];
-	if(!scr_isNumericAndExists(tokenSubMap, ds_type_map)){exit;}
+	if (!scr_isNumericAndExists(tokenSubMap, ds_type_map)) {exit;}
 	show_debug_message("scr_tokenClicked ... tokenID: " + string(tokenID));
 	
-	var unitID = tokenSubMap[?"unit"];
+	var unitID = tokenSubMap[? "unit"];
 
 	if (obj_control.gridView or (obj_control.mouseoverPanelPane and not obj_stacker.splitSave) or obj_control.dialogueBoxActive or instance_exists(obj_dialogueBox) or instance_exists(obj_dropDown) or instance_exists(obj_flyout) or obj_toolPane.mouseOverToolPane) {
 		var shouldExit = true;
@@ -70,7 +70,7 @@ function scr_tokenClicked(tokenID){
 	
 	// set field/tags if in read mode
 
-	if(keyboard_check(vk_shift)){
+	if (keyboard_check(vk_shift)) {
 		if (obj_panelPane.functionField_chainFieldSelected != "" && obj_panelPane.functionField_chainTagSelected != ""
 		&& is_string(obj_panelPane.functionField_chainFieldSelected) && is_string(obj_panelPane.functionField_chainTagSelected)) {
 				
@@ -81,13 +81,13 @@ function scr_tokenClicked(tokenID){
 				var currentChainSubMap = global.nodeMap[? currentChainID];
 				
 				if (scr_isNumericAndExists(currentChainSubMap, ds_type_map)) {
-					var tagMap = currentChainSubMap[?"tagMap"];
+					var tagMap = currentChainSubMap[? "tagMap"];
 					tagMap[? obj_panelPane.functionField_chainFieldSelected] = obj_panelPane.functionField_chainTagSelected;
 				}
 			}
 		}
 	}
-	else if(keyboard_check(vk_alt)){
+	else if (keyboard_check(vk_alt)) {
 		if (obj_panelPane.functionField_entryFieldSelected != "" && obj_panelPane.functionField_entryTagSelected != ""
 		&& is_string(obj_panelPane.functionField_entryFieldSelected) && is_string(obj_panelPane.functionField_entryTagSelected)) {
 				
@@ -96,19 +96,19 @@ function scr_tokenClicked(tokenID){
 				var currentChainID = inChainsList[| i];
 				var currentChainSubMap = global.nodeMap[? currentChainID];
 				
-				var setIDList = currentChainSubMap[?"setIDList"];
+				var setIDList = currentChainSubMap[? "setIDList"];
 				var setIDListSize = ds_list_size(setIDList);
 					
-				for(var j = 0; j < setIDListSize;j ++){
+				for (var j = 0; j < setIDListSize;j++) {
 						
 					var currentEntry = setIDList[|j];
 					var entrySubMap = global.nodeMap[?currentEntry];
 						
-					var entryTokenID = entrySubMap[?"token"];
+					var entryTokenID = entrySubMap[? "token"];
 						
-					if(entryTokenID == tokenID){
-						var tagMap = entrySubMap[?"tagMap"];
-						if(scr_isNumericAndExists(tagMap,ds_type_map)){
+					if (entryTokenID == tokenID) {
+						var tagMap = entrySubMap[? "tagMap"];
+						if (scr_isNumericAndExists(tagMap,ds_type_map)) {
 							tagMap[?obj_panelPane.functionField_entryFieldSelected] = obj_panelPane.functionField_entryTagSelected;
 						}	
 					}
@@ -123,12 +123,12 @@ function scr_tokenClicked(tokenID){
 		&& is_string(obj_panelPane.functionField_tokenFieldSelected) && is_string(obj_panelPane.functionField_tokenTagSelected)) {
 			var tokenTagMap = tokenSubMap[? "tagMap"];
 			if (scr_isNumericAndExists(tokenTagMap, ds_type_map)) {
-				if(obj_panelPane.functionField_tokenTagSelected == scr_get_translation("menu_clear")){
+				if (obj_panelPane.functionField_tokenTagSelected == scr_get_translation("menu_clear")) {
 					tokenTagMap[? obj_panelPane.functionField_tokenFieldSelected] = "";
 				}
 				else{
-				if(global.steamAPI){
-					if(!steam_get_achievement("SA_tag-token")){
+				if (global.steamAPI) {
+					if (!steam_get_achievement("SA_tag-token")) {
 						steam_set_achievement("SA_tag-token");
 					}
 				}

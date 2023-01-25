@@ -3,7 +3,7 @@ show_debug_message("Async Social Called");
 
 if (async_load[? "type"] == "FirebaseFirestore_Document_Read") {
 	// DOC READ
-	if (async_load[?"status"] == 200) {
+	if (async_load[? "status"] == 200) {
 		var value = string(async_load[? "value"]);
 		show_debug_message("document read: " + string(value));
 		var docMap = json_decode(value);

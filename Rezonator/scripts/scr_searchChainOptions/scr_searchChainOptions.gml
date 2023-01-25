@@ -1,6 +1,6 @@
 
 
-function scr_searchChainOptions(optionSelected){
+function scr_searchChainOptions(optionSelected) {
 	
 	var searchSubMap = global.searchMap[? obj_panelPane.functionSearchList_searchSelected];
 	if (scr_isNumericAndExists(searchSubMap, ds_type_map)) {
@@ -23,22 +23,22 @@ function scr_searchChainOptions(optionSelected){
 		
 		var i = 0;
 		var chainCreated = false;
-		repeat(selectedTokenListSize){
+		repeat(selectedTokenListSize) {
 			var currentToken = selectedTokenList[|i];
 			
 			//find if in chain already
 			var inChain = false;
 			var tokenSubMap = global.nodeMap[?currentToken];
-			var inChainsList = tokenSubMap[?"inChainsList"];
+			var inChainsList = tokenSubMap[? "inChainsList"];
 			var inChainsListSize = ds_list_size(inChainsList);
-			if(inChainsListSize > 0 ){
+			if (inChainsListSize > 0 ) {
 				var j = 0;
-				repeat(inChainsListSize){
+				repeat(inChainsListSize) {
 					var currentChain = inChainsList[|j];
 					var chainSubMap = global.nodeMap[?currentChain];
-					var chainType = chainSubMap[?"type"];
+					var chainType = chainSubMap[? "type"];
 					
-					if(string(chainType) == typeString) {
+					if (string(chainType) == typeString) {
 						inChain = true;
 					}
 					j++;
@@ -46,8 +46,8 @@ function scr_searchChainOptions(optionSelected){
 			}
 
 			
-			if(!inChain){
-				if(!chainCreated){
+			if (!inChain) {
+				if (!chainCreated) {
 					scr_newChain(currentToken);
 					scr_newLink(currentToken);
 					chainCreated = true;
@@ -64,35 +64,35 @@ function scr_searchChainOptions(optionSelected){
 	else {
 		obj_chain.currentFocusedChainID = optionSelected;
 		var i = 0;
-		repeat(selectedTokenListSize){
+		repeat(selectedTokenListSize) {
 			
 			var currentToken = selectedTokenList[|i];
 			
 			//find if in chain already
 			var inChain = false;
 			var tokenSubMap = global.nodeMap[?currentToken];
-			var inChainsList = tokenSubMap[?"inChainsList"];
+			var inChainsList = tokenSubMap[? "inChainsList"];
 			var inChainsListSize = ds_list_size(inChainsList);
-			if(inChainsListSize > 0 ){
+			if (inChainsListSize > 0 ) {
 				var j = 0;
-				repeat(inChainsListSize){
+				repeat(inChainsListSize) {
 					var currentChain = inChainsList[|j];
 					var chainSubMap = global.nodeMap[?currentChain];
-					var chainType = chainSubMap[?"type"];
-					if(string(chainType) == typeString) {
+					var chainType = chainSubMap[? "type"];
+					if (string(chainType) == typeString) {
 						inChain = true;
 					}
 					j++;
 				}
 			}
 			
-			if(!inChain){
+			if (!inChain) {
 				scr_newLink(currentToken);
 			}
 			i++;
 		}
 	}
-	with(obj_dropDown){
+	with(obj_dropDown) {
 		instance_destroy();
 	}
 	

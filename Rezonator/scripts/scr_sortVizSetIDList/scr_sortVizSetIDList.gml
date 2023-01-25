@@ -1,4 +1,4 @@
-function scr_sortVizSetIDList(chainID){
+function scr_sortVizSetIDList(chainID) {
 	
 	// get chain's submap
 	var chainSubMap = global.nodeMap[? chainID];
@@ -47,10 +47,10 @@ function scr_sortVizSetIDList(chainID){
 					currentWordID = currentTokenIDTokenList[| 0];
 					currentTokenIDSubMap = global.nodeMap[? currentWordID];
 				}
-				if(!scr_isNumericAndExists(currentTokenIDSubMap, ds_type_map)) continue;
+				if (!scr_isNumericAndExists(currentTokenIDSubMap, ds_type_map)) continue;
 				var currentUnitSubMap = currentTokenIDSubMap[? "unit"];   
-				if(scr_isNumericAndExists(currentUnitSubMap, ds_type_map)){
-					currentUnitSeq = currentUnitSubMap[?"unitSeq"];//= ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colUnitID, currentWordID - 1);
+				if (scr_isNumericAndExists(currentUnitSubMap, ds_type_map)) {
+					currentUnitSeq = currentUnitSubMap[? "unitSeq"];//= ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colUnitID, currentWordID - 1);
 				}
 
 				currentWordOrder = currentTokenIDSubMap[? "docTokenSeq"];//= ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colWordSeq, currentWordID - 1);
@@ -60,8 +60,8 @@ function scr_sortVizSetIDList(chainID){
 		else if (chainType == "stack") {
 			var unitID = currentEntrySubMap[? "unit"];
 			var unitSubMap = global.nodeMap[?unitID];
-			if(scr_isNumericAndExists(unitSubMap, ds_type_map)){
-				currentUnitSeq = unitSubMap[?"unitSeq"];
+			if (scr_isNumericAndExists(unitSubMap, ds_type_map)) {
+				currentUnitSeq = unitSubMap[? "unitSeq"];
 			}
 		}
 		

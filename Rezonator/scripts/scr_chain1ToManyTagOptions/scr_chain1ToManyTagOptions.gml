@@ -1,6 +1,6 @@
 
 
-function scr_chain1ToManyTagOptions(optionSelected){
+function scr_chain1ToManyTagOptions(optionSelected) {
 	
 	// check to see if the user is trying to create a new tag
 	if (optionSelected == "option_add-to-tag-set") {
@@ -37,7 +37,7 @@ function scr_chain1ToManyTagOptions(optionSelected){
 		var newTagValue = clearTag ? "" : optionSelected;
 		scr_setMap(entryTagMap, fieldToChange, newTagValue);
 		if (!clearTag) {
-			with(obj_panelPane){
+			with(obj_panelPane) {
 				functionField_entryTagSelected = optionSelected;
 				functionField_entryFieldSelected = fieldToChange;
 			}

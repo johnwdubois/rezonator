@@ -1,6 +1,6 @@
 
 
-function scr_toolButtonOptions(optionSelected){
+function scr_toolButtonOptions(optionSelected) {
 	
 	var newMode = obj_toolPane.modeRead;
 	if (optionSelected == "menu_read") {

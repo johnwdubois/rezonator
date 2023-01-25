@@ -1,4 +1,4 @@
-function scr_preImportInitiate(){
+function scr_preImportInitiate() {
 	// preImport map will have a node for every type of import
 	global.preImportMap = ds_map_create();
 	var importTypeListSize = ds_list_size(global.importTypeList);
@@ -155,7 +155,7 @@ function scr_preImportInitiate(){
 		// add example/description/links to currentImportTypeMap
 		ds_map_add_list(currentImportTypeMap, "example", exampleList);
 		ds_map_add_list(currentImportTypeMap, "description", descriptionList);
-		show_debug_message(scr_getStringOfList(currentImportTypeMap[?"description"]));
+		show_debug_message(scr_getStringOfList(currentImportTypeMap[? "description"]));
 		ds_map_add_list(currentImportTypeMap, "links", linksList);
 	
 		// add currentImportTypeMap to preImportMap

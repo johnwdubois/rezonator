@@ -1,4 +1,4 @@
-function scr_importGridToNodeMap_fieldsRowToken(row){
+function scr_importGridToNodeMap_fieldsRowToken(row) {
 
 	// make sure row is still in range
 	if (row >= importGridHeight) exit;
@@ -50,27 +50,27 @@ function scr_importGridToNodeMap_fieldsRowToken(row){
 	}
 	
 	
-	var unitFieldMap = global.nodeMap[?"unitTagMap"];
-	var tokenFieldMap = global.nodeMap[?"tokenTagMap"];
+	var unitFieldMap = global.nodeMap[? "unitTagMap"];
+	var tokenFieldMap = global.nodeMap[? "tokenTagMap"];
 	
 	// some essentials
-	if(row == 0){
+	if (row == 0) {
 		
 		//add all fields to appropriate field lists
-		for(var i = 0 ; i < ds_list_size(global.importGridColNameList); i++){
+		for (var i = 0 ; i < ds_list_size(global.importGridColNameList); i++) {
 			var fieldName = global.importGridColNameList[| i];
 			
 			
-			if(global.fieldLevelMap[? fieldName] == "tab_name_unit"){
+			if (global.fieldLevelMap[? fieldName] == "tab_name_unit") {
 				
-				if(fieldName == "~blockID"){continue;}
+				if (fieldName == "~blockID") {continue;}
 				ds_list_add(global.unitFieldList, fieldName);
 				
 				var newUnitFieldMap = ds_map_create();
 				ds_map_add_map(unitFieldMap,fieldName, newUnitFieldMap);
 				ds_map_add_list(newUnitFieldMap, "tagSet", ds_list_create());
 			}
-			else if(global.fieldLevelMap[? fieldName] == "option_token"){
+			else if (global.fieldLevelMap[? fieldName] == "option_token") {
 				ds_list_add(global.tokenFieldList, fieldName);
 				
 				var newTokenFieldMap = ds_map_create();
@@ -136,8 +136,8 @@ function scr_importGridToNodeMap_fieldsRowToken(row){
 			}
 		}
 		else if (currentLevel == "tab_name_unit" && newUnitMade) {
-			if(currentField == global.unitImportUnitStartColName){unitSubMap[?"unitStart"] = currentCell;}
-			if(currentField == global.unitImportUnitEndColName){unitSubMap[?"unitEnd"] = currentCell;}
+			if (currentField == global.unitImportUnitStartColName) {unitSubMap[? "unitStart"] = currentCell;}
+			if (currentField == global.unitImportUnitEndColName) {unitSubMap[? "unitEnd"] = currentCell;}
 			
 			ds_map_add(unitTagMap, currentField, currentCell);
 			scr_addAutoTag(currentField, currentCell, unitFieldMap);

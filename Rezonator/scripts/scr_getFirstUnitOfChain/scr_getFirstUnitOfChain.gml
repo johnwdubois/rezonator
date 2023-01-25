@@ -1,6 +1,6 @@
 
 
-function scr_getFirstUnitOfChain(chainID){
+function scr_getFirstUnitOfChain(chainID) {
 	
 	var chainSubMap = global.nodeMap[? chainID];
 	if (scr_isNumericAndExists(chainSubMap, ds_type_map)) {

@@ -1,4 +1,4 @@
-function scr_getDropDownWidth(){
+function scr_getDropDownWidth() {
 	
 	var maxWidth = originalWindowWidth;
 	var arrowScale = 0.35;

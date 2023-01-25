@@ -1,4 +1,4 @@
-function scr_summaryTabs(){
+function scr_summaryTabs() {
 
 
 	var tabAmount = ds_list_size(tabList);

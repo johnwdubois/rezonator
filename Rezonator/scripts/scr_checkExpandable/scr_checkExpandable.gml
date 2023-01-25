@@ -1,4 +1,4 @@
-function scr_checkExpandable(option, optionType){
+function scr_checkExpandable(option, optionType) {
 	
 	// find the list for this specific option, check if its optionType is in the optionTypeList
 	var optionTypeList = global.expandableDropDownMap[? option];

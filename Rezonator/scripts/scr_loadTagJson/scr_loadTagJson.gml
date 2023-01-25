@@ -1,9 +1,9 @@
-function scr_loadTagJson(fileName){
+function scr_loadTagJson(fileName) {
 	
 	if (global.html5) exit;
 	show_debug_message("scr_loadTagJson, fileName: " + string(fileName));
 	
-	if(!is_string(fileName)){
+	if (!is_string(fileName)) {
 		fileName = get_open_filename_ext("Tag file|*.json", "", global.rezonatorSchemaDirString, "Open Tag JSON");
 	}
 	// make sure the file exists

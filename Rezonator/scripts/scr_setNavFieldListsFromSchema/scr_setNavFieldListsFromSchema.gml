@@ -1,6 +1,6 @@
 
 
-function scr_setNavFieldListsFromSchema(){
+function scr_setNavFieldListsFromSchema() {
 	
 	show_debug_message("scr_setNavFieldListsFromSchema, schemaNavTokenFieldList: " + scr_getStringOfList(global.schemaNavTokenFieldList));
 	show_debug_message("scr_setNavFieldListsFromSchema, schemaNavUnitFieldList: " + scr_getStringOfList(global.schemaNavUnitFieldList));

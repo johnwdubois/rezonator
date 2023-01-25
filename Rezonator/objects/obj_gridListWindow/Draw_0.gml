@@ -1,3 +1,3 @@
-if(!obj_gridViewer.mapViewActive){
+if (!obj_gridViewer.mapViewActive) {
 	scr_gridListWindow();
 }

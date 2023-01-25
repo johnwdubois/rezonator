@@ -83,23 +83,23 @@ function scr_drawChains() {
 					
 					currentEntry1 = currentVizSetIDList[| vizSetIndex - 1];
 					var currentEntry1SubMap = global.nodeMap[? currentEntry1];
-					var tokenID = currentEntry1SubMap[?"token"];
+					var tokenID = currentEntry1SubMap[? "token"];
 					var tokenSubMap = global.nodeMap[?tokenID];
-					var tokensUnit = tokenSubMap[?"unit"];
-					var newTokensUnit = tokenSubMap[?"unit"];
+					var tokensUnit = tokenSubMap[? "unit"];
+					var newTokensUnit = tokenSubMap[? "unit"];
 					var k = vizSetIndex - 1;
 					
-					while(tokensUnit == newTokensUnit && k > 0){
+					while(tokensUnit == newTokensUnit && k > 0) {
 						k-=1;
 						currentEntry1 = currentVizSetIDList[| k];
 						currentEntry1SubMap = global.nodeMap[? currentEntry1];
-						tokenID = currentEntry1SubMap[?"token"];
+						tokenID = currentEntry1SubMap[? "token"];
 						tokenSubMap = global.nodeMap[?tokenID];
-						newTokensUnit = tokenSubMap[?"unit"];
+						newTokensUnit = tokenSubMap[? "unit"];
 						
 					
 					}
-					if(k != 0){
+					if (k != 0) {
 						k+=1;
 					}
 					currentEntry1 = currentVizSetIDList[| k];
@@ -146,7 +146,7 @@ function scr_drawChains() {
 			var currentToken1SubMap = global.nodeMap[? currentTokenID1];
 			var currentToken2SubMap = global.nodeMap[? currentTokenID2];
 			if (!scr_isNumericAndExists(currentToken1SubMap, ds_type_map)) { show_debug_message("scr_drawChains ... currentToken1SubMap does not exist") continue;}
-			if (!scr_isNumericAndExists(currentToken2SubMap, ds_type_map)){ show_debug_message("scr_drawChains ... currentToken2SubMap does not exist") continue;}
+			if (!scr_isNumericAndExists(currentToken2SubMap, ds_type_map)) { show_debug_message("scr_drawChains ... currentToken2SubMap does not exist") continue;}
 			
 			// get stretches
 			var stretch1 = currentEntry1SubMap[? "stretch"];
@@ -169,7 +169,7 @@ function scr_drawChains() {
 				var currentEntryList = tokenUnitID1SubMap[? "entryList"];
 				if (!scr_isNumericAndExists(currentEntryList, ds_type_list)) continue;
 				
-				with(obj_control){
+				with(obj_control) {
 					scr_drawLineEntryList(tokenUnitID1,tokenUnitID1SubMap,currentEntryList, -200,false);
 				}
 			}
@@ -178,16 +178,16 @@ function scr_drawChains() {
 			else{
 				var currentEntryList = tokenUnitID2SubMap[? "entryList"];
 				if (!scr_isNumericAndExists(currentEntryList, ds_type_list)) continue;
-				with(obj_control){
+				with(obj_control) {
 					scr_drawLineEntryList(tokenUnitID2,tokenUnitID2SubMap,currentEntryList, camHeight+200,false);
 				}
 			}
 			
 			
-			lineY1 = tokenUnitID1SubMap[?"pixelY"];
+			lineY1 = tokenUnitID1SubMap[? "pixelY"];
 			//if (lineY1 < 0 or lineY1 > camHeight) continue;
 			
-			lineX1 = currentToken1SubMap[?"pixelX"];
+			lineX1 = currentToken1SubMap[? "pixelX"];
 			
 			
 			// check if the units are active
@@ -216,21 +216,21 @@ function scr_drawChains() {
 				if (tokensInSameLine and firstTokenInLine != "") {
 					currentTokenID1 = firstTokenInLine;
 					currentToken1SubMap = global.nodeMap[? currentTokenID1];
-					tokenUnitID1 = currentToken1SubMap[?"unit"];
+					tokenUnitID1 = currentToken1SubMap[? "unit"];
 					currentTagSubMap1 = currentToken1SubMap[? "tagMap"];
 					tokenUnitID1SubMap = global.nodeMap[?tokenUnitID1];
 		
 					currentWordStringWidth1 = string_width(string(currentTagSubMap1[?global.displayTokenField]));
 		
-					lineX1 = currentToken1SubMap[?"pixelX"];
-					lineY1 = tokenUnitID1SubMap[?"pixelY"];
+					lineX1 = currentToken1SubMap[? "pixelX"];
+					lineY1 = tokenUnitID1SubMap[? "pixelY"];
 				}
 			
 				firstTokenInLine = "";
 			}
 		
 			// get the pixel X values for each token
-			lineX2 = currentToken2SubMap[?"pixelX"];
+			lineX2 = currentToken2SubMap[? "pixelX"];
 			lineY2 = tokenUnitID2SubMap[? "pixelY"];
 			
 			// if both ends of the line are chunks, we will offset the X a litle bit so we dont cover up another line
@@ -331,7 +331,7 @@ function scr_drawChains() {
 						}
 
 					}
-					if((obj_chain.showRezArrows and chainType = "resonance") or (obj_chain.showTrackArrows and chainType = "trail")){
+					if ((obj_chain.showRezArrows and chainType = "resonance") or (obj_chain.showTrackArrows and chainType = "trail")) {
 						draw_sprite_ext(spr_linkArrow, 0, arrowX, arrowY, arrowScale, arrowScale, arrowDir, currentChainColor, 1);
 					}
 				}

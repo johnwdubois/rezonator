@@ -1,6 +1,6 @@
 
 
-function scr_createShow(){
+function scr_createShow() {
 	
 	// create a submap for the new show, and make sure it exists
 	var showKey = scr_addToNodeMap("show");

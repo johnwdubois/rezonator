@@ -1,6 +1,6 @@
 
 
-function scr_preImportScreen(){
+function scr_preImportScreen() {
 	
 	scr_fontSizeControlOpeningScreen();
 	

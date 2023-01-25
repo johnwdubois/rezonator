@@ -105,7 +105,7 @@ function scr_setDrawRange(camHeight, displayUnitList, displayUnitListSize) {
 	}
 
 
-	if(drawRangeStartMax != -1 && drawRangeEndMin != -1){
+	if (drawRangeStartMax != -1 && drawRangeEndMin != -1) {
 		drawRangeStart = min(drawRangeStartMax,drawRangeStart);
 		drawRangeEnd = max(drawRangeEndMin,drawRangeEnd);
 	}

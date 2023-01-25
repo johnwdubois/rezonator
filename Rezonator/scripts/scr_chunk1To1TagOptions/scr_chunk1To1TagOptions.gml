@@ -1,4 +1,4 @@
-function scr_chunk1To1TagOptions(optionSelected){
+function scr_chunk1To1TagOptions(optionSelected) {
 	
 	with(obj_inputBox) {
 		show_debug_message("destroying input box from chunk dd select");
@@ -34,7 +34,7 @@ function scr_chunk1To1TagOptions(optionSelected){
 	chunkTagMap[? obj_control.chunk1to1FieldToChange] = newTagValue;
 	
 	if (!clearTag) {
-		with(obj_panelPane){
+		with(obj_panelPane) {
 			functionField_chunkTagSelected = optionSelected;
 			functionField_chunkFieldSelected = obj_control.chunk1to1FieldToChange;
 		}

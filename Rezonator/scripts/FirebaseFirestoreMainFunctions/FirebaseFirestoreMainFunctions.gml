@@ -7,7 +7,7 @@
 
 function RESTFirebaseFirestore_Collection_Add(path,json)
 {
-	if(!FirebaseREST_Firestore_path_isCollection(path))
+	if (!FirebaseREST_Firestore_path_isCollection(path))
 	{show_debug_message("error: path not correspond to collection") exit}
 	
 	var listener = FirebaseREST_asyncFunction_Firestore(
@@ -25,7 +25,7 @@ function RESTFirebaseFirestore_Collection_Add(path,json)
 
 function RESTFirebaseFirestore_Collection_Read(path)
 {
-	if(!FirebaseREST_Firestore_path_isCollection(path))
+	if (!FirebaseREST_Firestore_path_isCollection(path))
 	{show_debug_message("error: path not correspond to collection") exit}
 	
 	var listener = FirebaseREST_asyncFunction_Firestore(
@@ -43,7 +43,7 @@ function RESTFirebaseFirestore_Collection_Read(path)
 
 function RESTFirebaseFirestore_Collection_Listener(path)
 {
-	if(!FirebaseREST_Firestore_path_isCollection(path))
+	if (!FirebaseREST_Firestore_path_isCollection(path))
 	{show_debug_message("error: path not correspond to collection") exit}
 	
 	var listener = FirebaseREST_asyncFunction_Firestore(
@@ -90,7 +90,7 @@ function RESTFirebaseFirestore_Collection_Query(struct)
 	var end_ = struct._end
 	var limit = struct._limit
 	
-	if(!FirebaseREST_Firestore_path_isCollection(path))
+	if (!FirebaseREST_Firestore_path_isCollection(path))
 	{show_debug_message("error: path not correspond to collection") exit}
 	
 	var original_ref = path
@@ -107,7 +107,7 @@ function RESTFirebaseFirestore_Collection_Query(struct)
 	//var map_count = json_decode(path)
 	//var size = ds_map_size(map_count)
 	//ds_map_destroy(map_count)
-	//if(true)//if(size mod 2 != 0)//unpair//collection
+	//if (true)//if (size mod 2 != 0)//unpair//collection
 	{
 		ds_list_add(list_from,map_collector)
 		ds_list_mark_as_map(list_from,0)
@@ -121,8 +121,8 @@ function RESTFirebaseFirestore_Collection_Query(struct)
 	ds_map_add(map_compositeFilter,"op","AND")
 	var list_filters = ds_list_create()
 	
-	if(!is_undefined(struct._operations))
-	for(var a = 0 ; a < array_length(struct._operations) ; a++)//if(!is_undefined(struct._operations[0]))
+	if (!is_undefined(struct._operations))
+	for (var a = 0 ; a < array_length(struct._operations) ; a++)//if (!is_undefined(struct._operations[0]))
 	{
 		var map_FieldFilter = ds_map_create()
 		ds_map_add_map(map_FieldFilter,"field",FirebaseREST_firestore_fieldReference(struct._operations[a].path))
@@ -133,7 +133,7 @@ function RESTFirebaseFirestore_Collection_Query(struct)
 		ds_list_add(list_filters,map_toList)
 	}
 	
-	for(var a = 0 ; a < ds_list_size(list_filters) ; a++)
+	for (var a = 0 ; a < ds_list_size(list_filters) ; a++)
 		ds_list_mark_as_map(list_filters,a)
 
 	ds_map_add_list(map_compositeFilter,"filters",list_filters)
@@ -142,13 +142,13 @@ function RESTFirebaseFirestore_Collection_Query(struct)
 	/////////////////////////////////////////// orderBy
 	var list_orderBy = ds_list_create()
 	
-	if(!is_undefined(struct._orderBy_direction) and !is_undefined(struct._orderBy_field))
+	if (!is_undefined(struct._orderBy_direction) and !is_undefined(struct._orderBy_field))
 	{
 		var map_orderList = ds_map_create()
 		
 		ds_map_add_map(map_orderList,"field",FirebaseREST_firestore_fieldReference(struct._orderBy_field))
 	
-		if(!is_undefined(struct._orderBy_direction))
+		if (!is_undefined(struct._orderBy_direction))
 			ds_map_add(map_orderList,"direction",struct._orderBy_direction)
 	
 		ds_list_add(list_orderBy,map_orderList)
@@ -157,14 +157,14 @@ function RESTFirebaseFirestore_Collection_Query(struct)
 	
 	////////////////////////////////////////// startAt
 	var map_startAt
-	if(is_undefined(start))
+	if (is_undefined(start))
 		map_startAt = ds_map_create()
 	else
 		map_startAt = FirebaseREST_firestore_cursor(start,1)
 
 	////////////////////////////////////////// endAt
 	var map_endAt
-	if(is_undefined(end_))
+	if (is_undefined(end_))
 		map_endAt = ds_map_create()
 	else
 		map_endAt = FirebaseREST_firestore_cursor(end_,0)
@@ -175,28 +175,28 @@ function RESTFirebaseFirestore_Collection_Query(struct)
 
 	ds_map_add_list(map_structuredQuery,"from",list_from)
 
-	if(ds_map_size(map_where))
+	if (ds_map_size(map_where))
 		ds_map_add_map(map_structuredQuery,"where",map_where)
 	else
 		ds_map_destroy(map_where)
 
-	if(ds_list_size(list_orderBy))
+	if (ds_list_size(list_orderBy))
 		ds_map_add_list(map_structuredQuery,"orderBy",list_orderBy)
 	else
 		ds_list_destroy(list_orderBy)
 
-	if(ds_map_size(map_startAt))
+	if (ds_map_size(map_startAt))
 		ds_map_add_map(map_structuredQuery,"startAt",map_startAt)
 	else
 		ds_map_destroy(map_startAt)
 
-	if(ds_map_size(map_endAt))
+	if (ds_map_size(map_endAt))
 		ds_map_add_map(map_structuredQuery,"endAt",map_endAt)
 	else
 		ds_map_destroy(map_endAt)
 
 	//limit
-	if(!is_undefined(limit))
+	if (!is_undefined(limit))
 		ds_map_add(map_structuredQuery,"limit",limit)
 
 
@@ -227,7 +227,7 @@ function RESTFirebaseFirestore_Collection_Query(struct)
 
 function RESTFirebaseFirestore_Document_Delete(path)
 {
-	if(!FirebaseREST_Firestore_path_isDocument(path))
+	if (!FirebaseREST_Firestore_path_isDocument(path))
 	{show_debug_message("error: path not correspond to document") exit}
 	
 	var listener = FirebaseREST_asyncFunction_Firestore(
@@ -247,7 +247,7 @@ function RESTFirebaseFirestore_Document_Delete(path)
 
 function RESTFirebaseFirestore_Document_Read(path)
 {
-	if(!FirebaseREST_Firestore_path_isDocument(path))
+	if (!FirebaseREST_Firestore_path_isDocument(path))
 	{show_debug_message("error: path not correspond to document") exit}
 	
 	var listener = FirebaseREST_asyncFunction_Firestore(
@@ -264,7 +264,7 @@ function RESTFirebaseFirestore_Document_Read(path)
 
 function RESTFirebaseFirestore_Document_Listener(path)
 {
-	if(!FirebaseREST_Firestore_path_isDocument(path))
+	if (!FirebaseREST_Firestore_path_isDocument(path))
 	{show_debug_message("error: path not correspond to document") exit}
 	
 	var listener = FirebaseREST_asyncFunction_Firestore(
@@ -284,7 +284,7 @@ function RESTFirebaseFirestore_Document_Listener(path)
 /*Deprecated due if exists not override the document, and SDKs do it.....
 function RESTFirebaseFirestore_Document_Set(path,json)
 {
-	if(!FirebaseREST_Firestore_path_isDocument(path))
+	if (!FirebaseREST_Firestore_path_isDocument(path))
 	{show_debug_message("error: path not correspond to document") exit}
 	
 	var original_ref = path
@@ -306,7 +306,7 @@ function RESTFirebaseFirestore_Document_Set(path,json)
 
 function RESTFirebaseFirestore_Document_Set(path,json)
 {
-	if(!FirebaseREST_Firestore_path_isDocument(path))
+	if (!FirebaseREST_Firestore_path_isDocument(path))
 	{show_debug_message("error: path not correspond to document") exit}
 	
 	var listener = FirebaseREST_asyncFunction_Firestore(
@@ -327,7 +327,7 @@ function RESTFirebaseFirestore_Document_Set(path,json)
 
 function RESTFirebaseFirestore_Document_Update(path,json)
 {
-	if(!FirebaseREST_Firestore_path_isDocument(path))
+	if (!FirebaseREST_Firestore_path_isDocument(path))
 	{show_debug_message("error: path not correspond to document") exit}
 	
 	var listener = FirebaseREST_asyncFunction_Firestore(

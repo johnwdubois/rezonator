@@ -1,4 +1,4 @@
-function scr_miniSurfaceStart(cX, cY){
+function scr_miniSurfaceStart(cX, cY) {
 	clipX = cX;
 	clipY = cY;
 	clipWidth = windowWidth;

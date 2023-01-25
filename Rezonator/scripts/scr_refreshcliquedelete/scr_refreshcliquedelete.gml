@@ -1,4 +1,4 @@
-function scr_refreshCliqueDelete(cliqueID, deletedChainID, deletedEntryID){
+function scr_refreshCliqueDelete(cliqueID, deletedChainID, deletedEntryID) {
 	
 	// we need to check if the clique can still reach the deletedChainID
 	

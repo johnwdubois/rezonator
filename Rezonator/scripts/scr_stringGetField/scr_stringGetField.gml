@@ -1,6 +1,6 @@
 
 
-function scr_stringGetField(str){
+function scr_stringGetField(str) {
 	
 	var field = "";
 	

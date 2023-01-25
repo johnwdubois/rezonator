@@ -26,15 +26,15 @@ function scr_newLink(ID) {
 	
 	if (type == "unit") {
 		unitID = ID
-		var entryList = idSubMap[?"entryList"];
+		var entryList = idSubMap[? "entryList"];
 		if (!scr_isNumericAndExists(entryList, ds_type_list)) exit;
 		if (ds_list_size(entryList) < 1) exit;
 		var firstEntry = entryList[|0];
 		var entrySubMap = global.nodeMap[?firstEntry];
-		tokenID = entrySubMap[?"token"];
+		tokenID = entrySubMap[? "token"];
 	}
 	else if (type == "token") {
-		unitID = idSubMap[?"unit"];
+		unitID = idSubMap[? "unit"];
 		tokenID = ID;
 	}
 	else if (type == "chunk") {
@@ -61,7 +61,7 @@ function scr_newLink(ID) {
 		}
 	}
 	else {
-		if(isChunk){
+		if (isChunk) {
 			idSet = ID;
 		}
 		else{
@@ -189,14 +189,14 @@ function scr_newLink(ID) {
 		var entryWordInEntryList = -1;
 		if (isChunk) {
 			var chunkSubMap = global.nodeMap[?ID];
-			if(scr_isNumericAndExists(chunkSubMap, ds_type_map)){
+			if (scr_isNumericAndExists(chunkSubMap, ds_type_map)) {
 				entryWordInChainsList = chunkSubMap[? "inChainsList"];
 				entryWordInEntryList = chunkSubMap[? "inEntryList"];
 			}
 		}
 		else {
 			var tokenSubMap = global.nodeMap[?idSet];
-			if(scr_isNumericAndExists(tokenSubMap, ds_type_map)){
+			if (scr_isNumericAndExists(tokenSubMap, ds_type_map)) {
 				entryWordInChainsList = tokenSubMap[? "inChainsList"];
 				entryWordInEntryList = tokenSubMap[? "inEntryList"];
 			}
@@ -276,13 +276,13 @@ function scr_newLink(ID) {
 	
 	
 	
-	if(global.steamAPI){
+	if (global.steamAPI) {
 		var currentMaxChainLength = steam_get_stat_int("SA_entry-count");
 		var currentChainLength = ds_list_size(idList);
-		if(currentChainLength > currentMaxChainLength){
+		if (currentChainLength > currentMaxChainLength) {
 			steam_set_stat_int("SA_entry-count",currentChainLength);
-			if(steam_get_stat_int("SA_entry-count") >= 100 ){
-				if(!steam_get_achievement("SA_trail-100")){
+			if (steam_get_stat_int("SA_entry-count") >= 100 ) {
+				if (!steam_get_achievement("SA_trail-100")) {
 					steam_set_achievement("SA_trail-100");
 				}
 			}

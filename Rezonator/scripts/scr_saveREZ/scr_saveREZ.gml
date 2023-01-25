@@ -20,7 +20,7 @@ function scr_saveREZ(autosave) {
 		|| (!file_exists(global.fileSaveName) && !directory_exists(obj_control.clipStackDir))) {
 			
 			show_debug_message("scr_saveREZ(), not autosave, loading new file");
-			if(global.previousSaveDirectory == "" or !is_string(global.previousSaveDirectory)){
+			if (global.previousSaveDirectory == "" or !is_string(global.previousSaveDirectory)) {
 				global.fileSaveName = get_save_filename_ext("REZ file|*.rez", "", program_directory, "Save REZ");
 			}
 			else{
@@ -52,8 +52,8 @@ function scr_saveREZ(autosave) {
 	}
 
 	// Prevent users from overwriting default discourse files
-	if(os_type == os_macosx){
-		if(filename_path(global.fileSaveName) == global.rezonatorDefaultDiscourseDirString + "/" and not autosave) {
+	if (os_type == os_macosx) {
+		if (filename_path(global.fileSaveName) == global.rezonatorDefaultDiscourseDirString + "/" and not autosave) {
 			show_message(scr_get_translation("msg_saving-default-directory"));
 			global.fileSaveName = "";
 			scr_saveREZ(false);
@@ -222,7 +222,7 @@ function scr_saveREZ(autosave) {
 		var rezfileFirestorePath = "rezfiles/" + filename_name(global.fileSaveName);
 		FirebaseFirestore(rezfileFirestorePath).Set(json_encode(rezfileSubMap));
 		
-		var nodeList = global.nodeMap[?"nodeList"];		
+		var nodeList = global.nodeMap[? "nodeList"];		
 		var nodeListSize = ds_list_size(nodeList);
 		for (var i = 0; i < nodeListSize; i++) {
 			var currentNodeID = nodeList[| i];

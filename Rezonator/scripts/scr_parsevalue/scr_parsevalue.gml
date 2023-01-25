@@ -1,4 +1,4 @@
-function scr_parseValue(value){
+function scr_parseValue(value) {
 	
 	var valueEncode = json_encode(value);
 	show_debug_message("scr_parseValue, value:  " + string(value));
@@ -11,9 +11,9 @@ function scr_parseValue(value){
 	var wrapperMap = ds_map_create();
 	var fieldMap = ds_map_create();
 	var list = ds_list_create();
-	if(fieldsKey == "values"){
+	if (fieldsKey == "values") {
 		var fieldListSize = ds_list_size(fields);
-		for(var i = 0 ; i < fieldListSize; i++){
+		for (var i = 0 ; i < fieldListSize; i++) {
 			var currentValue = fields[|i];
 			var subKey = ds_map_find_first(currentValue);
 			var subValue = currentValue[?subKey];

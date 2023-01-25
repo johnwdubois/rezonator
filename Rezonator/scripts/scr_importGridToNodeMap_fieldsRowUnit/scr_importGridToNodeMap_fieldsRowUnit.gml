@@ -1,6 +1,6 @@
 
 
-function scr_importGridToNodeMap_fieldsRowUnit(row){
+function scr_importGridToNodeMap_fieldsRowUnit(row) {
 
 	// make sure row is still in range
 	if (row >= importGridHeight) exit;
@@ -21,7 +21,7 @@ function scr_importGridToNodeMap_fieldsRowUnit(row){
 	
 	
 	// get current unit delimiter cell value
-	if(indexOfSpeaker >= 0){
+	if (indexOfSpeaker >= 0) {
 		speakerValue = global.importGrid[# indexOfSpeaker, row];
 		if (speakerValue == "" || speakerValue == "0") speakerValue = prevFieldMap[? global.participantField];
 		else prevFieldMap[? global.participantField] = speakerValue;
@@ -42,23 +42,23 @@ function scr_importGridToNodeMap_fieldsRowUnit(row){
 	if (!ds_map_exists(unitSubMap, "unitStart")) ds_map_add(unitSubMap, "unitStart", "");
 	if (!ds_map_exists(unitSubMap, "unitEnd")) ds_map_add(unitSubMap, "unitEnd", "");
 	
-	var unitFieldMap = global.nodeMap[?"unitTagMap"];
-	var tokenFieldMap = global.nodeMap[?"tokenTagMap"];
+	var unitFieldMap = global.nodeMap[? "unitTagMap"];
+	var tokenFieldMap = global.nodeMap[? "tokenTagMap"];
 
-	if(row == 0){
+	if (row == 0) {
 
 		//add all fields to appropriate field lists
-		for(var i = 0 ; i < ds_list_size(global.importGridColNameList); i++){
+		for (var i = 0 ; i < ds_list_size(global.importGridColNameList); i++) {
 			var fieldName = global.importGridColNameList[| i];
-			if(global.fieldLevelMap[? fieldName] == "tab_name_unit"){
-				if(fieldName == "~blockID"){continue;}
+			if (global.fieldLevelMap[? fieldName] == "tab_name_unit") {
+				if (fieldName == "~blockID") {continue;}
 				ds_list_add(global.unitFieldList, fieldName);
 				
 				var newUnitFieldMap = ds_map_create();
 				ds_map_add_map(unitFieldMap,fieldName, newUnitFieldMap);
 				ds_map_add_list(newUnitFieldMap, "tagSet", ds_list_create());
 			}
-			else if(global.fieldLevelMap[? fieldName] == "option_token" || global.fieldLevelMap[? fieldName] == "label_word"){
+			else if (global.fieldLevelMap[? fieldName] == "option_token" || global.fieldLevelMap[? fieldName] == "label_word") {
 				ds_list_add(global.tokenFieldList, fieldName);
 				
 				var newTokenFieldMap = ds_map_create();
@@ -220,12 +220,12 @@ function scr_importGridToNodeMap_fieldsRowUnit(row){
 	
 	
 
-	for(var i = 0; i < importGridWidth; i++){
+	for (var i = 0; i < importGridWidth; i++) {
 		
 		tokenCount = 0;
 		
-		if(i == indexOfDisplayToken) {continue;}
-		if(i == indexOfWordDelim) {continue;}
+		if (i == indexOfDisplayToken) {continue;}
+		if (i == indexOfWordDelim) {continue;}
 
 		// get unit string and split it
 		var unitStr = ds_grid_get(global.importGrid, i, row);
@@ -235,7 +235,7 @@ function scr_importGridToNodeMap_fieldsRowUnit(row){
 		var currentLevel = global.fieldLevelMap[? currentField];
 
 	
-		if(currentLevel == "option_token"){			
+		if (currentLevel == "option_token") {			
 			if (scr_isNumericAndExists(splitList, ds_type_list)) {
 				
 				var splitListSize = ds_list_size(splitList);
@@ -274,14 +274,14 @@ function scr_importGridToNodeMap_fieldsRowUnit(row){
 				}
 			}		
 		}
-		else if(currentLevel == "tab_name_unit"){
-			if(currentField == "~blockID" || currentField == global.participantField){continue;}
-			if(currentField == global.unitImportUnitStartColName){unitSubMap[?"unitStart"] = unitStr}
-			if(currentField == global.unitImportUnitEndColName){unitSubMap[?"unitEnd"] = unitStr}
+		else if (currentLevel == "tab_name_unit") {
+			if (currentField == "~blockID" || currentField == global.participantField) {continue;}
+			if (currentField == global.unitImportUnitStartColName) {unitSubMap[? "unitStart"] = unitStr}
+			if (currentField == global.unitImportUnitEndColName) {unitSubMap[? "unitEnd"] = unitStr}
 			ds_map_add(unitTagMap, currentField, unitStr);
 			scr_addAutoTag(currentField, unitStr, unitFieldMap);
 		}
-		else if(currentLevel == "label_word"){
+		else if (currentLevel == "label_word") {
 			
 			var splitListSize = ds_list_size(splitList);
 			for (var j = 0; j < splitListSize; j++) {				

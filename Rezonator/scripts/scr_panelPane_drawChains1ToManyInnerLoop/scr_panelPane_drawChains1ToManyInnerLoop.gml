@@ -1,4 +1,4 @@
-function scr_panelPane_drawChains1ToManyInnerLoop(chain1toManyColFieldList, chain, entry, ID, currentEntryTagMap, textPlusY, rectY1, rectY2, highlight, mouseoverHeader, mouseoverScrollBar){
+function scr_panelPane_drawChains1ToManyInnerLoop(chain1toManyColFieldList, chain, entry, ID, currentEntryTagMap, textPlusY, rectY1, rectY2, highlight, mouseoverHeader, mouseoverScrollBar) {
 
 	// NOTE: for stacks, the ID variable will be a unitID
 	

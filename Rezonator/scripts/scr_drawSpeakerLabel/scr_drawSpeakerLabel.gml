@@ -62,7 +62,7 @@ function scr_drawSpeakerLabel(unitID, unitSubMap, pixelY) {
 		sectionText = scr_adaptFont(sectionText, "M");
 		draw_set_color(scr_textColorDarkOrLight(sectionColor));
 		draw_set_halign(fa_left);
-		if(obj_control.drawLineState == obj_control.lineState_ltr){
+		if (obj_control.drawLineState == obj_control.lineState_ltr) {
 			draw_text(floor(sectionRectX1 + spaceWidth), floor(pixelY), sectionText);
 		}
 		else{
@@ -89,7 +89,7 @@ function scr_drawSpeakerLabel(unitID, unitSubMap, pixelY) {
 	if (mouseOverCurrentSpeakerLabel) {
 		obj_control.mouseoverSpeakerLabel = true;
 		obj_control.hoverUnitID = unitID;
-		var unitTagMap = unitSubMap[?"tagMap"];
+		var unitTagMap = unitSubMap[? "tagMap"];
 		obj_control.hoverTextCopy = unitTagMap[? global.participantField];
 		
 	}
@@ -102,7 +102,7 @@ function scr_drawSpeakerLabel(unitID, unitSubMap, pixelY) {
 	!obj_control.mouseoverPanelPane and !instance_exists(obj_dialogueBox)) {
 		if (global.ctrlHold) {
 			// combine chains
-			var inChainsList = unitSubMap[?"inChainsList"];
+			var inChainsList = unitSubMap[? "inChainsList"];
 			scr_combineChainsDrawLine(inChainsList);
 		}
 		else {
@@ -117,7 +117,7 @@ function scr_drawSpeakerLabel(unitID, unitSubMap, pixelY) {
 			}
 			
 			with (obj_chain) {
-				if(!instance_exists(obj_dropDown)){
+				if (!instance_exists(obj_dropDown)) {
 					scr_unitClicked(unitID);
 				}
 			}
