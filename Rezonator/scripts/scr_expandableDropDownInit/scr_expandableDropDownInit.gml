@@ -42,11 +42,6 @@ function scr_expandableDropDownInit() {
 	ds_list_add(filterContextList, global.optionListTypeFilter);
 	ds_map_add_list(global.expandableDropDownMap, "menu_filter-context", filterContextList);
 	
-	var searchList = ds_list_create();
-	ds_list_add(searchList, global.optionListTypeTools);
-	ds_map_add_list(global.expandableDropDownMap, "menu_search", searchList);
-	
-	
 	var stackerList = ds_list_create();
 	ds_list_add(stackerList, global.optionListTypeTools);
 	ds_map_add_list(global.expandableDropDownMap, "menu_stacker", stackerList);

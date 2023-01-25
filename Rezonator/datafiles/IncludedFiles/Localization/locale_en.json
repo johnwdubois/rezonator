@@ -580,6 +580,7 @@
     "unit_count" : "Unit Count",
     "start" : "Start",
 	"option_seq" : "Sequence",
+	"option_map-view" : "Map view",
 	"import_type_prose" : "Prose",
 	"import_type_word" : "One Word per Line",
 	"import_type_conllu" : "CoNLL-U",

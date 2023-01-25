@@ -5,13 +5,8 @@ function scr_toolsOptions(optionSelected) {
 	switch (optionSelected)
 	{
 		case "menu_search":
-			scr_destroyAllDropDownsOtherThanSelf();
-			var dropDownOptionList = ds_list_create();
-			ds_list_add(dropDownOptionList, "menu_keyword", "menu_clear");
-						
-			if (ds_list_size(dropDownOptionList) > 0) {
-				scr_createDropDown(obj_dropDown.x + obj_dropDown.windowWidth, y + (optionSpacing * optionIndex), dropDownOptionList, global.optionListTypeSearch);
-			}
+			scr_searchOptions("menu_keyword");
+			with (obj_dropDown) instance_destroy();
 			break;
 		case "menu_resonance":
 			with (obj_panelPane) {

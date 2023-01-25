@@ -10,6 +10,11 @@ function scr_advancedOptions(optionSelected) {
 			instance_destroy(obj_dropDown);
 		break;
 		
+		case "option_map-view":
+			obj_control.gridView = true;
+			instance_destroy(obj_dropDown);
+		break;
+		
 	
 
 		case "Media"://needs filling out

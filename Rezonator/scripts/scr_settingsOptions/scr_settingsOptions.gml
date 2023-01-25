@@ -96,7 +96,7 @@ function scr_settingsOptions(optionSelected) {
 			scr_destroyAllDropDownsOtherThanSelf();
 			var dropDownOptionList = ds_list_create();
 			
-			ds_list_add(dropDownOptionList, "menu_developer");
+			ds_list_add(dropDownOptionList, "menu_developer", "option_map-view");
 
 						
 			if (ds_list_size(dropDownOptionList) > 0) {

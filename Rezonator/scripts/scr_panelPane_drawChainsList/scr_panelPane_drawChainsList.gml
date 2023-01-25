@@ -366,7 +366,7 @@ function scr_panelPane_drawChainsList() {
 							if (!currentChainVisible && ds_list_find_index(hiddenList, currentChainID) == -1) ds_list_add(hiddenList, currentChainID);
 							else if (currentChainVisible) scr_deleteFromList(hiddenList, currentChainID);
 						}
-						scr_createTooltip(visibleChainX, optionsChainY + optionsIconRad, scr_get_translation("option_visible"), obj_tooltip.arrowFaceUp);
+						scr_createTooltip(visibleChainX, optionsChainY + optionsIconRad, scr_get_translation("menu_hide"), obj_tooltip.arrowFaceUp);
 					}
 					// mouseover & click on align
 					if (mouseoverAlignChain) {
