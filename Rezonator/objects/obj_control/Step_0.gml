@@ -72,9 +72,6 @@ if (keyboard_check_released(vk_rcommand) || keyboard_check_released(vk_lcommand)
 
 // Mechanism to update center display row
 if (!gridView) {
-	if (ds_grid_height(currentActiveLineGrid) > 0) {
-		currentCenterDisplayRow = scr_currentTopLine();
-	}
 	
 	// trigger Home/End
 	if ((keyboard_check_pressed(vk_right) and global.ctrlHold)
@@ -520,9 +517,6 @@ if (keyboard_check(vk_shift) and keyboard_check_pressed(ord("Q")) ) {
 }
 
 
-currentCenterDisplayRow = max(currentCenterDisplayRow, 0);
-currentCenterDisplayRow = min(currentCenterDisplayRow, ds_grid_height(currentActiveLineGrid) - 1);
-
 
 // hide participant names
 if (!gridView) {
@@ -621,7 +615,7 @@ if (not instance_exists(obj_dropDown) and not ableToCreateDropDownAlarmSet) {
 
 // filter & quick filter
 if (keyboard_check_pressed(ord("P")) and !keyboard_check(vk_lshift) and !keyboard_check(vk_rshift)
-and shortcutsEnabled and mouseoverTagShortcut == "" and currentActiveLineGrid != searchGrid and !instance_exists(obj_dropDown) and !instance_exists(obj_dialogueBox)) {
+and shortcutsEnabled and mouseoverTagShortcut == "" and !instance_exists(obj_dropDown) and !instance_exists(obj_dialogueBox)) {
 	
 	if (global.ctrlHold) {
 		// regular filter (CTRL+P)

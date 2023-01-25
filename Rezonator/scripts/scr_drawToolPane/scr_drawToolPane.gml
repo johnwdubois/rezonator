@@ -347,6 +347,6 @@ function scr_drawToolPane() {
 	var viewTextY = floor(mean(camHeight, homeButtonRectY2));
 	var mouseoverViewText = point_in_rectangle(mouse_x, mouse_y, toolbarButtonX1, viewTextY - (strHeight * 0.75), toolbarButtonX2, viewTextY + (strHeight * 0.75));
 	if (mouseoverViewText) scr_createTooltip(toolbarButtonX1, viewTextY, scr_get_translation("help_label_view-select"), obj_tooltip.arrowFaceRight);
-	draw_text(floor(mean(toolbarButtonX1, toolbarButtonX2)), viewTextY, string(obj_control.currentView));
+	draw_text(floor(mean(toolbarButtonX1, toolbarButtonX2)), viewTextY, scr_get_translation(obj_control.currentView));
 	
 }

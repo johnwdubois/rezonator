@@ -184,6 +184,7 @@
 	"menu_view" : "View",
 	"menu_search" : "Search",
 	"menu_filter" : "Filter",
+	"menu_quick-filter" : "Quick Filter",
 	"menu_options" : "Options",
 	"menu_save" : "Save",
 	"menu_export" : "Export",

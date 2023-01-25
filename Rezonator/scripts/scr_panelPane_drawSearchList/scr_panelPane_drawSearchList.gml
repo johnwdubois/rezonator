@@ -236,7 +236,6 @@ function scr_panelPane_drawSearchList() {
 		
 		// Activates word searching using search grid
 		obj_control.preSwitchDisplayRow = obj_control.scrollPlusYDest;
-		obj_control.preSwitchLineGrid = obj_control.currentActiveLineGrid;
 		obj_control.preSwitchSearchDisplayRow = 0;
 
 		if (!obj_control.dialogueBoxActive) {
