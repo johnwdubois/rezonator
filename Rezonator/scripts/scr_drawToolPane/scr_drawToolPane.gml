@@ -319,11 +319,7 @@ function scr_drawToolPane() {
 	var homeButtonRectY1 = floor(homeButtonY - (toolSprHeight / 2) - toolButtonRectBuffer);
 	var homeButtonRectY2 = floor(homeButtonY + (toolSprHeight / 2) + toolButtonRectBuffer);
 	var mouseoverHome = point_in_rectangle(mouse_x, mouse_y, toolbarButtonX1, homeButtonRectY1, toolbarButtonX2, homeButtonRectY2) && !mouseoverCancel;
-	draw_set_color(c_white);
-	draw_set_halign(fa_center);
-	draw_set_valign(fa_middle);
-	draw_set_alpha(1);
-	draw_text(mean(toolbarButtonX1, toolbarButtonX2), homeButtonY, "Home");
+	draw_sprite_ext(spr_home, toolImageIndex, toolButtonX, homeButtonY, toolSpriteScale, toolSpriteScale, 0, c_white, 1);
 	if (mouseoverHome) {
 		draw_set_color(c_white);
 		scr_drawRectWidth(toolbarButtonX1, homeButtonRectY1, toolbarButtonX2, homeButtonRectY2, mouseoverRectWidth , false);
@@ -338,6 +334,10 @@ function scr_drawToolPane() {
 	
 	
 	// draw text for which view you are in
+	draw_set_color(c_white);
+	draw_set_halign(fa_center);
+	draw_set_valign(fa_middle);
+	draw_set_alpha(1);
 	var strHeight = string_height("0");
 	var viewTextY = floor(mean(camHeight, homeButtonRectY2));
 	var mouseoverViewText = point_in_rectangle(mouse_x, mouse_y, toolbarButtonX1, viewTextY - (strHeight * 0.75), toolbarButtonX2, viewTextY + (strHeight * 0.75));
