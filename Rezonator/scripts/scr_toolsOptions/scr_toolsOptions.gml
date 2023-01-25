@@ -62,7 +62,6 @@ function scr_toolsOptions(optionSelected) {
 			with (obj_toolPane){
 				currentMode = modeRead;
 			}
-			obj_wordTip.wordTipDisplay = true;
 			with(obj_dropDown){
 				instance_destroy();	
 			}

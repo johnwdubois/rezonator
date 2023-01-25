@@ -14,10 +14,6 @@ function scr_toolButtonOptions(optionSelected){
 		obj_wordTip.wordTipDisplay = false;
 		newMode = obj_toolPane.modeTrack;
 	}
-	if (newMode != obj_toolPane.modeTrack && newMode != obj_toolPane.modeRez) {
-		obj_wordTip.wordTipDisplay = true;
-	}
-	
 	with (obj_toolPane) currentMode = newMode;
 
 }
