@@ -28,6 +28,17 @@ function scr_objControlKeyDelete(){
 		if (is_string(obj_chain.currentFocusedChainID) && obj_chain.currentFocusedChainID != "") {
 			var focusedChainSubMap = global.nodeMap[? obj_chain.currentFocusedChainID];
 			if (scr_isNumericAndExists(focusedChainSubMap, ds_type_map)) {
+				
+				// check if we should also ask about deleting the chunk
+				var focusedEntry = focusedChainSubMap[? "focused"];
+				var focusedEntrySubMap = global.nodeMap[? focusedEntry];
+				if (scr_isNumericAndExists(focusedEntrySubMap, ds_type_map)) {
+					var focusedEntryToken = focusedEntrySubMap[? "token"];
+					if (scr_isChunk(focusedEntryToken)) {
+						with (obj_control) askDeleteChunk = focusedEntryToken;
+					}
+				}
+				
 				var focusedChainSetIDList = focusedChainSubMap[? "setIDList"];
 				if (scr_isNumericAndExists(focusedChainSetIDList, ds_type_list)) {
 					if (ds_list_size(focusedChainSetIDList) >= 2) {

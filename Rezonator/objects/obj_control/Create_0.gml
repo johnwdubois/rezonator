@@ -865,7 +865,8 @@ versionUpToDate = false;
 deleteStack = false;
 deleteRez = false;
 deleteTrack = false;
-deleteChunkQuestion = false;
+deleteChunk = "";
+askDeleteChunk = "";
 
 
 sideLinkTokenID = "";

@@ -702,3 +702,10 @@ if (keyboard_check_released(vk_up)) navWindowTaggingCanPressUp = true;
 if (keyboard_check_released(vk_down)) navWindowTaggingCanPressDown = true;
 if (keyboard_check_released(vk_left)) navWindowTaggingCanPressLeft = true;
 if (keyboard_check_released(vk_right)) navWindowTaggingCanPressRight = true;
+
+if (askDeleteChunk != "" && is_string(askDeleteChunk)) {
+	instance_create_layer(x, y, "InstancesDialogue", obj_dialogueBox);
+	deleteChunk = askDeleteChunk;
+	askDeleteChunk = "";
+	obj_dialogueBox.questionWindowActive = true;
+}

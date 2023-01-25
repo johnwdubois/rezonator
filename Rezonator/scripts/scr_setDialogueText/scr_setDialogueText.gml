@@ -39,6 +39,9 @@ function scr_setDialogueText(){
 				titleText = instance_exists(obj_firestore) ? obj_firestore.newVersionStr : "";
 				descriptionText = scr_get_translation("msg_new-version-available");
 			}
+			else if (obj_control.deleteChunk != "" && is_string(obj_control.deleteChunk)) {
+				descriptionText = scr_get_translation("option_delete-chunk-aswell");
+			}
 		}
 		else if (instance_exists(obj_openingScreen)) {
 			if (obj_openingScreen.openURLAbout) descriptionText = scr_get_translation("msg_open-url-about");

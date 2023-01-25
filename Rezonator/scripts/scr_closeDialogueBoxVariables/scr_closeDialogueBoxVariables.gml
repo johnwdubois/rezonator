@@ -98,6 +98,7 @@ function scr_closeDialogueBoxVariables(){
 			deleteRez = false;
 			deleteTrack = false;
 			downloadDialogue = false;
+			deleteChunk = "";
 		}
 		with (obj_chain) {
 			mergeStackID = "";

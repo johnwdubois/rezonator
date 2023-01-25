@@ -36,7 +36,7 @@ function scr_dialogueConfirm(){
 		exit;
 	}
 
-	if(inputWindowActive){
+	if (inputWindowActive){
 		
 		var chainSubMap = undefined;
 		var chainType = "";
@@ -226,7 +226,7 @@ function scr_dialogueConfirm(){
 
 	
 	}
-	if(questionWindowActive){
+	if (questionWindowActive) {
 		
 		obj_control.alarm[11] = 60;
 
@@ -381,6 +381,9 @@ function scr_dialogueConfirm(){
 			if (obj_control.deleteStack || obj_control.deleteRez || obj_control.deleteTrack) {
 				show_debug_message("dialogueConfirm, currentFocusedChainID: " + string(obj_chain.currentFocusedChainID));
 				scr_deleteFromChain(true);
+			}
+			if (obj_control.deleteChunk != "" && is_string(obj_control.deleteChunk)) {
+				scr_deleteChunk(obj_control.deleteChunk)
 			}
 		}
 		
