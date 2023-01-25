@@ -107,6 +107,10 @@ function scr_viewOptions(optionSelected) {
 		case "word_tip":
 			obj_wordTip.wordTipDisplay = !obj_wordTip.wordTipDisplay;			
 			break;
+			
+		case "unit_tip":
+			obj_wordTip.unitTipDisplay = !obj_wordTip.unitTipDisplay;			
+			break;
 		
 		case "tab_name_chunk":
 			obj_control.hideChunks = !obj_control.hideChunks;

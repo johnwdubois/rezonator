@@ -1,6 +1,10 @@
 /// @description Insert description here
 // You can write your code in this editor
-if ((obj_control.hoverTokenID != "" or obj_control.hoverUnitID != "" or obj_control.hoverChunkID != "" or obj_panelPane.functionTree_treeLinkMouseover != "") and wordTipDisplay == true) {
+
+var validWordTip = wordTipDisplay && (obj_control.hoverTokenID != "" || obj_control.hoverChunkID != "" || obj_panelPane.functionTree_treeLinkMouseover != "");
+var validUnitTip = unitTipDisplay && (obj_control.hoverUnitID != "");
+
+if (validWordTip || validUnitTip) {
 
 	if(obj_control.hoverTokenID != ""){
 		// Make the box display the word at the mouse cursor

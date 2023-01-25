@@ -45,6 +45,7 @@ viewOptionList = ds_list_create();
 ds_list_add(viewOptionList, "menu_navigation", 
 							"menu_toolbar",
 							"word_tip",
+							"unit_tip",
 							"menu_justify",
 							"menu_prose",
 							"text_dir",

@@ -548,6 +548,7 @@
 	"menu_remove-quick-access" : "Remove from Quick Access",
     "text_dir" : "Text Direction",
     "word_tip" : "Word Tip",
+	"unit_tip" : "Unit Tip",
     "arrheads" : "Arrowheads",
     "unit_delim" : "Unit Delimiter",
     "unit_start" : "Unit Start",

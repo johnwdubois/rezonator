@@ -180,17 +180,14 @@ function scr_dropDownSelect(optionSelected) {
 	    scr_unitTagMapOptions(optionSelected);
 	    instance_destroy();
 	}
-
 	else if (optionListType == global.optionListTypeAutosave) //40
 	{
 	    scr_autosaveOptions(optionSelected);
-	    instance_destroy();
 	}
 	else if (optionListType == global.optionListTypeEdit) //42
 	{
 	    scr_editOptions(optionSelected);
 	}
-
 	else if (optionListType == global.optionListTypeNav) //44
 	{
 	    scr_navOptions(optionSelected);

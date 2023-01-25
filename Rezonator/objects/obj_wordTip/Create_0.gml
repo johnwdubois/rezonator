@@ -6,6 +6,7 @@ boxWidth = 0;
 
 // Boolean for displaying wordtip
 wordTipDisplay = false;
+unitTipDisplay = false;
 wordTipRTL = global.userLangRTL;
 
 // Current token whose attributes are being displayed
