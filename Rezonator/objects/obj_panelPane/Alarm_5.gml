@@ -2,11 +2,11 @@
 // You can write your code in this editor
 
 if (timerSecs < 59) {
-	timerSecs ++;
+	timerSecs++;
 }
 
 else {
-	timerMins ++;
+	timerMins++;
 	timerSecs = 0;
 }
 

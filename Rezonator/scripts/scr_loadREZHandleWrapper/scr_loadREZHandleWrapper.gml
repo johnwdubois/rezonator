@@ -42,7 +42,7 @@ function scr_loadREZHandleWrapper(wrapper) {
 				global.unitImportUnitStartColName = ds_map_find_value(map, "unitImportUnitStartColName");
 				global.tokenImportTranscriptColName = ds_map_find_value(map, "tokenImportTranscriptColName");
 				global.tokenImportDisplayTokenColName = ds_map_find_value(map, "tokenImportDisplayTokenColName");
-				with(obj_panelPane) {
+				with (obj_panelPane) {
 					functionChainList_focusedUnit = ds_map_find_value(map, "functionChainList_focusedUnit");
 					functionChainList_focusedUnitIndex = ds_map_find_value(map, "functionChainList_focusedUnitSeq");
 				}

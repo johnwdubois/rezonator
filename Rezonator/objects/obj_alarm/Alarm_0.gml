@@ -14,7 +14,7 @@ if (tagListSize > 0) {
 	}
 	
 }
-else{
+else {
 	scr_loadTagJson(global.includedTagSchemaFileList[|0]);
 }
 scr_saveINI();

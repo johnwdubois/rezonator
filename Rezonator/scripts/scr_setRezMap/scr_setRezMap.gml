@@ -35,7 +35,7 @@ function scr_setRezMap(stackID, par) {
 					var chainList = chainMap[?currentChainID];
 					scr_addToListOnce(chainList, displayString)
 				}
-				else{
+				else {
 					var newList = ds_list_create();
 					ds_list_add(newList, displayString)
 					ds_map_add_list(chainMap, currentChainID, newList);
@@ -65,7 +65,7 @@ function scr_setRezMap(stackID, par) {
 				ds_list_add(tokenList,currentToken);
 				ds_map_add_list(tokenMap,currentToken,tokenList);
 			}
-			else{
+			else {
 				var tokenList = tokenMap[?currentToken];
 			}
 			

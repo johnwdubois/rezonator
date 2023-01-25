@@ -72,7 +72,7 @@ function scr_deleteTreeEntry() {
 					ds_map_destroy(currentGoalLinkSubMap);
 					
 				}
-				else{
+				else {
 					//delete all goals node goal list if it had no source
 					
 					// if we're deleting a root, let's delete all of its goal links
@@ -104,7 +104,7 @@ function scr_deleteTreeEntry() {
 	if (sourceEntryID != "") {
 		obj_chain.currentFocusedEntryID = sourceEntryID;
 	}
-	else{
+	else {
 		obj_chain.currentFocusedEntryID = "";
 	}
 	

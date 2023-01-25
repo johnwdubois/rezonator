@@ -53,7 +53,7 @@ function scr_combineChainsDrawLine(inChainsList) {
 		}
 		
 		// call alarm to show question box
-		with(obj_alarm) {
+		with (obj_alarm) {
 			alarm[9] = 3;
 		}
 	}

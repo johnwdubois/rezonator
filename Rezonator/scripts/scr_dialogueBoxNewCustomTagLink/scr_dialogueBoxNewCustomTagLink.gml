@@ -36,8 +36,8 @@ function scr_dialogueBoxNewCustomTagLink() {
 			// set the new value in this unit's tagmap
 			linkTagMap[? obj_control.tokenFieldToChange] = newTag;
 		}
-		with(obj_panelPane) { functionTree_treeLinkSelected = ""; }
-		with(obj_panelPane) {
+		with (obj_panelPane) { functionTree_treeLinkSelected = ""; }
+		with (obj_panelPane) {
 			functionField_linkFieldSelected = obj_control.tokenFieldToChange;
 			functionField_linkTagSelected = newTag;
 		}

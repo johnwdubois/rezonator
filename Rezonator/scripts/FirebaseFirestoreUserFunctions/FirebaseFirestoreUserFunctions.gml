@@ -270,7 +270,7 @@ function Firebase_Firestore_builder(path) constructor
 		_value = listener
 		if (FirebaseFirestore_Library_useSDK)
 			return FirebaseFirestore_SDK(json_stringify(self))
-		with(listener)
+		with (listener)
 		    instance_destroy()
 	}
 	
@@ -279,7 +279,7 @@ function Firebase_Firestore_builder(path) constructor
 		_action = "ListenerRemoveAll"
 		if (FirebaseFirestore_Library_useSDK)
 			return FirebaseFirestore_SDK(json_stringify(self))
-		with(Obj_FirebaseREST_Listener_Firestore)
+		with (Obj_FirebaseREST_Listener_Firestore)
 		if (string_count("Listener",event))
 			instance_destroy()
 	}

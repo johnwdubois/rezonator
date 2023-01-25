@@ -105,7 +105,7 @@ function scr_unitClicked(unitID) {
 				if (obj_panelPane.functionField_unitTagSelected == scr_get_translation("menu_clear")) {
 					unitTagMap[? obj_panelPane.functionField_unitFieldSelected] = "";
 				}
-				else{
+				else {
 					unitTagMap[? obj_panelPane.functionField_unitFieldSelected] = obj_panelPane.functionField_unitTagSelected;
 					show_debug_message("scr_unitClicked ... setting unit: " + string(unitID) + ", field:" + string(obj_panelPane.functionField_unitFieldSelected) + ", tag: " + string(obj_panelPane.functionField_unitTagSelected));
 				}

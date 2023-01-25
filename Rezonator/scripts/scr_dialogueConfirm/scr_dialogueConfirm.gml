@@ -89,7 +89,7 @@ function scr_dialogueConfirm() {
 			if (obj_control.goToTime) {
 				scr_jumpToTime(obj_control.inputText);
 			}
-			else{
+			else {
 				var strDigits = string_digits(obj_control.inputText);
 				if (string_length(strDigits) > 0) {
 					var realDigits = real(strDigits);
@@ -303,7 +303,7 @@ function scr_dialogueConfirm() {
 			else if (obj_panelPane.functionChainList_currentTab == obj_panelPane.functionChainList_tabStackBrush) selectedChainList = obj_control.selectedStackChainList;
 			
 			if (scr_isNumericAndExists(selectedChainList, ds_type_list)) {
-				while(ds_list_size(selectedChainList) > 0) {
+				while (ds_list_size(selectedChainList) > 0) {
 					scr_deleteChain(selectedChainList[| 0])
 				}
 			}
@@ -326,7 +326,7 @@ function scr_dialogueConfirm() {
 			
 			// Take the saved wordID & click on it
 			obj_control.layerLinkAllow = true;
-			with(obj_chain) {
+			with (obj_chain) {
 				alarm[8] = 2;	
 			}
 		}
@@ -351,7 +351,7 @@ function scr_dialogueConfirm() {
 		
 		if (instance_exists(obj_control)) {
 			if (obj_control.saveBeforeExiting || obj_control.saveBeforeImporting || obj_control.saveBeforeOpening) {
-				with(obj_fileLoader) scr_saveREZ(false);
+				with (obj_fileLoader) scr_saveREZ(false);
 				global.skipToImportScreen = obj_control.saveBeforeImporting;
 				global.skipToOpen = obj_control.saveBeforeOpening;
 				if (global.html5) global.html5RezFile = "";

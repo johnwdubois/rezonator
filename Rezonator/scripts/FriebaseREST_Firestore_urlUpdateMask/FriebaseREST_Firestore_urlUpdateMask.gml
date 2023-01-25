@@ -11,7 +11,7 @@ function FriebaseREST_Firestore_urlUpdateMask(json)
 	if (ds_map_size(map))
 	{
 		var key = ds_map_find_first(map)
-		while(!is_undefined(key))
+		while (!is_undefined(key))
 		{
 			if (key == ds_map_find_first(map))
 				str = "?updateMask.fieldPaths=" + key

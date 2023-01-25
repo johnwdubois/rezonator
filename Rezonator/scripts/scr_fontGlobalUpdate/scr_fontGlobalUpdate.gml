@@ -13,7 +13,7 @@ function scr_fontGlobalUpdate() {
 				global.fontPanelTab = global.localeCJK_S_0;
 				global.fontGridView = global.localeCJK_S_0;
 			}
-			else{
+			else {
 				global.fontMain = global.localeEN_M_0;
 				global.fontMainBold = global.localeEN_M_0;
 				global.fontChainContents = global.localeEN_S_0;
@@ -33,7 +33,7 @@ function scr_fontGlobalUpdate() {
 				global.fontPanelTab = global.localeCJK_S_1;
 				global.fontGridView = global.localeCJK_S_1;
 			}
-			else{
+			else {
 				global.fontMain = global.localeEN_M_1;
 				global.fontMainBold = global.localeEN_M_1;
 				global.fontChainContents = global.localeEN_S_1;
@@ -53,7 +53,7 @@ function scr_fontGlobalUpdate() {
 				global.fontPanelTab = global.localeCJK_S_2;
 				global.fontGridView = global.localeCJK_S_2;
 			}
-			else{
+			else {
 				global.fontMain = global.localeEN_M_2;
 				global.fontMainBold = global.localeEN_M_2;
 				global.fontChainContents = global.localeEN_S_2;
@@ -73,7 +73,7 @@ function scr_fontGlobalUpdate() {
 				global.fontPanelTab = global.localeCJK_S_3;
 				global.fontGridView = global.localeCJK_S_3;
 			}
-			else{
+			else {
 				global.fontMain = global.localeEN_M_3;
 				global.fontMainBold = global.localeEN_M_3;
 				global.fontChainContents = global.localeEN_S_3;
@@ -93,7 +93,7 @@ function scr_fontGlobalUpdate() {
 				global.fontPanelTab = global.localeCJK_S_4;
 				global.fontGridView = global.localeCJK_S_4;
 			}
-			else{
+			else {
 				global.fontMain = global.localeEN_M_4;
 				global.fontMainBold = global.localeEN_M_4;
 				global.fontChainContents = global.localeEN_S_4;
@@ -113,7 +113,7 @@ function scr_fontGlobalUpdate() {
 				global.fontPanelTab = global.localeCJK_S_5;
 				global.fontGridView = global.localeCJK_S_5;
 			}
-			else{
+			else {
 				global.fontMain = global.localeEN_M_5;
 				global.fontMainBold = global.localeEN_M_5;
 				global.fontChainContents = global.localeEN_S_5;

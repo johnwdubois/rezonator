@@ -8,7 +8,7 @@ function scr_splitStringConlluTag(key, keyList) {
   var closeBracketPos = 0;
   var i = 0; //max iterator failsafe
   show_debug_message(string(string_length(str)));
-  while(string_length(str) > 0 and i < 1000) {
+  while (string_length(str) > 0 and i < 1000) {
 	  i++;
 	  if (string_char_at(str,1) == "(") {
 		insertString += "(";
@@ -27,12 +27,12 @@ function scr_splitStringConlluTag(key, keyList) {
 			insertString += string_copy(str, 1, openBracketPos-1);
 			str = string_delete(str, 1, openBracketPos-1);
 		}
-		else{
+		else {
 			insertString += string_copy(str, 1, string_length(str));
 			str = string_delete(str, 1, string_length(str));
 		}
 	  }
-	  else{
+	  else {
 		closeBracketPos = string_pos(")",str);
 		insertString = string_copy(str, 1, closeBracketPos);
 		str = string_delete(str, 1, closeBracketPos);

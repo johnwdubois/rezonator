@@ -7,7 +7,7 @@ function FirebaseREST_Firestore_jsonEncode(json)
 
 
 	var key = ds_map_find_first(map)
-	while(!is_undefined(key))
+	while (!is_undefined(key))
 	{
 		//show_debug_message("FirebaseREST_Firestore_jsonEncode, key: " + string(key));
 		

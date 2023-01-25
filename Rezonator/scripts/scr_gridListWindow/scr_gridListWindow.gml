@@ -62,8 +62,8 @@ function scr_gridListWindow() {
 	clipY = y;
 
 	//draw_text(800,1000, "gridListInfoWindowRectY2: " + string(gridListInfoWindowRectY2) + ",   windowHeight: " + string(windowHeight));
-	//draw_text(800,950, "clipHeight: " + string(clipHeight) + ",  clipWidth: " + string(clipWidth) );
-	//draw_text(800,900, "clipX: " + string(clipX) + ",  clipY: " + string(clipY) );
+	//draw_text(800,950, "clipHeight: " + string(clipHeight) + ",  clipWidth: " + string(clipWidth));
+	//draw_text(800,900, "clipX: " + string(clipX) + ",  clipY: " + string(clipY));
 
 
 
@@ -106,7 +106,7 @@ function scr_gridListWindow() {
 		if ( mouseOverGrid == i ) {
 			draw_set_color(global.colorThemeSelected1);
 			draw_set_alpha(.5);
-			draw_rectangle(currentCellX1 - clipX, currentCellY1 - clipY + scrollPlusY ,currentCellX2 - clipX, currentCellY2 - clipY + scrollPlusY, false );
+			draw_rectangle(currentCellX1 - clipX, currentCellY1 - clipY + scrollPlusY ,currentCellX2 - clipX, currentCellY2 - clipY + scrollPlusY, false);
 			
 			if (mouse_check_button_released(mb_left)) {
 				currentGrid = currentGridListValue;
@@ -118,7 +118,7 @@ function scr_gridListWindow() {
 		if (currentGrid  == currentGridListValue) {
 			draw_set_color(global.colorThemeSelected1);
 			draw_set_alpha(.5);
-			draw_rectangle(currentCellX1 - clipX, currentCellY1 - clipY + scrollPlusY ,currentCellX2 - clipX, currentCellY2 - clipY + scrollPlusY, false );
+			draw_rectangle(currentCellX1 - clipX, currentCellY1 - clipY + scrollPlusY ,currentCellX2 - clipX, currentCellY2 - clipY + scrollPlusY, false);
 		}
 		
 		draw_set_color(global.colorThemeBorders);

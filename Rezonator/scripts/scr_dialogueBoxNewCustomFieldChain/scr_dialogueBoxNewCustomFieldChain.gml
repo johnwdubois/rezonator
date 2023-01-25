@@ -22,7 +22,7 @@ function scr_dialogueBoxNewCustomFieldChain() {
 		scr_addToListOnce(chain1to1ColFieldList, newField);
 		show_debug_message("chain1to1ColFieldList: " + scr_getStringOfList(chain1to1ColFieldList));
 	}
-	else{
+	else {
 		scr_addToListOnce(obj_control.chain1to1ColFieldListRez, newField);
 		scr_addToListOnce(obj_control.chain1to1ColFieldListTrack, newField);
 		scr_addToListOnce(obj_control.chain1to1ColFieldListStack, newField);

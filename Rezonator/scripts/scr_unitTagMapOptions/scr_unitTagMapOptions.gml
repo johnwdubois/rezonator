@@ -1,6 +1,6 @@
 function scr_unitTagMapOptions(optionSelected) {
 	
-	with(obj_inputBox) {
+	with (obj_inputBox) {
 		show_debug_message("destroying input box from unit dd select");
 		instance_destroy();
 	}
@@ -34,7 +34,7 @@ function scr_unitTagMapOptions(optionSelected) {
 		}
 		
 		if (!clearTag) {
-			with(obj_panelPane) {
+			with (obj_panelPane) {
 				functionField_unitTagSelected = optionSelected;
 				functionField_unitFieldSelected = obj_control.unitFieldToChange;
 			}
@@ -44,7 +44,7 @@ function scr_unitTagMapOptions(optionSelected) {
 		obj_control.unitToChange = "";
 
 	}
-	with(obj_dropDown) {
+	with (obj_dropDown) {
 		instance_destroy();
 	}
 

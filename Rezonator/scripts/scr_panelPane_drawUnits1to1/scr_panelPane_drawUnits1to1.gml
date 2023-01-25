@@ -221,7 +221,7 @@ function scr_panelPane_drawUnits1to1() {
 			if (lineStateLTR) {
 				var textX = floor(colRectX1 + textMarginLeft);
 			}
-			else{
+			else {
 				var textX = floor(colRectX2 - textMarginLeft);
 				if (drawDropDowns && mouseoverunitRect ) {
 					textX = textX - dropDownButtonWidth;

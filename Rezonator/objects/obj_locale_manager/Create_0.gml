@@ -46,10 +46,10 @@ if (true) {
 		scr_loadLocaleFile("locale_zh.json", delimiter);
 	}
 	else {
-		var locale_file_name = file_find_first("IncludedFiles" + delimiter + "Localization" + delimiter + "locale_*.json", 0 );		// find the first glossary file matching naming convention
+		var locale_file_name = file_find_first("IncludedFiles" + delimiter + "Localization" + delimiter + "locale_*.json", 0);		// find the first glossary file matching naming convention
 		if ( locale_file_name == "" )										// if file name does not follow convention, ignore it
 		{
-			show_error( "No locale files found!", true );
+			show_error( "No locale files found!", true);
 			return;
 		}
 		while ( locale_file_name != "" )									// if file name follows convention
@@ -82,5 +82,5 @@ if (true) {
 		global.locale_gloss = global.locale_map[? global.lang_codes[| 0]];
 	}
 
-	show_debug_message("Locale set to " + global.lang_codes[| global.lang_index] );
+	show_debug_message("Locale set to " + global.lang_codes[| global.lang_index]);
 }

@@ -7,7 +7,7 @@ function scr_addToListOnce(list, value, first) {
 		if (first) {
 			ds_list_insert(list, 0, value);
 		}
-		else{
+		else {
 			ds_list_add(list, value);
 		}
 	}

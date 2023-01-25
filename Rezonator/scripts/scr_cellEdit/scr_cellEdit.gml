@@ -1,6 +1,6 @@
 function scr_cellEdit(ID, field, mouseoverCell, mouseoverDropDown, x1, y1, x2, y2, str, type) {
 	var isDragging = false;
-	with(obj_inputBox) {
+	with (obj_inputBox) {
 		isDragging = dragging;
 	}
 	

@@ -93,7 +93,7 @@ function scr_drawChunks() {
 			if (obj_control.justify == obj_control.justifyLeft) {
 				chunkRectX2 = chunkRectX2 + lastTokenStrWidth;
 			}
-			else{
+			else {
 				chunkRectX1 = chunkRectX1 - firstTokenStrWidth;
 			}
 	
@@ -179,7 +179,7 @@ function scr_drawChunks() {
 				if ((typeOfChain == "trail")) {
 					draw_roundrect(chunkRectX1, chunkRectY1, chunkRectX2, chunkRectY2, false);	
 				}
-				else{
+				else {
 					draw_rectangle(chunkRectX1, chunkRectY1, chunkRectX2, chunkRectY2, false);	
 				}
 			}
@@ -310,7 +310,7 @@ function scr_drawChunks() {
 						if (obj_panelPane.functionField_chunkTagSelected == scr_get_translation("menu_clear")) {
 							chunkTagMap[? obj_panelPane.functionField_chunkFieldSelected] = "";
 						}
-						else{
+						else {
 							chunkTagMap[? obj_panelPane.functionField_chunkFieldSelected] = obj_panelPane.functionField_chunkTagSelected;
 							show_debug_message("scr_tokenClicked ... setting token: " + string(currentChunk) + ", field:" + string(obj_panelPane.functionField_chunkFieldSelected) + ", tag: " + string(obj_panelPane.functionField_chunkTagSelected));
 						}
@@ -427,7 +427,7 @@ function scr_drawChunks() {
 					if ((typeOfChain == "trail")) {
 						draw_roundrect(highlightChunkX1, highlightChunkY1, highlightChunkX2, highlightChunkY2, false);	
 					}
-					else{
+					else {
 						draw_rectangle(highlightChunkX1, highlightChunkY1, highlightChunkX2, highlightChunkY2, false);	
 					}
 				}

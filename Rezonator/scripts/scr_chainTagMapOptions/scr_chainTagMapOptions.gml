@@ -1,13 +1,13 @@
 function scr_chainTagMapOptions(optionSelected) {
 
 	if (obj_control.navWindowTaggingDisableSpawn) {
-		with(obj_dropDown) {
+		with (obj_dropDown) {
 			instance_destroy();
 		}
 		exit;
 	}
 	var tagID = obj_control.navWindowTaggingID;
-	with(obj_inputBox) {
+	with (obj_inputBox) {
 		instance_destroy();
 	}
 	// check if user is clearing tag
@@ -37,7 +37,7 @@ function scr_chainTagMapOptions(optionSelected) {
 				}	
 			}
 		}
-		else{
+		else {
 		
 			var rightClickSubMap = global.nodeMap[?obj_control.rightClickID];
 			if (scr_isNumericAndExists(rightClickSubMap,ds_type_map)) {
@@ -59,7 +59,7 @@ function scr_chainTagMapOptions(optionSelected) {
 			}
 		}
 		if (!clearTag) {
-			with(obj_panelPane) {
+			with (obj_panelPane) {
 				functionField_chainTagSelected = optionSelected;
 				functionField_chainFieldSelected = obj_control.tokenFieldToChange;
 			}
@@ -68,7 +68,7 @@ function scr_chainTagMapOptions(optionSelected) {
 		obj_control.tokenFieldToChange = "";
 		obj_control.tokenToChange = "";
 	}
-	with(obj_dropDown) {
+	with (obj_dropDown) {
 		instance_destroy();
 	}
 }

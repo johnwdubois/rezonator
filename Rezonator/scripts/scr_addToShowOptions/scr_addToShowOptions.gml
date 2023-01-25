@@ -15,12 +15,12 @@ function scr_addToShowOptions(optionSelected) {
 				if (ds_exists(setList, ds_type_list)) {
 					if (ds_list_find_index(setList,optionSelected) == -1) {
 						ds_list_add(setList, optionSelected);
-						with(obj_panelPane) {
+						with (obj_panelPane) {
 							errorText = ""
 						}
 					}
-					else{
-						with(obj_panelPane) {
+					else {
+						with (obj_panelPane) {
 							errorText = "Stack already in Show"
 							alarm[8] = 240;
 						}

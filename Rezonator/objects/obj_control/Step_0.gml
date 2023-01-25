@@ -28,7 +28,7 @@ if (!scr_isNumericAndExists(displayUnitList, ds_type_list)) {
 		 if (ds_list_size(docDisplayUnitList) > 1) {
 			 displayUnitList = docDisplayUnitList;
 		 }
-		 else{
+		 else {
 			 ds_list_copy(discourseSubMap[? "displayUnitList"], discourseSubMap[? "unitList"]);
 			 displayUnitList = discourseSubMap[? "displayUnitList"];
 		 }
@@ -113,7 +113,7 @@ if (!gridView) {
 		if ((keyboard_check(vk_down) && navWindowTaggingID == "") or mouse_wheel_down()) {
 			var holdPos = false;
 			
-			with(obj_audioUI) {
+			with (obj_audioUI) {
 				if (audioJumpOnWordClick) {
 					holdPos = true;
 					if (keyboard_check_pressed(vk_down)) {
@@ -167,7 +167,7 @@ if (!gridView) {
 		}
 		if ((keyboard_check(vk_up) && navWindowTaggingID == "") or mouse_wheel_up()) {
 			var holdPos = false;
-			with(obj_audioUI) {
+			with (obj_audioUI) {
 				if (audioJumpOnWordClick) {
 					holdPos = true;
 					if (keyboard_check_pressed(vk_up)) {
@@ -339,7 +339,7 @@ if (!gridView) {
 		
 			if (keyboard_check_pressed(vk_right) and !global.ctrlHold and !dialogueBoxActive && navWindowTaggingID == "") {
 				var holdPos = false;
-				with(obj_audioUI) {
+				with (obj_audioUI) {
 					if (audioJumpOnWordClick) {
 						holdPos = true;
 					}
@@ -353,7 +353,7 @@ if (!gridView) {
 			
 			if (keyboard_check_pressed(vk_left) and !global.ctrlHold and !dialogueBoxActive && navWindowTaggingID == "") {
 				var holdPos = false;
-				with(obj_audioUI) {
+				with (obj_audioUI) {
 					if (audioJumpOnWordClick) {
 						holdPos = true;
 						scr_audioJumpToUnit(closestUnit);
@@ -452,7 +452,7 @@ if (shortcutsEnabled) {
 			}
 		}
 	}
-	else{
+	else {
 		if (keyboard_check(vk_shift) and !global.ctrlHold) {
 			if (keyboard_check_direct(187) and canPressPlus) {
 
@@ -650,7 +650,7 @@ and shortcutsEnabled and mouseoverTagShortcut == "" and currentActiveLineGrid !=
 
 
 if (keyboard_check_pressed(ord("Y")) and global.ctrlHold) {
-	with(obj_fileLoader) {
+	with (obj_fileLoader) {
 		alarm[7] = 2;
 	}
 }
@@ -661,7 +661,7 @@ var fileCaptionString = string(game_display_name)
 if (global.fileSaveName == "undefined" or is_undefined(global.fileSaveName)) {
 	fileCaptionString = string(game_display_name) + " - " + filename_name(global.importFilename);
 }
-else{
+else {
 	fileCaptionString = string(game_display_name) + " - " + filename_name(global.fileSaveName);
 }
 var captionString = fileCaptionString;

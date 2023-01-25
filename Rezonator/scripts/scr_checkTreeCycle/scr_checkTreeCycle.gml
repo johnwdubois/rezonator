@@ -11,7 +11,7 @@ function scr_checkTreeCycle(clickedEntry) {
 	var sourceLink = focusedEntrySubMap[? "sourceLink"];
 	
 	//if root not found keep looking
-	while(sourceLink != "") {
+	while (sourceLink != "") {
 		
 	
 		var sourceLinkSubMap = global.treeMap[? sourceLink];

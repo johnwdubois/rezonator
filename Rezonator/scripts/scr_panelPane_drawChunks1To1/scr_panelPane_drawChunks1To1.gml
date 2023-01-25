@@ -137,7 +137,7 @@ function scr_panelPane_drawChunks1To1() {
 			if (lineStateLTR) {
 				textX = floor(cellRectX1 + (textMarginLeft));
 			}
-			else{
+			else {
 				textX = floor(cellRectX2 - (textMarginLeft));
 			}
 			

@@ -36,7 +36,7 @@ function scr_searchPaneOptions(optionSelected) {
 	}
 	else if (optionSelected == "Add to Stack") {
 		show_debug_message("coming SOON");
-		with(obj_dropDown) {
+		with (obj_dropDown) {
 			instance_destroy();
 		}
 	}
@@ -48,7 +48,7 @@ function scr_searchPaneOptions(optionSelected) {
 			var displayTokenList = searchSubMap[? "displayTokenList"];
 			var displayUnitList = searchSubMap[? "displayUnitList"];
 		}
-		else{
+		else {
 			instance_destroy(obj_dropDown);
 			exit;
 		}
@@ -71,7 +71,7 @@ function scr_searchPaneOptions(optionSelected) {
 			var tokenSubMap = global.nodeMap[?currentToken];
 			var currentUnit = tokenSubMap[? "unit"];
 			scr_addToListOnce(displayUnitList,currentUnit);
-			counter ++;
+			counter++;
 		}
 		
 		//are there still units to show
@@ -80,8 +80,8 @@ function scr_searchPaneOptions(optionSelected) {
 			show_debug_message("displayUnitListSize:  "+ string(displayUnitListSize));
 			scr_renderFilter2();
 		}
-		else{
-			with(obj_dropDown) {
+		else {
+			with (obj_dropDown) {
 				scr_removeSearch(obj_panelPane.functionSearchList_searchSelected)
 				scr_disableFilter();
 				instance_destroy();

@@ -4,7 +4,7 @@ function scr_drawDialogueBox_input() {
 	if (!instance_exists(obj_inputBox)) {
 		instance_create_layer(0,0,"InstancesInput", obj_inputBox);
 	}
-	with(obj_inputBox) {
+	with (obj_inputBox) {
 		textBoxX = floor(obj_dialogueBox.boxRectX1 + (obj_dialogueBox.boxWidth * 0.1));
 		
 		if (obj_dialogueBox.descriptionText != "") {

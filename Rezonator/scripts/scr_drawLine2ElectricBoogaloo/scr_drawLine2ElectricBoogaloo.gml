@@ -26,7 +26,7 @@ function scr_drawLine2ElectricBoogaloo() {
 			obj_control.displayUnitList = displayUnitList;
 			show_debug_message("... displayUnitList created!");
 		}
-		else{
+		else {
 			exit;
 		}
 	}
@@ -91,11 +91,11 @@ function scr_drawLine2ElectricBoogaloo() {
 		if ((drawLineState == lineState_rtl && shape == shapeBlock)) {
 			oobRectX2 = wordLeftMargin - scrollPlusX - gridSpaceHorizontal;
 		}
-		else{
+		else {
 			oobRectX2 = wordLeftMargin + scrollPlusX;
 		}
 	}
-	else{
+	else {
 		oobRectX2 = (drawLineState == lineState_rtl && shape == shapeBlock) ? camWidth - global.toolPaneWidth - scrollPlusX : camWidth - global.toolPaneWidth + scrollPlusX;
 	}
 	

@@ -65,4 +65,4 @@ if (global.skipToOpen) {
 	alarm[8] = 1;
 }
 
-window_set_caption(string(game_display_name) );
+window_set_caption(string(game_display_name));

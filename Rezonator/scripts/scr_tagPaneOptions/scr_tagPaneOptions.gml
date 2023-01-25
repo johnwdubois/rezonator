@@ -1,6 +1,6 @@
 function scr_tagPaneOptions(optionSelected) {
 	
-	with(obj_panelPane) {
+	with (obj_panelPane) {
 		if (optionSelected == fieldPaneTokenMode) {
 			fieldPaneSwitchButton = fieldPaneTokenMode;
 		}
@@ -22,7 +22,7 @@ function scr_tagPaneOptions(optionSelected) {
 
 	}
 	
-	with(obj_dropDown) {
+	with (obj_dropDown) {
 		instance_destroy(obj_dropDown);
 	}
 }

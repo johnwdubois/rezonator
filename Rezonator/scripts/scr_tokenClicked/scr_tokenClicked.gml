@@ -126,7 +126,7 @@ function scr_tokenClicked(tokenID) {
 				if (obj_panelPane.functionField_tokenTagSelected == scr_get_translation("menu_clear")) {
 					tokenTagMap[? obj_panelPane.functionField_tokenFieldSelected] = "";
 				}
-				else{
+				else {
 				if (global.steamAPI) {
 					if (!steam_get_achievement("SA_tag-token")) {
 						steam_set_achievement("SA_tag-token");

@@ -38,7 +38,7 @@ function scr_panelPane_drawUnits1To1Headers() {
 				draw_line_width(headerRectX1 - clipX, headerRectY1 - clipY, headerRectX1 - clipX, y + windowHeight - clipY, 1);
 			}
 		}
-		else{
+		else {
 			if (i < headerListSize) {
 				draw_set_color(global.colorThemeBorders);
 				draw_line_width(headerRectX1 + 1 - clipX, headerRectY1 - clipY, headerRectX1 + 1 - clipX, y + windowHeight - clipY, 1);
@@ -66,7 +66,7 @@ function scr_panelPane_drawUnits1To1Headers() {
 			if (lineStateLTR) {
 				var underlineX2 = headerTextX + string_width(currentField);
 			}
-			else{
+			else {
 				var underlineX2 = headerTextX - string_width(currentField);
 			}
 			var underlineY = headerTextY + (headerHeight * 0.25);

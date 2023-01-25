@@ -94,7 +94,7 @@ function scr_updateChainShowList(inChainsList, inEntryList, chainShowList, inBox
 				var nestList = obj_chain.chunkShowMap[? string(currentChunkNest) ];
 				scr_addToListOnce(nestList, currentChunk);
 			}
-			else{
+			else {
 				var nestList = ds_list_create();
 				ds_list_add(nestList, currentChunk);
 				ds_map_add_list(obj_chain.chunkShowMap, string(currentChunkNest), nestList);

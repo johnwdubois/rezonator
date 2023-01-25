@@ -26,7 +26,7 @@ if (validWordTip || validUnitTip) {
 	if (obj_panelPane.functionTree_treeLinkMouseover != "") {
 		var IDSubMap = global.treeMap[?currentID];
 	}
-	else{
+	else {
 		var IDSubMap = global.nodeMap[?currentID];
 	}
 	var IDType = IDSubMap[? "type"];
@@ -108,12 +108,12 @@ if (validWordTip || validUnitTip) {
 	draw_rectangle(boxX1, boxY1, boxX2, boxY2, true);
 
 	// Draw the box's fill color
-	draw_set_color(make_color_rgb(245, 245, 245) );
+	draw_set_color(make_color_rgb(245, 245, 245));
 	draw_rectangle(boxX1, boxY1, boxX2, boxY2, false);
 
 /*
 	// Draw the header's fill color
-	draw_set_color(make_color_rgb(220, 220, 220) );
+	draw_set_color(make_color_rgb(220, 220, 220));
 	draw_rectangle(boxX1, boxY1 + lineHeight, boxX2, boxY2, false);
 
 	// Draw the header and column separator lines
@@ -144,7 +144,7 @@ if (validWordTip || validUnitTip) {
 			draw_text(col1X,floor(headerTextY), "Attribute");
 			draw_text(col2X,floor(headerTextY), "Value");
 		}
-		else{
+		else {
 		*/
 		var fieldName = fieldList[|i];
 		var fieldValue = tagMap[?fieldName];
@@ -208,6 +208,6 @@ if (validWordTip || validUnitTip) {
 		
 	}
 }
-else{
+else {
 	exit;
 }

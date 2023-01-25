@@ -99,7 +99,7 @@ function scr_audioDraw() {
 				audio_sound_set_track_position(audioSound, bookmarkStartTime);
 				audioPaused = !audioPaused;
 			}
-			else{
+			else {
 				audioPaused = !audioPaused;
 			}
 		}

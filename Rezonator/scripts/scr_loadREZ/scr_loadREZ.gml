@@ -54,7 +54,7 @@ function scr_loadREZ() {
 		var fileName = global.selectedFile;
 		
 	}
-	else{
+	else {
 		if (directory_exists(global.rezonatorDirString)) {
 			var fileName = get_open_filename_ext("REZ file|*.rez", "", RezDirString, "Open REZ");
 		}
@@ -68,7 +68,7 @@ function scr_loadREZ() {
 		room_goto(rm_openingScreen);
 		exit;
 	}
-	else{
+	else {
 		global.previousRezDirectory = filename_path(fileName);
 	}
 	

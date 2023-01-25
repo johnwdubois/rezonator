@@ -68,7 +68,7 @@ function scr_loadTagJsonFields(originalTagMap, originalFieldList, tagMapJson, no
 					}
 				}
 			}
-			else{
+			else {
 				show_debug_message("exists in map!");
 				// if this field is already in the originalTagMap, we will add any tag from the json that is not already there
 				var originalFieldSubMap = originalTagMap[? currentJsonField];
@@ -108,7 +108,7 @@ function scr_loadTagJsonFields(originalTagMap, originalFieldList, tagMapJson, no
 					scr_addToListOnce(newFieldList, currentJsonField);
 				}
 			}
-			else{
+			else {
 				show_debug_message("does not exist in map!");
 				// if this field is not in the originalTagMap at all, we will add its entire submap
 				ds_map_add_map(originalTagMap, currentJsonField, currentJsonMap);
@@ -148,7 +148,7 @@ function scr_loadTagJsonFields(originalTagMap, originalFieldList, tagMapJson, no
 		if (nodeType == "link") { linkField = true;
 			nodeType = global.nodeMap[? "treeList"];
 		}
-		else{
+		else {
 			nodeType = global.nodeMap[? "nodeType"];
 		}
 	}
@@ -164,7 +164,7 @@ function scr_loadTagJsonFields(originalTagMap, originalFieldList, tagMapJson, no
 		if (linkField) {		
 			var currentSubMap = global.treeMap[? currentNode];
 		}
-		else{
+		else {
 			var currentSubMap = global.nodeMap[? currentNode];
 		}
 		var currentNodeType = currentSubMap[? "type"];

@@ -3,7 +3,7 @@ function scr_removeFromTagSetMulti() {
 	var selectedListSize = ds_list_size(obj_control.selectedTagList);
 
 	for (var i = 0; i < selectedListSize; i++) {		
-		with(obj_panelPane) {
+		with (obj_panelPane) {
 			var currentTag = obj_control.selectedTagList[|i];
 			if (fieldPaneSwitchButton == fieldPaneTokenMode) {
 				obj_control.tokenFieldToChange = functionField_tokenFieldSelected;

@@ -42,7 +42,7 @@ function scr_disableFilter() {
 			if (unitSeq < drawRangeUnitSeq) {
 				currentUnitSubMap[? "pixelY"] = -9999;
 			}
-			else{
+			else {
 				currentUnitSubMap[? "pixelY"] = 9999;
 			}	
 		}

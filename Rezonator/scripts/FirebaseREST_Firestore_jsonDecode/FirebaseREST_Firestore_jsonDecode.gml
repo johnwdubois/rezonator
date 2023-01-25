@@ -42,7 +42,7 @@ function FirebaseREST_Firestore_jsonDecode(json_data)
 	//show_debug_message("map_fields: " + json_encode(map_fields));
 
 	var key = ds_map_find_first(map_fields)
-	while(!is_undefined(key)) {
+	while (!is_undefined(key)) {
 		var map_value = map_fields[? key];
 		
 		// check if map_value is a list
@@ -78,7 +78,7 @@ function FirebaseREST_Firestore_jsonDecode(json_data)
 				// if value is a number
 				ds_map_add(map, key, value);
 			}
-			else{
+			else {
 				// if value is a list or map
 				var firstKey = ds_map_find_first(value);
 				var subValue = value[?firstKey];

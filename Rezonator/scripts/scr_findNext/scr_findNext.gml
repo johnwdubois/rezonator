@@ -20,15 +20,15 @@ function scr_findNext(givenTokenID, previous) {
 				if ( givenTokenIndex > 0 ) {
 					newTokenID = tokenDisplayList[|givenTokenIndex-1];
 				}
-				else{
+				else {
 					newTokenID = tokenDisplayList[|tokenDisplayListSize-1];
 				}
 			}
-			else{
+			else {
 				if ( givenTokenIndex < tokenDisplayListSize-1 ) {
 					newTokenID = tokenDisplayList[|givenTokenIndex+1];
 				}
-				else{
+				else {
 					newTokenID = tokenDisplayList[|0];
 				}
 			}

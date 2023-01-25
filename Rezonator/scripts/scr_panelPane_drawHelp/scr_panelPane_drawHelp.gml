@@ -267,7 +267,7 @@ function scr_panelPane_drawHelp() {
 				if (obj_control.wordTokenView) {
 					displayString = "Token View"
 				}
-				else{
+				else {
 					displayString = "Transcript View"
 				}
 				scr_drawToolTip(obj_toolPane.ToolTipPosX, obj_toolPane.ToolTipPosY, displayString , "top");
@@ -276,17 +276,17 @@ function scr_panelPane_drawHelp() {
 				if (obj_control.shape == obj_control.shapeBlock) {
 					displayString = "Column View"
 				}
-				else{
+				else {
 					displayString = "Justified View"
 
 				}
-				//scr_drawToolTip(obj_toolPane.ToolTipPosX, obj_toolPane.ToolTipPosY, displayString, "top" );
+				//scr_drawToolTip(obj_toolPane.ToolTipPosX, obj_toolPane.ToolTipPosY, displayString, "top");
 			}
 			else if (i == 1) {
 				if (obj_control.gridView) {
 					displayString = "Grid View"
 				}
-				else{
+				else {
 					displayString = "Text View"
 				}
 				//scr_drawToolTip(obj_toolPane.ToolTipPosX, obj_toolPane.ToolTipPosY, displayString , "top");

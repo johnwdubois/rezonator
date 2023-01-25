@@ -58,7 +58,7 @@ function scr_getSearchLists(searchTermList) {
 			listOfChains = global.nodeMap[? "trailList"];
 			var listToAddTo = trackChainTokenIDList;
 		}
-		else{
+		else {
 			show_debug_message("NO RANGE GIVEN")
 			listOfChains = global.nodeMap[? "resonanceList"];
 			var listToAddTo = rezChainTokenIDList;
@@ -147,7 +147,7 @@ function scr_getSearchLists(searchTermList) {
 									scr_addToListOnce(searchTokenList, currentToken);
 								}
 							}
-							else{
+							else {
 								if (nonCaseSensitiveMatch) {
 									scr_addToListOnce(searchUnitList, currentUnit);
 									scr_addToListOnce(searchTokenList, currentToken);
@@ -157,7 +157,7 @@ function scr_getSearchLists(searchTermList) {
 					}	
 				}
 				// Doc search
-				else{
+				else {
 					// reg ex check
 					if (obj_control.regExCheck) {
 						if (scr_isNumericAndExists(obj_control.RegEx, ds_type_list)) {

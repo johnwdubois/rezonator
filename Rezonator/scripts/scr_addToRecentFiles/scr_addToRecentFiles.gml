@@ -7,7 +7,7 @@ function scr_addToRecentFiles(filePath) {
 	//update key list
 	scr_addToListOnce(global.recentFilesList,string(fileName), true);
 	var recentFilesListSize = ds_list_size(global.recentFilesList);
-	while(recentFilesListSize > 20) {
+	while (recentFilesListSize > 20) {
 		
 		ds_map_delete(global.recentFilesMap,global.recentFilesList[|recentFilesListSize-1]);
 		ds_list_delete(global.recentFilesList,recentFilesListSize-1);
@@ -39,7 +39,7 @@ function scr_addToRecentFiles(filePath) {
 	if (ds_map_exists(global.recentFilesMap, fileName)) {
 		ds_map_replace_map(global.recentFilesMap, fileName, fileMap);
 	}
-	else{
+	else {
 		ds_map_add_map(global.recentFilesMap, fileName, fileMap);
 	}
 	show_debug_message(string(fileName)+ ":    file exists " + string(file_exists(fileName)));

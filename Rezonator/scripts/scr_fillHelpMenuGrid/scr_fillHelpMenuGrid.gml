@@ -351,7 +351,7 @@ function scr_fillHelpMenuGrid() {
 	if (os_type == os_macosx) {
 		correctKey = "Option";
 	}
-	else{
+	else {
 		correctKey = controlStr;
 	}
 
@@ -425,7 +425,7 @@ function scr_fillHelpMenuGrid() {
 	if ( os_type = os_macosx) {
 		altOption = "Option";
 	}
-	else{
+	else {
 		altOption = "Alt";
 	}
 

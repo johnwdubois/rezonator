@@ -95,7 +95,7 @@ function scr_fontSizeControl() {
 		}
 	
 	}
-	else{
+	else {
 		if (global.ctrlHold and keyboard_check_pressed(vk_subtract)
 		or (global.ctrlHold and keyboard_check(189)) and canPressPlus) {
 			if (keyboard_check(vk_shift)) {

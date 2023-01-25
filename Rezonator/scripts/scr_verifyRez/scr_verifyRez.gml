@@ -10,7 +10,7 @@ function scr_verifyRez() {
 			obj_dialogueBox.descriptionText = scr_get_translation("msg_error-previous-version");
 		}
 	}
-	else{
+	else {
 		var inst = instance_create_layer(0, 0, "InstancesDialogue", obj_dialogueBox);
 		obj_dialogueBox.alertWindowActive = true;
 		obj_dialogueBox.descriptionText = scr_get_translation("msg_error-previous-version");
@@ -24,7 +24,7 @@ function scr_verifyRez() {
 		show_debug_message("scr_verifyREZ ... docSubMap is undefined- jumping to opening screen");
 		return true;
 	}
-	else{
+	else {
 
 		// make sure this rez file at least has a unit list
 		var unitList = docSubMap[? "unitList"];

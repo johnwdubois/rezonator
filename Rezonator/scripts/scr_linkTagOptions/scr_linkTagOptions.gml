@@ -15,7 +15,7 @@ function scr_linkTagOptions(optionSelected) {
 		}
 		obj_dialogueBox.inputWindowActive = true;
 	}
-	else{
+	else {
 		var linkSubMap = global.treeMap[? obj_panelPane.functionTree_treeLinkSelected];
 		if (!scr_isNumericAndExists(linkSubMap, ds_type_map)) exit;
 		var linkTagMap = linkSubMap[? "tagMap"];
@@ -23,7 +23,7 @@ function scr_linkTagOptions(optionSelected) {
 		var newTagValue = clearTag ? "" : optionSelected;
 		linkTagMap[? obj_control.linkFieldSelected] = newTagValue;
 		if (!clearTag) {
-			with(obj_panelPane) {
+			with (obj_panelPane) {
 				functionField_linkFieldSelected = obj_control.linkFieldSelected;
 				functionField_linkTagSelected = optionSelected;
 			}

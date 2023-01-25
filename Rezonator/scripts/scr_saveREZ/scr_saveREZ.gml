@@ -23,7 +23,7 @@ function scr_saveREZ(autosave) {
 			if (global.previousSaveDirectory == "" or !is_string(global.previousSaveDirectory)) {
 				global.fileSaveName = get_save_filename_ext("REZ file|*.rez", "", program_directory, "Save REZ");
 			}
-			else{
+			else {
 				global.fileSaveName = get_save_filename_ext("REZ file|*.rez", "", global.previousSaveDirectory, "Save REZ");	
 			}
 

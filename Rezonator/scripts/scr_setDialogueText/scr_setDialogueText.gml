@@ -92,7 +92,7 @@ function scr_setDialogueText() {
 					if (i == 0) {
 						unitSeq1 = currentUnitSubMap[? "unitSeq"];
 					}
-					else{
+					else {
 						unitSeq2 = currentUnitSubMap[? "unitSeq"];
 					}
 					
@@ -273,7 +273,7 @@ function scr_setDialogueText() {
 				titleText = scr_get_translation("help_label_split-word");
 				descriptionText = scr_get_translation("msg_input_split_words");
 			}
-			else{
+			else {
 				titleText = scr_get_translation("option_new-token");
 				descriptionText = scr_get_translation("msg_input_new-word");
 			}
@@ -303,7 +303,7 @@ function scr_setDialogueText() {
 				titleText = scr_get_translation("msg_time_search");
 				descriptionText = scr_get_translation("msg_input_time-jump");
 			}
-			else{
+			else {
 				titleText = scr_get_translation("msg_specify_line");
 				descriptionText = " ";//scr_get_translation("msg_input_line-jump");
 			}
@@ -335,7 +335,7 @@ function scr_setDialogueText() {
 				titleText = scr_get_translation("search_dialogue_regEx");
 				descriptionText = "";//scr_get_translation("msg_input_regex");
 			}
-			else{
+			else {
 				titleText = scr_get_translation("search_dialogue_word");
 				descriptionText = "";//scr_get_translation("search_dialogue_word");
 			}

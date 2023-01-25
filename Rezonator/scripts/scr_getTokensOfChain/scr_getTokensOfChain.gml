@@ -19,7 +19,7 @@ function scr_getTokensOfChain(chainID) {
 				}
 			}
 		}
-		else{
+		else {
 			ds_list_copy(tokenList, scr_getChainTempList(chainID, false));
 		}
 		

@@ -176,7 +176,7 @@ for (var i = 0; i < optionListSize; i++) {
 			scr_destroyAllDropDownsOtherThanSelf();
 		}
 		optionCurrent = i;
-		with(obj_control) {
+		with (obj_control) {
 			mouseoverDropDownOption = currentOptionRaw;
 		}
 	}
@@ -246,14 +246,14 @@ for (var i = 0; i < optionListSize; i++) {
 				shortcutTextX += ascendWidth;
 				
 			}
-			else{
+			else {
 				shortcutTextX -= ascendWidth;
 				
 			}
 			
 			draw_text(shortcutTextX - clipX, optionTextY - clipY, currentOptionShortcut);
 		}
-		else{
+		else {
 			draw_text(shortcutTextX - clipX, optionTextY - clipY, currentOptionShortcut);
 		}
 	}
@@ -268,11 +268,11 @@ for (var i = 0; i < optionListSize; i++) {
 			if (global.userLangRTL) {
 				draw_sprite_ext(spr_checkmark, 0, checkX - clipX + string_width(currentOptionShortcut) + textBuffer, checkY - clipY, 0.8, 0.8, 0, c_black, 1);
 			}
-			else{
+			else {
 				draw_sprite_ext(spr_checkmark, 0, checkX - clipX - string_width(currentOptionShortcut) - textBuffer, checkY - clipY, 0.8, 0.8, 0, c_black, 1);
 			}
 		}
-		else{
+		else {
 			draw_sprite_ext(spr_checkmark, 0, checkX - clipX, checkY - clipY, 0.8, 0.8, 0, c_black, 1);
 		}
 	}
@@ -285,7 +285,7 @@ for (var i = 0; i < optionListSize; i++) {
 				shortcutTextX += ascendWidth/2;
 				
 			}
-			else{
+			else {
 				shortcutTextX -= ascendWidth/2;
 				
 			}
@@ -347,7 +347,7 @@ for (var i = 0; i < optionListSize; i++) {
 		if (global.userLangRTL) {
 			draw_sprite_ext(spr_linkArrow, 0, expandArrowX - clipX, expandArrowY - clipY, arrowScale, arrowScale, 180, arrowColor, 1);
 		}
-		else{
+		else {
 			draw_sprite_ext(spr_linkArrow, 0, expandArrowX - clipX, expandArrowY - clipY, arrowScale, arrowScale, 0, arrowColor, 1);
 		}
 	}
@@ -381,7 +381,7 @@ if (scrollBarHolding) {
 
 
 
-with(obj_control) {
+with (obj_control) {
 	mouseoverDropDown = mouseInDropDown;
 }
 
@@ -398,7 +398,7 @@ and !mouseInDropDown and !scrollBarHoldingDelay) {
 		obj_fieldSummaryWindow.clickedIn = false;
 	}
 	
-	with(obj_control) {
+	with (obj_control) {
 		if (mouseoverInputBox) {	
 			destroyDropDown = false;
 			show_debug_message("obj_dropDown Draw ... destroying dropdowns");

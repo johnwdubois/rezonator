@@ -53,7 +53,7 @@
 		if (lineStateLTR) {
 			var textX = floor(cellRectX1 + spaceWidth);
 		}
-		else{
+		else {
 			var textX = floor(cellRectX2 - spaceWidth);
 			if (drawDropDowns && mouseoverCell && !isTildaField) {
 				textX = textX - dropDownButtonWidth;

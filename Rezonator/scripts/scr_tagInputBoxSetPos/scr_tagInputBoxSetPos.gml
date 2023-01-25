@@ -47,7 +47,7 @@ function scr_tagInputBoxSetPos(ID, field, x1, y1, x2, y2) {
 		}
 		
 		
-		with(obj_dropDown) {
+		with (obj_dropDown) {
 			x = x1;
 			y = y2;
 		}

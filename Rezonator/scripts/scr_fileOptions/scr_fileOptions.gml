@@ -11,7 +11,7 @@ function scr_fileOptions(optionSelected) {
 			instLoading.loadSprite = spr_saving;
 
 			obj_fileLoader.ableToHotkey = false;
-			with(obj_fileLoader) {
+			with (obj_fileLoader) {
 				alarm[0] = 3;
 			}
 			instance_destroy();
@@ -22,7 +22,7 @@ function scr_fileOptions(optionSelected) {
 
 			obj_fileLoader.ableToHotkey = false;
 			global.fileSaveName = ""; // reset fileSaveName so they can save as whatever
-			with(obj_fileLoader) {
+			with (obj_fileLoader) {
 				alarm[0] = 3;
 			}
 			instance_destroy();
@@ -86,7 +86,7 @@ function scr_fileOptions(optionSelected) {
 		
 			obj_fileLoader.ableToHotkey = false;
 			
-			with(obj_fileLoader) {
+			with (obj_fileLoader) {
 				alarm[5] = 2;
 			}
 			
@@ -109,7 +109,7 @@ function scr_fileOptions(optionSelected) {
 			break;
 		case "menu_media":
 
-			with( obj_audioUI ) {
+			with ( obj_audioUI ) {
 				var fileFolder = (directory_exists(string(global.previousAudioDirectory)) && global.previousAudioDirectory != "") ? global.previousAudioDirectory : working_directory;
 				var getAudioFile = get_open_filename_ext("ogg file|*.ogg", "", fileFolder, scr_get_translation("msg_file_audio"));
 					if (getAudioFile != "" and file_exists(getAudioFile)) {

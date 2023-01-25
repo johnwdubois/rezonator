@@ -11,7 +11,7 @@ if (!obj_control.gridView) {
 	exit;
 	notRefreshed = true
 }
-else{
+else {
 	notRefreshed = false;
 }
 obj_control.hoverTokenID = "";

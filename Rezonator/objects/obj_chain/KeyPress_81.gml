@@ -11,7 +11,7 @@ if (global.ctrlHold) {
 		obj_chain.showRezArrows = true;	
 		exit;
 	}
-	else{
+	else {
 		obj_chain.showTrackArrows = false;
 		obj_chain.showRezArrows = false;
 		exit;

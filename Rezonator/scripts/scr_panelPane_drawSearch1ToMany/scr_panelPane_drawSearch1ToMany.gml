@@ -1,5 +1,3 @@
-
-
 function scr_panelPane_drawSearch1ToMany() {
 
 
@@ -14,6 +12,7 @@ function scr_panelPane_drawSearch1ToMany() {
 	var drawScrollbar = true;	
 	var strHeight = string_height("0") * 1.5;
 	var spaceWidth = string_width(" ");
+	var mouseoverCancel = instance_exists(obj_dropDown) || instance_exists(obj_dialogueBox) || scrollBarHolding;
 	
 	// get hit col width by finding the longest string width in the search's search term list
 	var unitColWidth = windowWidth * 0.1;
@@ -148,11 +147,11 @@ function scr_panelPane_drawSearch1ToMany() {
 				var beforeTokenList = ds_list_create();
 				var afterTokenList = ds_list_create();
 				var contextAmount = 20;
-				var itterator = 1;
+				var iterator = 1;
 				var totalLineCount = (windowWidth/string_width("A"))/2;
 				var charCount = 0;
-				while(charCount < totalLineCount && itterator < 100) {
-					var newTokenID = tokenList[| currentTokenIndex - itterator];
+				while (charCount < totalLineCount && iterator < 100) {
+					var newTokenID = tokenList[| currentTokenIndex - iterator];
 					var newTokenSubMap = global.nodeMap[? newTokenID];
 					if (scr_isNumericAndExists(newTokenSubMap, ds_type_map)) {
 						var newTokenTagMap = newTokenSubMap[? "tagMap"];
@@ -163,12 +162,12 @@ function scr_panelPane_drawSearch1ToMany() {
 							ds_list_add(beforeTokenList, newTokenText);
 						}
 					}
-					itterator ++;
+					iterator++;
 				}
-				itterator = 1;
+				iterator = 1;
 				charCount = 0;
-				while(charCount < totalLineCount && itterator < 100) {
-					var newTokenID = tokenList[| currentTokenIndex + itterator];
+				while (charCount < totalLineCount && iterator < 100) {
+					var newTokenID = tokenList[| currentTokenIndex + iterator];
 					var newTokenSubMap = global.nodeMap[? newTokenID];
 					if (scr_isNumericAndExists(newTokenSubMap, ds_type_map)) {
 						var newTokenTagMap = newTokenSubMap[? "tagMap"];
@@ -179,7 +178,7 @@ function scr_panelPane_drawSearch1ToMany() {
 							ds_list_add(afterTokenList, newTokenText);
 						}
 					}
-					itterator ++;
+					iterator++;
 				}
 		
 		
@@ -188,7 +187,7 @@ function scr_panelPane_drawSearch1ToMany() {
 				var searchRectY1 = y + headerHeight + relativeScrollPlusY + textPlusY - (strHeight / 2);
 				var searchRectX2 = x + windowWidth;
 				var searchRectY2 = searchRectY1 + strHeight;
-				var mouseoverSearchRect = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, searchRectX1, searchRectY1, searchRectX2, searchRectY2) && !mouseoverScrollBar && !scrollBarHolding && !instance_exists(obj_dropDown) && !instance_exists(obj_dialogueBox) && !mouseoverHeaderRegion;
+				var mouseoverSearchRect = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, searchRectX1, searchRectY1, searchRectX2, searchRectY2) && !mouseoverScrollBar && !scrollBarHolding && !mouseoverCancel && !mouseoverHeaderRegion;
 				var highlight = (mouseoverSearchRect || functionSearchList_tokenMouseover == currentToken);
 				var textY = floor(mean(searchRectY1, searchRectY2));
 				
@@ -197,7 +196,7 @@ function scr_panelPane_drawSearch1ToMany() {
 				var checkboxRectY1 = mean(searchRectY1, searchRectY2) - (checkboxSize / 2);
 				var checkboxRectX2 = checkboxRectX1 + checkboxSize;
 				var checkboxRectY2 = checkboxRectY1 + checkboxSize;
-				var mouseoverCheckbox = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, checkboxRectX1, checkboxRectY1, checkboxRectX2, checkboxRectY2) && !mouseoverHeaderRegion && !mouseoverScrollBar;
+				var mouseoverCheckbox = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, checkboxRectX1, checkboxRectY1, checkboxRectX2, checkboxRectY2) && !mouseoverHeaderRegion && !mouseoverScrollBar && !mouseoverCancel;
 				if (mouseoverCheckbox) mouseoverSearchRect = false;
 		
 		
@@ -318,7 +317,7 @@ function scr_panelPane_drawSearch1ToMany() {
 					if (currentTokenChecked) {
 						scr_deleteFromList(selectedTokenList,currentToken);
 					}
-					else{
+					else {
 						scr_addToListOnce(selectedTokenList,currentToken);
 					}
 				}
@@ -405,7 +404,7 @@ function scr_panelPane_drawSearch1ToMany() {
 		var headerCheckboxY1 = mean(headerRectY1, headerRectY2) - (checkboxSize / 2);
 		var headerCheckboxX2 = headerCheckboxX1 + checkboxSize;
 		var headerCheckboxY2 = headerCheckboxY1 + checkboxSize;
-		var mouseoverHeaderCheckbox = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, headerCheckboxX1, headerCheckboxY1, headerCheckboxX2, headerCheckboxY2) ;
+		var mouseoverHeaderCheckbox = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, headerCheckboxX1, headerCheckboxY1, headerCheckboxX2, headerCheckboxY2) && !mouseoverCancel;
 
 
 	
@@ -421,7 +420,7 @@ function scr_panelPane_drawSearch1ToMany() {
 				if (allChainsSelected) {
 					ds_list_clear(selectedTokenList);
 				}
-				else{
+				else {
 					var i = 0
 					repeat(tokenDisplayListSize) {
 						scr_addToListOnce(selectedTokenList, tokenDisplayList[|i]);
@@ -462,29 +461,30 @@ function scr_panelPane_drawSearch1ToMany() {
 
 
 	var instToScroll = self.id;
+	
+	var headerButtonY1 = y + (functionTabs_tabHeight * 0.5) - (strHeight * 0.4);
+	var headerButtonY2 = y + (functionTabs_tabHeight * 0.5) + (strHeight * 0.4);
 
 	// activate search button
 	var showNextButtonText = "  >  ";
 	var buttonWidth = string_width(showNextButtonText)
 	scr_adaptFont(showNextButtonText, "M");
 	var activateButtonX2 = x + windowWidth - 20;
-	var activateButtonY1 = y + (functionTabs_tabHeight * 0.5) - (strHeight * 0.4);
 	var activateButtonX1 = activateButtonX2 - buttonWidth;
-	var activateButtonY2 = y + (functionTabs_tabHeight * 0.5) + strHeight * 0.4;
 	var searchEnabled = (obj_control.currentView == obj_control.searchView);
-	var mouseoverActivateButton = point_in_rectangle(mouse_x, mouse_y, activateButtonX1, activateButtonY1, activateButtonX2, activateButtonY2);
+	var mouseoverActivateButton = point_in_rectangle(mouse_x, mouse_y, activateButtonX1, headerButtonY1, activateButtonX2, headerButtonY2) && !mouseoverCancel;
 	if (searchEnabled) {
 		draw_set_color(merge_color(global.colorThemeRezPink, global.colorThemeBG, mouseoverActivateButton ? 0.4 : 0.1));
 	}
 	else {
 		draw_set_color(merge_color(global.colorThemeSelected2, global.colorThemeBG, mouseoverActivateButton ? 0.4 : 0));
 	}
-	draw_roundrect(activateButtonX1, activateButtonY1, activateButtonX2, activateButtonY2, false);
+	draw_roundrect(activateButtonX1, headerButtonY1, activateButtonX2, headerButtonY2, false);
 	
-	draw_sprite_ext(spr_search, 0, floor(mean(activateButtonX1, activateButtonX2)), floor(mean(activateButtonY1, activateButtonY2)), obj_toolPane.toolSpriteScale, obj_toolPane.toolSpriteScale, -90, global.colorThemeBG, 1);
+	draw_sprite_ext(spr_search, 0, floor(mean(activateButtonX1, activateButtonX2)), floor(mean(headerButtonY1, headerButtonY2)), obj_toolPane.toolSpriteScale, obj_toolPane.toolSpriteScale, -90, global.colorThemeBG, 1);
 	if (mouseoverActivateButton) {
 		
-		scr_createTooltip(floor(mean(activateButtonX1, activateButtonX2)), activateButtonY2, searchEnabled ? scr_get_translation("msg_enabled") : scr_get_translation("msg_disabled"), obj_tooltip.arrowFaceUp);
+		scr_createTooltip(floor(mean(activateButtonX1, activateButtonX2)), headerButtonY2, searchEnabled ? scr_get_translation("msg_enabled") : scr_get_translation("msg_disabled"), obj_tooltip.arrowFaceUp);
 		
 		if (mouse_check_button_released(mb_left)) {
 			if (obj_control.currentView != obj_control.searchView) {
@@ -500,32 +500,38 @@ function scr_panelPane_drawSearch1ToMany() {
 	}
 	
 	
-	
+	// hide button
+	var hideButtonX2 = activateButtonX1 - (buttonWidth / 2);
+	var hideButtonX1 = hideButtonX2 - buttonWidth;
+	var mouseoverHideButton = point_in_rectangle(mouse_x, mouse_y, hideButtonX1, headerButtonY1, hideButtonX2, headerButtonY2) && !mouseoverCancel;
+	draw_set_color(merge_color(global.colorThemeSelected1, global.colorThemeBG, mouseoverHideButton ? 0 : 0.5));
+	draw_roundrect(hideButtonX1, headerButtonY1, hideButtonX2, headerButtonY2, false);
+	draw_sprite_ext(spr_toggleDraw, obj_control.highlightSearchedTerms, floor(mean(hideButtonX1, hideButtonX2)), floor(mean(headerButtonY1, headerButtonY2)), 1, 1, 0, global.colorThemeText, 1);
+	if (mouseoverHideButton) {
+		scr_createTooltip(mean(hideButtonX1, hideButtonX2), headerButtonY2, scr_get_translation("menu_hide"), obj_tooltip.arrowFaceUp);
+		if (mouse_check_button_released(mb_left)) {
+			with (obj_control) highlightSearchedTerms = !highlightSearchedTerms;
+		}
+	}
 		
 	// show buttons (next) 
-	var showNextButtonX2 = activateButtonX1 - (buttonWidth / 2);
-	var showNextButtonY1 = activateButtonY1;
+	var showNextButtonX2 = hideButtonX1 - (buttonWidth / 2);
 	var showNextButtonX1 = showNextButtonX2 - buttonWidth;
-	var showNextButtonY2 = activateButtonY2;			
-		
+	var mouseoverShowNextButton = point_in_rectangle(mouse_x, mouse_y, showNextButtonX1, headerButtonY1, showNextButtonX2, headerButtonY2) && !mouseoverCancel;
+
 	// show buttons (prev)
 	var showPrevButtonText = "  <  ";
 	var showPrevButtonX2 = showNextButtonX1 - (buttonWidth / 2);
 	var showPrevButtonX1 = showPrevButtonX2 - buttonWidth;
-	var showPrevButtonY1 = showNextButtonY1;
-	var showPrevButtonY2 = showNextButtonY2;
-		
-		
-	// show buttons (prev)
-	var mouseoverShowPrevButton = point_in_rectangle(mouse_x, mouse_y, showPrevButtonX1, showPrevButtonY1, showPrevButtonX2, showPrevButtonY2);
+	var mouseoverShowPrevButton = point_in_rectangle(mouse_x, mouse_y, showPrevButtonX1, headerButtonY1, showPrevButtonX2, headerButtonY2) && !mouseoverCancel;
 	draw_set_color(merge_color(global.colorThemeSelected1, global.colorThemeBG, mouseoverShowPrevButton ? 0 : 0.5));
-	draw_roundrect(showPrevButtonX1, showPrevButtonY1, showPrevButtonX2, showPrevButtonY2, false);
+	draw_roundrect(showPrevButtonX1, headerButtonY1, showPrevButtonX2, headerButtonY2, false);
 	draw_set_color(global.colorThemeText);
 	draw_set_halign(fa_center);
 	draw_set_valign(fa_middle);
-	draw_text(floor(mean(showPrevButtonX1, showPrevButtonX2)), floor(mean(showPrevButtonY1, showPrevButtonY2)), showPrevButtonText);
+	draw_text(floor(mean(showPrevButtonX1, showPrevButtonX2)), floor(mean(headerButtonY1, headerButtonY2)), showPrevButtonText);
 		
-	if (mouseoverShowPrevButton) {scr_createTooltip(mean(showPrevButtonX1, showPrevButtonX2), showPrevButtonY2, scr_get_translation("msg_find_previous"), obj_tooltip.arrowFaceUp);}
+	if (mouseoverShowPrevButton) {scr_createTooltip(mean(showPrevButtonX1, showPrevButtonX2), headerButtonY2, scr_get_translation("msg_find_previous"), obj_tooltip.arrowFaceUp);}
 		
 
 	if (mouse_check_button_released(mb_left) && mouseoverShowPrevButton) {
@@ -537,7 +543,7 @@ function scr_panelPane_drawSearch1ToMany() {
 		if (scr_isNumericAndExists(newTokenSubMap, ds_type_map)) {
 			scrollPlusYDest += sizeOfLine;	
 			
-			with(obj_panelPane) {
+			with (obj_panelPane) {
 				functionSearchList_tokenSelected = newSelectedToken;
 			}
 			var newUnitID = newTokenSubMap[? "unit"];
@@ -552,15 +558,14 @@ function scr_panelPane_drawSearch1ToMany() {
 		
 		
 	// show buttons (next)
-	var mouseoverShowNextButton = point_in_rectangle(mouse_x, mouse_y, showNextButtonX1, showNextButtonY1, showNextButtonX2, showNextButtonY2);
 	draw_set_color(merge_color(global.colorThemeSelected1, global.colorThemeBG, mouseoverShowNextButton ? 0 : 0.5));
-	draw_roundrect(showNextButtonX1, showNextButtonY1, showNextButtonX2, showNextButtonY2, false);
+	draw_roundrect(showNextButtonX1, headerButtonY1, showNextButtonX2, headerButtonY2, false);
 	draw_set_color(global.colorThemeText);
 	draw_set_halign(fa_center);
 	draw_set_valign(fa_middle);
-	draw_text(floor(mean(showNextButtonX1, showNextButtonX2)), floor(mean(showNextButtonY1, showNextButtonY2)), showNextButtonText);
+	draw_text(floor(mean(showNextButtonX1, showNextButtonX2)), floor(mean(headerButtonY1, headerButtonY2)), showNextButtonText);
 	
-	if (mouseoverShowNextButton) {scr_createTooltip(mean(showNextButtonX1, showNextButtonX2),showNextButtonY2, scr_get_translation("find_next"),obj_tooltip.arrowFaceUp);}
+	if (mouseoverShowNextButton) {scr_createTooltip(mean(showNextButtonX1, showNextButtonX2),headerButtonY2, scr_get_translation("find_next"),obj_tooltip.arrowFaceUp);}
 	
 
 	if (mouse_check_button_released(mb_left) && mouseoverShowNextButton) {
@@ -571,7 +576,7 @@ function scr_panelPane_drawSearch1ToMany() {
 		if (scr_isNumericAndExists(newTokenSubMap, ds_type_map)) {
 			scrollPlusYDest -= sizeOfLine;
 			
-			with(obj_panelPane) {
+			with (obj_panelPane) {
 				functionSearchList_tokenSelected = newSelectedToken;
 			}
 			var newUnitID = newTokenSubMap[? "unit"];
@@ -588,19 +593,14 @@ function scr_panelPane_drawSearch1ToMany() {
 	
 	var addToChainButtonX2 = showPrevButtonX1 - (buttonWidth / 2);
 	var addToChainButtonX1 = addToChainButtonX2 - buttonWidth;
-	var addToChainButtonY1 = showNextButtonY1;
-	var addToChainButtonY2 = showNextButtonY2;
-		
 		
 	// addTo buttons (Chain)
-	var mouseoverAddToChainButton = point_in_rectangle(mouse_x, mouse_y, addToChainButtonX1, addToChainButtonY1, addToChainButtonX2, addToChainButtonY2);
+	var mouseoverAddToChainButton = point_in_rectangle(mouse_x, mouse_y, addToChainButtonX1, headerButtonY1, addToChainButtonX2, headerButtonY2) && (someChainsSelected || allChainsSelected) && !mouseoverCancel;
 	draw_set_color(merge_color(global.colorThemeSelected1, global.colorThemeBG, mouseoverAddToChainButton ? 0 : 0.5));
-	draw_roundrect(addToChainButtonX1, addToChainButtonY1, addToChainButtonX2, addToChainButtonY2, false);
+	draw_roundrect(addToChainButtonX1, headerButtonY1, addToChainButtonX2, headerButtonY2, false);
 	draw_set_color(global.colorThemeText);
-
-	draw_sprite_ext(spr_moreOptions,1,floor(mean(addToChainButtonX1, addToChainButtonX2)), floor(mean(addToChainButtonY1, addToChainButtonY2)),.8,.8,0,(someChainsSelected or allChainsSelected)? global.colorThemeRezPink:c_white,1)
-	
-	if (mouseoverAddToChainButton) {scr_createTooltip(mean(addToChainButtonX1, addToChainButtonX2), addToChainButtonY2, scr_get_translation("More"), obj_tooltip.arrowFaceUp);}
+	draw_sprite_ext(spr_moreOptions,1,floor(mean(addToChainButtonX1, addToChainButtonX2)), floor(mean(headerButtonY1, headerButtonY2)),.8,.8,0, someChainsSelected || allChainsSelected ? global.colorThemeRezPink : c_white, 1);
+	if (mouseoverAddToChainButton) {scr_createTooltip(mean(addToChainButtonX1, addToChainButtonX2), headerButtonY2, scr_get_translation("More"), obj_tooltip.arrowFaceUp);}
 		
 
 	if (mouse_check_button_released(mb_left) && mouseoverAddToChainButton) {
@@ -608,7 +608,7 @@ function scr_panelPane_drawSearch1ToMany() {
 		//, "Add to Stack"
 		// localize
 		ds_list_add(dropDownOptionList, "Add to Trail", "Add to Resonance", "Tag Token", "Remove from Search");
-		scr_createDropDown(addToChainButtonX1, addToChainButtonY2, dropDownOptionList, global.optionListTypeSearchPane);
+		scr_createDropDown(addToChainButtonX1, headerButtonY2, dropDownOptionList, global.optionListTypeSearchPane);
 	}
 
 

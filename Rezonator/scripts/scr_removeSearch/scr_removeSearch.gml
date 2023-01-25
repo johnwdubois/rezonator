@@ -27,7 +27,7 @@ function scr_removeSearch(searchID) {
 			scr_disableFilter();
 		}
 
-		with(obj_panelPane) {
+		with (obj_panelPane) {
 			functionSearchList_searchSelected = "";
 			functionSearchList_searchMouseover = "";
 		}

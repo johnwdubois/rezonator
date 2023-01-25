@@ -14,7 +14,7 @@ function scr_arrowOptions(optionSelected) {
 				obj_chain.showRezArrows = true;	
 				break;
 			}
-			else{
+			else {
 				obj_chain.showTrackArrows = false;
 				obj_chain.showRezArrows = false;
 				break;

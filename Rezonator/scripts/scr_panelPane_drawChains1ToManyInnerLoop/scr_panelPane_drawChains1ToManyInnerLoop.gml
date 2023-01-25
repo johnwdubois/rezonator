@@ -62,7 +62,7 @@ function scr_panelPane_drawChains1ToManyInnerLoop(chain1toManyColFieldList, chai
 		if (functionChainList_currentTab == functionChainList_tabStackBrush) {
 			tagMap = unitSubMap[? "tagMap"];
 		}
-		else{
+		else {
 			tagMap = tokenSubMap[? "tagMap"];
 		}
 		

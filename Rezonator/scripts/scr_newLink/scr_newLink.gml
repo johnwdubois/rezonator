@@ -64,7 +64,7 @@ function scr_newLink(ID) {
 		if (isChunk) {
 			idSet = ID;
 		}
-		else{
+		else {
 			idSet = tokenID;
 		}
 		obj_control.mostRecentlyAddedWord = tokenID;

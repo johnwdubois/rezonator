@@ -23,9 +23,9 @@ function scr_deleteFieldFromNavWindowList(navWindowFieldList, fieldList, fieldNa
 	
 		}
 		if (fieldList[|i] != undefined) {
-			ds_list_replace(navWindowFieldList,placeInNavList, fieldList[|i] );
+			ds_list_replace(navWindowFieldList,placeInNavList, fieldList[|i]);
 		}
-		else{
+		else {
 			ds_list_delete(navWindowFieldList,placeInNavList);
 		}
 	}

@@ -39,7 +39,7 @@ function scr_importCSV(filename) {
 			ds_map_add(global.importGridColMap, colHeader, i);
 			show_debug_message("scr_importCSV, colHeader: " + string(colHeader));
 		}
-		else{
+		else {
 			colHeader = "Col_" + string(blankCount)
 			ds_list_add(global.importGridColNameList, colHeader);
 			ds_map_add(global.importGridColMap, colHeader, i);

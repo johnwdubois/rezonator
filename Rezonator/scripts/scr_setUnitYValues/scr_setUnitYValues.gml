@@ -20,7 +20,7 @@ function scr_setUnitYValues(unitID) {
 				if (i < unitIndex) {
 					currentUnitSubMap[? "pixelY"] = -500;
 				}
-				else{
+				else {
 					currentUnitSubMap[? "pixelY"] = camHeight + 500;
 				}
 			}

@@ -125,39 +125,39 @@ function scr_panelPane_drawFieldList() {
 
 						if (fieldPaneSwitchButton == fieldPaneTokenMode) {
 							if (functionField_tokenFieldSelected != currentField) {
-								with(obj_panelPane) functionField_tokenTagSelected = "";
+								with (obj_panelPane) functionField_tokenTagSelected = "";
 							}
-							with(obj_panelPane) functionField_tokenFieldSelected = currentField;
+							with (obj_panelPane) functionField_tokenFieldSelected = currentField;
 						}
 						else if (fieldPaneSwitchButton == fieldPaneEntryMode) {
 							if (functionField_entryFieldSelected != currentField) {
-								with(obj_panelPane) functionField_entryTagSelected = "";
+								with (obj_panelPane) functionField_entryTagSelected = "";
 							}
-							with(obj_panelPane) functionField_entryFieldSelected = currentField;
+							with (obj_panelPane) functionField_entryFieldSelected = currentField;
 						}
 						else if (fieldPaneSwitchButton == fieldPaneUnitMode) {
 							if (functionField_unitFieldSelected != currentField) {
-								with(obj_panelPane) functionField_unitTagSelected = "";
+								with (obj_panelPane) functionField_unitTagSelected = "";
 							}
-							with(obj_panelPane) functionField_unitFieldSelected = currentField;
+							with (obj_panelPane) functionField_unitFieldSelected = currentField;
 						}
 						else if (fieldPaneSwitchButton == fieldPaneChainMode) {
 							if (functionField_chainFieldSelected != currentField) {
-								with(obj_panelPane) functionField_chainTagSelected = "";
+								with (obj_panelPane) functionField_chainTagSelected = "";
 							}
-							with(obj_panelPane) functionField_chainFieldSelected = currentField;
+							with (obj_panelPane) functionField_chainFieldSelected = currentField;
 						}
 						else if (fieldPaneSwitchButton == fieldPaneChunkMode) {
 							if (functionField_chunkFieldSelected != currentField) {
-								with(obj_panelPane) functionField_chunkTagSelected = "";
+								with (obj_panelPane) functionField_chunkTagSelected = "";
 							}
-							with(obj_panelPane) functionField_chunkFieldSelected = currentField;
+							with (obj_panelPane) functionField_chunkFieldSelected = currentField;
 						}
 						else if (fieldPaneSwitchButton == fieldPaneLinkMode) {
 							if (functionField_linkFieldSelected != currentField) {
-								with(obj_panelPane) functionField_linkTagSelected = "";
+								with (obj_panelPane) functionField_linkTagSelected = "";
 							}
-							with(obj_panelPane) functionField_linkFieldSelected = currentField;
+							with (obj_panelPane) functionField_linkFieldSelected = currentField;
 						}
 					}
 				}
@@ -316,7 +316,7 @@ function scr_panelPane_drawFieldList() {
 				}
 		
 			}
-			else{
+			else {
 			
 				// new tag row
 				draw_set_color(merge_color(c_green, global.colorThemeBG, mouseoverRow ? 0.25 : 0.5));

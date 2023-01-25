@@ -37,7 +37,7 @@ if (global.importType == global.importType_PlainText || global.importType == glo
 	scr_importInfoGrid();
 	room_goto(rm_loadingScreen);
 }
-else{
+else {
 	instance_create_layer(0, 0, "InstancesDialogue", obj_importException);
 }
 

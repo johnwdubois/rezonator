@@ -1,12 +1,12 @@
 function scr_entryTagMapOptions(optionSelected) {
 	if (obj_control.navWindowTaggingDisableSpawn) {
-		with(obj_dropDown) {
+		with (obj_dropDown) {
 			instance_destroy();
 		}
 		exit;
 	}
 	var tagID = obj_control.navWindowTaggingID;
-	with(obj_inputBox) {
+	with (obj_inputBox) {
 		instance_destroy();
 	}
 	// check if user is clearing tag
@@ -42,7 +42,7 @@ function scr_entryTagMapOptions(optionSelected) {
 				}	
 			}
 		}
-		else{
+		else {
 			show_debug_message("obj_control.rightClickID:  " + string(obj_control.rightClickID));
 			var rightClickSubMap = global.nodeMap[?obj_control.rightClickID];
 			if (scr_isNumericAndExists(rightClickSubMap,ds_type_map)) {
@@ -82,7 +82,7 @@ function scr_entryTagMapOptions(optionSelected) {
 		}
 		
 		if (!clearTag) {
-			with(obj_panelPane) {
+			with (obj_panelPane) {
 				functionField_entryTagSelected = optionSelected;
 				functionField_entryFieldSelected = obj_control.tokenFieldToChange;
 			}
@@ -92,7 +92,7 @@ function scr_entryTagMapOptions(optionSelected) {
 		obj_control.tokenToChange = "";
 		
 	}
-	with(obj_dropDown) {
+	with (obj_dropDown) {
 		instance_destroy();
 	}
 }

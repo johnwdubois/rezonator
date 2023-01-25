@@ -187,7 +187,7 @@ function scr_rightClickWordOptions(optionSelected) {
 			// localize
 			ds_list_add(dropDownOptionList, "Tag Chunk");
 		}
-		else{
+		else {
 			// localize
 			ds_list_add(dropDownOptionList, "Tag Token");
 		}

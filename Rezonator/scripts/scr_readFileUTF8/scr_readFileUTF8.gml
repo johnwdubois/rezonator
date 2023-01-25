@@ -31,7 +31,7 @@ function scr_readFileUTF8(filename) {
 		if (currentLetter != "\n") {
 			textUTF8 += currentLetter;
 		}
-		else{
+		else {
 			ds_list_add(lineList, textUTF8);
 			textUTF8 = "";
 		}

@@ -2,7 +2,7 @@ function scr_getFieldMap() {
 	
 	var map = global.nodeMap[? "tokenTagMap"];
 
-	with(obj_panelPane) {
+	with (obj_panelPane) {
 		if (currentFunction == functionChainList) {
 			if (functionChainList_currentTab == functionChainList_tabLine) {
 				if (!chainViewOneToMany) {
@@ -15,7 +15,7 @@ function scr_getFieldMap() {
 				if (chainViewOneToMany) {
 					map = global.nodeMap[? "entryTagMap"];
 				}
-				else{
+				else {
 					map = global.nodeMap[? "chainTagMap"];
 				}
 			}

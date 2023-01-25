@@ -49,7 +49,7 @@ function scr_jumpToUnitTop(unitOrSeq) {
 		obj_control.unitFlash = obj_control.flashTime;
 		obj_control.unitToFlash = unitID;
 	}
-	else{
+	else {
 		
 	}
 	obj_control.offIndex = false;

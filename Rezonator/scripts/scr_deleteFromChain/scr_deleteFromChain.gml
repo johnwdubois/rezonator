@@ -25,7 +25,7 @@ function scr_deleteFromChain(sortVizSetList) {
 	else if (chainType == "resonance" || chainType == "stack") {
 		obj_toolPane.currentMode = obj_toolPane.modeRez;
 	}
-	else{
+	else {
 		obj_toolPane.currentMode = prevTool;
 		exit;
 	}

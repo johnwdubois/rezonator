@@ -9,7 +9,7 @@ function scr_dialogueBoxNewCustomTagToken() {
 	if (obj_panelPane.functionChainList_currentTab == obj_panelPane.functionChainList_tabChunk && !obj_panelPane.chainViewOneToMany) {
 		var fieldSubMap = tokenTagMap[? obj_control.chunk1to1FieldToChange];
 	}
-	else{
+	else {
 		var fieldSubMap = tokenTagMap[? obj_control.tokenFieldToChange];
 	}
 	
@@ -49,7 +49,7 @@ function scr_dialogueBoxNewCustomTagToken() {
 			}
 			obj_control.chunk1to1ChunkToChange = "";
 		}
-		else{
+		else {
 			// get the tokenToChange's submap, and that token's tagmap
 			var tokenSubMap = global.nodeMap[? obj_control.tokenToChange];
 			if (scr_isNumericAndExists(tokenSubMap, ds_type_map)) {

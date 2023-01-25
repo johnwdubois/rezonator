@@ -62,7 +62,7 @@ function scr_panelPane_drawChains1To1Headers(chain1to1ColFieldList, chainType) {
 				draw_line_width(headerRectX1 - clipX, y - clipY, headerRectX1 - clipX, y + windowHeight - clipY, 1);
 			}
 		}
-		else{
+		else {
 			if (i > 0 && i < chain1to1ColFieldListSize) {
 				draw_set_color(global.colorThemeBorders);
 				draw_line_width(headerRectX1 + 1 - clipX, y - clipY, headerRectX1 + 1 - clipX, y + windowHeight - clipY, 1);
@@ -79,7 +79,7 @@ function scr_panelPane_drawChains1To1Headers(chain1to1ColFieldList, chainType) {
 			if (lineStateLTR) {
 				var underlineX2 = headerTextX + string_width(currentField);
 			}
-			else{
+			else {
 				var underlineX2 = headerTextX - string_width(currentField);
 			}
 			var underlineY = headerTextY + (headerHeight * 0.25);

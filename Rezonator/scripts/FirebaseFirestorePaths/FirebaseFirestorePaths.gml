@@ -2,7 +2,7 @@
 function FirebaseFirestore_Path_Join()
 {
 	var path = argument[0]
-	for (var a = 1 ; a < argument_count ; a ++)
+	for (var a = 1 ; a < argument_count ; a++)
 		path = FirebaseFirestore_Path_Join_Pair(path,argument[a])
 	
 	return path
@@ -19,7 +19,7 @@ function FirebaseFirestore_Path_Join_Pair(path0,path1)
 	
 	var path = path0+path1
 	
-	while(string_count("//",path))
+	while (string_count("//",path))
 		path = string_replace(path,"//","/")
 	
 	path = string_replace(path,":/","://")
@@ -41,7 +41,7 @@ function FirebaseFirestore_Path_ToList(path)
 	var list = ds_list_create()
 	
 	var str = ""
-	for (var a = 1 ; a <= string_length(path) ; a ++)
+	for (var a = 1 ; a <= string_length(path) ; a++)
 	{
 		var char = string_char_at(path,a)
 		if (char == "/")

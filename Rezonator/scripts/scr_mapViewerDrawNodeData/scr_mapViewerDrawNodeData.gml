@@ -65,7 +65,7 @@ function scr_mapViewerDrawNodeData() {
 			if (isMap && scr_isNumericAndExists(subMapVal, ds_type_map)) {
 				subMapValStr = "";
 				plusY += strHeight;
-				scrollBarSize ++;
+				scrollBarSize++;
 				// if this is a map, loop over it and display its contents
 				var subsubMapSize = ds_map_size(subMapVal);
 				var subsubMapKey = ds_map_find_first(subMapVal);
@@ -103,14 +103,14 @@ function scr_mapViewerDrawNodeData() {
 					var subsubMapKey = ds_map_find_next(subMapVal, subsubMapKey);
 					if (j < subsubMapSize - 1) {
 						plusY += strHeight;
-						scrollBarSize ++;
+						scrollBarSize++;
 					}
 				}
 			}
 			else if (isMap && scr_isNumericAndExists(subMapVal, ds_type_list)) {
 				subMapValStr = "";
 				plusY += strHeight;
-				scrollBarSize ++;
+				scrollBarSize++;
 				// if this is a map, loop over it and display its contents
 				var subListSize = ds_list_size(subMapVal);
 				for (var j = 0; j < subListSize; j++) {
@@ -140,7 +140,7 @@ function scr_mapViewerDrawNodeData() {
 					
 					if (j < subListSize - 1) {
 						plusY += strHeight;
-						scrollBarSize ++;
+						scrollBarSize++;
 					}
 				}
 			}
@@ -155,7 +155,7 @@ function scr_mapViewerDrawNodeData() {
 			subMapKey = ds_map_find_next(subMap, subMapKey);
 			
 			plusY += strHeight;
-			scrollBarSize ++;
+			scrollBarSize++;
 		}
 	}
 	

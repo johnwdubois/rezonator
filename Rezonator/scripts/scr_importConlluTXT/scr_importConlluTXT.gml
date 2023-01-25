@@ -100,7 +100,7 @@ function scr_importConlluTXT(filename) {
 						tokensAdded =true;
 					}
 
-					while( i < global.importGridWidth) {
+					while ( i < global.importGridWidth) {
 
 						if (indexOfColNameList >= ds_list_size(CoNLLUColNameList)) {
 							var colName = " Col " + string(i);

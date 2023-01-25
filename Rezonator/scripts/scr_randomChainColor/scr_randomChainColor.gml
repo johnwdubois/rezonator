@@ -6,7 +6,7 @@ function scr_randomChainColor() {
 	if (obj_chain.chainHue > 255) {
 		obj_chain.chainHue -= 255;
 	}
-	while( obj_chain.chainHue > 30 && obj_chain.chainHue < 70) {
+	while ( obj_chain.chainHue > 30 && obj_chain.chainHue < 70) {
 		obj_chain.chainHue = random_range(0, 255);
 	}
 

@@ -45,7 +45,7 @@ function scr_splitString() {
 		return finalList;
 	}
 
-	else{
+	else {
 		return newList;
 	}
 

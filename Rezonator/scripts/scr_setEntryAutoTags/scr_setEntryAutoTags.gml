@@ -72,12 +72,12 @@ function scr_setEntryAutoTags(grid, gridCol, vizSetIDList, chainType) {
 						var chunkSubMap = global.nodeMap[?currentChunk];
 						currentTokenCount = ds_list_size(chunkSubMap[? "tokenList"]);
 					}
-					else{
+					else {
 						if (scr_isNumericAndExists(tokenSubMap, ds_type_map)) {
 							var tokenTagMap = tokenSubMap[? "tagMap"];
 							var currentDisplayStr = tokenTagMap[? global.displayTokenField];
 						}
-						else{
+						else {
 							var currentDisplayStr = "";	
 						}
 					}

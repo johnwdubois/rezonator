@@ -21,7 +21,7 @@ function scr_setTokenX(tokenSubMap, displayCol, entryListSize, indexOfList, unit
 			if (obj_control.drawLineState == obj_control.lineState_ltr) {	
 				tokenPixelXDest = wordLeftMargin + scrollPlusX + (displayCol * gridSpaceHorizontal) + spaceWidth;
 			}
-			else{
+			else {
 				tokenPixelXDest = camWidth - (scrollPlusX + (displayCol * gridSpaceHorizontal) + spaceWidth);
 			}
 			
@@ -35,7 +35,7 @@ function scr_setTokenX(tokenSubMap, displayCol, entryListSize, indexOfList, unit
 			if (obj_control.drawLineState == obj_control.lineState_ltr) {	
 				tokenPixelXDest = camWidth - global.scrollBarWidth - global.toolPaneWidth - shapeTextX + scrollPlusX;
 			}
-			else{
+			else {
 				tokenPixelXDest = camWidth - global.scrollBarWidth - global.toolPaneWidth - unitWidth + shapeTextX + scrollPlusX;
 				//tokenPixelXDest = camWidth - ((shapeTextX) + spaceWidth + gridSpaceHorizontal*2 - scrollPlusX);
 			}
@@ -46,7 +46,7 @@ function scr_setTokenX(tokenSubMap, displayCol, entryListSize, indexOfList, unit
 			if (obj_control.drawLineState == obj_control.lineState_ltr) {	
 				tokenPixelXDest = scrollPlusX + (displayCol * gridSpaceHorizontal) + spaceWidth + gridSpaceHorizontal*2;
 			}
-			else{
+			else {
 				tokenPixelXDest = camWidth - (scrollPlusX + (displayCol * gridSpaceHorizontal) + spaceWidth + gridSpaceHorizontal*2);
 			}
 		}

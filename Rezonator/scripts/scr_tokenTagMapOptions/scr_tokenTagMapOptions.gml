@@ -1,6 +1,6 @@
 function scr_tokenTagMapOptions(optionSelected) {
 	
-	with(obj_inputBox) {
+	with (obj_inputBox) {
 		show_debug_message("destroying input box from token dd select");
 		instance_destroy();
 	}
@@ -28,7 +28,7 @@ function scr_tokenTagMapOptions(optionSelected) {
 			if (scr_isNumericAndExists(searchSubMap, ds_type_map)) {
 				var selectedTokenList = searchSubMap[? "selectedTokenList"];
 			}
-			else{
+			else {
 				instance_destroy(obj_dropDown);
 				exit;
 			}
@@ -55,12 +55,12 @@ function scr_tokenTagMapOptions(optionSelected) {
 			}
 			
 			if (!clearTag) {
-				with(obj_panelPane) {
+				with (obj_panelPane) {
 					if (type == "token") {
 						functionField_tokenTagSelected = optionSelected;
 						functionField_tokenFieldSelected = obj_control.tokenFieldToChange;
 					}
-					else{
+					else {
 						functionField_chunkTagSelected = optionSelected;
 						functionField_chunkFieldSelected = obj_control.tokenFieldToChange;
 					}
@@ -73,7 +73,7 @@ function scr_tokenTagMapOptions(optionSelected) {
 		obj_control.tokenToChange = "";
 		obj_control.multiWordTag = false;
 	}
-	with(obj_dropDown) {
+	with (obj_dropDown) {
 		instance_destroy();
 	}
 }

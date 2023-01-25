@@ -290,7 +290,7 @@ function scr_importMappingTagInfo() {
 								if (global.importType == global.importType_TabDelimited) {
 									ds_list_add(dropDownOptionList, "unit_start", "unit_end");
 								}
-								else{
+								else {
 									ds_list_add(dropDownOptionList, "unit_delim");
 								}
 							}
@@ -459,7 +459,7 @@ function scr_importMappingTagInfo() {
 						if (ds_list_find_index(global.importFieldTagList,currentField) == -1) {
 							scr_addToListOnce(global.importFieldTagList, currentField, true);
 						}
-						else{
+						else {
 							scr_deleteFromList(global.importFieldTagList, currentField);
 						}
 					}

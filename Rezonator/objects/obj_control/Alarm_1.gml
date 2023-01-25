@@ -1,5 +1,5 @@
 ///@description reset dragging
 
-with(obj_inputBox) {
+with (obj_inputBox) {
 	dragging = false;
 }

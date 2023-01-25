@@ -163,7 +163,7 @@ function scr_speakerLabelOptions(optionSelected) {
 			}
 			else if (optionSelected == "tab_name_tag") {
 				obj_control.unitToChange =	obj_control.rightClickID;
-				with(obj_dropDown) {
+				with (obj_dropDown) {
 					scr_destroyAllDropDownsOtherThanSelf();
 				}
 				var dropDownOptionList = ds_list_create();

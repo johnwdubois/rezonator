@@ -19,7 +19,7 @@ scr_chainDeselect();
 			
 //refocus chains related to currently selected tab
 /*
-with(obj_panelPane) {
+with (obj_panelPane) {
 	scr_reFocusOldChains();
 }
 */

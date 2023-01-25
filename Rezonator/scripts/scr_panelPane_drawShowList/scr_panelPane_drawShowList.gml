@@ -153,10 +153,10 @@ function scr_panelPane_drawShowList() {
 						scr_renderFilter2();
 					}
 				}
-				else{
+				else {
 					
 					scr_setValueForAllChains("stack","filter", false);
-					with(obj_panelPane) {
+					with (obj_panelPane) {
 						functionChainList_playShowID = "";
 					}				
 					with (obj_control) {
@@ -209,7 +209,7 @@ function scr_panelPane_drawShowList() {
 
 	var mouseOverWindow = point_in_rectangle(mouse_x,mouse_y, x, y, x + windowWidth, y + windowHeight);
 	if (!anyOptionMousedOver and !mouseoverCreateShowRect and mouse_check_button_released(mb_left) and mouseOverWindow) {
-		with(obj_panelPane) {
+		with (obj_panelPane) {
 			functionChainContents_showID = "";
 		}
 	}

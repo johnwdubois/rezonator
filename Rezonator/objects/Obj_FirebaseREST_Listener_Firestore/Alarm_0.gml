@@ -3,7 +3,7 @@
 if (asset_get_index("Obj_FirebaseREST_Listener_Authentication") != -1)
 {
 	var SELF = id
-	with(Obj_FirebaseREST_Listener_Authentication)
+	with (Obj_FirebaseREST_Listener_Authentication)
 	if (string_count("Auth",event))
 	{
 		SELF.alarm[0] = 10

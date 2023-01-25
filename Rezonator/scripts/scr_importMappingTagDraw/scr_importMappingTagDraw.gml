@@ -31,7 +31,7 @@ function scr_importMappingTagDraw() {
 					obj_importMapping.canContinueDisplayToken = true;
 					i = tagGridHeight;
 				}
-				else{
+				else {
 					obj_importMapping.canContinueDisplayToken = false;
 				}
 			}

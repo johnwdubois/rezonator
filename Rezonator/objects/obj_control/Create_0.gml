@@ -831,7 +831,7 @@ mergeUnitList = ds_list_create();
 
 global.inputBoxDefStr = "";
 //set up tags from schema a frame after loading
-with(obj_alarm) {
+with (obj_alarm) {
 	alarm[0] = 1;
 }
 scr_loadINI();
@@ -868,6 +868,7 @@ deleteTrack = false;
 deleteChunk = "";
 askDeleteChunk = "";
 
+highlightSearchedTerms = true;
 
 sideLinkTokenID = "";
 

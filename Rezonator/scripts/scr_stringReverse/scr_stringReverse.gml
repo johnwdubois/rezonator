@@ -33,7 +33,7 @@ function scr_stringReverse(inputString) {
 			 126464 <= unicodeValue and unicodeValue <= 126719) {
 				isRTL = true;
 			}
-			else{
+			else {
 				isRTL = false;
 			}
 			if ( 1424 <= previousUnicodeValue and previousUnicodeValue <= 1969 ||
@@ -50,7 +50,7 @@ function scr_stringReverse(inputString) {
 			 126464 <= previousUnicodeValue and previousUnicodeValue <= 126719) {
 				isPrevRTL = true;
 			}
-			else{
+			else {
 				isPrevRTL = false;
 			}
 			
@@ -71,7 +71,7 @@ function scr_stringReverse(inputString) {
 				
 				}
 			}
-			else{
+			else {
 				if (!isPrevRTL) {
 					var nonReverseletterCount = string_length(nonReverseChars);
 					for (var j = nonReverseletterCount;j > 0; j--) {

@@ -167,7 +167,7 @@ function scr_panelPane_drawChains1To1() {
 			if (lineStateLTR) {
 				var textX = floor(cellRectX1 + (textMarginLeft));
 			}
-			else{
+			else {
 				var textX = floor(cellRectX2 - (textMarginLeft));
 				if (drawDropDowns && mouseoverCell) {
 					textX = textX - dropDownButtonWidth;

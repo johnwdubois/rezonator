@@ -486,7 +486,7 @@ function scr_panelPane_drawChainsList() {
 			}
 		updated = true;
 	}
-	else{
+	else {
 		updated = false;
 	}
 	*/

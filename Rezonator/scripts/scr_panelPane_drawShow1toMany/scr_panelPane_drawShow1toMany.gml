@@ -351,9 +351,9 @@ function scr_panelPane_drawShow1toMany() {
 						}
 					}
 				}
-				else{
+				else {
 					scr_setValueForAllChains("stack", "filter", false);
-					with(obj_panelPane) {
+					with (obj_panelPane) {
 						functionChainList_playShowID = "";
 					}				
 					with (obj_control) {
@@ -371,7 +371,7 @@ function scr_panelPane_drawShow1toMany() {
 			showStopButtonText =  "  ■  ";
 			if (mouseoverShowStopButton) {scr_createTooltip(mean(showStopButtonX1, showStopButtonX2),mean(showStopButtonY1, showStopButtonY2), scr_get_translation("option_stop"),obj_tooltip.arrowFaceUp);}
 		}
-		else{
+		else {
 			if (mouseoverShowStopButton) {scr_createTooltip(mean(showStopButtonX1, showStopButtonX2),showStopButtonY2, scr_get_translation("help_label_play"),obj_tooltip.arrowFaceUp);}
 		}
 				
@@ -387,7 +387,7 @@ function scr_panelPane_drawShow1toMany() {
 			if (isPlaying) {
 				// stop show!
 				scr_setValueForAllChains("stack","filter", false);
-				with(obj_panelPane) {
+				with (obj_panelPane) {
 					functionChainList_playShowID = "";
 				}
 				with (obj_control) {
@@ -475,9 +475,9 @@ function scr_panelPane_drawShow1toMany() {
 					}
 
 				}
-				else{
+				else {
 					scr_setValueForAllChains("stack","filter", false);
-					with(obj_panelPane) {
+					with (obj_panelPane) {
 						functionChainList_playShowID = "";
 					}
 					with (obj_control) {

@@ -56,7 +56,7 @@ if (async_load[? "type"] == "FirebaseFirestore_Document_Read") {
 			}
 		}
 	}
-	else{
+	else {
 		show_debug_message("ERROR IN LOADING: " + string(async_load[? "errorMessage"]));
 	}
 }

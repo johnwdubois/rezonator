@@ -13,7 +13,7 @@ function scr_getStringOfList(list) {
 			if (scr_isNumericAndExists(list[|i], ds_type_list) && ds_list_is_list(list, i)) {
 				str += scr_getStringOfList(list[|i]);	
 			}
-			else{
+			else {
 				str += string(ds_list_find_value(list, i));
 			}
 			if (i < listSize - 1) {

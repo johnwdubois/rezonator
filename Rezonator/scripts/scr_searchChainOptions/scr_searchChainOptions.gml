@@ -6,7 +6,7 @@ function scr_searchChainOptions(optionSelected) {
 	if (scr_isNumericAndExists(searchSubMap, ds_type_map)) {
 		var selectedTokenList = searchSubMap[? "selectedTokenList"];
 	}
-	else{
+	else {
 		instance_destroy(obj_dropDown);
 		exit;
 	}
@@ -52,7 +52,7 @@ function scr_searchChainOptions(optionSelected) {
 					scr_newLink(currentToken);
 					chainCreated = true;
 				}
-				else{
+				else {
 					scr_newLink(currentToken);
 				}
 			}
@@ -92,7 +92,7 @@ function scr_searchChainOptions(optionSelected) {
 			i++;
 		}
 	}
-	with(obj_dropDown) {
+	with (obj_dropDown) {
 		instance_destroy();
 	}
 	

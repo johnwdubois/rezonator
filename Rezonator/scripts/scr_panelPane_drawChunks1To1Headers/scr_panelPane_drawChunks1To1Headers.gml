@@ -58,7 +58,7 @@ function scr_panelPane_drawChunks1To1Headers(fieldList) {
 			if (lineStateLTR) {
 				underlineX2 = headerTextX + string_width(currentField);
 			}
-			else{
+			else {
 				underlineX2 = headerTextX - string_width(currentField);
 			}
 			var underlineY = headerTextY + (headerHeight * 0.25);
@@ -97,7 +97,7 @@ function scr_panelPane_drawChunks1To1Headers(fieldList) {
 				draw_line_width(headerRectX1 - clipX, y - clipY, headerRectX1 - clipX, y + windowHeight - clipY, 1);
 			}
 		}
-		else{
+		else {
 			if (i > 0 && i < fieldListSize) {
 				draw_set_color(global.colorThemeBorders);
 				draw_line_width(headerRectX1 + 1 - clipX, y - clipY, headerRectX1 + 1 - clipX, y + windowHeight - clipY, 1);

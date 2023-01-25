@@ -24,7 +24,7 @@ function scr_getUnitTextStupid(unitSubMap) {
 		unitText += scr_adaptFont(currentDisplayStr, "M");
 		
 		if (obj_control.drawLineState == obj_control.lineState_ltr) { i++; }
-		else{i--;}
+		else {i--;}
 	}
 	
 	var width = string_width(unitText) + (string_width(" ") * (proseSpaceHorizontal/10) * repeatAmount);

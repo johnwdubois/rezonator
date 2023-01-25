@@ -19,7 +19,7 @@ function scr_chainListMultiOptions(optionSelected) {
 		visibleList = obj_control.hiddenTrackChainList;
 		filterList = obj_chain.filteredTrackChainList;
 	}
-	else{
+	else {
 		currentSelectedChainList = obj_control.selectedStackChainList;
 		visibleList = obj_control.hiddenStackChainList;
 		filterList = obj_chain.filteredStackChainList;
@@ -39,7 +39,7 @@ function scr_chainListMultiOptions(optionSelected) {
 	else if (optionSelected == "help_label_delete_plain") {
 		
 		/*
-		while(ds_list_size(currentSelectedChainList) > 0) {
+		while (ds_list_size(currentSelectedChainList) > 0) {
 			scr_deleteChain(currentSelectedChainList[|0])
 		}
 		*/

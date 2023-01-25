@@ -100,7 +100,7 @@ function scr_preImportFileTypeWindow() {
 				draw_rectangle(tableX1,boxY1,tableX2,boxY2, false);
 			}
 		}
-		else{
+		else {
 
 			draw_set_color(global.colorThemeBG);
 			draw_rectangle(tableX1,boxY1,tableX2,boxY2, false);

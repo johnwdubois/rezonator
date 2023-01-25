@@ -64,7 +64,7 @@ function scr_panelPane_drawTabs() {
 		if (!currentTabSelected) {
 			edgeBufferY = functionTabs_tabHeight * 0.3;
 		}
-		else{
+		else {
 			edgeBufferY = functionTabs_tabHeight * 0.2;
 		}
 		
@@ -201,7 +201,7 @@ function scr_panelPane_drawTabs() {
 			if (functionChainList_currentTab != functionChainList_tabShow) {
 				if (functionChainList_playShowID != "") {
 					scr_setValueForAllChains("stack", "filter", false);
-					with(obj_panelPane) {
+					with (obj_panelPane) {
 						functionChainList_playShowID = "";
 					}
 					scr_disableFilter();

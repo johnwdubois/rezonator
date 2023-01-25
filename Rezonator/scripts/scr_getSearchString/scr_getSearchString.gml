@@ -16,7 +16,7 @@ function scr_getSearchString(list, reversed) {
 				}
 			}
 		}
-		else{
+		else {
 			for (var i = 0; i < listSize; i++) {
 				str += string(ds_list_find_value(list, i));
 	

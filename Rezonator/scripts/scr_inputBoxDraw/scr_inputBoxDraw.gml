@@ -35,7 +35,7 @@ function scr_inputBoxDraw() {
 
 	// click in window to focus it
 	var mouseoverWindow = point_in_rectangle(mouse_x, mouse_y, textBoxX, textBoxY, textBoxX + windowWidth, textBoxY + windowHeight);
-	with(obj_control) {
+	with (obj_control) {
 		mouseoverInputBox = mouseoverWindow;
 	}
 	if (mouse_check_button_pressed(mb_left)) {
@@ -63,7 +63,7 @@ function scr_inputBoxDraw() {
 			instance_destroy();
 		}
 	}
-	else{
+	else {
 		inputBoxCancel = 0;
 	}
 	
@@ -112,7 +112,7 @@ function scr_inputBoxDraw() {
 	if (mouse_check_button_released(mb_left)) {
 		validDrag = true;
 		
-		//with(obj_control) {alarm[1] = 1;}
+		//with (obj_control) {alarm[1] = 1;}
 		
 		// double click to select word
 		if (doubleClick) {

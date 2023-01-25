@@ -30,7 +30,7 @@ function scr_createNewSearch(searchTermList) {
 			if (!is_string(displayUnitList[|counter])) {
 				ds_list_delete(displayUnitList,counter);
 			}
-			else{
+			else {
 				counter++;
 			}
 		}
@@ -91,12 +91,12 @@ function scr_createNewSearch(searchTermList) {
 					ds_list_add(searchNodeList, nodeKey);
 	
 					show_debug_message("searchTermList  " + scr_getStringOfList(subMap[? "searchTermList"]));
-					with(obj_panelPane) {
+					with (obj_panelPane) {
 						functionSearchList_searchSelected = nodeKey;
 					}
 				}
 			}
-			else{
+			else {
 				with (obj_dialogueBox) instance_destroy();
 				with (obj_inputBox) instance_destroy();
 				scr_closeDialogueBoxVariables();

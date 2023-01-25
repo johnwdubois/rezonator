@@ -18,7 +18,7 @@ function scr_inputBoxStep() {
 	var keyEnterPressed = keyboard_check_pressed(vk_enter) && windowFocused;
 	var keyEscapePressed = keyboard_check_pressed(vk_escape) && windowFocused;
 	if (dragging && !mouse_check_button(mb_left)) {
-		with(obj_control) {
+		with (obj_control) {
 			alarm[1] = 1;
 		}
 	}

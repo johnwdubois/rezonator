@@ -57,7 +57,7 @@ function scr_drawTreeLinks() {
 						if (obj_panelPane.functionField_linkTagSelected == scr_get_translation("menu_clear")) {
 							linkTagMap[? obj_panelPane.functionField_linkFieldSelected] = "";
 						}
-						else{
+						else {
 							linkTagMap[? obj_panelPane.functionField_linkFieldSelected] = obj_panelPane.functionField_linkTagSelected;
 							show_debug_message("scr_tokenClicked ... setting token: " + string(currentLink) + ", field:" + string(obj_panelPane.functionField_linkFieldSelected) + ", tag: " + string(obj_panelPane.functionField_linkTagSelected));
 						}

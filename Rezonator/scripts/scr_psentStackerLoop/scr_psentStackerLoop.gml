@@ -30,7 +30,7 @@ function scr_psentStackerLoop() {
 		if (ds_map_exists(psentMap, currentPsent)) {
 			scr_addToListOnce(psentMap[?currentPsent], currentUnit);
 		}
-		else{
+		else {
 			var psentUnitList = ds_list_create();
 			ds_list_add(psentUnitList,currentUnit);
 			ds_map_add_list(psentMap,currentPsent,psentUnitList);

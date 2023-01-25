@@ -159,7 +159,7 @@ function scr_panelPane_drawChains1ToManyHeaders() {
 					if (lineStateLTR) {
 						var underlineX2 = headerTextX + string_width(currentField);
 					}
-					else{
+					else {
 						var underlineX2 = headerTextX - string_width(currentField);
 					}
 					var underlineY = headerTextY + (tabHeight * 0.25);

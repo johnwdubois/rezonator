@@ -15,7 +15,7 @@ function FirebaseREST_firestore_value(value, dsType)
 
 			var map_keys = ds_map_create();
 			var key = ds_map_find_first(value);
-			while(!is_undefined(key)) {
+			while (!is_undefined(key)) {
 				show_debug_message("FirebaseREST_firestore_value, key: " + string(key));
 		
 				var subValue = value[? key];

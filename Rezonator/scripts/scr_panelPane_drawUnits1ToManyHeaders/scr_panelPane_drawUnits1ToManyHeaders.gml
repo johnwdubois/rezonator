@@ -70,7 +70,7 @@ function scr_panelPane_drawUnits1ToManyHeaders() {
 			if (lineStateLTR) {
 				underlineX2 = headerTextX + string_width(currentField);
 			}
-			else{
+			else {
 				underlineX2 = headerTextX - string_width(currentField);
 			}
 			var underlineY = headerTextY + (headerHeight * 0.25);

@@ -140,7 +140,7 @@ function scr_updateCheckMap(optionText) {
 			if (currentLangCode == global.lang_codes[| global.lang_index]) {
 				global.checkDropdownMap[? optionText] = true;
 			}
-			else{
+			else {
 				global.checkDropdownMap[? optionText] = false;
 			}
 		}

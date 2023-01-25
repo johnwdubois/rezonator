@@ -35,10 +35,10 @@ function scr_parseValue(value) {
 		ds_map_add_list(wrapperMap,"List", list);
 
 	}
-	else{
+	else {
 		
 		var key = ds_map_find_first(fields)
-		while(!is_undefined(key))
+		while (!is_undefined(key))
 		{
 			var keyValue = fields[?key];
 		

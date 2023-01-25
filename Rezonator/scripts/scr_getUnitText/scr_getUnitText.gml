@@ -25,7 +25,7 @@ function scr_getUnitText(unitSubMap) {
 		if (i < entryListSize) unitText += " ";
 		
 		if (obj_control.drawLineState = obj_control.lineState_ltr) { i++; }
-		else{i--;}
+		else {i--;}
 	}
 	
 	return unitText;

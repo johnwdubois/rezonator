@@ -63,7 +63,7 @@ function scr_objControlKeyDelete() {
 			scr_deleteChunk(obj_chain.currentFocusedChunkID);
 		}
 		
-		with(obj_panelPane) {
+		with (obj_panelPane) {
 			if (functionChainList_currentTab == functionChainList_tabShow && functionChainContents_showID != "") {
 				scr_deleteShow(obj_control.selectedChainID);
 			}	

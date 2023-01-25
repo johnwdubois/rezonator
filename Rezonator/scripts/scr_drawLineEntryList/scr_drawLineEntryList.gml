@@ -26,10 +26,8 @@ function scr_drawLineEntryList(unitID, unitSubMap, entryList, pixelY, OOBCheck) 
 	}
 	
 	var entryListSize = ds_list_size(entryList);
-	//var i = (obj_control.drawLineState == obj_control.lineState_ltr)? 0 : entryListSize-1;
-	
-	var i = (obj_control.justify == obj_control.justifyLeft) ? 0 : entryListSize-1;
-	var isBAD = (obj_control.justify == obj_control.justifyLeft && obj_control.drawLineState == obj_control.lineState_rtl && obj_control.shape == obj_control.shapeText);
+	var i = justify == justifyLeft ? 0 : entryListSize-1;
+	var isBAD = justify == justifyLeft && drawLineState == lineState_rtl && shape == shapeText;
 	if (isBAD) i = entryListSize-1;
 	var j = 0;
 	var k = (drawLineState == lineState_ltr) ? 0 : entryListSize-1;
@@ -50,7 +48,7 @@ function scr_drawLineEntryList(unitID, unitSubMap, entryList, pixelY, OOBCheck) 
 		var textBeenSaid = true;
 		var currentTokenDocSeq = currentTokenSubMap[? "docTokenSeq"];
 		if (instance_exists(obj_audioUI)) {
-			with(obj_audioUI) {
+			with (obj_audioUI) {
 				if (currentTokenDocSeq > closestTokenIndex && closestTokenIndex != -1) {
 					textBeenSaid = false;
 				}
@@ -160,12 +158,12 @@ function scr_drawLineEntryList(unitID, unitSubMap, entryList, pixelY, OOBCheck) 
 					drawTokenBorder = true;
 				}
 				
-				obj_control.hoverTokenID = currentToken;
+				hoverTokenID = currentToken;
 				var tokenTagMap = currentTokenSubMap[? "tagMap"];
-				obj_control.hoverTextCopy = tokenTagMap[? global.displayTokenField];
+				hoverTextCopy = tokenTagMap[? global.displayTokenField];
 			
 				// click on token
-				if (device_mouse_check_button_released(0, mb_left) and !obj_control.mouseoverPanelPane and !instance_exists(obj_dialogueBox)) {
+				if (device_mouse_check_button_released(0, mb_left) and !mouseoverPanelPane and !instance_exists(obj_dialogueBox)) {
 					var focusedchainIDSubMap = global.nodeMap[? obj_chain.currentFocusedChainID];
 				
 					// if focused chain is a stack, deselect it
@@ -184,13 +182,13 @@ function scr_drawLineEntryList(unitID, unitSubMap, entryList, pixelY, OOBCheck) 
 				
 					scr_tokenClicked(currentToken);
 				}
-				if (keyboard_check(vk_shift) && keyboard_check_pressed(ord("U")) && !global.ctrlHold && obj_control.shortcutsEnabled) {
+				if (keyboard_check(vk_shift) && keyboard_check_pressed(ord("U")) && !global.ctrlHold && shortcutsEnabled) {
 					//scr_splitUnit(currentToken, false);
 				}
 				// Check for rightMouseClick
 				if (device_mouse_check_button_released(0, mb_right) and !instance_exists(obj_dialogueBox)) {
 				
-					obj_control.rightClickID = obj_control.hoverTokenID;
+					rightClickID = hoverTokenID;
 	
 					// wait 1 frame and then show the right click dropdown
 					with (obj_alarm) {
@@ -201,9 +199,9 @@ function scr_drawLineEntryList(unitID, unitSubMap, entryList, pixelY, OOBCheck) 
 				
 				// if pressing the comma key while moused over a token, spawn an endnote
 				if (keyboard_check_released(188)) {
-					obj_control.rightClickID = currentToken;
-					scr_newTokenOptions(obj_control.recentlyAddedEndnote);
-					obj_control.rightClickID = "";
+					rightClickID = currentToken;
+					scr_newTokenOptions(recentlyAddedEndnote);
+					rightClickID = "";
 				}
 
 			}
@@ -219,19 +217,18 @@ function scr_drawLineEntryList(unitID, unitSubMap, entryList, pixelY, OOBCheck) 
 			// draw the token's text
 			var wordFound = false;
 			if (scr_isNumericAndExists(global.searchMap, ds_type_map)) {
-				var searchSubMap  = global.searchMap[?obj_panelPane.functionSearchList_searchSelected];
+				var searchSubMap = global.searchMap[? obj_panelPane.functionSearchList_searchSelected];
 				if (scr_isNumericAndExists(searchSubMap, ds_type_map)) {
 			
 					var searchedTokenList = searchSubMap[? "displayTokenList"];
-			
-					wordFound = (ds_list_find_index(searchedTokenList,currentToken) != -1);
+					wordFound = (ds_list_find_index(searchedTokenList, currentToken) != -1);
 			
 				}
 			}
 		
 
-			draw_set_color((wordFound) ? make_color_rgb(20, 146, 181) : global.colorThemeText );
-			var textAlpha = (textBeenSaid)? 1: .6;
+			draw_set_color(wordFound && highlightSearchedTerms ? make_color_rgb(20, 146, 181) : global.colorThemeText);
+			var textAlpha = textBeenSaid ? 1 : 0.6;
 			draw_set_alpha(textAlpha);
 			draw_text(currentPixelX, pixelY, currentDisplayStr);
 		}

@@ -65,7 +65,7 @@ function scr_drawSpeakerLabel(unitID, unitSubMap, pixelY) {
 		if (obj_control.drawLineState == obj_control.lineState_ltr) {
 			draw_text(floor(sectionRectX1 + spaceWidth), floor(pixelY), sectionText);
 		}
-		else{
+		else {
 			draw_set_halign(fa_right);
 			draw_text(floor(sectionRectX2 - spaceWidth - string_length(sectionText)), floor(pixelY), sectionText);
 			

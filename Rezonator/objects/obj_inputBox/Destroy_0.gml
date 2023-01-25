@@ -16,7 +16,7 @@ if (instance_exists(leftPaneInst)) {
 	}
 }
 
-with(obj_control) {
+with (obj_control) {
 	mouseoverInputBox = false;
 }
 with (obj_dropDown) {

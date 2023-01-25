@@ -10,7 +10,7 @@ function scr_openFile() {
 		}
 
 	}
-	else{
+	else {
 		var discourseDirString = global.previousImportDirectory;
 	
 		var charAt = string_length(discourseDirString);
@@ -51,7 +51,7 @@ function scr_openFile() {
 	if (openedFile == "" or not file_exists(openedFile)) {
 		exit;
 	}
-	else{
+	else {
 		global.previousImportDirectory = filename_path(openedFile);
 	}
 

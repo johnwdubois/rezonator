@@ -89,7 +89,7 @@ function scr_drawChains() {
 					var newTokensUnit = tokenSubMap[? "unit"];
 					var k = vizSetIndex - 1;
 					
-					while(tokensUnit == newTokensUnit && k > 0) {
+					while (tokensUnit == newTokensUnit && k > 0) {
 						k-=1;
 						currentEntry1 = currentVizSetIDList[| k];
 						currentEntry1SubMap = global.nodeMap[? currentEntry1];
@@ -169,16 +169,16 @@ function scr_drawChains() {
 				var currentEntryList = tokenUnitID1SubMap[? "entryList"];
 				if (!scr_isNumericAndExists(currentEntryList, ds_type_list)) continue;
 				
-				with(obj_control) {
+				with (obj_control) {
 					scr_drawLineEntryList(tokenUnitID1,tokenUnitID1SubMap,currentEntryList, -200,false);
 				}
 			}
 			else if (j >= 1 && j < currentSetIDListSize) {
 			}
-			else{
+			else {
 				var currentEntryList = tokenUnitID2SubMap[? "entryList"];
 				if (!scr_isNumericAndExists(currentEntryList, ds_type_list)) continue;
-				with(obj_control) {
+				with (obj_control) {
 					scr_drawLineEntryList(tokenUnitID2,tokenUnitID2SubMap,currentEntryList, camHeight+200,false);
 				}
 			}

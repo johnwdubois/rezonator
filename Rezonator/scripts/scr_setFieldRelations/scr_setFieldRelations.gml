@@ -67,7 +67,7 @@ function scr_setFieldRelations() {
 	
 
 							}
-							else{
+							else {
 								strikeCounter++;
 								ds_grid_set(global.fieldRelationHelperGrid,colIndex, rowIndex,strikeCounter)
 							}
@@ -99,7 +99,7 @@ function scr_setFieldRelations() {
 							var strikeCounter = ds_grid_get(global.fieldRelationHelperGrid,colIndex, rowIndex);
 							//check if token counts are the same and if they are add to one-to-one list
 							if (currentTokenCount == fieldToCheckTokenCount ) {
-								strikeCounter ++;
+								strikeCounter++;
 								ds_list_add(oneToOneFieldList, fieldToCheck);
 								show_debug_message("added: " + string(fieldToCheck) + "  to " + string(currentField)+ "'s oneToOneList fields list");
 								ds_grid_set(global.fieldRelationHelperGrid,colIndex, rowIndex, strikeCounter);

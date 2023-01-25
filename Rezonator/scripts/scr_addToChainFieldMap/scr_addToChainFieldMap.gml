@@ -10,7 +10,7 @@ function scr_addToChainFieldMap(map, key, tagSet, rezTag, trackTag, stackTag) {
 		var fieldList = global.linkFieldList;
 		scr_addToListOnce(fieldList, key);
 	}
-	else{
+	else {
 		// add this field to either the chainFieldMap or the entryFieldMap
 		var fieldList = (map == global.chainFieldMap) ? global.chainFieldList : global.chainEntryFieldList;
 		scr_addToListOnce(fieldList, key);
@@ -27,7 +27,7 @@ function scr_addToChainFieldMap(map, key, tagSet, rezTag, trackTag, stackTag) {
 					scr_addToListOnce(obj_control.chain1to1ColFieldListRez, key);
 				}
 			}
-			else{
+			else {
 				if (sizeOfchainFieldList < 3) {
 					scr_addToListOnce(obj_control.chain1toManyColFieldListRez, key);
 				}
@@ -42,7 +42,7 @@ function scr_addToChainFieldMap(map, key, tagSet, rezTag, trackTag, stackTag) {
 					scr_addToListOnce(obj_control.chain1to1ColFieldListTrack, key);
 				}
 			}
-			else{
+			else {
 				if (sizeOfchainFieldList < 3) {
 					scr_addToListOnce(obj_control.chain1toManyColFieldListTrack, key);
 				}
@@ -58,7 +58,7 @@ function scr_addToChainFieldMap(map, key, tagSet, rezTag, trackTag, stackTag) {
 					scr_addToListOnce(obj_control.chain1to1ColFieldListStack, key);
 				}
 			}
-			else{
+			else {
 				if (sizeOfchainFieldList < 3) {
 					scr_addToListOnce(obj_control.chain1toManyColFieldListStack, key);
 				}

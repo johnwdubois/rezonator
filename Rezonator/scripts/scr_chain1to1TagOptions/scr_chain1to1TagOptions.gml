@@ -38,7 +38,7 @@ function scr_chain1To1TagOptions(optionSelected) {
 		var newTagValue = clearTag ? "" : optionSelected;
 		scr_setMap(chainTagMap, fieldToChange, newTagValue);
 		if (!clearTag) {
-			with(obj_panelPane) {
+			with (obj_panelPane) {
 				functionField_chainTagSelected = newTagValue;
 				functionField_chainFieldSelected = fieldToChange;
 			}

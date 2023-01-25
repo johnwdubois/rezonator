@@ -56,7 +56,7 @@ function scr_importConlluAutotag() {
 				//string split or character iteration over misc string
 				scr_splitStringConlluTag(currentEntityKey, keyList);
 			}
-			else{
+			else {
 				ds_list_add(keyList, currentEntityKey);		
 			}
 			show_debug_message("keylist: "+ scr_getStringOfList(keyList));
@@ -77,7 +77,7 @@ function scr_importConlluAutotag() {
 					var endString = currentEntityKey + ")";
 					//show_debug_message("endString = " + endString);
 					ds_list_add(currentTokenList, subToken);
-					while(string_pos(endString, subMiscString) == 0) {
+					while (string_pos(endString, subMiscString) == 0) {
 						subToken = tokenList[|nextTokenIndex];
 						//show_debug_message("subToken = " + string(subToken));
 						if (is_undefined(subToken)) {
@@ -96,7 +96,7 @@ function scr_importConlluAutotag() {
 					ds_list_add(entityMap[?currentEntityKey], currentTokenList);
 					ds_list_mark_as_list(entityMap[?currentEntityKey],ds_list_size(entityMap[?currentEntityKey]) - 1)
 				}
-				else{
+				else {
 					var newEntryList = ds_list_create();
 					ds_list_add(newEntryList, currentTokenList);
 					ds_list_mark_as_list(newEntryList, 0);
@@ -137,7 +137,7 @@ function scr_importConlluAutotag() {
 				global.delayInput = 0;
 				scr_createChunk();
 			}
-			else{
+			else {
 				var inChunkList = currentFirstTokenSubMap[? "inChunkList"];
 				scr_newLink(currentFirstTokenID);
 				//if (ds_list_size(inChunkList) == 0) {

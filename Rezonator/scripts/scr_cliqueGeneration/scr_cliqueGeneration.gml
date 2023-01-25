@@ -59,7 +59,7 @@ function scr_cliqueGeneration() {
 			scr_addToListOnce(obj_chain.traversedUnitList,unitID);
 		
 		}
-		else{
+		else {
 			ds_list_delete(obj_chain.encounteredTokenList, 0);
 		}
 	}
@@ -78,7 +78,7 @@ function scr_cliqueGeneration() {
 			if (scr_isChunk(tokenID)) {
 				var tokenSubMap = global.nodeMap[? scr_getFirstWordOfChunk(tokenID)];
 			}
-			else{
+			else {
 				var tokenSubMap = global.nodeMap[? tokenID];
 			}
 			if (!scr_isNumericAndExists(tokenSubMap, ds_type_map)) continue;
@@ -94,7 +94,7 @@ function scr_cliqueGeneration() {
 	if (ds_list_size(obj_chain.encounteredTokenList) > 0) {
 		scr_cliqueGeneration();
 	}
-	else{
+	else {
 		if (ds_list_size(obj_chain.encounteredChainList) > 0) {
 			var cliqueID = scr_generateRandomID();
 			var cliqueName = "Clique " + string(obj_chain.cliqueCount);

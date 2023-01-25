@@ -49,7 +49,7 @@ function scr_toolsOptions(optionSelected) {
 			}
 			break;
 		case "help_label_tag":
-			with(obj_panelPane) {
+			with (obj_panelPane) {
 				if (currentFunction = functionChainList) {
 					functionChainList_currentTab = functionChainList_tabField;
 				}
@@ -57,7 +57,7 @@ function scr_toolsOptions(optionSelected) {
 			with (obj_toolPane) {
 				currentMode = modeRead;
 			}
-			with(obj_dropDown) {
+			with (obj_dropDown) {
 				instance_destroy();	
 			}
 			break;

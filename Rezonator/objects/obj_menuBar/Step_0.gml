@@ -3,12 +3,12 @@
 if (point_in_rectangle(mouse_x, mouse_y, 0, 0, camera_get_view_width(camera_get_active()), menuHeight)) {
 	with (obj_control) mouseoverPanelPane = true;
 	if (!chainDeselected) {
-		with(obj_chain) {
+		with (obj_chain) {
 			scr_chainDeselect();
 			chainDeselected = true;
 		}
 	}
-	else{
+	else {
 		chainDeselected = false;
 	}
 	

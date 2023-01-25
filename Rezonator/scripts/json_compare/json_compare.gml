@@ -11,7 +11,7 @@ function json_compare(json1,json2)
 		if (!ok)
 		{
 			var key = ds_map_find_first(map_json2)
-			while(!is_undefined(key))
+			while (!is_undefined(key))
 			{
 				if (!ds_map_exists(map_json1,key))
 				{
