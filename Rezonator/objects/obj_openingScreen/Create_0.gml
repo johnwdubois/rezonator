@@ -464,4 +464,7 @@ global.importFieldTagList = ds_list_create();
 
 global.userLangRTL = false;
 
+global.restoreAutosave = false;
+global.autosaveLastSavedFilename = "";
+
 selectOpenButton = false;

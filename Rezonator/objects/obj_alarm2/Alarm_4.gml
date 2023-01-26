@@ -10,4 +10,9 @@ if (global.autosaveTimer <= 0) {
 	}
 }
 
-alarm[4] = max(floor(fps), 10);
+if (keyboard_check(vk_alt)) {
+	alarm[4] = 1;
+}
+else {
+	alarm[4] = max(floor(fps), 10);
+}

@@ -4,7 +4,7 @@
 function scr_saveREZ(autosave) {
 
 	show_debug_message("scr_saveREZ, STARTING... " + scr_printTime());
-	show_debug_message("scr_saveREZ, autosave: " + string(autosave) + ", global.fileSaveName: " + string(global.fileSaveName));
+	show_debug_message("scr_saveREZ, autosave: " + string(autosave) + ", global.fileSaveName: " + string(global.fileSaveName) + ", global.importFilename: " + string(global.importFilename));
 	
 	if (global.html5) {
 		if (!autosave) {
@@ -12,9 +12,14 @@ function scr_saveREZ(autosave) {
 		}
 		exit;
 	}
+	
+	var lastSavedFilename = scr_getLastSavedFilename();
+	
+
+	
 
 	// get fileSaveName if we don't already have it
-	if (not autosave) {
+	if (!autosave && !global.restoreAutosave) {
 		if (global.fileSaveName == "undefined"
 		|| string_length(global.fileSaveName) < 1
 		|| (!file_exists(global.fileSaveName) && !directory_exists(obj_control.clipStackDir))) {
@@ -124,6 +129,8 @@ function scr_saveREZ(autosave) {
 			ds_map_add(map, "functionChainList_focusedUnitSeq", obj_panelPane.functionChainList_focusedUnitIndex);
 			
 			ds_map_add(map, "insertTokenStr", obj_control.insertTokenStr);
+			
+			ds_map_add(map, "lastSavedFilename", lastSavedFilename);
 			
 			show_debug_message("here 3 " + scr_printTime());
 			

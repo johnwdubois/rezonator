@@ -134,7 +134,7 @@ for (var i = 0; i < fileKeyListSize; i++) {
 		// click on row to open up file
 		if (mouse_check_button_released(mb_left) && (inputDelay == 0) && !mouseOverRemove && !mouseOverCopyFilePath && !mouseOverShowFilePath) {
 			global.selectedFile = filePath;
-			global.openProject = true
+			global.openProject = true;
 			global.userName = obj_openingScreen.inputText;
 		}
 		
@@ -214,6 +214,33 @@ if (mouseoverOpenDirButton) {
 		}
 		else {
 			show_message("This directory does not exist");
+		}
+	}
+}
+
+// restore autosave button
+var delimiter = (os_type == os_windows) ? "\\" : "/";
+var autosaveFilePath = global.rezonatorDirString + delimiter + "Autosave" + delimiter + "autosave.rez";
+var autosaveExists = file_exists(autosaveFilePath);
+if (autosaveExists) {
+	var restoreAutoText = scr_get_translation("menu_restore-autosave");
+	var restoreAutoButtonX1 = openDirButtonX2 + string_width("  ");
+	var restoreAutoButtonX2 = restoreAutoButtonX1 + string_width("  " + restoreAutoText);
+	var mouseoverRestoreAutoButton = point_in_rectangle(mouse_x, mouse_y, restoreAutoButtonX1, openDirButtonY1, restoreAutoButtonX2, openDirButtonY2);
+	draw_set_color(mouseoverRestoreAutoButton ? c_white : c_ltgray);
+	draw_roundrect(restoreAutoButtonX1, openDirButtonY1, restoreAutoButtonX2, openDirButtonY2, false);
+	draw_set_color(c_gray);
+	draw_roundrect(restoreAutoButtonX1, openDirButtonY1, restoreAutoButtonX2, openDirButtonY2, true);
+	draw_set_color(c_black);
+	draw_set_halign(fa_center);
+	draw_set_valign(fa_middle);
+	draw_text(floor(mean(restoreAutoButtonX1, restoreAutoButtonX2)), floor(mean(openDirButtonY1, openDirButtonY2)), restoreAutoText);
+	if (mouseoverRestoreAutoButton) {
+		if (mouse_check_button_released(mb_left)) {
+			global.selectedFile = autosaveFilePath;
+			global.openProject = true;
+			global.userName = obj_openingScreen.inputText;
+			global.restoreAutosave = true;
 		}
 	}
 }

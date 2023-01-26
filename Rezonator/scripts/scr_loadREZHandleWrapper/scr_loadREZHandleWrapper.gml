@@ -154,6 +154,13 @@ function scr_loadREZHandleWrapper(wrapper) {
 				if (ds_map_exists(map, "insertTokenStr")) {
 					obj_control.insertTokenStr = map[? "insertTokenStr"];
 				}
+				
+				if (ds_map_exists(map, "lastSavedFilename")) {
+					var _lastSavedFilename = map[? "lastSavedFilename"];
+					if (is_string(_lastSavedFilename) && _lastSavedFilename != "") {
+						global.autosaveLastSavedFilename = _lastSavedFilename;
+					}
+				}
 			}
 		}		
 	}
