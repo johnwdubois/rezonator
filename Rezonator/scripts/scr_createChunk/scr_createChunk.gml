@@ -32,9 +32,11 @@ function scr_createChunk() {
 		ds_map_add_list(chunkSubMap, "inChainsList", inChainsList);
 		ds_map_add_list(chunkSubMap, "inEntryList", inEntryList);
 		
+		chunkSubMap[? "lock"] = false;
+		
 		var firstToken = tokenIDList[| 0];
 		var firstTokenSubMap = global.nodeMap[? firstToken];
-		var lastToken = tokenIDList[| ds_list_size(tokenIDList)-1];
+		var lastToken = tokenIDList[| ds_list_size(tokenIDList) - 1];
 		var lastTokenSubMap = global.nodeMap[? lastToken];
 		
 		var startDocOrder = firstTokenSubMap[? "docTokenSeq"];
@@ -61,7 +63,7 @@ function scr_createChunk() {
 					scr_addToListOnce(currentTokenInChunkList, chunkID);
 					
 					var chunkListSize =  ds_list_size(currentTokenInChunkList);
-					//find highestNestedlevel for all chunks
+					// find highestNestedlevel for all chunks
 					for (var j  = 0 ; j < chunkListSize; j++) {
 						var currentChunk = currentTokenInChunkList[|j]
 						//skip over newest created chunk while calculating nesting
@@ -77,11 +79,11 @@ function scr_createChunk() {
 						var currentChunkLastTokenSubMap = global.nodeMap[? currentChunkLastToken];
 							
 						
-						//get token seq of current chunk for comaparison
+						// get token seq of current chunk for comaparison
 						var currentChunkStartDocOrder = currentChunkFirstTokenSubMap[? "docTokenSeq"];
 						var currentChunkEndDocOrder = currentChunkLastTokenSubMap[? "docTokenSeq"];
 						
-						//the chunk is encapsulating the new chunk
+						// the chunk is encapsulating the new chunk
 						if (currentChunkStartDocOrder <= startDocOrder && currentChunkEndDocOrder >= endDocOrder) {
 							if (currentChunkNest < lowestEncapsulatingNest) {
 								lowestEncapsulatingChunk = currentChunk;
@@ -90,7 +92,7 @@ function scr_createChunk() {
 						}
 						
 						
-						////the new chunk is contains any part of the currentChunk
+						// the new chunk is contains any part of the currentChunk
 						else if (startDocOrder <= currentChunkStartDocOrder  && endDocOrder >= currentChunkEndDocOrder) {
 							if (currentChunkNest > highestEncapsulatedNest) {
 								highestEncapsulatedChunk = currentChunk;
@@ -98,7 +100,7 @@ function scr_createChunk() {
 							}
 						}
 						
-						//check the semi encapsulated tokens
+						// check the semi encapsulated tokens
 						else if ((currentChunkStartDocOrder >= startDocOrder && currentChunkStartDocOrder <= endDocOrder) xor (currentChunkEndDocOrder >= startDocOrder && currentChunkEndDocOrder <= endDocOrder)) {
 							if (currentChunkNest > highestEncapsulatedNest) {
 								highestEncapsulatedChunk = currentChunk;

@@ -105,6 +105,7 @@ function scr_loadREZ() {
 		scr_refreshPrevToken();
 	}
 	
+	scr_lockChunks(true);
 
 	var x1 = irandom(1);
 	var y1 = irandom(1);

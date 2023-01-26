@@ -866,6 +866,7 @@ deleteRez = false;
 deleteTrack = false;
 deleteChunk = "";
 askDeleteChunk = "";
+deleteChunkList = ds_list_create();
 
 highlightSearchedTerms = true;
 

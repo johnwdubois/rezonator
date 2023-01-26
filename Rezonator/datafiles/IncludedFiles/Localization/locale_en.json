@@ -577,6 +577,7 @@
     "menu_main" : "Main",
     "name" : "Name",
     "nest" : "Nest",
+	"lock" : "Lock",
     "chain_count" : "Chain Count",
     "unit_count" : "Unit Count",
     "start" : "Start",

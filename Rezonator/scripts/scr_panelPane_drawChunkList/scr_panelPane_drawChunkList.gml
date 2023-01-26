@@ -6,12 +6,14 @@ function scr_panelPane_drawChunkList() {
 	var numColX = x;
 	var numColWidth = windowWidth * 0.1;
 	var unitColX = numColX + numColWidth;
-	var unitColWidth = windowWidth * 0.15;
+	var unitColWidth = windowWidth * 0.1;
 	var nameColX = unitColX + unitColWidth;
-	var nameColWidth = windowWidth * 0.25;
+	var nameColWidth = windowWidth * 0.2;
 	var textColX = nameColX + nameColWidth;
 	var textColWidth = windowWidth * 0.4;
 	var nestColX = textColX + textColWidth;
+	var nestColWidth = windowWidth * 0.1;
+	var lockColX = nestColX + nestColWidth;
 	
 	var textBuffer = 8;
 	var headerHeight = functionTabs_tabHeight;
@@ -19,6 +21,7 @@ function scr_panelPane_drawChunkList() {
 	var focusedElementY = -1;
 	var mouseoverWindow = point_in_rectangle(mouse_x, mouse_y, x, y, x + windowWidth, y + windowHeight);
 	var mouseoverHeaderRegion = point_in_rectangle(mouse_x, mouse_y, x, y, x + windowWidth, y + headerHeight);
+	var mouseoverCancel =  mouseoverScrollBar || scrollBarHolding || mouseoverHeaderRegion || instance_exists(obj_dropDown) || instance_exists(obj_dialogueBox);
 	
 	if (!mouseoverWindow) {
 		with (obj_panelPane) functionChainList_chunkMouseover = "";
@@ -77,36 +80,47 @@ function scr_panelPane_drawChunkList() {
 		}
 		var currentChunkNest = currentChunkSubMap[? "nest"];
 		
+		// get lock value and make sure it's valid
+		var currentChunkLock = currentChunkSubMap[? "lock"];
+		if (is_undefined(currentChunkLock)) {
+			currentChunkLock = true;
+			currentChunkSubMap[? "lock"] = currentChunkLock;
+		}
 		
 		// Get dimensions of rectangle around row
 		var rowRectX1 = x;
 		var rowRectY1 = y + headerHeight + scrollPlusY + textPlusY - (strHeight / 2);
 		var rowRectX2 = x + windowWidth;
 		var rowRectY2 = rowRectY1 + strHeight;
-		var mouseoverRowRect = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, rowRectX1, rowRectY1, rowRectX2, rowRectY2) && !mouseoverScrollBar && !scrollBarHolding && !mouseoverHeaderRegion && !instance_exists(obj_dropDown) && !instance_exists(obj_dialogueBox);
+		var mouseoverRowRect = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, rowRectX1, rowRectY1, rowRectX2, rowRectY2) && !mouseoverCancel;
 		var textY = floor(mean(rowRectY1, rowRectY2));
 		
 		if (mouseoverRowRect) {
 			obj_control.hoverTextCopy = currentChunkNest;
 		}
-		var mouseOverNameRect = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, nameColX, rowRectY1, nameColX + nameColWidth, rowRectY2) && !mouseoverScrollBar && !scrollBarHolding && !mouseoverHeaderRegion && !instance_exists(obj_dropDown) && !instance_exists(obj_dialogueBox);
+		var mouseOverNameRect = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, nameColX, rowRectY1, nameColX + nameColWidth, rowRectY2) && !mouseoverCancel;
 		if (mouseOverNameRect) {
 			obj_control.hoverTextCopy = currentChunkName;
 		}
-		var mouseOverTextRect = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, textColX, rowRectY1, textColX + textColWidth, rowRectY2) && !mouseoverScrollBar && !scrollBarHolding && !mouseoverHeaderRegion && !instance_exists(obj_dropDown) && !instance_exists(obj_dialogueBox);
+		var mouseOverTextRect = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, textColX, rowRectY1, textColX + textColWidth, rowRectY2) && !mouseoverCancel;
 		if (mouseOverTextRect) {
 			obj_control.hoverTextCopy = scr_getChunkText(currentChunk);
 		}
-		var mouseOverUnitRect = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, unitColX, rowRectY1, unitColX + unitColWidth, rowRectY2) && !mouseoverScrollBar && !scrollBarHolding && !mouseoverHeaderRegion && !instance_exists(obj_dropDown) && !instance_exists(obj_dialogueBox);
+		var mouseOverUnitRect = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, unitColX, rowRectY1, unitColX + unitColWidth, rowRectY2) && !mouseoverCancel;
 		if (mouseOverUnitRect) {
 			obj_control.hoverTextCopy = currentChunkUnitSeq;
 		}
-		var mouseOverIndexRect = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, numColX, rowRectY1, numColX + numColWidth, rowRectY2) && !mouseoverScrollBar && !scrollBarHolding && !mouseoverHeaderRegion && !instance_exists(obj_dropDown) && !instance_exists(obj_dialogueBox);
+		var mouseOverIndexRect = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, numColX, rowRectY1, numColX + numColWidth, rowRectY2) && !mouseoverCancel;
 		if (mouseOverIndexRect) {
 			obj_control.hoverTextCopy = string(i + 1);
 		}
-	
-
+		var mouseOverLockRect = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, lockColX, rowRectY1, x + windowWidth, rowRectY2) && !mouseoverCancel;
+		if (mouseOverLockRect) {
+			if (mouse_check_button_released(mb_left)) {
+				currentChunkLock = !currentChunkLock;
+				currentChunkSubMap[? "lock"] = currentChunkLock;
+			}
+		}
 		
 		if (functionChainList_chunkSelected == currentChunk) {
 			with (obj_panelPane) functionChainList_focusedUnit = currentChunk;
@@ -151,6 +165,11 @@ function scr_panelPane_drawChunkList() {
 		draw_rectangle(nestColX - clipX, rowRectY1 - clipY, rowRectX2 - clipX, rowRectY2 - clipY, false);
 		draw_set_color(textColor);
 		draw_text(floor(nestColX + textBuffer) - clipX, textY - clipY, string(currentChunkNest));
+		
+		// lock column
+		if (functionChainList_chunkSelected == currentChunk || mouseoverRowRect) {
+			draw_sprite_ext(spr_lock, !currentChunkLock, floor(mean(lockColX, x + windowWidth)) - clipX, textY - clipY, 1, 1, 0, global.colorThemeText, 1);
+		}
 
 		// increment plusY
 		textPlusY += strHeight;
@@ -171,7 +190,7 @@ function scr_panelPane_drawChunkList() {
 	
 	// draw column headers
 	var headerPlusX = 0;
-	for (var i = 0; i < 5; i++) {
+	for (var i = 0; i < 6; i++) {
 		
 		// get column data
 		var colWidth = 0;
@@ -193,8 +212,12 @@ function scr_panelPane_drawChunkList() {
 			colText = "label_word";
 		}
 		else if (i == 4) {
-			colWidth = windowWidth - nestColX;
+			colWidth = nestColWidth;
 			colText = "nest";
+		}
+		else if (i == 5) {
+			colWidth = windowWidth - lockColX;
+			colText = "lock";
 		}
 
 		

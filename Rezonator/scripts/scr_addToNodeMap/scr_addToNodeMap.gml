@@ -1,5 +1,3 @@
-
-
 function scr_addToNodeMap(type) {
 	
 	// type variable should be a string that declares what "type" of Node this is

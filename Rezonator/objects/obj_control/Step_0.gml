@@ -697,9 +697,11 @@ if (keyboard_check_released(vk_down)) navWindowTaggingCanPressDown = true;
 if (keyboard_check_released(vk_left)) navWindowTaggingCanPressLeft = true;
 if (keyboard_check_released(vk_right)) navWindowTaggingCanPressRight = true;
 
-if (askDeleteChunk != "" && is_string(askDeleteChunk)) {
-	instance_create_layer(x, y, "InstancesDialogue", obj_dialogueBox);
-	deleteChunk = askDeleteChunk;
-	askDeleteChunk = "";
-	obj_dialogueBox.questionWindowActive = true;
+// delete all chunks in deleteChunkList
+while (ds_list_size(deleteChunkList) > 0) {
+	var _deleteChunk = deleteChunkList[| 0];
+	if (is_string(_deleteChunk) && _deleteChunk != "") {
+		scr_deleteChunk(_deleteChunk);
+	}
+	scr_deleteFromList(deleteChunkList, _deleteChunk);
 }

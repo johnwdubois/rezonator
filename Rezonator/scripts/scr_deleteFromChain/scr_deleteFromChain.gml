@@ -66,6 +66,15 @@ function scr_deleteFromChain(sortVizSetList) {
 	}
 	var focusedEntryIsChunk = scr_isChunk(focusedEntryToken);
 	
+	// if this entry is a chunk, we will check if the chunk is locked, if it is not then we will delete it
+	if (focusedEntryIsChunk) {
+		var focusedEntryChunkSubMap = global.nodeMap[? focusedEntryToken];
+		if (scr_isNumericAndExists(focusedEntryChunkSubMap, ds_type_map)) {
+			if (!focusedEntryChunkSubMap[? "lock"]) {
+				scr_addToListOnce(obj_control.deleteChunkList, focusedEntryToken);
+			}
+		}
+	}
 	
 	// find where in the chain's setList the focused entry is
 	var chainSetList = chainSubMap[? "setIDList"];

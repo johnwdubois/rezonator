@@ -522,6 +522,7 @@
     {"id":{"name":"scr_dialogueBoxNewCustomFieldEntry","path":"scripts/scr_dialogueBoxNewCustomFieldEntry/scr_dialogueBoxNewCustomFieldEntry.yy",},"order":15,},
     {"id":{"name":"scr_removeBadQuotes2","path":"scripts/scr_removeBadQuotes2/scr_removeBadQuotes2.yy",},"order":19,},
     {"id":{"name":"scr_deleteChunk","path":"scripts/scr_deleteChunk/scr_deleteChunk.yy",},"order":0,},
+    {"id":{"name":"scr_lockChunks","path":"scripts/scr_lockChunks/scr_lockChunks.yy",},"order":13,},
     {"id":{"name":"scr_drawRectWidth","path":"scripts/scr_drawRectWidth/scr_drawRectWidth.yy",},"order":7,},
     {"id":{"name":"scr_panelPane_drawUnits1to1","path":"scripts/scr_panelPane_drawUnits1to1/scr_panelPane_drawUnits1to1.yy",},"order":9,},
     {"id":{"name":"scr_cliqueCheckUnit","path":"scripts/scr_cliqueCheckUnit/scr_cliqueCheckUnit.yy",},"order":7,},

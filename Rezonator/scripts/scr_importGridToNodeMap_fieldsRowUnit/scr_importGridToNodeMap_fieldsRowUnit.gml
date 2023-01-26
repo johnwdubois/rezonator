@@ -97,8 +97,9 @@ function scr_importGridToNodeMap_fieldsRowUnit(row) {
 				// make chunk node
 				var currentChunkNode = scr_addToNodeMap("chunk");
 				var currentChunkSubMap = global.nodeMap[? currentChunkNode];
-				ds_map_add(currentChunkSubMap, "name", "Chunk " + string(ds_list_size(global.nodeMap[? "chunkList"]) + 1));
-				ds_map_add(currentChunkSubMap, "nest", 1);
+				currentChunkSubMap[? "name"] = "Chunk " + string(ds_list_size(global.nodeMap[? "chunkList"]) + 1);
+				currentChunkSubMap[? "nest"] = 1;
+				currentChunkSubMap[? "lock"] = true;
 				ds_map_add_list(currentChunkSubMap, "inChainsList", ds_list_create());
 				ds_map_add_list(currentChunkSubMap, "inEntryList", ds_list_create());
 				ds_map_add_list(currentChunkSubMap, "tokenList", ds_list_create());
