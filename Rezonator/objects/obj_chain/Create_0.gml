@@ -198,6 +198,11 @@ trackGrid_colUnitText = 9;
 trackGrid = ds_grid_create(trackGridWidth, 0);
 rezGrid = ds_grid_create(trackGridWidth, 0);
 
+resonancePrevFocused = "";
+trailPrevFocused = "";
+stackPrevFocused = "";
+
+
 mouseOverAnyChunk = false;
 dragStartOriginalChain = "";
 dragStartOriginalUnit = "";

@@ -13,7 +13,7 @@ function scr_newChain(ID) {
 	var idType = idSubMap[? "type"];
 	show_debug_message("ID after: " + string(ID));
 	
-	show_debug_message("scr_newChain() ... ID: " + string(ID));
+	show_debug_message("scr_newChain... ID: " + string(ID));
 
 	var chainName = "";
 	var chainSeq = 0;
@@ -59,14 +59,18 @@ function scr_newChain(ID) {
 			chainName = "Stack " + string(chainSeq);
 		}
 	}
-
 	
-	show_debug_message("scr_newChain() ... chainType: " + string(chainType) + ", chainName:" + string(chainName));
-	
-
 	// get random hex chainID
 	obj_chain.currentChainID = scr_addToNodeMap(chainType);
 	var newChainSubMap = global.nodeMap[? obj_chain.currentChainID];
+	
+	show_debug_message("scr_newChain... chainID: " + string(obj_chain.currentChainID) + ", chainType: " + string(chainType) + ", chainName:" + string(chainName));
+	
+	with (obj_chain) {
+		if (chainType == "resonance") resonancePrevFocused = currentFocusedChainID;
+		else if (chainType == "trail") trailPrevFocused = currentFocusedChainID;
+		else if (chainType == "stack") stackPrevFocused = currentFocusedChainID;
+	}
 	
 	
 	// if this is a token and we're making a rez chain, we will put the chain into a clique

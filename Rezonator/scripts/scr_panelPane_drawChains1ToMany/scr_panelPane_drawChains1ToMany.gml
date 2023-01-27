@@ -68,6 +68,22 @@ function scr_panelPane_drawChains1ToMany() {
 	// make sure chain exists and that its submap exists
 	if (!scr_isNumericAndExists(chainSubMap, ds_type_map)) {
 		if (!global.html5) scr_surfaceEnd();
+		
+		if (functionChainList_currentTab == functionChainList_tabRezBrush) {
+			if (is_string(obj_chain.resonancePrevFocused) && obj_chain.resonancePrevFocused != "") {
+				with (obj_panelPane) functionChainContents_chainID = obj_chain.resonancePrevFocused;
+			}
+		}
+		else if (functionChainList_currentTab == functionChainList_tabTrackBrush) {
+			if (is_string(obj_chain.trailPrevFocused) && obj_chain.trailPrevFocused != "") {
+				with (obj_panelPane) functionChainContents_chainID = obj_chain.trailPrevFocused;
+			}
+		}
+		else if (functionChainList_currentTab == functionChainList_tabStackBrush) {
+			if (is_string(obj_chain.stackPrevFocused) && obj_chain.stackPrevFocused != "") {
+				with (obj_panelPane) functionChainContents_chainID = obj_chain.stackPrevFocused;
+			}
+		}
 		exit;
 	}
 	
@@ -75,7 +91,7 @@ function scr_panelPane_drawChains1ToMany() {
 		show_debug_message("functionChainContents_chainIDPrev changed");
 		if (obj_control.chain1toManyCustomSortColIndex != -1) obj_control.refreshCustomSort = true;
 	}
-	functionChainContents_chainIDPrev = chainID;
+	with (obj_panelPane) functionChainContents_chainIDPrev = chainID;
 	
 	// get some cool variables from the chain
 	var chainType = chainSubMap[? "type"];
@@ -84,7 +100,7 @@ function scr_panelPane_drawChains1ToMany() {
 	
 	// make sure that we have a valid chain type
 	if (chainType != "resonance" && chainType != "trail" && chainType != "stack") {
-		functionChainContents_chainID = "";
+		with (obj_panelPane) functionChainContents_chainID = "";
 		if (!global.html5) scr_surfaceEnd();
 		exit;
 	}
@@ -93,7 +109,7 @@ function scr_panelPane_drawChains1ToMany() {
 	if ((chainType == "resonance" && functionChainList_currentTab != functionChainList_tabRezBrush)
 	|| (chainType == "trail" && functionChainList_currentTab != functionChainList_tabTrackBrush)
 	|| (chainType == "stack" && functionChainList_currentTab != functionChainList_tabStackBrush)) {
-		functionChainContents_chainID = "";
+		with (obj_panelPane) functionChainContents_chainID = "";
 		if (!global.html5) scr_surfaceEnd();
 		exit;
 	}
@@ -114,6 +130,12 @@ function scr_panelPane_drawChains1ToMany() {
 				functionChainContents_hop = -1;
 			}
 		}
+	}
+	
+	with (obj_chain) {
+		if (chainType == "resonance") resonancePrevFocused = chainID;
+		else if (chainType == "trail") trailPrevFocused = chainID;
+		else if (chainType == "stack") stackPrevFocused = chainID;
 	}
 	
 

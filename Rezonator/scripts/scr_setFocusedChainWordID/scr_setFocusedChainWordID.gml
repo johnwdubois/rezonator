@@ -1,5 +1,3 @@
-
-
 function scr_setFocusedChainWordID() {
 	
 	if (ds_map_exists(global.nodeMap, currentFocusedChainID) && currentFocusedChainID != "") {
@@ -20,6 +18,12 @@ function scr_setFocusedChainWordID() {
 				var focusedEntryKey = (focusedChainType == "stack") ? "unit" : "token";
 				focusedChainWordID = focusedEntrySubMap[? focusedEntryKey];
 			}
+			
+			// set the most recently focused rez/trail/stack
+			var chainType = chainMap[? "type"];
+			if (chainType == "resonance") resonancePrevFocused = currentFocusedChainID;
+			else if (chainType == "trail") trailPrevFocused = currentFocusedChainID;
+			else if (chainType == "stack") stackPrevFocused = currentFocusedChainID;
 		}
 	}
 	else {

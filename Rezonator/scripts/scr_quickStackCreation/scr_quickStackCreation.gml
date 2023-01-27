@@ -1,5 +1,3 @@
-
-
 function scr_quickStackCreation() {
 	
 	// make sure the first unit clicked on is the first unit in the list
@@ -36,6 +34,8 @@ function scr_quickStackCreation() {
 			if (!scr_isNumericAndExists(currentUnitInChainsList, ds_type_list)) continue;
 			if (ds_list_size(currentUnitInChainsList) == 0 && obj_chain.dragStartOriginalChain != "") {
 				obj_chain.currentFocusedChainID = obj_chain.dragStartOriginalChain;
+				obj_chain.stackPrevFocused = obj_chain.currentFocusedChainID;
+				with (obj_panelPane) functionChainContents_chainID = obj_chain.currentFocusedChainID;
 			}
 			
 			scr_unitClicked(currentUnit);

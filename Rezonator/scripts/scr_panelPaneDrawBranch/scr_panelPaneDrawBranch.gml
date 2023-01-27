@@ -77,11 +77,11 @@ function scr_panelPaneDrawBranch() {
 					draw_rectangle(x, y, x + windowWidth, y + windowHeight, true);
 					if (is_numeric(functionChainContents_BGColor)) {
 						// if we are on the line tab, set the BG color to be regular
-						if (functionChainList_currentTab == functionChainList_tabLine || functionChainList_currentTab == functionChainList_tabChunk || functionChainList_currentTab == functionChainList_tabSearch || functionChainList_currentTab == functionChainList_tabTree) {
+						if (functionChainList_currentTab != functionChainList_tabRezBrush && functionChainList_currentTab != functionChainList_tabTrackBrush && functionChainList_currentTab != functionChainList_tabStackBrush) {
 							functionChainContents_BGColor = global.colorThemeBG;
 						}
 						// if the BG color is not regular, draw a rectangle with the color of the corresponding chain
-						if (functionChainContents_BGColor != global.colorThemeBG && functionChainList_currentTab != functionChainList_tabField) {
+						if (functionChainContents_BGColor != global.colorThemeBG) {
 							draw_set_alpha(1);
 							draw_set_color(merge_color(functionChainContents_BGColor, global.colorThemeBG, 0.9));
 							draw_rectangle(x, y, x + windowWidth, y + windowHeight, false);

@@ -153,6 +153,7 @@ function scr_panelPane_drawTabs() {
 			// switch tab
 			with (obj_panelPane) {
 				functionChainList_currentTab = currentTab;
+				functionChainContents_BGColor = global.colorThemeBG;
 			}
 				
 			// now that we have switched tabs, let's restore their saved scroll position

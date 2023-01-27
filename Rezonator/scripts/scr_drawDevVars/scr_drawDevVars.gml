@@ -71,13 +71,13 @@ function scr_drawDevVars() {
 	
 	draw_text(devVarX - 580, wordTopMargin + (strHeight * 1), "showNav: " + string(obj_panelPane.showNav));
 	draw_text(devVarX - 580, wordTopMargin + (strHeight * 2), "currentView: " + string(obj_control.currentView));
-	draw_text(devVarX - 580, wordTopMargin + (strHeight * 3), "combineChainsFocused: " + string(combineChainsFocused));
-	draw_text(devVarX - 580, wordTopMargin + (strHeight * 4), "combineChainsSelected: " + string(combineChainsSelected));
+	draw_text(devVarX - 580, wordTopMargin + (strHeight * 3), "functionChainContents_chainIDPrev: " + string(obj_panelPane.functionChainContents_chainIDPrev));
+	draw_text(devVarX - 580, wordTopMargin + (strHeight * 4), "functionChainContents_chainID: " + string(obj_panelPane.functionChainContents_chainID));
 	draw_text(devVarX - 580, wordTopMargin + (strHeight * 5), "displayTokenField: " + string(global.displayTokenField));
 	draw_text(devVarX - 580, wordTopMargin + (strHeight * 6), "participantField: " + string(global.participantField));
-	draw_text(devVarX - 580, wordTopMargin + (strHeight * 7), "doubleClickTimer: " + string(doubleClickTimer));
-	draw_text(devVarX - 580, wordTopMargin + (strHeight * 8), "chainShowList: " + string(scr_getStringOfList(obj_chain.chainShowList)));
-	draw_text(devVarX - 580, wordTopMargin + (strHeight * 9), "rightClickID: " + string(obj_control.rightClickID));
+	draw_text(devVarX - 580, wordTopMargin + (strHeight * 7), "resonancePrevFocused: " + string(obj_chain.resonancePrevFocused));
+	draw_text(devVarX - 580, wordTopMargin + (strHeight * 8), "trailPrevFocused: " + string(obj_chain.trailPrevFocused));
+	draw_text(devVarX - 580, wordTopMargin + (strHeight * 9), "stackPrevFocused: " + string(obj_chain.stackPrevFocused));
 	draw_text(devVarX - 580, wordTopMargin + (strHeight * 10), "hoverUnitID: " + string(obj_control.hoverUnitID));
 	draw_text(devVarX - 580, wordTopMargin + (strHeight * 11), "currentFocusedEntryID: " + string(obj_chain.currentFocusedEntryID));
 	draw_text(devVarX - 580, wordTopMargin + (strHeight * 12), "audioClosestUnit: " + string(obj_audioUI.closestUnit));

@@ -3,7 +3,6 @@
 */
 #macro vk_rcommand 91
 #macro vk_lcommand 92
-
 scr_windowExit();
 
 sessionCurrentTime = (current_time - sessionStartTime) + current_time;

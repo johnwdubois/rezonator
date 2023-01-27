@@ -9,7 +9,7 @@ switch (currentFunction) {
 	case functionChainContents:
 		// as long as a focused chain exists, update the chainContents chainID
 		if (ds_map_exists(global.nodeMap, obj_chain.currentFocusedChainID) && obj_chain.currentFocusedChainID != "") {
-			functionChainContents_chainID = obj_chain.currentFocusedChainID;
+			with (obj_panelPane) functionChainContents_chainID = obj_chain.currentFocusedChainID;
 		}
 		break;
 	default:
