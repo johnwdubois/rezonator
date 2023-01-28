@@ -9,18 +9,18 @@ if (async_load[? "type"] == "FirebaseFirestore_Document_Read") {
 		var docMap = json_decode(value);
 		if (scr_isNumericAndExists(docMap, ds_type_map)) {
 		
-			newestVersionNum = docMap[? "Version"];
-			show_debug_message("newestVersionNum: " + string(newestVersionNum));
+			global.newestVersionNum = docMap[? "Version"];
+			show_debug_message("global.newestVersionNum: " + string(global.newestVersionNum));
 
-			if (is_string(newestVersionNum) && newestVersionNum != "") {
+			if (is_string(global.newestVersionNum) && global.newestVersionNum != "") {
 			
-				newVersionStr = "Version " + string(newestVersionNum);
-				show_debug_message("global.versionString: " + string(global.versionString) + " , newestVersionStr: " + newVersionStr); 
+				global.newVersionStr = "Version " + string(global.newestVersionNum);
+				show_debug_message("global.versionString: " + string(global.versionString) + " , newestVersionStr: " + global.newVersionStr); 
 				
-				if (newVersionStr == global.versionString) {
-					show_debug_message("Version up to date! initialVersionCheck: " + string(initialVersionCheck));
+				if (global.newVersionStr == global.versionString) {
+					show_debug_message("Version up to date! initialVersionCheck: " + string(global.initialVersionCheck) + ", manualVersionCheck: " + string(global.manualVersionCheck));
 					if (room == rm_openingScreen) {
-						if (!initialVersionCheck) {
+						if (global.manualVersionCheck) {
 							if (!instance_exists(obj_dialogueBox)) {
 								instance_create_layer(x, y, "InstancesDialogue", obj_dialogueBox);
 								obj_openingScreen.versionUpToDate = true;
@@ -29,10 +29,12 @@ if (async_load[? "type"] == "FirebaseFirestore_Document_Read") {
 						}
 					}
 					else if (room == rm_mainScreen) {
-						if (!instance_exists(obj_dialogueBox)) {
-							instance_create_layer(x, y, "InstancesDialogue", obj_dialogueBox);
-							obj_control.versionUpToDate = true;
-							obj_dialogueBox.alertWindowActive = true;
+						if (global.manualVersionCheck) {
+							if (!instance_exists(obj_dialogueBox)) {
+								instance_create_layer(x, y, "InstancesDialogue", obj_dialogueBox);
+								obj_control.versionUpToDate = true;
+								obj_dialogueBox.alertWindowActive = true;
+							}
 						}
 					}
 				}
@@ -61,4 +63,4 @@ if (async_load[? "type"] == "FirebaseFirestore_Document_Read") {
 	}
 }
 
-initialVersionCheck = false;
+global.manualVersionCheck = false;

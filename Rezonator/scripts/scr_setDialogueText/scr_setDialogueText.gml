@@ -2,7 +2,7 @@ function scr_setDialogueText() {
 	
 	if (room == rm_openingScreen) {
 		if (obj_openingScreen.downloadDialogue) {
-			titleText = instance_exists(obj_firestore) ? obj_firestore.newVersionStr : "";
+			titleText = is_string(global.newVersionStr) ? global.newVersionStr : "";
 			descriptionText = scr_get_translation("msg_new-version-available");
 			exit;
 		}
@@ -36,7 +36,7 @@ function scr_setDialogueText() {
 				descriptionText = scr_get_translation("msg_warning_clear_focused_stack");
 			}
 			else if (obj_control.downloadDialogue) {
-				titleText = instance_exists(obj_firestore) ? obj_firestore.newVersionStr : "";
+				titleText = is_string(global.newVersionStr) ? global.newVersionStr : "";
 				descriptionText = scr_get_translation("msg_new-version-available");
 			}
 			else if (obj_control.deleteChunk != "" && is_string(obj_control.deleteChunk)) {

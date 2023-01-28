@@ -32,6 +32,7 @@ function scr_helpOptions(optionSelected) {
 					var docPath = "Platforms/"+ string(global.buildType);
 					FirebaseFirestore(docPath).Read();
 				}
+				global.manualVersionCheck = true;
 			}
 			break;
 		default:

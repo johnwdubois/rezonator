@@ -1,6 +1,6 @@
 importedAudioFile = "";
 if (global.openProject) {
-	show_debug_message("obj_loadingControl Create ... loading REZ");
+	show_debug_message("obj_fileLoader Create ... loading REZ");
 	scr_loadREZ();
 }
 with (obj_control) {
@@ -12,12 +12,20 @@ with (obj_control) {
 		scr_addToListOnce(displayTokenList, global.tokenImportTranscriptColName);
 	}
 	
+	scr_deleteFromList(displayTokenList, "");
+	
 	displayTokenListIndex = 0;	
 	
 	// fill the wordform list up with up to 4 fields
 	var displayTokenListSize = min(ds_list_size(global.tokenFieldList), 4);
 	for (var i = 0; i < displayTokenListSize; i++) {
 		scr_addToListOnce(displayTokenList, global.tokenFieldList[| i]);
+	}
+	
+	// for plain files, use ~text field
+	if (ds_list_size(displayTokenList) < 1) {
+		ds_list_add(displayTokenList, "~text");
+		global.displayTokenField = "~text";
 	}
 }
 

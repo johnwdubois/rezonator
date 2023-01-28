@@ -131,27 +131,18 @@ function scr_loadREZ() {
 			lastSavedFilename = global.autosaveLastSavedFilename;
 		}
 		if (!directory_exists(global.rezonatorMyREZFileDir)) directory_create(global.rezonatorMyREZFileDir);
+		if (!is_string(lastSavedFilename)) lastSavedFilename = "";
+		lastSavedFilename = string_replace_all(lastSavedFilename, ".csv", "");
+		lastSavedFilename = string_replace_all(lastSavedFilename, ".txt", "");
+		lastSavedFilename = string_replace_all(lastSavedFilename, ".rez", "");
 		var backupFilename = get_save_filename_ext("REZ file|*.rez", lastSavedFilename + "_Backup", global.rezonatorMyREZFileDir, "Restore autosave");
-		backupFilename = string_replace_all(backupFilename, ".csv", "");
-		backupFilename = string_replace_all(backupFilename, ".txt", "");
-		backupFilename = string_replace_all(backupFilename, ".rez", "");
 		if (is_string(backupFilename) && backupFilename != "") {
 			file_copy(global.selectedFile, backupFilename);
 			global.selectedFile = backupFilename;
 			global.restoreAutosave = false;
 			scr_loadREZ();
 		}
-		
-		// ask user to rename backup of autosave
-		//if (global.restoreAutosave && is_string(lastSavedFilename)) {
-		//	if (!directory_exists(global.rezonatorMyREZFileDir)) directory_create(global.rezonatorMyREZFileDir);
-		//	if (directory_exists(global.rezonatorMyREZFileDir)) {
-		//		global.fileSaveName = get_save_filename_ext("REZ file|*.rez", lastSavedFilename, global.rezonatorMyREZFileDir, "Save REZ");
-		//	}
-		//	else {
-		//		global.fileSaveName = get_save_filename_ext("REZ file|*.rez", lastSavedFilename, program_directory, "Save REZ");
-		//	}
-		//}
 	}
+	
 
 }

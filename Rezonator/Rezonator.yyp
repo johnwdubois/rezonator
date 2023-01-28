@@ -597,7 +597,6 @@
     {"id":{"name":"obj_fpsTracker","path":"objects/obj_fpsTracker/obj_fpsTracker.yy",},"order":2,},
     {"id":{"name":"scr_drawDialogueBox_input","path":"scripts/scr_drawDialogueBox_input/scr_drawDialogueBox_input.yy",},"order":20,},
     {"id":{"name":"FirebaseREST_Firestore_jsonEncode","path":"scripts/FirebaseREST_Firestore_jsonEncode/FirebaseREST_Firestore_jsonEncode.yy",},"order":13,},
-    {"id":{"name":"obj_DBcontrol","path":"objects/obj_DBcontrol/obj_DBcontrol.yy",},"order":3,},
     {"id":{"name":"scr_jumpToUnitDoubleClick","path":"scripts/scr_jumpToUnitDoubleClick/scr_jumpToUnitDoubleClick.yy",},"order":5,},
     {"id":{"name":"scr_preImportScreen","path":"scripts/scr_preImportScreen/scr_preImportScreen.yy",},"order":2,},
     {"id":{"name":"scr_panelPane_drawShow1toMany","path":"scripts/scr_panelPane_drawShow1toMany/scr_panelPane_drawShow1toMany.yy",},"order":16,},

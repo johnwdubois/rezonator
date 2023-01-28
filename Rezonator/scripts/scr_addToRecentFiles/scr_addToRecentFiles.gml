@@ -1,6 +1,7 @@
 function scr_addToRecentFiles(filePath) {
 	
 	var fileName = filename_name(filePath);
+	if (fileName == "autosave.rez") exit;
 	
 	scr_deleteFromList(global.recentFilesList,fileName);
 	
