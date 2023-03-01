@@ -26,7 +26,7 @@ function scr_panelPane_drawFieldList() {
 	var readOnlyColX = lockColX - readOnlyColWidth;
 	var focusedElementY = -1;
 
-	var mouseoverCancel = instance_exists(obj_dropDown) || instance_exists(obj_dialogueBox);
+	var mouseoverCancel = instance_exists(obj_dropDown) || instance_exists(obj_dialogueBox) || instance_exists(obj_sizeWindow);
 	var mouseoverWindow = point_in_rectangle(mouse_x, mouse_y, x, y, x + windowWidth, y + windowHeight) && !mouseoverCancel;
 	var mouseoverHeader = point_in_rectangle(mouse_x, mouse_y, x, y, x + windowWidth, y + headerHeight) && !mouseoverCancel;
 	

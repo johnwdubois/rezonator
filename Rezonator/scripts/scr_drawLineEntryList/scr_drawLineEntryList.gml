@@ -25,6 +25,8 @@ function scr_drawLineEntryList(unitID, unitSubMap, entryList, pixelY, OOBCheck) 
 		unitWidth = string_width(scr_getUnitText(unitSubMap));
 	}
 	
+	var mouseoverCancel = instance_exists(obj_dropDown) || instance_exists(obj_dialogueBox) || instance_exists(obj_sizeWindow);
+	
 	var entryListSize = ds_list_size(entryList);
 	var i = justify == justifyLeft ? 0 : entryListSize-1;
 	var isBAD = justify == justifyLeft && drawLineState == lineState_rtl && shape == shapeText;
@@ -107,7 +109,7 @@ function scr_drawLineEntryList(unitID, unitSubMap, entryList, pixelY, OOBCheck) 
 				tokenRectX1 -= currentTokenStringWidth;
 				tokenRectX2 -= currentTokenStringWidth;
 			}
-			var mouseOverToken = point_in_rectangle(mouse_x,mouse_y, tokenRectX1, tokenRectY1, tokenRectX2, tokenRectY2) && hoverTokenID == "" && !mouseoverPanelPane && !instance_exists(obj_dropDown) && !instance_exists(obj_dialogueBox) && speakerLabelColXHolding == -1;
+			var mouseOverToken = point_in_rectangle(mouse_x,mouse_y, tokenRectX1, tokenRectY1, tokenRectX2, tokenRectY2) && hoverTokenID == "" && !mouseoverPanelPane && !mouseoverCancel && speakerLabelColXHolding == -1;
 		
 		
 			// draw background tokenRect
@@ -119,7 +121,7 @@ function scr_drawLineEntryList(unitID, unitSubMap, entryList, pixelY, OOBCheck) 
 			var mouseRectExists = makingRect;
 			var inMouseRect = false;
 			if (mouseRectExists) {
-				if (!instance_exists(obj_dialogueBox) && !instance_exists(obj_dropDown)) {
+				if (!mouseoverCancel) {
 					inMouseRect = (rectangle_in_rectangle(tokenRectX1, tokenRectY1, tokenRectX2, tokenRectY2, min(mouse_x, mouseHoldRectX1), min(mouse_y, mouseHoldRectY1), max(mouse_x, mouseHoldRectX1), max(mouse_y, mouseHoldRectY1))
 					&& (mouse_x > mouseHoldRectX1 + minimumChunkDist || mouse_x < mouseHoldRectX1 - minimumChunkDist));
 					if (mouseRectExists && inMouseRect && !mouse_check_button_released(mb_left)) {

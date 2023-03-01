@@ -11,7 +11,7 @@ function scr_panelPane_drawUnits1toMany() {
 	var headerHeight = functionTabs_tabHeight;
 	var scrollBarListSize = 0;
 	var drawDropDowns = false;
-	var mouseoverCancel = (instance_exists(obj_dropDown) || instance_exists(obj_dialogueBox) || mouseoverHorScrollBar);
+	var mouseoverCancel = (instance_exists(obj_dropDown) || instance_exists(obj_dialogueBox) || instance_exists(obj_sizeWindow) || mouseoverHorScrollBar);
 
 	// Set text margins
 	var textMarginTop = headerHeight;

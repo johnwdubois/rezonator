@@ -11,8 +11,7 @@
 	var lineStateLTR = (obj_control.drawLineState == obj_control.lineState_ltr);
 	var spaceWidth = string_width(" ");
 	var mouseoverWindow = point_in_rectangle(mouse_x, mouse_y, x, y + functionTabs_tabHeight, x + windowWidth, y + windowHeight);
-	var mouseoverCancel = (instance_exists(obj_dropDown) || instance_exists(obj_dialogueBox)
-	|| mouseoverHorScrollBar || scrollBarHorHolding || mouseoverScrollBar || scrollBarHolding);
+	var mouseoverCancel = instance_exists(obj_dropDown) || instance_exists(obj_dialogueBox) || instance_exists(obj_sizeWindow) || mouseoverHorScrollBar || scrollBarHorHolding || mouseoverScrollBar || scrollBarHolding;
 	if (!mouseoverWindow) mouseoverCancel = true;
 	
 	

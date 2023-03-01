@@ -1,6 +1,6 @@
 function scr_drawToolPane() {
 
-	var mouseoverCancel = (instance_exists(obj_dropDown) || instance_exists(obj_dialogueBox) || instance_exists(obj_flyout)) || obj_control.gridView;
+	var mouseoverCancel = (instance_exists(obj_dropDown) || instance_exists(obj_dialogueBox) || instance_exists(obj_flyout)) || instance_exists(obj_sizeWindow) || obj_control.gridView;
 	var toolSprWidth = sprite_get_width(spr_toolsNew) * toolSpriteScale;
 	var toolSprHeight = sprite_get_height(spr_toolsNew) * toolSpriteScale;
 	var camHeight = camera_get_view_height(camera_get_active());

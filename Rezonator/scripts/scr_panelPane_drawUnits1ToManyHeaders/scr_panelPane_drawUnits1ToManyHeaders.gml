@@ -7,7 +7,7 @@ function scr_panelPane_drawUnits1ToManyHeaders() {
 	var lineStateLTR = (obj_control.drawLineState == obj_control.lineState_ltr);
 	var colWidth = windowWidth / obj_panelPane.unit1toMColAmount;
 	var plusX = x;
-	var mouseoverCancel = !point_in_rectangle(mouse_x, mouse_y, x, y, x + windowWidth, y + windowHeight) || instance_exists(obj_dropDown) || instance_exists(obj_dialogueBox);
+	var mouseoverCancel = !point_in_rectangle(mouse_x, mouse_y, x, y, x + windowWidth, y + windowHeight) || instance_exists(obj_dropDown) || instance_exists(obj_dialogueBox) || instance_exists(obj_sizeWindow);
 	
 	if (!global.html5) scr_surfaceStart();
 	

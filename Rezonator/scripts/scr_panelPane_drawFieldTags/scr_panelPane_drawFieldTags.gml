@@ -5,7 +5,7 @@ function scr_panelPane_drawFieldTags() {
 	draw_set_halign(fa_left);
 	draw_set_valign(fa_middle);
 	
-	var mouseoverCancel = instance_exists(obj_dropDown) || instance_exists(obj_dialogueBox) || instance_exists(obj_flyout);
+	var mouseoverCancel = instance_exists(obj_dropDown) || instance_exists(obj_dialogueBox) || instance_exists(obj_flyout) || instance_exists(obj_sizeWindow);
 	var strHeight = string_height("0") * 1.5;
 	var textBuffer = 8;
 	var spaceWidth = string_width(" ");

@@ -1,10 +1,8 @@
-
-
 function scr_preImportScreen() {
 	
 	scr_fontSizeControlOpeningScreen();
 	
-	var mouseoverCancel = instance_exists(obj_dialogueBox) || instance_exists(obj_dropDown);
+	var mouseoverCancel = instance_exists(obj_dialogueBox) || instance_exists(obj_dropDown) || instance_exists(obj_sizeWindow);
 	
 	// get camera width & height
 	var camWidth = camera_get_view_width(camera_get_active());

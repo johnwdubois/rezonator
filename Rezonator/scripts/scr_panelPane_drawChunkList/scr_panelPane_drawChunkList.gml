@@ -21,7 +21,7 @@ function scr_panelPane_drawChunkList() {
 	var focusedElementY = -1;
 	var mouseoverWindow = point_in_rectangle(mouse_x, mouse_y, x, y, x + windowWidth, y + windowHeight);
 	var mouseoverHeaderRegion = point_in_rectangle(mouse_x, mouse_y, x, y, x + windowWidth, y + headerHeight);
-	var mouseoverCancel =  mouseoverScrollBar || scrollBarHolding || mouseoverHeaderRegion || instance_exists(obj_dropDown) || instance_exists(obj_dialogueBox);
+	var mouseoverCancel =  mouseoverScrollBar || scrollBarHolding || mouseoverHeaderRegion || instance_exists(obj_dropDown) || instance_exists(obj_dialogueBox) || instance_exists(obj_sizeWindow);
 	
 	if (!mouseoverWindow) {
 		with (obj_panelPane) functionChainList_chunkMouseover = "";

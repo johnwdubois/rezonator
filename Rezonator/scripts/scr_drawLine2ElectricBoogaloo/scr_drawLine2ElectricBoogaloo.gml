@@ -83,6 +83,8 @@ function scr_drawLine2ElectricBoogaloo() {
 	ds_list_clear(inRectTokenIDList);
 	ds_list_clear(inRectUnitIDList);
 	
+	var mouseoverCancel = instance_exists(obj_dialogueBox) || instance_exists(obj_dropDown) || instance_exists(obj_sizeWindow);
+	
 	
 	var oobRectX1 = (justify == justifyLeft) ? 0 : camWidth;
 	var oobRectY1 = 0;
@@ -194,7 +196,7 @@ function scr_drawLine2ElectricBoogaloo() {
 		unitPlusY += gridSpaceVertical;
 	}
 	
-	if (!obj_control.mouseoverSpeakerLabel and obj_control.hoverTokenID == "" and obj_control.hoverChunkID == "" and !obj_control.mouseoverPanelPane and !(instance_exists(obj_dropDown) and obj_control.rightClicked) and !instance_exists(obj_dialogueBox)) {
+	if (!obj_control.mouseoverSpeakerLabel and obj_control.hoverTokenID == "" and obj_control.hoverChunkID == "" and !obj_control.mouseoverPanelPane and !mouseoverCancel and obj_control.rightClicked) {
 		if (device_mouse_check_button_released(0, mb_left)) {
 			if (global.delayInput <= 0) {
 				scr_chainDeselect();
@@ -247,7 +249,7 @@ function scr_drawLine2ElectricBoogaloo() {
 	
 	// draw horizontal lines for hovered unit
 	if (hoverLine or (is_string(obj_control.hoverUnitID) && obj_control.hoverUnitID != "" && !mouse_check_button(mb_left)
-		&& obj_toolPane.currentMode != obj_toolPane.modeRead && !instance_exists(obj_dropDown) && !instance_exists(obj_dialogueBox)) && !mouseoverBackArrow) {
+		&& obj_toolPane.currentMode != obj_toolPane.modeRead && !mouseoverCancel && !mouseoverBackArrow)) {
 		var currentUnitSubMap = global.nodeMap[? obj_control.hoverUnitID];
 		var unitY1 = floor(currentUnitSubMap[? "pixelY"] - gridSpaceVertical/2 -1);
 		var unitY2 = floor(currentUnitSubMap[? "pixelY"] + gridSpaceVertical/2 -3);

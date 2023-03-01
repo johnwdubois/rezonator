@@ -24,7 +24,7 @@ draw_roundrect(flyoutX1, flyoutY1, flyoutX2, flyoutY2, false);
 
 // draw flyout options
 var optionY = floor(y);
-var mouseoverCancel = instance_exists(obj_dropDown) || instance_exists(obj_dialogueBox);
+var mouseoverCancel = instance_exists(obj_dropDown) || instance_exists(obj_dialogueBox) || instance_exists(obj_sizeWindow);
 for (var i = 0; i < imageNum; i++) {
 	
 	if (!ds_exists(optionList, ds_type_list)) exit;

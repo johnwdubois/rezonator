@@ -13,7 +13,7 @@ function scr_panelPane_drawHelp() {
 	var helpMenuGridHeight = ds_grid_height(functionHelp_menuGrid);
 	var collapseButtonRad = string_height("A") * 0.5;
 	
-	var mouseoverCancel = instance_exists(obj_dropDown) || instance_exists(obj_dialogueBox) || mouseoverScrollBar || scrollBarHolding;
+	var mouseoverCancel = instance_exists(obj_dropDown) || instance_exists(obj_dialogueBox) || instance_exists(obj_sizeWindow) || mouseoverScrollBar || scrollBarHolding;
 
 
 

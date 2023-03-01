@@ -11,7 +11,7 @@ function scr_panelPane_drawChains1To1Headers(chain1to1ColFieldList, chainType) {
 	var chain1to1ColFieldListSize = ds_list_size(chain1to1ColFieldList);
 	var lineStateLTR = (obj_control.drawLineState == obj_control.lineState_ltr);
 	var colWidth = windowWidth / obj_panelPane.chain1to1ColAmount;
-	var mouseoverCancel = !point_in_rectangle(mouse_x, mouse_y, x, y, x + windowWidth, y + windowHeight) || instance_exists(obj_dropDown) || instance_exists(obj_dialogueBox);
+	var mouseoverCancel = !point_in_rectangle(mouse_x, mouse_y, x, y, x + windowWidth, y + windowHeight) || instance_exists(obj_dropDown) || instance_exists(obj_dialogueBox) || instance_exists(obj_sizeWindow);
 
 	// Create the column headers
 	for (var i = 0; i < chain1to1ColFieldListSize; i++) {

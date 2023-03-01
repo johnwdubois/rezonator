@@ -11,6 +11,7 @@ function scr_panelPane_drawTabs() {
 	var strHeight = string_height("0");
 	var sprHeight = sprite_get_height(spr_filterIcons);
 	var textMarginLeft = 5;
+	var mouseoverCancel = instance_exists(obj_dropDown) || instance_exists(obj_dialogueBox) || instance_exists(obj_sizeWindow);
 	
 	// set positions for other panelPanes
 	var tabsPaneInst = self.id;
@@ -58,7 +59,7 @@ function scr_panelPane_drawTabs() {
 		// set dimensions for tabs
 		var tabRectX1 = x + (i * (windowWidth / (tabAmount+0.5)));
 		var tabRectX2 = tabRectX1 + (windowWidth / (tabAmount+0.5));
-		var mouseoverTab = point_in_rectangle(mouse_x, mouse_y, tabRectX1, tabRectY1, tabRectX2, tabRectY2) && !instance_exists(obj_dropDown) && !instance_exists(obj_dialogueBox);
+		var mouseoverTab = point_in_rectangle(mouse_x, mouse_y, tabRectX1, tabRectY1, tabRectX2, tabRectY2) && !mouseoverCancel;
 
 	
 		if (!currentTabSelected) {

@@ -12,7 +12,7 @@ function scr_panelPane_drawSearch1ToMany() {
 	var drawScrollbar = true;	
 	var strHeight = string_height("0") * 1.5;
 	var spaceWidth = string_width(" ");
-	var mouseoverCancel = instance_exists(obj_dropDown) || instance_exists(obj_dialogueBox) || scrollBarHolding;
+	var mouseoverCancel = instance_exists(obj_dropDown) || instance_exists(obj_dialogueBox) || instance_exists(obj_sizeWindow) || scrollBarHolding;
 	
 	// get hit col width by finding the longest string width in the search's search term list
 	var unitColWidth = windowWidth * 0.1;

@@ -1,6 +1,4 @@
-/// @description Insert description here
-// You can write your code in this editor
-
+if (live_call()) return live_result;
 
 var camWidth = camera_get_view_width(camera_get_active());
 
@@ -150,10 +148,11 @@ if (instance_exists(obj_control)) {
 }
 
 
-	var minimizeY1 = maximizeY1
-	var minimizeX2 = (global.userLangRTL) ? maximizeX1 + sizeOfButtons/2 : maximizeX1 - sizeOfButtons/2;
-	var minimizeX1 = (global.userLangRTL) ? minimizeX2 + sizeOfButtons : minimizeX2 - sizeOfButtons;
-	var minimizeY2 = maximizeY2
+var minimizeY1 = maximizeY1;
+var minimizeX2 = (global.userLangRTL) ? maximizeX1 + sizeOfButtons/2 : maximizeX1 - sizeOfButtons/2;
+var minimizeX1 = (global.userLangRTL) ? minimizeX2 + sizeOfButtons : minimizeX2 - sizeOfButtons;
+var minimizeY2 = maximizeY2;
+
 if (instance_exists(obj_control)) {
 	draw_set_color(c_white);
 
@@ -277,6 +276,23 @@ if (instance_exists(obj_control)) {
 	}
 }
 
+// size slider button
+var sizeIconX2 = saveIconX1 - (sizeOfButtons / 2);
+var sizeIconX1 = sizeIconX2 - sizeOfButtons;
+draw_set_alpha(1);
+draw_set_color(c_white);
+draw_set_halign(fa_center);
+draw_set_valign(fa_middle);
+draw_text(floor(mean(sizeIconX1, sizeIconX2)), floor(mean(saveIconY1, saveIconY2)), "Aa");
+var mouseoverSizeIcon = point_in_rectangle(mouse_x, mouse_y, sizeIconX1, saveIconY1, sizeIconX2, saveIconY2);
+if (mouseoverSizeIcon) {
+	scr_createTooltip(sizeIconX1, floor(mean(saveIconY1, saveIconY2)), scr_get_translation("msg_size-slider"), obj_tooltip.arrowFaceRight);
+	if (mouse_check_button_released(mb_left)) {
+		if (!instance_exists(obj_sizeWindow)) {
+			instance_create_layer(0, 0, "InstancesDialogue", obj_sizeWindow);
+		}
+	}
+}
 
 
 //scr_fontSlider();

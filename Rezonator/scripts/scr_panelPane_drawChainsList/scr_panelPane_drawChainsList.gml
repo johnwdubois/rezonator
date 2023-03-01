@@ -23,7 +23,7 @@ function scr_panelPane_drawChainsList() {
 	}
 	var relativeScrollPlusY = (drawScrollbar) ? scrollPlusY : chainContentsPanelPaneInst.scrollPlusY;
 	var ableToMouseoverOption = true;
-	var mouseoverCancel = instance_exists(obj_dropDown) || instance_exists(obj_dialogueBox) || instance_exists(obj_flyout);
+	var mouseoverCancel = instance_exists(obj_dropDown) || instance_exists(obj_dialogueBox) || instance_exists(obj_flyout) || instance_exists(obj_sizeWindow);
 
 
 	// get list of chains for this tab

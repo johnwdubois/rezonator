@@ -17,7 +17,7 @@ function scr_panelPane_drawUnits1to1() {
 	var strHeight = leftPaneStrHeight;
 	var drawScrollbar = !chainViewOneToMany;
 	var relativeScrollPlusY = (drawScrollbar) ? scrollPlusY : lineListPanelPaneInst.scrollPlusY;
-	var mouseoverCancel = instance_exists(obj_dropDown) || instance_exists(obj_dialogueBox) || mouseoverHorScrollBar;
+	var mouseoverCancel = instance_exists(obj_dropDown) || instance_exists(obj_dialogueBox) || instance_exists(obj_sizeWindow) || mouseoverHorScrollBar;
 	
 
 	// Set text margin area

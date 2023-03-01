@@ -1,11 +1,9 @@
-
-
 function scr_preImportFileTypeWindow() {
 
 	var camWidth = camera_get_view_width(camera_get_active());
 	var camHeight = camera_get_view_height(camera_get_active());
 	
-	var mouseoverCancel = instance_exists(obj_dialogueBox) || instance_exists(obj_dropDown);
+	var mouseoverCancel = instance_exists(obj_dialogueBox) || instance_exists(obj_dropDown) || instance_exists(obj_sizeWindow);
 	
 		
 	var backgroundWindowX1 = floor(camWidth * 0.04);

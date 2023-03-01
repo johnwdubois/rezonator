@@ -4,7 +4,7 @@ function scr_panelPane_drawChains1ToManyHeaders() {
 	var textMarginLeft = 8;
 	var dropDownButtonSize = sprite_get_width(spr_dropDown);
 	var camWidth = camera_get_view_width(view_camera[0]);
-	var mouseoverCancel = !point_in_rectangle(mouse_x, mouse_y, x, y, x + windowWidth, y + windowHeight) || instance_exists(obj_dropDown) || instance_exists(obj_dialogueBox);
+	var mouseoverCancel = !point_in_rectangle(mouse_x, mouse_y, x, y, x + windowWidth, y + windowHeight) || instance_exists(obj_dropDown) || instance_exists(obj_dialogueBox) || instance_exists(obj_sizeWindow);
 	
 	var sortArrowScale = 0.4;
 	if (camWidth > 2000) {sortArrowScale *= 1.25;}

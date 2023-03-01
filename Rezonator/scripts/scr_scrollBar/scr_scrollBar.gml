@@ -30,6 +30,8 @@ function scr_scrollBar(listSize, focusedElementY, strHeight, marginTop, scrollBa
 	scrollBarHeight = clamp(scrollBarHeight, scrollBarHeightMin, scrollBarHeightMax);
 	mouseoverScrollBar = point_in_rectangle(mouse_x, mouse_y, x + windowWidth - global.scrollBarWidth, y + global.scrollBarWidth + marginTop, x + windowWidth, y + windowHeight - global.scrollBarWidth) && !scrollCancel;
 	
+	
+	
 	if (scrollBarHeight == scrollBarHeightMax) currentAlpha = 0;
 	draw_set_alpha(currentAlpha);
 	

@@ -19,7 +19,7 @@ function scr_panelPane_drawTree1ToMany() {
 	draw_set_color(topBkgColor);
 	draw_rectangle(x, y, x + windowWidth, y + windowHeight - strHeight, false);
 	
-	var mouseoverCancel = scrollBarHorHolding || scrollBarHolding || mouseoverHorScrollBar || mouseoverScrollBar || instance_exists(obj_dropDown) || instance_exists(obj_dialogueBox);
+	var mouseoverCancel = scrollBarHorHolding || scrollBarHolding || mouseoverHorScrollBar || mouseoverScrollBar || instance_exists(obj_dropDown) || instance_exists(obj_dialogueBox) || instance_exists(obj_sizeWindow);
 
 
 
