@@ -12,6 +12,8 @@ function scr_adjustTokenSpacing(numToAdd) {
 			gridSpaceHorizontal = clamp(gridSpaceHorizontal, gridSpaceHorizontalMin, gridSpaceHorizontalMax);
 			proseSpaceHorizontal = clamp(proseSpaceHorizontal, proseSpaceHorizontalMin, proseSpaceHorizontalMax);
 		}
+		
+		if (!scr_checkNativeJustification() && obj_control.shape == obj_control.shapeBlock) scr_refreshDisplayColAndPrevToken();
 	}
 
 }

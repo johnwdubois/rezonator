@@ -22,7 +22,6 @@ function scr_zoomOptions(optionSelected) {
 		
 			if (!obj_control.gridView) {
 				scr_adjustTokenSpacing(20);
-				if (!scr_checkNativeJustification() && obj_control.shape == obj_control.shapeBlock) scr_refreshDisplayColAndPrevToken();
 			}
 		
 			show_debug_message("BUH 4");
@@ -31,7 +30,6 @@ function scr_zoomOptions(optionSelected) {
 		
 			if (!obj_control.gridView) {
 				scr_adjustTokenSpacing(-20);
-				if (!scr_checkNativeJustification() && obj_control.shape == obj_control.shapeBlock) scr_refreshDisplayColAndPrevToken();
 			}
 		
 			show_debug_message("BUH 5");

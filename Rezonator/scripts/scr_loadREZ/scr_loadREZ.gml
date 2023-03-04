@@ -5,6 +5,7 @@ function scr_loadREZ() {
 		var html5filename = working_directory + "IncludedFiles/Data/SBCorpus/REZ_beautify/" + global.html5RezFile + ".rez";
 		if (file_exists(html5filename)) {
 			global.html5FileRipStr = "";
+			show_debug_message("scr_loadREZ, html5, before reading file");
 			var file = file_text_open_read(html5filename);
 			while (!file_text_eof(file)) {
 				var line = file_text_readln(file);
@@ -14,6 +15,7 @@ function scr_loadREZ() {
 				global.html5FileRipStr += line;
 			}
 			file_text_close(file);
+			show_debug_message("scr_loadREZ, html5, after reading file");
 		
 			var decode = json_decode(global.html5FileRipStr);
 			scr_loadREZHandleWrapper(decode);

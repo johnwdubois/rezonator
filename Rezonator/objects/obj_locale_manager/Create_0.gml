@@ -22,7 +22,6 @@ global.html5FileRipStr = "";
 var delimiter = (os_type == os_windows) ? "\\" : "/";
 if (global.html5) delimiter = "/";
 
-
 if (true) {
 	default_locale_code		= "en";
 	default_locale_index	= 0;
