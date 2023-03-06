@@ -1,10 +1,10 @@
 function scr_scrollBarHorizontal(listSize,colWidth,scrollBackColor, scrollBarColor, scrollButtonColor1, scrollButtonColor2, scrollButtonSprite, windowWidth, windowHeight) {
 	
-	var scrollCancel = instance_exists(obj_flyout) || instance_exists(obj_dropDown);
+	var scrollCancel = instance_exists(obj_flyout) || instance_exists(obj_dropDown) || instance_exists(obj_sizeWindow);
 
 
 	var outterBuffer = 50;
-	var mouseNear = point_in_rectangle(mouse_x, mouse_y, x, y + windowHeight- global.scrollBarWidth- outterBuffer, x + windowWidth- global.scrollBarWidth + outterBuffer, y + windowHeight) && !windowResizeYHolding;
+	var mouseNear = point_in_rectangle(mouse_x, mouse_y, x, y + windowHeight- global.scrollBarWidth- outterBuffer, x + windowWidth- global.scrollBarWidth + outterBuffer, y + windowHeight) && !windowResizeYHolding && !scrollCancel;
 	var currentAlpha = (mouseNear || scrollBarHorHolding) ? 1 : 0.5;
 	draw_set_alpha(currentAlpha);
 	

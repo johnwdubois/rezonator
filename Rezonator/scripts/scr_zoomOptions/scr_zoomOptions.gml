@@ -61,7 +61,7 @@ function scr_zoomOptions(optionSelected) {
 
 			if (obj_control.gridSpaceVertical > obj_control.gridSpaceVerticalMin) {
 				obj_control.gridSpaceVertical -= 10;
-				// Don't go above the max
+				// Don't go below the min
 				obj_control.gridSpaceVertical = max(obj_control.gridSpaceVertical, obj_control.gridSpaceVerticalMin);
 				obj_control.lineSpacing -= 4;
 				obj_control.gridSpaceRatio = (obj_control.gridSpaceVertical/obj_control.prevGridSpaceVertical);

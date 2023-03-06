@@ -4,11 +4,11 @@ function scr_scrollBar(listSize, focusedElementY, strHeight, marginTop, scrollBa
 		Purpose: Draw the scroll bar used to naviagte a UI list
 	*/
 	
-	var scrollCancel = instance_exists(obj_flyout);
+	var scrollCancel = instance_exists(obj_flyout) || instance_exists(obj_sizeWindow);
 	if (instance_exists(obj_dropDown) && object_index != obj_dropDown) scrollCancel = true;
 	
 	var outterBuffer = 50;
-	var mouseNear = point_in_rectangle(mouse_x, mouse_y, x + windowWidth - global.scrollBarWidth - outterBuffer, y - outterBuffer, x + windowWidth + outterBuffer, y + windowHeight + outterBuffer);
+	var mouseNear = point_in_rectangle(mouse_x, mouse_y, x + windowWidth - global.scrollBarWidth - outterBuffer, y - outterBuffer, x + windowWidth + outterBuffer, y + windowHeight + outterBuffer) && !scrollCancel;
 	var currentAlpha = (mouseNear || scrollBarHolding) ? 1 : 0.5;
 	draw_set_alpha(currentAlpha);
 
