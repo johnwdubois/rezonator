@@ -1,5 +1,3 @@
-if (live_call()) return live_result;
-
 var camWidth = camera_get_view_width(camera_get_active());
 
 // draw drop shadow if both nav windows are hidden

@@ -21,6 +21,8 @@
   "gradleinject": "",
   "hasConvertedCodeInjection": true,
   "helpfile": "",
+  "HTML5CodeInjection": "",
+  "html5Props": false,
   "IncludedResources": [
     "Scripts\\Regular Expressions\\regular_expression_create.gml",
     "Scripts\\Regular Expressions\\regular_expression_destroy.gml",

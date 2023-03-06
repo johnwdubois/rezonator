@@ -1,5 +1,3 @@
-if (live_call()) return live_result;
-
 var mouseoverWindow = point_in_rectangle(mouse_x, mouse_y, x, y, x + windowWidth, y + windowHeight);
 
 // if clicking outside of window, destroy window
