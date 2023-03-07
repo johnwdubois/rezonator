@@ -5,7 +5,7 @@ if (runFontSizeTest) {
 		scr_adaptFont("a", "M", false);
 		if (fontSizeTest >= global.fontSizeMax) {
 			runFontSizeTest = false;
-			//scr_loadINI();
+			alarm[9] = 1;
 		}
 	}
 }

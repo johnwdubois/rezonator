@@ -26,7 +26,7 @@ var sliderX2 = x + (windowWidth * 0.85);
 var sliderWidth = sliderX2 - sliderX1;
 var sliderPickRad = windowWidth * 0.04;
 var fontSliderY = y + (strHeight * 2.5);
-var fontSliderIndexes = 5;
+var fontSliderIndexes = global.fontSizeMax - 1;
 draw_set_color(global.colorThemeSelected2);
 draw_line_width(sliderX1, fontSliderY, sliderX2, fontSliderY, 3);
 var fontSliderPickX = sliderX1 + (sliderWidth * (global.fontSize / fontSliderIndexes));

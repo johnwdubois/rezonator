@@ -24,7 +24,7 @@ if (room == rm_openingScreen) {
 	var loadingBarBackY2 = (camera_get_view_height(camera_get_active()) - camera_get_view_width(camera_get_active()) / 8);
 
 	loadRatio = lerp(loadRatio, loadRatioDest, 0.25);
-	loadRatioDest = obj_openingScreen.CJKLoopIteration / 6;
+	loadRatioDest = obj_openingScreen.CJKLoopIteration / (global.fontSizeMax + 1);
 
 	var loadingBarFillWidth = (loadingBarBackX2 - loadingBarBackX1) * loadRatio;
 	

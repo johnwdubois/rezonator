@@ -7,7 +7,7 @@ function scr_initializeFonts() {
 		
 	show_debug_message("font_file_name: " + string(font_file_name));
 	
-	global.fontSizeMax = 6;
+	global.fontSizeMax = 12;
 	global.fontMap = ds_map_create();
 	
 	for (var i = 0; i < global.fontSizeMax + 1; i++) {
@@ -31,7 +31,5 @@ function scr_initializeFonts() {
 	// special sizes
 	global.localeEN_Title = font_add(font_file_name_full, 30, false, false, 32, 127);		
 	global.localeCJK_Title = 0;
-	
-	with (obj_openingScreen) runFontSizeTest = true;
 
 }
