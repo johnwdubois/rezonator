@@ -1,3 +1,16 @@
+if (runFontSizeTest) {
+	if (fontSizeTest >= 0 && fontSizeTest <= global.fontSizeMax) {
+		global.fontSize = fontSizeTest;
+		fontSizeTest++;
+		scr_adaptFont("a", "M", false);
+		if (fontSizeTest >= global.fontSizeMax) {
+			runFontSizeTest = false;
+			//scr_loadINI();
+		}
+	}
+}
+
+
 scr_colorThemeControl();
 
 importWindowWidth = camera_get_view_width(camera_get_active()) / 2;

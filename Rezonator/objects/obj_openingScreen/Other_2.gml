@@ -38,8 +38,6 @@ global.importType_Transcription = "import_type_transcription";
 global.importType = global.importType_PlainText;
 
 
-scr_loadINI();
-
 global.importGroupDir = "";
 global.importGroupFileList = ds_list_create();
 global.importGroupFileIndex = 0;
@@ -52,7 +50,6 @@ global.skipToOpen = false;
 global.inputBoxDefStr = global.userName;
 
 scr_initializeFonts();
-scr_fontGlobalUpdate();
 
 global.fontsLoaded = false;
 global.loadingScreenCreated = false;

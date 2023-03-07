@@ -93,7 +93,6 @@ function scr_languageOptions(optionSelected) {
 		
 	}
 	
-	scr_fontGlobalUpdate();
 	scr_preImportInitiate();
 	
 	with (obj_dropDown) {

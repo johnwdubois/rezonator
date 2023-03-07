@@ -126,12 +126,9 @@ function scr_loadINI() {
 		}
 	}
 
+	global.fontSize = clamp(global.fontSize, 0, global.fontSizeMax);
+	show_debug_message("scr_loadINI, fontSize: " + string(global.fontSize));
 	ds_list_destroy(newInstList);
-
-
-
-
-
 
 
 }

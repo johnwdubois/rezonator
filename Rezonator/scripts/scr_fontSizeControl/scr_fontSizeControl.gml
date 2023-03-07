@@ -187,8 +187,6 @@ function scr_fontSizeControl() {
 	
 	}
 
-	scr_fontGlobalUpdate();
-
 	gridSpaceVerticalMin = gridSpaceVerticalMinOriginal + ((global.fontSize + 1) * 5);
 
 

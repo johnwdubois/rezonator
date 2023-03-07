@@ -468,3 +468,6 @@ global.restoreAutosave = false;
 global.autosaveLastSavedFilename = "";
 
 selectOpenButton = false;
+
+fontSizeTest = 0;
+runFontSizeTest = false;

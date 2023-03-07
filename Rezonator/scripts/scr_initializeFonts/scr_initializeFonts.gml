@@ -1,89 +1,37 @@
-
-
 function scr_initializeFonts() {
-		// find font file
-		var delimiter = (os_type == os_macosx) ? "/" : "\\";
-		var font_file_name = file_find_first( working_directory + "IncludedFiles" + delimiter + "Fonts" + delimiter + "*.ttf", 0);		// find the ttf file
-		var font_file_name_full = "IncludedFiles" + delimiter + "Fonts" + delimiter + font_file_name;
 	
+	// find font file
+	var delimiter = (os_type == os_macosx) ? "/" : "\\";
+	var font_file_name = file_find_first( working_directory + "IncludedFiles" + delimiter + "Fonts" + delimiter + "*.ttf", 0);		// find the ttf file
+	var font_file_name_full = "IncludedFiles" + delimiter + "Fonts" + delimiter + font_file_name;
+		
+	show_debug_message("font_file_name: " + string(font_file_name));
+	
+	global.fontSizeMax = 6;
+	global.fontMap = ds_map_create();
+	
+	for (var i = 0; i < global.fontSizeMax + 1; i++) {
+		
+		var _sizeS = 10 + (i * 2);
+		var _sizeM = _sizeS + 2;
+		var _sizeL = _sizeM + 2;
+		
+		var _fontS = font_add(font_file_name_full, _sizeS, false, false, 32, 127);
+		var _fontM = font_add(font_file_name_full, _sizeM, false, false, 32, 127);
+		var _fontL = font_add(font_file_name_full, _sizeL, false, false, 32, 127);
+		
+		global.fontMap[? "nonCJK_S_" + string(i)] = _fontS;
+		global.fontMap[? "nonCJK_M_" + string(i)] = _fontM;
+		global.fontMap[? "nonCJK_L_" + string(i)] = _fontL;
+		global.fontMap[? "CJK_S_" + string(i)] = 0;
+		global.fontMap[? "CJK_M_" + string(i)] = 0;
+		global.fontMap[? "CJK_L_" + string(i)] = 0;
+	}
 
-		global.localeEN_S_0 = font_add(font_file_name_full,10,false,false,32,127);
-		global.localeEN_M_0 = font_add(font_file_name_full,12,false,false,32,127);
-		global.localeEN_L_0 = font_add(font_file_name_full,14,false,false,32,127);
-		
-			
-
-	//size_1
-		global.localeEN_S_1 = font_add(font_file_name_full,12,false,false,32,127);		
-		global.localeEN_M_1 = font_add(font_file_name_full,14,false,false,32,127);		
-		global.localeEN_L_1 = font_add(font_file_name_full,16,false,false,32,127);		
-
-
-		
-	//size_2
-		global.localeEN_S_2 = font_add(font_file_name_full,14,false,false,32,127);		
-		global.localeEN_M_2 = font_add(font_file_name_full,16,false,false,32,127);		
-		global.localeEN_L_2 = font_add(font_file_name_full,18,false,false,32,127);		
-
-		
-	//size_3
-		global.localeEN_S_3 = font_add(font_file_name_full,16,false,false,32,127);		
-		global.localeEN_M_3 = font_add(font_file_name_full,18,false,false,32,127);		
-		global.localeEN_L_3 = font_add(font_file_name_full,20,false,false,32,127);		
-
-		
-	//size_4
-		global.localeEN_S_4 = font_add(font_file_name_full,18,false,false,32,127);		
-		global.localeEN_M_4 = font_add(font_file_name_full,20,false,false,32,127);		
-		global.localeEN_L_4 = font_add(font_file_name_full,22,false,false,32,127);		
-
-		
-	//size_5
-		global.localeEN_S_5 = font_add(font_file_name_full,20,false,false,32,127);		
-		global.localeEN_M_5 = font_add(font_file_name_full,22,false,false,32,127);		
-		global.localeEN_L_5 = font_add(font_file_name_full,24,false,false,32,127);		
-		
-	//special sizes
-		global.localeEN_Title = font_add(font_file_name_full,30,false,false,32,127);		
-
-
-		
-		//size_0
-		global.localeCJK_S_0 = 0;
-		global.localeCJK_M_0 = 0;
-		global.localeCJK_L_0 = 0;
-		
-		//size_1
-		
-		global.localeCJK_S_1 = 0;
-		global.localeCJK_M_1 = 0;
-		global.localeCJK_L_1 = 0;
-		
-		//size_2
-		
-		global.localeCJK_S_2 = 0;
-		global.localeCJK_M_2 = 0;
-		global.localeCJK_L_2 = 0;
-		
-		//size_3
-		
-		global.localeCJK_S_3 = 0;
-		global.localeCJK_M_3 = 0;
-		global.localeCJK_L_3 = 0;
-		
-		//size_4
-		
-		global.localeCJK_S_4 = 0;
-		global.localeCJK_M_4 = 0;
-		global.localeCJK_L_4 = 0;
-		
-		//size_5		
-		global.localeCJK_S_5 = 0;		
-		global.localeCJK_M_5 = 0;
-		global.localeCJK_L_5 = 0;
-		
-		
-		//special sizes
-		global.localeCJK_Title = 0;
+	// special sizes
+	global.localeEN_Title = font_add(font_file_name_full, 30, false, false, 32, 127);		
+	global.localeCJK_Title = 0;
+	
+	with (obj_openingScreen) runFontSizeTest = true;
 
 }

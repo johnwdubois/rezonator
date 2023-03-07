@@ -1,30 +1,30 @@
 // Call this script every time before using draw_text
 // This script handles setting text size for different fonts and reversing strings for RTL fonts
 
-function scr_adaptFont(inputString, size, isTitle) {
+function scr_adaptFont(str, size, isTitle) {
 	var setTitleFont = false;
 	if (argument_count > 2) {
 		setTitleFont = isTitle;
 	}
 	// make sure we're dealing with a string
-	if (!is_string(inputString)) inputString = string(inputString);
+	if (!is_string(str)) str = string(str);
 
 	// get rid of any newlines in this string
-	if (string_count("\n", inputString) > 0) inputString = string_replace_all(inputString, "\n", "");
-	if (string_count("\r", inputString) > 0) inputString = string_replace_all(inputString, "\r", "");
+	if (string_count("\n", str) > 0) str = string_replace_all(str, "\n", "");
+	if (string_count("\r", str) > 0) str = string_replace_all(str, "\r", "");
 	
 	// determine if this string is latin, CJK, or hebrew
 	var isCJK = false;
 	var isRTL = false;
-	if (ds_map_exists(global.strToLangMap, inputString)) {
-		var langCode = ds_map_find_value(global.strToLangMap, inputString);
+	if (ds_map_exists(global.strToLangMap, str)) {
+		var langCode = ds_map_find_value(global.strToLangMap, str);
 		if (langCode == "CJK") isCJK = true;
 		else if (langCode == "RTL") isRTL = true;
 	}
 	else {
-		var letterCount = string_length(inputString);
+		var letterCount = string_length(str);
 		for (var i = 0;i <= letterCount; i++) {
-			var unicodeValue = ord(string_char_at(inputString,i));
+			var unicodeValue = ord(string_char_at(str,i));
 			// check if char is in CJK unicode range
 			if ((12288 <= unicodeValue and unicodeValue <= 65535) or
 			(131072 <= unicodeValue  and unicodeValue <= 183983) or
@@ -56,152 +56,26 @@ function scr_adaptFont(inputString, size, isTitle) {
 		if (isCJK) langCode = "CJK";
 		else if (isRTL) langCode = "RTL";
 		else langCode = "LATIN";
-		ds_map_add(global.strToLangMap, inputString, langCode);
+		ds_map_add(global.strToLangMap, str, langCode);
 	}
 		
 		
 	// determine the font to set
-	var fontScaledName = global.localeEN_M_0;
+	var fontScaledName = fnt_nonCJK_size3;
 	if (isCJK) {
-		// CJK SMALL
-		if (size == "S") {
-			fontScaledName = global.localeCJK_S_0;
-			if (global.fontSize == 0) {
-				fontScaledName = global.html5 ? fnt_CJK_size1 : global.localeCJK_S_0;
-			}
-			else if (global.fontSize == 1) {
-				fontScaledName = global.html5 ? fnt_CJK_size2 : global.localeCJK_S_1;
-			} 
-			else if (global.fontSize == 2) {
-				fontScaledName = global.html5 ? fnt_CJK_size3 : global.localeCJK_S_2;
-			}
-			else if (global.fontSize == 3) {
-				fontScaledName = global.html5 ? fnt_CJK_size4 : global.localeCJK_S_3;
-			}
-			else if (global.fontSize == 4) {
-				fontScaledName = global.html5 ? fnt_CJK_size5 : global.localeCJK_S_4;
-			}
-			else if (global.fontSize == 5) {
-				fontScaledName = global.html5 ? fnt_CJK_size6 : global.localeCJK_S_5;
-			} 
-		}
-		// CJK MEDIUM
-		else if (size == "M") {
-			fontScaledName = global.localeCJK_M_0;
-			if (global.fontSize == 0) {
-				fontScaledName = global.html5 ? fnt_CJK_size1 : global.localeCJK_M_0;
-			}
-			else if (global.fontSize == 1) {
-				fontScaledName = global.html5 ? fnt_CJK_size2 : global.localeCJK_M_1;
-			} 
-			else if (global.fontSize == 2) {
-				fontScaledName = global.html5 ? fnt_CJK_size3 : global.localeCJK_M_2;
-			}
-			else if (global.fontSize == 3) {
-				fontScaledName = global.html5 ? fnt_CJK_size4 : global.localeCJK_M_3;
-			}
-			else if (global.fontSize == 4) {
-				fontScaledName = global.html5 ? fnt_CJK_size5 : global.localeCJK_M_4;
-			}
-			else if (global.fontSize == 5) {
-				fontScaledName = global.html5 ? fnt_CJK_size6 : global.localeCJK_M_5;
-			} 
-		}
-		// CJK LARGE
-		else if (size == "L") {
-			fontScaledName = global.localeCJK_L_0;
-			if (global.fontSize == 0) {
-				fontScaledName = global.html5 ? fnt_CJK_size1 : global.localeCJK_L_0;
-			}
-			else if (global.fontSize == 1) {
-				fontScaledName = global.html5 ? fnt_CJK_size2 : global.localeCJK_L_1;
-			} 
-			else if (global.fontSize == 2) {
-				fontScaledName = global.html5 ? fnt_CJK_size3 : global.localeCJK_L_2;
-			}
-			else if (global.fontSize == 3) {
-				fontScaledName = global.html5 ? fnt_CJK_size4 : global.localeCJK_L_3;
-			}
-			else if (global.fontSize == 4) {
-				fontScaledName = global.html5 ? fnt_CJK_size5 : global.localeCJK_L_4;
-			}
-			else if (global.fontSize == 5) {
-				fontScaledName = global.html5 ? fnt_CJK_size6 : global.localeCJK_L_5;
-			} 
-		}
 		if (setTitleFont) {
 			fontScaledName = global.html5 ? fnt_CJK_size3 : global.localeCJK_Title;
 		}
+		else {
+			fontScaledName = global.fontMap[? "CJK_" + size + "_" + string(global.fontSize)];
+		}
 	}
 	else {
-		// NON-CJK SMALL
-		if (size == "S") {
-			fontScaledName = global.localeEN_S_0;
-			if (global.fontSize == 0) {
-				fontScaledName = global.html5 ? fnt_nonCJK_size1 : global.localeEN_S_0;
-			}
-			else if (global.fontSize == 1) {
-				fontScaledName = global.html5 ? fnt_nonCJK_size2 : global.localeEN_S_1;
-			} 
-			else if (global.fontSize == 2) {
-				fontScaledName = global.html5 ? fnt_nonCJK_size3 : global.localeEN_S_2;
-			}
-			else if (global.fontSize == 3) {
-				fontScaledName = global.html5 ? fnt_nonCJK_size4 : global.localeEN_S_3;
-			}
-			else if (global.fontSize == 4) {
-				fontScaledName = global.html5 ? fnt_nonCJK_size5 : global.localeEN_S_4;
-			}
-			else if (global.fontSize == 5) {
-				fontScaledName = global.html5 ? fnt_nonCJK_size6 : global.localeEN_S_5;
-			} 
-		}
-		// NON-CJK MEDIUM
-		else if (size == "M") {
-			fontScaledName = global.localeEN_M_0;
-			if (global.fontSize == 0) {
-				fontScaledName = global.html5 ? fnt_nonCJK_size1 : global.localeEN_M_0;
-			}
-			else if (global.fontSize == 1) {
-				fontScaledName = global.html5 ? fnt_nonCJK_size2 : global.localeEN_M_1;
-			} 
-			else if (global.fontSize == 2) {
-				fontScaledName = global.html5 ? fnt_nonCJK_size3 : global.localeEN_M_2;
-			}
-			else if (global.fontSize == 3) {
-				fontScaledName = global.html5 ? fnt_nonCJK_size4 : global.localeEN_M_3;
-			}
-			else if (global.fontSize == 4) {
-				fontScaledName = global.html5 ? fnt_nonCJK_size5 : global.localeEN_M_4;
-			}
-			else if (global.fontSize == 5) {
-				fontScaledName = global.html5 ? fnt_nonCJK_size6 : global.localeEN_M_5;
-			} 
-		}
-		// NON-CJK LARGE
-		else if (size == "L") {
-			fontScaledName = global.localeEN_L_0;
-			if (global.fontSize == 0) {
-				fontScaledName = global.html5 ? fnt_nonCJK_size1 : global.localeEN_L_0;
-			}
-			else if (global.fontSize == 1) {
-				fontScaledName = global.html5 ? fnt_nonCJK_size2 : global.localeEN_L_1;
-			} 
-			else if (global.fontSize == 2) {
-				fontScaledName = global.html5 ? fnt_nonCJK_size3 : global.localeEN_L_2;
-			}
-			else if (global.fontSize == 3) {
-				fontScaledName = global.html5 ? fnt_nonCJK_size4 : global.localeEN_L_3;
-			}
-			else if (global.fontSize == 4) {
-				fontScaledName = global.html5 ? fnt_nonCJK_size5 : global.localeEN_L_4;
-			}
-			else if (global.fontSize == 5) {
-				fontScaledName = global.html5 ? fnt_nonCJK_size6 : global.localeEN_L_5;
-			} 
-		}
 		if (setTitleFont) {
 			fontScaledName = global.html5 ? fnt_nonCJK_size3 : global.localeEN_Title;
+		}
+		else {
+			fontScaledName = global.fontMap[? "nonCJK_" + size + "_" + string(global.fontSize)];
 		}
 	}
 	
@@ -210,7 +84,7 @@ function scr_adaptFont(inputString, size, isTitle) {
 
 	
 	// flip the string if it's RTL!
-	if (isRTL) inputString = scr_stringReverse(inputString);
+	if (isRTL) str = scr_stringReverse(str);
 	
-	return inputString;
+	return str;
 }

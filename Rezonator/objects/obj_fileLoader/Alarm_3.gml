@@ -4,5 +4,4 @@ show_debug_message("obj_fileLoader Alarm 3");
 
 scr_loadINI();
 
-scr_fontGlobalUpdate();
 scr_setSpeakerLabelColWidth();

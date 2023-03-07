@@ -51,7 +51,6 @@ function scr_fontSizeControlOpeningScreen() {
 		}
 	}
 
-	scr_fontGlobalUpdate();
 
 
 }
