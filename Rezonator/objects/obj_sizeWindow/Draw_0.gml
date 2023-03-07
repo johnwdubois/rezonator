@@ -83,6 +83,7 @@ if (instance_exists(obj_control)) {
 
 	// holding prose width slider
 	if (proseWidthSliderHolding) {
+		with (obj_control) shape = shapeText;
 		var closestIndexToMouse = -1;
 		var closestDistToMouse = 99999;
 		var proseSliderIndexes = proseWidthRange / 20;
@@ -120,6 +121,7 @@ if (instance_exists(obj_control)) {
 
 	// holding column width slider
 	if (colWidthSliderHolding) {
+		with (obj_control) shape = shapeBlock;
 		var closestIndexToMouse = -1;
 		var closestDistToMouse = 99999;
 		var colSliderIndexes = colWidthRange / 20;
