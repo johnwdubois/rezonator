@@ -467,3 +467,4 @@ selectOpenButton = false;
 
 fontSizeTest = 0;
 runFontSizeTest = false;
+ret = -1;

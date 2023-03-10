@@ -1,5 +1,3 @@
-
-
 function scr_readFileUTF8(filename) {
 	
 	show_debug_message("scr_readFileUTF8 ... START, " + scr_printTime());

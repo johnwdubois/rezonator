@@ -3,7 +3,7 @@ function scr_drawLogo(logoX, logoY, drawVersion) {
 	draw_set_alpha(1);
 	var logoSpr = global.html5 ? spr_logoWeb : spr_logo;
 	var logoScale = clamp(camera_get_view_height(camera_get_active()) / 2160, 0.25, 1);	
-	draw_sprite_ext(logoSpr, global.fontSize, logoX, logoY, 1, 1, 0, c_white, 1);
+	draw_sprite_ext(logoSpr, min(global.fontSize, sprite_get_number(logoSpr) - 1), logoX, logoY, 1, 1, 0, c_white, 1);
 	
 	if (drawVersion) {
 

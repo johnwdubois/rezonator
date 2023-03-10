@@ -8,9 +8,8 @@ function scr_importTXT(filename) {
 	ds_grid_clear(global.importTXTLineGrid, 0);
 	ds_grid_resize(global.importTXTLineGrid, global.importTXTLineGridWidth, 0);
 	
-	
 	// get a list of lines from the source file
-	var fileLineList = scr_readFileUTF8(filename);
+	var fileLineList = global.importFromClipboard ? scr_importFromClipboard() : scr_readFileUTF8(filename);
 	var fileLineListSize = ds_list_size(fileLineList);
 	
 	// resize the importTXTLineGrid to have a row for every line in the source file

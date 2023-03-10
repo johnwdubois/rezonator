@@ -10,6 +10,7 @@
 // check with translators that they are following these conventions
 
 // create 4 global variables that maintain accessibility of translation in entire program
+
 global.lang_codes		= ds_list_create();					// create an array to store the 2-letter code of supported languages
 global.lang_index		= 0;
 global.locale_map		= ds_map_create();		// create a dictionary that stores the glossaries for all supported languages

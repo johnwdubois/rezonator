@@ -285,8 +285,31 @@ function scr_preImportScreen() {
 	if (mouseoverContinue && mouse_check_button_released(mb_left)) {		
 		global.currentDirString = global.previousImportDirectory;
 		scr_openFile();
-		
 	}
+	
+	// import from clipboard checkbox
+	var importClipboardWidth = string_height("A");
+	var importClipboardX1 = buttonRectX1;
+	var importClipboardX2 = importClipboardX1 + importClipboardWidth;
+	var importClipboardY1 = buttonRectY2 + (importClipboardWidth * 0.5);
+	var importClipboardY2 = importClipboardY1 + importClipboardWidth;
+	var mouseoverImportClipboard = point_in_rectangle(mouse_x, mouse_y, importClipboardX1, importClipboardY1, importClipboardX2, importClipboardY2);
+	if (global.importFromClipboard) {
+		draw_set_color(global.colorThemeBG);
+		draw_roundrect(importClipboardX1, importClipboardY1, importClipboardX2, importClipboardY2, false);
+	}
+	draw_set_color(global.colorThemeText);
+	scr_drawRectWidth(importClipboardX1, importClipboardY1, importClipboardX2, importClipboardY2, 2, true);
+	if (global.importFromClipboard) draw_sprite_ext(spr_checkmark, 0, mean(importClipboardX1, importClipboardX2), mean(importClipboardY1, importClipboardY2), 1, 1, 0, global.colorThemeText, 1);
+	draw_set_halign(fa_left);
+	draw_text(importClipboardX2, floor(mean(importClipboardY1, importClipboardY2)), "  " + scr_get_translation("option_import-clipboard"));
+	
+	// click import clipboard checkbox
+	if (mouseoverImportClipboard && mouse_check_button_released(mb_left)) {
+		global.importFromClipboard = !global.importFromClipboard;
+	}
+	
+	
 	
 	if (global.exitOut) {
 		if (!instance_exists(obj_dialogueBox)) {

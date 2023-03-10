@@ -11,16 +11,20 @@ function scr_createRezDirectory() {
 	}
 	
 	// Create the colelction of folders and files the user will receive on downloading Rezonator
-	var userName = (os_type == os_macosx) ? "USER" : "USERNAME";
+	var userName = (os_type == os_windows) ? "USERNAME" : "USER";
 	var userStr = environment_get_variable(userName);
-	var delimiter = (os_type == os_macosx) ? "/" : "\\";
+	var delimiter = (os_type == os_windows) ? "\\" : "/";
+	show_debug_message("scr_createRezDirectory, userStr: " + string(environment_get_variable("USERNAME")) + ", " + string(environment_get_variable("USER")));
 
 	// create core rezonator directories
 	if (os_type == os_macosx) {
 		global.documentsDirString = "/Users/" + string(userStr) + "/Documents";
 	}
-	else {
+	else if (os_type == os_windows) {
 		global.documentsDirString = "C:\\Users\\" + userStr + "\\Documents";
+	}
+	else if (os_type == os_linux) {
+		global.documentsDirString = "/Users/" + string(userStr) + "/Documents";
 	}
 	global.rezonatorDirString = global.documentsDirString + delimiter + "Rezonator" + delimiter + global.versionString;
 	global.rezonatorDefaultDiscourseDirString = global.rezonatorDirString + delimiter + "Data";
