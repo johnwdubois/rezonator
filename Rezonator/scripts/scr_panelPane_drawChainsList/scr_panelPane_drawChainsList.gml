@@ -22,7 +22,7 @@ function scr_panelPane_drawChainsList() {
 	}
 	var relativeScrollPlusY = (drawScrollbar) ? scrollPlusY : chainContentsPanelPaneInst.scrollPlusY;
 	var ableToMouseoverOption = true;
-	var mouseoverCancel = instance_exists(obj_dropDown) || instance_exists(obj_dialogueBox) || instance_exists(obj_flyout) || instance_exists(obj_sizeWindow);
+	var mouseoverCancel = instance_exists(obj_dropDown) || instance_exists(obj_dialogueBox) || instance_exists(obj_flyout) || instance_exists(obj_sizeWindow) || scrollBarHolding;
 
 
 	// get list of chains for this tab
@@ -587,9 +587,9 @@ function scr_panelPane_drawChainsList() {
 
 	scr_surfaceEnd();
 	
-	
-	
 	// draw column headers
+	var headerRectY1 = y;
+	var headerRectY2 = headerRectY1 + headerHeight;
 	for (var i = 0; i < 5; i++) {
 		
 		// skip checkbox header
@@ -598,7 +598,7 @@ function scr_panelPane_drawChainsList() {
 		// skip text column unless this is a stack
 		if (i >= 3 && functionChainList_currentTab != functionChainList_tabStackBrush) continue;
 		
-		// get column data
+		// get column width & text
 		var headerRectX1 = 0;
 		var colWidth = 0;
 		var colText = "";
@@ -626,21 +626,31 @@ function scr_panelPane_drawChainsList() {
 		else if (i == 4) {
 			headerRectX1 = stackTypeColX;
 			colWidth = windowWidth - headerRectX1;
-			colText = "Stack type";
+			colText = "Stack type [" + string(obj_control.activeStackType) + "]";
 		}
 		colText = scr_get_translation(colText);
-		
-		// get header coordinates
-		var headerRectY1 = y;
 		var headerRectX2 = headerRectX1 + colWidth;
-		var headerRectY2 = headerRectY1 + headerHeight;
+		
 		
 		// draw header rects
 		draw_set_alpha(1);
 		draw_set_color(global.colorThemeBG);
 		draw_rectangle(headerRectX1, headerRectY1, headerRectX2, headerRectY2, false);
-		draw_set_color(global.colorThemeBG);
-		draw_rectangle(headerRectX1, headerRectY1, headerRectX2, headerRectY2, true);
+		
+		// click on stackType header to change active stackType
+		if (i == 4 && functionChainList_currentTab == functionChainList_tabStackBrush) {
+			var mouseoverHeader = point_in_rectangle(mouse_x, mouse_y, headerRectX1, headerRectY1, headerRectX2, headerRectY2) && !mouseoverCancel;
+			if (mouseoverHeader) {
+				draw_set_color(global.colorThemeSelected1);
+				draw_rectangle(headerRectX1, headerRectY1, headerRectX2, headerRectY2, false);
+				if (mouse_check_button_released(mb_left)) {
+					var stackTypeOptionList = ds_list_create();
+					ds_list_copy(stackTypeOptionList, obj_control.stackTypeList);
+					ds_list_add(stackTypeOptionList, "New stackType");
+					scr_createDropDown(headerRectX1, headerRectY2, stackTypeOptionList, global.optionListTypeStackType);
+				}
+			}
+		}
 		
 		// draw checkbox header
 		if (i == 0) {

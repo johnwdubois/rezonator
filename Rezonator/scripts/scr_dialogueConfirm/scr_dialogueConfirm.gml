@@ -81,11 +81,8 @@ function scr_dialogueConfirm() {
 		}
 		
 
-
+		// go to time/unit
 		if (obj_control.gPressed) {
-							
-
-
 			if (obj_control.goToTime) {
 				scr_jumpToTime(obj_control.inputText);
 			}
@@ -96,17 +93,15 @@ function scr_dialogueConfirm() {
 					scr_jumpToUnitTop(realDigits);
 				}
 			}
-			
-
 		}
 		
+		// creating new token
 		if (obj_control.newWordCreated) {
 			scr_newToken(obj_control.inputText, obj_control.rightClickID);
 			obj_control.insertTokenStr = obj_control.inputText;
 		}
 
-			
-			
+		// renaming chain
 		if (obj_control.rename) {
 			if (scr_isNumericAndExists(chainSubMap, ds_type_map)) {
 				ds_map_replace(chainSubMap, "name", obj_control.inputText);
@@ -115,6 +110,8 @@ function scr_dialogueConfirm() {
 		if (obj_control.setChainName) {
 			scr_setChainName(obj_control.inputText);
 		}
+		
+		// renaming tree
 		if (obj_control.renameTree) {
 			var selectedTree = obj_panelPane.functionTree_treeSelected;
 			var selectedTreeSubMap = global.treeMap[? selectedTree];
@@ -122,6 +119,8 @@ function scr_dialogueConfirm() {
 				ds_map_replace(selectedTreeSubMap, "name", obj_control.inputText);
 			}
 		}
+		
+		// creating custom fields/tags
 		if (obj_control.newCustomFieldToken) {
 			scr_dialogueBoxNewCustomFieldToken();
 		}
@@ -161,9 +160,8 @@ function scr_dialogueConfirm() {
 			scr_dialogueBoxNewCustomFieldLink();
 		}
 		
-
+		// recoloring chain
 		if (obj_control.recolor) {
-
 			if (string_digits(obj_control.inputText) == "") {
 				show_message(scr_get_translation("msg_numbers_only"));
 			}
@@ -185,6 +183,7 @@ function scr_dialogueConfirm() {
 			}
 		}
 		
+		// captioning chain
 		if (obj_control.caption) {
 			if (is_numeric(chainSubMap)) {
 				if (ds_exists(chainSubMap, ds_type_map)) {
@@ -193,14 +192,11 @@ function scr_dialogueConfirm() {
 			}
 		}
 		
-		
-
-		
+		// changing author
 		if (obj_control.changeAuthor) {
 			global.userName = obj_control.inputText;
 		}
 			
-		
 		with (obj_panelPane) {
 			obj_control.discoIDSelected = false;
 		}
@@ -209,17 +205,22 @@ function scr_dialogueConfirm() {
 			scr_setRezMap(obj_chain.currentFocusedChainID, obj_control.inputText);
 		}
 		
+		// splitting token
 		if (obj_control.splitToken) {
 			scr_splitTokenHelper(obj_control.inputText);	
 		}
 		
+		// naming stacker stacks
 		if (instance_exists(obj_stacker)) {
 			if (obj_stacker.confirmStackName) {
 				scr_stackerBranch();
 			}
 		}
 		
-		
+		// naming a new stackType
+		if (obj_control.createNewStackType) {
+			scr_changeActiveStackType(obj_control.inputText);
+		}
 		
 		scr_closeDialogueBoxVariables();
 		instance_destroy();

@@ -245,6 +245,7 @@
     {"id":{"name":"spr_playPause","path":"sprites/spr_playPause/spr_playPause.yy",},},
     {"id":{"name":"scr_tokenCalculateVoid","path":"scripts/scr_tokenCalculateVoid/scr_tokenCalculateVoid.yy",},},
     {"id":{"name":"scr_searchFieldOptions","path":"scripts/scr_searchFieldOptions/scr_searchFieldOptions.yy",},},
+    {"id":{"name":"scr_changeActiveStackType","path":"scripts/scr_changeActiveStackType/scr_changeActiveStackType.yy",},},
     {"id":{"name":"spr_toolsNew","path":"sprites/spr_toolsNew/spr_toolsNew.yy",},},
     {"id":{"name":"scr_deleteChain","path":"scripts/scr_deleteChain/scr_deleteChain.yy",},},
     {"id":{"name":"FirebaseREST_HTTP_Failed_Firestore","path":"scripts/FirebaseREST_HTTP_Failed_Firestore/FirebaseREST_HTTP_Failed_Firestore.yy",},},

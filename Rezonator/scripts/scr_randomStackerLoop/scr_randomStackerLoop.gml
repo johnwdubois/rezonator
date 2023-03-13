@@ -1,5 +1,11 @@
 function scr_randomStackerLoop() {
 	
+	// set stackType
+	with (obj_control) {
+		activeStackType = "Random";
+		scr_addToListOnce(stackTypeList, activeStackType);
+	}
+	
 	// Set script variables
 	var currentUnitList = ds_list_create();
 	ds_list_clear(currentUnitList);

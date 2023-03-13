@@ -42,6 +42,7 @@ function scr_closeDialogueBoxVariables() {
 			splitTokenField = "";
 			splitTokenCopyTags = true;
 			setChainName = false;
+			createNewStackType = false;
 		}
 		with (obj_stacker) {
 			confirmStackCreate = false;

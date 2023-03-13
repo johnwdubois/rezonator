@@ -15,7 +15,14 @@ function scr_turnStackerLoop() {
 		splitSave = false;
 		exit;	
 	}
+	
+	// set stackType
+	with (obj_control) {
+		activeStackType = "Turn";
+		scr_addToListOnce(stackTypeList, activeStackType);
+	}
 	show_debug_message(global.unitImportTurnDelimColName)
+	
 	//Set variables for loop
 	var currentTurnOrder = 0;
 	var previousTurnOrder = 0;

@@ -412,5 +412,10 @@ function scr_dropDownSelect(optionSelected) {
 		scr_html5RezFileOptions(optionSelected);
 		with (obj_dropDown) instance_destroy();
 	}
+	else if (optionListType == global.optionListTypeStackType) //96
+	{
+		scr_changeActiveStackType(optionSelected);
+		with (obj_dropDown) instance_destroy();
+	}
 
 }

@@ -676,6 +676,7 @@ quickPickedChainID = "";
 
 stackTypeList = ds_list_create();
 activeStackType = "Default";
+createNewStackType = false;
 ds_list_add(stackTypeList, activeStackType);
 
 readModeHints = 0;

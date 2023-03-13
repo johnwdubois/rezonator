@@ -1,6 +1,5 @@
 function scr_psentStackerLoop() {
 
-
 	// Set script variables
 	var currentUnitList = ds_list_create();
 
@@ -12,7 +11,15 @@ function scr_psentStackerLoop() {
 		splitSave = false;
 		exit;	
 	}
+	
+	// set stackType
+	with (obj_control) {
+		activeStackType = "Utterance";
+		scr_addToListOnce(stackTypeList, activeStackType);
+	}
 	show_debug_message(global.psentDelimField);
+	
+	
 	//Set variables for loop
 	var currentPsent = 0;
 	var psentMap = ds_map_create();

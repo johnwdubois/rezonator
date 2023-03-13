@@ -16,7 +16,14 @@ function scr_sentStackerLoop() {
 
 		exit;	
 	}
+	
+	// set stackType
+	with (obj_control) {
+		activeStackType = "Participant";
+		scr_addToListOnce(stackTypeList, activeStackType);
+	}
 	show_debug_message(global.participantField)
+	
 	//Set variables for loop
 	var currentTurnOrder = 0;
 	var previousTurnOrder = 0;

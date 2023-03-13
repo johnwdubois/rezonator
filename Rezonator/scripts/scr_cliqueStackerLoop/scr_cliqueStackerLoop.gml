@@ -1,14 +1,18 @@
-
-
 function scr_cliqueStackerLoop() {
 	
+	// get clique list & map
 	var cliqueMap = global.nodeMap[? "cliqueMap"];
 	var cliqueList = obj_chain.cliqueList;
-	
 	if (!scr_isNumericAndExists(cliqueMap, ds_type_map)
 	|| !scr_isNumericAndExists(cliqueList, ds_type_list)) {
 		show_debug_message("scr_cliqueStackerLoop map or list does not exist");
 		exit;
+	}
+	
+	// set stackType
+	with (obj_control) {
+		activeStackType = "Clique";
+		scr_addToListOnce(stackTypeList, activeStackType);
 	}
 	
 	var cliqueListSize = ds_list_size(cliqueList);
