@@ -674,7 +674,10 @@ linkFieldSelected = "";
 
 quickPickedChainID = "";
 
+stackTypeList = ds_list_create();
 activeStackType = "Default";
+ds_list_add(stackTypeList, activeStackType);
+
 readModeHints = 0;
 
 mouseOverUI = false;

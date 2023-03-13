@@ -4,7 +4,6 @@ function scr_panelPane_drawChainsList() {
 		Purpose: draw the chains for whatever tab you are on, if a user clicks on a chain then focus it and
 				set chainContents panelPane to look at that chain
 	*/
-
 	
 	var drawScrollbar = (chainViewOneToMany || functionChainList_currentTab == functionChainList_tabLine);
 	var scrollbarWidth = 0;//(drawScrollbar) ? global.scrollBarWidth : 0;
@@ -58,23 +57,23 @@ function scr_panelPane_drawChainsList() {
 	with (obj_panelPane) leftPaneStrHeight = strHeight;
 	
 
-
-	// Set text margin area
+	// checkbox sizes
 	var filterRectMargin = 8;
 	var filterRectSize = (strHeight / 2) + 5;
-	
 	var checkboxColWidth = filterRectMargin + (filterRectSize * 2);
 	var checkboxSize = checkboxColWidth * 0.35;
 	
+	// column positions and widths
 	var optionsColX = x;
-	var optionsColWidth = checkboxColWidth/1.3 * 4;
+	var optionsColWidth = (checkboxColWidth / 1.3) * 4;
 	var moreOptionsX = optionsColX + (optionsColWidth * 0.8);
-
 	var numColX = optionsColX + optionsColWidth;
 	var numColWidth = windowWidth * 0.07;
 	var nameColX = numColX + numColWidth;
-	var nameColWidth = windowWidth / 4;
+	var nameColWidth = functionChainList_currentTab == functionChainList_tabStackBrush ? windowWidth * 0.15 : windowWidth * 0.25;
 	var textColX = nameColX + nameColWidth;
+	var textColWidth = windowWidth * 0.4;
+	var stackTypeColX = textColX + textColWidth;
 	
 	
 
@@ -126,17 +125,18 @@ function scr_panelPane_drawChainsList() {
 			// make sure that the chain's submap exists
 			if (!scr_isNumericAndExists(currentChainSubMap, ds_type_map)) continue;
 			
-			// get info of current chain
-			var currentChainType = ds_map_find_value(currentChainSubMap, "type");
-			var currentChainName = ds_map_find_value(currentChainSubMap, "name");
-			var currentChainColor = ds_map_find_value(currentChainSubMap, "chainColor");
-			var currentChainSelected = ds_map_find_value(currentChainSubMap, "selected");
-			var currentChainFiltered = ds_map_find_value(currentChainSubMap, "filter");
-			var currentChainAlign = ds_map_find_value(currentChainSubMap, "alignChain");
-			var currentChainVisible = ds_map_find_value(currentChainSubMap, "visible");
+			// get data of current chain
+			var currentChainType = currentChainSubMap[? "type"];
+			var currentChainName = currentChainSubMap[? "name"];
+			var currentChainColor = currentChainSubMap[? "chainColor"];
+			var currentChainSelected = currentChainSubMap[? "selected"];
+			var currentChainFiltered = currentChainSubMap[? "filter"];
+			var currentChainAlign = currentChainSubMap[? "alignChain"];
+			var currentChainVisible = currentChainSubMap[? "visible"];
+			var currentChainStackType = currentChainSubMap[? "stackType"];
 			var currentChainCaption = "";
-			var setIDList = ds_map_find_value(currentChainSubMap, "setIDList");
-			var vizSetIDList = ds_map_find_value(currentChainSubMap, "vizSetIDList");
+			var setIDList = currentChainSubMap[? "setIDList"];
+			var vizSetIDList = currentChainSubMap[? "vizSetIDList"];
 			
 			if (!is_numeric(currentChainSelected)) currentChainSelected = false;
 			
@@ -147,8 +147,6 @@ function scr_panelPane_drawChainsList() {
 					// chain captions!
 					// first, we will check if the stack has a caption specified in its submap
 					currentChainCaption = (currentChainType == "stack") ? ds_map_find_value(currentChainSubMap, "caption") : "";
-					
-					
 					
 					// if it does not have a caption specified, we will show its contents in the chainList window
 					if (currentChainType == "stack") {
@@ -297,11 +295,11 @@ function scr_panelPane_drawChainsList() {
 						}
 					}
 	
-					// Color codes the chain lists for User
+					// draw rectangle for this chain
 					draw_set_color(merge_color(currentChainColor, global.colorThemeBG, (obj_chain.currentFocusedChainID == currentChainID or mouseoverChainNameRect) ? 0.65: 0.8)); //soften the color
 					draw_rectangle(chainNameRectX1 - clipX, chainNameRectY1 - clipY, chainNameRectX2 - clipX, chainNameRectY2 - clipY, false);
 	
-					// Outline the rectangle in black
+					// outline the rectangle in black if the chain is focused
 					if (obj_chain.currentFocusedChainID == currentChainID) {
 						focusedRowRectY1 = chainNameRectY1;
 						focusedRowRectY2 = chainNameRectY2;
@@ -310,7 +308,6 @@ function scr_panelPane_drawChainsList() {
 					}
 					
 					// draw checkbox
-					
 					if (mouseoverCheckbox) {
 						scr_createTooltip(mean(checkboxRectX1, checkboxRectX2), checkboxRectY2, scr_get_translation("option_select"), obj_tooltip.arrowFaceUp);
 					}
@@ -386,7 +383,6 @@ function scr_panelPane_drawChainsList() {
 							
 							
 							// simulate right-click
-
 							obj_chain.currentFocusedChainID = currentChainID;
 							obj_control.selectedChainID = obj_chain.currentFocusedChainID 
 							obj_control.rightClicked = true;
@@ -412,13 +408,10 @@ function scr_panelPane_drawChainsList() {
 						scr_createTooltip(moreOptionsX, optionsChainY + optionsIconRad, "More", obj_tooltip.arrowFaceUp);
 					}
 					
-					// draw filter/align/visible buttons
+					// draw filter/visible/more buttons
 					draw_sprite_ext(spr_filterIcons, !currentChainFiltered, filterChainX - clipX, optionsChainY - clipY, 1, 1, 0, global.colorThemeText, 1);
 					draw_sprite_ext(spr_toggleDraw, currentChainVisible, visibleChainX - clipX, optionsChainY - clipY, 1, 1, 0, global.colorThemeText, 1);
 					draw_sprite_ext(spr_dropDown, 0, moreOptionsX - clipX, optionsChainY - clipY, 1, 1, 0, global.colorThemeText, 1);
-					//if (functionChainList_currentTab == functionChainList_tabRezBrush) draw_sprite_ext(spr_align, !currentChainAlign, alignChainX - clipX, optionsChainY - clipY, 1, 1, 0, global.colorThemeText, 1);
-					
-					
 					
 					
 					// set up stuff for drawing text
@@ -440,12 +433,17 @@ function scr_panelPane_drawChainsList() {
 						scr_adaptFont(string(currentChainCaption), "S");
 						draw_text(floor(textColX + textBuffer) - clipX, floor(y + headerHeight + relativeScrollPlusY + textPlusY) - clipY, string(currentChainCaption));
 						draw_set_alpha(1);
+						
+						// draw rect so caption does not extend beyond its column
+						draw_set_color(merge_color(currentChainColor, global.colorThemeBG, (obj_chain.currentFocusedChainID == currentChainID or mouseoverChainNameRect) ? 0.65: 0.8)); //soften the color
+						draw_rectangle(stackTypeColX - clipX, chainNameRectY1 - clipY, chainNameRectX2 - clipX, chainNameRectY2 - clipY, false);
+						draw_set_color(global.colorThemeText);
 					}
 					
-					
-	
-
-
+					// draw text: stackType
+					if (functionChainList_currentTab == functionChainList_tabStackBrush) {
+						draw_text(floor(stackTypeColX + textBuffer) - clipX, floor(y + headerHeight + relativeScrollPlusY + textPlusY) - clipY, currentChainStackType);
+					}
 
 					// Get height of chain name
 					textPlusY += strHeight;
@@ -598,7 +596,7 @@ function scr_panelPane_drawChainsList() {
 		//if (functionChainList_currentTab != functionChainList_tabStackBrush && i == 0) continue;
 		
 		// skip text column unless this is a stack
-		if (i == 3 && functionChainList_currentTab != functionChainList_tabStackBrush) continue;
+		if (i >= 3 && functionChainList_currentTab != functionChainList_tabStackBrush) continue;
 		
 		// get column data
 		var headerRectX1 = 0;
@@ -622,8 +620,13 @@ function scr_panelPane_drawChainsList() {
 		}
 		else if (i == 3) {
 			headerRectX1 = textColX;
-			colWidth = windowWidth - headerRectX1;
+			colWidth = textColWidth;
 			colText = "tag_text";
+		}
+		else if (i == 4) {
+			headerRectX1 = stackTypeColX;
+			colWidth = windowWidth - headerRectX1;
+			colText = "Stack type";
 		}
 		colText = scr_get_translation(colText);
 		
