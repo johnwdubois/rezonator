@@ -12,11 +12,8 @@ function scr_psentStackerLoop() {
 		exit;	
 	}
 	
-	// set stackType
-	with (obj_control) {
-		activeStackType = "Utterance";
-		scr_addToListOnce(stackTypeList, activeStackType);
-	}
+	// set active stackType
+	scr_changeActiveStackType("Utterance");
 	show_debug_message(global.psentDelimField);
 	
 	

@@ -101,12 +101,13 @@ function scr_createStackOptions(optionSelected) {
 	
 	
 	if (!noConfirm) {
-		if (confirmStack) {
-			obj_stacker.confirmStackCreate = true;
-		}
-		else {
-			obj_stacker.confirmStackName = true;
-		}
+		//if (confirmStack) {
+		//	obj_stacker.confirmStackCreate = true;
+		//}
+		//else {
+		//	obj_stacker.confirmStackName = true;
+		//}
+		obj_stacker.confirmStackName = true;
 		with (obj_dropDown) instance_destroy();
 	}
 

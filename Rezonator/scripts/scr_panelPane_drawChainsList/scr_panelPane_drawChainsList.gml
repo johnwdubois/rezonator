@@ -81,6 +81,8 @@ function scr_panelPane_drawChainsList() {
 	var filterChainX = optionsColX + (optionsColWidth * 0.4);
 	var visibleChainX = optionsColX + (optionsColWidth * 0.6);
 	var alignChainX = optionsColX + (optionsColWidth * 0.75); // alignChain button will be out of commission temporarily(?)
+	var stackTypeActiveRad = checkboxSize / 2;
+	var stackTypeActiveRadX = x + windowWidth - global.scrollBarWidth - (stackTypeActiveRad * 1.5);
 	
 
 	var headerHeight = functionTabs_tabHeight;
@@ -420,18 +422,19 @@ function scr_panelPane_drawChainsList() {
 					draw_set_halign(fa_left);
 					draw_set_valign(fa_middle);
 					scr_adaptFont(currentChainName, "M");
+					var textY = floor(y + headerHeight + relativeScrollPlusY + textPlusY);
 					
 					// draw text: number column
-					draw_text(floor(numColX + textBuffer) - clipX, floor(y + headerHeight + relativeScrollPlusY + textPlusY) - clipY, string(i + 1));
+					draw_text(floor(numColX + textBuffer) - clipX, textY - clipY, string(i + 1));
 	
 					// draw text: name column
-					draw_text(floor(nameColX + textBuffer) - clipX, floor(y + headerHeight + relativeScrollPlusY + textPlusY) - clipY, currentChainName);
+					draw_text(floor(nameColX + textBuffer) - clipX, textY - clipY, currentChainName);
 					
 					// draw text: text/caption column
 					if (currentChainCaption != "") {
 						draw_set_alpha(0.7);
 						scr_adaptFont(string(currentChainCaption), "S");
-						draw_text(floor(textColX + textBuffer) - clipX, floor(y + headerHeight + relativeScrollPlusY + textPlusY) - clipY, string(currentChainCaption));
+						draw_text(floor(textColX + textBuffer) - clipX, textY - clipY, string(currentChainCaption));
 						draw_set_alpha(1);
 						
 						// draw rect so caption does not extend beyond its column
@@ -442,7 +445,28 @@ function scr_panelPane_drawChainsList() {
 					
 					// draw text: stackType
 					if (functionChainList_currentTab == functionChainList_tabStackBrush) {
-						draw_text(floor(stackTypeColX + textBuffer) - clipX, floor(y + headerHeight + relativeScrollPlusY + textPlusY) - clipY, currentChainStackType);
+						draw_text(floor(stackTypeColX + textBuffer) - clipX, textY - clipY, currentChainStackType);
+						
+						// draw whether stackType is active
+						if (currentChainStackType == obj_control.activeStackType) {
+							draw_set_alpha(0.8);
+							draw_circle(stackTypeActiveRadX - clipX, textY - clipY, stackTypeActiveRad * 0.8, false);
+						}
+						else {
+							// click on circle to change active stackType
+							var mouseoverStackTypeActive = mouseoverChainNameRect && point_in_circle(mouse_x, mouse_y, stackTypeActiveRadX, textY, stackTypeActiveRad);
+							if (mouseoverStackTypeActive) {
+								draw_set_alpha(0.5);
+								draw_set_color(global.colorThemeBG);
+								draw_circle(stackTypeActiveRadX - clipX, textY - clipY, stackTypeActiveRad, false);
+								if (mouse_check_button_released(mb_left)) {
+									scr_changeActiveStackType(currentChainStackType);
+								}
+							}
+						}
+						draw_set_alpha(1);
+						draw_set_color(global.colorThemeText);
+						draw_circle(stackTypeActiveRadX - clipX, textY - clipY, stackTypeActiveRad, true);
 					}
 
 					// Get height of chain name

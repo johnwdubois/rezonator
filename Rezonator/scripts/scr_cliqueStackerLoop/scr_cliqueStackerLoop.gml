@@ -9,11 +9,8 @@ function scr_cliqueStackerLoop() {
 		exit;
 	}
 	
-	// set stackType
-	with (obj_control) {
-		activeStackType = "Clique";
-		scr_addToListOnce(stackTypeList, activeStackType);
-	}
+	// set active stackType
+	scr_changeActiveStackType("Clique");
 	
 	var cliqueListSize = ds_list_size(cliqueList);
 	for (var i = 0; i < cliqueListSize; i++) {

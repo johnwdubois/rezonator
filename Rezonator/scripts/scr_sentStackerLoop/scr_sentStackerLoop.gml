@@ -17,11 +17,8 @@ function scr_sentStackerLoop() {
 		exit;	
 	}
 	
-	// set stackType
-	with (obj_control) {
-		activeStackType = "Participant";
-		scr_addToListOnce(stackTypeList, activeStackType);
-	}
+	// set active stackType
+	scr_changeActiveStackType("Participant");
 	show_debug_message(global.participantField)
 	
 	//Set variables for loop
