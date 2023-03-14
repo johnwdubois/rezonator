@@ -343,6 +343,10 @@ function scr_dialogueConfirm() {
 			obj_control.sideLinkTokenID = "";
 		}
 		
+		if (is_string(stackTypeToActivate) && stackTypeToActivate != "") {
+			scr_changeActiveStackType(stackTypeToActivate);
+		}
+		
 		if (instance_exists(obj_stacker)) {
 			if (obj_stacker.confirmStackCreate) {
 				scr_deleteAllChains(global.nodeMap[? "stackList"]);

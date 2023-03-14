@@ -21,7 +21,7 @@ function scr_newLink(ID) {
 	var unitID = "";
 	var tokenID = "";
 	var type = idSubMap[? "type"];
-	show_debug_message("scr_newLink() ... ID: " + string(ID) + ", type: " + string(type));
+	show_debug_message("scr_newLink ... ID: " + string(ID) + ", type: " + string(type));
 	
 	
 	if (type == "unit") {
@@ -72,8 +72,8 @@ function scr_newLink(ID) {
 	
 
 	// make sure there is a focused chain
-	if (obj_chain.currentFocusedChainID = "") {
-		show_debug_message("scr_newLink() ... ERROR: currentFocusedChainID is blank string. Exiting...");
+	if (!is_string(obj_chain.currentFocusedChainID) || obj_chain.currentFocusedChainID = "") {
+		show_debug_message("scr_newLink ... ERROR: currentFocusedChainID is invalid. Exiting...");
 		exit;
 	}
 	
@@ -88,6 +88,13 @@ function scr_newLink(ID) {
 	}
 	else if (focusedChainType == "stack") {
 		nodeType = "card";
+		
+		// if this is a stack, let's check if its stackType is active
+		var focusedChainStackType = focusedChainSubMap[? "stackType"];
+		if (focusedChainStackType != obj_control.activeStackType) {
+			show_debug_message("scr_newLink, focusedChainStackType inactive");
+			exit;
+		}
 	}
 	
 	var linkSourceID = ""; 
@@ -149,7 +156,7 @@ function scr_newLink(ID) {
 			// sort the displayed links
 			scr_sortVizSetIDList(obj_chain.currentFocusedChainID);
 					
-			show_debug_message("scr_newLink() ... entry nodeID: " + string(nodeID));
+			show_debug_message("scr_newLink ... entry nodeID: " + string(nodeID));
 		}
 		
 		
@@ -178,7 +185,7 @@ function scr_newLink(ID) {
 	
 	
 	if (nodeID == "") {
-		show_debug_message("scr_newLink() ... ERROR: nodeID is blank string. Exiting...");
+		show_debug_message("scr_newLink ... ERROR: nodeID is blank string. Exiting...");
 		exit;
 	}
 		
@@ -241,7 +248,7 @@ function scr_newLink(ID) {
 			var sourceSetGoalLinkList = ds_map_find_value(sourceSetSubMap, "goalLinkList");
 			if (scr_isNumericAndExists(sourceSetGoalLinkList, ds_type_list)) {
 				ds_list_add(sourceSetGoalLinkList, linkID);
-				show_debug_message("scr_newLink() ... adding " + string(linkID) + " to " + string(sourceSetSubMap));
+				show_debug_message("scr_newLink ... adding " + string(linkID) + " to " + string(sourceSetSubMap));
 			}
 			
 			// set clicktime for source
@@ -252,7 +259,7 @@ function scr_newLink(ID) {
 		var goalSetSubMap = ds_map_find_value(global.nodeMap, linkGoalID);
 		if (scr_isNumericAndExists(goalSetSubMap, ds_type_map)) {
 			ds_map_replace(goalSetSubMap, "sourceLink", linkID);
-			show_debug_message("scr_newLink() ... adding " + string(linkID) + " to " + string(goalSetSubMap));
+			show_debug_message("scr_newLink ... adding " + string(linkID) + " to " + string(goalSetSubMap));
 			
 			// set clicktime for goal
 			if (ds_map_exists(goalSetSubMap, "clickTime")) ds_map_add(linkSubMap, "goalClickTime", goalSetSubMap[? "clickTime"]);
@@ -296,7 +303,7 @@ function scr_newLink(ID) {
 	}
 	
 	
-	show_debug_message("scr_newLink() ... end of script for ID: " + string(ID));
+	show_debug_message("scr_newLink ... end of script for ID: " + string(ID));
 	
 	
 

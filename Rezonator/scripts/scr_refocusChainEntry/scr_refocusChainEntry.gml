@@ -37,7 +37,7 @@ function scr_refocusChainEntry(ID) {
 	}
 	
 	// looks in the currentFocusedChain for the given ID of word or unit and focus that entry
-	show_debug_message("scr_refocusChainEntry() ... ID: " + string(ID)+",  unitID: " + string(unitID)+",   tokenID: " + string(tokenID));
+	show_debug_message("scr_refocusChainEntry ... ID: " + string(ID)+",  unitID: " + string(unitID)+",   tokenID: " + string(tokenID));
 	// find which chain entry node this word is associated with, so we can refocus it
 	if (ds_map_exists(global.nodeMap, obj_chain.currentFocusedChainID)) {
 		var entryToFocus = "";
@@ -86,7 +86,7 @@ function scr_refocusChainEntry(ID) {
 		
 		// if we have found the entry to focus, and it exists in the NodeMap, let's focus it!
 		if (ds_map_exists(global.nodeMap, entryToFocus)) {
-			show_debug_message("scr_refocusChainEntry() ... focusing entry: " + string(entryToFocus));
+			show_debug_message("scr_refocusChainEntry ... focusing entry: " + string(entryToFocus));
 			ds_map_replace(chainSubMap, "focused", entryToFocus);
 		}
 		

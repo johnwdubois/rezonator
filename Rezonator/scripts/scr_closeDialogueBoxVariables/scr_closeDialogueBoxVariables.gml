@@ -82,6 +82,7 @@ function scr_closeDialogueBoxVariables() {
 		swapUnitUp = false;
 		swapUnitDown = false;
 		confirmSideLink = false;
+		stackTypeToActivate = "";
 	
 		with (obj_control) {
 			mergeChainType = "";

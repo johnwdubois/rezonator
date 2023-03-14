@@ -12,11 +12,26 @@ function scr_quickStackCreation() {
 	obj_toolPane.currentTool = obj_toolPane.toolStackBrush;
 	if (inRectUnitIDListSize > 0 && quickLinkAllowed) {
 	
-		// if there is a focused chain that's not a stack, deselect it
+		// check if a chain is already focused
 		var focusedChainIDSubMap = global.nodeMap[? obj_chain.currentFocusedChainID];
 		if (scr_isNumericAndExists(focusedChainIDSubMap, ds_type_map)) {
 			var focusedChainType = focusedChainIDSubMap[? "type"];
-			if (focusedChainType != "stack") {
+			if (focusedChainType == "stack") {
+				// if the focused chain is a stack, let's check if its stackType is active
+				var focusedChainStackType = focusedChainIDSubMap[? "stackType"];
+				if (focusedChainStackType != obj_control.activeStackType) {
+					if (!instance_exists(obj_dialogueBox)) {
+						var inst = instance_create_layer(0, 0, "InstancesDialogue", obj_dialogueBox);
+						with (inst) {
+							questionWindowActive = true;
+							stackTypeToActivate = focusedChainStackType;
+						}
+					}
+					exit;
+				}
+			}
+			else {
+				// if the focused chain is not a stack, we deselect it
 				scr_chainDeselect();
 			}
 		}

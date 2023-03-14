@@ -1,5 +1,8 @@
 function scr_setDialogueText() {
 	
+	// this script determines what text will be drawn on a dialog box
+	// there are 2 possible texts that can be set: titleText and descriptionText
+	
 	if (room == rm_openingScreen) {
 		if (obj_openingScreen.downloadDialogue) {
 			titleText = is_string(global.newVersionStr) ? global.newVersionStr : "";
@@ -201,6 +204,11 @@ function scr_setDialogueText() {
 			titleText = scr_get_translation("msg_remove") + " " + scr_get_translation("tab_name_tree");
 			descriptionText =  "This will permanently delete the tree:  " + string(searchSubMap[? "name"]); // localize
 		}
+		if (is_string(stackTypeToActivate) && stackTypeToActivate != "") {
+			descriptionText = scr_get_translation("msg_stacktype-not-active");
+		}
+		
+		
 		if (instance_exists(obj_stacker)) {
 			if (obj_stacker.confirmStackCreate) {
 				var stackChainList = global.nodeMap[? "stackList"];
@@ -258,8 +266,8 @@ function scr_setDialogueText() {
 	}
 		
 	if (obj_dialogueBox.inputWindowActive) {
-	
-		//Setting input prompt
+		
+		
 		if (obj_control.changeAuthor) {
 			titleText = scr_get_translation("Input New User");
 			descriptionText = scr_get_translation("msg_input_creator");
@@ -348,6 +356,10 @@ function scr_setDialogueText() {
 		if (obj_control.splitToken) {
 			titleText = "Pick token split"; // localize
 			descriptionText = "Insert a space at the position you would like to split the token"; // localize
+		}
+		
+		if (obj_control.createNewStackType) {
+			descriptionText = scr_get_translation("msg_name-new-stacktype");
 		}
 		
 		if (instance_exists(obj_stacker)) {
