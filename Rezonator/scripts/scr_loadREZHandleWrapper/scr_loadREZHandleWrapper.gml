@@ -161,6 +161,13 @@ function scr_loadREZHandleWrapper(wrapper) {
 						global.autosaveLastSavedFilename = _lastSavedFilename;
 					}
 				}
+				
+				if (ds_map_exists(map, "activeStackType")) {
+					var _activeStackType = map[? "activeStackType"];
+					if (is_string(_activeStackType)) {
+						obj_control.activeStackType = _activeStackType;
+					}
+				}
 			}
 		}		
 	}

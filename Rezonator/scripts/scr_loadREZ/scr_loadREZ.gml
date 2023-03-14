@@ -126,6 +126,9 @@ function scr_loadREZ() {
 		}
 	}
 	
+	// change to the stackType from when the rez file was saved
+	scr_changeActiveStackType(obj_control.activeStackType);
+	
 	if (global.restoreAutosave) {
 		
 		var lastSavedFilename = "";

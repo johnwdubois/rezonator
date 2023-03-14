@@ -129,6 +129,7 @@ function scr_saveREZ(autosave) {
 			ds_map_add(map, "functionChainList_focusedUnitSeq", obj_panelPane.functionChainList_focusedUnitIndex);
 			
 			ds_map_add(map, "insertTokenStr", obj_control.insertTokenStr);
+			ds_map_add(map, "activeStackType", obj_control.activeStackType);
 			
 			ds_map_add(map, "lastSavedFilename", lastSavedFilename);
 			
