@@ -4,27 +4,27 @@ show_debug_message("obj_stacker Alarm 5");
 // Determine which Stacks to genreate
 switch (currentStackerFuntion) {
 	case stackerFunctionRandom:
-		obj_control.activeStackType = "Random";
+		obj_control.activeStacking = "Random";
 		scr_randomStackerLoop();
 		break;
 		
 	case stackerFunctionTurn:
-		obj_control.activeStackType = "menu_turn";
+		obj_control.activeStacking = "menu_turn";
 		scr_turnStackerLoop();
 		break;
 		
 	case stackerFunctionSent:
-		obj_control.activeStackType = "Sentence";
+		obj_control.activeStacking = "Sentence";
 		scr_sentStackerLoop();
 		break;
 		
 	case stackerFunctionGroup:
-		obj_control.activeStackType = "Group";
+		obj_control.activeStacking = "Group";
 		scr_groupStackerLoop();
 		break;
 		
 	case stackerFunctionPsent:
-		obj_control.activeStackType = "pSent";
+		obj_control.activeStacking = "pSent";
 		scr_psentStackerLoop();
 		break;
 		
@@ -35,4 +35,4 @@ switch (currentStackerFuntion) {
 		break;
 }
 currentStackerFuntion = stackerFunctionDefault;
-obj_control.activeStackType = "Default";
+obj_control.activeStacking = "Default";

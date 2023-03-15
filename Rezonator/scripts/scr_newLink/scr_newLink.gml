@@ -89,10 +89,10 @@ function scr_newLink(ID) {
 	else if (focusedChainType == "stack") {
 		nodeType = "card";
 		
-		// if this is a stack, let's check if its stackType is active
-		var focusedChainStackType = focusedChainSubMap[? "stackType"];
-		if (focusedChainStackType != obj_control.activeStackType) {
-			show_debug_message("scr_newLink, focusedChainStackType inactive");
+		// if this is a stack, let's check if its stacking is active
+		var focusedChainStacking = focusedChainSubMap[? "stacking"];
+		if (focusedChainStacking != obj_control.activeStacking) {
+			show_debug_message("scr_newLink, focusedChainStacking inactive");
 			exit;
 		}
 	}

@@ -675,9 +675,9 @@ linkFieldSelected = "";
 quickPickedChainID = "";
 
 stackTypeList = ds_list_create();
-activeStackType = "Default";
-createNewStackType = false;
-ds_list_add(stackTypeList, activeStackType);
+activeStacking = "Default";
+createNewStacking = false;
+ds_list_add(stackTypeList, activeStacking);
 
 readModeHints = 0;
 

@@ -18,7 +18,7 @@ function scr_sentStackerLoop() {
 	}
 	
 	// set active stackType
-	scr_changeActiveStackType("Participant");
+	scr_changeActiveStacking("Participant");
 	show_debug_message(global.participantField)
 	
 	//Set variables for loop

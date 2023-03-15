@@ -1,7 +1,6 @@
 /*
 	Purpose: creates a new chain of correct type, enters given ID as first chain IDList value
 */
-
 function scr_newChain(ID) {
 	
 	if (obj_toolPane.currentMode == obj_toolPane.modeRead) exit;
@@ -129,7 +128,8 @@ function scr_newChain(ID) {
 	// add chainType-specific fields
 	if (chainType == "stack") {
 		ds_map_add(newChainSubMap, "caption", "");
-		ds_map_add(newChainSubMap, "stackType", obj_control.activeStackType);
+		ds_map_add(newChainSubMap, "stackType", "");
+		ds_map_add_map(newChainSubMap, "stacking", obj_control.activeStacking);
 	}
 	else if (chainType == "resonance") {
 		ds_map_add(newChainSubMap, "inClique", chainInCliqueID);

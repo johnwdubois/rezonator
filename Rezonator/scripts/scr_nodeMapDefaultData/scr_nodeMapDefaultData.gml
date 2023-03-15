@@ -1,6 +1,5 @@
-
-
 function scr_nodeMapDefaultData() {
+	
 	// add chainLists to nodeMap
 	ds_map_add_list(global.nodeMap, "resonanceList", ds_list_create());
 	ds_map_add_list(global.nodeMap, "trailList", ds_list_create());
@@ -50,7 +49,10 @@ function scr_nodeMapDefaultData() {
 	// create the participant map
 	global.participantMap = ds_map_create();
 	ds_map_add(global.participantMap, "type", "map");
-
+	
+	// create the stacking map
+	global.stackingMap = ds_map_create();
+	ds_map_add(global.stackingMap, "type", "map");
 
 	// create lists of nodes for these panes
 	ds_map_add_list(global.nodeMap, "searchNodeList", ds_list_create());
@@ -62,13 +64,16 @@ function scr_nodeMapDefaultData() {
 	ds_map_add_map(global.nodeMap, "colorMap", global.colorMap);
 	ds_map_add_map(global.nodeMap, "treeMap", global.treeMap);
 	ds_map_add_map(global.nodeMap, "participantMap", global.participantMap);
+	ds_map_add_map(global.nodeMap, "stackingMap", global.stackingMap);
 	
 	// add map to nodeList, so they're viewable in nodeMapViewer
-	ds_list_add(global.nodeMap[? "nodeList"], "searchMap");
-	ds_list_add(global.nodeMap[? "nodeList"], "cliqueMap");
-	ds_list_add(global.nodeMap[? "nodeList"], "treeMap");
-	ds_list_add(global.nodeMap[? "nodeList"], "colorMap");
-	ds_list_add(global.nodeMap[? "nodeList"], "participantMap");
-	ds_list_add(global.nodeMap[? "nodeList"], "chainShowMap");
-	ds_list_add(global.nodeMap[? "nodeList"], "chunkShowMap");
+	var _nodeList = global.nodeMap[? "nodeList"];
+	ds_list_add(_nodeList, "searchMap");
+	ds_list_add(_nodeList, "cliqueMap");
+	ds_list_add(_nodeList, "treeMap");
+	ds_list_add(_nodeList, "colorMap");
+	ds_list_add(_nodeList, "participantMap");
+	ds_list_add(_nodeList, "chainShowMap");
+	ds_list_add(_nodeList, "chunkShowMap");
+	ds_list_add(_nodeList, "stackingMap");
 }

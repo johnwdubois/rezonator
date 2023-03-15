@@ -204,8 +204,8 @@ function scr_setDialogueText() {
 			titleText = scr_get_translation("msg_remove") + " " + scr_get_translation("tab_name_tree");
 			descriptionText =  "This will permanently delete the tree:  " + string(searchSubMap[? "name"]); // localize
 		}
-		if (is_string(stackTypeToActivate) && stackTypeToActivate != "") {
-			descriptionText = scr_get_translation("msg_stacktype-not-active");
+		if (is_string(stackingToActivate) && stackingToActivate != "") {
+			descriptionText = scr_get_translation("msg_stacking-not-active");
 		}
 		
 		
@@ -358,8 +358,8 @@ function scr_setDialogueText() {
 			descriptionText = "Insert a space at the position you would like to split the token"; // localize
 		}
 		
-		if (obj_control.createNewStackType) {
-			descriptionText = scr_get_translation("msg_name-new-stacktype");
+		if (obj_control.createNewStacking) {
+			descriptionText = scr_get_translation("msg_name-new-stacking");
 		}
 		
 		if (instance_exists(obj_stacker)) {

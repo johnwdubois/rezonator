@@ -10,7 +10,7 @@ function scr_cliqueStackerLoop() {
 	}
 	
 	// set active stackType
-	scr_changeActiveStackType("Clique");
+	scr_changeActiveStacking("Clique");
 	
 	var cliqueListSize = ds_list_size(cliqueList);
 	for (var i = 0; i < cliqueListSize; i++) {

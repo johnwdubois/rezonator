@@ -127,7 +127,7 @@ function scr_loadREZ() {
 	}
 	
 	// change to the stackType from when the rez file was saved
-	scr_changeActiveStackType(obj_control.activeStackType);
+	scr_changeActiveStacking(obj_control.activeStacking);
 	
 	if (global.restoreAutosave) {
 		

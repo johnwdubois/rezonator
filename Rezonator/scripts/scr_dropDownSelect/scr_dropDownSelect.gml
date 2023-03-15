@@ -414,7 +414,7 @@ function scr_dropDownSelect(optionSelected) {
 	}
 	else if (optionListType == global.optionListTypeStackType) //96
 	{
-		scr_changeActiveStackType(optionSelected);
+		scr_changeActiveStacking(optionSelected);
 		with (obj_dropDown) instance_destroy();
 	}
 

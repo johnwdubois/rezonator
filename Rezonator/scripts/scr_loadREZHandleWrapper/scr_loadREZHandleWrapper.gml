@@ -162,10 +162,10 @@ function scr_loadREZHandleWrapper(wrapper) {
 					}
 				}
 				
-				if (ds_map_exists(map, "activeStackType")) {
-					var _activeStackType = map[? "activeStackType"];
-					if (is_string(_activeStackType)) {
-						obj_control.activeStackType = _activeStackType;
+				if (ds_map_exists(map, "activeStacking")) {
+					var _activeStacking = map[? "activeStacking"];
+					if (is_string(_activeStacking)) {
+						obj_control.activeStacking = _activeStacking;
 					}
 				}
 			}

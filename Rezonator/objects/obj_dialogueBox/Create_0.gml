@@ -60,7 +60,7 @@ deleteToken = false;
 mergeStack = false;
 chunkAlreadyExists = false;
 confirmSideLink = false;
-stackTypeToActivate = "";
+stackingToActivate = "";
 
 
 canDelete = true;

@@ -13,7 +13,7 @@ function scr_psentStackerLoop() {
 	}
 	
 	// set active stackType
-	scr_changeActiveStackType("Utterance");
+	scr_changeActiveStacking("Utterance");
 	show_debug_message(global.psentDelimField);
 	
 	

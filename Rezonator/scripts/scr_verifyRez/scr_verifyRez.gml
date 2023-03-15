@@ -124,33 +124,41 @@ function scr_verifyRez() {
 		}
 
 
-		//no tree map found
+		// no tree map found
 		if (is_undefined(global.nodeMap[? "treeMap"])) {
 			global.treeMap = ds_map_create();
 			ds_map_add(global.treeMap, "type", "map");
-			scr_addToListOnce(nodeList,"treeMap");
+			scr_addToListOnce(nodeList, "treeMap");
 		}
 	
-		//no clique map found
+		// no clique map found
 		if (is_undefined(global.nodeMap[? "cliqueMap"])) {
 			global.cliqueMap = ds_map_create();
 			ds_map_add(global.cliqueMap, "type", "map");
-			scr_addToListOnce(nodeList,"cliqueMap");
+			scr_addToListOnce(nodeList, "cliqueMap");
 		}
 	
-		//no search map found
+		// no search map found
 		if (is_undefined(global.nodeMap[? "searchMap"])) {
 			global.searchMap = ds_map_create();
 			ds_map_add(global.searchMap, "type", "map");
-			scr_addToListOnce(nodeList,"searchMap");
+			scr_addToListOnce(nodeList, "searchMap");
 		}
 	
-		//no color map found
+		// no color map found
 		if (is_undefined(global.nodeMap[? "colorMap"])) {
 			show_debug_message("no color map found");
 			global.colorMap = ds_map_create();
 			ds_map_add(global.colorMap, "type", "map");
-			scr_addToListOnce(nodeList,"colorMap");
+			scr_addToListOnce(nodeList, "colorMap");
+		}
+		
+		// no stacking map found
+		if (is_undefined(global.nodeMap[? "stackingMap"])) {
+			show_debug_message("no stackingMap found");
+			global.stackingMap = ds_map_create();
+			ds_map_add(global.stackingMap, "type", "map");
+			scr_addToListOnce(nodeList, "stackingMap");
 		}
 
 		//now check for tag maps

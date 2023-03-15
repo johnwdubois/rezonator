@@ -138,13 +138,13 @@ function scr_unitClicked(unitID) {
 	var focusedChainSubMap = global.nodeMap[? obj_chain.currentFocusedChainID];
 	if (scr_isNumericAndExists(focusedChainSubMap, ds_type_map)) {
 		var focusedChainType = focusedChainSubMap[? "type"];
-		var focusedChainStackType = focusedChainSubMap[? "stackType"];
-		if (focusedChainType == "stack" && focusedChainStackType != obj_control.activeStackType) {
+		var focusedChainStacking = focusedChainSubMap[? "stacking"];
+		if (focusedChainType == "stack" && focusedChainStacking != obj_control.activeStacking) {
 			if (!instance_exists(obj_dialogueBox)) {
 				var inst = instance_create_layer(0, 0, "InstancesDialogue", obj_dialogueBox);
 				with (inst) {
 					questionWindowActive = true;
-					stackTypeToActivate = focusedChainStackType;
+					stackingToActivate = focusedChainStacking;
 				}
 			}
 			exit;

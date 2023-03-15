@@ -42,7 +42,7 @@ function scr_closeDialogueBoxVariables() {
 			splitTokenField = "";
 			splitTokenCopyTags = true;
 			setChainName = false;
-			createNewStackType = false;
+			createNewStacking = false;
 		}
 		with (obj_stacker) {
 			confirmStackCreate = false;
@@ -82,7 +82,7 @@ function scr_closeDialogueBoxVariables() {
 		swapUnitUp = false;
 		swapUnitDown = false;
 		confirmSideLink = false;
-		stackTypeToActivate = "";
+		stackingToActivate = "";
 	
 		with (obj_control) {
 			mergeChainType = "";

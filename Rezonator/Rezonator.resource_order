@@ -103,7 +103,7 @@
     {"name":"spr_playPause","order":27,"path":"sprites/spr_playPause/spr_playPause.yy",},
     {"name":"scr_tokenCalculateVoid","order":3,"path":"scripts/scr_tokenCalculateVoid/scr_tokenCalculateVoid.yy",},
     {"name":"scr_searchFieldOptions","order":67,"path":"scripts/scr_searchFieldOptions/scr_searchFieldOptions.yy",},
-    {"name":"scr_changeActiveStackType","order":62,"path":"scripts/scr_changeActiveStackType/scr_changeActiveStackType.yy",},
+    {"name":"scr_changeActiveStacking","order":62,"path":"scripts/scr_changeActiveStacking/scr_changeActiveStacking.yy",},
     {"name":"spr_toolsNew","order":4,"path":"sprites/spr_toolsNew/spr_toolsNew.yy",},
     {"name":"scr_deleteChain","order":16,"path":"scripts/scr_deleteChain/scr_deleteChain.yy",},
     {"name":"FirebaseREST_HTTP_Failed_Firestore","order":18,"path":"scripts/FirebaseREST_HTTP_Failed_Firestore/FirebaseREST_HTTP_Failed_Firestore.yy",},

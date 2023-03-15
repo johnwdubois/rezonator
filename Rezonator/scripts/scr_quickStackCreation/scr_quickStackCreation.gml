@@ -17,14 +17,14 @@ function scr_quickStackCreation() {
 		if (scr_isNumericAndExists(focusedChainIDSubMap, ds_type_map)) {
 			var focusedChainType = focusedChainIDSubMap[? "type"];
 			if (focusedChainType == "stack") {
-				// if the focused chain is a stack, let's check if its stackType is active
-				var focusedChainStackType = focusedChainIDSubMap[? "stackType"];
-				if (focusedChainStackType != obj_control.activeStackType) {
+				// if the focused chain is a stack, let's check if its stacking is active
+				var focusedChainStacking = focusedChainIDSubMap[? "stacking"];
+				if (focusedChainStacking != obj_control.activeStacking) {
 					if (!instance_exists(obj_dialogueBox)) {
 						var inst = instance_create_layer(0, 0, "InstancesDialogue", obj_dialogueBox);
 						with (inst) {
 							questionWindowActive = true;
-							stackTypeToActivate = focusedChainStackType;
+							stackingToActivate = focusedChainStacking;
 						}
 					}
 					exit;

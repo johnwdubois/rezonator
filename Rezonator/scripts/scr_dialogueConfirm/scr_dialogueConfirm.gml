@@ -218,8 +218,8 @@ function scr_dialogueConfirm() {
 		}
 		
 		// naming a new stackType
-		if (obj_control.createNewStackType) {
-			scr_changeActiveStackType(obj_control.inputText);
+		if (obj_control.createNewStacking) {
+			scr_changeActiveStacking(obj_control.inputText);
 		}
 		
 		scr_closeDialogueBoxVariables();
@@ -343,8 +343,8 @@ function scr_dialogueConfirm() {
 			obj_control.sideLinkTokenID = "";
 		}
 		
-		if (is_string(stackTypeToActivate) && stackTypeToActivate != "") {
-			scr_changeActiveStackType(stackTypeToActivate);
+		if (is_string(stackingToActivate) && stackingToActivate != "") {
+			scr_changeActiveStacking(stackingToActivate);
 		}
 		
 		if (instance_exists(obj_stacker)) {

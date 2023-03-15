@@ -73,7 +73,7 @@ function scr_panelPane_drawChainsList() {
 	var nameColWidth = functionChainList_currentTab == functionChainList_tabStackBrush ? windowWidth * 0.15 : windowWidth * 0.25;
 	var textColX = nameColX + nameColWidth;
 	var textColWidth = windowWidth * 0.4;
-	var stackTypeColX = textColX + textColWidth;
+	var stackingColX = textColX + textColWidth;
 	
 	
 
@@ -81,8 +81,8 @@ function scr_panelPane_drawChainsList() {
 	var filterChainX = optionsColX + (optionsColWidth * 0.4);
 	var visibleChainX = optionsColX + (optionsColWidth * 0.6);
 	var alignChainX = optionsColX + (optionsColWidth * 0.75); // alignChain button will be out of commission temporarily(?)
-	var stackTypeActiveRad = checkboxSize / 2;
-	var stackTypeActiveRadX = x + windowWidth - global.scrollBarWidth - (stackTypeActiveRad * 1.5);
+	var stackingActiveRad = checkboxSize / 2;
+	var stackingActiveRadX = x + windowWidth - global.scrollBarWidth - (stackingActiveRad * 1.5);
 	
 
 	var headerHeight = functionTabs_tabHeight;
@@ -135,7 +135,7 @@ function scr_panelPane_drawChainsList() {
 			var currentChainFiltered = currentChainSubMap[? "filter"];
 			var currentChainAlign = currentChainSubMap[? "alignChain"];
 			var currentChainVisible = currentChainSubMap[? "visible"];
-			var currentChainStackType = currentChainSubMap[? "stackType"];
+			var currentChainStacking = currentChainSubMap[? "stacking"];
 			var currentChainCaption = "";
 			var setIDList = currentChainSubMap[? "setIDList"];
 			var vizSetIDList = currentChainSubMap[? "vizSetIDList"];
@@ -439,34 +439,34 @@ function scr_panelPane_drawChainsList() {
 						
 						// draw rect so caption does not extend beyond its column
 						draw_set_color(merge_color(currentChainColor, global.colorThemeBG, (obj_chain.currentFocusedChainID == currentChainID or mouseoverChainNameRect) ? 0.65: 0.8)); //soften the color
-						draw_rectangle(stackTypeColX - clipX, chainNameRectY1 - clipY, chainNameRectX2 - clipX, chainNameRectY2 - clipY, false);
+						draw_rectangle(stackingColX - clipX, chainNameRectY1 - clipY, chainNameRectX2 - clipX, chainNameRectY2 - clipY, false);
 						draw_set_color(global.colorThemeText);
 					}
 					
-					// draw text: stackType
+					// draw text: stacking
 					if (functionChainList_currentTab == functionChainList_tabStackBrush) {
-						draw_text(floor(stackTypeColX + textBuffer) - clipX, textY - clipY, currentChainStackType);
+						draw_text(floor(stackingColX + textBuffer) - clipX, textY - clipY, currentChainStacking);
 						
-						// draw whether stackType is active
-						if (currentChainStackType == obj_control.activeStackType) {
+						// draw whether this stack's stacking is active
+						if (currentChainStacking == obj_control.activeStacking) {
 							draw_set_alpha(0.8);
-							draw_circle(stackTypeActiveRadX - clipX, textY - clipY, stackTypeActiveRad * 0.8, false);
+							draw_circle(stackingActiveRadX - clipX, textY - clipY, stackingActiveRad * 0.8, false);
 						}
 						else {
-							// click on circle to change active stackType
-							var mouseoverStackTypeActive = mouseoverChainNameRect && point_in_circle(mouse_x, mouse_y, stackTypeActiveRadX, textY, stackTypeActiveRad);
-							if (mouseoverStackTypeActive) {
+							// click on circle to change active stacking
+							var mouseoverStackingActive = mouseoverChainNameRect && point_in_circle(mouse_x, mouse_y, stackingActiveRadX, textY, stackingActiveRad);
+							if (mouseoverStackingActive) {
 								draw_set_alpha(0.5);
 								draw_set_color(global.colorThemeBG);
-								draw_circle(stackTypeActiveRadX - clipX, textY - clipY, stackTypeActiveRad, false);
+								draw_circle(stackingActiveRadX - clipX, textY - clipY, stackingActiveRad, false);
 								if (mouse_check_button_released(mb_left)) {
-									scr_changeActiveStackType(currentChainStackType);
+									scr_changeActiveStacking(currentChainStacking);
 								}
 							}
 						}
 						draw_set_alpha(1);
 						draw_set_color(global.colorThemeText);
-						draw_circle(stackTypeActiveRadX - clipX, textY - clipY, stackTypeActiveRad, true);
+						draw_circle(stackingActiveRadX - clipX, textY - clipY, stackingActiveRad, true);
 					}
 
 					// Get height of chain name
@@ -648,9 +648,9 @@ function scr_panelPane_drawChainsList() {
 			colText = "tag_text";
 		}
 		else if (i == 4) {
-			headerRectX1 = stackTypeColX;
+			headerRectX1 = stackingColX;
 			colWidth = windowWidth - headerRectX1;
-			colText = "Stack type [" + string(obj_control.activeStackType) + "]";
+			colText = "Stacking [" + string(obj_control.activeStacking) + "]";
 		}
 		colText = scr_get_translation(colText);
 		var headerRectX2 = headerRectX1 + colWidth;
@@ -661,17 +661,17 @@ function scr_panelPane_drawChainsList() {
 		draw_set_color(global.colorThemeBG);
 		draw_rectangle(headerRectX1, headerRectY1, headerRectX2, headerRectY2, false);
 		
-		// click on stackType header to change active stackType
+		// click on stacking header to change active stacking
 		if (i == 4 && functionChainList_currentTab == functionChainList_tabStackBrush) {
 			var mouseoverHeader = point_in_rectangle(mouse_x, mouse_y, headerRectX1, headerRectY1, headerRectX2, headerRectY2) && !mouseoverCancel;
 			if (mouseoverHeader) {
 				draw_set_color(global.colorThemeSelected1);
 				draw_rectangle(headerRectX1, headerRectY1, headerRectX2, headerRectY2, false);
 				if (mouse_check_button_released(mb_left)) {
-					var stackTypeOptionList = ds_list_create();
-					ds_list_copy(stackTypeOptionList, obj_control.stackTypeList);
-					ds_list_add(stackTypeOptionList, "New stackType");
-					scr_createDropDown(headerRectX1, headerRectY2, stackTypeOptionList, global.optionListTypeStackType);
+					var stackingOptionList = ds_list_create();
+					ds_list_copy(stackingOptionList, obj_control.stackTypeList);
+					ds_list_add(stackingOptionList, "New stacking");
+					scr_createDropDown(headerRectX1, headerRectY2, stackingOptionList, global.optionListTypeStackType);
 				}
 			}
 		}
