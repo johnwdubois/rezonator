@@ -1,5 +1,6 @@
 function scr_verifyRez() {
 	
+	// check version number specified in the rez file
 	show_debug_message("scr_verifyRez, rezFileVersion:  "+ string(obj_control.rezFileVersion));
 	obj_control.rezFileVersion = string(obj_control.rezFileVersion)
 	var firstNum = string_digits(obj_control.rezFileVersion);
@@ -58,14 +59,8 @@ function scr_verifyRez() {
 		}
 		
 		
-		
-		
-		
 
-
-		//all lists from load rez
-		
-		// get chain lists from nodeMap, and if they aren't provided in the nodeMap then we'll make them!
+		// make sure our node map has all the data structures we need
 		var rezChainList = global.nodeMap[? "resonanceList"];
 		var trackChainList = global.nodeMap[? "trailList"];
 		var stackChainList = global.nodeMap[? "stackList"];
@@ -74,7 +69,7 @@ function scr_verifyRez() {
 		var nodeList = global.nodeMap[? "nodeList"];
 		var linkFieldList = global.nodeMap[? "linkFieldList"];
 		var treeList = global.nodeMap[? "treeList"];
-	
+		var stackingList = global.nodeMap[? "stackingList"];
 
 		// get chain field map, if supplied
 		var chainFieldMap = global.nodeMap[? "chainTagMap"];
@@ -95,34 +90,39 @@ function scr_verifyRez() {
 			global.linkFieldMap = linkFieldMap;
 		}
 	
-		if (!is_numeric(rezChainList)) {
-			rezChainList = ds_list_create();
-			ds_map_add_list(global.nodeMap, "resonanceList", rezChainList);
+		// if we can't find any important lists, we will create them here
+		if (!scr_isNumericAndExists(rezChainList, ds_type_list)) {
+			ds_map_add_list(global.nodeMap, "resonanceList", ds_list_create());
 		}
-		if (!is_numeric(trackChainList)) {
-			trackChainList = ds_list_create();
-			ds_map_add_list(global.nodeMap, "trailList", trackChainList);
+		if (!scr_isNumericAndExists(trackChainList, ds_type_list)) {
+			ds_map_add_list(global.nodeMap, "trailList", ds_list_create());
 		}
-		if (!is_numeric(stackChainList)) {
-			stackChainList = ds_list_create();
-			ds_map_add_list(global.nodeMap, "stackList", stackChainList);
+		if (!scr_isNumericAndExists(stackChainList, ds_type_list)) {
+			ds_map_add_list(global.nodeMap, "stackList", ds_list_create());
 		}
-		if (!is_numeric(showList)) {
+		if (!scr_isNumericAndExists(showList, ds_type_list)) {
 			ds_map_add_list(global.nodeMap, "showList", ds_list_create());
 		}
-		if (!is_numeric(chunkList)) {
+		if (!scr_isNumericAndExists(chunkList, ds_type_list)) {
 			ds_map_add_list(global.nodeMap, "chunkList", ds_list_create());
 		}
-		if (!is_numeric(nodeList)) {
+		if (!scr_isNumericAndExists(nodeList, ds_type_list)) {
 			ds_map_add_list(global.nodeMap, "nodeList", ds_list_create());
 		}
-		if (!is_numeric(treeList)) {
+		if (!scr_isNumericAndExists(treeList, ds_type_list)) {
 			ds_map_add_list(global.nodeMap, "treeList", ds_list_create());
 		}
-		if (is_numeric(linkFieldList)) {
+		if (!scr_isNumericAndExists(stackingList, ds_type_list)) {
+			stackingList = ds_list_create();
+			ds_map_add_list(global.nodeMap, "stackingList", stackingList);
+		}
+		
+		// make sure our stackingList has default
+		if (scr_isNumericAndExists(stackingList, ds_type_list)) scr_addToListOnce(stackingList, "Default");
+		
+		if (scr_isNumericAndExists(linkFieldList, ds_type_list)) {
 			global.linkFieldList = linkFieldList;
 		}
-
 
 		// no tree map found
 		if (is_undefined(global.nodeMap[? "treeMap"])) {
@@ -161,8 +161,14 @@ function scr_verifyRez() {
 			scr_addToListOnce(nodeList, "stackingMap");
 		}
 
-		//now check for tag maps
-
+		// make sure stacking map has default value
+		if (scr_isNumericAndExists(global.stackingMap, ds_type_map)) {
+			if (!ds_map_exists(global.stackingMap, "Default")) {
+				var defaultStackingSubMap = ds_map_create();
+				defaultStackingSubMap[? "name"] = "Default";
+				ds_map_add_map(global.stackingMap, "Default", defaultStackingSubMap);
+			}
+		}
 	}
 	
 	// set every unit's "active" value to be true
@@ -178,7 +184,6 @@ function scr_verifyRez() {
 		}
 	}
 	
+	return false;
 	
-	
-
 }

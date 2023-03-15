@@ -127,12 +127,12 @@ function scr_newChain(ID) {
 	
 	// add chainType-specific fields
 	if (chainType == "stack") {
-		ds_map_add(newChainSubMap, "caption", "");
-		ds_map_add(newChainSubMap, "stackType", "");
-		ds_map_add_map(newChainSubMap, "stacking", obj_control.activeStacking);
+		newChainSubMap[? "caption"] = "";
+		newChainSubMap[? "stackType"] = "";
+		newChainSubMap[? "stacking"] = obj_control.activeStacking;
 	}
 	else if (chainType == "resonance") {
-		ds_map_add(newChainSubMap, "inClique", chainInCliqueID);
+		newChainSubMap[? "inClique"] = chainInCliqueID;
 		show_debug_message("newChain, chainInCliqueID: " + string(chainInCliqueID));
 	}
 

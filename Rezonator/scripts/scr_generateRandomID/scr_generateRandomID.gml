@@ -9,7 +9,7 @@ function scr_generateRandomID() {
 	
 	// continue generating random hex strings until we find one that is not
 	// already a key in the NodeMap
-	if (ds_map_exists(global.nodeMap, ID) || ds_map_exists(global.searchMap, ID) || ds_map_exists(global.treeMap, ID)  || ds_map_exists(global.cliqueMap, ID)) {
+	if (ds_map_exists(global.nodeMap, ID) || ds_map_exists(global.searchMap, ID) || ds_map_exists(global.treeMap, ID)  || ds_map_exists(global.cliqueMap, ID) || ds_map_exists(global.stackingMap, ID)) {
 		ID = scr_generateRandomID();
 	}
 	

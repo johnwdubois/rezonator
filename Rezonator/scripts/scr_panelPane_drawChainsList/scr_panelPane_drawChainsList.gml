@@ -445,22 +445,28 @@ function scr_panelPane_drawChainsList() {
 					
 					// draw text: stacking
 					if (functionChainList_currentTab == functionChainList_tabStackBrush) {
-						draw_text(floor(stackingColX + textBuffer) - clipX, textY - clipY, currentChainStacking);
+						var currentChainStackingSubMap = global.stackingMap[? currentChainStacking];
+						if (scr_isNumericAndExists(currentChainStackingSubMap, ds_type_map)) {
+							
+							// draw stacking name
+							var currentChainStackingName = currentChainStackingSubMap[? "name"];
+							draw_text(floor(stackingColX + textBuffer) - clipX, textY - clipY, string(currentChainStackingName));
 						
-						// draw whether this stack's stacking is active
-						if (currentChainStacking == obj_control.activeStacking) {
-							draw_set_alpha(0.8);
-							draw_circle(stackingActiveRadX - clipX, textY - clipY, stackingActiveRad * 0.8, false);
-						}
-						else {
-							// click on circle to change active stacking
-							var mouseoverStackingActive = mouseoverChainNameRect && point_in_circle(mouse_x, mouse_y, stackingActiveRadX, textY, stackingActiveRad);
-							if (mouseoverStackingActive) {
-								draw_set_alpha(0.5);
-								draw_set_color(global.colorThemeBG);
-								draw_circle(stackingActiveRadX - clipX, textY - clipY, stackingActiveRad, false);
-								if (mouse_check_button_released(mb_left)) {
-									scr_changeActiveStacking(currentChainStacking);
+							// draw whether this stack's stacking is active
+							if (currentChainStacking == obj_control.activeStacking) {
+								draw_set_alpha(0.8);
+								draw_circle(stackingActiveRadX - clipX, textY - clipY, stackingActiveRad * 0.8, false);
+							}
+							else {
+								// click on circle to change active stacking
+								var mouseoverStackingActive = mouseoverChainNameRect && point_in_circle(mouse_x, mouse_y, stackingActiveRadX, textY, stackingActiveRad);
+								if (mouseoverStackingActive) {
+									draw_set_alpha(0.5);
+									draw_set_color(global.colorThemeBG);
+									draw_circle(stackingActiveRadX - clipX, textY - clipY, stackingActiveRad, false);
+									if (mouse_check_button_released(mb_left)) {
+										scr_changeActiveStacking(currentChainStacking);
+									}
 								}
 							}
 						}
@@ -668,10 +674,13 @@ function scr_panelPane_drawChainsList() {
 				draw_set_color(global.colorThemeSelected1);
 				draw_rectangle(headerRectX1, headerRectY1, headerRectX2, headerRectY2, false);
 				if (mouse_check_button_released(mb_left)) {
-					var stackingOptionList = ds_list_create();
-					ds_list_copy(stackingOptionList, obj_control.stackTypeList);
-					ds_list_add(stackingOptionList, "New stacking");
-					scr_createDropDown(headerRectX1, headerRectY2, stackingOptionList, global.optionListTypeStackType);
+					var stackingList = global.nodeMap[? "stackingList"];
+					if (scr_isNumericAndExists(stackingList, ds_type_list)) {
+						var stackingOptionList = ds_list_create();
+						ds_list_copy(stackingOptionList,stackingList);
+						ds_list_add(stackingOptionList, "New stacking");
+						scr_createDropDown(headerRectX1, headerRectY2, stackingOptionList, global.optionListTypeStackType);
+					}
 				}
 			}
 		}

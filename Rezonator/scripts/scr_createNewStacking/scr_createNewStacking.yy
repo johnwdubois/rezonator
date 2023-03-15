@@ -1,7 +1,7 @@
 {
   "resourceType": "GMScript",
   "resourceVersion": "1.0",
-  "name": "scr_changeActiveStacking",
+  "name": "scr_createNewStacking",
   "isCompatibility": false,
   "isDnD": false,
   "parent": {

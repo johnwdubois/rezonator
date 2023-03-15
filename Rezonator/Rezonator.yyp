@@ -86,6 +86,7 @@
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Steamworks","folderPath":"folders/Steamworks.yy",},
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Tile Sets","folderPath":"folders/Tile Sets.yy",},
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Timelines","folderPath":"folders/Timelines.yy",},
+    {"resourceType":"GMFolder","resourceVersion":"1.0","name":"stacking","folderPath":"folders/Scripts/chains/stacking.yy",},
   ],
   "IncludedFiles": [
     {"resourceType":"GMIncludedFile","resourceVersion":"1.0","name":".DS_Store","CopyToMask":-1,"filePath":"datafiles",},
@@ -678,6 +679,7 @@
     {"id":{"name":"scr_checkExpandable","path":"scripts/scr_checkExpandable/scr_checkExpandable.yy",},},
     {"id":{"name":"scr_unitSelection","path":"scripts/scr_unitSelection/scr_unitSelection.yy",},},
     {"id":{"name":"execute_shell_simple_ext","path":"extensions/execute_shell_simple_ext/execute_shell_simple_ext.yy",},},
+    {"id":{"name":"scr_createNewStacking","path":"scripts/scr_createNewStacking/scr_createNewStacking.yy",},},
     {"id":{"name":"scr_arrowOptions","path":"scripts/scr_arrowOptions/scr_arrowOptions.yy",},},
     {"id":{"name":"scr_tokenTagMapOptions","path":"scripts/scr_tokenTagMapOptions/scr_tokenTagMapOptions.yy",},},
     {"id":{"name":"scr_expandChunk","path":"scripts/scr_expandChunk/scr_expandChunk.yy",},},

@@ -219,7 +219,7 @@ function scr_dialogueConfirm() {
 		
 		// naming a new stackType
 		if (obj_control.createNewStacking) {
-			scr_changeActiveStacking(obj_control.inputText);
+			scr_createNewStacking(obj_control.inputText);
 		}
 		
 		scr_closeDialogueBoxVariables();

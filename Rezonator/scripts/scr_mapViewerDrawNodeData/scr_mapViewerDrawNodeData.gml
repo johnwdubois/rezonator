@@ -1,5 +1,3 @@
-
-
 function scr_mapViewerDrawNodeData() {
 
 	scr_adaptFont("0", "M");
@@ -57,11 +55,10 @@ function scr_mapViewerDrawNodeData() {
 			
 			
 			// check if this value is a map
-			var isMap = (subMapKey == "tagMap" or nodeShow == "tokenTagMap" or nodeShow == "unitTagMap" or nodeShow == "searchMap" or nodeShow == "cliqueMap"
-				or nodeShow == "treeMap" or nodeShow == "chainTagMap" or nodeShow == "entryTagMap" or nodeShow == "linkTagMap" or nodeShow == "participantMap" || nodeShow == "chainShowMap" or nodeShow == "entityMap");
-			//show_debug_message("Is map... " + string(isMap));
-			//show_debug_message("Entry is list... " + string(scr_isNumericAndExists(subMapVal, ds_type_map)));
-			//show_debug_message(string(subMapVal));
+			var isMap = (subMapKey == "tagMap" || nodeShow == "tokenTagMap" || nodeShow == "unitTagMap" || nodeShow == "searchMap" || nodeShow == "cliqueMap"
+				|| nodeShow == "treeMap" || nodeShow == "chainTagMap" || nodeShow == "entryTagMap" || nodeShow == "linkTagMap" || nodeShow == "participantMap"
+				|| nodeShow == "stackingMap");
+
 			if (isMap && scr_isNumericAndExists(subMapVal, ds_type_map)) {
 				subMapValStr = "";
 				plusY += strHeight;

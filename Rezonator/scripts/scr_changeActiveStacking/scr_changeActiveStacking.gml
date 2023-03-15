@@ -19,9 +19,6 @@ function scr_changeActiveStacking(stacking){
 	}
 	else {
 		
-		// first, let's make sure stacking is in the stackTypeList
-		scr_addToListOnce(obj_control.stackTypeList, stacking);
-		
 		// now, we need to clear any references to chains that are no longer of the active stacking
 		var stackList = global.nodeMap[? "stackList"];
 		var stackListSize = ds_list_size(stackList);

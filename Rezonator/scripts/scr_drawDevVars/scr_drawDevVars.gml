@@ -83,7 +83,7 @@ function scr_drawDevVars() {
 	draw_text(devVarX - 580, wordTopMargin + (strHeight * 12), "audioClosestUnit: " + string(obj_audioUI.closestUnit));
 	draw_text(devVarX - 580, wordTopMargin + (strHeight * 13), "endRangeMin: " + string(obj_control.drawRangeEndMin));
 	draw_text(devVarX - 580, wordTopMargin + (strHeight * 14), "quickPickedChainID: " + string(obj_control.quickPickedChainID));
-	draw_text(devVarX - 580, wordTopMargin + (strHeight * 15), "mergeUnitList: " + scr_getStringOfList(mergeUnitList));
+	draw_text(devVarX - 580, wordTopMargin + (strHeight * 15), "stackingList: " + scr_getStringOfList(global.nodeMap[? "stackingList"]));
 	draw_text(devVarX - 580, wordTopMargin + (strHeight * 16), "mergeStackID: " + string(obj_chain.mergeStackID));
 	draw_text(devVarX - 580, wordTopMargin + (strHeight * 17), "stackerName: " + string(obj_stacker.stackerName));
 	draw_text(devVarX - 580, wordTopMargin + (strHeight * 18), "confirmStackCreate: " + string(obj_stacker.confirmStackCreate));

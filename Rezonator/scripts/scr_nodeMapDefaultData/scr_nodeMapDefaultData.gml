@@ -11,7 +11,7 @@ function scr_nodeMapDefaultData() {
 	// add chunkList to nodeMap
 	ds_map_add_list(global.nodeMap, "chunkList", ds_list_create());
 
-	// add NodeList to nodeMap
+	// add nodeList to nodeMap
 	if (!ds_map_exists(global.nodeMap, "nodeList")) {
 		ds_map_add_list(global.nodeMap, "nodeList", ds_list_create());
 	}
@@ -53,10 +53,18 @@ function scr_nodeMapDefaultData() {
 	// create the stacking map
 	global.stackingMap = ds_map_create();
 	ds_map_add(global.stackingMap, "type", "map");
+	var defaultStackingSubMap = ds_map_create();
+	defaultStackingSubMap[? "name"] = "Default";
+	ds_map_add_map(global.stackingMap, "Default", defaultStackingSubMap);
 
 	// create lists of nodes for these panes
 	ds_map_add_list(global.nodeMap, "searchNodeList", ds_list_create());
 	ds_map_add_list(global.nodeMap, "treeList", ds_list_create());
+	
+	// making stackingList with default value
+	var _stackingList = ds_list_create();
+	ds_list_add(_stackingList, "Default");
+	ds_map_add_list(global.nodeMap, "stackingList", _stackingList);
 
 	// add map to nodeMap
 	ds_map_add_map(global.nodeMap, "searchMap", global.searchMap);
