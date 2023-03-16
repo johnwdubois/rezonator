@@ -19,6 +19,10 @@ function scr_changeActiveStacking(stacking){
 	}
 	else {
 		
+		// let's clear the navList so we only see stacks of the new stacking
+		var stackNavList = global.nodeMap[? "stackNavList"];
+		ds_list_clear(stackNavList);
+		
 		// now, we need to clear any references to chains that are no longer of the active stacking
 		var stackList = global.nodeMap[? "stackList"];
 		var stackListSize = ds_list_size(stackList);
@@ -46,6 +50,11 @@ function scr_changeActiveStacking(stacking){
 				else {
 					scr_deleteFromList(currentStackEntryUnitInChainsList, currentStack);
 				}
+			}
+			
+			// if this stack's stacking is being activated, we will show it in the nav window
+			if (currentStacking == stacking) {
+				scr_addToListOnce(stackNavList, currentStack);
 			}
 		}
 		

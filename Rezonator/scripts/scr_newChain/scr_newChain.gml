@@ -112,13 +112,26 @@ function scr_newChain(ID) {
 		show_debug_message("...dragStartOriginalChain: " + string(obj_chain.dragStartOriginalChain));
 	}
 	
-	// get list of chains from nodeMap and add to it
-	var listOfChainsKey = "resonanceList";
-	if (chainType == "resonance") listOfChainsKey = "resonanceList";
-	else if (chainType == "trail") listOfChainsKey = "trailList";
-	else if (chainType == "stack") listOfChainsKey = "stackList";
-	var listOfChains = global.nodeMap[? listOfChainsKey];
-	ds_list_add(listOfChains, obj_chain.currentChainID);
+	// get chainList and navList and add this new chain to both
+	var chainListKey = "resonanceList";
+	var chainNavListKey = "resonanceNavList";
+	if (chainType == "resonance") {
+		chainListKey = "resonanceList";
+		chainNavListKey = "resonanceNavList";
+	}
+	else if (chainType == "trail") {
+		chainListKey = "trailList";
+		chainNavListKey = "trailNavList";
+	}
+	else if (chainType == "stack") {
+		chainListKey = "stackList";
+		chainNavListKey = "stackNavList";
+	}
+	var chainList = global.nodeMap[? chainListKey];
+	var chainNavList = global.nodeMap[? chainNavListKey];
+	ds_list_add(chainList, obj_chain.currentChainID);
+	ds_list_add(chainNavList, obj_chain.currentChainID);
+
 
 	var chainColor = scr_randomChainColor();
 	

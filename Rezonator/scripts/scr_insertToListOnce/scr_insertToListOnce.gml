@@ -1,5 +1,3 @@
-
-
 function scr_insertToListOnce(list, pos, value) {
 	
 	// insert into list at specific position, but only 

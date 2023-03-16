@@ -59,18 +59,18 @@ function scr_verifyRez() {
 		}
 
 		// make sure our node map has all the lists we need
-		scr_verifyRezCheckDS("resonanceList", ds_type_list);
-		scr_verifyRezCheckDS("trailList", ds_type_list);
-		scr_verifyRezCheckDS("stackList", ds_type_list);
-		scr_verifyRezCheckDS("resonanceNavList", ds_type_list);
-		scr_verifyRezCheckDS("trailNavList", ds_type_list);
-		scr_verifyRezCheckDS("stackNavList", ds_type_list);
-		scr_verifyRezCheckDS("showList", ds_type_list);
-		scr_verifyRezCheckDS("chunkList", ds_type_list)
-		scr_verifyRezCheckDS("treeList", ds_type_list);
+		var resonanceList = scr_verifyRezCheckDS("resonanceList", ds_type_list);
+		var trailList = scr_verifyRezCheckDS("trailList", ds_type_list);
+		var stackList = scr_verifyRezCheckDS("stackList", ds_type_list);
+		var resonanceNavList = scr_verifyRezCheckDS("resonanceNavList", ds_type_list);
+		var trailNavList = scr_verifyRezCheckDS("trailNavList", ds_type_list);
+		var stackNavList = scr_verifyRezCheckDS("stackNavList", ds_type_list);
 		var nodeList = scr_verifyRezCheckDS("nodeList", ds_type_list);
 		var linkFieldList = scr_verifyRezCheckDS("linkFieldList", ds_type_list);
 		var stackingList = scr_verifyRezCheckDS("stackingList", ds_type_list);
+		scr_verifyRezCheckDS("showList", ds_type_list);
+		scr_verifyRezCheckDS("chunkList", ds_type_list)
+		scr_verifyRezCheckDS("treeList", ds_type_list);
 
 		// get chain field map, if supplied
 		var chainFieldMap = global.nodeMap[? "chainTagMap"];
@@ -112,6 +112,11 @@ function scr_verifyRez() {
 				ds_map_add_map(global.stackingMap, "Default", defaultStackingSubMap);
 			}
 		}
+		
+		// if the nav lists are empty but the full lists are not, let's copy from the full lists
+		if (ds_list_size(resonanceNavList) < 1 && ds_list_size(resonanceList) >= 1) ds_list_copy(resonanceNavList, resonanceList);
+		if (ds_list_size(trailNavList) < 1 && ds_list_size(trailList) >= 1) ds_list_copy(trailNavList, trailList);
+		if (ds_list_size(stackNavList) < 1 && ds_list_size(stackList) >= 1) ds_list_copy(stackNavList, stackList);
 	}
 	
 	// set every unit's "active" value to be true

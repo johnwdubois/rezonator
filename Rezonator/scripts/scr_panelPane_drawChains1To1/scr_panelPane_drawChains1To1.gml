@@ -25,38 +25,38 @@ function scr_panelPane_drawChains1To1() {
 	var dropDownButtonWidth = sprite_get_width(spr_dropDown);
 	
 	// get list of dynamic 1-1 columns for this tab, as well as the list of chains for this tab
-	var listOfChains = -1;
-	var listOfChainsKey = "";
+	var chainList = -1;
+	var chainListKey = "";
 	var chainType = "";
 	var chain1to1ColFieldList = -1;
 	with (chainListPanelPaneInst) {
 		if (functionChainList_currentTab == functionChainList_tabRezBrush) {
-			listOfChainsKey = "resonanceList";
+			chainListKey = "resonanceNavList";
 			chainType = "resonance";
 			chain1to1ColFieldList = obj_control.chain1to1ColFieldListRez;
 		}
 		else if (functionChainList_currentTab == functionChainList_tabTrackBrush) {
-			listOfChainsKey = "trailList";
+			chainListKey = "trailNavList";
 			chainType = "trail";
 			chain1to1ColFieldList = obj_control.chain1to1ColFieldListTrack;
 		}
 		else if (functionChainList_currentTab == functionChainList_tabStackBrush) {
-			listOfChainsKey = "stackList";
+			chainListKey = "stackNavList";
 			chainType = "stack";
 			chain1to1ColFieldList = obj_control.chain1to1ColFieldListStack;
 		}
 	}
-	listOfChains = ds_map_find_value(global.nodeMap, listOfChainsKey);
+	chainList = ds_map_find_value(global.nodeMap, chainListKey);
 	
 	// make sure we found those lists!
-	if (!is_numeric(listOfChains) || !is_numeric(chain1to1ColFieldList)) {
+	if (!is_numeric(chainList) || !is_numeric(chain1to1ColFieldList)) {
 		exit;
 	}
-	if (!ds_exists(listOfChains, ds_type_list) || !ds_exists(chain1to1ColFieldList, ds_type_list)) {
+	if (!ds_exists(chainList, ds_type_list) || !ds_exists(chain1to1ColFieldList, ds_type_list)) {
 		exit;
 	}
 	var chain1to1ColFieldListSize = ds_list_size(chain1to1ColFieldList);
-	var listOfChainsSize = ds_list_size(listOfChains);
+	var listOfChainsSize = ds_list_size(chainList);
 	
 	
 	if (!global.html5) scr_surfaceStart();
@@ -110,7 +110,7 @@ function scr_panelPane_drawChains1To1() {
 			}
 
 			// get chainID & tagMap for the chain (and make sure it all exists)
-			var chainID = listOfChains[| i];
+			var chainID = chainList[| i];
 			var chainSubMap = global.nodeMap[? chainID];
 			if (!scr_isNumericAndExists(chainSubMap, ds_type_map)) continue;
 			var tagMap = chainSubMap[? "tagMap"];
@@ -192,7 +192,7 @@ function scr_panelPane_drawChains1To1() {
 			scr_chainTagDropDown(global.chainFieldMap, currentField, chainID, cellRectX1, cellRectY1, cellRectX2, cellRectY2, mouseoverCell, (j == chain1to1ColFieldListSize - 1),string(tagStr));
 		}
 	}
-	scr_navWindowTaggingSelection(chain1to1ColFieldList, listOfChains,"chain");
+	scr_navWindowTaggingSelection(chain1to1ColFieldList, chainList,"chain");
 	
 	// draw focus outline
 	if (focusedRowRectY1 > -1 and focusedRowRectY2 > -1) {
@@ -223,7 +223,7 @@ function scr_panelPane_drawChains1To1() {
 		if ((mouse_wheel_up() or (keyboard_check(vk_up) && obj_control.navWindowTaggingID == "")) and (holdUp < 2 or holdUp > 30)) {
 			if (functionChainList_focusedChainIndex > 0 and functionChainList_focusedChainIndex < listOfChainsSize) {
 				with (obj_panelPane) functionChainList_focusedChainIndex--;
-				var newFocusedChainID = ds_list_find_value(listOfChains, functionChainList_focusedChainIndex);
+				var newFocusedChainID = ds_list_find_value(chainList, functionChainList_focusedChainIndex);
 				obj_chain.currentFocusedChainID = newFocusedChainID;
 				
 				if (focusedElementY <= y + headerHeight + strHeight) {
@@ -242,7 +242,7 @@ function scr_panelPane_drawChains1To1() {
 		if ((mouse_wheel_down() || (keyboard_check(vk_down) && obj_control.navWindowTaggingID == "")) and (holdDown < 2 || holdDown > 30)) {	
 			if (functionChainList_focusedChainIndex < listOfChainsSize - 1 and functionChainList_focusedChainIndex >= 0) {
 				with (obj_panelPane) functionChainList_focusedChainIndex++;
-				var newFocusedChainID = ds_list_find_value(listOfChains, functionChainList_focusedChainIndex);
+				var newFocusedChainID = ds_list_find_value(chainList, functionChainList_focusedChainIndex);
 				obj_chain.currentFocusedChainID = newFocusedChainID;
 				
 				if (focusedElementY >= y + windowHeight - strHeight) {

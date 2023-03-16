@@ -6,7 +6,7 @@ function scr_addToRecentFiles(filePath) {
 	scr_deleteFromList(global.recentFilesList,fileName);
 	
 	//update key list
-	scr_addToListOnce(global.recentFilesList,string(fileName), true);
+	scr_insertToListOnce(global.recentFilesList, 0, string(fileName));
 	var recentFilesListSize = ds_list_size(global.recentFilesList);
 	while (recentFilesListSize > 20) {
 		

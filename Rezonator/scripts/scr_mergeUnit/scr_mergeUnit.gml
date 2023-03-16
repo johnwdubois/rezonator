@@ -43,7 +43,7 @@ function scr_mergeUnit() {
 		}
 		else {
 			// if unit1 comes after unit2, we will add unit2's entries to the front of unit1's entry list
-			scr_addToListOnce(unit1EntryList, currentUnit2Entry, true);
+			scr_insertToListOnce(unit1EntryList, 0, currentUnit2Entry);
 		}
 		
 		currentUnit2TokenSubMap[? "unit"] = unit1ID;

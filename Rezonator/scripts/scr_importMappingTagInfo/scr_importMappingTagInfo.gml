@@ -457,7 +457,7 @@ function scr_importMappingTagInfo() {
 					if (mouse_check_button_pressed(mb_left)) {
 						
 						if (ds_list_find_index(global.importFieldTagList,currentField) == -1) {
-							scr_addToListOnce(global.importFieldTagList, currentField, true);
+							scr_insertToListOnce(global.importFieldTagList, 0, currentField);
 						}
 						else {
 							scr_deleteFromList(global.importFieldTagList, currentField);

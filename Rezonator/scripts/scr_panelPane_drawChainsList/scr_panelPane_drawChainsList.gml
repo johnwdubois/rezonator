@@ -26,33 +26,32 @@ function scr_panelPane_drawChainsList() {
 
 
 	// get list of chains for this tab
-	var listOfChains = -1;
-	var listOfChainsKey = "";
+	var chainList = -1;
+	var chainListKey = "";
 	var tabChainType = "";
 	var filterList = scr_getFilterList(false);
 	var selectedList = -1;
 	var hiddenList = -1;
 	if (functionChainList_currentTab == functionChainList_tabRezBrush) {
-		listOfChainsKey = "resonanceList";
+		chainListKey = "resonanceNavList";
 		tabChainType = "resonance";
 		selectedList = obj_control.selectedRezChainList;
 		hiddenList = obj_control.hiddenRezChainList;
 	}
 	else if (functionChainList_currentTab == functionChainList_tabTrackBrush) {
-		listOfChainsKey = "trailList";
+		chainListKey = "trailNavList";
 		tabChainType = "trail";
 		selectedList = obj_control.selectedTrackChainList;
 		hiddenList = obj_control.hiddenTrackChainList;
 	}
 	else if (functionChainList_currentTab == functionChainList_tabStackBrush) {
-		listOfChainsKey = "stackList";
+		chainListKey = "stackNavList";
 		tabChainType = "stack";
 		selectedList = obj_control.selectedStackChainList;
 		hiddenList = obj_control.hiddenStackChainList;
 	}
 	
-	
-	listOfChains = global.nodeMap[? listOfChainsKey];
+	chainList = global.nodeMap[? chainListKey];
 	var strHeight = string_height("0") * 1.5;
 	with (obj_panelPane) leftPaneStrHeight = strHeight;
 	
@@ -106,7 +105,7 @@ function scr_panelPane_drawChainsList() {
 
 	scr_surfaceStart();
 	
-	var listOfChainsSize = ds_list_size(listOfChains);
+	var listOfChainsSize = ds_list_size(chainList);
 	for (var i = 0; i < listOfChainsSize; i++) {
 	
 		if (y + headerHeight + relativeScrollPlusY + textPlusY < y - strHeight
@@ -121,7 +120,7 @@ function scr_panelPane_drawChainsList() {
 		else if (i >= 0 && i < listOfChainsSize) {
 			
 			// get submap of current chain
-			var currentChainID = ds_list_find_value(listOfChains, i);
+			var currentChainID = ds_list_find_value(chainList, i);
 			var currentChainSubMap = ds_map_find_value(global.nodeMap, currentChainID);
 			
 			// make sure that the chain's submap exists
@@ -260,7 +259,7 @@ function scr_panelPane_drawChainsList() {
 									var loopIncrement = (selectListPrevIndex < i) ? 1 : -1;
 									var selectIndex = selectListPrevIndex;									
 									while (selectIndex != i) {										
-										var chainToSelect = listOfChains[| selectIndex];
+										var chainToSelect = chainList[| selectIndex];
 										var chainToSelectSubMap = global.nodeMap[? chainToSelect];
 										if (scr_isNumericAndExists(chainToSelectSubMap, ds_type_map)) {
 											var chainToSelectSelected = chainToSelectSubMap[? "selected"];
@@ -484,7 +483,7 @@ function scr_panelPane_drawChainsList() {
 	
 
 	with (obj_panelPane) {
-		functionChainList_focusedChainIndex = ds_list_find_index(listOfChains, obj_chain.currentFocusedChainID);
+		functionChainList_focusedChainIndex = ds_list_find_index(chainList, obj_chain.currentFocusedChainID);
 	}
 	
 	// get color of focused chain
@@ -524,7 +523,7 @@ function scr_panelPane_drawChainsList() {
 			
 			if (functionChainList_focusedChainIndex > 0 and functionChainList_focusedChainIndex < listOfChainsSize) {
 				with (obj_panelPane) functionChainList_focusedChainIndex--;
-				var newFocusedChainID = ds_list_find_value(listOfChains, functionChainList_focusedChainIndex);
+				var newFocusedChainID = ds_list_find_value(chainList, functionChainList_focusedChainIndex);
 				obj_chain.currentFocusedChainID = newFocusedChainID;
 				
 				// deselect all chains of this type and select the current one
@@ -550,7 +549,7 @@ function scr_panelPane_drawChainsList() {
 			
 			if (functionChainList_focusedChainIndex < listOfChainsSize - 1 and functionChainList_focusedChainIndex >= 0) {
 				with (obj_panelPane) functionChainList_focusedChainIndex++;
-				var newFocusedChainID = ds_list_find_value(listOfChains, functionChainList_focusedChainIndex);
+				var newFocusedChainID = ds_list_find_value(chainList, functionChainList_focusedChainIndex);
 				obj_chain.currentFocusedChainID = newFocusedChainID;
 				
 				// deselect all chains of this type and select the current one
@@ -687,13 +686,13 @@ function scr_panelPane_drawChainsList() {
 		
 		// draw checkbox header
 		if (i == 0) {
-			var allChainsSelected = (ds_list_size(listOfChains) == ds_list_size(selectedList) && ds_list_size(listOfChains) > 0);
-			var someChainsSelected = (ds_list_size(listOfChains) > ds_list_size(selectedList) && ds_list_size(selectedList) > 0 && ds_list_size(listOfChains) > 0);
+			var allChainsSelected = (ds_list_size(chainList) == ds_list_size(selectedList) && ds_list_size(chainList) > 0);
+			var someChainsSelected = (ds_list_size(chainList) > ds_list_size(selectedList) && ds_list_size(selectedList) > 0 && ds_list_size(chainList) > 0);
 			var headerCheckboxX1 = optionsColX + (optionsColWidth* 0.2) - (checkboxSize / 2);
 			var headerCheckboxY1 = mean(headerRectY1, headerRectY2) - (checkboxSize / 2);
 			var headerCheckboxX2 = headerCheckboxX1 + checkboxSize;
 			var headerCheckboxY2 = headerCheckboxY1 + checkboxSize;
-			var mouseoverHeaderCheckbox = point_in_rectangle(mouse_x, mouse_y, headerCheckboxX1, headerCheckboxY1, headerCheckboxX2, headerCheckboxY2) && ds_list_size(listOfChains) > 0 && !mouseoverCancel;
+			var mouseoverHeaderCheckbox = point_in_rectangle(mouse_x, mouse_y, headerCheckboxX1, headerCheckboxY1, headerCheckboxX2, headerCheckboxY2) && ds_list_size(chainList) > 0 && !mouseoverCancel;
 			if (mouseoverHeaderCheckbox) {
 				draw_set_color(merge_color(global.colorThemeSelected2, global.colorThemeBG, 0.4));
 				draw_roundrect(headerCheckboxX1 - (strHeight * 0.15), headerCheckboxY1 - (strHeight * 0.15), headerCheckboxX2 + (strHeight * 0.15), headerCheckboxY2 + (strHeight * 0.15), false);
@@ -704,7 +703,7 @@ function scr_panelPane_drawChainsList() {
 				// click on checkbox header
 				if (mouse_check_button_released(mb_left)) {
 					scr_setValueForAllChains(tabChainType, "selected", (allChainsSelected) ? false : true);
-					allChainsSelected = (ds_list_size(listOfChains) == ds_list_size(selectedList));
+					allChainsSelected = (ds_list_size(chainList) == ds_list_size(selectedList));
 				}
 			}
 			
@@ -733,7 +732,7 @@ function scr_panelPane_drawChainsList() {
 		if (i == 1) {
 			
 			// filter all
-			var allChainsFiltered = (ds_list_size(listOfChains) == ds_list_size(filterList) && ds_list_size(listOfChains) > 0);
+			var allChainsFiltered = (ds_list_size(chainList) == ds_list_size(filterList) && ds_list_size(chainList) > 0);
 			var filterAllX = filterChainX;
 			var filterAllY = mean(headerRectY1, headerRectY2);
 			var mouseoverFilterAll = scr_pointInCircleClippedWindow(mouse_x, mouse_y, filterAllX, filterAllY, optionsIconRad) && !mouseoverCancel;
@@ -756,7 +755,7 @@ function scr_panelPane_drawChainsList() {
 			
 			
 			// visible all
-			var allChainsHidden = (ds_list_size(listOfChains) == ds_list_size(hiddenList) && ds_list_size(listOfChains) > 0);
+			var allChainsHidden = (ds_list_size(chainList) == ds_list_size(hiddenList) && ds_list_size(chainList) > 0);
 			var hideAllX = visibleChainX;
 			var hideAllY = mean(headerRectY1, headerRectY2);
 			var mouseoverHideAll = scr_pointInCircleClippedWindow(mouse_x, mouse_y, hideAllX, hideAllY, optionsIconRad) && !mouseoverCancel && !mouseoverFilterAll;
