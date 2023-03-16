@@ -38,6 +38,7 @@
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"chains","folderPath":"folders/Scripts/chains.yy",},
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"drawChains","folderPath":"folders/Scripts/chains/drawChains.yy",},
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"stacker","folderPath":"folders/Scripts/chains/stacker.yy",},
+    {"resourceType":"GMFolder","resourceVersion":"1.0","name":"stacking","folderPath":"folders/Scripts/chains/stacking.yy",},
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"chunks","folderPath":"folders/Scripts/chunks.yy",},
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"cliques","folderPath":"folders/Scripts/cliques.yy",},
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"drawLine","folderPath":"folders/Scripts/drawLine.yy",},
@@ -86,7 +87,6 @@
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Steamworks","folderPath":"folders/Steamworks.yy",},
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Tile Sets","folderPath":"folders/Tile Sets.yy",},
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Timelines","folderPath":"folders/Timelines.yy",},
-    {"resourceType":"GMFolder","resourceVersion":"1.0","name":"stacking","folderPath":"folders/Scripts/chains/stacking.yy",},
   ],
   "IncludedFiles": [
     {"resourceType":"GMIncludedFile","resourceVersion":"1.0","name":".DS_Store","CopyToMask":-1,"filePath":"datafiles",},
@@ -288,6 +288,7 @@
     {"id":{"name":"scr_gridDeleteRow","path":"scripts/scr_gridDeleteRow/scr_gridDeleteRow.yy",},},
     {"id":{"name":"scr_addToRecentFiles","path":"scripts/scr_addToRecentFiles/scr_addToRecentFiles.yy",},},
     {"id":{"name":"spr_openButton","path":"sprites/spr_openButton/spr_openButton.yy",},},
+    {"id":{"name":"scr_verifyRezCheckDS","path":"scripts/scr_verifyRezCheckDS/scr_verifyRezCheckDS.yy",},},
     {"id":{"name":"scr_removeTokensInChunkFromChain","path":"scripts/scr_removeTokensInChunkFromChain/scr_removeTokensInChunkFromChain.yy",},},
     {"id":{"name":"scr_getGridNameString","path":"scripts/scr_getGridNameString/scr_getGridNameString.yy",},},
     {"id":{"name":"FirebaseREST_Firestore_jsonDecode","path":"scripts/FirebaseREST_Firestore_jsonDecode/FirebaseREST_Firestore_jsonDecode.yy",},},

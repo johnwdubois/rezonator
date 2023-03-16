@@ -4,6 +4,11 @@ function scr_nodeMapDefaultData() {
 	ds_map_add_list(global.nodeMap, "resonanceList", ds_list_create());
 	ds_map_add_list(global.nodeMap, "trailList", ds_list_create());
 	ds_map_add_list(global.nodeMap, "stackList", ds_list_create());
+	
+	// add left nav window lists to nodeMap
+	ds_map_add_list(global.nodeMap, "resonanceNavList", ds_list_create());
+	ds_map_add_list(global.nodeMap, "trailNavList", ds_list_create());
+	ds_map_add_list(global.nodeMap, "stackNavList", ds_list_create());
 
 	// add showList to nodeMap
 	ds_map_add_list(global.nodeMap, "showList", ds_list_create());
