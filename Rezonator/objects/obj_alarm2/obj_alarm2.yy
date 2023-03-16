@@ -20,7 +20,7 @@
   "overriddenProperties": [],
   "parent": {
     "name": "Misc",
-    "path": "folders/Objects/Misc.yy",
+    "path": "folders/Objects/UI/Misc.yy",
   },
   "parentObjectId": null,
   "persistent": false,

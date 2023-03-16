@@ -26,32 +26,32 @@ function scr_panelPane_drawChainsList() {
 
 
 	// get list of chains for this tab
-	var chainList = -1;
-	var chainListKey = "";
+	var chainNavList = -1;
+	var chainNavListKey = "";
 	var tabChainType = "";
 	var filterList = scr_getFilterList(false);
 	var selectedList = -1;
 	var hiddenList = -1;
 	if (functionChainList_currentTab == functionChainList_tabRezBrush) {
-		chainListKey = "resonanceNavList";
+		chainNavListKey = "resonanceNavList";
 		tabChainType = "resonance";
 		selectedList = obj_control.selectedRezChainList;
 		hiddenList = obj_control.hiddenRezChainList;
 	}
 	else if (functionChainList_currentTab == functionChainList_tabTrackBrush) {
-		chainListKey = "trailNavList";
+		chainNavListKey = "trailNavList";
 		tabChainType = "trail";
 		selectedList = obj_control.selectedTrackChainList;
 		hiddenList = obj_control.hiddenTrackChainList;
 	}
 	else if (functionChainList_currentTab == functionChainList_tabStackBrush) {
-		chainListKey = "stackNavList";
+		chainNavListKey = "stackNavList";
 		tabChainType = "stack";
 		selectedList = obj_control.selectedStackChainList;
 		hiddenList = obj_control.hiddenStackChainList;
 	}
 	
-	chainList = global.nodeMap[? chainListKey];
+	chainNavList = global.nodeMap[? chainNavListKey];
 	var strHeight = string_height("0") * 1.5;
 	with (obj_panelPane) leftPaneStrHeight = strHeight;
 	
@@ -105,7 +105,7 @@ function scr_panelPane_drawChainsList() {
 
 	scr_surfaceStart();
 	
-	var listOfChainsSize = ds_list_size(chainList);
+	var listOfChainsSize = ds_list_size(chainNavList);
 	for (var i = 0; i < listOfChainsSize; i++) {
 	
 		if (y + headerHeight + relativeScrollPlusY + textPlusY < y - strHeight
@@ -120,7 +120,7 @@ function scr_panelPane_drawChainsList() {
 		else if (i >= 0 && i < listOfChainsSize) {
 			
 			// get submap of current chain
-			var currentChainID = ds_list_find_value(chainList, i);
+			var currentChainID = ds_list_find_value(chainNavList, i);
 			var currentChainSubMap = ds_map_find_value(global.nodeMap, currentChainID);
 			
 			// make sure that the chain's submap exists
@@ -149,7 +149,7 @@ function scr_panelPane_drawChainsList() {
 					// first, we will check if the stack has a caption specified in its submap
 					currentChainCaption = (currentChainType == "stack") ? ds_map_find_value(currentChainSubMap, "caption") : "";
 					
-					// if it does not have a caption specified, we will show its contents in the chainList window
+					// if it does not have a caption specified, we will show its contents in the chainNavList window
 					if (currentChainType == "stack") {
 						if (string_length(string(currentChainCaption)) < 1 || !is_string(currentChainCaption)) {
 							currentChainCaption = "";
@@ -196,16 +196,8 @@ function scr_panelPane_drawChainsList() {
 							draw_circle(mouse_x, mouse_y, 5, true);
 						}
 						
-						// left-click on chain in chainList
+						// left-click on chain in chainNavList
 						if (device_mouse_check_button_released(0, mb_left) and !mouseoverCancel and !mouseoverCheckbox) {
-							
-							// deselect all chains of this type and select the current one
-							//if (!global.ctrlHold) scr_setValueForAllChains(tabChainType, "selected", false);
-							//currentChainSubMap[? "selected"] = true;
-							//currentChainSelected = true;
-							//scr_addToListOnce(selectedList, currentChainID);
-							
-							
 		
 							if (obj_chain.currentFocusedChainID != currentChainID) {
 								// Focuses on selected chain
@@ -259,7 +251,7 @@ function scr_panelPane_drawChainsList() {
 									var loopIncrement = (selectListPrevIndex < i) ? 1 : -1;
 									var selectIndex = selectListPrevIndex;									
 									while (selectIndex != i) {										
-										var chainToSelect = chainList[| selectIndex];
+										var chainToSelect = chainNavList[| selectIndex];
 										var chainToSelectSubMap = global.nodeMap[? chainToSelect];
 										if (scr_isNumericAndExists(chainToSelectSubMap, ds_type_map)) {
 											var chainToSelectSelected = chainToSelectSubMap[? "selected"];
@@ -272,7 +264,7 @@ function scr_panelPane_drawChainsList() {
 						}
 					}
 
-					// right-click on chain in chainList
+					// right-click on chain in chainNavList
 					if (mouseoverChainNameRect && mouse_check_button_pressed(mb_right) && !mouseoverCancel) {
 						
 						
@@ -437,12 +429,13 @@ function scr_panelPane_drawChainsList() {
 						draw_set_alpha(1);
 						
 						// draw rect so caption does not extend beyond its column
-						draw_set_color(merge_color(currentChainColor, global.colorThemeBG, (obj_chain.currentFocusedChainID == currentChainID or mouseoverChainNameRect) ? 0.65: 0.8)); //soften the color
-						draw_rectangle(stackingColX - clipX, chainNameRectY1 - clipY, chainNameRectX2 - clipX, chainNameRectY2 - clipY, false);
-						draw_set_color(global.colorThemeText);
+						//draw_set_color(merge_color(currentChainColor, global.colorThemeBG, (obj_chain.currentFocusedChainID == currentChainID or mouseoverChainNameRect) ? 0.65: 0.8)); //soften the color
+						//draw_rectangle(stackingColX - clipX, chainNameRectY1 - clipY, chainNameRectX2 - clipX, chainNameRectY2 - clipY, false);
+						//draw_set_color(global.colorThemeText);
 					}
 					
 					// draw text: stacking
+					/*
 					if (functionChainList_currentTab == functionChainList_tabStackBrush) {
 						var currentChainStackingSubMap = global.stackingMap[? currentChainStacking];
 						if (scr_isNumericAndExists(currentChainStackingSubMap, ds_type_map)) {
@@ -473,6 +466,7 @@ function scr_panelPane_drawChainsList() {
 						draw_set_color(global.colorThemeText);
 						draw_circle(stackingActiveRadX - clipX, textY - clipY, stackingActiveRad, true);
 					}
+					*/
 
 					// Get height of chain name
 					textPlusY += strHeight;
@@ -483,7 +477,7 @@ function scr_panelPane_drawChainsList() {
 	
 
 	with (obj_panelPane) {
-		functionChainList_focusedChainIndex = ds_list_find_index(chainList, obj_chain.currentFocusedChainID);
+		functionChainList_focusedChainIndex = ds_list_find_index(chainNavList, obj_chain.currentFocusedChainID);
 	}
 	
 	// get color of focused chain
@@ -499,7 +493,7 @@ function scr_panelPane_drawChainsList() {
 		}
 	}
 	
-	// Allows use of arrow keys, pgUp/pgDwn, and ctrl+key in chain list if clicked in chainList
+	// Allows use of arrow keys, pgUp/pgDwn, and ctrl+key in chain list if clicked in chainNavList
 	var instToScroll = (drawScrollbar) ? self.id : chainContentsPanelPaneInst;
 
 /*var updated = false;
@@ -523,14 +517,8 @@ function scr_panelPane_drawChainsList() {
 			
 			if (functionChainList_focusedChainIndex > 0 and functionChainList_focusedChainIndex < listOfChainsSize) {
 				with (obj_panelPane) functionChainList_focusedChainIndex--;
-				var newFocusedChainID = ds_list_find_value(chainList, functionChainList_focusedChainIndex);
+				var newFocusedChainID = ds_list_find_value(chainNavList, functionChainList_focusedChainIndex);
 				obj_chain.currentFocusedChainID = newFocusedChainID;
-				
-				// deselect all chains of this type and select the current one
-				//var newFocusedChainSubMap = global.nodeMap[? newFocusedChainID];
-				//if (!keyboard_check(vk_shift)) scr_setValueForAllChains(tabChainType, "selected", false);
-				//newFocusedChainSubMap[? "selected"] = true;
-				//scr_addToListOnce(selectedList, newFocusedChainID);
 				
 				if (focusedElementY <= y + headerHeight + strHeight) {
 					with (instToScroll) {
@@ -549,14 +537,8 @@ function scr_panelPane_drawChainsList() {
 			
 			if (functionChainList_focusedChainIndex < listOfChainsSize - 1 and functionChainList_focusedChainIndex >= 0) {
 				with (obj_panelPane) functionChainList_focusedChainIndex++;
-				var newFocusedChainID = ds_list_find_value(chainList, functionChainList_focusedChainIndex);
+				var newFocusedChainID = ds_list_find_value(chainNavList, functionChainList_focusedChainIndex);
 				obj_chain.currentFocusedChainID = newFocusedChainID;
-				
-				// deselect all chains of this type and select the current one
-				//var newFocusedChainSubMap = global.nodeMap[? newFocusedChainID];
-				//if (!keyboard_check(vk_shift)) scr_setValueForAllChains(tabChainType, "selected", false);
-				//newFocusedChainSubMap[? "selected"] = true;
-				//scr_addToListOnce(selectedList, newFocusedChainID);
 				
 				if (focusedElementY >= y + windowHeight - strHeight) {
 					with (instToScroll) {
@@ -619,7 +601,7 @@ function scr_panelPane_drawChainsList() {
 	// draw column headers
 	var headerRectY1 = y;
 	var headerRectY2 = headerRectY1 + headerHeight;
-	for (var i = 0; i < 5; i++) {
+	for (var i = 0; i < 4; i++) {
 		
 		// skip checkbox header
 		//if (functionChainList_currentTab != functionChainList_tabStackBrush && i == 0) continue;
@@ -649,13 +631,8 @@ function scr_panelPane_drawChainsList() {
 		}
 		else if (i == 3) {
 			headerRectX1 = textColX;
-			colWidth = textColWidth;
-			colText = "tag_text";
-		}
-		else if (i == 4) {
-			headerRectX1 = stackingColX;
 			colWidth = windowWidth - headerRectX1;
-			colText = "Stacking [" + string(obj_control.activeStacking) + "]";
+			colText = "tag_text";
 		}
 		colText = scr_get_translation(colText);
 		var headerRectX2 = headerRectX1 + colWidth;
@@ -666,33 +643,15 @@ function scr_panelPane_drawChainsList() {
 		draw_set_color(global.colorThemeBG);
 		draw_rectangle(headerRectX1, headerRectY1, headerRectX2, headerRectY2, false);
 		
-		// click on stacking header to change active stacking
-		if (i == 4 && functionChainList_currentTab == functionChainList_tabStackBrush) {
-			var mouseoverHeader = point_in_rectangle(mouse_x, mouse_y, headerRectX1, headerRectY1, headerRectX2, headerRectY2) && !mouseoverCancel;
-			if (mouseoverHeader) {
-				draw_set_color(global.colorThemeSelected1);
-				draw_rectangle(headerRectX1, headerRectY1, headerRectX2, headerRectY2, false);
-				if (mouse_check_button_released(mb_left)) {
-					var stackingList = global.nodeMap[? "stackingList"];
-					if (scr_isNumericAndExists(stackingList, ds_type_list)) {
-						var stackingOptionList = ds_list_create();
-						ds_list_copy(stackingOptionList,stackingList);
-						ds_list_add(stackingOptionList, "New stacking");
-						scr_createDropDown(headerRectX1, headerRectY2, stackingOptionList, global.optionListTypeStackType);
-					}
-				}
-			}
-		}
-		
 		// draw checkbox header
 		if (i == 0) {
-			var allChainsSelected = (ds_list_size(chainList) == ds_list_size(selectedList) && ds_list_size(chainList) > 0);
-			var someChainsSelected = (ds_list_size(chainList) > ds_list_size(selectedList) && ds_list_size(selectedList) > 0 && ds_list_size(chainList) > 0);
+			var allChainsSelected = (ds_list_size(chainNavList) == ds_list_size(selectedList) && ds_list_size(chainNavList) > 0);
+			var someChainsSelected = (ds_list_size(chainNavList) > ds_list_size(selectedList) && ds_list_size(selectedList) > 0 && ds_list_size(chainNavList) > 0);
 			var headerCheckboxX1 = optionsColX + (optionsColWidth* 0.2) - (checkboxSize / 2);
 			var headerCheckboxY1 = mean(headerRectY1, headerRectY2) - (checkboxSize / 2);
 			var headerCheckboxX2 = headerCheckboxX1 + checkboxSize;
 			var headerCheckboxY2 = headerCheckboxY1 + checkboxSize;
-			var mouseoverHeaderCheckbox = point_in_rectangle(mouse_x, mouse_y, headerCheckboxX1, headerCheckboxY1, headerCheckboxX2, headerCheckboxY2) && ds_list_size(chainList) > 0 && !mouseoverCancel;
+			var mouseoverHeaderCheckbox = point_in_rectangle(mouse_x, mouse_y, headerCheckboxX1, headerCheckboxY1, headerCheckboxX2, headerCheckboxY2) && ds_list_size(chainNavList) > 0 && !mouseoverCancel;
 			if (mouseoverHeaderCheckbox) {
 				draw_set_color(merge_color(global.colorThemeSelected2, global.colorThemeBG, 0.4));
 				draw_roundrect(headerCheckboxX1 - (strHeight * 0.15), headerCheckboxY1 - (strHeight * 0.15), headerCheckboxX2 + (strHeight * 0.15), headerCheckboxY2 + (strHeight * 0.15), false);
@@ -702,8 +661,8 @@ function scr_panelPane_drawChainsList() {
 				
 				// click on checkbox header
 				if (mouse_check_button_released(mb_left)) {
-					scr_setValueForAllChains(tabChainType, "selected", (allChainsSelected) ? false : true);
-					allChainsSelected = (ds_list_size(chainList) == ds_list_size(selectedList));
+					scr_setValueForAllChains(tabChainType, true, "selected", (allChainsSelected) ? false : true);
+					allChainsSelected = (ds_list_size(chainNavList) == ds_list_size(selectedList));
 				}
 			}
 			
@@ -732,7 +691,7 @@ function scr_panelPane_drawChainsList() {
 		if (i == 1) {
 			
 			// filter all
-			var allChainsFiltered = (ds_list_size(chainList) == ds_list_size(filterList) && ds_list_size(chainList) > 0);
+			var allChainsFiltered = (ds_list_size(chainNavList) == ds_list_size(filterList) && ds_list_size(chainNavList) > 0);
 			var filterAllX = filterChainX;
 			var filterAllY = mean(headerRectY1, headerRectY2);
 			var mouseoverFilterAll = scr_pointInCircleClippedWindow(mouse_x, mouse_y, filterAllX, filterAllY, optionsIconRad) && !mouseoverCancel;
@@ -742,7 +701,7 @@ function scr_panelPane_drawChainsList() {
 				scr_createTooltip(filterAllX, filterAllY + optionsIconRad, scr_get_translation("option_filter-all"), obj_tooltip.arrowFaceUp);
 				
 				if (mouse_check_button_pressed(mb_left)) {
-					scr_setValueForAllChains(tabChainType, "filter", (allChainsFiltered) ? false : true);
+					scr_setValueForAllChains(tabChainType, true, "filter", (allChainsFiltered) ? false : true);
 					// update the filter if we need to
 					if (obj_control.currentView == obj_control.filterView) {
 						scr_renderFilter2();
@@ -755,7 +714,7 @@ function scr_panelPane_drawChainsList() {
 			
 			
 			// visible all
-			var allChainsHidden = (ds_list_size(chainList) == ds_list_size(hiddenList) && ds_list_size(chainList) > 0);
+			var allChainsHidden = (ds_list_size(chainNavList) == ds_list_size(hiddenList) && ds_list_size(chainNavList) > 0);
 			var hideAllX = visibleChainX;
 			var hideAllY = mean(headerRectY1, headerRectY2);
 			var mouseoverHideAll = scr_pointInCircleClippedWindow(mouse_x, mouse_y, hideAllX, hideAllY, optionsIconRad) && !mouseoverCancel && !mouseoverFilterAll;
@@ -765,7 +724,7 @@ function scr_panelPane_drawChainsList() {
 				scr_createTooltip(hideAllX, hideAllY + optionsIconRad, scr_get_translation("option_hide-all"), obj_tooltip.arrowFaceUp);
 				
 				if (mouse_check_button_pressed(mb_left)) {
-					scr_setValueForAllChains(tabChainType, "visible", (allChainsHidden) ? true : false);
+					scr_setValueForAllChains(tabChainType, true, "visible", (allChainsHidden) ? true : false);
 				}
 			}
 			draw_sprite_ext(spr_toggleDraw, !allChainsHidden, hideAllX, hideAllY, 1, 1, 0, global.colorThemeText, 1);
@@ -824,6 +783,53 @@ function scr_panelPane_drawChainsList() {
 			draw_line(headerRectX1, y + headerHeight, headerRectX1, y + windowHeight);
 		}
 	}
+	
+	// display currently active stacking
+	if (functionChainList_currentTab == functionChainList_tabStackBrush) {
+		var activeStackingSubMap = global.stackingMap[? obj_control.activeStacking];
+		if (scr_isNumericAndExists(activeStackingSubMap, ds_type_map)) {
+			var activeStackingStrHeight = string_height("0");
+			var activeStackingName = activeStackingSubMap[? "name"];
+			var activeStackingStr = "Stacking: " + string(activeStackingName);
+			var spaceWidth = string_width(" ");
+			var activeStackingX2 = x + windowWidth - spaceWidth;
+			var activeStackingX1 = activeStackingX2 - min(string_width(activeStackingStr), windowWidth * 0.25) - (spaceWidth * 2);
+			var activeStackingY1 = y + (headerHeight / 2) - (activeStackingStrHeight / 2);
+			var activeStackingY2 = activeStackingY1 + activeStackingStrHeight;
+			var mouseoverActiveStacking = point_in_rectangle(mouse_x, mouse_y, activeStackingX1, activeStackingY1, activeStackingX2, activeStackingY2) && !mouseoverCancel;
+			
+			// draw highlight effect if mousing over or if stacking dropdown exists
+			var activeStackingDrawMouseover = false;
+			if (mouseoverActiveStacking) activeStackingDrawMouseover = true;
+			if (instance_exists(obj_dropDown)) {
+				if (obj_dropDown.optionListType == global.optionListTypeStacking) activeStackingDrawMouseover = true;
+			}
+			if (activeStackingDrawMouseover) {
+				draw_set_color(global.colorThemeSelected1);
+				draw_roundrect(activeStackingX1, activeStackingY1, activeStackingX2, activeStackingY2, false);
+			}
+			
+			// click to change active stacking
+			if (mouseoverActiveStacking) {
+				if (mouse_check_button_released(mb_left)) {
+					var stackingList = global.nodeMap[? "stackingList"];
+					if (scr_isNumericAndExists(stackingList, ds_type_list)) {
+						var stackingOptionList = ds_list_create();
+						ds_list_copy(stackingOptionList,stackingList);
+						ds_list_insert(stackingOptionList, 0, "New stacking");
+						scr_createDropDown(activeStackingX1, activeStackingY2, stackingOptionList, global.optionListTypeStacking);
+					}
+				}
+			}
+			
+			// draw text of active stacking
+			draw_set_halign(fa_center);
+			draw_set_valign(fa_middle);
+			draw_set_color(global.colorThemeText);
+			draw_text(floor(mean(activeStackingX1, activeStackingX2)), floor(mean(activeStackingY1, activeStackingY2)), activeStackingStr);
+		}
+	}
+	
 
 	// border for headers
 	draw_set_color(global.colorThemeBorders);

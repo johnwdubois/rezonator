@@ -16,7 +16,7 @@
     {"name":"Extensions","order":5,"path":"folders/Objects/Extensions.yy",},
     {"name":"Regular Expressions","order":1,"path":"folders/Objects/Extensions/Regular Expressions.yy",},
     {"name":"Import_Export","order":4,"path":"folders/Objects/Import_Export.yy",},
-    {"name":"Misc","order":6,"path":"folders/Objects/Misc.yy",},
+    {"name":"Misc","order":18,"path":"folders/Objects/UI/Misc.yy",},
     {"name":"UI","order":3,"path":"folders/Objects/UI.yy",},
     {"name":"Paths","order":5,"path":"folders/Paths.yy",},
     {"name":"Rooms","order":11,"path":"folders/Rooms.yy",},

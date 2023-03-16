@@ -23,7 +23,7 @@ function scr_hideOptions(optionSelected) {
 	
 	if (scr_isNumericAndExists(listOfChains, ds_type_list) && scr_isNumericAndExists(listOfHiddenChains, ds_type_list)) {
 		var allChainsHidden = (ds_list_size(listOfChains) == ds_list_size(listOfHiddenChains) && ds_list_size(listOfChains) > 0);
-		scr_setValueForAllChains(chainType, "visible", allChainsHidden);
+		scr_setValueForAllChains(chainType, false, "visible", allChainsHidden);
 	}
 	
 

@@ -26,12 +26,12 @@ function scr_toggleFilterForAllChains(chainType) {
 	// if all chains are filtered, unfilter all of them
 	if (ds_list_size(listOfFilteredChains) == listOfChainsSize) {
 		show_debug_message("scr_toggleFilterForAllChains() ... unfiltering all chains of type: " + string(chainType));
-		scr_setValueForAllChains(chainType, "filter", false);
+		scr_setValueForAllChains(chainType, false, "filter", false);
 	}
 	// if not all of the chains are filtered, filter all of them
 	else if (ds_list_size(listOfFilteredChains) >= 0) {
 		show_debug_message("scr_toggleFilterForAllChains() ... filtering all chains of type: " + string(chainType));
-		scr_setValueForAllChains(chainType, "filter", true);
+		scr_setValueForAllChains(chainType, false, "filter", true);
 	}
 					
 	// render filter!

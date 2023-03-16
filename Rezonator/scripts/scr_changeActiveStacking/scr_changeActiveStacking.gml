@@ -19,9 +19,17 @@ function scr_changeActiveStacking(stacking){
 	}
 	else {
 		
+		// deselect any focused chain
+		scr_chainDeselect();
+		
 		// let's clear the navList so we only see stacks of the new stacking
 		var stackNavList = global.nodeMap[? "stackNavList"];
 		ds_list_clear(stackNavList);
+		
+		// let's also clear the filter/hide/selected lists
+		scr_setValueForAllChains("stack", false, "selected", false);
+		scr_setValueForAllChains("stack", false, "filter", false);
+		scr_setValueForAllChains("stack", false, "visible", true);
 		
 		// now, we need to clear any references to chains that are no longer of the active stacking
 		var stackList = global.nodeMap[? "stackList"];

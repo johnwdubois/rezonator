@@ -1,16 +1,22 @@
-
-
-function scr_setValueForAllChains(chainType, key, value) {
+function scr_setValueForAllChains(chainType, navList, key, value) {
 	
 	// find the list of chains to iterate over
+	var chainListKey = "";
 	var listOfChains = -1;
-	if (chainType == "resonance") listOfChains = ds_map_find_value(global.nodeMap, "resonanceList");
-	else if (chainType == "trail") listOfChains = ds_map_find_value(global.nodeMap, "trailList");
-	else if (chainType == "stack") listOfChains = ds_map_find_value(global.nodeMap, "stackList");
+	if (chainType == "resonance") {
+		chainListKey = navList ? "resonanceNavList" : "resonanceList";
+	}
+	else if (chainType == "trail") {
+		chainListKey = navList ? "trailNavList" : "trailList";
+	}
+	else if (chainType == "stack") {
+		chainListKey = navList ? "stackNavList" : "stackList";
+	}
 	else {
-		show_debug_message("scr_setValueForAllChains() ... chainType: " + string(chainType) + " is invalid. Exiting...");
+		show_debug_message("scr_setValueForAllChains ... chainType: " + string(chainType) + " is invalid. Exiting...");
 		exit;
 	}
+	listOfChains = global.nodeMap[? chainListKey];
 	
 	// iterate over the list of chains
 	var listOfChainsSize = ds_list_size(listOfChains);
@@ -19,8 +25,7 @@ function scr_setValueForAllChains(chainType, key, value) {
 		var currentChainSubMap = ds_map_find_value(global.nodeMap, currentChain);
 		
 		// make sure chain's submap exists
-		if (!is_numeric(currentChainSubMap)) continue;
-		if (!ds_exists(currentChainSubMap, ds_type_map)) continue;
+		if (!scr_isNumericAndExists(currentChainSubMap, ds_type_map)) continue;
 		
 		// add/replace the key-value pair
 		scr_setMap(currentChainSubMap, key, value);

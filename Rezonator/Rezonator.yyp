@@ -27,7 +27,7 @@
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Extensions","folderPath":"folders/Objects/Extensions.yy",},
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Regular Expressions","folderPath":"folders/Objects/Extensions/Regular Expressions.yy",},
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Import_Export","folderPath":"folders/Objects/Import_Export.yy",},
-    {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Misc","folderPath":"folders/Objects/Misc.yy",},
+    {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Misc","folderPath":"folders/Objects/UI/Misc.yy",},
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"UI","folderPath":"folders/Objects/UI.yy",},
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Messages","folderPath":"folders/Objects/UI/Messages.yy",},
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Paths","folderPath":"folders/Paths.yy",},

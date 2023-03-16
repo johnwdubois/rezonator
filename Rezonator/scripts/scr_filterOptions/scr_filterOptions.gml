@@ -50,9 +50,9 @@ function scr_filterOptions(optionSelected) {
 			}
 			break;
 		case "menu_clear": // add all of a certain chain type to filter	
-			scr_setValueForAllChains("resonance", "filter", false);
-			scr_setValueForAllChains("trail", "filter", false);
-			scr_setValueForAllChains("stack", "filter", false);
+			scr_setValueForAllChains("resonance", false, "filter", false);
+			scr_setValueForAllChains("trail", false, "filter", false);
+			scr_setValueForAllChains("stack", false, "filter", false);
 			scr_updateFilteredChainLists();
 			
 			scr_disableFilter();

@@ -17,7 +17,7 @@ function scr_turnStackerLoop() {
 	}
 	
 	// set active stackType
-	scr_changeActiveStacking("Turn");
+	scr_createNewStacking(obj_stacker.stackerName);
 	show_debug_message(global.unitImportTurnDelimColName)
 	
 	//Set variables for loop

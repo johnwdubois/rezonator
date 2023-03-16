@@ -1,5 +1,3 @@
-
-
 function scr_selectShowOptions(optionSelected) {
 	
 	// if the user chose to create a new show

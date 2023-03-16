@@ -86,6 +86,6 @@ function scr_dropDownOptionListTypeInit() {
 	global.optionListTypeAddEndnote = 93;
 	global.optionListTypeTurnStacker = 94;
 	global.optionListTypeHTML5REZFile = 95;
-	global.optionListTypeStackType = 96;
+	global.optionListTypeStacking = 96;
 
 }

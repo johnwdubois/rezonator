@@ -23,7 +23,7 @@
   "overriddenProperties": [],
   "parent": {
     "name": "Misc",
-    "path": "folders/Objects/Misc.yy",
+    "path": "folders/Objects/UI/Misc.yy",
   },
   "parentObjectId": {
     "name": "obj_saveParent",
