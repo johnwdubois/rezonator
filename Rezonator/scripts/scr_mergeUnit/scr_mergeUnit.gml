@@ -127,34 +127,8 @@ function scr_mergeUnit() {
 		currentTokenSubMap[? "tokenOrder"] = i + 1;
 	}
 	
-	
-	// deal with the stacks that unit2 was in
-	show_debug_message("dealing with unit2InChainsList: " + scr_getStringOfList(unit2InChainsList) + ", unit2InChainsListSize: " + string(unit2InChainsListSize));
-	while (ds_list_size(unit2InChainsList) >= 1) {
-		var currentStack = unit2InChainsList[| 0];
-		var currentStackSubMap = global.nodeMap[? currentStack];
-		var currentStackEntryList = currentStackSubMap[? "setIDList"];
-		var currentStackEntryListSize = ds_list_size(currentStackEntryList);
-		
-		// find the stack entry that points to unit2
-		var deleteFromCurrentStack = false;
-		for (var j = 0; j < currentStackEntryListSize; j++) {
-			var currentStackEntry = currentStackEntryList[| j];
-			var currentStackEntrySubMap = global.nodeMap[? currentStackEntry];
-			var currentStackEntryUnit = currentStackEntrySubMap[? "unit"];
-			if (currentStackEntryUnit == unit2ID) {
-				deleteFromCurrentStack = true;
-				currentStackSubMap[? "focused"] = currentStackEntry;
-			}
-		}
-		
-		if (deleteFromCurrentStack) {
-			obj_chain.currentFocusedChainID = currentStack;
-			scr_deleteFromChain(true);
-		}
-		
-		scr_deleteFromList(unit2InChainsList, currentStack);
-	}
+	// make sure there are no stacks that unit 2 is in
+	scr_removeUnitFromAllStacks(unit2ID)
 	
 	var unit1InClique = unit1SubMap[? "inClique"];
 	var unit2InClique = unit2SubMap[? "inClique"];

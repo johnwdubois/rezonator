@@ -90,8 +90,6 @@ function scr_loadREZ() {
 		scr_loadREZHandleWrapper(wrapper);
 
 	}
-	
-	scr_openFileRefreshCliques();
 
 	ds_list_destroy(newInstList);
 	
@@ -105,6 +103,7 @@ function scr_loadREZ() {
 		scr_refreshPrevToken();
 	}
 	
+	scr_openFileRefreshCliques();
 	scr_lockChunks(true);
 
 	var x1 = irandom(1);

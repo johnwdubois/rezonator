@@ -31,15 +31,25 @@ function scr_changeActiveStacking(stacking){
 		scr_setValueForAllChains("stack", false, "filter", false);
 		scr_setValueForAllChains("stack", false, "visible", true);
 		
+		// make sure you can't merge stacks from different stackings
+		with (obj_chain) mergeStackID = "";
+		
 		// now, we need to clear any references to chains that are no longer of the active stacking
 		var stackList = global.nodeMap[? "stackList"];
 		var stackListSize = ds_list_size(stackList);
 		for (var i = 0; i < stackListSize; i++) {
 			
-			// get data for current stack
+			// get current stack
 			var currentStack = stackList[| i];
 			var currentStackSubMap = global.nodeMap[? currentStack];
+			if (!scr_isNumericAndExists(currentStackSubMap, ds_type_map)) continue;
+			
+			// if this stack doesn't have a stacking, let's set it to default
 			var currentStacking = currentStackSubMap[? "stacking"];
+			if (!is_string(currentStacking)) {
+				currentStacking = "Default";
+				currentStackSubMap[? "stacking"] = currentStacking;
+			}
 			var currentStackSetList = currentStackSubMap[? "setIDList"];
 			
 			// loop through entries in this stack to edit their units' inChainsLists

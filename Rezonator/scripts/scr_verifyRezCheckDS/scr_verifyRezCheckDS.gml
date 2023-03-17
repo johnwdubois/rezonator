@@ -9,7 +9,6 @@ function scr_verifyRezCheckDS(key, ds_type, nodeList){
 		if (!scr_isNumericAndExists(ds, ds_type_list)) {
 			dsExisted = false;
 			ds = ds_list_create();
-			ds_map_add_list(global.nodeMap, key, ds);
 		}
 	}
 	else if (ds_type == ds_type_map) {
@@ -24,7 +23,7 @@ function scr_verifyRezCheckDS(key, ds_type, nodeList){
 	// the DS should exist now, and let's guarantee that it's hooked up to the nodeMap correctly
 	ds_map_delete(global.nodeMap, key);
 	if (ds_type == ds_type_list) ds_map_add_list(global.nodeMap, key, ds);
-	else ds_map_add_map(global.nodeMap, key, ds);
+	else if (ds_type == ds_type_map) ds_map_add_map(global.nodeMap, key, ds);
 	
 	// print whether ds existed or not
 	if (dsExisted) show_debug_message("scr_verifyRezCheckDS: " + string(key) + " existed in this REZ file");

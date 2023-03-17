@@ -69,10 +69,9 @@ function scr_panelPane_drawChainsList() {
 	var numColX = optionsColX + optionsColWidth;
 	var numColWidth = windowWidth * 0.07;
 	var nameColX = numColX + numColWidth;
-	var nameColWidth = functionChainList_currentTab == functionChainList_tabStackBrush ? windowWidth * 0.15 : windowWidth * 0.25;
+	var nameColWidth = windowWidth * 0.25;
 	var textColX = nameColX + nameColWidth;
 	var textColWidth = windowWidth * 0.4;
-	var stackingColX = textColX + textColWidth;
 	
 	
 
@@ -427,47 +426,8 @@ function scr_panelPane_drawChainsList() {
 						scr_adaptFont(string(currentChainCaption), "S");
 						draw_text(floor(textColX + textBuffer) - clipX, textY - clipY, string(currentChainCaption));
 						draw_set_alpha(1);
-						
-						// draw rect so caption does not extend beyond its column
-						//draw_set_color(merge_color(currentChainColor, global.colorThemeBG, (obj_chain.currentFocusedChainID == currentChainID or mouseoverChainNameRect) ? 0.65: 0.8)); //soften the color
-						//draw_rectangle(stackingColX - clipX, chainNameRectY1 - clipY, chainNameRectX2 - clipX, chainNameRectY2 - clipY, false);
-						//draw_set_color(global.colorThemeText);
 					}
-					
-					// draw text: stacking
-					/*
-					if (functionChainList_currentTab == functionChainList_tabStackBrush) {
-						var currentChainStackingSubMap = global.stackingMap[? currentChainStacking];
-						if (scr_isNumericAndExists(currentChainStackingSubMap, ds_type_map)) {
-							
-							// draw stacking name
-							var currentChainStackingName = currentChainStackingSubMap[? "name"];
-							draw_text(floor(stackingColX + textBuffer) - clipX, textY - clipY, string(currentChainStackingName));
-						
-							// draw whether this stack's stacking is active
-							if (currentChainStacking == obj_control.activeStacking) {
-								draw_set_alpha(0.8);
-								draw_circle(stackingActiveRadX - clipX, textY - clipY, stackingActiveRad * 0.8, false);
-							}
-							else {
-								// click on circle to change active stacking
-								var mouseoverStackingActive = mouseoverChainNameRect && point_in_circle(mouse_x, mouse_y, stackingActiveRadX, textY, stackingActiveRad);
-								if (mouseoverStackingActive) {
-									draw_set_alpha(0.5);
-									draw_set_color(global.colorThemeBG);
-									draw_circle(stackingActiveRadX - clipX, textY - clipY, stackingActiveRad, false);
-									if (mouse_check_button_released(mb_left)) {
-										scr_changeActiveStacking(currentChainStacking);
-									}
-								}
-							}
-						}
-						draw_set_alpha(1);
-						draw_set_color(global.colorThemeText);
-						draw_circle(stackingActiveRadX - clipX, textY - clipY, stackingActiveRad, true);
-					}
-					*/
-
+				
 					// Get height of chain name
 					textPlusY += strHeight;
 				}
