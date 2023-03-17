@@ -133,10 +133,18 @@ function scr_panelPane_drawChainsList() {
 			var currentChainFiltered = currentChainSubMap[? "filter"];
 			var currentChainAlign = currentChainSubMap[? "alignChain"];
 			var currentChainVisible = currentChainSubMap[? "visible"];
-			var currentChainStacking = currentChainSubMap[? "stacking"];
 			var currentChainCaption = "";
 			var setIDList = currentChainSubMap[? "setIDList"];
 			var vizSetIDList = currentChainSubMap[? "vizSetIDList"];
+			
+			// if this is a stack, verify that it has a stacking
+			if (functionChainList_currentTab == functionChainList_tabStackBrush) {
+				var currentChainStacking = currentChainSubMap[? "stacking"];
+				if (!is_string(currentChainStacking)) {
+					currentChainStacking = "Default";
+					currentChainSubMap[? "stacking"] = currentChainStacking;
+				}
+			}
 			
 			if (!is_numeric(currentChainSelected)) currentChainSelected = false;
 			

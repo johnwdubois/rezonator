@@ -12,6 +12,4 @@ if (room == rm_openingScreen) {
 	
 	// center the window within the display
 	if (os_type == os_windows) window_center();
-	
-	with (obj_openingScreen) runFontSizeTest = true;
 }

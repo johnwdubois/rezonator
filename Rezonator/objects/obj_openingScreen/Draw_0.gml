@@ -6,6 +6,8 @@ if (runFontSizeTest) {
 		if (fontSizeTest >= global.fontSizeMax) {
 			runFontSizeTest = false;
 			alarm[9] = 1;
+			show_debug_message("obj_openingScreen Draw, done with fontSizeTest");
+			if (global.build) with (obj_loadingScreen) alarm[0] = 2;
 		}
 	}
 }

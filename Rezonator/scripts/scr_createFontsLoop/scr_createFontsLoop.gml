@@ -16,7 +16,7 @@ function scr_createCJKFontsLoop() {
 		else {
 			scr_createCJKFonts(CKJFont_file_name_full, 6);
 			global.fontsLoaded = true;
-			with (obj_loadingScreen) alarm[0] = 2;
+			with (obj_openingScreen) runFontSizeTest = true;
 		}
 		
 	}
