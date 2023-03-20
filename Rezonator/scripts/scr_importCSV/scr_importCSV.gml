@@ -74,7 +74,7 @@ function scr_importCSV(filename) {
 	global.importCSVGridWidth = ds_grid_width(global.importCSVGrid);
 
 	//allows user to not need unit level data (not neccessary)
-	global.importType = global.importType_CSV;
+	global.importType = "import_type_word";
 
 	global.tabDeliniatedText = true;
 

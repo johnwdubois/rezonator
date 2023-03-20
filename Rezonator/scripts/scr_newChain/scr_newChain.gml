@@ -44,19 +44,26 @@ function scr_newChain(ID) {
 	}
 	else if (idType == "unit") {
 		obj_chain.stackChainNameCounter++;
-		chainSeq = obj_chain.stackChainNameCounter;
+		var stackNavList = global.nodeMap[? "stackNavList"];
+		chainSeq = ds_list_size(stackNavList) + 1;
 		chainType = "stack";
 		
-		show_debug_message("newChain, stackerName: " + string(obj_stacker.stackerName))
-		if (is_string(obj_stacker.stackerName) && obj_stacker.stackerName != "" && is_numeric(obj_stacker.stackerNameNum)) {
-			// if we are making stacks through the stacker, we use the stacker's naming convention
-			chainName = obj_stacker.stackerName + " " + string(obj_stacker.stackerNameNum);
-			with (obj_stacker) stackerNameNum++;
-		}
+		var stackNamePt1 = "";
+		var stackNamePt2 = string(chainSeq);
+		if (obj_control.activeStacking == "Default") stackNamePt1 = scr_get_translation("tab_name_stack");
 		else {
-			// otherwise we use default naming convention
-			chainName = "Stack " + string(chainSeq);
+			// get name of active stacking
+			var activeStackingSubMap = global.stackingMap[? obj_control.activeStacking];
+			if (scr_isNumericAndExists(activeStackingSubMap, ds_type_map)) {
+				var activeStackingName = activeStackingSubMap[? "name"];
+				if (is_string(activeStackingName)) {
+					stackNamePt1 = activeStackingName;
+				}
+			}
 		}
+		
+		chainName = stackNamePt1 + " " + stackNamePt2;
+		show_debug_message("newChain, stack name: " + string(chainName))
 	}
 	
 	// get random hex chainID

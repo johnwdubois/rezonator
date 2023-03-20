@@ -31,7 +31,7 @@ function scr_importInfoGrid() {
 
 		}
 	}
-	else if (global.importType == global.importType_CSV) {
+	else if (global.importType == "import_type_word") {
 	
 		// fill in CSV tagInfoGrid with basically empty rows
 		for (var i = 0; i < importGridWidth; i++) {
@@ -105,7 +105,7 @@ function scr_importInfoGrid() {
 			ds_grid_set(global.tagInfoGrid, global.tagInfoGrid_colTokenCount, i, currentTokenCount);
 			
 
-			if (global.importType == global.importType_CoNLLU) {
+			if (global.importType == "import_type_conllu") {
 				var levelEstimate = -1;
 				if (string_char_at(currentTag, 1) == "#") {
 					levelEstimate = global.levelUnit;

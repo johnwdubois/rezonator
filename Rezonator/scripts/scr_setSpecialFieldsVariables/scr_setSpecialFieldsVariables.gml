@@ -4,7 +4,7 @@ function scr_setSpecialFieldsVariables() {
 	// for ELAN (tab delimited) the UnitStart and UnitEnd columns are key fields
 	var unitStartRow = -1;
 	var unitEndRow = -1;
-	if (global.importType == global.importType_TabDelimited) {
+	if (global.importType == "import_type_elan") {
 		unitStartRow = ds_grid_value_y(global.tagInfoGrid, global.tagInfoGrid_colKey, 0, global.tagInfoGrid_colKey, ds_grid_height(global.tagInfoGrid), "unit_start");
 		unitEndRow = ds_grid_value_y(global.tagInfoGrid, global.tagInfoGrid_colKey, 0, global.tagInfoGrid_colKey, ds_grid_height(global.tagInfoGrid), "unit_end");
 	}

@@ -24,18 +24,10 @@ global.usedImports = ds_list_create();
 
 
 global.importType_Default = 0;
-global.importType_CSV = "import_type_word";
-global.importType_CoNLLU = "import_type_conllu";
-global.importType_IGT = "import_type_interlinear";
-global.importType_PlainText = "import_type_song";
-global.importType_TabDelimited = "import_type_elan";
-global.importType_Paragraph = "import_type_prose";
-global.importType_Transcription = "import_type_transcription";
-
 
 
 // by default, we will set importType to be the first item in the importTypeList
-global.importType = global.importType_PlainText;
+global.importType = "import_type_song";
 
 
 global.importGroupDir = "";
@@ -87,7 +79,7 @@ window_set_min_height(720);
 // CHANGE THIS VAR WHEN MAKING A BUILD
 // if build is true --> CJK fonts will be loaded
 // if build is false --> CJK fonts will not be loaded
-global.build = true;
+global.build = false;
 global.rezzles = true;
 
 global.buildType = "Windows_Website";

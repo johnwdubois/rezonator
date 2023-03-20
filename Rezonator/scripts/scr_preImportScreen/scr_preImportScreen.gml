@@ -168,7 +168,7 @@ function scr_preImportScreen() {
 	var currentTextX = floor(exampleWindowX1 + textBufferLeft);
 	for (var i = 0; i < exampleWindowListSize; i++) {
 		
-		if (global.importType == global.importType_PlainText || global.importType == global.importType_Paragraph) {
+		if (global.importType == "import_type_song" || global.importType == "import_type_prose") {
 			var currentText = ds_list_find_value(exampleWindowList, i);
 			var currentTextX = floor(exampleWindowX1 + textBufferLeft);
 			var currentTextY = floor(exampleWindowY1 + textBufferTop + (strHeight * i));
@@ -179,17 +179,17 @@ function scr_preImportScreen() {
 				draw_text(currentTextX, currentTextY, currentText);
 			}
 		}
-		else if (global.importType == global.importType_TabDelimited || global.importType == global.importType_CSV
-				|| global.importType == global.importType_CoNLLU || global.importType == global.importType_IGT
-				|| global.importType == global.importType_Transcription) {				
+		else if (global.importType == "import_type_elan" || global.importType == "import_type_word"
+				|| global.importType == "import_type_conllu" || global.importType == "import_type_interlinear"
+				|| global.importType == "import_type_transcription") {				
 			
 			// get column width list
 			var colWidthList = -1;
-			if (global.importType == global.importType_Transcription) colWidthList = ds_map_find_value(global.preImportMap, "transcriptionWidthList");
-			else if (global.importType == global.importType_TabDelimited) colWidthList = ds_map_find_value(global.preImportMap, "tabDelimWidthList");
-			else if (global.importType == global.importType_CSV) colWidthList = ds_map_find_value(global.preImportMap, "csvWidthList");
-			else if (global.importType == global.importType_CoNLLU) colWidthList = ds_map_find_value(global.preImportMap, "conlluWidthList");
-			else if (global.importType == global.importType_IGT) colWidthList = ds_map_find_value(global.preImportMap, "igtWidthList");
+			if (global.importType == "import_type_transcription") colWidthList = ds_map_find_value(global.preImportMap, "transcriptionWidthList");
+			else if (global.importType == "import_type_elan") colWidthList = ds_map_find_value(global.preImportMap, "tabDelimWidthList");
+			else if (global.importType == "import_type_word") colWidthList = ds_map_find_value(global.preImportMap, "csvWidthList");
+			else if (global.importType == "import_type_conllu") colWidthList = ds_map_find_value(global.preImportMap, "conlluWidthList");
+			else if (global.importType == "import_type_interlinear") colWidthList = ds_map_find_value(global.preImportMap, "igtWidthList");
 			
 			var currentList = ds_list_find_value(exampleWindowList, i);
 			if (typeof(currentList) == "number" && ds_exists(colWidthList, ds_type_list)) {

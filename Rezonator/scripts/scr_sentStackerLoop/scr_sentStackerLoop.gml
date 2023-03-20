@@ -18,8 +18,7 @@ function scr_sentStackerLoop() {
 	}
 	
 	// set active stackType
-	scr_createNewStacking(obj_stacker.stackerName);
-	show_debug_message(global.participantField)
+	scr_createNewStacking(obj_stacker.stackerName, "Turn");
 	
 	//Set variables for loop
 	var currentTurnOrder = 0;

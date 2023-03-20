@@ -24,9 +24,9 @@ function scr_scrollNavToID(tab, ID, leftPane) {
 	var idList = -1;
 	if (leftPane) {
 		if (tab == obj_panelPane.functionChainList_tabChunk) idList = global.nodeMap[? "chunkList"];
-		else if (tab == obj_panelPane.functionChainList_tabRezBrush) idList = global.nodeMap[? "resonanceList"];
-		else if (tab == obj_panelPane.functionChainList_tabTrackBrush) idList = global.nodeMap[? "trailList"];
-		else if (tab == obj_panelPane.functionChainList_tabStackBrush) idList = global.nodeMap[? "stackList"];
+		else if (tab == obj_panelPane.functionChainList_tabRezBrush) idList = global.nodeMap[? "resonanceNavList"];
+		else if (tab == obj_panelPane.functionChainList_tabTrackBrush) idList = global.nodeMap[? "trailNavList"];
+		else if (tab == obj_panelPane.functionChainList_tabStackBrush) idList = global.nodeMap[? "stackNavList"];
 		else if (tab == obj_panelPane.functionChainList_tabLine) idList = docSubMap[? "unitList"];
 	}
 	else {

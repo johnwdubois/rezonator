@@ -30,13 +30,13 @@ if (importGridRow >= ds_grid_height(global.importGrid) && !finished) {
 }
 else {
 	var iterations = fps;
-	if (global.importType == global.importType_PlainText || global.importType == global.importType_Paragraph) {
+	if (global.importType == "import_type_song" || global.importType == "import_type_prose") {
 		repeat(iterations) scr_importGridToNodeMap_plainText(importGridRow);
 	}
-	else if (global.importType == global.importType_IGT || global.importType == global.importType_Transcription || global.importType == global.importType_TabDelimited) {
+	else if (global.importType == "import_type_interlinear" || global.importType == "import_type_transcription" || global.importType == "import_type_elan") {
 		repeat(iterations) scr_importGridToNodeMap_fieldsRowUnit(importGridRow);
 	}
-	else if (global.importType == global.importType_CoNLLU || global.importType == global.importType_CSV) {
+	else if (global.importType == "import_type_conllu" || global.importType == "import_type_word") {
 		repeat(iterations) scr_importGridToNodeMap_fieldsRowToken(importGridRow);
 	}
 }

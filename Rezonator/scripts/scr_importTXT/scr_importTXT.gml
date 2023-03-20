@@ -30,21 +30,21 @@ function scr_importTXT(filename) {
 	scr_markAutoExceptions();
 	
 	
-	if (global.importType == global.importType_IGT) {
+	if (global.importType == "import_type_interlinear") {
 		// IGT import
 		scr_importIGT();
 	}
-	else if (global.importType == global.importType_CoNLLU) {
+	else if (global.importType == "import_type_conllu") {
 		// CoNLL-U import
 		scr_importConlluTXT(filename);
 	}
-	else if (global.importType == global.importType_TabDelimited || global.importType == global.importType_Transcription) {
+	else if (global.importType == "import_type_elan" || global.importType == "import_type_transcription") {
 		// tab delimited/elan/transcription import
 		var fileExt = filename_ext(obj_openingScreen.openedFile);
 		var delimiter = (string_count("csv", fileExt) > 0) ? "," : chr(9);
 		scr_importTabbedTXT(delimiter);
 	}
-	else if (global.importType == global.importType_PlainText || global.importType == global.importType_Paragraph) {	
+	else if (global.importType == "import_type_song" || global.importType == "import_type_prose") {	
 		// plain text import
 		scr_importPlainTXT();
 	}

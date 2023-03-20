@@ -201,7 +201,7 @@ function scr_importMappingTagInfo() {
 						obj_importMapping.rowToChange = j;
 					
 						var dropDownOptionList = ds_list_create();
-						if (global.importType == global.importType_IGT) {
+						if (global.importType == "import_type_interlinear") {
 							ds_list_add(dropDownOptionList, "option_token", "label_word", "tab_name_unit", "option_doc", "tag_unknown");
 						}
 						else {
@@ -227,13 +227,13 @@ function scr_importMappingTagInfo() {
 				drawDropDown = true;
 				if (currentLevel == global.levelUnit) {
 					drawDropDown = false;
-					if (global.importType == global.importType_CSV or global.importType == global.importType_CoNLLU or global.importType == global.importType_TabDelimited) {
+					if (global.importType == "import_type_word" or global.importType == "import_type_conllu" or global.importType == "import_type_elan") {
 						drawDropDown = true;
 					}
 				}
 				else if (currentLevel == global.levelWord) {
 					drawDropDown = false;
-					if (global.importType == global.importType_IGT) {
+					if (global.importType == "import_type_interlinear") {
 						drawDropDown = true;
 					}
 				}
@@ -287,7 +287,7 @@ function scr_importMappingTagInfo() {
 							var dropDownOptionList = ds_list_create();
 						
 							if (currentLevel == global.levelUnit) {
-								if (global.importType == global.importType_TabDelimited) {
+								if (global.importType == "import_type_elan") {
 									ds_list_add(dropDownOptionList, "unit_start", "unit_end");
 								}
 								else {
@@ -353,7 +353,7 @@ function scr_importMappingTagInfo() {
 						
 							if (currentLevel == global.levelUnit) {
 								ds_list_add(dropDownOptionList, "participant", "turn_delim","psent_delim", "option_translation");
-								if (global.importType != global.importType_TabDelimited) {
+								if (global.importType != "import_type_elan") {
 									ds_list_add(dropDownOptionList, "unit_start", "unit_end");
 								}
 							}
@@ -363,7 +363,7 @@ function scr_importMappingTagInfo() {
 							if (currentLevel == global.levelWord) {
 								ds_list_add(dropDownOptionList, "option_word-delimiter");
 							}
-							if (global.importType == global.importType_CoNLLU) {
+							if (global.importType == "import_type_conllu") {
 								ds_list_add(dropDownOptionList, "tab_name_track");
 							}
 							if (ds_list_size(dropDownOptionList) > 0) {

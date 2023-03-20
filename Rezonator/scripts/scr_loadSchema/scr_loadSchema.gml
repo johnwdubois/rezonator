@@ -8,7 +8,7 @@ function scr_loadSchema(autoload) {
 	if (autoload) {
 		
 		show_debug_message("scr_loadSchema, AUTOLOAD");
-		if (global.importType == global.importType_IGT) {
+		if (global.importType == "import_type_interlinear") {
 			if (os_type == os_macosx) {
 				fileName = global.rezonatorDirString + "/Schemas/Import/igt_schema.json";
 			}
@@ -16,7 +16,7 @@ function scr_loadSchema(autoload) {
 				fileName = global.rezonatorDirString + "\\Schemas\\Import\\igt_scription.json";
 			}
 		}
-		else if (global.importType == global.importType_CSV) {
+		else if (global.importType == "import_type_word") {
 			if (os_type == os_macosx) {
 				fileName = global.rezonatorDirString + "/Schemas/Import/owpl_sbc.json";
 			}
@@ -24,7 +24,7 @@ function scr_loadSchema(autoload) {
 				fileName = global.rezonatorDirString + "\\Schemas\\Import\\owpl_sbc.json";
 			}
 		}
-		else if (global.importType == global.importType_CoNLLU) {
+		else if (global.importType == "import_type_conllu") {
 			if (os_type == os_macosx) {
 				fileName = global.rezonatorDirString + "/Schemas/Import/conll_u.json";
 			}

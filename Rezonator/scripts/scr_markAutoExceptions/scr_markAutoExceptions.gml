@@ -22,7 +22,7 @@ function scr_markAutoExceptions() {
 				ds_grid_set(global.importTXTLineGrid, global.importTXTLineGrid_colException, i, true);
 			}
 		}
-		if (global.importType == global.importType_IGT) {
+		if (global.importType == "import_type_interlinear") {
 			if (firstToken == "#") {
 				ds_grid_set(global.importTXTLineGrid, global.importTXTLineGrid_colException, i, true);
 			}

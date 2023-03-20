@@ -27,25 +27,25 @@ function scr_openFile() {
 
 	
 		var fileExtension = "";
-		if (global.importType == global.importType_CSV) {
+		if (global.importType == "import_type_word") {
 			fileExtension = "CSV (.csv)|*.csv";
 		}
-		else if (global.importType == global.importType_CoNLLU) {
+		else if (global.importType == "import_type_conllu") {
 			fileExtension = "CoNLL-U (.txt)|*.txt";
 		}
-		else if (global.importType == global.importType_PlainText) {
+		else if (global.importType == "import_type_song") {
 			fileExtension = scr_get_translation("import_type_song") +" (.txt)|*.txt";
 		}
-		else if (global.importType == global.importType_Paragraph) {
+		else if (global.importType == "import_type_prose") {
 			fileExtension = "Paragraph (.txt)|*.txt";
 		}
-		else if (global.importType == global.importType_TabDelimited) {
+		else if (global.importType == "import_type_elan") {
 			fileExtension = "Tab delimited (.txt)|*.txt";
 		}
-		else if (global.importType == global.importType_IGT) {
+		else if (global.importType == "import_type_interlinear") {
 			fileExtension = "Interlinear glossed text (.txt)|*.txt";
 		}
-		else if (global.importType == global.importType_Transcription) {
+		else if (global.importType == "import_type_transcription") {
 			fileExtension = "Transcription (.txt, .csv)|*.txt;*.csv";
 		}
 		openedFile = get_open_filename_ext(fileExtension, "", discourseDirString, scr_get_translation("menu_import"));
@@ -68,7 +68,7 @@ function scr_openFile() {
 		}
 	}
 
-	if (global.importType == global.importType_CSV) {
+	if (global.importType == "import_type_word") {
 		scr_importCSV(openedFile);
 		exit;
 	}

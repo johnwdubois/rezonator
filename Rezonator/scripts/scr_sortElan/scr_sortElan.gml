@@ -4,7 +4,7 @@ function scr_sortElan() {
 	
 	// if this is an Elan formatted file, we will atempt to sort the importGrid by
 	// the UnitStart and UnitEnd columns
-	if (global.importType == global.importType_TabDelimited) {
+	if (global.importType == "import_type_elan") {
 		var unitStartCol = ds_list_find_index(global.importGridColNameList, global.unitImportUnitStartColName);
 		var unitEndCol = ds_list_find_index(global.importGridColNameList, global.unitImportUnitEndColName);
 		show_debug_message("scr_sortElan() ... unitStartCol: " + string(unitStartCol) + ", unitEndCol: " + string(unitEndCol));

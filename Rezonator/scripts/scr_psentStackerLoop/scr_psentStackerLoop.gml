@@ -13,9 +13,7 @@ function scr_psentStackerLoop() {
 	}
 	
 	// set active stackType
-	scr_createNewStacking(obj_stacker.stackerName);
-	show_debug_message(global.psentDelimField);
-	
+	scr_createNewStacking(obj_stacker.stackerName, "Utterance");
 	
 	//Set variables for loop
 	var currentPsent = 0;

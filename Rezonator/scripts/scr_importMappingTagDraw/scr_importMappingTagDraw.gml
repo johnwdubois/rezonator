@@ -39,10 +39,10 @@ function scr_importMappingTagDraw() {
 	}
 	
 	// check all the errors that need to be solved, depending on import type
-	if (global.importType == global.importType_IGT) {
+	if (global.importType == "import_type_interlinear") {
 		canContinueAll = (canContinueDisplayToken && canContinueToken1to1 && canContinueWordDelimiter && canContinueWord1to1);
 	}
-	else if (global.importType == global.importType_CoNLLU || global.importType == global.importType_CSV) {
+	else if (global.importType == "import_type_conllu" || global.importType == "import_type_word") {
 		canContinueAll = (canContinueDisplayToken && canContinueUnit);
 	}
 	else {
