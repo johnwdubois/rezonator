@@ -1,0 +1,17 @@
+if (keyboard_check_released(vk_enter)) {
+	if (is_string(instInputBox_Prompt.str) && instInputBox_Prompt.str != ""
+	&& is_string(instInputBox_ApiKey.str) && instInputBox_ApiKey.str != "") {
+		scr_aiRequest(instInputBox_Prompt.str, instInputBox_ApiKey.str);
+	}
+}
+
+if (keyboard_check_released(vk_tab)) {
+	if (instInputBox_Prompt.windowFocused) {
+		with (instInputBox_Prompt) windowFocused = false;
+		with (instInputBox_ApiKey) windowFocused = true;
+	}
+	else {
+		with (instInputBox_Prompt) windowFocused = true;
+		with (instInputBox_ApiKey) windowFocused = false;
+	}
+}

@@ -1,7 +1,4 @@
 function scr_importPlainTXT() {
-	
-
-
 
 	ds_grid_clear(global.importGrid, 0);
 	global.importGridWidth = 2
@@ -24,7 +21,7 @@ function scr_importPlainTXT() {
 	
 
 	
-		var lineInFile = global.importTXTLineGrid[# global.importTXTLineGrid_colLine,currentLine];
+		var lineInFile = global.importTXTLineGrid[# global.importTXTLineGrid_colLine, currentLine];
 		var col = 0;
 
 	
@@ -57,7 +54,6 @@ function scr_importPlainTXT() {
 			ds_grid_set(global.importGrid, col, row, colVal);
 			col++;
 			ds_grid_set(global.importGrid, col, row, group);
-		
 		}
 	
 

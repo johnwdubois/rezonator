@@ -227,7 +227,10 @@ function scr_openingMenu() {
 		obj_openingScreen.inputText = obj_inputBox.str;
 	}
 	else {
-		instance_create_layer(0,0,"InstancesInput", obj_inputBox);
+		var instUserSignIn = instance_create_layer(0, 0, "InstancesInput", obj_inputBox);
+		with (instUserSignIn) {
+			inputPrompt = "msg_signin";
+		}
 	}
 
 	

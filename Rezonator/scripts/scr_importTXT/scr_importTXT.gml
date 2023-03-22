@@ -1,6 +1,6 @@
 function scr_importTXT(filename) {
 	
-	show_debug_message("scr_importTXT() ... START, " + scr_printTime());
+	show_debug_message("scr_importTXT ... START, " + scr_printTime());
 	
 	global.importFilename = filename;
 
@@ -51,7 +51,7 @@ function scr_importTXT(filename) {
 	
 	
 	
-	show_debug_message("scr_importTXT() ... END, " + scr_printTime());
+	show_debug_message("scr_importTXT ... END, " + scr_printTime());
 
 	// if something went wrong in the import process, we exit back to the openingScreen
 	// otherwise we continue to the importScreen

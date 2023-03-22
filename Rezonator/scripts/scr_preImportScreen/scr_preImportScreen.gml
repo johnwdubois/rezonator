@@ -282,9 +282,14 @@ function scr_preImportScreen() {
 	draw_text(floor(mean(buttonRectX1, buttonRectX2)), floor(mean(buttonRectY1, buttonRectY2)), scr_get_translation("msg_continue"));
 	
 	// click on continue button
-	if (mouseoverContinue && mouse_check_button_released(mb_left)) {		
-		global.currentDirString = global.previousImportDirectory;
-		scr_openFile();
+	if (mouseoverContinue && mouse_check_button_released(mb_left)) {
+		if (global.importType == "import_type_aichat") {
+			room_goto(rm_aiChat);
+		}
+		else {
+			global.currentDirString = global.previousImportDirectory;
+			scr_openFile();
+		}
 	}
 	
 	// import from clipboard checkbox

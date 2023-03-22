@@ -1,7 +1,9 @@
 function scr_inputBoxStep() {
 	
-	if (!instance_exists(obj_dialogueBox) && room != rm_openingScreen && !navWindowTagging) instance_destroy();
-	if (room == rm_mainScreen) with (obj_control) shortcutsEnabled = false;
+	if (room == rm_mainScreen) {
+		if (!instance_exists(obj_dialogueBox) && !navWindowTagging) instance_destroy();
+		with (obj_control) shortcutsEnabled = false;
+	}
 	var fontSize = navWindowTagging ? "S" : "M";
 	
 	// check important keys

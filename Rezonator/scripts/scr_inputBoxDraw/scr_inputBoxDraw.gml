@@ -27,7 +27,7 @@ function scr_inputBoxDraw() {
 	var isLockedField = false;
 	if (instance_exists(obj_control)) {
 		var fieldTagMap = scr_getFieldMap();
-		var currentFieldSubMap = fieldTagMap[?obj_control.navWindowTaggingField];
+		var currentFieldSubMap = fieldTagMap[? obj_control.navWindowTaggingField];
 		if (scr_isNumericAndExists(currentFieldSubMap,ds_type_map)) {
 			isLockedField = currentFieldSubMap[? "locked"];
 		}
@@ -112,8 +112,6 @@ function scr_inputBoxDraw() {
 	if (mouse_check_button_released(mb_left)) {
 		validDrag = true;
 		
-		//with (obj_control) {alarm[1] = 1;}
-		
 		// double click to select word
 		if (doubleClick) {
 			doubleClick = false;
@@ -187,9 +185,9 @@ function scr_inputBoxDraw() {
 		draw_rectangle(textBoxX, textBoxY, textBoxX + windowWidth, textBoxY + windowHeight, true);
 	}
 	
-	// prompt user signin
-	if (room == rm_openingScreen && str == "") {
+	// input prompt if string is empty
+	if (str == "" && inputPrompt != "") {
 		draw_set_color(global.colorThemeSelected2);
-		draw_text(textBoxX + string_width("  "), textY, scr_get_translation("msg_signin"));
+		draw_text(textBoxX + string_width("  "), textY, scr_get_translation(inputPrompt));
 	}
 }

@@ -1,0 +1,2 @@
+aiCharAt++;
+//if (aiCharAt < )

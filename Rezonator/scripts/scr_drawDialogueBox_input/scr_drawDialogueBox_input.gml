@@ -2,7 +2,8 @@ function scr_drawDialogueBox_input() {
 
 	// draw title text
 	if (!instance_exists(obj_inputBox)) {
-		instance_create_layer(0,0,"InstancesInput", obj_inputBox);
+		var inst = instance_create_layer(0, 0, "InstancesInput", obj_inputBox);
+		with (inst) inputPrompt = "";
 	}
 	with (obj_inputBox) {
 		textBoxX = floor(obj_dialogueBox.boxRectX1 + (obj_dialogueBox.boxWidth * 0.1));

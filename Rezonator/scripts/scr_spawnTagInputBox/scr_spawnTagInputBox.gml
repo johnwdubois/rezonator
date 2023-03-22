@@ -17,7 +17,10 @@ function scr_spawnTagInputBox(ID, field, type, defStr, paneInst, dropDownList, d
 	global.inputBoxDefStr = defStr;
 	keyboard_string = "";
 	var inst = instance_create_layer(0,0,"InstancesInput", obj_inputBox);
-	inst.navWindowTagging = true;
+	with (inst) {
+		navWindowTagging = true;
+		inputPrompt = "";
+	}
 	obj_control.navWindowTaggingField = field;
 	obj_control.navWindowTaggingID = ID;
 	obj_control.navWindowTaggingPaneInst = paneInst;
