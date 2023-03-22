@@ -70,8 +70,7 @@ function scr_importMappingTagDraw() {
 	
 
 		
-		
-	//if (canContinueAll or global.tabDeliniatedText) {
+
 	if (canContinueAll) {
 		
 		draw_set_alpha(1);
@@ -92,7 +91,7 @@ function scr_importMappingTagDraw() {
 			if (mouse_check_button_released(mb_left) && !continueButtonClicked) {
 				
 				continueButtonClicked = true;
-				var instLoading = instance_create_layer(0, 0, "InstanceLoading", obj_loadingScreen);
+				var instLoading = instance_create_layer(0, 0, "InstanceLoading", obj_loadingBar);
 				instLoading.loadSprite = spr_loading;
 				scr_setSpecialFieldsVariables();
 				scr_storeSchemaLists();
@@ -187,7 +186,7 @@ function scr_importMappingTagDraw() {
 		scr_loadSchema(false);
 		importGroupSchemaLoaded = true;
 
-		var instLoading = instance_create_layer(0, 0, "InstanceLoading", obj_loadingScreen);
+		var instLoading = instance_create_layer(0, 0, "InstanceLoading", obj_loadingBar);
 		instLoading.loadSprite = spr_loading;
 		scr_setSpecialFieldsVariables();
 		scr_fillFieldLevelMap();

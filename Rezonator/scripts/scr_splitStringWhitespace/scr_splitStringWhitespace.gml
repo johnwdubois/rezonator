@@ -1,5 +1,3 @@
-
-
 function scr_splitStringWhitespace(str) {
 	
 	var splitList = ds_list_create();

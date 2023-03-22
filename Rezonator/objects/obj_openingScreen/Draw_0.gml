@@ -7,7 +7,7 @@ if (runFontSizeTest) {
 			runFontSizeTest = false;
 			alarm[9] = 1;
 			show_debug_message("obj_openingScreen Draw, done with fontSizeTest");
-			if (global.build) with (obj_loadingScreen) alarm[0] = 2;
+			if (global.build) with (obj_loadingBar) alarm[0] = 2;
 		}
 	}
 }
@@ -46,7 +46,7 @@ if (obj_openingScreen.showDevVars) {
 
 if (!global.fontsLoaded) {
 	if (!global.loadingScreenCreated) {
-		var instLoading = instance_create_layer(0, 0, "InstanceLoading", obj_loadingScreen);
+		var instLoading = instance_create_layer(0, 0, "InstanceLoading", obj_loadingBar);
 		instLoading.loadSprite = spr_loading;
 		global.loadingScreenCreated = true;
 	}

@@ -20,7 +20,7 @@ function scr_openingMenu() {
 	var buttonHeight = (camHeight*.2);
 	var spriteScale = 0.8;
 	
-	var mouseoverCancel = instance_exists(obj_dialogueBox) or instance_exists(obj_dropDown) or instance_exists(obj_loadingScreen) || instance_exists(obj_sizeWindow);
+	var mouseoverCancel = instance_exists(obj_dialogueBox) or instance_exists(obj_dropDown) or instance_exists(obj_loadingBar) || instance_exists(obj_sizeWindow);
 	
 	
 	

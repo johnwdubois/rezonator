@@ -7,7 +7,7 @@
 if (global.ctrlHold and keyboard_check_pressed(ord("S")) and ableToHotkey) {
 
 	ableToHotkey = false;
-	var instLoading = instance_create_layer(0, 0, "InstanceLoading", obj_loadingScreen);
+	var instLoading = instance_create_layer(0, 0, "InstanceLoading", obj_loadingBar);
 	instLoading.loadSprite = spr_saving;
 	with (obj_fileLoader) {
 		alarm[0] = 1;

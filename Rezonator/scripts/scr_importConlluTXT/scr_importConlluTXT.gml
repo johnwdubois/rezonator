@@ -76,7 +76,7 @@ function scr_importConlluTXT(filename) {
 
 				// Split the tokens into their individual columns
 				var listOfColumns = ds_list_create();
-				listOfColumns = scr_splitString(lineInFile,chr(9));
+				listOfColumns = scr_splitString(lineInFile, chr(9));
 				show_debug_message("listOfColumns: " + scr_getStringOfList(listOfColumns));
 				var listOfColumnsSize = ds_list_size(listOfColumns);
 				/*
@@ -200,7 +200,7 @@ function scr_importConlluTXT(filename) {
 	ds_grid_resize(global.importGrid, global.importGridWidth, rowCounter);
 			
 
-	global.tabDeliniatedText = true;
+	global.tabDelimitedText = true;
 
 
 }

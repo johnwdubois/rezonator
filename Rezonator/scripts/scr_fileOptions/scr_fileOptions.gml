@@ -7,7 +7,7 @@ function scr_fileOptions(optionSelected) {
 	{
 				
 		case "menu_save":
-			var instLoading = instance_create_layer(0, 0, "InstanceLoading", obj_loadingScreen);
+			var instLoading = instance_create_layer(0, 0, "InstanceLoading", obj_loadingBar);
 			instLoading.loadSprite = spr_saving;
 
 			obj_fileLoader.ableToHotkey = false;
@@ -17,7 +17,7 @@ function scr_fileOptions(optionSelected) {
 			instance_destroy();
 			break;
 		case "menu_save-as":
-			var instLoading = instance_create_layer(0, 0, "InstanceLoading", obj_loadingScreen);
+			var instLoading = instance_create_layer(0, 0, "InstanceLoading", obj_loadingBar);
 			instLoading.loadSprite = spr_saving;
 
 			obj_fileLoader.ableToHotkey = false;

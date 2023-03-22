@@ -1,5 +1,3 @@
-
-
 function scr_fillFieldLevelMap() {
 	show_debug_message("scr_fillFieldLevelMap");
 	

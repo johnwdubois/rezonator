@@ -76,8 +76,6 @@ function scr_dialogueConfirm() {
 				obj_control.currentView = obj_control.searchView;
 				scr_renderFilter2();
 			}
-			
-
 		}
 		
 

@@ -1,5 +1,3 @@
-
-
 function scr_sortElan() {
 	
 	// if this is an Elan formatted file, we will atempt to sort the importGrid by

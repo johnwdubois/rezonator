@@ -1,5 +1,3 @@
-
-
 function scr_importGridToNodeMap_plainText(row) {
 
 	// make sure row is still in range
@@ -7,7 +5,7 @@ function scr_importGridToNodeMap_plainText(row) {
 	
 	// get unit string and split it
 	var unitStr = ds_grid_get(global.importGrid, 0, row);
-	var splitList = scr_splitStringImport(unitStr, " ", true);
+	var splitList = scr_splitString(unitStr, " ");
 
 	show_debug_message(scr_getStringOfList(splitList))
 	scr_deleteFromList(splitList, "");

@@ -1,56 +1,40 @@
 function scr_importTabbedTXT(delimiter) {
-	show_debug_message("scr_importTabbedTXT");
+	
+	show_debug_message("scr_importTabbedTXT, delimiter: '{0}'", delimiter);
 
-	var colListCreated = false;
-	var widthOfImportGrid = 0;
+
+	global.importGridWidth = 0;
 	var importTXTLineGridHeight = ds_grid_height(global.importTXTLineGrid);
-	var j = 0;
-
-	repeat(importTXTLineGridHeight) {
+	for (var i = 0; i < importTXTLineGridHeight; i++) {
 	
-		var lineStr = global.importTXTLineGrid[# global.importTXTLineGrid_colLine, j];
-		var listOfColumns = ds_list_create();
-		listOfColumns = scr_splitStringImport(lineStr, delimiter, false);
-		var listOfColumnsSize = ds_list_size(listOfColumns);
+		// get current line from importTXTLineGrid and split it by tabs/commas
+		var lineStr = global.importTXTLineGrid[# global.importTXTLineGrid_colLine, i];
+		var colList = scr_splitString(lineStr, delimiter);
+		var colListSize = ds_list_size(colList);
 		
+		// importGrid should be as wide as how many splits we found
+		global.importGridWidth = max(global.importGridWidth, ds_list_size(colList));
 		
-		if (widthOfImportGrid <= ds_list_size(listOfColumns)) {
-			widthOfImportGrid = ds_list_size(listOfColumns);
-			global.importGridWidth = widthOfImportGrid
-
-			ds_grid_resize(global.importGrid, widthOfImportGrid, ds_grid_height(global.importGrid));
-		}
-
-		ds_grid_resize(global.importGrid, global.importGridWidth, ds_grid_height(global.importGrid)+1);
-	
-		var listOfColumnsSize = ds_list_size(listOfColumns);
-		for (var i = 0; i < listOfColumnsSize; i++) {
+		// grow importGrid by one row
+		ds_grid_resize(global.importGrid, global.importGridWidth, ds_grid_height(global.importGrid) + 1);
 		
-			var fullColString = string(ds_list_find_value(listOfColumns,i));
-			
+		// put each split in importGrid
+		var colListSize = ds_list_size(colList);
+		for (var j = 0; j < colListSize; j++) {
+			var fullColString = string(colList[| j]);
 			fullColString = scr_inputSpaces(fullColString);
-			
-			var colStringList = ds_list_create();
-			colStringList = scr_splitString(fullColString, " ");
-		
-			if (ds_list_size(colStringList) > 1) {
-				ds_grid_set(global.importGrid, i , ds_grid_height(global.importGrid) -1, colStringList);
-			}
-			ds_grid_set(global.importGrid, i , ds_grid_height(global.importGrid) -1, fullColString);
+			global.importGrid[# j, ds_grid_height(global.importGrid) - 1] = fullColString;
 		}
-	
-		j++;
 	}
 	
-	if (!colListCreated) {
-		for (i = 0; i < global.importGridWidth; i++) {
-			var colName = "Col";
-			ds_list_add(global.importGridColNameList, colName + "_" + string(i));
-			ds_map_add(global.importGridColMap, colName, i);
-		}
-		colListCreated = true;
+	// give every column in importGrid a name: Col_1, Col_2, etc
+	for (i = 0; i < global.importGridWidth; i++) {
+		var colName = "Col";
+		ds_list_add(global.importGridColNameList, colName + "_" + string(i + 1));
+		ds_map_add(global.importGridColMap, colName, i);
 	}
-	//global.plainText = true;
-	global.tabDeliniatedText = true;
+
+
+	global.tabDelimitedText = true;
 
 }

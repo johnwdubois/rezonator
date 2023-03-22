@@ -15,7 +15,7 @@ while (randLine2 <= endLine && randLine1 < endLine && fileNameNumber < 4) {
 
 	global.fileSaveName = string_insert(string(fileNameNumber++), originalFileName, fileNumIndex);
 
-	var instLoading = instance_create_layer(0, 0, "InstanceLoading", obj_loadingScreen);
+	var instLoading = instance_create_layer(0, 0, "InstanceLoading", obj_loadingBar);
 	instLoading.loadSprite = spr_saving;
 	with (obj_fileLoader) {
 		alarm[0] = 2;

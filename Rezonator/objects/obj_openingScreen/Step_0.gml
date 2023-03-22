@@ -4,7 +4,7 @@ scr_multiDropDownMouseover();
 scr_ctrlHold();
 
 if (showDownloadDialogue && !alreadyShownDownloadDialogue) {
-	if (!instance_exists(obj_dialogueBox) && !instance_exists(obj_loadingScreen)) {
+	if (!instance_exists(obj_dialogueBox) && !instance_exists(obj_loadingBar)) {
 		alreadyShownDownloadDialogue = true;
 		instance_create_layer(x, y, "InstancesDialogue", obj_dialogueBox);
 		with (obj_openingScreen) downloadDialogue = true;

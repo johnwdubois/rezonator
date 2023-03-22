@@ -1,5 +1,3 @@
-
-
 function scr_importGridToNodeMap_fieldsRowUnit(row) {
 
 	// make sure row is still in range
@@ -23,6 +21,7 @@ function scr_importGridToNodeMap_fieldsRowUnit(row) {
 	// get current unit delimiter cell value
 	if (indexOfSpeaker >= 0) {
 		speakerValue = global.importGrid[# indexOfSpeaker, row];
+		show_debug_message("speakerValue: '{0}'", speakerValue);
 		if (speakerValue == "" || speakerValue == "0") speakerValue = prevFieldMap[? global.participantField];
 		else prevFieldMap[? global.participantField] = speakerValue;
 		
@@ -86,7 +85,7 @@ function scr_importGridToNodeMap_fieldsRowUnit(row) {
 	var chunkIDList = ds_list_create();
 	if (indexOfWordDelim >= 0) {
 		var displayUnitStr = ds_grid_get(global.importGrid, indexOfWordDelim, row);
-		var wordSplitList = scr_splitStringImport(displayUnitStr, " ", true);
+		var wordSplitList = scr_splitString(displayUnitStr, " ");
 
 	
 		if (scr_isNumericAndExists(wordSplitList, ds_type_list)) {
@@ -131,7 +130,7 @@ function scr_importGridToNodeMap_fieldsRowUnit(row) {
 	
 	//split display token col to make the unit's tokens
 	var displayUnitStr = ds_grid_get(global.importGrid, indexOfDisplayToken, row);
-	var splitList = scr_splitStringImport(displayUnitStr, " ", true);
+	var splitList = scr_splitString(displayUnitStr, " ");
 
 	
 	var tokenTagMapList = ds_list_create();
@@ -230,7 +229,7 @@ function scr_importGridToNodeMap_fieldsRowUnit(row) {
 
 		// get unit string and split it
 		var unitStr = ds_grid_get(global.importGrid, i, row);
-		var splitList = scr_splitStringImport(unitStr, " ", true);
+		var splitList = scr_splitString(unitStr, " ");
 
 		var currentField = global.importGridColNameList[| i];
 		var currentLevel = global.fieldLevelMap[? currentField];

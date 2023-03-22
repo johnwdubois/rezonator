@@ -44,7 +44,7 @@ global.neworOpen = false;
 
 
 global.plainText = false;
-global.tabDeliniatedText = false;
+global.tabDelimitedText = false;
 
 global.fileSaveName = "undefined";
 global.stackGrabSave = false;

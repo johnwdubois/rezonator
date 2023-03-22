@@ -9,7 +9,7 @@ function scr_importAIChat(){
 	for (var i = 0; i < _msgListSize; i++) {
 		
 		// get current message map
-		var _msgMap = _msgList[| 0];
+		var _msgMap = _msgList[| i];
 		var _selected = _msgMap[? "selected"];
 		
 		// if this message is selected, let's get its text

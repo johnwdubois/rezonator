@@ -76,7 +76,7 @@ function scr_importCSV(filename) {
 	//allows user to not need unit level data (not neccessary)
 	global.importType = "import_type_word";
 
-	global.tabDeliniatedText = true;
+	global.tabDelimitedText = true;
 
 	show_debug_message("scr_importCSV() Going to import screen...");
 

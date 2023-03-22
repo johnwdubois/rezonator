@@ -1,5 +1,3 @@
-
-
 function scr_setParticipantID(unitID) {
 	
 	// make sure this function is called after the tags are set for each unit!

@@ -81,7 +81,7 @@ function scr_importInfoGrid() {
 			var tokenCount = -1;
 			for (var j = 0; j < importGridHeight; j++) {
 				if (ds_grid_get(global.importGrid, i, j) != "0") {
-					var currentList = scr_splitStringImport(ds_grid_get(global.importGrid, i, j), " ", false);
+					var currentList = scr_splitString(ds_grid_get(global.importGrid, i, j), " ", true);
 					if (tokenCount < 0) {
 						tokenCount = ds_list_size(currentList);
 					}
