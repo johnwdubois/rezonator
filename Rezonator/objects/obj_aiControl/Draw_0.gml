@@ -67,6 +67,7 @@ draw_set_color(global.colorThemeText);
 draw_text(floor(mean(importButtonX1, importButtonX2)), floor(mean(importButtonY1, importButtonY2)), scr_get_translation("menu_import"));
 if (mouseoverImportButton) {
 	if (mouse_check_button_released(mb_left)) {
-		scr_importAIChat();
+		global.importFrom = "ai";
+		scr_importTXT("");
 	}
 }

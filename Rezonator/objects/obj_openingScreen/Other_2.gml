@@ -68,7 +68,7 @@ global.searchMap = -1;
 
 global.cliqueMap = -1;
 
-global.importFromClipboard = false;
+global.importFrom = "file";
 
 
 

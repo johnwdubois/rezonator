@@ -207,14 +207,6 @@ dynamicWordGrid_colTag1Label = "Tag1";
 dynamicWordGrid_colTag2Label = "Tag2";
 dynamicWordGrid_colTag3Label = "Tag3";
 
-wordStateNormal = 0;//"Normal";//0
-wordStateNew = 1;//"New";//1
-wordStateChunk = 2;//"Chunk";//2
-wordStateDead = 3;//"Dead";//3
-wordStateGold = 4;//"Gold";//4
-wordStateRed = 5;//"Red";//5
-
-
 
 // Instantiate the Word Draw Grid
 wordDrawGridWidth = 7;

@@ -2,9 +2,11 @@ function scr_importAIChat(){
 	
 	var _msgList = obj_aiControl.msgList;
 	var _msgListSize = ds_list_size(_msgList);
+	
+	var lineList = ds_list_create();
 
-	ds_grid_clear(global.importTXTLineGrid, 0);
-	ds_grid_resize(global.importTXTLineGrid, global.importTXTLineGridWidth, 0);
+	//ds_grid_clear(global.importTXTLineGrid, 0);
+	//ds_grid_resize(global.importTXTLineGrid, global.importTXTLineGridWidth, 0);
 	
 	for (var i = 0; i < _msgListSize; i++) {
 		
@@ -52,21 +54,18 @@ function scr_importAIChat(){
 					// get current sentence, skip any blank lines
 					var _currentSentence = _sentences[| k];
 					if (scr_isStrOnlyWhitespace(_currentSentence) || _currentSentence == "") continue;
-					show_debug_message("_currentSentence: " + string(_currentSentence));
-				
-					// grow grid by one row
-					ds_grid_resize(global.importTXTLineGrid, ds_grid_width(global.importTXTLineGrid), ds_grid_height(global.importTXTLineGrid) + 1);
-					var row = ds_grid_height(global.importTXTLineGrid) - 1;
-			
-					// put sentence data into grid
-					global.importTXTLineGrid[# global.importTXTLineGrid_colLine, row] = _participant + "	" + _currentSentence;
-					global.importTXTLineGrid[# global.importTXTLineGrid_colException, row] = _currentSentence == "";
+					
+					// finally, format the sentence in tab-delimited style and add it to lineList
+					var _currentSentenceFormatted = string(_participant) + "	" + string(_currentSentence);
+					show_debug_message("_currentSentenceFormatted: " + string(_currentSentenceFormatted));
+					ds_list_add(lineList, _currentSentenceFormatted);
 				}
 			}
 		}
 	}
 	
+	global.project = "import";
 	global.importType = "import_type_transcription";
-	scr_importTabbedTXT("	");
+	return lineList;
 
 }

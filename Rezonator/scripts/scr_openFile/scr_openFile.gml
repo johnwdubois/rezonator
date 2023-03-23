@@ -1,11 +1,11 @@
 function scr_openFile() {
 	
-	show_debug_message("global.importType: " + string(global.importType));
+	show_debug_message("scr_openFile, global.importType: " + string(global.importType));
 
-	if (global.importFromClipboard) {
+	if (global.importFrom == "clipboard") {
 		openedFile = "";
 	}
-	else {
+	else if (global.importFrom == "file") {
 		if (global.previousImportDirectory == "") {
 	
 			var discourseDirString = global.rezonatorDirString + "\\Data\\SBCorpus\\Transcript";

@@ -22,8 +22,8 @@ draw_text(recentFilesWindowX1, recentFilesWindowY1 - stringHeight, quickAccessTi
 
 
 
-var mouseoverCancel = instance_exists(obj_dialogueBox) || instance_exists(obj_dropDown) || instance_exists(obj_sizeWindow);
-var mouseOverWindow = point_in_rectangle(mouse_x, mouse_y, recentFilesWindowX1,recentFilesWindowY1,recentFilesWindowX2,recentFilesWindowY2) && !mouseoverCancel;
+var mouseoverCancel = instance_exists(obj_dialogueBox) || instance_exists(obj_dropDown) || instance_exists(obj_sizeWindow) || scrollBarHolding;
+var mouseOverWindow = point_in_rectangle(mouse_x, mouse_y, recentFilesWindowX1, recentFilesWindowY1, recentFilesWindowX2, recentFilesWindowY2) && !mouseoverCancel;
 
 scr_surfaceStart();
 

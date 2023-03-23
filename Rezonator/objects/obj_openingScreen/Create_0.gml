@@ -34,7 +34,7 @@ global.unitGridWidth = 10;
 
 
 
-// global.project can be equal to "new", "open", or ""
+// global.project can be equal to "import", "open", or ""
 global.project = "";
 global.menuOpen = true;
 global.neworOpen = false;
@@ -461,6 +461,7 @@ global.restoreAutosave = false;
 global.autosaveLastSavedFilename = "";
 
 selectOpenButton = false;
+openedFile = "";
 
 fontSizeTest = 0;
 runFontSizeTest = false;

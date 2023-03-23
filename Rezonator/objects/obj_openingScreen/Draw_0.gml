@@ -63,3 +63,9 @@ else if (global.project == "open") {
 else if (global.project == "import") {
 	scr_preImportScreen();
 }
+
+if (global.project != "") {
+	hoverColorMergeOpen = 0;
+	hoverColorMergeImport = 0;
+	hoverColorMergeHelp = 0;
+}

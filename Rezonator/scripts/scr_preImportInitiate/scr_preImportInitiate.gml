@@ -187,10 +187,10 @@ function scr_preImportInitiate() {
 	
 	
 	// create a hard-coded grid for the preImportScreen, to explain the info for each import type
-	global.preImportInfoGridWidth = 2;
-	global.preImportInfoGrid_colChoose = 0;
-	global.preImportInfoGrid_colDataType = 1;
-	global.preImportInfoGrid = ds_grid_create(global.preImportInfoGridWidth, ds_list_size(global.importTypeList));
+	global.preImportGridWidth = 2;
+	global.preImportGrid_colChoose = 0;
+	global.preImportGrid_colDataType = 1;
+	global.preImportGrid = ds_grid_create(global.preImportGridWidth, ds_list_size(global.importTypeList));
 	
 	// fill the preImportInfoGrid
 	for (var i = 0; i < importTypeListSize; i++) {
@@ -198,7 +198,7 @@ function scr_preImportInitiate() {
 		var currentImportType = ds_list_find_value(global.importTypeList, i);
 		var currentDataType = currentImportType;
 
-		ds_grid_set(global.preImportInfoGrid, global.preImportInfoGrid_colDataType, i, currentDataType);
+		ds_grid_set(global.preImportGrid, global.preImportGrid_colDataType, i, currentDataType);
 
 	}
 	
