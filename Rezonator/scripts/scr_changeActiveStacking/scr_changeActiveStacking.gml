@@ -8,7 +8,7 @@ function scr_changeActiveStacking(stacking){
 	}
 	
 	// check if making new stacking
-	if (stacking == "New stacking") {
+	if (stacking == "option_new-stacking") {
 		
 		// create dialog box to ask for new stacking name
 		if (!instance_exists(obj_dialogueBox)) {

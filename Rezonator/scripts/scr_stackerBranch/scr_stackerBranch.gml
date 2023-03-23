@@ -1,11 +1,24 @@
 function scr_stackerBranch() {
 	
 	show_debug_message("scr_stackerBranch, stackerMode: " + string(obj_stacker.stackerMode));
+	var newStackingName = "";
+	var newStacksName = "";
 	if (instance_exists(obj_dialogueBox) && instance_exists(obj_inputBox)) {
+		
+		// get strings from both textboxes
+		var _inputBoxList = obj_dialogueBox.inputBoxList;
+		if (scr_isNumericAndExists(_inputBoxList, ds_type_list)) {
+			with (obj_inputBox) {
+				if (ds_list_find_index(_inputBoxList, self.id) == 0) newStackingName = str;
+				else if (ds_list_find_index(_inputBoxList, self.id) == 1) newStacksName = str;
+			}
+		}
+		
+		// set stacking name vars
 		with (obj_stacker) {
 			if (confirmStackName) {
-				stackerName = obj_inputBox.str;
-				stackerNameNum = 1;
+				stacker_stackingName = newStackingName;
+				stacker_stacksName = newStacksName;
 			}
 		}
 	}
@@ -23,10 +36,8 @@ function scr_stackerBranch() {
 
 	obj_panelPane.functionChainList_currentTab = obj_panelPane.functionChainList_tabStackBrush;
 			
-	// unfocus chains of all type
+	// unfocus chains
 	scr_chainDeselect();
-	
-
 	
 	with (obj_stacker) {
 		if (stackerMode == "menu_random") {
@@ -58,8 +69,7 @@ function scr_stackerBranch() {
 		}
 		
 		stackerMode = "";
-		stackerName = "";
-		stackerNameNum = 0;
+		stacker_stackingName = "";
 		confirmStackCreate = false;
 	}
 }

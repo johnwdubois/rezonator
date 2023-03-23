@@ -1,4 +1,4 @@
-function scr_createNewStacking(name, stackerType){
+function scr_createNewStacking(name, stackName, stackerType){
 	
 	// get stackingList and stackingMap
 	var stackingList = global.nodeMap[? "stackingList"];
@@ -17,6 +17,7 @@ function scr_createNewStacking(name, stackerType){
 	
 	// add some fields to new stacking submap
 	newStackingSubMap[? "name"] = name;
+	newStackingSubMap[? "stackName"] = stackName;
 	newStackingSubMap[? "stacker"] = stackerType;
 	
 	// switch active stacking to this new one

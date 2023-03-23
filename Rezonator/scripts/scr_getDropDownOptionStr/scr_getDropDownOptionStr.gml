@@ -25,7 +25,7 @@ function scr_getDropDownOptionStr(optionStr) {
 	}
 	else if (optionListType == global.optionListTypeStacking) {
 		// get name of stacking instead
-		if (optionStr != "New stacking") {
+		if (optionStr != "option_new-stacking") {
 			var stackingSubMap = global.stackingMap[? optionStr];
 			if (scr_isNumericAndExists(stackingSubMap, ds_type_map)) {
 				fullOptionStr = stackingSubMap[? "name"];

@@ -97,3 +97,5 @@ buttonY2 = 0;
 
 blink = false;
 blinkAlpha = 0;
+
+inputBoxList = undefined;

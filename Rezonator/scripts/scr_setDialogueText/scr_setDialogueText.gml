@@ -364,7 +364,7 @@ function scr_setDialogueText() {
 		
 		if (instance_exists(obj_stacker)) {
 			if (obj_stacker.confirmStackName) {
-				descriptionText = "Set name for new Stacks"; // localize
+				descriptionText = scr_get_translation("msg_name-new-stacking");
 			}
 		}
 	}

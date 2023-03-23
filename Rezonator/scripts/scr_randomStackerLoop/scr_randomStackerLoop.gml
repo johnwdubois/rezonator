@@ -1,7 +1,7 @@
 function scr_randomStackerLoop() {
 	
 	// set active stackType
-	scr_createNewStacking(obj_stacker.stackerName, "Random");
+	scr_createNewStacking(obj_stacker.stacker_stackingName, obj_stacker.stacker_stacksName, "Random");
 	
 	// Set script variables
 	var currentUnitList = ds_list_create();
@@ -9,7 +9,8 @@ function scr_randomStackerLoop() {
 	var discourseSubMap = global.nodeMap[?global.discourseNode];
 	var unitList = discourseSubMap[? "unitList"];
 	var unitListSize = ds_list_size(unitList);
-	var amountOfLines = floor(random(7));
+	var amountOfLines = irandom(7);
+	
 	//Starting at the top of the unitImportGrid
 	for (var importLoop = 0; importLoop < unitListSize; importLoop++) {
 		var currentUnitID = unitList[|importLoop];

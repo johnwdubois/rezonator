@@ -3,417 +3,282 @@
 */
 function scr_dropDownSelect(optionSelected) {
 
-	//optionListType == 0 --> switch sorting columns for sort pane
 
-
-	//chainListEdit
-	if (optionListType == global.optionListTypeChainList) //1
-	{
+	if (optionListType == global.optionListTypeChainList) {
 	    scr_chainListOptions(optionSelected);
 	}
-	//chainRecolor
-	else if (optionListType == global.optionListTypeChainRecolor) //2
-	{
+	else if (optionListType == global.optionListTypeChainRecolor) {
 	    scr_chainRecolorOptions(optionSelected);
-	    
 	}
-	//speakerLabelEdit
-	else if (optionListType == global.optionListTypeSpeakerLabel) //3
-	{
+	else if (optionListType == global.optionListTypeSpeakerLabel) {
 	    scr_speakerLabelOptions(optionSelected);
 	}
-	//fileOptions
-	else if (optionListType == global.optionListTypeFile) //4
-	{
+	else if (optionListType == global.optionListTypeFile) {
 	    scr_fileOptions(optionSelected);
 	}
-	// advancedOptions
-	else if (optionListType == global.optionListTypeAdvanced) //5
-	{
+	else if (optionListType == global.optionListTypeAdvanced) {
 	    scr_advancedOptions(optionSelected);
-	  //  instance_destroy();
 	}
-
-	//viewOptions
-	else if (optionListType == global.optionListTypeView) //6
-	{
+	else if (optionListType == global.optionListTypeView) {
 	    scr_viewOptions(optionSelected);
 	}
-	//searchOptions
-	else if (optionListType == global.optionListTypeSearch) //7
-	{
+	else if (optionListType == global.optionListTypeSearch) {
 	    scr_searchOptions(optionSelected);
 	    instance_destroy();
 	}
-	//right click on word options
-	else if (optionListType == global.optionListTypeRightClickWord) //8
-	{
+	else if (optionListType == global.optionListTypeRightClickWord) {
 	    scr_rightClickWordOptions(optionSelected);
 	}
-	//newWordOptions
-	else if (optionListType == global.optionListTypeNewWord) //11
-	{
+	else if (optionListType == global.optionListTypeNewWord) {
 	    scr_newTokenOptions(optionSelected);
 	}
-
-	//mappingTagOptions
-	else if (optionListType == global.optionListTypeMappingTag) //12
-	{
+	else if (optionListType == global.optionListTypeMappingTag) {
 	    scr_mappingTagOptions(optionSelected);
 	}
-
-	//zoomOptions
-	else if (optionListType == global.optionListTypeZoom) //13
-	{
+	else if (optionListType == global.optionListTypeZoom) {
 	    scr_zoomOptions(optionSelected);
 	}
-
-	//paneOptions
-	else if (optionListType == global.optionListTypePane) //14
-	{
+	else if (optionListType == global.optionListTypePane) {
 	    scr_paneOptions(optionSelected);
 	}
-
-
-	//justifyOptions
-	else if (optionListType == global.optionListTypeJustify) //16
-	{
+	else if (optionListType == global.optionListTypeJustify) {
 	    scr_justifyOptions(optionSelected);
 	}
-
-	//proseOptions
-	else if (optionListType == global.optionListTypeProse) //17
-	{
+	else if (optionListType == global.optionListTypeProse) {
 	    scr_proseOptions(optionSelected);
 	}
-
-	//hideOptions
-	else if (optionListType == global.optionListTypeHide) //18
-	{
+	else if (optionListType == global.optionListTypeHide) {
 	    scr_hideOptions(optionSelected);
 	}
-
-	//contextOptions
-	else if (optionListType == global.optionListTypeContext) //19
-	{
+	else if (optionListType == global.optionListTypeContext) {
 	    scr_contextOptions(optionSelected);
 	}
-
-
-	//settingsOptions
-	else if (optionListType == global.optionListTypeSettings) //21
-	{
+	else if (optionListType == global.optionListTypeSettings) {
 	    scr_settingsOptions(optionSelected);
 	}
-
-	//toolsOptions
-	else if (optionListType == global.optionListTypeTools) //22
-	{
+	else if (optionListType == global.optionListTypeTools) {
 	    scr_toolsOptions(optionSelected);
 	}
-
-	//helpOptions
-	else if (optionListType == global.optionListTypeHelp) //23
-	{
+	else if (optionListType == global.optionListTypeHelp) {
 	    scr_helpOptions(optionSelected);
 	    instance_destroy();
 	}
-
-
-
-	//deleteOptions
-	else if (optionListType == global.optionListTypeDelete) //26
-	{
+	else if (optionListType == global.optionListTypeDelete) {
 	    scr_deleteOptions(optionSelected);
 	    instance_destroy();
 	}
-
-	//token selection
-	else if (optionListType == global.optionListTypeTokenSelection) //27
-	{
+	else if (optionListType == global.optionListTypeTokenSelection) {
 	    scr_tokenSelection(optionSelected);
 	    with (obj_dropDown) instance_destroy();
 	}
-	//stack selection
-	else if (optionListType == global.optionListTypeStack) //28
-	{
+	else if (optionListType == global.optionListTypeStack) {
 	    scr_stackOptions(optionSelected);
-	    //instance_destroy();
 	}
-	//createStack selection
-	else if (optionListType == global.optionListTypeCreateStack) //29
-	{
+	else if (optionListType == global.optionListTypeCreateStack) {
 	    scr_createStackOptions(optionSelected);
 	}
-	//token selection
-	else if (optionListType == global.optionListTypeUnitSelection) //31
-	{
+	else if (optionListType == global.optionListTypeUnitSelection) {
 	    scr_unitSelection(optionSelected);
 	    with (obj_dropDown) instance_destroy();
 	}
-	//import special fields selection
-	else if (optionListType == global.optionListTypeSpecialFields) //32
-	{
+	else if (optionListType == global.optionListTypeSpecialFields) {
 		scr_specialFieldsOptions(optionSelected);
 		instance_destroy();
 	}
-	else if (optionListType == global.optionListTypeFilter) //33
-	{
+	else if (optionListType == global.optionListTypeFilter) {
 	    scr_filterOptions(optionSelected);
 	}
-	//adding to filter options
-	else if (optionListType == global.optionListTypeAddToFilter) //34
-	{
+	else if (optionListType == global.optionListTypeAddToFilter) {
 	    scr_addToFilterOptions(optionSelected);
 	    instance_destroy();
 	}
-	//adding to Token Tag Map options
-	else if (optionListType == global.optionListTypeTokenTagMap) //35
-	{
+	else if (optionListType == global.optionListTypeTokenTagMap) {
 	    scr_tokenTagMapOptions(optionSelected);
 	    instance_destroy();
 	}
-
-	//adding to Unit Tag Map options
-	else if (optionListType == global.optionListTypeUnitTagMap) //38
-	{
+	else if (optionListType == global.optionListTypeUnitTagMap) {
 	    scr_unitTagMapOptions(optionSelected);
 	    instance_destroy();
 	}
-	else if (optionListType == global.optionListTypeAutosave) //40
-	{
+	else if (optionListType == global.optionListTypeAutosave) {
 	    scr_autosaveOptions(optionSelected);
 	}
-	else if (optionListType == global.optionListTypeEdit) //42
-	{
+	else if (optionListType == global.optionListTypeEdit) {
 	    scr_editOptions(optionSelected);
 	}
-	else if (optionListType == global.optionListTypeNav) //44
-	{
+	else if (optionListType == global.optionListTypeNav) {
 	    scr_navOptions(optionSelected);
 		instance_destroy();
 	}
-	else if (optionListType == global.optionListTypeLanguage) //45
-	{
+	else if (optionListType == global.optionListTypeLanguage) {
 	    scr_languageOptions(optionSelected);
 		instance_destroy();
 	}
-	else if (optionListType == global.optionListTypeImportGrid) //46
-	{
+	else if (optionListType == global.optionListTypeImportGrid) {
 	    scr_importGridOptions(optionSelected);
 		obj_fieldSummaryWindow.clickedIn = false;
 		instance_destroy();
 	}
-	else if (optionListType == global.optionListTypeChain1ToManyField) //47
-	{
+	else if (optionListType == global.optionListTypeChain1ToManyField) {
 	    scr_chain1ToManyFieldOptions(optionSelected);
 		with (obj_dropDown) instance_destroy();
 	}
-	else if (optionListType == global.optionListTypeChain1ToManyTag) //48
-	{
+	else if (optionListType == global.optionListTypeChain1ToManyTag) {
 	    scr_chain1ToManyTagOptions(optionSelected);
 		instance_destroy();
 	}
-	else if (optionListType == global.optionListTypeTextDirection) //49
-	{
+	else if (optionListType == global.optionListTypeTextDirection) {
 	    scr_textDirectionOptions(optionSelected);
 	}
-
-	else if (optionListType == global.optionListTypeChain1To1Field) //51
-	{
+	else if (optionListType == global.optionListTypeChain1To1Field) {
 	    scr_chain1To1FieldOptions(optionSelected);
 		with (obj_dropDown) instance_destroy();
 	}
-	else if (optionListType == global.optionListTypeChain1To1Tag) //52
-	{
+	else if (optionListType == global.optionListTypeChain1To1Tag) {
 	    scr_chain1To1TagOptions(optionSelected);
 		instance_destroy();
 	}
-
-	else if (optionListType == global.optionListTypeAddToShow) //54
-	{
+	else if (optionListType == global.optionListTypeAddToShow) {
 	    scr_addToShowOptions(optionSelected);
 		instance_destroy();
 	}
-	else if (optionListType == global.optionListTypeShowList) //55
-	{
+	else if (optionListType == global.optionListTypeShowList) {
 	    scr_showListOptions(optionSelected);
 		instance_destroy();
 	}
-	else if (optionListType == global.optionListTypeToolButton) //56
-	{
+	else if (optionListType == global.optionListTypeToolButton) {
 		scr_toolButtonOptions(optionSelected);
 	}
-	else if (optionListType == global.optionListTypeJustifyProse) //57
-	{
+	else if (optionListType == global.optionListTypeJustifyProse) {
 		scr_justifyProseOptions(optionSelected);
 	}
-	else if (optionListType == global.optionListType1to1) //58
-	{
+	else if (optionListType == global.optionListType1to1) {
 		scr_1to1Options(optionSelected);
 	}
-	else if (optionListType == global.optionListTypeTranslation) //59
-	{
+	else if (optionListType == global.optionListTypeTranslation) {
 		scr_translationOptions(optionSelected);
 	}
-	else if (optionListType == global.optionListTypeFieldUnits1ToMany) // 60
-	{
+	else if (optionListType == global.optionListTypeFieldUnits1ToMany) {
 		scr_fieldUnits1ToManyOptions(optionSelected);
 	}
-	else if (optionListType == global.optionListTypeRemoveFromTagSetUnits1ToMany) // 61
-	{
+	else if (optionListType == global.optionListTypeRemoveFromTagSetUnits1ToMany) {
 		scr_removeFieldTagQuestionPrompt("tag", "unit", "1toMany", optionSelected);
 		with (obj_dropDown) instance_destroy();
 	}
-	else if (optionListType == global.optionListTypeFieldUnits1To1) // 62
-	{
+	else if (optionListType == global.optionListTypeFieldUnits1To1) {
 		scr_fieldUnits1To1Options(optionSelected);
 	}
-	else if (optionListType == global.optionListTypeRemoveFromTagSetUnits1To1) // 63
-	{
+	else if (optionListType == global.optionListTypeRemoveFromTagSetUnits1To1) {
 		scr_removeFieldTagQuestionPrompt("tag", "unit", "1to1", optionSelected);
 		with (obj_dropDown) instance_destroy();
 	}
-	else if (optionListType == global.optionListTypeFieldChains1ToMany) // 64
-	{
+	else if (optionListType == global.optionListTypeFieldChains1ToMany) {
 		scr_fieldChains1ToManyOptions(optionSelected);
 	}
-	else if (optionListType == global.optionListTypeRemoveFromTagSetChains1ToMany) // 65
-	{
+	else if (optionListType == global.optionListTypeRemoveFromTagSetChains1ToMany) {
 		scr_removeFieldTagQuestionPrompt("tag", "chain", "1toMany", optionSelected);
 		with (obj_dropDown) instance_destroy();
 	}
-	else if (optionListType == global.optionListTypeFieldChains1To1) // 66
-	{
+	else if (optionListType == global.optionListTypeFieldChains1To1) {
 		scr_fieldChains1To1Options(optionSelected);
 	}
-	else if (optionListType == global.optionListTypeRemoveFromTagSetChains1To1) // 67
-	{
+	else if (optionListType == global.optionListTypeRemoveFromTagSetChains1To1) {
 		scr_removeFieldTagQuestionPrompt("tag", "chain", "1to1", optionSelected);
 		with (obj_dropDown) instance_destroy();
 	}
-	else if (optionListType == global.optionListTypeChunk1To1Tag) //68
-	{
+	else if (optionListType == global.optionListTypeChunk1To1Tag) {
 	    scr_chunk1To1TagOptions(optionSelected);
 		instance_destroy();
 	}
-	else if (optionListType == global.optionListTypeSearchField) //69
-	{
+	else if (optionListType == global.optionListTypeSearchField) {
 		scr_searchFieldOptions(optionSelected);
 		instance_destroy();
 	}
-	else if (optionListType == global.optionListTypeSearchRange) //70
-	{
+	else if (optionListType == global.optionListTypeSearchRange) {
 		scr_searchRangeOptions(optionSelected);
 		instance_destroy();
 	}
-	else if (optionListType == global.optionListTypeLinkFields) //71
-	{
+	else if (optionListType == global.optionListTypeLinkFields) {
 		scr_linkClickOptions(optionSelected);
 	}
-	else if (optionListType == global.optionListTypeLinkTag) //72
-	{
+	else if (optionListType == global.optionListTypeLinkTag) {
 		scr_linkTagOptions(optionSelected);
 	}
-	else if (optionListType == global.optionListTypeTreeEntry) //73
-	{
+	else if (optionListType == global.optionListTypeTreeEntry) {
 		scr_treeEntryOptions(optionSelected);
 	}
-	else if (optionListType == global.optionListTypeTreeLeaf) //74
-	{
+	else if (optionListType == global.optionListTypeTreeLeaf) {
 		scr_treeLeafOptions(optionSelected);
 	}
-	else if (optionListType == global.optionListTypeArrows) // 75
-	{
+	else if (optionListType == global.optionListTypeArrows) {
 		scr_arrowOptions(optionSelected);	
 	}
-	else if (optionListType == global.optionListTypeTag) // 76
-	{
+	else if (optionListType == global.optionListTypeTag) {
 		scr_tagOptions(optionSelected);	
 	}
-	else if (optionListType == global.optionListTypeTokenFields) // 77
-	{
+	else if (optionListType == global.optionListTypeTokenFields) {
 		scr_fieldOptions(optionSelected,"Token");	
 	}
-	else if (optionListType == global.optionListTypeChainFields) // 78
-	{
+	else if (optionListType == global.optionListTypeChainFields) {
 		scr_fieldOptions(optionSelected,"Chain");	
 	}
-	else if (optionListType == global.optionListTypeEntryFields) // 79
-	{
+	else if (optionListType == global.optionListTypeEntryFields) {
 		scr_fieldOptions(optionSelected,"Entry");	
 	}
-	else if (optionListType == global.optionListTypeUnitFields) // 82
-	{
+	else if (optionListType == global.optionListTypeUnitFields) {
 		scr_fieldOptions(optionSelected,"Unit");	
 	}
-	else if (optionListType == global.optionListTypeChunkFields) // 83
-	{
+	else if (optionListType == global.optionListTypeChunkFields) {
 		scr_fieldOptions(optionSelected,"Chunk");	
 	}
-	else if (optionListType == global.optionListTypeChainTagMap) // 80
-	{
+	else if (optionListType == global.optionListTypeChainTagMap) {
 		scr_chainTagMapOptions(optionSelected);	
 	}
-	else if (optionListType == global.optionListTypeEntryTagMap) // 81
-	{
+	else if (optionListType == global.optionListTypeEntryTagMap) {
 		scr_entryTagMapOptions(optionSelected);	
 	}
-	else if (optionListType == global.optionListTypeSelectShow) // 84
-	{
+	else if (optionListType == global.optionListTypeSelectShow) {
 		scr_selectShowOptions(optionSelected);
 		with (obj_dropDown) instance_destroy();
 	}
-	else if (optionListType == global.optionListTypeChainListMulti) //85
-	{
+	else if (optionListType == global.optionListTypeChainListMulti) {
 	    scr_chainListMultiOptions(optionSelected);
 	}
-	else if (optionListType == global.optionListTypeSearchChain) //86
-	{
+	else if (optionListType == global.optionListTypeSearchChain) {
 	    scr_searchChainOptions(optionSelected);
 	}
-	else if (optionListType == global.optionListTypeTagSchema) //87
-	{
+	else if (optionListType == global.optionListTypeTagSchema) {
 	    scr_tagSchemaOptions(optionSelected);
 	}
-	else if (optionListType == global.optionListTypeTreeRightClick) //88
-	{
+	else if (optionListType == global.optionListTypeTreeRightClick) {
 		scr_treeRightClickOptions(optionSelected);
 	}
-	else if (optionListType == global.optionListTypeSearchPane) //89
-	{
+	else if (optionListType == global.optionListTypeSearchPane) {
 		scr_searchPaneOptions(optionSelected);
 	}
-	else if (optionListType == global.optionListTypeTagPane) //90
-	{
+	else if (optionListType == global.optionListTypeTagPane) {
 		scr_tagPaneOptions(optionSelected);
 	}
-	else if (optionListType == global.optionListTypeInsertCol) //91
-	{
+	else if (optionListType == global.optionListTypeInsertCol) {
 		scr_insertColOptions(optionSelected);
 	}
-	else if (optionListType == global.optionListTypeSplitTokenField) //92
-	{
+	else if (optionListType == global.optionListTypeSplitTokenField) {
 		scr_splitTokenFieldOptions(optionSelected);
 		with (obj_dropDown) instance_destroy();
 	}
-	else if (optionListType == global.optionListTypeAddEndnote) //93
-	{
+	else if (optionListType == global.optionListTypeAddEndnote) {
 		scr_newTokenOptions(optionSelected);
 		with (obj_dropDown) instance_destroy();
 	}
-	else if (optionListType == global.optionListTypeTurnStacker) //94
-	{
+	else if (optionListType == global.optionListTypeTurnStacker) {
 		scr_turnStackerOptions(optionSelected);
 		with (obj_dropDown) instance_destroy();
 	}
-	else if (optionListType == global.optionListTypeHTML5REZFile) //95
-	{
+	else if (optionListType == global.optionListTypeHTML5REZFile) {
 		scr_html5RezFileOptions(optionSelected);
 		with (obj_dropDown) instance_destroy();
 	}
-	else if (optionListType == global.optionListTypeStacking) //96
-	{
+	else if (optionListType == global.optionListTypeStacking) {
 		scr_changeActiveStacking(optionSelected);
 		with (obj_dropDown) instance_destroy();
 	}

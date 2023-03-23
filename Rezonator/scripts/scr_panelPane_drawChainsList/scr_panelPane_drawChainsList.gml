@@ -784,7 +784,7 @@ function scr_panelPane_drawChainsList() {
 					if (scr_isNumericAndExists(stackingList, ds_type_list)) {
 						var stackingOptionList = ds_list_create();
 						ds_list_copy(stackingOptionList,stackingList);
-						ds_list_insert(stackingOptionList, 0, "New stacking");
+						ds_list_add(stackingOptionList, "option_new-stacking");
 						scr_createDropDown(activeStackingX1, activeStackingY2, stackingOptionList, global.optionListTypeStacking);
 					}
 				}

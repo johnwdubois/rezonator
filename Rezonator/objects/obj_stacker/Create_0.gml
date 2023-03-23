@@ -26,8 +26,8 @@ alarm[7] = 2;
 showEndNoteWindow = false;
 confirmStackCreate = false;
 confirmStackName = false;
-stackerName = "";
-stackerNameNum = 0;
+stacker_stackingName = ""; // name of stacking made with stacker
+stacker_stacksName = ""; // naming format of stacks within the stacking
 stackerMode = ""; // turn, utterance, clique, random, sentence, group
 
 

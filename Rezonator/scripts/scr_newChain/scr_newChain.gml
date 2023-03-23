@@ -43,7 +43,6 @@ function scr_newChain(ID) {
 		}
 	}
 	else if (idType == "unit") {
-		obj_chain.stackChainNameCounter++;
 		var stackNavList = global.nodeMap[? "stackNavList"];
 		chainSeq = ds_list_size(stackNavList) + 1;
 		chainType = "stack";
@@ -52,12 +51,18 @@ function scr_newChain(ID) {
 		var stackNamePt2 = string(chainSeq);
 		if (obj_control.activeStacking == "Default") stackNamePt1 = scr_get_translation("tab_name_stack");
 		else {
-			// get name of active stacking
+			// let's check the active stacking stackName
 			var activeStackingSubMap = global.stackingMap[? obj_control.activeStacking];
 			if (scr_isNumericAndExists(activeStackingSubMap, ds_type_map)) {
-				var activeStackingName = activeStackingSubMap[? "name"];
-				if (is_string(activeStackingName)) {
-					stackNamePt1 = activeStackingName;
+				var activeStackingStackName = activeStackingSubMap[? "stackName"];
+				if (is_string(activeStackingStackName)) {
+					stackNamePt1 = activeStackingStackName;
+				}
+				else {
+					var activeStackingName = activeStackingSubMap[? "name"];
+					if (is_string(activeStackingName)) {
+						stackNamePt1 = activeStackingName;
+					}
 				}
 			}
 		}

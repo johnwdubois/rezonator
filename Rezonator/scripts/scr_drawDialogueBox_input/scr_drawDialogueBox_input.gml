@@ -2,20 +2,47 @@ function scr_drawDialogueBox_input() {
 
 	// draw title text
 	if (!instance_exists(obj_inputBox)) {
-		var inst = instance_create_layer(0, 0, "InstancesInput", obj_inputBox);
-		with (inst) inputPrompt = "";
+		
+		// create inputBoxList so this dialog box can handle multiple input boxes
+		inputBoxList = ds_list_create();
+		var inputBoxAmount = 1;
+		var _confirmStackName = false;
+		if (instance_exists(obj_stacker)) {
+			if (obj_stacker.confirmStackName) {
+				_confirmStackName = true;
+				inputBoxAmount = 2;
+			}
+		}
+		
+		// create input box instances
+		for (var i = 0; i < inputBoxAmount; i++) {
+			var inst = instance_create_layer(0, 0, "InstancesInput", obj_inputBox);
+			with (inst) {
+				windowFocused = i == 0;
+				inputPrompt = "";
+				if (_confirmStackName) {
+					inputPrompt = i == 0 ? "Stacking name" : "Stack names";
+				}
+			}
+			ds_list_add(inputBoxList, inst);
+		}
 	}
+	
+	var _inputBoxList = inputBoxList;
+	
+	// position input box(es)
 	with (obj_inputBox) {
+		
+		// determine y offset
+		var plusY = obj_dialogueBox.descriptionText == "" ? obj_dialogueBox.boxHeight * 0.22 : obj_dialogueBox.boxHeight * 0.42;
+		if (scr_isNumericAndExists(_inputBoxList, ds_type_list)) {
+			var inputBoxIndex = max(ds_list_find_index(_inputBoxList, self.id), 0);
+			plusY += inputBoxIndex * windowHeight * 1.25;
+		}
+		
 		textBoxX = floor(obj_dialogueBox.boxRectX1 + (obj_dialogueBox.boxWidth * 0.1));
-		
-		if (obj_dialogueBox.descriptionText != "") {
-			textBoxY = floor(obj_dialogueBox.boxRectY1 + (obj_dialogueBox.boxHeight * 0.42));
-		}
-		else {
-			textBoxY = floor(obj_dialogueBox.boxRectY1 + (obj_dialogueBox.boxHeight * 0.22));
-		}
+		textBoxY = floor(obj_dialogueBox.boxRectY1 + plusY);
 		windowWidth = obj_dialogueBox.boxWidth * 0.8;
-		
 	}
 	obj_control.inputText = obj_inputBox.str;
 	

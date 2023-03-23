@@ -215,9 +215,9 @@ function scr_dialogueConfirm() {
 			}
 		}
 		
-		// naming a new stackType
+		// naming a new blank stacking
 		if (obj_control.createNewStacking) {
-			scr_createNewStacking(obj_control.inputText, "");
+			scr_createNewStacking(obj_control.inputText, obj_control.inputText, "");
 		}
 		
 		scr_closeDialogueBoxVariables();

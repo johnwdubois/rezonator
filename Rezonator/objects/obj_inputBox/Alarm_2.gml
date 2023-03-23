@@ -1,0 +1,2 @@
+/// @description canSwitchToNext
+canSwitchToNext = true;
