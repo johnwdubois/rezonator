@@ -1,3 +1,3 @@
-if (obj_openingScreen.showPreImportScreen) {
+if (global.project == "import") {
 	scr_preImportFileTypeWindow();
 }

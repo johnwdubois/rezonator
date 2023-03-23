@@ -158,13 +158,11 @@ function scr_importMappingTagDraw() {
 	draw_text(floor(mean(backButtonRectX1, backButtonRectX2)), floor(mean(backButtonRectY1, backButtonRectY2)), scr_get_translation("label_back"));
 	
 	// click on back button
-	if (mouseOverBack && mouse_check_button_released(mb_left) && canGoBack) {		
-		global.newProject = false;
-		global.openProject = false;
+	if (mouseOverBack && mouse_check_button_released(mb_left) && canGoBack) {
+		global.project = "";
 		global.neworOpen = true;
 		show_debug_message("Going to openingScreen, scr_importMappingTagDraw");
-		room_goto(rm_openingScreen)
-
+		room_goto(rm_openingScreen);
 	}
 
 

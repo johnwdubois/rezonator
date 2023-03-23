@@ -32,13 +32,12 @@ global.wordGridWidth = 7;
 global.dynamicWordGridWidth = 15;
 global.unitGridWidth = 10;
 
-global.openProject = false;
-global.newProject = false;
+
+
+// global.project can be equal to "new", "open", or ""
+global.project = "";
 global.menuOpen = true;
 global.neworOpen = false;
-
-
-
 
 
 
@@ -421,8 +420,6 @@ ds_map_add(global.html5RestrictedMap, "menu_autosave", true);
 //	show_debug_message(checkmarkKeys[i]);
 //}
 
-
-showPreImportScreen = false;
 
 global.tokenCountTotal = 0;
 

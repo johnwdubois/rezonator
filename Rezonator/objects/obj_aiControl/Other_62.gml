@@ -4,15 +4,24 @@
 var _id = async_load[? "id"];
 var _status = async_load[? "http_status"];
 if (_id == httpRequestID && _status == 200) {
-	var _result = async_load[? "result"];
-	var _resultParse = json_parse(_result);
 	
+	var _result = async_load[? "result"];
+	
+	// result should be a json string
+	if (!is_string(_result)) {
+		show_debug_message("obj_aiControl, Async HTTP _result is not a string: " + string(_result));
+		exit;
+	}
+	
+	// parse json and get choices field
+	var _resultParse = json_parse(_result);
 	var _choices = _resultParse.choices;
 	
 	show_debug_message("_result: " + string(_result));
 	show_debug_message("_resultParse: " + string(_resultParse));
 	show_debug_message("_choices: " + string(_choices));
 	
+	// get first choice
 	var _firstChoice = _choices[0];
 	show_debug_message("_firstChoice: " + string(_firstChoice));
 	

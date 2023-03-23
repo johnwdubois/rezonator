@@ -14,26 +14,59 @@ function scr_importAIChat(){
 		
 		// if this message is selected, let's get its text
 		if (_selected) {
+			
 			var _text = string(_msgMap[? "text"]);
-			var _textSplit = string_split(_text, ". ", false);
 			
-			var _textSplitSize = array_length(_textSplit);
-			show_debug_message("_textSplit: " + string(_textSplit));
-			for (var j = 0; j < _textSplitSize; j++) {
-				
-				var _currentSplit = _textSplit[j];
-				show_debug_message("_currentSplit: " + string(_currentSplit));
-				
-				ds_grid_resize(global.importTXTLineGrid, ds_grid_width(global.importTXTLineGrid), ds_grid_height(global.importTXTLineGrid) + 1);
-				var row = ds_grid_height(global.importTXTLineGrid) - 1;
+			// let's get rid of carriage returns
+			_text = string_replace_all(_text, "\r", "");
 			
-				global.importTXTLineGrid[# global.importTXTLineGrid_colLine, row] = _currentSplit;
-				global.importTXTLineGrid[# global.importTXTLineGrid_colException, row] = _currentSplit == "";
+			// and then split on newlines
+			var _lines = scr_splitString(_text, "\n", false);
+			var _linesSize = ds_list_size(_lines);
+			
+			for (var j = 0; j < _linesSize; j++) {
+				
+				// separate this line into its participant (everything before the first colon) and turn (everything else)
+				var _currentLine = _lines[| j];
+				var _participant = "";
+				var _turn = "";
+				var _colonPos = string_pos(": ", _currentLine);
+			
+				if (_colonPos >= 1) {
+					_participant = string_copy(_currentLine, 1, _colonPos - 1);
+					_turn = string_delete(_currentLine, 1, _colonPos + 1);
+					show_debug_message("_participant: {0}, _turn: {1}", _participant, _turn);
+				}
+				else {
+					// if we can't find a colon, we assume this entire line is the turn
+					_turn = _currentLine;
+				}
+			
+				// now let's split the turn into sentences, making sure to keep delimiters
+				var _sentences = scr_splitString(_turn, ". ", true);
+		
+				// for each sentence, create a new row in the importLineGrid
+				var _sentencesSize = ds_list_size(_sentences);
+				for (var k = 0; k < _sentencesSize; k++) {
+				
+					// get current sentence, skip any blank lines
+					var _currentSentence = _sentences[| k];
+					if (scr_isStrOnlyWhitespace(_currentSentence) || _currentSentence == "") continue;
+					show_debug_message("_currentSentence: " + string(_currentSentence));
+				
+					// grow grid by one row
+					ds_grid_resize(global.importTXTLineGrid, ds_grid_width(global.importTXTLineGrid), ds_grid_height(global.importTXTLineGrid) + 1);
+					var row = ds_grid_height(global.importTXTLineGrid) - 1;
+			
+					// put sentence data into grid
+					global.importTXTLineGrid[# global.importTXTLineGrid_colLine, row] = _participant + "	" + _currentSentence;
+					global.importTXTLineGrid[# global.importTXTLineGrid_colException, row] = _currentSentence == "";
+				}
 			}
 		}
 	}
 	
-	global.importType = "import_type_prose";
-	scr_importPlainTXT();
+	global.importType = "import_type_transcription";
+	scr_importTabbedTXT("	");
 
 }

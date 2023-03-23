@@ -1,5 +1,5 @@
 importedAudioFile = "";
-if (global.openProject) {
+if (global.project == "open") {
 	show_debug_message("obj_fileLoader Create ... loading REZ");
 	scr_loadREZ();
 }

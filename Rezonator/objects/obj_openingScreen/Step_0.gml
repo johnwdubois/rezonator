@@ -55,9 +55,7 @@ if (ds_list_size(global.importGroupFileList) > 0 && global.importGroupFileIndex 
 // skipping to import screen by clicking "Import" in file menu
 if (global.skipToImportScreen) {
 	global.skipToImportScreen = false;
-	
-	global.newProject = true;
-	global.openProject = false;
+	global.project = "import";
 	global.currentDirString = global.previousImportDirectory;
 }
 if (global.skipToOpen) {

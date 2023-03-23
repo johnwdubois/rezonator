@@ -1,5 +1,5 @@
 if (instance_exists(obj_openingScreen)) {
-	if (obj_openingScreen.showPreImportScreen) {
+	if (global.project == "import") {
 		windowFocused = false;
 		exit;
 	}

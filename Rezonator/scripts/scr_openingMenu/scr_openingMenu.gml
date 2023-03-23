@@ -57,8 +57,7 @@ function scr_openingMenu() {
 			scr_createDropDown(mouse_x, mouse_y, scr_getSBClist(), global.optionListTypeHTML5REZFile);
 		}
 		else {
-			global.newProject = false;
-			global.openProject = true;
+			global.project = "open";
 			global.userName = obj_openingScreen.inputText == "" ? "Unknown" : obj_openingScreen.inputText;
 		}
 	}
@@ -98,8 +97,7 @@ function scr_openingMenu() {
 				show_message("Import is currently not available for browser use.")
 			}
 			else {
-				global.newProject = true;
-				global.openProject = false;
+				global.project = "import";
 				global.userName = obj_openingScreen.inputText == "" ? "Unknown" : obj_openingScreen.inputText;
 			}
 		}

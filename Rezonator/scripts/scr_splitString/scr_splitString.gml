@@ -5,18 +5,21 @@ function scr_splitString(str, delim, includeDelim = false, maxSplits = -1) {
 	var i = 1;
 	var strLen = string_length(str);
 	var delimLen = string_length(delim);
+	var split = "";
 	var splits = 1;
 	
 	if (delimLen >= 1) {
 		while (pos >= 1 && pos <= strLen && (splits < maxSplits || maxSplits <= 0)) {
 			splits++;
-			var split = includeDelim ? string_copy(str, i, pos - i + delimLen) : string_copy(str, i, pos - i);
+			split = includeDelim ? string_copy(str, i, pos - i + delimLen) : string_copy(str, i, pos - i);
 			ds_list_add(list, split);
 			i = pos + delimLen;
 			pos = string_pos_ext(delim, str, i);
 		}
 	}
-	ds_list_add(list, string_delete(str, 1, i - 1));
+	
+	split = string_delete(str, 1, i - 1);
+	ds_list_add(list, split);
 	
 	return list;
 

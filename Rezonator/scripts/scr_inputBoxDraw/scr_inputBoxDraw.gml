@@ -70,7 +70,7 @@ function scr_inputBoxDraw() {
 	
 	
 	if (instance_exists(obj_openingScreen)) {
-		windowFocused = !obj_openingScreen.showPreImportScreen;
+		windowFocused = global.project != "import";
 	}
 	
 	// moving cursor with mouse click

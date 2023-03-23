@@ -1,4 +1,5 @@
-if (global.newProject)exit;
+if (global.project == "import") exit;
+
 // setup coordinates for field summary window
 recentFilesWindowX1 = camera_get_view_width(camera_get_active()) * 0.1;
 recentFilesWindowY1 = camera_get_view_height(camera_get_active()) * 0.7;
@@ -10,7 +11,7 @@ windowWidth = recentFilesWindowX2 - recentFilesWindowX1;
 windowHeight = recentFilesWindowY2 - recentFilesWindowY1;
 var textXBuffer = 10;
 var stringHeight = string_height("0");
-// draw field summary window BG
+
 
 draw_set_color(global.colorThemeText);
 draw_set_halign(fa_left);
@@ -134,7 +135,7 @@ for (var i = 0; i < fileKeyListSize; i++) {
 		// click on row to open up file
 		if (mouse_check_button_released(mb_left) && (inputDelay == 0) && !mouseOverRemove && !mouseOverCopyFilePath && !mouseOverShowFilePath) {
 			global.selectedFile = filePath;
-			global.openProject = true;
+			global.project = "open";
 			global.userName = obj_openingScreen.inputText;
 		}
 		
@@ -238,7 +239,7 @@ if (autosaveExists) {
 	if (mouseoverRestoreAutoButton) {
 		if (mouse_check_button_released(mb_left)) {
 			global.selectedFile = autosaveFilePath;
-			global.openProject = true;
+			global.project = "open";
 			global.userName = obj_openingScreen.inputText;
 			global.restoreAutosave = true;
 		}

@@ -346,10 +346,9 @@ function scr_preImportScreen() {
 	scr_adaptFont(scr_get_translation("msg_continue"), "M");
 	draw_text(floor(mean(backButtonRectX1, backButtonRectX2)), floor(mean(backButtonRectY1, backButtonRectY2)), scr_get_translation("label_back"));
 	
-	// click on continue button
-	if (mouseoverBack && mouse_check_button_released(mb_left)) {		
-		global.newProject = false;
-		global.openProject = false;
+	// click on back button
+	if (mouseoverBack && mouse_check_button_released(mb_left)) {
+		global.project = "";
 		global.neworOpen = true;
 		obj_recentFilesWindow.inputDelay = 10;
 	}
@@ -381,16 +380,14 @@ function scr_preImportScreen() {
 
 	if (mouseoverTag) scr_createTooltip(floor(tagButtonRectX1),floor(mean(tagButtonRectY1, tagButtonRectY2)),"Tag schemas imported: "+ string( ds_list_size(global.selectedTagSchemaFileList)),obj_tooltip.arrowFaceRight);
 
-	// click on continue button
+	// click on tag button
 	if (mouseoverTag && mouse_check_button_released(mb_left)) {		
 		var dropDownOptionList = ds_list_create();
 		ds_list_copy(dropDownOptionList, global.includedTagSchemaFileList)
 		// localize
-		ds_list_insert(dropDownOptionList, 0,"Custom tag schema");
+		ds_list_insert(dropDownOptionList, 0, "Custom tag schema");
 		scr_createDropDown(floor(tagButtonRectX1),floor(tagButtonRectY2), dropDownOptionList, global.optionListTypeTagSchema);
 		
 	}
-
-		//draw_text(camera_get_view_height(camera_get_active()) * 0.5, camera_get_view_height(camera_get_active()) * 0.92,scr_getStringOfList(global.selectedTagSchemaFileList));
 
 }

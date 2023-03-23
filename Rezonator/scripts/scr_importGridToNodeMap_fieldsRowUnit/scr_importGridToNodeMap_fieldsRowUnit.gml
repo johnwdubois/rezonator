@@ -153,6 +153,11 @@ function scr_importGridToNodeMap_fieldsRowUnit(row) {
 				var hyphenSplitListSize = ds_list_size(hyphenSplitList);
 				for (var j = 0; j < hyphenSplitListSize; j++) {
 					
+					var currentHyphenSplit = hyphenSplitList[| j];
+					if (!is_string(currentHyphenSplit) || currentHyphenSplit == "") continue;
+					if (scr_isStrOnlyWhitespace(currentHyphenSplit)) continue;
+					show_debug_message("currentHyphenSplit: " + string(currentHyphenSplit));
+					
 					tokenCount++;
 					
 					// make token node
@@ -175,14 +180,14 @@ function scr_importGridToNodeMap_fieldsRowUnit(row) {
 					// make tag map for token
 					var currentTokenTagMap = ds_map_create();
 					ds_map_add_map(currentTokenSubMap, "tagMap", currentTokenTagMap);
-					ds_map_add(currentTokenTagMap, global.displayTokenField, hyphenSplitList[| j]);
+					ds_map_add(currentTokenTagMap, global.displayTokenField, currentHyphenSplit);
 					
 					//check if token is rtl
 					if (!global.RTLFound) {
-						global.RTLFound = scr_isStrRTL(hyphenSplitList[| j]);
+						global.RTLFound = scr_isStrRTL(currentHyphenSplit);
 					}
 					
-					scr_addAutoTag(global.displayTokenField, hyphenSplitList[| j], tokenFieldMap);
+					scr_addAutoTag(global.displayTokenField, currentHyphenSplit, tokenFieldMap);
 					
 					
 					
