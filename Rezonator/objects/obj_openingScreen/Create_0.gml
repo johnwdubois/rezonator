@@ -459,6 +459,7 @@ global.userLangRTL = false;
 
 global.restoreAutosave = false;
 global.autosaveLastSavedFilename = "";
+global.importFrom = "file";
 
 selectOpenButton = false;
 openedFile = "";

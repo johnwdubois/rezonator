@@ -68,8 +68,6 @@ global.searchMap = -1;
 
 global.cliqueMap = -1;
 
-global.importFrom = "file";
-
 
 
 window_set_min_width(800);

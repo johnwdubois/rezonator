@@ -5,10 +5,7 @@ function scr_importAIChat(){
 	
 	var lineList = ds_list_create();
 
-	//ds_grid_clear(global.importTXTLineGrid, 0);
-	//ds_grid_resize(global.importTXTLineGrid, global.importTXTLineGridWidth, 0);
-	
-	for (var i = 0; i < _msgListSize; i++) {
+	for (var i = _msgListSize - 1; i >= 0; i--) {
 		
 		// get current message map
 		var _msgMap = _msgList[| i];

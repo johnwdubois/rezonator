@@ -7,15 +7,14 @@ draw_rectangle(0, 0, camWidth, camHeight, false);
 
 
 var _instInputBox_Prompt = obj_aiControl.instInputBox_Prompt;
-
-
 var strHeight = string_height("A");
-var plusY = 0;
+var plusY = obj_menuBar.menuHeight + strHeight;
 var textX = _instInputBox_Prompt.textBoxX;
 var authorX = _instInputBox_Prompt.textBoxX - string_width("  ");
 var textY = _instInputBox_Prompt.textBoxY - (strHeight * 1.5);
 var maxTextWidth = _instInputBox_Prompt.windowWidth;
 var messageVBuffer = strHeight * 0.5;
+var mouseoverCancel = mouse_y > _instInputBox_Prompt.textBoxY - messageVBuffer || mouse_y <= obj_menuBar.menuHeight || instance_exists(obj_dropDown);
 
 var _msgList = obj_aiControl.msgList;
 var msgListSize = ds_list_size(_msgList);
@@ -42,7 +41,7 @@ for (var i = 0; i < msgListSize; i++) {
 	}
 	
 	// mouseover message
-	var mouseoverText = point_in_rectangle(mouse_x, mouse_y, textX, _msgY1, textX + maxTextWidth, _msgY2) && mouse_y < _instInputBox_Prompt.textBoxY - messageVBuffer;
+	var mouseoverText = point_in_rectangle(mouse_x, mouse_y, textX, _msgY1, textX + maxTextWidth, _msgY2) && !mouseoverCancel;
 	if (mouseoverText) {
 		draw_set_color(global.colorThemeText);
 		draw_set_alpha(0.1);

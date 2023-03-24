@@ -53,15 +53,25 @@ if (mouseoverBackButton) {
 	}
 }
 
+// check how many messages are selected
+var messagesSelected = 0;
+var msgListSize = ds_list_size(msgList);
+for (var i = 0; i < msgListSize; i++) {
+	var currentMessageMap = msgList[| i];
+	var currentMessageSelected = currentMessageMap[? "selected"];
+	if (currentMessageSelected) messagesSelected++;
+}
+
 // import button
 var importButtonX1 = mean((instInputBox_ApiKey.textBoxX + instInputBox_ApiKey.windowWidth), camWidth) - (backButtonWidth / 2);
 var importButtonY1 = backButtonY1;
 var importButtonX2 = importButtonX1 + backButtonWidth;
 var importButtonY2 = backButtonY2;
-var mouseoverImportButton = point_in_rectangle(mouse_x, mouse_y, importButtonX1, importButtonY1, importButtonX2, importButtonY2);
-draw_set_color(mouseoverImportButton ? global.colorThemeSelected1 : global.colorThemeBG);
+var mouseoverImportButton = point_in_rectangle(mouse_x, mouse_y, importButtonX1, importButtonY1, importButtonX2, importButtonY2) && messagesSelected >= 1;
+if (messagesSelected >= 1) draw_set_color(mouseoverImportButton ? global.colorThemeSelected1 : global.colorThemeBG);
+else draw_set_color(global.colorThemeSelected2);
 draw_roundrect(importButtonX1, importButtonY1, importButtonX2, importButtonY2, false);
-draw_set_color(global.colorThemeRezPink);
+draw_set_color(messagesSelected >= 1 ? global.colorThemeRezPink : global.colorThemeSelected2);
 draw_roundrect(importButtonX1, importButtonY1, importButtonX2, importButtonY2, true);
 draw_set_color(global.colorThemeText);
 draw_text(floor(mean(importButtonX1, importButtonX2)), floor(mean(importButtonY1, importButtonY2)), scr_get_translation("menu_import"));
