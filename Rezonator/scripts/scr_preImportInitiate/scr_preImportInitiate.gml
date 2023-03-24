@@ -24,7 +24,7 @@ function scr_preImportInitiate() {
 		}
 
 		// Paragraph
-		if (importTypeStr == "import_type_prose") {
+		else if (importTypeStr == "import_type_prose") {
 			
 			// example
 			ds_list_add(exampleList, "--","Wuthering Heights  ","by Emily Brontë ","---","","---","CHAPTER I ","---","","1801—I have just returned from a visit to my landlord—the solitary neighbour","that I shall be troubled with. This is certainly a beautiful country! In all England,","I do not believe that I could have fixed on a situation so completely removed from the","stir of society. A perfect misanthropist’s Heaven—and Mr. Heathcliff and I are such a","suitable pair to divide the desolation between us. A capital fellow! He little imagined","how my heart warmed towards him when I beheld his black eyes withdraw so suspiciously","under their brows, as I rode up, and when his fingers sheltered themselves, with a","jealous resolution, still further in his waistcoat, as I announced my name.  ","“Mr. Heathcliff?” I said.  ","A nod was the answer.  ","“Mr. Lockwood, your new tenant, sir. I do myself the honour of calling as soon","as possible after my arrival, to express the hope that I have not inconvenienced","you by my perseverance in soliciting the occupation of Thrushcross Grange: I heard","yesterday you had had some thoughts—”", "“Thrushcross Grange is my own, sir,” he interrupted, wincing. “I should not allow", "any one to inconvenience me, if I could hinder it—walk in!”");
@@ -32,6 +32,17 @@ function scr_preImportInitiate() {
 			ds_list_add(descriptionList, "• "+ scr_get_translation("import_descrip_prose_form"),"• "+ scr_get_translation("import_descrip_prose_newline"),"• "+ scr_get_translation("import_descrip_prose_wordwrap"),"• "+ scr_get_translation("import_descrip_prose_split"),"• "+ scr_get_translation("import_descrip_song_filetype"));
 			// links
 			ds_list_add(linksList, "https://rezonator.com", "https://genius.com");
+		}
+		
+		// AI CHAT
+		else if (importTypeStr == "import_type_aichat") {
+			
+			// example
+			ds_list_add(exampleList, "");
+			// description
+			ds_list_add(descriptionList, "• Data from live AI chat session (with ChatGPT)", "• Secret API key supplied by user", "• Participant labels from “:” (colon)", "Split words on whitespace", "One punctuation unit per line (default)");
+			// links
+			ds_list_add(linksList, "https://rezonator.com");
 		}
 		
 		// Transcription

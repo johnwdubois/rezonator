@@ -1,5 +1,6 @@
 function scr_helpOptions(optionSelected) {
 	//helpOptions
+	if (room == rm_aiChat) exit;
 
 	switch (optionSelected)
 	{

@@ -9,6 +9,7 @@ function scr_importAIChat(){
 		
 		// get current message map
 		var _msgMap = _msgList[| i];
+		if (!scr_isNumericAndExists(_msgMap, ds_type_map)) continue;
 		var _selected = _msgMap[? "selected"];
 		
 		// if this message is selected, let's get its text

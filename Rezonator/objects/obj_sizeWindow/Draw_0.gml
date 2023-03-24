@@ -2,7 +2,7 @@ var mouseoverWindow = point_in_rectangle(mouse_x, mouse_y, x, y, x + windowWidth
 
 // if clicking outside of window, destroy window
 if (!mouseoverWindow) {
-	if (mouse_check_button_released(mb_left)) {
+	if (mouse_check_button_released(mb_left) && mouse_y > obj_menuBar.menuHeight) {
 		instance_destroy();
 	}
 }
