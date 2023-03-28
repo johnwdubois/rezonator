@@ -39,14 +39,31 @@ function scr_importMappingTagDraw() {
 	}
 	
 	// check all the errors that need to be solved, depending on import type
-	if (global.importType == "import_type_interlinear") {
+	if (global.importType == IMPORTTYPE_IGT) {
 		canContinueAll = (canContinueDisplayToken && canContinueToken1to1 && canContinueWordDelimiter && canContinueWord1to1);
 	}
-	else if (global.importType == "import_type_conllu" || global.importType == "import_type_word") {
+	else if (global.importType == IMPORTTYPE_CONLLU || global.importType == IMPORTTYPE_WORD) {
 		canContinueAll = (canContinueDisplayToken && canContinueUnit);
 	}
 	else {
 		canContinueAll = canContinueDisplayToken;
+	}
+	
+	var continueButtonPressed = false;
+	
+	// if we are importing AI chat, we can skip the import screen
+	if (global.importType == IMPORTTYPE_AICHAT) {
+		if (ds_grid_height(global.tagInfoGrid) >= 2) {
+			// 1st field should be participant
+			global.tagInfoGrid[# global.tagInfoGrid_colLevel, 0] = "tab_name_unit";
+			global.tagInfoGrid[# global.tagInfoGrid_colSpecialFields, 0] = "participant";
+		
+			// 2nd field should be display token
+			global.tagInfoGrid[# global.tagInfoGrid_colLevel, 1] = "option_token";
+			global.tagInfoGrid[# global.tagInfoGrid_colKey, 1] = "option_display-token";
+		
+			continueButtonPressed = true;
+		}
 	}
 	
 	
@@ -86,20 +103,8 @@ function scr_importMappingTagDraw() {
 		draw_text(mean(continueButtonRectX1, continueButtonRectX2), mean(continueButtonRectY1, continueButtonRectY2), scr_get_translation("msg_continue"));
 	
 		if (mouseOverContinue) {
-
-	
 			if (mouse_check_button_released(mb_left) && !continueButtonClicked) {
-				
-				continueButtonClicked = true;
-				var instLoading = instance_create_layer(0, 0, "InstanceLoading", obj_loadingBar);
-				instLoading.loadSprite = spr_loading;
-				scr_setSpecialFieldsVariables();
-				scr_storeSchemaLists();
-				scr_fillFieldLevelMap();
-				scr_sortElan();
-				show_debug_message("Continue button clicked... " + scr_printTime());
-			
-				alarm[3] = 1;
+				continueButtonPressed = true;
 			}
 		}
 		
@@ -133,7 +138,19 @@ function scr_importMappingTagDraw() {
 		scr_adaptFont(errorMessage,"M");
 		draw_text(errorTextX, errorTextY, errorMessage);
 	}
-
+	
+	// if continue button was pressed (or if we are skipping the import screen)
+	if (continueButtonPressed) {
+		continueButtonClicked = true;
+		var instLoading = instance_create_layer(0, 0, "InstanceLoading", obj_loadingBar);
+		instLoading.loadSprite = spr_loading;
+		scr_setSpecialFieldsVariables();
+		scr_storeSchemaLists();
+		scr_fillFieldLevelMap();
+		scr_sortElan();
+		show_debug_message("Continue button clicked... " + scr_printTime());
+		alarm[3] = 1;
+	}
 
 	// back button
 	var backButtonWidth = continueButtonWidth;
@@ -142,7 +159,6 @@ function scr_importMappingTagDraw() {
 	var backButtonRectY1 = continueButtonRectY1;
 	var backButtonRectX2 = backButtonRectX1 + backButtonWidth;
 	var backButtonRectY2 = continueButtonRectY2;
-
 	var mouseOverBack = point_in_rectangle(mouse_x, mouse_y, backButtonRectX1, backButtonRectY1, backButtonRectX2, backButtonRectY2);
 	
 	draw_set_alpha(1);

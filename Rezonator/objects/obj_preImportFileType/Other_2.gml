@@ -5,14 +5,14 @@ scr_scrollBarInit();
 // create list to hold all the import types (so we can loop over them easily)
 global.importTypeList = ds_list_create();
 ds_list_add(global.importTypeList,
-	"import_type_transcription",
-	"import_type_aichat",
-	"import_type_song",
-	"import_type_interlinear",
-	"import_type_conllu",
-	"import_type_word",
-	"import_type_elan",
-	"import_type_prose"
+	IMPORTTYPE_TRANSCRIPTION,
+	IMPORTTYPE_AICHAT,
+	IMPORTTYPE_SONG,
+	IMPORTTYPE_IGT,
+	IMPORTTYPE_CONLLU,
+	IMPORTTYPE_WORD,
+	IMPORTTYPE_ELAN,
+	IMPORTTYPE_PROSE
 	);
 
 scr_preImportInitiate();
@@ -23,4 +23,4 @@ importTypeMouseover = -1;
 global.currentPreImportMap = global.preImportMap[? global.importType];
 
 
-importTypeSelected = "import_type_elan";
+importTypeSelected = IMPORTTYPE_ELAN;

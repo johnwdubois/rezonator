@@ -9,12 +9,12 @@ function scr_fileWindow() {
 	var tokenCount = global.tokenCountTotal;
 	var fieldCount = ds_grid_height(global.tagInfoGrid);
 	
-	if (global.importType == "import_type_word") {
+	if (global.importType == IMPORTTYPE_WORD) {
 		lineCount = ds_grid_height(global.importCSVGrid);
 		global.tokenCountTotal = lineCount;
 		tokenCount = global.tokenCountTotal;
 	}
-	else if (global.importType == "import_type_interlinear") {
+	else if (global.importType == IMPORTTYPE_IGT) {
 		fieldCount -= 2;
 	}
 	draw_set_color(global.colorThemeText);

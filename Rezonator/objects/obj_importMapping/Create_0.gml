@@ -32,7 +32,7 @@ rowToChange = -1;
 colToChange = -1;
 
 
-if (global.importType == "import_type_song" || global.importType == "import_type_prose") {
+if (global.importType == IMPORTTYPE_SONG || global.importType == IMPORTTYPE_PROSE) {
 	show_debug_message("obj_importMapping Create ... Skipping import screen");
 	scr_importInfoGrid();
 	room_goto(rm_loadingScreen);
@@ -69,7 +69,7 @@ canContinueToken1to1 = false;
 canContinueWordDelimiter = true;
 canContinueWord1to1 = false;
 
-if (global.importType != "import_type_word") {
+if (global.importType != IMPORTTYPE_WORD) {
 	scr_checkTokenCount();
 }
 
@@ -92,7 +92,7 @@ levelEstimateColumnSelected = global.tagInfoGrid_colLevelSchema;
 gridList = ds_list_create();
 ds_list_add(gridList, "import_field-info", "import_source");
 
-if (global.importType == "import_type_interlinear") {
+if (global.importType == IMPORTTYPE_IGT) {
 ds_list_add(gridList,"import_block-type", "import_blocks", "import_field-relations");
 
 }

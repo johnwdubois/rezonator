@@ -34,7 +34,7 @@ with (obj_importMapping) {
 	updatedErrorCol = true;
 }
 
-if (global.importType == "import_type_interlinear") {
+if (global.importType == IMPORTTYPE_IGT) {
 	
 	for (var i = 0; i < tagInfoGridHeight; i++) {
 		var currentLevel = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colLevel, i);

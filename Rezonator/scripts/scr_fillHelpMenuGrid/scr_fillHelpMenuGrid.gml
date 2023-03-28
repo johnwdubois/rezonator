@@ -287,7 +287,7 @@ function scr_fillHelpMenuGrid() {
 	
 	// View -> Prose
 	ds_grid_set(functionHelp_helpGridView, functionHelp_helpGrid_colKey, 1, "k");
-	ds_grid_set(functionHelp_helpGridView, functionHelp_helpGrid_colFunc, 1, "import_type_prose");
+	ds_grid_set(functionHelp_helpGridView, functionHelp_helpGrid_colFunc, 1, IMPORTTYPE_PROSE);
 	ds_grid_set(functionHelp_helpGridView, functionHelp_helpGrid_colDesc, 1, "help_description_prose");
 	ds_grid_set(functionHelp_helpGridView, functionHelp_helpGrid_colHide, 1, false);
 

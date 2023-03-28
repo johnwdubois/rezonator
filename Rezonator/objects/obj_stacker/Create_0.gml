@@ -51,11 +51,11 @@ canResizeWindowX = false;
 canResizeWindowY = false;
 
 // run stacker for song & verse
-if (global.importType == "import_type_song" && global.project == "import") {
+if (global.importType == IMPORTTYPE_SONG && global.project == "import") {
 	currentStackerFuntion = stackerFunctionGroup;
 	alarm[5] = 3;
 }
-if (global.importType == "import_type_conllu" && global.project == "import" && global.conlluAutotagColName != "") {
+if (global.importType == IMPORTTYPE_CONLLU && global.project == "import" && global.conlluAutotagColName != "") {
 	currentStackerFuntion = stackerFunctionConllu;
 	alarm[5] = 3;
 }

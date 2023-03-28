@@ -34,15 +34,15 @@ function scr_importTXT(filename) {
 	scr_markAutoExceptions();
 	
 	
-	if (global.importType == "import_type_interlinear") {
+	if (global.importType == IMPORTTYPE_IGT) {
 		// IGT import
 		scr_importIGT();
 	}
-	else if (global.importType == "import_type_conllu") {
+	else if (global.importType == IMPORTTYPE_CONLLU) {
 		// CoNLL-U import
 		scr_importConlluTXT(filename);
 	}
-	else if (global.importType == "import_type_elan" || global.importType == "import_type_transcription") {
+	else if (global.importType == IMPORTTYPE_ELAN || global.importType == IMPORTTYPE_TRANSCRIPTION || global.importType == IMPORTTYPE_AICHAT) {
 		// tab delimited/elan/transcription import
 		var delimiter = chr(9);
 		if (instance_exists(obj_openingScreen)) {
@@ -52,7 +52,7 @@ function scr_importTXT(filename) {
 		}
 		scr_importTabbedTXT(delimiter);
 	}
-	else if (global.importType == "import_type_song" || global.importType == "import_type_prose") {	
+	else if (global.importType == IMPORTTYPE_SONG || global.importType == IMPORTTYPE_PROSE) {	
 		// plain text import
 		scr_importPlainTXT();
 	}

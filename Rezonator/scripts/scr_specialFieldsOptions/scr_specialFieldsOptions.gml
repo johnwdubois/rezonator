@@ -93,7 +93,7 @@ function scr_specialFieldsOptions(optionSelected) {
 				}
 			}
 			ds_grid_set(global.tagInfoGrid, obj_importMapping.colToChange, obj_importMapping.rowToChange, "option_word-delimiter");
-			if (global.importType == "import_type_interlinear") {
+			if (global.importType == IMPORTTYPE_IGT) {
 				obj_importMapping.wordDelimMarker = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colMarker, obj_importMapping.rowToChange);
 				var indexForHelper = ds_list_find_index(global.importGridColNameList, obj_importMapping.wordDelimMarker)-2;
 				var currentMarkerCount = ds_grid_get(global.fieldRelationHelperGrid,indexForHelper,indexForHelper);
@@ -113,7 +113,7 @@ function scr_specialFieldsOptions(optionSelected) {
 			ds_grid_set(global.tagInfoGrid, obj_importMapping.colToChange, obj_importMapping.rowToChange, "option_display-token");
 			global.tokenImportDisplayTokenColName  = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colMarker, obj_importMapping.rowToChange);
 			
-			if (global.importType == "import_type_interlinear") {
+			if (global.importType == IMPORTTYPE_IGT) {
 				obj_importMapping.displayMarker = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colMarker, obj_importMapping.rowToChange);
 				var indexForHelper = ds_list_find_index(global.importGridColNameList, obj_importMapping.displayMarker)-2;
 				var currentMarkerCount = ds_grid_get(global.fieldRelationHelperGrid,indexForHelper,indexForHelper);

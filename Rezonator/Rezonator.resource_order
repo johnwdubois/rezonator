@@ -520,6 +520,7 @@
     {"name":"scr_autosaveOptions","order":26,"path":"scripts/scr_autosaveOptions/scr_autosaveOptions.yy",},
     {"name":"scr_navWindowGetTagValue","order":4,"path":"scripts/scr_navWindowGetTagValue/scr_navWindowGetTagValue.yy",},
     {"name":"obj_panelPaneL","order":15,"path":"objects/obj_panelPaneL/obj_panelPaneL.yy",},
+    {"name":"scr_macros","order":23,"path":"scripts/scr_macros/scr_macros.yy",},
     {"name":"scr_addToListOnce","order":8,"path":"scripts/scr_addToListOnce/scr_addToListOnce.yy",},
     {"name":"spr_helpTool","order":7,"path":"sprites/spr_helpTool/spr_helpTool.yy",},
     {"name":"scr_panelPane_drawChains1To1","order":10,"path":"scripts/scr_panelPane_drawChains1To1/scr_panelPane_drawChains1To1.yy",},

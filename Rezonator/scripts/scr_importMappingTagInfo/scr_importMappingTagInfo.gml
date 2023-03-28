@@ -64,11 +64,12 @@ function scr_importMappingTagInfo() {
 	var underlineX1 = 0;
 	var underlineX2 = 0;
 	var underlineY = 0;
+	
+	
 
 
 
 	// Draw Tag Info window contents
-
 	draw_set_halign(fa_left);
 	draw_set_valign(fa_middle);
 
@@ -201,7 +202,7 @@ function scr_importMappingTagInfo() {
 						obj_importMapping.rowToChange = j;
 					
 						var dropDownOptionList = ds_list_create();
-						if (global.importType == "import_type_interlinear") {
+						if (global.importType == IMPORTTYPE_IGT) {
 							ds_list_add(dropDownOptionList, "option_token", "label_word", "tab_name_unit", "option_doc", "tag_unknown");
 						}
 						else {
@@ -227,13 +228,13 @@ function scr_importMappingTagInfo() {
 				drawDropDown = true;
 				if (currentLevel == global.levelUnit) {
 					drawDropDown = false;
-					if (global.importType == "import_type_word" or global.importType == "import_type_conllu" or global.importType == "import_type_elan") {
+					if (global.importType == IMPORTTYPE_WORD or global.importType == IMPORTTYPE_CONLLU or global.importType == "import_type_elan") {
 						drawDropDown = true;
 					}
 				}
 				else if (currentLevel == global.levelWord) {
 					drawDropDown = false;
-					if (global.importType == "import_type_interlinear") {
+					if (global.importType == IMPORTTYPE_IGT) {
 						drawDropDown = true;
 					}
 				}
@@ -363,7 +364,7 @@ function scr_importMappingTagInfo() {
 							if (currentLevel == global.levelWord) {
 								ds_list_add(dropDownOptionList, "option_word-delimiter");
 							}
-							if (global.importType == "import_type_conllu") {
+							if (global.importType == IMPORTTYPE_CONLLU) {
 								ds_list_add(dropDownOptionList, "tab_name_track");
 							}
 							if (ds_list_size(dropDownOptionList) > 0) {
@@ -571,9 +572,6 @@ function scr_importMappingTagInfo() {
 	|| scrollBarHolding || !mouseoverAnyRow) {
 		obj_importMapping.mouseoverRow = -1;
 	}
-
-
-
 
 	
 

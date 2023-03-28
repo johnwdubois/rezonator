@@ -29,14 +29,14 @@ if (importGridRow >= ds_grid_height(global.importGrid) && !finished) {
 	room_goto(rm_mainScreen);
 }
 else {
-	var iterations = fps;
-	if (global.importType == "import_type_song" || global.importType == "import_type_prose") {
+	var iterations = floor(fps);
+	if (global.importType == IMPORTTYPE_SONG || global.importType == IMPORTTYPE_PROSE) {
 		repeat(iterations) scr_importGridToNodeMap_plainText(importGridRow);
 	}
-	else if (global.importType == "import_type_interlinear" || global.importType == "import_type_transcription" || global.importType == "import_type_elan") {
+	else if (global.importType == IMPORTTYPE_IGT || global.importType == IMPORTTYPE_TRANSCRIPTION || global.importType == IMPORTTYPE_ELAN || global.importType == IMPORTTYPE_AICHAT) {
 		repeat(iterations) scr_importGridToNodeMap_fieldsRowUnit(importGridRow);
 	}
-	else if (global.importType == "import_type_conllu" || global.importType == "import_type_word") {
+	else if (global.importType == IMPORTTYPE_CONLLU || global.importType == IMPORTTYPE_WORD) {
 		repeat(iterations) scr_importGridToNodeMap_fieldsRowToken(importGridRow);
 	}
 }

@@ -19,7 +19,7 @@ function scr_importConlluTXT(filename) {
 	var tokenColListCreated = false;
 	var lineInFile = "";
 
-	global.importType = "import_type_conllu";
+	global.importType = IMPORTTYPE_CONLLU;
 
 	var importSourceRow = -1;
 	var rowCounter = 0;

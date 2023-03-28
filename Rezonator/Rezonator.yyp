@@ -690,6 +690,7 @@
     {"id":{"name":"scr_autosaveOptions","path":"scripts/scr_autosaveOptions/scr_autosaveOptions.yy",},},
     {"id":{"name":"scr_navWindowGetTagValue","path":"scripts/scr_navWindowGetTagValue/scr_navWindowGetTagValue.yy",},},
     {"id":{"name":"obj_panelPaneL","path":"objects/obj_panelPaneL/obj_panelPaneL.yy",},},
+    {"id":{"name":"scr_macros","path":"scripts/scr_macros/scr_macros.yy",},},
     {"id":{"name":"scr_addToListOnce","path":"scripts/scr_addToListOnce/scr_addToListOnce.yy",},},
     {"id":{"name":"spr_helpTool","path":"sprites/spr_helpTool/spr_helpTool.yy",},},
     {"id":{"name":"scr_panelPane_drawChains1To1","path":"scripts/scr_panelPane_drawChains1To1/scr_panelPane_drawChains1To1.yy",},},

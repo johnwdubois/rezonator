@@ -168,7 +168,7 @@ function scr_preImportScreen() {
 	var currentTextX = floor(exampleWindowX1 + textBufferLeft);
 	for (var i = 0; i < exampleWindowListSize; i++) {
 		
-		if (global.importType == "import_type_song" || global.importType == "import_type_prose" || global.importType == "import_type_aichat") {
+		if (global.importType == IMPORTTYPE_SONG || global.importType == IMPORTTYPE_PROSE || global.importType == IMPORTTYPE_AICHAT) {
 			var currentText = ds_list_find_value(exampleWindowList, i);
 			var currentTextX = floor(exampleWindowX1 + textBufferLeft);
 			var currentTextY = floor(exampleWindowY1 + textBufferTop + (strHeight * i));
@@ -179,17 +179,17 @@ function scr_preImportScreen() {
 				draw_text(currentTextX, currentTextY, currentText);
 			}
 		}
-		else if (global.importType == "import_type_elan" || global.importType == "import_type_word"
-				|| global.importType == "import_type_conllu" || global.importType == "import_type_interlinear"
-				|| global.importType == "import_type_transcription") {				
+		else if (global.importType == IMPORTTYPE_ELAN || global.importType == IMPORTTYPE_WORD
+				|| global.importType == IMPORTTYPE_CONLLU || global.importType == IMPORTTYPE_IGT
+				|| global.importType == IMPORTTYPE_TRANSCRIPTION) {				
 			
 			// get column width list
 			var colWidthList = -1;
-			if (global.importType == "import_type_transcription") colWidthList = ds_map_find_value(global.preImportMap, "transcriptionWidthList");
-			else if (global.importType == "import_type_elan") colWidthList = ds_map_find_value(global.preImportMap, "tabDelimWidthList");
-			else if (global.importType == "import_type_word") colWidthList = ds_map_find_value(global.preImportMap, "csvWidthList");
-			else if (global.importType == "import_type_conllu") colWidthList = ds_map_find_value(global.preImportMap, "conlluWidthList");
-			else if (global.importType == "import_type_interlinear") colWidthList = ds_map_find_value(global.preImportMap, "igtWidthList");
+			if (global.importType == IMPORTTYPE_TRANSCRIPTION) colWidthList = ds_map_find_value(global.preImportMap, "transcriptionWidthList");
+			else if (global.importType == IMPORTTYPE_ELAN) colWidthList = ds_map_find_value(global.preImportMap, "tabDelimWidthList");
+			else if (global.importType == IMPORTTYPE_WORD) colWidthList = ds_map_find_value(global.preImportMap, "csvWidthList");
+			else if (global.importType == IMPORTTYPE_CONLLU) colWidthList = ds_map_find_value(global.preImportMap, "conlluWidthList");
+			else if (global.importType == IMPORTTYPE_IGT) colWidthList = ds_map_find_value(global.preImportMap, "igtWidthList");
 			
 			var currentList = ds_list_find_value(exampleWindowList, i);
 			if (typeof(currentList) == "number" && ds_exists(colWidthList, ds_type_list)) {
@@ -283,7 +283,7 @@ function scr_preImportScreen() {
 	
 	// click on continue button
 	if (mouseoverContinue && mouse_check_button_released(mb_left)) {
-		if (global.importType == "import_type_aichat") {
+		if (global.importType == IMPORTTYPE_AICHAT) {
 			room_goto(rm_aiChat);
 		}
 		else {
@@ -292,7 +292,7 @@ function scr_preImportScreen() {
 		}
 	}
 	
-	if (global.importType != "import_type_aichat") {
+	if (global.importType != IMPORTTYPE_AICHAT) {
 		// import from file button
 		draw_set_color(global.colorThemeText);
 		draw_set_halign(fa_left);

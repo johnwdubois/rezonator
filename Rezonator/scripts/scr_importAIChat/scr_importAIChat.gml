@@ -66,7 +66,6 @@ function scr_importAIChat(){
 	}
 	
 	global.project = "import";
-	global.importType = "import_type_transcription";
 	return lineList;
 
 }

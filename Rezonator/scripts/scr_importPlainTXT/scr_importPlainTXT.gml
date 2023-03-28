@@ -27,7 +27,7 @@ function scr_importPlainTXT() {
 	
 		if (scr_isStrOnlyWhitespace(lineInFile)) {
 			
-			if (global.importType == "import_type_prose") {
+			if (global.importType == IMPORTTYPE_PROSE) {
 				ds_grid_resize(global.importGrid, global.importGridWidth, ds_grid_height(global.importGrid) + 1);
 				var row = ds_grid_height(global.importGrid) - 1;
 				var colVal = string_copy(lineInFile, 0 , string_length(lineInFile));				

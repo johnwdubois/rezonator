@@ -13,7 +13,7 @@ function scr_updateTagInfoErrorCol() {
 	
 	// check if unit delimiter is needed but not specified
 	var unitDelimNeeded = false;
-	if (global.importType == "import_type_conllu" || global.importType == "import_type_word") {
+	if (global.importType == IMPORTTYPE_CONLLU || global.importType == IMPORTTYPE_WORD) {
 		var unitDelimRow = ds_grid_value_y(global.tagInfoGrid, global.tagInfoGrid_colKey, 0, global.tagInfoGrid_colKey, ds_grid_height(global.tagInfoGrid), "unit_delim");
 		if (unitDelimRow < 0) {
 			unitDelimNeeded = true;
@@ -43,7 +43,7 @@ function scr_updateTagInfoErrorCol() {
 				
 		if (currentLevel == global.levelToken) {
 				
-			if (global.importType == "import_type_interlinear") {
+			if (global.importType == IMPORTTYPE_IGT) {
 				var targetThreshold = ds_grid_get(global.fieldRelationHelperGrid, currentFieldIndex, indexOfDisplayMarker);
 				var targetThresholdError = (targetThreshold < obj_importMapping.currentTokenThreshold);
 				ds_grid_set(global.tagInfoGrid, global.tagInfoGrid_colError, i, targetThresholdError);
@@ -60,7 +60,7 @@ function scr_updateTagInfoErrorCol() {
 		}
 		else if (currentLevel == global.levelWord) {
 					
-			if (global.importType == "import_type_interlinear") {
+			if (global.importType == IMPORTTYPE_IGT) {
 				if (indexOfWordDelim > -1) {
 					var targetThreshold = ds_grid_get(global.fieldRelationHelperGrid, currentFieldIndex, indexOfWordDelim);
 					var targetThresholdError = (targetThreshold < obj_importMapping.currentWordThreshold);

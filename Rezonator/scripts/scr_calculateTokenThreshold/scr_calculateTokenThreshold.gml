@@ -2,7 +2,7 @@
 
 function scr_calculateTokenThreshold() {
 	
-	if (global.importType == "import_type_interlinear") {
+	if (global.importType == IMPORTTYPE_IGT) {
 		var displayTokenRow = ds_grid_value_y(global.tagInfoGrid,global.tagInfoGrid_colKey, 0, global.tagInfoGrid_colKey, ds_grid_height(global.tagInfoGrid), "option_display-token");
 		var wordDelimRow = ds_grid_value_y(global.tagInfoGrid,global.tagInfoGrid_colKey, 0, global.tagInfoGrid_colKey, ds_grid_height(global.tagInfoGrid), "option_word-delimiter");
 			

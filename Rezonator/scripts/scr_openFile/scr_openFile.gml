@@ -27,25 +27,25 @@ function scr_openFile() {
 
 	
 		var fileExtension = "";
-		if (global.importType == "import_type_word") {
+		if (global.importType == IMPORTTYPE_WORD) {
 			fileExtension = "CSV (.csv)|*.csv";
 		}
-		else if (global.importType == "import_type_conllu") {
+		else if (global.importType == IMPORTTYPE_CONLLU) {
 			fileExtension = "CoNLL-U (.txt)|*.txt";
 		}
-		else if (global.importType == "import_type_song") {
-			fileExtension = scr_get_translation("import_type_song") +" (.txt)|*.txt";
+		else if (global.importType == IMPORTTYPE_SONG) {
+			fileExtension = scr_get_translation(IMPORTTYPE_SONG) +" (.txt)|*.txt";
 		}
-		else if (global.importType == "import_type_prose") {
+		else if (global.importType == IMPORTTYPE_PROSE) {
 			fileExtension = "Paragraph (.txt)|*.txt";
 		}
-		else if (global.importType == "import_type_elan") {
+		else if (global.importType == IMPORTTYPE_ELAN) {
 			fileExtension = "Tab delimited (.txt)|*.txt";
 		}
-		else if (global.importType == "import_type_interlinear") {
+		else if (global.importType == IMPORTTYPE_IGT) {
 			fileExtension = "Interlinear glossed text (.txt)|*.txt";
 		}
-		else if (global.importType == "import_type_transcription") {
+		else if (global.importType == IMPORTTYPE_TRANSCRIPTION) {
 			fileExtension = "Transcription (.txt, .csv)|*.txt;*.csv";
 		}
 		openedFile = get_open_filename_ext(fileExtension, "", discourseDirString, scr_get_translation("menu_import"));
@@ -68,7 +68,7 @@ function scr_openFile() {
 		}
 	}
 
-	if (global.importType == "import_type_word") {
+	if (global.importType == IMPORTTYPE_WORD) {
 		scr_importCSV(openedFile);
 		exit;
 	}

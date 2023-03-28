@@ -27,7 +27,7 @@ global.importType_Default = 0;
 
 
 // by default, we will set importType to be the first item in the importTypeList
-global.importType = "import_type_song";
+global.importType = IMPORTTYPE_SONG;
 
 
 global.importGroupDir = "";

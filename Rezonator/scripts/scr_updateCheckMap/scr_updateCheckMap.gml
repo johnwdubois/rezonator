@@ -40,7 +40,6 @@ function scr_updateCheckMap(optionText) {
 				global.checkDropdownMap[? optionText] = !obj_control.hideChunks;
 			}
 			if (optionListType == global.optionListTypeHide) {
-				show_debug_message("here!!!!!!!!");
 				if (optionText == "menu_resonance") {
 					var resonanceList = global.nodeMap[? "resonanceList"];
 					global.checkDropdownMap[? "menu_resonance"] = (ds_list_size(resonanceList) != ds_list_size(obj_control.hiddenRezChainList) || ds_list_size(resonanceList) < 1);

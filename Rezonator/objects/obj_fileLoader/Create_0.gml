@@ -101,7 +101,7 @@ global.unitGridCopied = false;
 global.discoGridCopied = false;
 
 // if this is prose/paragraph import, we will run the prose linebreak script
-//if (global.importType == "import_type_prose") {
+//if (global.importType == IMPORTTYPE_PROSE) {
 //}
 
 

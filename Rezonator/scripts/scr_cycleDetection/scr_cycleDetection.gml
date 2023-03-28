@@ -9,14 +9,11 @@ function scr_cycleDetection(chainID) {
 	
 	if (!inEncounteredChainList && cliqueSubMapExists) {
 		
-		show_debug_message("scr_cycleDetection, here1");
 		ds_list_add(obj_chain.encounteredChainList, chainID);
 		var chainOrderMap = cliqueSubMap[? "chainOrderMap"];
 		var chainOrderList = chainOrderMap[? chainID];
 
 		if (scr_isNumericAndExists(chainOrderList, ds_type_list)) {
-			
-			show_debug_message("scr_cycleDetection, here2");
 	
 			if (ds_list_find_index(chainOrderList, chainID) >= 0 || ds_list_find_index(chainOrderList, obj_chain.currentFocusedChainID) >= 0) {
 				//cycle found
