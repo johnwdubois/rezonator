@@ -55,9 +55,9 @@ if (mouseoverBackButton) {
 
 // check how many messages are selected
 var messagesSelected = 0;
-var msgListSize = ds_list_size(msgList);
+var msgListSize = ds_list_size(global.aiChatMsgList);
 for (var i = 0; i < msgListSize; i++) {
-	var currentMessageMap = msgList[| i];
+	var currentMessageMap = global.aiChatMsgList[| i];
 	var currentMessageSelected = currentMessageMap[? "selected"];
 	if (currentMessageSelected) messagesSelected++;
 }

@@ -23,8 +23,6 @@ global.recentFilesList = ds_list_create();
 global.usedImports = ds_list_create();
 
 
-global.importType_Default = 0;
-
 
 // by default, we will set importType to be the first item in the importTypeList
 global.importType = IMPORTTYPE_SONG;
@@ -87,4 +85,5 @@ global.buildType = "Windows_Website";
 
 global.steamAPI = false;
 global.aiChatAPIKey = "";
+global.aiChatMsgList = ds_list_create();
 alarm[7] = 3;

@@ -16,7 +16,7 @@ var maxTextWidth = _instInputBox_Prompt.windowWidth;
 var messageVBuffer = strHeight * 0.5;
 var mouseoverCancel = mouse_y > _instInputBox_Prompt.textBoxY - messageVBuffer || mouse_y <= obj_menuBar.menuHeight || instance_exists(obj_dropDown);
 
-var _msgList = obj_aiControl.msgList;
+var _msgList = global.aiChatMsgList;
 var msgListSize = ds_list_size(_msgList);
 for (var i = 0; i < msgListSize; i++) {
 	

@@ -461,6 +461,7 @@ global.restoreAutosave = false;
 global.autosaveLastSavedFilename = "";
 global.importFrom = "file";
 
+
 selectOpenButton = false;
 openedFile = "";
 

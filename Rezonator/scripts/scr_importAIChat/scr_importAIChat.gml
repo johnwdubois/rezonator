@@ -1,6 +1,6 @@
 function scr_importAIChat(){
 	
-	var _msgList = obj_aiControl.msgList;
+	var _msgList = global.aiChatMsgList;
 	var _msgListSize = ds_list_size(_msgList);
 	
 	var lineList = ds_list_create();

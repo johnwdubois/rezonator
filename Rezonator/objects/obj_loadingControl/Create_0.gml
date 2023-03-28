@@ -48,6 +48,36 @@ ds_list_add(discourseList, global.discourseNode);
 var docTagMap = ds_map_create();
 ds_map_add_map(docSubMap, "tagMap", docTagMap);
 
+// if we are importing ai chat, we want to save all chat data
+if (global.importType == IMPORTTYPE_AICHAT) {
+	
+	var aiChatDataList = ds_list_create();
+	show_debug_message("saving chat data...");
+	var _msgList = global.aiChatMsgList;
+	var _msgListSize = ds_list_size(_msgList);
+	for (var i = 0; i < _msgListSize; i++) {
+		// get current message map
+		var _msgMap = _msgList[| i];
+		if (!scr_isNumericAndExists(_msgMap, ds_type_map)) continue;
+		var _selected = _msgMap[? "selected"];
+		
+		// if this message is selected, let's get its original message data
+		if (_selected) {
+			var _msgOriginal = _msgMap[? "msgOriginal"];
+			if (is_struct(_msgOriginal)) {
+				ds_list_add(aiChatDataList, _msgOriginal);
+			}
+		}
+	}
+	
+	// if we found any message data, we save it to the doc node
+	if (ds_list_size(aiChatDataList) >= 1) {
+		ds_map_add_list(docSubMap, "aiChat", aiChatDataList);
+	}
+	else {
+		ds_list_destroy(aiChatDataList);
+	}
+}
 
 
 currentUnitID = "";

@@ -14,7 +14,7 @@ with (instInputBox_Prompt) {
 	inputPrompt = "AI Chat";
 }
 
-msgList = ds_list_create();
+ds_list_clear(global.aiChatMsgList);
 userAuthor = "Rezonator";
 
 aiCharAt = 1;
