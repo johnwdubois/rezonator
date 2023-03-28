@@ -1,6 +1,6 @@
 function scr_generateRandomID() {
 	
-	// generate a random number and turn it into a hex string
+	// generate a random string
 	var str = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
 	var ID = "";
 	for (var i = 0; i < 11; i++) {

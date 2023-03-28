@@ -40,6 +40,9 @@ function scr_importAIChat(){
 				else {
 					// if we can't find a colon, we assume this entire line is the turn
 					_turn = _currentLine;
+					
+					// and we will take the author of the message to be the participant
+					_participant = string(_msgMap[? "author"]);
 				}
 			
 				// now let's split the turn into sentences, making sure to keep delimiters

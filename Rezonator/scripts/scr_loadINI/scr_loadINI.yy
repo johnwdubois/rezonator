@@ -5,7 +5,7 @@
   "isCompatibility": false,
   "isDnD": false,
   "parent": {
-    "name": "save and load",
-    "path": "folders/Scripts/save and load.yy",
+    "name": "INI",
+    "path": "folders/Scripts/save and load/INI.yy",
   },
 }

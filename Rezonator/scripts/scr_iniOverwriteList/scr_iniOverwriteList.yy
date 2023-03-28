@@ -1,7 +1,7 @@
 {
   "resourceType": "GMScript",
   "resourceVersion": "1.0",
-  "name": "scr_saveINI",
+  "name": "scr_iniOverwriteList",
   "isCompatibility": false,
   "isDnD": false,
   "parent": {

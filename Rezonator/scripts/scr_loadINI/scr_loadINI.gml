@@ -1,29 +1,23 @@
 function scr_loadINI() {
 
 	if (global.html5) exit;
-
+	
+	// get filepath for ini
+	var fileName = "";
 	if (os_type == os_macosx) {
-		var fileName = global.rezonatorDirString + "/~usersettings.ini";
+		fileName = global.rezonatorDirString + "\\~usersettings.ini";
 	}
 	else {
-		var fileName = global.rezonatorDirString + "\\~usersettings.ini";
+		fileName = global.rezonatorDirString + "/~usersettings.ini";
 	}
 	
-
 	// Check if the name is valid, or if the user exited the window
-	if (fileName == "" or fileName == "undefined") {
+	if (fileName == "" || fileName == "undefined" || !file_exists(fileName)) {
 		show_message(scr_get_translation("error_ini-loading"));
 		exit;
 	}
-
-
-	if (fileName == "" or not file_exists(fileName)) {
-		exit;
-	}
-
-
-
-	var newInstList = ds_list_create();
+	
+	
 
 	if (file_exists(fileName)) {
 		var wrapper = scr_loadJSONBuffer(fileName);
@@ -46,35 +40,43 @@ function scr_loadINI() {
 		for (var i = 0; i < listSize; i++) {
 		
 		
-			var map = ds_list_find_value(list, i);
+			var map = list[| i];
 		
 		
 			if (room == rm_openingScreen) {
 
 				global.rememberMe = ds_map_find_value(map, "rememberMe");
 				
-				if (ds_map_find_value(map, "importType") != undefined) {
-					global.importType = ds_map_find_value(map, "importType");
-				}
-			
-				if (ds_map_find_value(map, "readHintHide") != undefined) {
-					global.readHintHide = ds_map_find_value(map, "readHintHide");
-				}
-			
-				if (ds_map_find_value(map, "autosaveTimerFull") != undefined) {
-					global.autosaveTimerFull = ds_map_find_value(map, "autosaveTimerFull");
+				var _importType = map[? "importType"];
+				if (is_string(_importType)) global.importType = _importType;
+				
+				var _aiChatAPIKey = map[? "aiChatAPIKey"];
+				if (is_string(_aiChatAPIKey)) global.aiChatAPIKey = _aiChatAPIKey;
+				
+				var _readHintHide = map[? "readHintHide"];
+				if (is_numeric(_readHintHide)) global.readHintHide = _readHintHide;
+				
+				var _autosaveTimerFull = map[? "autosaveTimerFull"];
+				if (is_numeric(_autosaveTimerFull)) {
+					global.autosaveTimerFull = _autosaveTimerFull;
 					global.autosaveTimer = global.autosaveTimerFull;
 				}
 				
-				if (ds_map_find_value(map, "recentFilesMap") != undefined) {
-					global.recentFilesMap = ds_map_find_value(map, "recentFilesMap");
+				var _recentFilesMap = map[? "recentFilesMap"];
+				if (scr_isNumericAndExists(_recentFilesMap, ds_type_map)) {
+					global.recentFilesMap = _recentFilesMap;
 				}
-				if (ds_map_find_value(map, "recentFilesList") != undefined) {
-					global.recentFilesList = ds_map_find_value(map, "recentFilesList");
+				
+				var _recentFilesList = map[? "recentFilesList"];
+				if (scr_isNumericAndExists(_recentFilesList, ds_type_list)) {
+					global.recentFilesList = _recentFilesList;
 				}
-				if (ds_map_find_value(map, "usedImports") != undefined) {
-					global.usedImports = ds_map_find_value(map, "usedImports");
+				
+				var _usedImports = map[? "usedImports"];
+				if (scr_isNumericAndExists(_usedImports, ds_type_list)) {
+					global.usedImports = _usedImports;
 				}
+				
 
 
 				if (global.rememberMe) {
@@ -128,7 +130,5 @@ function scr_loadINI() {
 
 	global.fontSize = clamp(global.fontSize, 0, global.fontSizeMax);
 	show_debug_message("scr_loadINI, fontSize: " + string(global.fontSize));
-	ds_list_destroy(newInstList);
-
 
 }

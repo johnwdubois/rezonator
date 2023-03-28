@@ -78,81 +78,81 @@ function scr_zoomOptions(optionSelected) {
 			break;
 		case "help_label_zoom-in":
 		
-			if (room == rm_openingScreen) {
+			if (room == rm_openingScreen || room == rm_aiChat) {
 				if (global.fontSize != 5) global.fontSize++;
-				exit;
 			}
+			else if (room == rm_mainScreen) {
 			
-			//vertical
-			obj_control.prevCenterDisplayRow = scr_currentTopLine();
+				//vertical
+				obj_control.prevCenterDisplayRow = scr_currentTopLine();
 		
-			if (obj_control.gridSpaceVertical < obj_control.gridSpaceVerticalMax) {
-				obj_control.gridSpaceVertical += 10;
-				// Don't go above the max
-				obj_control.gridSpaceVertical = min(obj_control.gridSpaceVertical, obj_control.gridSpaceVerticalMax);
-				obj_control.lineSpacing += 4;
-				obj_control.gridSpaceRatio = (obj_control.gridSpaceVertical/obj_control.prevGridSpaceVertical);
-				obj_control.offIndex = true;
-				scr_jumpToUnitTop(obj_control.prevCenterDisplayRow);
-				// reset the ratio
-				obj_control.prevGridSpaceVertical = obj_control.gridSpaceVertical;
-				if (obj_control.arrowSpeed < obj_control.arrowSpeedMax) {
-					obj_control.arrowSpeed++;	
+				if (obj_control.gridSpaceVertical < obj_control.gridSpaceVerticalMax) {
+					obj_control.gridSpaceVertical += 10;
+					// Don't go above the max
+					obj_control.gridSpaceVertical = min(obj_control.gridSpaceVertical, obj_control.gridSpaceVerticalMax);
+					obj_control.lineSpacing += 4;
+					obj_control.gridSpaceRatio = (obj_control.gridSpaceVertical/obj_control.prevGridSpaceVertical);
+					obj_control.offIndex = true;
+					scr_jumpToUnitTop(obj_control.prevCenterDisplayRow);
+					// reset the ratio
+					obj_control.prevGridSpaceVertical = obj_control.gridSpaceVertical;
+					if (obj_control.arrowSpeed < obj_control.arrowSpeedMax) {
+						obj_control.arrowSpeed++;	
+					}
+				}
+			
+				//horizontal
+				if (!obj_control.gridView) {
+					scr_adjustTokenSpacing(20);
+				}
+			
+				//Text		
+				if (global.fontSize < 5) {
+					global.fontSize++;
+					scr_setSpeakerLabelColWidth();
 				}
 			}
-			
-			//horizontal
-			if (!obj_control.gridView) {
-				scr_adjustTokenSpacing(20);
-			}
-			
-			//Text		
-			if (global.fontSize < 5) {
-				global.fontSize++;
-				scr_setSpeakerLabelColWidth();
-			}
-			//with (obj_dropDown) instance_destroy();
 			break;
 			
 		case "help_label_zoom-out":
 			
-			if (room == rm_openingScreen) {
+			if (room == rm_openingScreen || room == rm_aiChat) {
 				if (global.fontSize != 0) global.fontSize--;
-				exit;
 			}
+			else if (room == rm_mainScreen) {
 			
-			
-			//Vertical
-			obj_control.prevCenterDisplayRow = scr_currentTopLine();
+				//Vertical
+				obj_control.prevCenterDisplayRow = scr_currentTopLine();
 
-			if (obj_control.gridSpaceVertical > obj_control.gridSpaceVerticalMin) {
-				obj_control.gridSpaceVertical -= 10;
-				// Don't go above the max
-				obj_control.gridSpaceVertical = max(obj_control.gridSpaceVertical, obj_control.gridSpaceVerticalMin);
-				obj_control.lineSpacing -= 4;
-				obj_control.gridSpaceRatio = (obj_control.gridSpaceVertical/obj_control.prevGridSpaceVertical);
-				obj_control.offIndex = true;
-				scr_jumpToUnitTop(obj_control.prevCenterDisplayRow);
-				// reset the ratio
-				obj_control.prevGridSpaceVertical = obj_control.gridSpaceVertical;
-				if (obj_control.arrowSpeed > obj_control.arrowSpeedMin) {
-					obj_control.arrowSpeed--;	
+				if (obj_control.gridSpaceVertical > obj_control.gridSpaceVerticalMin) {
+					obj_control.gridSpaceVertical -= 10;
+					// Don't go above the max
+					obj_control.gridSpaceVertical = max(obj_control.gridSpaceVertical, obj_control.gridSpaceVerticalMin);
+					obj_control.lineSpacing -= 4;
+					obj_control.gridSpaceRatio = (obj_control.gridSpaceVertical/obj_control.prevGridSpaceVertical);
+					obj_control.offIndex = true;
+					scr_jumpToUnitTop(obj_control.prevCenterDisplayRow);
+					// reset the ratio
+					obj_control.prevGridSpaceVertical = obj_control.gridSpaceVertical;
+					if (obj_control.arrowSpeed > obj_control.arrowSpeedMin) {
+						obj_control.arrowSpeed--;	
+					}
 				}
-			}
 			
 			
-			//Horizontal			
-			if (!obj_control.gridView) {
-				scr_adjustTokenSpacing(-20);
-			}
+				//Horizontal			
+				if (!obj_control.gridView) {
+					scr_adjustTokenSpacing(-20);
+				}
 		
-			//TEXT		
-			if (global.fontSize > 0) {
-				global.fontSize--;
-				scr_setSpeakerLabelColWidth();
+				//TEXT		
+				if (global.fontSize > 0) {
+					global.fontSize--;
+					scr_setSpeakerLabelColWidth();
+				}
+			
 			}
 			
-			//with (obj_dropDown) instance_destroy();
 			break;
 	}
 
