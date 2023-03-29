@@ -7,6 +7,9 @@ function scr_createStackOptions(optionSelected) {
 		exit;
 	}
 	
+	with (obj_stacker) stackerMode = "";
+	var subDropDown = false;
+	
 	if (optionSelected == "menu_turn") {
 		// if the user has both turndelim and participant, show another dropdown with both options
 		var turnDelimValid = is_string(global.unitImportTurnDelimColName) && global.unitImportTurnDelimColName != "";
@@ -16,6 +19,7 @@ function scr_createStackOptions(optionSelected) {
 			var dropDownOptionList = ds_list_create();
 			ds_list_add(dropDownOptionList, "From participant labels", "From turn delimiter");
 			scr_createDropDown(x + windowWidth, y + (optionSpacing * optionIndex), dropDownOptionList, global.optionListTypeTurnStacker);
+			subDropDown = true;
 		}
 		else {
 			// if they only have turndelim or only have participant, use the one they have
@@ -23,9 +27,10 @@ function scr_createStackOptions(optionSelected) {
 			else if (participantValid) obj_stacker.stackerMode = "participant";
 		}
 	}
-	else {
+	
+	if (!subDropDown) {
 		with (obj_stacker) {
-			stackerMode = is_string(optionSelected) ? optionSelected : "";
+			if (stackerMode == "") stackerMode = optionSelected;
 			confirmStackName = true;
 		}
 		with (obj_dropDown) instance_destroy();
