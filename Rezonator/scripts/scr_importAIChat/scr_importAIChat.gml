@@ -2,6 +2,7 @@ function scr_importAIChat(){
 	
 	var _msgList = global.aiChatMsgList;
 	var _msgListSize = ds_list_size(_msgList);
+
 	
 	var lineList = ds_list_create();
 
@@ -46,7 +47,7 @@ function scr_importAIChat(){
 				}
 			
 				// now let's split the turn into sentences, making sure to keep delimiters
-				var _sentences = scr_splitString(_turn, ". ", true);
+				var _sentences = scr_splitSentence(_turn);
 		
 				// for each sentence, create a new row in the importLineGrid
 				var _sentencesSize = ds_list_size(_sentences);

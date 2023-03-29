@@ -5,7 +5,7 @@
   "isCompatibility": false,
   "isDnD": false,
   "parent": {
-    "name": "string",
-    "path": "folders/Scripts/functions/string.yy",
+    "name": "split",
+    "path": "folders/Scripts/functions/string/split.yy",
   },
 }
