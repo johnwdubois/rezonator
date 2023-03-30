@@ -461,7 +461,6 @@ global.userLangRTL = false;
 global.restoreAutosave = false;
 global.autosaveLastSavedFilename = "";
 global.importFrom = "file";
-global.aiStackerRan = false;
 
 
 

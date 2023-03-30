@@ -702,13 +702,3 @@ while (ds_list_size(deleteChunkList) > 0) {
 	}
 	scr_deleteFromList(deleteChunkList, _deleteChunk);
 }
-
-// run stacker on ai import
-if (global.project == "import" && global.importType == IMPORTTYPE_AICHAT && !global.aiStackerRan) {
-	global.aiStackerRan = true;
-	with (obj_stacker) {
-		stacker_stackingName = "Turns";
-		stacker_stacksName = "Turn";
-	}
-	scr_sentStackerLoop();
-}

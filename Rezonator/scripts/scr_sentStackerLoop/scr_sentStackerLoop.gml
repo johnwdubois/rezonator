@@ -21,8 +21,8 @@ function scr_sentStackerLoop() {
 	scr_createNewStacking(obj_stacker.stacker_stackingName, obj_stacker.stacker_stacksName, "Turn");
 	
 	//Set variables for loop
-	var currentTurnOrder = 0;
-	var previousTurnOrder = 0;
+	var currentParticipant = "";
+	var previousParticipant = "";
 	var discourseSubMap = global.nodeMap[? global.discourseNode];
 	var unitList = discourseSubMap[? "unitList"];
 	var unitListSize = ds_list_size(unitList);
@@ -30,31 +30,32 @@ function scr_sentStackerLoop() {
 	
 	//Starting at the top of the unitImportGrid
 	for (var importLoop = 0; importLoop < unitListSize; importLoop++) {
-		var currentUnit = unitList[|importLoop];
-		var currentUnitSubMap = global.nodeMap[?currentUnit];
+		var currentUnit = unitList[| importLoop];
+		var currentUnitSubMap = global.nodeMap[? currentUnit];
 		var unitTagMap = currentUnitSubMap[? "tagMap"];
-		currentTurnOrder = unitTagMap[?global.participantField];
-		show_debug_message(currentTurnOrder);
-		previousTurnOrder = currentTurnOrder;
+		currentParticipant = unitTagMap[? global.participantField];
+		show_debug_message("scr_sentStackerLoop, currentParticipant: " + string(currentParticipant));
+		previousParticipant = currentParticipant;
 		
 		// Loop through lines until we hit a new turn order
-		while ((currentTurnOrder == previousTurnOrder) and (importLoop < unitListSize)) { 	
+		while ((currentParticipant == previousParticipant) and (importLoop < unitListSize)) { 	
 			currentUnit = unitList[|importLoop];
 
-			currentUnitSubMap = global.nodeMap[?currentUnit];
+			currentUnitSubMap = global.nodeMap[? currentUnit];
 			unitTagMap = currentUnitSubMap[? "tagMap"];
-			currentTurnOrder = unitTagMap[?global.participantField];
-			if ((currentTurnOrder == previousTurnOrder)) {
+			currentParticipant = unitTagMap[? global.participantField];
+			if ((currentParticipant == previousParticipant)) {
 				ds_list_add(currentUnitList, currentUnit);
 				importLoop++;
 			}
 
-			show_debug_message(currentTurnOrder);
+			show_debug_message("scr_sentStackerLoop, WHILE currentParticipant: " + string( currentParticipant));
 		}
 		importLoop--;
 
 	
 		// Create a Stack based on the current Set of Lines
+		show_debug_message("scr_sentStackerLoop, currentUnitListSize: " + string(ds_list_size(currentUnitList)));
 		if (ds_list_size(currentUnitList) > 0) {
 			
 			var firstUnitID = ds_list_find_value(currentUnitList, 0);
@@ -65,7 +66,7 @@ function scr_sentStackerLoop() {
 			var inRectUnitIDListSize = ds_list_size(currentUnitList);
 			for (var quickStackLoop = 0; quickStackLoop < inRectUnitIDListSize; quickStackLoop++) {
 				var currentUnitID = ds_list_find_value(currentUnitList, quickStackLoop);
-					if (currentUnitID != prevUnitID) {
+				if (currentUnitID != prevUnitID) {
 					
 					obj_toolPane.currentTool = obj_toolPane.toolStackBrush;
 					with (obj_chain) {

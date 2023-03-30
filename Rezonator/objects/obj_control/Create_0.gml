@@ -878,3 +878,8 @@ with (obj_alarm3) alarm[4] = 2;
 saveToFirebase = false;
 
 rezFileVersion = "";
+
+// run stacker on ai import
+if (global.project == "import" && global.importType == IMPORTTYPE_AICHAT) {
+	with (obj_alarm3) alarm[6] = 2;
+}

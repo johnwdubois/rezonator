@@ -1,6 +1,9 @@
 function scr_unitClicked(unitID) {
 	
-	if (global.delayInput > 0) exit;
+	if (global.delayInput > 0) {
+		show_debug_message("scr_unitClicked, delayInput exiting...");
+		exit;
+	}
 	
 	
 	// get submap for this unit and make sure it exists
