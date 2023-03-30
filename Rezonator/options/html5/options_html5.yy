@@ -3,7 +3,7 @@
   "resourceVersion": "1.0",
   "name": "HTML5",
   "option_html5_allow_fullscreen": true,
-  "option_html5_browser_title": "Rezonator Web 1.1.8",
+  "option_html5_browser_title": "Rezonator Web 1.3.0",
   "option_html5_centregame": true,
   "option_html5_display_cursor": true,
   "option_html5_facebook_app_display_name": "",
@@ -28,6 +28,6 @@
   "option_html5_usebuiltinfont": true,
   "option_html5_usebuiltinparticles": true,
   "option_html5_usesplash": false,
-  "option_html5_version": "1.1.8.0",
+  "option_html5_version": "1.3.0.0",
   "option_html5_webgl": 2,
 }
