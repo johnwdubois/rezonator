@@ -56,7 +56,7 @@ function stringPosExtMulti(subStrs, str, startPos, exceptions = undefined) {
 
 function stringPosExtExceptions(subStr, str, startPos, exceptions) {
 	
-	// like string_pos_ext, but where also ignoring a list of exceptions
+	// like string_pos_ext, but also ignoring a list of exceptions
 	var pos = string_pos_ext(subStr, str, startPos);
 	if (!is_numeric(exceptions)) return pos;
 	if (!ds_exists(exceptions, ds_type_list)) return pos;

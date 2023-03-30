@@ -28,6 +28,16 @@ with (instInputBox_Prompt) {
 	textBoxY = _instInputBox_ApiKey.textBoxY - (textBoxHeight * 2);
 }
 
+// awaiting response
+if (showAwaitingResponse) {
+	draw_set_alpha(0.65);
+	draw_set_color(c_black);
+	draw_set_halign(fa_left);
+	draw_set_valign(fa_middle);
+	var awaitingResponseSecs = (current_time - awaitingResponseTime) / 1000;
+	draw_text(instInputBox_Prompt.textBoxX, mean(instInputBox_Prompt.textBoxY + instInputBox_Prompt.windowHeight, instInputBox_ApiKey.textBoxY), "Awaiting response... " + string(awaitingResponseSecs));
+}
+
 // back button
 draw_set_alpha(1);
 draw_set_color(c_black);

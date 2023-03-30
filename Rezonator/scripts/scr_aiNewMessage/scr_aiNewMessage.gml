@@ -48,6 +48,11 @@ function scr_aiNewMessage(author, msg){
 		
 		// get text from content
 		_text = _firstMessage.content;
+		
+		with (obj_aiControl) {
+			awaitingResponseTime = current_time;
+			showAwaitingResponse = true;
+		}
 	}
 	else if (author == "ChatGPT") {
 		// VERIFY AI RESPONSE
@@ -107,6 +112,11 @@ function scr_aiNewMessage(author, msg){
 		if (variable_struct_exists(msg, "id")) {
 			if (is_string(msg.id)) _chatID = msg.id;
 		}
+		
+		with (obj_aiControl) {
+			awaitingResponseTime = current_time;
+			showAwaitingResponse = false;
+		}
 	}
 	
 	
@@ -128,12 +138,12 @@ function scr_aiNewMessage(author, msg){
 	with (obj_aiControl) {
 		ds_list_insert(global.aiChatMsgList, 0, _msgMap);
 		ds_list_mark_as_map(global.aiChatMsgList, ds_list_size(global.aiChatMsgList) - 1);
-		scrollPlusY = 0;
 		
 		if (author != userAuthor) {
 			aiCharAt = 1;
 			alarm[0] = 3;
 		}
 	}
+	with (obj_aiChatDraw) aiHopToBottom = true;
 
 }

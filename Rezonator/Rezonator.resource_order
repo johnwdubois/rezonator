@@ -344,7 +344,6 @@
     {"name":"scr_setSpecialFieldsVariables","order":21,"path":"scripts/scr_setSpecialFieldsVariables/scr_setSpecialFieldsVariables.yy",},
     {"name":"scr_exportChainEntryGridNewRow","order":10,"path":"scripts/scr_exportChainEntryGridNewRow/scr_exportChainEntryGridNewRow.yy",},
     {"name":"scr_panelPane_drawFieldTags","order":22,"path":"scripts/scr_panelPane_drawFieldTags/scr_panelPane_drawFieldTags.yy",},
-    {"name":"scr_wordWrap","order":12,"path":"scripts/scr_wordWrap/scr_wordWrap.yy",},
     {"name":"scr_importCSV","order":5,"path":"scripts/scr_importCSV/scr_importCSV.yy",},
     {"name":"scr_getSearchString","order":9,"path":"scripts/scr_getSearchString/scr_getSearchString.yy",},
     {"name":"scr_toolButtonOptions","order":57,"path":"scripts/scr_toolButtonOptions/scr_toolButtonOptions.yy",},

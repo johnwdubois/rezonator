@@ -16,6 +16,8 @@ var maxTextWidth = _instInputBox_Prompt.windowWidth;
 var messageVBuffer = strHeight * 0.5;
 var mouseoverCancel = mouse_y > _instInputBox_Prompt.textBoxY - messageVBuffer || mouse_y <= obj_menuBar.menuHeight || instance_exists(obj_dropDown);
 
+var lastMsgHeight = 0;
+
 var _msgList = global.aiChatMsgList;
 var msgListSize = ds_list_size(_msgList);
 for (var i = 0; i < msgListSize; i++) {
@@ -27,10 +29,9 @@ for (var i = 0; i < msgListSize; i++) {
 	var _selected = _msgMap[? "selected"];
 	var _msgY = textY + plusY + scrollPlusY + messageVBuffer;
 	
-	var _textWrapped = scr_wordWrap(_text, maxTextWidth, false);
-	
 	// draw background for this message
-	var _msgY1 = _msgY - string_height(_textWrapped) - messageVBuffer;
+	var _msgHeight = string_height_ext(_text, -1, maxTextWidth);
+	var _msgY1 = _msgY - _msgHeight - messageVBuffer;
 	var _msgY2 = _msgY + messageVBuffer;
 	
 	draw_set_color(merge_color(global.colorThemeBG, global.colorThemeText, _author == obj_aiControl.userAuthor ? 0.1 : 0.15));
@@ -59,19 +60,26 @@ for (var i = 0; i < msgListSize; i++) {
 	draw_set_halign(fa_right);
 	draw_set_valign(fa_top);
 	draw_set_color(global.colorThemeText);
+	draw_set_alpha(0.7);
 	draw_text(textX - string_width("   "), _msgY1 + messageVBuffer, _author);
+	draw_set_alpha(1);
 	
 	// draw text
 	draw_set_halign(fa_left);
 	draw_set_valign(fa_bottom);
 	draw_set_color(global.colorThemeText);
-	draw_text(textX, _msgY, _textWrapped);
+	draw_text_ext(textX, _msgY, _text, -1, maxTextWidth);
 
 	// adjust y coordinate for next message
-	plusY -= string_height(_textWrapped) + (messageVBuffer * 2);
+	plusY -= _msgHeight + (messageVBuffer * 2);
+	if (i == msgListSize - 1) lastMsgHeight = _msgHeight;
 }
 
 // scroll messages
 if (mouse_wheel_up() || keyboard_check(vk_up)) scrollPlusY += 16;
 else if (mouse_wheel_down() || keyboard_check(vk_down)) scrollPlusY -= 16;
-scrollPlusY = clamp(scrollPlusY, 0, -(plusY + textY));
+scrollPlusY = clamp(scrollPlusY, -lastMsgHeight - (messageVBuffer / 2), -(plusY + textY));
+if (aiHopToBottom) {
+	aiHopToBottom = false;
+	scrollPlusY = -lastMsgHeight - (messageVBuffer / 2);
+}

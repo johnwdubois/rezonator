@@ -506,7 +506,6 @@
     {"id":{"name":"scr_setSpecialFieldsVariables","path":"scripts/scr_setSpecialFieldsVariables/scr_setSpecialFieldsVariables.yy",},},
     {"id":{"name":"scr_exportChainEntryGridNewRow","path":"scripts/scr_exportChainEntryGridNewRow/scr_exportChainEntryGridNewRow.yy",},},
     {"id":{"name":"scr_panelPane_drawFieldTags","path":"scripts/scr_panelPane_drawFieldTags/scr_panelPane_drawFieldTags.yy",},},
-    {"id":{"name":"scr_wordWrap","path":"scripts/scr_wordWrap/scr_wordWrap.yy",},},
     {"id":{"name":"scr_importCSV","path":"scripts/scr_importCSV/scr_importCSV.yy",},},
     {"id":{"name":"scr_getSearchString","path":"scripts/scr_getSearchString/scr_getSearchString.yy",},},
     {"id":{"name":"scr_toolButtonOptions","path":"scripts/scr_toolButtonOptions/scr_toolButtonOptions.yy",},},

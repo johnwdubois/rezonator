@@ -23,3 +23,6 @@ msgSelectedList = ds_list_create();
 aiImportTypeList = ds_list_create();
 ds_list_add(aiImportTypeList, "all", "selected", "last");
 aiImportType = aiImportTypeList[| 0];
+
+awaitingResponseTime = 0;
+showAwaitingResponse = false;
