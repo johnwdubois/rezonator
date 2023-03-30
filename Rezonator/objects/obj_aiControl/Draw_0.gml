@@ -54,24 +54,32 @@ if (mouseoverBackButton) {
 }
 
 // check how many messages are selected
+var aiMessages = 0;
 var messagesSelected = 0;
 var msgListSize = ds_list_size(global.aiChatMsgList);
 for (var i = 0; i < msgListSize; i++) {
 	var currentMessageMap = global.aiChatMsgList[| i];
 	var currentMessageSelected = currentMessageMap[? "selected"];
+	var currentMessageAuthor = currentMessageMap[? "author"];
 	if (currentMessageSelected) messagesSelected++;
+	if (currentMessageAuthor == "ChatGPT") aiMessages++;
 }
+
+// check if we can import
+var canImportAi = ds_list_size(global.aiChatMsgList) >= 1;
+if (aiImportType == "selected" && messagesSelected < 1) canImportAi = false;
+if (aiMessages < 1) canImportAi = false;
 
 // import button
 var importButtonX1 = mean((instInputBox_ApiKey.textBoxX + instInputBox_ApiKey.windowWidth), camWidth) - (backButtonWidth / 2);
-var importButtonY1 = backButtonY1;
+var importButtonY1 = instInputBox_Prompt.textBoxY;
 var importButtonX2 = importButtonX1 + backButtonWidth;
-var importButtonY2 = backButtonY2;
-var mouseoverImportButton = point_in_rectangle(mouse_x, mouse_y, importButtonX1, importButtonY1, importButtonX2, importButtonY2) && messagesSelected >= 1;
-if (messagesSelected >= 1) draw_set_color(mouseoverImportButton ? global.colorThemeSelected1 : global.colorThemeBG);
+var importButtonY2 = importButtonY1 + (backButtonY2 - backButtonY1);
+var mouseoverImportButton = point_in_rectangle(mouse_x, mouse_y, importButtonX1, importButtonY1, importButtonX2, importButtonY2) && canImportAi;
+if (canImportAi) draw_set_color(mouseoverImportButton ? global.colorThemeSelected1 : global.colorThemeBG);
 else draw_set_color(global.colorThemeSelected2);
 draw_roundrect(importButtonX1, importButtonY1, importButtonX2, importButtonY2, false);
-draw_set_color(messagesSelected >= 1 ? global.colorThemeRezPink : global.colorThemeSelected2);
+draw_set_color(canImportAi ? global.colorThemeRezPink : global.colorThemeSelected2);
 draw_roundrect(importButtonX1, importButtonY1, importButtonX2, importButtonY2, true);
 draw_set_color(global.colorThemeText);
 draw_text(floor(mean(importButtonX1, importButtonX2)), floor(mean(importButtonY1, importButtonY2)), scr_get_translation("menu_import"));
@@ -80,4 +88,27 @@ if (mouseoverImportButton) {
 		global.importFrom = "ai";
 		scr_importTXT("");
 	}
+}
+
+// import radio buttons
+draw_set_halign(fa_left);
+draw_set_valign(fa_middle);
+draw_set_color(global.colorThemeText);
+var aiImportTypeRad = string_height("0") * 0.5;
+var aiImportTypeX = importButtonX1 + aiImportTypeRad;
+var plusY = aiImportTypeRad * 0.5;
+var aiImportTypeListSize = ds_list_size(aiImportTypeList);
+for (var i = 0; i < aiImportTypeListSize; i++) {
+	
+	var _aiImportType = aiImportTypeList[| i];
+	var mouseoverAiImportType = point_in_circle(mouse_x, mouse_y, aiImportTypeX, importButtonY2 + aiImportTypeRad + plusY, aiImportTypeRad);
+	if (mouseoverAiImportType) {
+		if (mouse_check_button_released(mb_left)) aiImportType = _aiImportType;
+	}
+	
+	draw_circle(aiImportTypeX, importButtonY2 + aiImportTypeRad + plusY, aiImportTypeRad, true);
+	if (aiImportType == _aiImportType) draw_circle(aiImportTypeX, importButtonY2 + aiImportTypeRad + plusY, aiImportTypeRad * 0.8, false);
+	draw_text(aiImportTypeX + (aiImportTypeRad * 2), importButtonY2 + aiImportTypeRad + plusY, _aiImportType);
+	
+	plusY += aiImportTypeRad * 2.5;
 }
