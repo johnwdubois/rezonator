@@ -62,5 +62,11 @@ if (global.skipToOpen) {
 	global.skipToOpen = false;
 	alarm[8] = 1;
 }
+if (global.skipToAiChat) {
+	global.skipToAiChat = false;
+	global.project = "import";
+	global.importType = IMPORTTYPE_AICHAT;
+	room_goto(rm_aiChat);
+}
 
 window_set_caption(string(game_display_name));

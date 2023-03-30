@@ -1,5 +1,3 @@
-/// @description Insert description here
-// You can write your code in this editor
 if (room == rm_mainScreen) {
 	obj_menuBar.mouseOverFile = false;
 	obj_menuBar.mouseOverEdit = false;

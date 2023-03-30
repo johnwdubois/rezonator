@@ -52,6 +52,28 @@ function scr_fileOptions(optionSelected) {
 			instance_destroy();
 			break;
 		
+		case "option_aichat":
+			
+			if (room == rm_mainScreen) {
+				if (!instance_exists(obj_dialogueBox)) {
+					var inst = instance_create_layer(x, y, "InstancesDialogue", obj_dialogueBox);
+					inst.questionWindowActive = true;
+					inst.noButtonActive = true;
+					obj_control.saveBeforeAiChat = true;
+				
+					// if everything is saved already we can just pretend they clicked "no"
+					if (obj_control.allSaved) scr_dialogueNo();
+				}
+				scr_saveINI();
+			}
+			else {
+				global.skipToAiChat = true;
+				show_debug_message("Going to openingScreen, scr_fileOptions skipToAiChat");
+				room_goto(rm_openingScreen);
+				scr_loadINI();
+			}
+		
+			break;
 		case "help_label_open":
 		
 			if (global.html5) {

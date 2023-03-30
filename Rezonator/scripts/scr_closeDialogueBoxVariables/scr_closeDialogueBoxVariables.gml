@@ -89,6 +89,7 @@ function scr_closeDialogueBoxVariables() {
 			combineChainsFocused = "";
 			combineChainsSelected = "";
 			saveBeforeImporting = false;
+			saveBeforeAiChat = false;
 			saveBeforeOpening = false;
 			saveBeforeExiting = false;
 			saveBeforeGameEnd = false;

@@ -32,6 +32,7 @@ ds_list_add(fileOptionList, "menu_save",
 							"help_label_open",
 							"menu_media", 
 							"menu_export",
+							"option_aichat",
 							"menu_import", 
 							"menu_exit");
 

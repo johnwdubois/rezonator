@@ -480,6 +480,7 @@ noTurnFound = false;
 noPsentFound = false;
 saveBeforeExiting = false;
 saveBeforeImporting = false;
+saveBeforeAiChat = false;
 saveBeforeOpening = false;
 saveBeforeGameEnd = false;
 insertAnyNumber = false;

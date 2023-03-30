@@ -229,6 +229,10 @@ function scr_setDialogueText() {
 				if (is_string(global.fileSaveName) && global.fileSaveName != "undefined") titleText = filename_name(global.fileSaveName);
 				descriptionText = scr_get_translation("question_save_before_import");
 			}
+			if (obj_control.saveBeforeAiChat) {
+				if (is_string(global.fileSaveName) && global.fileSaveName != "undefined") titleText = filename_name(global.fileSaveName);
+				descriptionText = scr_get_translation("question_save_before_aichat");
+			}
 			if (obj_control.saveBeforeOpening) {
 				if (is_string(global.fileSaveName) && global.fileSaveName != "undefined") titleText = filename_name(global.fileSaveName);
 				descriptionText = scr_get_translation("question_save_before_open");

@@ -308,6 +308,7 @@ scr_expandableDropDownInit();
 // This map stores all the dropdown options that are clickable in the opening screen
 global.openingScreenDropDownMap = ds_map_create();
 ds_map_add(global.openingScreenDropDownMap, "menu_import", true);
+ds_map_add(global.openingScreenDropDownMap, "option_aichat", true);
 ds_map_add(global.openingScreenDropDownMap, "help_label_open", true);
 ds_map_add(global.openingScreenDropDownMap, "menu_guide", true);
 ds_map_add(global.openingScreenDropDownMap, "menu_about", true);
