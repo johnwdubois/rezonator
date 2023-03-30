@@ -1,8 +1,6 @@
 /*
 	Purpose: Check for user key inputs and navigate accordingly, update the center display row based on positioning, change the font size, and check for panel pane mouse over
 */
-#macro vk_rcommand 91
-#macro vk_lcommand 92
 scr_windowExit();
 
 sessionCurrentTime = (current_time - sessionStartTime) + current_time;
@@ -703,4 +701,14 @@ while (ds_list_size(deleteChunkList) > 0) {
 		scr_deleteChunk(_deleteChunk);
 	}
 	scr_deleteFromList(deleteChunkList, _deleteChunk);
+}
+
+// run stacker on ai import
+if (global.project == "import" && global.importType == IMPORTTYPE_AICHAT && !global.aiStackerRan) {
+	global.aiStackerRan = true;
+	with (obj_stacker) {
+		stacker_stackingName = "Turns";
+		stacker_stacksName = "Turn";
+	}
+	scr_sentStackerLoop();
 }

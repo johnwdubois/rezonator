@@ -12,6 +12,10 @@ function scr_macros(){
 	#macro IMPORTTYPE_ELAN "import_type_elan"
 	#macro IMPORTTYPE_PROSE "import_type_prose"
 	
+	// command keys for mac
+	#macro vk_rcommand 91
+	#macro vk_lcommand 92
+	
 	
 
 }

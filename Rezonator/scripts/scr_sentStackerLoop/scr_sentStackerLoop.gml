@@ -1,6 +1,6 @@
 function scr_sentStackerLoop() {
 	
-	show_debug_message("scr_sentStackerLoop");
+	show_debug_message("scr_sentStackerLoop, global.participantField: " + string(global.participantField));
 
 	// Set script variables
 	var currentUnitList = ds_list_create();
@@ -23,9 +23,10 @@ function scr_sentStackerLoop() {
 	//Set variables for loop
 	var currentTurnOrder = 0;
 	var previousTurnOrder = 0;
-	var discourseSubMap = global.nodeMap[?global.discourseNode];
+	var discourseSubMap = global.nodeMap[? global.discourseNode];
 	var unitList = discourseSubMap[? "unitList"];
 	var unitListSize = ds_list_size(unitList);
+	show_debug_message("unitListSize: " + string(unitListSize));
 	
 	//Starting at the top of the unitImportGrid
 	for (var importLoop = 0; importLoop < unitListSize; importLoop++) {
