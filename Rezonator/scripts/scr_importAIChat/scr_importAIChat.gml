@@ -25,12 +25,15 @@ function scr_importAIChat(){
 		var _msgMap = _msgList[| i];
 		if (!scr_isNumericAndExists(_msgMap, ds_type_map)) continue;
 		var _selected = _msgMap[? "selected"];
-		var _author = _msgMap[? "author"];
+		
 		
 		// if this message is selected, let's get its text
 		if ((obj_aiControl.aiImportType == "all") || (obj_aiControl.aiImportType == "selected" && _selected) || obj_aiControl.aiImportType == "last" && _msgMap == lastAiMsg) {
 			
+			// get data from this message
 			var _text = string(_msgMap[? "text"]);
+			var _author = _msgMap[? "author"];
+			var _chatID = _msgMap[? "chatID"];
 			
 			// let's get rid of carriage returns
 			_text = string_replace_all(_text, "\r", "");
@@ -72,7 +75,7 @@ function scr_importAIChat(){
 					if (scr_isStrOnlyWhitespace(_currentSentence) || _currentSentence == "") continue;
 					
 					// finally, format the sentence in tab-delimited style and add it to lineList
-					var _currentSentenceFormatted = string(_participant) + "	" + string(_currentSentence);
+					var _currentSentenceFormatted = string(_participant) + "	" + string(_currentSentence) + "	" + string(_chatID);
 					show_debug_message("_currentSentenceFormatted: " + string(_currentSentenceFormatted));
 					ds_list_add(lineList, _currentSentenceFormatted);
 				}

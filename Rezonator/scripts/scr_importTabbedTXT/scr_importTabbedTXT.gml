@@ -31,10 +31,11 @@ function scr_importTabbedTXT(delimiter) {
 	
 	for (i = 0; i < global.importGridWidth; i++) {
 		var colName = "";
-		if (global.importType == IMPORTTYPE_AICHAT && i <= 1) {
-			// name participant & text columns accordingly
+		if (global.importType == IMPORTTYPE_AICHAT && i <= 2) {
+			// name participant, text, & chatID columns accordingly
 			if (i == 0) colName = "Participant";
 			else if (i == 1) colName = "Text";
+			else if (i == 2) colName = "ChatID";
 		}
 		else {
 			// give every column in importGrid a name: Col_1, Col_2, etc

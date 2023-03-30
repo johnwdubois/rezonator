@@ -76,10 +76,41 @@ function scr_sentStackerLoop() {
 				}
 				prevUnitID = currentUnitID;
 			}
+			
+			// if we are running ai stacker, apply aichat id as a tag of the new stack
+			if (global.project == "import" && global.importType == IMPORTTYPE_AICHAT && is_string(obj_chain.currentFocusedChainID) && obj_chain.currentFocusedChainID != "") {
+				// first let's get the chatID from the first unit
+				var chatID = "";
+				var firstUnitSubMap = global.nodeMap[? firstUnitID];
+				if (scr_isNumericAndExists(firstUnitSubMap, ds_type_map)) {
+					var firstUnitTagMap = firstUnitSubMap[? "tagMap"];
+					if (scr_isNumericAndExists(firstUnitTagMap, ds_type_map)) {
+						chatID = firstUnitTagMap[? "ChatID"];
+					}
+				}
+			
+				show_debug_message("scr_sentStackerLoop, chatID: " + string(chatID));
+				if (is_string(chatID) && chatID != "") {
+					// create a new field for chatID if we need to
+					if (ds_list_find_index(global.chainFieldList, "ChatID") == -1) {
+						obj_control.inputText = "ChatID";
+						scr_dialogueBoxNewCustomFieldChain();
+						obj_control.inputText = "";
+					}
+					
+					// set the tag for this field in stack
+					var focusedChainSubMap = global.nodeMap[? obj_chain.currentFocusedChainID];
+					if (scr_isNumericAndExists(focusedChainSubMap, ds_type_map)) {
+						var focusedChainTagMap = focusedChainSubMap[? "tagMap"];
+						if (scr_isNumericAndExists(focusedChainTagMap, ds_type_map)) {
+							focusedChainTagMap[? "ChatID"] = chatID;
+						}
+					}
+				}
+			}
+			
 			// Unfocus all links and chains
 			scr_chainDeselect();
-
-
 		}
 	
 		ds_list_clear(currentUnitList);

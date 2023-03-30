@@ -7,6 +7,7 @@ function scr_aiNewMessage(author, msg){
 	}
 	
 	var _text = "";
+	var _chatID = "";
 	if (author == obj_aiControl.userAuthor) {
 		// VERIFY USER REQUEST
 		
@@ -101,6 +102,11 @@ function scr_aiNewMessage(author, msg){
 		
 		// get text from content
 		_text = _firstChoiceMessage.content;
+		
+		// check if we can get chatID
+		if (variable_struct_exists(msg, "id")) {
+			if (is_string(msg.id)) _chatID = msg.id;
+		}
 	}
 	
 	
@@ -115,6 +121,8 @@ function scr_aiNewMessage(author, msg){
 	_msgMap[? "author"] = author;
 	_msgMap[? "selected"] = false;
 	_msgMap[? "msgOriginal"] = msg;
+	_msgMap[? "chatID"] = _chatID;
+	show_debug_message("_chatID: " + string(_chatID));
 
 	// add this message to our list of messages
 	with (obj_aiControl) {
