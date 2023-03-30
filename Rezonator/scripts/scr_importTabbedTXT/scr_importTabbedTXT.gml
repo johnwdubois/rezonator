@@ -27,12 +27,23 @@ function scr_importTabbedTXT(delimiter) {
 		}
 	}
 	
-	// give every column in importGrid a name: Col_1, Col_2, etc
+
+	
 	for (i = 0; i < global.importGridWidth; i++) {
-		var colName = "Col";
-		ds_list_add(global.importGridColNameList, colName + "_" + string(i + 1));
+		var colName = "";
+		if (global.importType == IMPORTTYPE_AICHAT && i <= 1) {
+			// name participant & text columns accordingly
+			if (i == 0) colName = "Participant";
+			else if (i == 1) colName = "Text";
+		}
+		else {
+			// give every column in importGrid a name: Col_1, Col_2, etc
+			colName = "Col_" + string(i + 1);
+		}
+		ds_list_add(global.importGridColNameList, colName);
 		ds_map_add(global.importGridColMap, colName, i);
 	}
+
 
 
 	global.tabDelimitedText = true;
