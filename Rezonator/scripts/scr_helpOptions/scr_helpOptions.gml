@@ -30,7 +30,7 @@ function scr_helpOptions(optionSelected) {
 			show_debug_message("Checking for update...");
 			if (instance_exists(obj_firestore)) {
 				with (obj_firestore) {
-					var docPath = "Platforms/"+ string(global.buildType);
+					var docPath = "Platforms/"+ string(BUILDTYPE);
 					FirebaseFirestore(docPath).Read();
 				}
 				global.manualVersionCheck = true;

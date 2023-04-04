@@ -126,7 +126,7 @@ function scr_exportGrids() {
 	
 	
 
-	if (global.steamAPI) {
+	if (STEAMAPI) {
 		if (!steam_get_achievement("SA_export")) {
 			steam_set_achievement("SA_export");
 		}

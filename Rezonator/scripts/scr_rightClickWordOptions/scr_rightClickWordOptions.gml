@@ -164,7 +164,7 @@ function scr_rightClickWordOptions(optionSelected) {
 				&& is_string(obj_panelPane.functionField_tokenFieldSelected) && is_string(obj_panelPane.functionField_tokenTagSelected)) {
 					var tokenTagMap = tokenSubMap[? "tagMap"];
 					if (scr_isNumericAndExists(tokenTagMap, ds_type_map)) {
-						if (global.steamAPI) {
+						if (STEAMAPI) {
 							if (!steam_get_achievement("SA_tag-token")) {
 								steam_set_achievement("SA_tag-token");
 							}

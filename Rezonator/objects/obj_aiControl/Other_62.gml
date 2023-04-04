@@ -9,8 +9,12 @@ if (_id == httpRequestID && _status == 200) {
 		exit;
 	}
 	
-	// parse json and create new ai message
-	var _resultParse = json_parse(_result);
-	scr_aiNewMessage("ChatGPT", _resultParse);
-	
+	try {
+		// parse json and create new ai message
+		var _resultParse = json_parse(_result);
+		scr_aiNewMessage("ChatGPT", _resultParse);
+	}
+	catch (e) {
+		show_debug_message("obj_aiControl, Async HTTP could not parse json");
+	}
 }

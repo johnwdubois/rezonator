@@ -7,7 +7,7 @@ if (runFontSizeTest) {
 			runFontSizeTest = false;
 			alarm[9] = 1;
 			show_debug_message("obj_openingScreen Draw, done with fontSizeTest");
-			if (global.build) with (obj_loadingBar) alarm[0] = 2;
+			if (BUILD) with (obj_loadingBar) alarm[0] = 2;
 		}
 	}
 }

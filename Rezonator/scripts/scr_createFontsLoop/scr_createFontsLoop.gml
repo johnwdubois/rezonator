@@ -6,7 +6,7 @@ function scr_createCJKFontsLoop() {
 	var CKJFont_file_name_full = "IncludedFiles" + delimiter + "Fonts" + delimiter + CKJFont_file_name;
 	
 	// continue creating CJK fonts if build is true
-	if (global.build) {
+	if (BUILD) {
 		
 		if (CJKLoopIteration <= global.fontSizeMax) {
 			scr_createCJKFonts(CKJFont_file_name_full, CJKLoopIteration);

@@ -45,7 +45,7 @@ function scr_tokenTagMapOptions(optionSelected) {
 				type = tokenSubMap[? "type"];
 				var tokenTagMap = tokenSubMap[? "tagMap"];
 				// set the new value in this token's tagmap
-				if (global.steamAPI) {
+				if (STEAMAPI) {
 					if (!steam_get_achievement("SA_tag-token")) {
 						steam_set_achievement("SA_tag-token");
 					}

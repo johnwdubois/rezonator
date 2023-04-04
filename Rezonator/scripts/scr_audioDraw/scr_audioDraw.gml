@@ -286,7 +286,7 @@ function scr_audioDraw() {
 				audioPos = 0;
 				audioPaused = true;
 				
-				if (global.steamAPI) {
+				if (STEAMAPI) {
 					if (!steam_get_achievement("SA_play-audio")) {
 						steam_set_achievement("SA_play-audio");
 					}

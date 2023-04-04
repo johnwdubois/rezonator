@@ -12,10 +12,10 @@ function scr_steamInit() {
 		//show_message("steamStatsReady: " + string(steamStatsReady) + " \nsteamOverlay: " + string(steamOverlay) + " \nsteamAppID: " + string(steamAppID));
 	
 		if (steamStatsReady && steamOverlay) {
-			global.steamAPI = true;
+			STEAMAPI = true;
 		}
 	}
 
-	//show_message("steamAPI: " + string(global.steamAPI));
+	//show_message("steamAPI: " + string(STEAMAPI));
 	
 }

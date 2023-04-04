@@ -2,6 +2,13 @@ function scr_macros(){
 	
 	// this script holds macros used throughout the codebase
 	
+	
+	// build settings
+	#macro BUILD true        // set to TRUE when you want to load CJK fonts, set to FALSE if not
+	#macro BUILDTYPE "Steam" //"Windows_GitHub_Master", "Mac_GitHub_Master", "Windows_GitHub_Release"
+							 //"Mac_GitHub_Release", "Steam", "Windows_Website", "Mac_Website"
+	#macro STEAMAPI true
+	
 	// import types
 	#macro IMPORTTYPE_TRANSCRIPTION "import_type_transcription"
 	#macro IMPORTTYPE_AICHAT "import_type_aichat"
@@ -15,7 +22,5 @@ function scr_macros(){
 	// command keys for mac
 	#macro vk_rcommand 91
 	#macro vk_lcommand 92
-	
-	
 
 }

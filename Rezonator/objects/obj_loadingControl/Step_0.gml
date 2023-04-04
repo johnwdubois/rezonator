@@ -14,7 +14,7 @@ if (importGridRow >= ds_grid_height(global.importGrid) && !finished) {
 	// copy unitList into displayUnitList
 	ds_list_copy(displayUnitList, unitList);
 	scr_addToListOnce(global.usedImports,global.importType);
-	if (global.steamAPI) {
+	if (STEAMAPI) {
 		var currentUsedImports = steam_get_stat_int("SA_imports");
 		var usedImportSize = ds_list_size(global.usedImports);
 		if (usedImportSize > currentUsedImports) {

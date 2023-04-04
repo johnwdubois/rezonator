@@ -41,7 +41,7 @@ function scr_createTreeLink(clickedEntry) {
 	ds_list_add(treeSubMap[? "linkIDList"], linkID);
 	
 	// big tree achievement
-	if (global.steamAPI) {
+	if (STEAMAPI) {
 		var currentMaxTreeHeight = steam_get_stat_int("SA_tree-height");
 		var currentTreeHeight = clickedEntrySubMap[? "level"];
 		

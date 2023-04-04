@@ -1,7 +1,7 @@
 /*
 	Purpose: Instantiate all variables used by control objects
 */
-if (global.steamAPI) {
+if (STEAMAPI) {
 	if (!steam_get_achievement("SA_open-file")) {
 		steam_set_achievement("SA_open-file");
 	}
