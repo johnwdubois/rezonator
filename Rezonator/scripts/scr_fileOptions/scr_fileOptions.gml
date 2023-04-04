@@ -76,7 +76,7 @@ function scr_fileOptions(optionSelected) {
 			break;
 		case "help_label_open":
 		
-			if (global.html5) {
+			if (BUILDTYPE == "Web") {
 				if (instance_exists(obj_dropDown)) {
 					scr_createDropDown(obj_dropDown.x + windowWidth, obj_dropDown.y + (optionIndex * obj_dropDown.optionSpacing), scr_getSBClist(), global.optionListTypeHTML5REZFile);
 				}
@@ -100,7 +100,7 @@ function scr_fileOptions(optionSelected) {
 				scr_loadINI();
 			}
 		
-			if (!global.html5) instance_destroy();
+			if (BUILDTYPE != "Web") instance_destroy();
 			break;
 			
 		case "menu_export":

@@ -1,4 +1,4 @@
-if (global.html5) instance_destroy();
+if (BUILDTYPE == "Web") instance_destroy();
 
 scr_scrollBarInit();
 inputDelay = 10;

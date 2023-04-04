@@ -3,7 +3,7 @@
 */
 
 
-if (!global.html5) window_command_hook(window_command_close);
+if (BUILDTYPE != "Web") window_command_hook(window_command_close);
 
 global.ctrlHold = false;
 

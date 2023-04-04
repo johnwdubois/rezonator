@@ -47,13 +47,13 @@ function scr_openingMenu() {
 	}
 	
 	// if opening an html5 rez file, we just need the filename string
-	if (global.html5 && is_string(global.html5RezFile) && global.html5RezFile != "") {
+	if (BUILDTYPE == "Web" && is_string(global.html5RezFile) && global.html5RezFile != "") {
 		_selectOpenButton = true;
 	}
 	
 	// if the user clicks the open button (or has used the Open option from the menu bar)
 	if (_selectOpenButton) {
-		if (global.html5 && (!is_string(global.html5RezFile) || global.html5RezFile == "")) {
+		if (BUILDTYPE == "Web" && (!is_string(global.html5RezFile) || global.html5RezFile == "")) {
 			scr_createDropDown(mouse_x, mouse_y, scr_getSBClist(), global.optionListTypeHTML5REZFile);
 		}
 		else {
@@ -93,7 +93,7 @@ function scr_openingMenu() {
 		draw_rectangle(newProjectButtonX1, newProjectButtonY1, newProjectButtonX2, newProjectButtonY2, false);
 	
 		if (device_mouse_check_button_released(0, mb_left)) {
-			if (global.html5) {
+			if (BUILDTYPE == "Web") {
 				show_message("Import is currently not available for browser use.")
 			}
 			else {
@@ -178,9 +178,9 @@ function scr_openingMenu() {
 	var rememberMeBoxY1 = userSignInBoxY2 + (stringHeight * 0.75);
 	var rememberMeBoxX2 = rememberMeBoxX1 + rememberMeButtonWidth;
 	var rememberMeBoxY2 = rememberMeBoxY1 + rememberMeButtonWidth;
-	var mouseoverRememberMeBox = point_in_rectangle(mouse_x, mouse_y,rememberMeBoxX1, rememberMeBoxY1, rememberMeBoxX2, rememberMeBoxY2) && !global.html5;
+	var mouseoverRememberMeBox = point_in_rectangle(mouse_x, mouse_y,rememberMeBoxX1, rememberMeBoxY1, rememberMeBoxX2, rememberMeBoxY2) && BUILDTYPE != "Web";
 	
-	if (!global.html5) {
+	if (BUILDTYPE != "Web") {
 		draw_set_color(global.colorThemeText);
 		draw_rectangle(rememberMeBoxX1, rememberMeBoxY1, rememberMeBoxX2, rememberMeBoxY2, true);
 	

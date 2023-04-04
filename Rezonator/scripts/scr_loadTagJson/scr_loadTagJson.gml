@@ -1,6 +1,6 @@
 function scr_loadTagJson(fileName) {
 	
-	if (global.html5) exit;
+	if (BUILDTYPE == "Web") exit;
 	show_debug_message("scr_loadTagJson, fileName: " + string(fileName));
 	
 	if (!is_string(fileName)) {

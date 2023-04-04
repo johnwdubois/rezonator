@@ -32,7 +32,7 @@ function scr_panelPane_drawChains1ToManyHeaders() {
 		}
 	}
 	
-	if (!global.html5) scr_surfaceStart();
+	if (BUILDTYPE != "Web") scr_surfaceStart();
 	
 	if (scr_isNumericAndExists(chain1toManyColFieldList, ds_type_list)) {
 		
@@ -236,7 +236,7 @@ function scr_panelPane_drawChains1ToManyHeaders() {
 		}
 	}
 	
-	if (!global.html5) scr_surfaceEnd();
+	if (BUILDTYPE != "Web") scr_surfaceEnd();
 	
 	// draw horizontal line between headers and contents
 	draw_line(x , y + tabHeight , x + windowWidth , y + tabHeight);

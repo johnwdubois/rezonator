@@ -8,7 +8,7 @@ function scr_expandableDropDownInit() {
 	ds_list_add(deleteAllList, global.optionListTypeEdit);
 	ds_map_add_list(global.expandableDropDownMap, "menu_delete-all", deleteAllList);
 	
-	if (global.html5) {
+	if (BUILDTYPE == "Web") {
 		var openList = ds_list_create();
 		ds_list_add(openList, global.optionListTypeFile);
 		ds_map_add_list(global.expandableDropDownMap, "help_label_open", openList);

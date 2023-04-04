@@ -22,7 +22,7 @@ function scr_dialogueNo() {
 					global.skipToImportScreen = obj_control.saveBeforeImporting;
 					global.skipToOpen = obj_control.saveBeforeOpening;
 					global.skipToAiChat = obj_control.saveBeforeAiChat;
-					if (global.html5) global.html5RezFile = "";
+					if (BUILDTYPE == "Web") global.html5RezFile = "";
 					show_debug_message("Going to openingScreen, scr_dialogueNo");
 					room_goto(rm_openingScreen);
 					scr_loadINI();

@@ -2,7 +2,7 @@ function scr_URLOpenReliable(url) {
 	
 	// GameMaker's url_open function is a bit unreliable for Windows,
 	// so we use execute shell to launch the browser
-	if (global.html5) {
+	if (BUILDTYPE == "Web") {
 		url_open(url);
 	}
 	else if (os_type == os_windows) {

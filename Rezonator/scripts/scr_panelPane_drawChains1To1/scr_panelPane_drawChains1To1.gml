@@ -59,7 +59,7 @@ function scr_panelPane_drawChains1To1() {
 	var listOfChainsSize = ds_list_size(chainList);
 	
 	
-	if (!global.html5) scr_surfaceStart();
+	if (BUILDTYPE != "Web") scr_surfaceStart();
 	
 	
 	var strHeight = leftPaneStrHeight;
@@ -210,7 +210,7 @@ function scr_panelPane_drawChains1To1() {
 		global.colorThemeSelected1, global.colorThemeSelected2, spr_ascend, windowWidth, windowHeight);
 	
 	
-	if (!global.html5) scr_surfaceEnd();
+	if (BUILDTYPE != "Web") scr_surfaceEnd();
 	
 	scr_panelPane_drawChains1To1Headers(chain1to1ColFieldList, chainType);
 	

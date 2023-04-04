@@ -7,7 +7,7 @@ function scr_initializeFonts() {
 		
 	show_debug_message("font_file_name: " + string(font_file_name));
 	
-	global.fontSizeMax = 12;
+	global.fontSizeMax = BUILDTYPE == "Web" ? 6 : 12;
 	global.fontMap = ds_map_create();
 	
 	for (var i = 0; i < global.fontSizeMax + 1; i++) {

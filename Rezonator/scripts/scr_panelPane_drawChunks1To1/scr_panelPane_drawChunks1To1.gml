@@ -36,7 +36,7 @@ function scr_panelPane_drawChunks1To1() {
 	var chunkFieldListSize = ds_list_size(chunkFieldList);
 	var selectedChunkIndex = -1;
 	
-	if (!global.html5) scr_surfaceStart();
+	if (BUILDTYPE != "Web") scr_surfaceStart();
 
 
 	
@@ -182,7 +182,7 @@ function scr_panelPane_drawChunks1To1() {
 
 	scr_navWindowTaggingSelection(chunkFieldList, chunkList, "chunk");
 	
-	if (!global.html5) scr_surfaceEnd();
+	if (BUILDTYPE != "Web") scr_surfaceEnd();
 	
 	scr_panelPane_drawChunks1To1Headers(chunkFieldList);
 	

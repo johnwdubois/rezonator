@@ -461,7 +461,7 @@ function scr_panelPane_drawFieldList() {
 		draw_set_alpha(0.7)
 		draw_roundrect(mean(loadRectX1,loadRectX2)-optionsIconRad,mean(loadRectY1,loadRectY2)-optionsIconRad,mean(loadRectX1,loadRectX2)+optionsIconRad,mean(loadRectY1,loadRectY2)+optionsIconRad, false);
 		if (device_mouse_check_button_released(0,mb_left)) {
-			if (global.html5) {
+			if (BUILDTYPE == "Web") {
 				show_message("Loading Tag JSON is currently not available for browser use.");
 				exit;
 			}

@@ -16,12 +16,11 @@ global.lang_index		= 0;
 global.locale_map		= ds_map_create();		// create a dictionary that stores the glossaries for all supported languages
 global.locale_gloss		= ds_map_create();		// create a dictionary that stores the glossary for a single language
 
-global.html5 = os_browser != browser_not_a_browser;
 global.html5RezFile = "";
 global.html5FileRipStr = "";
 
 var delimiter = (os_type == os_windows) ? "\\" : "/";
-if (global.html5) delimiter = "/";
+if (BUILDTYPE == "Web") delimiter = "/";
 
 if (true) {
 	default_locale_code		= "en";
@@ -31,7 +30,7 @@ if (true) {
 	native_locale_index		= 0;
 	show_debug_message("OS locale: " + native_locale_code);
 
-	if (global.html5) {
+	if (BUILDTYPE == "Web") {
 		scr_loadLocaleFile("locale_ca.json", delimiter);
 		scr_loadLocaleFile("locale_en.json", delimiter);
 		scr_loadLocaleFile("locale_es.json", delimiter);

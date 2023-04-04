@@ -43,11 +43,11 @@ function scr_panelPane_drawChains1ToMany() {
 
 
 
-	if (!global.html5) scr_surfaceStart();
+	if (BUILDTYPE != "Web") scr_surfaceStart();
 	
 	
 	if (!scr_isNumericAndExists(chain1toManyColFieldList, ds_type_list)) {
-		if (!global.html5) scr_surfaceEnd();
+		if (BUILDTYPE != "Web") scr_surfaceEnd();
 		exit;
 	}
 
@@ -67,7 +67,7 @@ function scr_panelPane_drawChains1ToMany() {
 	
 	// make sure chain exists and that its submap exists
 	if (!scr_isNumericAndExists(chainSubMap, ds_type_map)) {
-		if (!global.html5) scr_surfaceEnd();
+		if (BUILDTYPE != "Web") scr_surfaceEnd();
 		
 		if (functionChainList_currentTab == functionChainList_tabRezBrush) {
 			if (is_string(obj_chain.resonancePrevFocused) && obj_chain.resonancePrevFocused != "") {
@@ -101,7 +101,7 @@ function scr_panelPane_drawChains1ToMany() {
 	// make sure that we have a valid chain type
 	if (chainType != "resonance" && chainType != "trail" && chainType != "stack") {
 		with (obj_panelPane) functionChainContents_chainID = "";
-		if (!global.html5) scr_surfaceEnd();
+		if (BUILDTYPE != "Web") scr_surfaceEnd();
 		exit;
 	}
 	
@@ -110,7 +110,7 @@ function scr_panelPane_drawChains1ToMany() {
 	|| (chainType == "trail" && functionChainList_currentTab != functionChainList_tabTrackBrush)
 	|| (chainType == "stack" && functionChainList_currentTab != functionChainList_tabStackBrush)) {
 		with (obj_panelPane) functionChainContents_chainID = "";
-		if (!global.html5) scr_surfaceEnd();
+		if (BUILDTYPE != "Web") scr_surfaceEnd();
 		exit;
 	}
 	
@@ -247,6 +247,6 @@ function scr_panelPane_drawChains1ToMany() {
 
 	scr_scrollMouseControls(strHeight);
 
-	if (!global.html5) scr_surfaceEnd();
+	if (BUILDTYPE != "Web") scr_surfaceEnd();
 
 }

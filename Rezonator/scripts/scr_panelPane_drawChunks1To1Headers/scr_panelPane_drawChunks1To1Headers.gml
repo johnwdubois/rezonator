@@ -1,6 +1,6 @@
 function scr_panelPane_drawChunks1To1Headers(fieldList) {
 	
-	if (!global.html5) scr_surfaceStart();
+	if (BUILDTYPE != "Web") scr_surfaceStart();
 	
 	var headerHeight = functionTabs_tabHeight;
 	var textMarginLeft = 8;
@@ -106,6 +106,6 @@ function scr_panelPane_drawChunks1To1Headers(fieldList) {
 	
 	}
 	
-	if (!global.html5) scr_surfaceEnd();
+	if (BUILDTYPE != "Web") scr_surfaceEnd();
 
 }
