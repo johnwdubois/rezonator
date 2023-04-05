@@ -29,9 +29,7 @@ function scr_loadREZ() {
 	}
 	
 	
-	
-	
-
+	if (!is_string(global.rezonatorDirString)) global.rezonatorDirString = "";
 	var delimiter = (os_type == os_macosx) ? "/" : "\\";
 	var RezDirString = global.rezonatorDirString + delimiter + "Data" + delimiter + "SBCorpus" + delimiter + "REZ";
 
@@ -40,9 +38,11 @@ function scr_loadREZ() {
 		RezDirString = global.previousRezDirectory;
 	
 		// trimming the spaces off of RezDirString
+		var attempts = 0;
 		var charAt = string_length(RezDirString);
-		while (string_char_at(RezDirString, charAt) == " " and charAt > 0) {
+		while (string_char_at(RezDirString, charAt) == " " && charAt > 0 && attempts < 1000) {
 			charAt--;
+			attempts++;
 		}
 		RezDirString = string_delete(RezDirString, charAt, string_length(RezDirString) - charAt);
 	}

@@ -588,6 +588,7 @@
     {"name":"json_compare","order":21,"path":"scripts/json_compare/json_compare.yy",},
     {"name":"scr_gridViewDrawBackArrow","order":6,"path":"scripts/scr_gridViewDrawBackArrow/scr_gridViewDrawBackArrow.yy",},
     {"name":"scr_getChainFieldList","order":39,"path":"scripts/scr_getChainFieldList/scr_getChainFieldList.yy",},
+    {"name":"scr_checkVersion","order":36,"path":"scripts/scr_checkVersion/scr_checkVersion.yy",},
     {"name":"scr_sortChainList","order":56,"path":"scripts/scr_sortChainList/scr_sortChainList.yy",},
     {"name":"scr_updateFilteredChainLists","order":30,"path":"scripts/scr_updateFilteredChainLists/scr_updateFilteredChainLists.yy",},
     {"name":"g_UTF8","order":3,"path":"scripts/g_UTF8/g_UTF8.yy",},

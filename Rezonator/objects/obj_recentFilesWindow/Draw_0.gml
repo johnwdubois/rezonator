@@ -221,7 +221,8 @@ if (mouseoverOpenDirButton) {
 
 // restore autosave button
 var delimiter = (os_type == os_windows) ? "\\" : "/";
-var autosaveFilePath = global.rezonatorDirString + delimiter + "Autosave" + delimiter + "autosave.rez";
+//if (!is_string())
+var autosaveFilePath = string(global.rezonatorDirString) + delimiter + "Autosave" + delimiter + "autosave.rez";
 var autosaveExists = file_exists(autosaveFilePath);
 if (autosaveExists) {
 	var restoreAutoText = scr_get_translation("menu_restore-autosave");

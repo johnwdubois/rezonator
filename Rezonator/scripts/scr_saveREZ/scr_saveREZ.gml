@@ -204,8 +204,8 @@ function scr_saveREZ(autosave) {
 		}
 		
 		if (os_type == os_macosx) {
+			if (!is_string(global.rezonatorDirString)) global.rezonatorDirString = "";
 			if (directory_exists(global.rezonatorDirString + "/Autosave")) {
-		
 				scr_saveFileBuffer(working_directory + "autosave.rez", global.rezonatorDirString + "/Autosave/autosave.rez", jsonString);
 			}
 			else {

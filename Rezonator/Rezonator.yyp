@@ -754,6 +754,7 @@
     {"id":{"name":"json_compare","path":"scripts/json_compare/json_compare.yy",},},
     {"id":{"name":"scr_gridViewDrawBackArrow","path":"scripts/scr_gridViewDrawBackArrow/scr_gridViewDrawBackArrow.yy",},},
     {"id":{"name":"scr_getChainFieldList","path":"scripts/scr_getChainFieldList/scr_getChainFieldList.yy",},},
+    {"id":{"name":"scr_checkVersion","path":"scripts/scr_checkVersion/scr_checkVersion.yy",},},
     {"id":{"name":"scr_sortChainList","path":"scripts/scr_sortChainList/scr_sortChainList.yy",},},
     {"id":{"name":"scr_updateFilteredChainLists","path":"scripts/scr_updateFilteredChainLists/scr_updateFilteredChainLists.yy",},},
     {"id":{"name":"g_UTF8","path":"scripts/g_UTF8/g_UTF8.yy",},},
