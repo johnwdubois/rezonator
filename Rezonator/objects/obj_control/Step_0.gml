@@ -497,21 +497,6 @@ gridSpaceHorizontal = clamp(gridSpaceHorizontal, gridSpaceHorizontalMin, gridSpa
 gridSpaceVertical = clamp(gridSpaceVertical, gridSpaceVerticalMin, gridSpaceVerticalMax);
 
 
-// exit with SHIFT+Q
-if (keyboard_check(vk_shift) and keyboard_check_pressed(ord("Q")) ) {
-	audio_stop_all();
-	if (allSaved) {
-		scr_saveINI();
-		keyboard_string = "";
-		if (global.html5) global.html5RezFile = "";
-		show_debug_message("Going to openingScreen, obj_control Step");
-		room_goto(rm_openingScreen);
-		scr_loadINI();
-	}
-	else {
-		scr_fileOptions("menu_exit");
-	}
-}
 
 
 
