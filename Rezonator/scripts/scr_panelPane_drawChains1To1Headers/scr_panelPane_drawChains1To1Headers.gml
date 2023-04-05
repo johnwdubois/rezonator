@@ -4,7 +4,7 @@ function scr_panelPane_drawChains1To1Headers(chain1to1ColFieldList, chainType) {
 	if (chainType == "resonance") entryType = "rez";
 	else if (chainType == "trail") entryType = "track";
 	else if (chainType == "stack") entryType = "card";
-	if (!global.html5) scr_surfaceStart();
+	if (BUILDTYPE != "Web") scr_surfaceStart();
 	
 	var headerHeight = functionTabs_tabHeight;
 	var textMarginLeft = 8;
@@ -138,6 +138,6 @@ function scr_panelPane_drawChains1To1Headers(chain1to1ColFieldList, chainType) {
 		}
 	}
 	
-	if (!global.html5) scr_surfaceEnd();
+	if (BUILDTYPE != "Web") scr_surfaceEnd();
 
 }

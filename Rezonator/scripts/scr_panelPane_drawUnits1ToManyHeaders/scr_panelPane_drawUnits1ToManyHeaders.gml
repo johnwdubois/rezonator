@@ -9,7 +9,7 @@ function scr_panelPane_drawUnits1ToManyHeaders() {
 	var plusX = x;
 	var mouseoverCancel = !point_in_rectangle(mouse_x, mouse_y, x, y, x + windowWidth, y + windowHeight) || instance_exists(obj_dropDown) || instance_exists(obj_dialogueBox) || instance_exists(obj_sizeWindow);
 	
-	if (!global.html5) scr_surfaceStart();
+	if (BUILDTYPE != "Web") scr_surfaceStart();
 	
 	
 	for (var i = 0; i < headerListSize; i++) {
@@ -131,6 +131,6 @@ function scr_panelPane_drawUnits1ToManyHeaders() {
 	draw_set_color(global.colorThemeBorders);
 	draw_line(x- clipX, y + headerHeight- clipY, x + windowWidth- clipX, y + headerHeight- clipY);
 	
-	if (!global.html5) scr_surfaceEnd();
+	if (BUILDTYPE != "Web") scr_surfaceEnd();
 	
 }

@@ -63,18 +63,40 @@ function scr_adaptFont(str, size, isTitle = false) {
 	var fontScaledName = fnt_nonCJK_size3;
 	if (isCJK) {
 		if (setTitleFont) {
-			fontScaledName = global.html5 ? fnt_CJK_size3 : global.localeCJK_Title;
+			// CJK TITLE FONT
+			if (BUILDTYPE == "Web") fontScaledName = fnt_CJK_size3;
+			else fontScaledName = global.localeCJK_Title;
 		}
 		else {
-			fontScaledName = global.fontMap[? "CJK_" + size + "_" + string(global.fontSize)];
+			// CJK NON-TITLE FONT
+			if (BUILDTYPE == "Web") {
+				if (global.fontSize == 0) fontScaledName = fnt_CJK_size1;
+				else if (global.fontSize == 1) fontScaledName = fnt_CJK_size2;
+				else if (global.fontSize == 2) fontScaledName = fnt_CJK_size3;
+				else if (global.fontSize == 3) fontScaledName = fnt_CJK_size4;
+				else if (global.fontSize == 4) fontScaledName = fnt_CJK_size5;
+				else fontScaledName = fnt_CJK_size6;
+			}
+			else fontScaledName = global.fontMap[? "CJK_" + size + "_" + string(global.fontSize)];
 		}
 	}
 	else {
 		if (setTitleFont) {
-			fontScaledName = global.html5 ? fnt_nonCJK_size3 : global.localeEN_Title;
+			// NON-CJK TITLE FONT
+			if (BUILDTYPE == "Web") fontScaledName = fnt_nonCJK_size3;
+			else fontScaledName = global.localeEN_Title;
 		}
 		else {
-			fontScaledName = global.fontMap[? "nonCJK_" + size + "_" + string(global.fontSize)];
+			// NON-CJK NON-TITLE FONT
+			if (BUILDTYPE == "Web") {
+				if (global.fontSize == 0) fontScaledName = fnt_nonCJK_size1;
+				else if (global.fontSize == 1) fontScaledName = fnt_nonCJK_size2;
+				else if (global.fontSize == 2) fontScaledName = fnt_nonCJK_size3;
+				else if (global.fontSize == 3) fontScaledName = fnt_nonCJK_size4;
+				else if (global.fontSize == 4) fontScaledName = fnt_nonCJK_size5;
+				else fontScaledName = fnt_nonCJK_size6;
+			}
+			else fontScaledName = global.fontMap[? "nonCJK_" + size + "_" + string(global.fontSize)];
 		}
 	}
 	

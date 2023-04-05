@@ -1,6 +1,6 @@
 function scr_createRezDirectory() {
 	
-	if (global.html5) {
+	if (BUILDTYPE == "Web") {
 		global.rezonatorDirString = "";
 		global.documentsDirString = "";
 		global.rezonatorDefaultDiscourseDirString = "";

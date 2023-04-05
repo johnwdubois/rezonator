@@ -1,6 +1,6 @@
 function scr_panelPane_drawUnits1to1() {
 
-	if (!global.html5) scr_surfaceStart();
+	if (BUILDTYPE != "Web") scr_surfaceStart();
 	
 	
 	// Access the lineList panelPane object to get it's scrollPlusY
@@ -276,7 +276,7 @@ function scr_panelPane_drawUnits1to1() {
 	
 	scr_navWindowTaggingSelection(obj_control.navUnitFieldList, displayUnitList, "unit");
 	
-	if (!global.html5) scr_surfaceEnd();
+	if (BUILDTYPE != "Web") scr_surfaceEnd();
 	
 	scr_panelPane_drawUnits1To1Headers();
 	

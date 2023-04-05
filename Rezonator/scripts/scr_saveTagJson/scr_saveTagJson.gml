@@ -1,6 +1,6 @@
 function scr_saveTagJson() {
 	
-	if (global.html5) {
+	if (BUILDTYPE == "Web") {
 		show_message("Saving Tag JSON is currently not available for browser use.");
 		exit;
 	}

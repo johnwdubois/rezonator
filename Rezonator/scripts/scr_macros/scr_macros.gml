@@ -5,8 +5,8 @@ function scr_macros(){
 	
 	// build settings
 	#macro BUILD true        // set to TRUE when you want to load CJK fonts, set to FALSE if not
-	#macro BUILDTYPE "Steam" //"Windows_GitHub_Master", "Mac_GitHub_Master", "Windows_GitHub_Release"
-							 //"Mac_GitHub_Release", "Steam", "Windows_Website", "Mac_Website"
+	#macro BUILDTYPE "Web" //"Windows_GitHub_Master", "Mac_GitHub_Master", "Windows_GitHub_Release"
+										//"Mac_GitHub_Release", "Steam", "Windows_Website", "Mac_Website", "Web"
 	#macro STEAMAPI true
 	
 	// import types

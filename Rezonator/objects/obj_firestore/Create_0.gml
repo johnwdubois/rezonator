@@ -1,3 +1,3 @@
-if (global.html5) instance_destroy();
+if (BUILDTYPE == "Web") instance_destroy();
 
 alarm[0] = 2;

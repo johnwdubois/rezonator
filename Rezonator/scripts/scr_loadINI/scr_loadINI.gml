@@ -1,6 +1,6 @@
 function scr_loadINI() {
 
-	if (global.html5) exit;
+	if (BUILDTYPE == "Web") exit;
 	
 	// get filepath for ini
 	var fileName = "";

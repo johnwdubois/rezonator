@@ -1,6 +1,6 @@
 function scr_loadREZ() {
 	
-	if (global.html5) {
+	if (BUILDTYPE == "Web") {
 		
 		var html5filename = working_directory + "IncludedFiles/Data/SBCorpus/REZ_beautify/" + global.html5RezFile + ".rez";
 		if (file_exists(html5filename)) {
@@ -22,7 +22,7 @@ function scr_loadREZ() {
 		}
 		else {
 			show_message("ERROR. " + string(global.html5RezFile) + " does not exist");
-			if (global.html5) global.html5RezFile = "";
+			if (BUILDTYPE == "Web") global.html5RezFile = "";
 			room_goto(rm_openingScreen);
 		}
 		exit;

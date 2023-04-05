@@ -1,6 +1,6 @@
 function scr_windowCameraAdjust() {
 	
-	if (global.html5 && os_type != os_linux) {
+	if (BUILDTYPE == "Web" && os_type != os_linux) {
 		
 		var base = browser_width;
 		var browserWidth = browser_width;
