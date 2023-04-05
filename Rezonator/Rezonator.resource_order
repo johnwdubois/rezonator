@@ -322,6 +322,7 @@
     {"name":"obj_alarm2","order":1,"path":"objects/obj_alarm2/obj_alarm2.yy",},
     {"name":"libdlgmodule","order":8,"path":"extensions/libdlgmodule/libdlgmodule.yy",},
     {"name":"scr_exportGrids","order":2,"path":"scripts/scr_exportGrids/scr_exportGrids.yy",},
+    {"name":"scr_strOnlyNumAndPeriod","order":15,"path":"scripts/scr_strOnlyNumAndPeriod/scr_strOnlyNumAndPeriod.yy",},
     {"name":"scr_refreshPrevTokenUnit","order":7,"path":"scripts/scr_refreshPrevTokenUnit/scr_refreshPrevTokenUnit.yy",},
     {"name":"scr_refreshDisplayCol","order":2,"path":"scripts/scr_refreshDisplayCol/scr_refreshDisplayCol.yy",},
     {"name":"scr_parseValue","order":20,"path":"scripts/scr_parseValue/scr_parseValue.yy",},

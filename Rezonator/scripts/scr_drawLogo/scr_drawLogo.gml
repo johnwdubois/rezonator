@@ -10,7 +10,7 @@ function scr_drawLogo(logoX, logoY, drawVersion) {
 		draw_set_halign(fa_right);
 		draw_set_valign(fa_middle);
 		draw_set_color(global.colorThemeText);
-		scr_adaptFont(string(global.versionString), "S");
+		scr_adaptFont(string(global.currentVersionStrFull), "S");
 		var versionTextX = 0;
 		var versionTextY = 0;
 		if (global.fontSize == 0) {
@@ -42,6 +42,6 @@ function scr_drawLogo(logoX, logoY, drawVersion) {
 			versionTextX -= string_width("000000");
 		}
 		
-		draw_text(versionTextX, versionTextY, global.versionString);
+		draw_text(versionTextX, versionTextY, global.currentVersionStrFull);
 	}
 }

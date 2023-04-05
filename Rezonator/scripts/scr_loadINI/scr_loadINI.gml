@@ -4,8 +4,6 @@ function scr_loadINI() {
 	
 	try {
 	
-		global.rezonatorDirString = undefined;
-	
 		// get filepath for ini
 		var fileName = "";
 		if (os_type == os_macosx) {

@@ -16,10 +16,9 @@ global.toolPaneWidth = 100;
 
 
 
-global.versionString = string(game_display_name);
-global.versionString = string_replace_all(global.versionString, "Rezonator", "");
-global.versionString = string_replace_all(global.versionString, "Web ", "");
-global.versionString = "Version" + global.versionString;
+global.currentVersionStr = scr_strOnlyNumAndPeriod(game_display_name);
+global.currentVersionStrFull = "Version " + global.currentVersionStr;
+show_debug_message("obj_openingScreen, create, currentVersionStr: " + string(global.currentVersionStr) + ", currentVersionStrFull: " + string(global.currentVersionStrFull));
 
 global.schemaFileName = "";
 

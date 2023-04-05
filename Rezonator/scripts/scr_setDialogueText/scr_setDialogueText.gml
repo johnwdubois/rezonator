@@ -5,12 +5,12 @@ function scr_setDialogueText() {
 	
 	if (room == rm_openingScreen) {
 		if (obj_openingScreen.downloadDialogue) {
-			titleText = is_string(global.newVersionStr) ? global.newVersionStr : "";
+			titleText = is_string(global.newVersionStrFull) ? global.newVersionStrFull : "";
 			descriptionText = scr_get_translation("msg_new-version-available");
 			exit;
 		}
 		else if (obj_openingScreen.versionUpToDate) {
-			titleText = global.versionString;
+			titleText = global.currentVersionStrFull;
 			descriptionText = scr_get_translation("msg_version-up-to-date");
 			exit;
 		}
@@ -39,7 +39,7 @@ function scr_setDialogueText() {
 				descriptionText = scr_get_translation("msg_warning_clear_focused_stack");
 			}
 			else if (obj_control.downloadDialogue) {
-				titleText = is_string(global.newVersionStr) ? global.newVersionStr : "";
+				titleText = is_string(global.newVersionStrFull) ? global.newVersionStrFull : "";
 				descriptionText = scr_get_translation("msg_new-version-available");
 			}
 			else if (obj_control.deleteChunk != "" && is_string(obj_control.deleteChunk)) {
@@ -389,7 +389,7 @@ function scr_setDialogueText() {
 				descriptionText = "Different participants: Cannot merge units"; // localize
 			}
 			if (obj_control.versionUpToDate) {
-				titleText = global.versionString;
+				titleText = global.currentVersionStrFull;
 				descriptionText = scr_get_translation("msg_version-up-to-date");
 			}
 		}

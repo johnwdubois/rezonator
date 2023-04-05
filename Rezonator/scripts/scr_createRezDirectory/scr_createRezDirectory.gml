@@ -26,7 +26,7 @@ function scr_createRezDirectory() {
 	else if (os_type == os_linux) {
 		global.documentsDirString = "/Users/" + string(userStr) + "/Documents";
 	}
-	global.rezonatorDirString = global.documentsDirString + delimiter + "Rezonator" + delimiter + global.versionString;
+	global.rezonatorDirString = global.documentsDirString + delimiter + "Rezonator" + delimiter + global.currentVersionStrFull;
 	global.rezonatorDefaultDiscourseDirString = global.rezonatorDirString + delimiter + "Data";
 	global.rezonatorSchemaDirString = global.rezonatorDirString + delimiter + "Schemas";
 	global.rezonatorREZFileDir = global.rezonatorDirString + delimiter + "Data" + delimiter + "SBCorpus" + delimiter + "REZ";

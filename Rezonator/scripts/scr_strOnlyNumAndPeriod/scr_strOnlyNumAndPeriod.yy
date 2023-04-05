@@ -1,11 +1,11 @@
 {
   "resourceType": "GMScript",
   "resourceVersion": "1.0",
-  "name": "scr_getVersion",
+  "name": "scr_strOnlyNumAndPeriod",
   "isCompatibility": false,
   "isDnD": false,
   "parent": {
-    "name": "fireBase",
-    "path": "folders/Scripts/fireBase.yy",
+    "name": "string",
+    "path": "folders/Scripts/functions/string.yy",
   },
 }

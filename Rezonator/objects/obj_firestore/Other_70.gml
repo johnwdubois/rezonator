@@ -1,5 +1,5 @@
 /// @description check version & prompt update
-show_debug_message("Async Social Called");
+show_debug_message("obj_firestore, Async Social");
 
 if (async_load[? "type"] == "FirebaseFirestore_Document_Read") {
 	// DOC READ
@@ -9,15 +9,15 @@ if (async_load[? "type"] == "FirebaseFirestore_Document_Read") {
 		var docMap = json_decode(value);
 		if (scr_isNumericAndExists(docMap, ds_type_map)) {
 		
-			global.newestVersionNum = docMap[? "Version"];
-			show_debug_message("global.newestVersionNum: " + string(global.newestVersionNum));
+			global.newVersionStr = scr_strOnlyNumAndPeriod(docMap[? "Version"]);
+			show_debug_message("global.newVersionStr: " + global.newVersionStr);
 
-			if (is_string(global.newestVersionNum) && global.newestVersionNum != "") {
+			if (is_string(global.newVersionStr) && global.newVersionStr != "") {
 			
-				global.newVersionStr = "Version " + string(global.newestVersionNum);
-				show_debug_message("global.versionString: " + string(global.versionString) + " , newestVersionStr: " + global.newVersionStr); 
+				global.newVersionStrFull = "Version " + string(global.newVersionStr);
+				show_debug_message("global.currentVersionStr: " + string(global.currentVersionStr) + " , global.newVersionStr: " + global.newVersionStr);
 				
-				if (global.newVersionStr == global.versionString) {
+				if (scr_checkVersion(global.currentVersionStr, global.newVersionStr)) {
 					show_debug_message("Version up to date! initialVersionCheck: " + string(global.initialVersionCheck) + ", manualVersionCheck: " + string(global.manualVersionCheck));
 					if (room == rm_openingScreen) {
 						if (global.manualVersionCheck) {

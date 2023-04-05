@@ -27,6 +27,7 @@ if (true) {
 	default_locale_index	= 0;
 
 	native_locale_code		= os_get_language();	// return language of user's system
+	if (native_locale_code == "zh" || native_locale_code == "ja") native_locale_code = "en";
 	native_locale_index		= 0;
 	show_debug_message("OS locale: " + native_locale_code);
 
