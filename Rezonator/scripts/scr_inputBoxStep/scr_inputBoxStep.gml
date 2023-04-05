@@ -238,8 +238,8 @@ function scr_inputBoxStep() {
 	highlightIndex = clamp(highlightIndex, 0, string_length(str));
 
 	// get strToCursor, so we know where to draw the cursor
-	strToCursor = string_copy(str, 1, cursorIndex);
-	strToHighlight = string_copy(str, 1, highlightIndex);
+	strToCursor = string_copy(strDisplay, 1, cursorIndex);
+	strToHighlight = string_copy(strDisplay, 1, highlightIndex);
 
 	// release command holding keys for mac
 	if (os_type == os_macosx) {
@@ -255,9 +255,8 @@ function scr_inputBoxStep() {
 	// decrease doubleClickTimer
 	doubleClickTimer = max(doubleClickTimer - 1, 0);
 	
-	
+	// nav window tagging
 	if (navWindowTagging && instance_exists(obj_control)) {
-		
 		if (keyEnterPressed) {
 			if (instance_exists(obj_alarm2)) {
 				with (obj_control) {
@@ -278,5 +277,12 @@ function scr_inputBoxStep() {
 			}
 		}
 	}
+	
+	// hide/censor input string if necessary
+	var hideStr = false;
+	if (instance_exists(obj_aiControl)) {
+		if (!obj_aiControl.showApiKey && obj_aiControl.instInputBox_ApiKey == self.id) hideStr = true;
+	}
+	strDisplay = hideStr ? string_repeat("•", string_length(str)) : str;
 	
 }

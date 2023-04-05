@@ -3,7 +3,7 @@ function scr_inputBoxDraw() {
 	// set text positions and window height
 	var fontSize = navWindowTagging ? "S" : "M";
 	scr_adaptFont(str, fontSize);
-	var strLen = string_length(str);
+	var strLen = string_length(strDisplay);
 	var strHeight = string_height("A");
 	var textMarginX = 10;
 	var textMarginY = 10;
@@ -80,7 +80,7 @@ function scr_inputBoxDraw() {
 		
 		// find closest character to mouse
 		for (var i = 0; i <= strLen; i++) {
-			var subStr = string_copy(str, 1, i);
+			var subStr = string_copy(strDisplay, 1, i);
 			var subStrX = textX + string_width(subStr);
 			var subStrY = textY;
 			var distToMouse = point_distance(mouse_x, mouse_y, subStrX, subStrY);
@@ -115,9 +115,9 @@ function scr_inputBoxDraw() {
 		// double click to select word
 		if (doubleClick) {
 			doubleClick = false;
-			while (scr_isCharLetter(string_char_at(str, cursorIndex)) && cursorIndex < strLen) cursorIndex++;
-			while (scr_isCharLetter(string_char_at(str, highlightIndex)) && highlightIndex > 0) highlightIndex--;
-			if (cursorIndex < strLen || !scr_isCharLetter(string_char_at(str, cursorIndex))) cursorIndex--;
+			while (scr_isCharLetter(string_char_at(strDisplay, cursorIndex)) && cursorIndex < strLen) cursorIndex++;
+			while (scr_isCharLetter(string_char_at(strDisplay, highlightIndex)) && highlightIndex > 0) highlightIndex--;
+			if (cursorIndex < strLen || !scr_isCharLetter(string_char_at(strDisplay, cursorIndex))) cursorIndex--;
 		}
 	}
 
@@ -135,7 +135,7 @@ function scr_inputBoxDraw() {
 	draw_set_alpha(1);
 	draw_set_halign(fa_left);
 	draw_set_valign(valign);
-	draw_text(floor(textX - clipX), floor(textY - clipY), str);
+	draw_text(floor(textX - clipX), floor(textY - clipY), strDisplay);
 
 	// draw cursor
 	cursorX = textX + string_width(strToCursor);

@@ -38,6 +38,31 @@ if (showAwaitingResponse) {
 	draw_text(instInputBox_Prompt.textBoxX, mean(instInputBox_Prompt.textBoxY + instInputBox_Prompt.windowHeight, instInputBox_ApiKey.textBoxY), "Awaiting response... " + string(awaitingResponseSecs));
 }
 
+// show api key
+draw_set_alpha(1);
+draw_set_halign(fa_left);
+draw_set_valign(fa_middle);
+var checkboxHeight = string_height("A") * 0.75;
+var checkboxX1 = instInputBox_ApiKey.textBoxX;
+var checkboxY1 = floor(mean(instInputBox_ApiKey.textBoxY + instInputBox_ApiKey.windowHeight, camHeight) - (checkboxHeight / 2));
+var checkboxX2 = checkboxX1 + checkboxHeight;
+var checkboxY2 = checkboxY1 + checkboxHeight;
+var mouseoverCheckbox = point_in_rectangle(mouse_x, mouse_y, checkboxX1, checkboxY1, checkboxX2, checkboxY2);
+if (showApiKey) {
+	draw_set_color(c_white);
+	draw_rectangle(checkboxX1, checkboxY1, checkboxX2, checkboxY2, false);
+	draw_sprite_ext(spr_checkmark, 0, floor(mean(checkboxX1, checkboxX2)), floor(mean(checkboxY1, checkboxY2)), 1, 1, 0, c_black, 1);
+}
+draw_set_color(c_black);
+scr_drawRectWidth(checkboxX1, checkboxY1, checkboxX2, checkboxY2, 2, false);
+draw_text(floor(checkboxX2 + string_width("  ")), floor(mean(checkboxY1, checkboxY2)), "Show API key");
+if (mouseoverCheckbox) {
+	if (mouse_check_button_released(mb_left)) {
+		showApiKey = !showApiKey;
+	}
+}
+
+
 // back button
 draw_set_alpha(1);
 draw_set_color(c_black);

@@ -26,3 +26,5 @@ aiImportType = aiImportTypeList[| 0];
 
 awaitingResponseTime = 0;
 showAwaitingResponse = false;
+
+showApiKey = false;

@@ -20,6 +20,7 @@ function scr_inputBoxCreate(strDefault) {
 	}
 	strToCursor = "";
 	strToHighlight = "";
+	strDisplay = "";
 
 	// frames that left/right/backspace has been held for
 	leftArrowHold = 0;
