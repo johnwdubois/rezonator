@@ -28,3 +28,4 @@ awaitingResponseTime = 0;
 showAwaitingResponse = false;
 
 showApiKey = false;
+aiErrorMsg = "";

@@ -15,6 +15,12 @@ function scr_setDialogueText() {
 			exit;
 		}
 	}
+	else if (room == rm_aiChat) {
+		if (instance_exists(obj_aiControl)) {
+			titleText = "Error";
+			descriptionText = obj_aiControl.aiErrorMsg;
+		}
+	}
 
 	
 	if (obj_dialogueBox.questionWindowActive) {
