@@ -73,7 +73,5 @@ window_set_min_width(800);
 window_set_min_height(720);
 
 
-
 global.aiChatAPIKey = "";
 global.aiChatMsgList = ds_list_create();
-alarm[7] = 3;

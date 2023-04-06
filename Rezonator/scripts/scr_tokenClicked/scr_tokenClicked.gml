@@ -127,7 +127,7 @@ function scr_tokenClicked(tokenID) {
 					tokenTagMap[? obj_panelPane.functionField_tokenFieldSelected] = "";
 				}
 				else {
-				if (STEAMAPI) {
+				if (global.steamAPI) {
 					if (!steam_get_achievement("SA_tag-token")) {
 						steam_set_achievement("SA_tag-token");
 					}

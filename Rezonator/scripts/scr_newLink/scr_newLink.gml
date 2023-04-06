@@ -283,7 +283,7 @@ function scr_newLink(ID) {
 	
 	
 	
-	if (STEAMAPI) {
+	if (global.steamAPI) {
 		var currentMaxChainLength = steam_get_stat_int("SA_entry-count");
 		var currentChainLength = ds_list_size(idList);
 		if (currentChainLength > currentMaxChainLength) {

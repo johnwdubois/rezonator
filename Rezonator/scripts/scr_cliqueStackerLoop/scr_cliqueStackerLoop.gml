@@ -40,7 +40,7 @@ function scr_cliqueStackerLoop() {
 		}
 	}
 	
-	if (STEAMAPI) {
+	if (global.steamAPI) {
 		if (!steam_get_achievement("SA_clique")) {
 			steam_set_achievement("SA_clique");
 		}

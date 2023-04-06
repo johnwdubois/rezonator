@@ -1,6 +1,5 @@
 function scr_dropDownOptionListTypeInit() {
 	
-	global.optionListTypeSort = 0;
 	global.optionListTypeChainList = 1;
 	global.optionListTypeChainRecolor = 2;
 	global.optionListTypeSpeakerLabel = 3;
@@ -9,8 +8,6 @@ function scr_dropDownOptionListTypeInit() {
 	global.optionListTypeView = 6;
 	global.optionListTypeSearch = 7;
 	global.optionListTypeRightClickWord = 8;
-	global.optionListTypeWordTags = 9;
-	global.optionListTypeGame = 10;
 	global.optionListTypeNewWord = 11;
 	global.optionListTypeMappingTag = 12;
 	global.optionListTypeZoom = 13;
@@ -23,7 +20,6 @@ function scr_dropDownOptionListTypeInit() {
 	global.optionListTypeSettings = 21;
 	global.optionListTypeTools = 22;
 	global.optionListTypeHelp = 23;
-	global.optionListTypeStackShow = 25;
 	global.optionListTypeDelete = 26;
 	global.optionListTypeTokenSelection = 27;
 	global.optionListTypeStack = 28;

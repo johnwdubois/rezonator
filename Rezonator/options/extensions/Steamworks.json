@@ -1,6 +1,30 @@
 {
   "resourceType": "GMExtensionConfigSet",
-  "configurables": null,
+  "configurables": {
+    "fc7d5b5e-1344-49ee-bca6-8579b0c68d50": null,
+    "2d6a1c61-98e7-4289-8eff-d70ef6dac1ff": {
+      "Default": {
+        "value": "C:\\\\Users\\\\Terry\\\\Documents\\\\Steamworks sdk\\\\steamworks_sdk_155\\\\sdk"
+      }
+    },
+    "c37a2e1d-c82f-4d90-9d0a-b4a2b3b3da08": null,
+    "2d512363-a8c0-4025-8b9f-b53e231b025d": {},
+    "96a61e5d-c4ac-4104-b5ac-c8ef936e2609": {
+      "Default": {
+        "value": "Auto"
+      }
+    },
+    "6fb808c0-c204-4477-9ad2-f05b3a5b9eeb": null,
+    "4bf243ec-4e30-4c6d-86fd-9207893f0784": null,
+    "3c048609-3c36-48e2-88c3-d1c216e84e6b": null,
+    "33aac3da-b966-4c5f-8c9a-f3835e1e003d": null,
+    "16d61f9e-45d0-40f7-9efd-c932ad7ed8ba": null,
+    "f1101d61-b736-4c04-ad9a-f798fac10055": null,
+    "377d973f-31ca-4355-aba6-217f0172aae8": null,
+    "f070764a-195d-45ff-b522-1e3f22cba09c": null,
+    "a675bafd-d65f-4f79-97c5-3f65e3e15551": null,
+    "fab932ce-9c6b-4633-a029-090fc01624d7": null
+  },
   "extensionId": null,
   "resourceVersion": "1.0"
 }

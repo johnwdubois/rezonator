@@ -673,6 +673,7 @@
     {"name":"FirebaseREST_Firestore_path_isCollection","order":14,"path":"scripts/FirebaseREST_Firestore_path_isCollection/FirebaseREST_Firestore_path_isCollection.yy",},
     {"name":"scr_fieldSummaryWindow","order":10,"path":"scripts/scr_fieldSummaryWindow/scr_fieldSummaryWindow.yy",},
     {"name":"scr_panelPane_drawSearch1ToMany","order":27,"path":"scripts/scr_panelPane_drawSearch1ToMany/scr_panelPane_drawSearch1ToMany.yy",},
+    {"name":"obj_steamControl","order":6,"path":"objects/obj_steamControl/obj_steamControl.yy",},
     {"name":"scr_getUnitTextStupid","order":22,"path":"scripts/scr_getUnitTextStupid/scr_getUnitTextStupid.yy",},
     {"name":"scr_setMap","order":12,"path":"scripts/scr_setMap/scr_setMap.yy",},
     {"name":"scr_dialogueBoxNewCustomTagChain","order":16,"path":"scripts/scr_dialogueBoxNewCustomTagChain/scr_dialogueBoxNewCustomTagChain.yy",},

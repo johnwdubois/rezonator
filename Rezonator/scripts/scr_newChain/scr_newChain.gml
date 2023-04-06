@@ -173,7 +173,7 @@ function scr_newChain(ID) {
 			alarm[4] = 2;
 		}
 	}
-	if (STEAMAPI) {
+	if (global.steamAPI) {
 		if (!steam_get_achievement("SA_chain")) {
 			steam_set_achievement("SA_chain");
 		}

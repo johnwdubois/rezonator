@@ -6,7 +6,7 @@
 :: ########################################### EDIT VARIABLES ###########################################
 
 :: Replace with your steamworks sdk path (download from here: https://partner.steamgames.com/doc/sdk)
-set STEAM_SDK_PATH=%~dp0..\steamworks_sdk
+set STEAM_SDK_PATH=C:\Users\Terry\Documents\Steamworks sdk\steamworks_sdk_155\sdk
 
 :: ######################################################################################################
 

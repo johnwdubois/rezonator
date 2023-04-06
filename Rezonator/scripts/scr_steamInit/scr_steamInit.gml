@@ -1,20 +1,13 @@
 function scr_steamInit() {
 	
+	global.steamAPI = false;
 	if (BUILDTYPE == "Web") exit;
-	show_debug_message("scr_steamInit");
 	
 	if (steam_initialised()) {
-		show_debug_message("steam initialised!");
-		var steamStatsReady = steam_stats_ready();
-		var steamOverlay = steam_is_overlay_enabled();
-		var steamAppID = steam_get_app_id();
-
-		//show_message("steamStatsReady: " + string(steamStatsReady) + " \nsteamOverlay: " + string(steamOverlay) + " \nsteamAppID: " + string(steamAppID));
-	
-		if (steamStatsReady && steamOverlay) {
-		}
+		global.steamAPI = true;
+		show_debug_message("scr_steamInit, steam_get_app_id: {0}", steam_get_app_id());
+		show_debug_message("scr_steamInit, steam_stats_ready: {0}", steam_stats_ready());
+		show_debug_message("scr_steamInit, steam_is_user_logged_on: {0}", steam_is_user_logged_on());
 	}
-
-	//show_message("steamAPI: " + string(STEAMAPI));
 	
 }

@@ -61,7 +61,7 @@ function scr_quickStackCreation() {
 		scr_chainDeselect();
 	}
 
-	if (STEAMAPI) {
+	if (global.steamAPI) {
 		if (!steam_get_achievement("SA_quicklink")) {
 			steam_set_achievement("SA_quicklink");
 		}
