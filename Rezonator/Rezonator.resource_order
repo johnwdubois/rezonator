@@ -690,6 +690,7 @@
     {"name":"scr_setValueForAllChains","order":28,"path":"scripts/scr_setValueForAllChains/scr_setValueForAllChains.yy",},
     {"name":"scr_expandableDropDownInit","order":1,"path":"scripts/scr_expandableDropDownInit/scr_expandableDropDownInit.yy",},
     {"name":"obj_alarm3","order":8,"path":"objects/obj_alarm3/obj_alarm3.yy",},
+    {"name":"obj_selectControl","order":4,"path":"objects/obj_selectControl/obj_selectControl.yy",},
     {"name":"obj_regular_expression_node","order":1,"path":"objects/obj_regular_expression_node/obj_regular_expression_node.yy",},
     {"name":"scr_fieldChains1ToManyOptions","order":64,"path":"scripts/scr_fieldChains1ToManyOptions/scr_fieldChains1ToManyOptions.yy",},
     {"name":"scr_refocusChainEntry","order":20,"path":"scripts/scr_refocusChainEntry/scr_refocusChainEntry.yy",},

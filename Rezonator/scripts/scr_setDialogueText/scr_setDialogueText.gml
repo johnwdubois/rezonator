@@ -169,10 +169,6 @@ function scr_setDialogueText() {
 			titleText = scr_get_translation("help_label_delete_plain")+ " "+ scr_get_translation("menu_show");
 			descriptionText =  scr_get_translation("You are about to delete this show");
 		}
-		if (layerLink) {
-			titleText = scr_get_translation("help_label_link");
-			descriptionText = scr_get_translation("masg_warning_layer_link");
-		}
 		if (combineChains) {
 			if (obj_control.mergeChainType == "stack") {
 				titleText = scr_get_translation("option_merge-stack");
@@ -212,18 +208,6 @@ function scr_setDialogueText() {
 		}
 		if (is_string(stackingToActivate) && stackingToActivate != "") {
 			descriptionText = scr_get_translation("msg_stacking-not-active");
-		}
-		
-		
-		if (instance_exists(obj_stacker)) {
-			if (obj_stacker.confirmStackCreate) {
-				var stackChainList = global.nodeMap[? "stackList"];
-				if (scr_isNumericAndExists(stackChainList, ds_type_list)) {
-					var stackChainListSize = ds_list_size(stackChainList);
-					descriptionText =  scr_get_translation("msg_stacks_created-1") + " " + string(stackChainListSize) + " " + scr_get_translation("msg_stacks_created-2");
-					noButtonActive = true;
-				}
-			}
 		}
 		
 		if (instance_exists(obj_control)) {

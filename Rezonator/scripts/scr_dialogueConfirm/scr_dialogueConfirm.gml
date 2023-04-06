@@ -323,14 +323,6 @@ function scr_dialogueConfirm() {
 		}
 		
 			
-		if (layerLink) {
-			
-			// Take the saved wordID & click on it
-			obj_control.layerLinkAllow = true;
-			with (obj_chain) {
-				alarm[8] = 2;	
-			}
-		}
 		
 		if (combineChains) {
 			scr_combineChains(obj_control.combineChainsFocused, obj_control.combineChainsSelected);
@@ -345,13 +337,6 @@ function scr_dialogueConfirm() {
 		
 		if (is_string(stackingToActivate) && stackingToActivate != "") {
 			scr_changeActiveStacking(stackingToActivate);
-		}
-		
-		if (instance_exists(obj_stacker)) {
-			if (obj_stacker.confirmStackCreate) {
-				scr_deleteAllChains(global.nodeMap[? "stackList"]);
-				with (obj_stacker) alarm[11] = 2;
-			}
 		}
 		
 		if (instance_exists(obj_control)) {

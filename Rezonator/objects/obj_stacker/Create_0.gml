@@ -24,7 +24,6 @@ endCol = -1;
 alarm[7] = 2;
 
 showEndNoteWindow = false;
-confirmStackCreate = false;
 confirmStackName = false;
 stacker_stackingName = ""; // name of stacking made with stacker
 stacker_stacksName = ""; // naming format of stacks within the stacking

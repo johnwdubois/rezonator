@@ -70,6 +70,5 @@ function scr_stackerBranch() {
 		
 		stackerMode = "";
 		stacker_stackingName = "";
-		confirmStackCreate = false;
 	}
 }

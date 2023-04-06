@@ -8,11 +8,7 @@ function scr_dialogueNo() {
 		if (questionWindowActive) {
 		
 			if (instance_exists(obj_stacker)) {
-				if (obj_stacker.confirmStackCreate) {
-					obj_stacker.confirmStackCreate = false;
-					with (obj_stacker) alarm[11] = 2;
-				}
-				else if (obj_stacker.confirmStackName) {
+				if (obj_stacker.confirmStackName) {
 					scr_stackerBranch();
 				}
 			}

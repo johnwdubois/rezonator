@@ -11,6 +11,7 @@
     {"name":"inst_305293F6","path":"rooms/rm_aiChat/rm_aiChat.yy",},
     {"name":"inst_753849A1","path":"rooms/rm_aiChat/rm_aiChat.yy",},
     {"name":"inst_7B246DE9","path":"rooms/rm_aiChat/rm_aiChat.yy",},
+    {"name":"inst_E8AA272","path":"rooms/rm_aiChat/rm_aiChat.yy",},
   ],
   "isDnd": false,
   "layers": [
@@ -21,6 +22,7 @@
     {"resourceType":"GMRInstanceLayer","resourceVersion":"1.0","name":"Instances","depth":200,"effectEnabled":true,"effectType":null,"gridX":32,"gridY":32,"hierarchyFrozen":false,"inheritLayerDepth":false,"inheritLayerSettings":false,"inheritSubLayers":true,"inheritVisibility":true,"instances":[
         {"resourceType":"GMRInstance","resourceVersion":"1.0","name":"inst_586F3C51","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"objectId":{"name":"obj_aiControl","path":"objects/obj_aiControl/obj_aiControl.yy",},"properties":[],"rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":684.0,"y":396.0,},
         {"resourceType":"GMRInstance","resourceVersion":"1.0","name":"inst_753849A1","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"objectId":{"name":"obj_menuBar","path":"objects/obj_menuBar/obj_menuBar.yy",},"properties":[],"rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":415.0,"y":287.0,},
+        {"resourceType":"GMRInstance","resourceVersion":"1.0","name":"inst_E8AA272","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"objectId":{"name":"obj_selectControl","path":"objects/obj_selectControl/obj_selectControl.yy",},"properties":[],"rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":1023.0,"y":486.0,},
       ],"layers":[],"properties":[],"userdefinedDepth":false,"visible":true,},
     {"resourceType":"GMRInstanceLayer","resourceVersion":"1.0","name":"Chat","depth":300,"effectEnabled":true,"effectType":null,"gridX":32,"gridY":32,"hierarchyFrozen":false,"inheritLayerDepth":false,"inheritLayerSettings":false,"inheritSubLayers":true,"inheritVisibility":true,"instances":[
         {"resourceType":"GMRInstance","resourceVersion":"1.0","name":"inst_305293F6","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"objectId":{"name":"obj_aiChatDraw","path":"objects/obj_aiChatDraw/obj_aiChatDraw.yy",},"properties":[],"rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":1073.0,"y":351.0,},

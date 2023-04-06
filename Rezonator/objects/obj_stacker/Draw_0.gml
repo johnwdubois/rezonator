@@ -1,10 +1,6 @@
 /// @description create dialogue boxes
 if (!instance_exists(obj_dialogueBox)) {
-	if (confirmStackCreate) {
-		var inst = instance_create_layer(0, 0, "InstancesDialogue", obj_dialogueBox);
-		inst.questionWindowActive = true;
-	}
-	else if (confirmStackName) {
+	if (confirmStackName) {
 		var confirmStackNameDefStr = scr_get_translation(stackerMode);
 		if (stackerMode == "participant") confirmStackNameDefStr = scr_get_translation("menu_turn");
 		

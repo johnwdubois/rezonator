@@ -86,7 +86,6 @@ function scr_drawDevVars() {
 	draw_text(devVarX - 580, wordTopMargin + (strHeight * 15), "stackingList: " + scr_getStringOfList(global.nodeMap[? "stackingList"]));
 	draw_text(devVarX - 580, wordTopMargin + (strHeight * 16), "mergeStackID: " + string(obj_chain.mergeStackID));
 	draw_text(devVarX - 580, wordTopMargin + (strHeight * 17), "stacker_stackingName: " + string(obj_stacker.stacker_stackingName));
-	draw_text(devVarX - 580, wordTopMargin + (strHeight * 18), "confirmStackCreate: " + string(obj_stacker.confirmStackCreate));
 	draw_text(devVarX - 580, wordTopMargin + (strHeight * 19), "confirmStackName : " + string(obj_stacker.confirmStackName));
 	draw_text(devVarX - 580, wordTopMargin + (strHeight * 20), "stackerMode : " + string(obj_stacker.stackerMode));
 

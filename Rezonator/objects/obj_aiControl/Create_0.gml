@@ -15,7 +15,7 @@ with (instInputBox_Prompt) {
 }
 
 ds_list_clear(global.aiChatMsgList);
-userAuthor = "Rezonator";
+userAuthor = "Me";
 
 aiCharAt = 1;
 msgSelectedList = ds_list_create();

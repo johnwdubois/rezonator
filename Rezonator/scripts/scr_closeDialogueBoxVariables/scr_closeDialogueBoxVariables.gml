@@ -45,7 +45,6 @@ function scr_closeDialogueBoxVariables() {
 			createNewStacking = false;
 		}
 		with (obj_stacker) {
-			confirmStackCreate = false;
 			confirmStackName = false;
 		}
 	}
@@ -59,7 +58,6 @@ function scr_closeDialogueBoxVariables() {
 		clearAllLinks = false;
 		clearChain = false;
 		clearChainMulti = false;
-		layerLink = false;
 		combineChains = false;
 		removeTags = false;
 		removeTagToken = false;
@@ -108,8 +106,7 @@ function scr_closeDialogueBoxVariables() {
 		}
 		
 		with (obj_stacker) {
-			if (!confirmStackCreate) stackerMode = "";
-			confirmStackCreate = false;
+			stackerMode = "";
 			confirmStackName = false;
 		}
 		with (obj_openingScreen) {
