@@ -16,6 +16,9 @@ function scr_newClique(chainID, unitID) {
 	if (is_string(unitID) && unitID != "") ds_list_add(newCliqueUnitList, unitID);
 	ds_map_add_list(newCliqueSubMap, "unitList", newCliqueUnitList);
 	
+	// give new clique a name
+	newCliqueSubMap[? "name"] = "Clique " + string(ds_list_size(obj_chain.cliqueList));
+	
 	return newCliqueID;
 
 }

@@ -134,6 +134,7 @@
 	"option_rename-stack": "Rename stack",
 	"option_rename-trail": "Rename trail",
 	"option_rename-resonance": "Rename resonance",
+	"option_rename-clique": "Rename clique",
 	"option_split-token": "Split token",
 	"option_merge-token": "Merge token",
 	"option_merge-stack": "Merge stack",

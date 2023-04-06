@@ -3,13 +3,6 @@ function scr_setDialogueText() {
 	// this script determines what text will be drawn on a dialog box
 	// there are 2 possible texts that can be set: titleText and descriptionText
 	
-	if (room == rm_aiChat) {
-		if (instance_exists(obj_aiControl)) {
-			titleText = "Error";
-			descriptionText = obj_aiControl.aiErrorMsg;
-		}
-	}
-	
 	// get dialog box type
 	var _dialogBoxType = obj_selectControl.dialogBoxType;
 	if (is_string(_dialogBoxType) && _dialogBoxType != "") {
@@ -32,6 +25,9 @@ function scr_setDialogueText() {
 			}
 			else if (_dialogBoxType == DIALOG_QUESTION_URLGUIDE) {
 				descriptionText = scr_get_translation("msg_open-url-guide");
+			}
+			else if (_dialogBoxType == DIALOG_INPUT_RENAMECLIQUE) {
+				descriptionText = scr_get_translation("option_rename-clique");
 			}
 		}
 		catch (e) {

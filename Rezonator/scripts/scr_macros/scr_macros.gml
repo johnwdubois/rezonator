@@ -68,6 +68,7 @@ function scr_macros(){
 		#macro DIALOG_QUESTION_SAVEBEFOREOPEN "dialog_question_saveBeforeOpen"
 		#macro DIALOG_QUESTION_SAVEBEFOREGAMEEND "dialog_question_saveBeforeGameEnd"
 		#macro DIALOG_QUESTION_MERGETOKEN "dialog_question_mergeToken"
+		#macro DIALOG_INPUT_RENAMECLIQUE "dialog_rename_clique"
 	#endregion
 
 }

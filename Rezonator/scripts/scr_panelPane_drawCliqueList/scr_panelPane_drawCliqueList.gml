@@ -45,18 +45,16 @@ function scr_panelPane_drawCliqueList() {
 		or y + headerHeight + scrollPlusY + textPlusY > y + windowHeight + strHeight) {
 			textPlusY += strHeight;
 			continue;
-		}
-		
+		}	
 		
 		// get data for currentClique
 		var currentClique = cliqueList[| i];
 		var currentCliqueSubMap = global.cliqueMap[? currentClique];
-		if (!scr_isNumericAndExists(currentCliqueSubMap, ds_type_map)) {
+		if (!scr_isNumericAndExists(currentCliqueSubMap, ds_type_map) || !is_string(currentClique) || currentClique == "") {
 			continue;
 		}
-		
-
 		var currentCliqueName = currentCliqueSubMap[? "name"];
+		if (!is_string(currentCliqueName)) currentCliqueName = currentClique;
 		var currentCliqueChainList = currentCliqueSubMap[? "chainList"];
 		var currentCliqueUnitList = currentCliqueSubMap[? "unitList"];
 		var currentCliqueSelected = (functionClique_cliqueSelected == currentClique);
@@ -83,6 +81,16 @@ function scr_panelPane_drawCliqueList() {
 					}
 				}
 			}
+			
+			// right click on clique
+			if (mouse_check_button_released(mb_right)) {
+				with (obj_panelPane) functionClique_cliqueSelected = currentClique;
+				if (!instance_exists(obj_dropDown)) {
+					var dropDownOptionList = ds_list_create();
+					ds_list_add(dropDownOptionList, "option_rename-clique");
+					scr_createDropDown(mouse_x, mouse_y, dropDownOptionList, global.optionListTypeCliqueRightClick);
+				}
+			}
 		}
 		
 		// draw rect
@@ -96,7 +104,7 @@ function scr_panelPane_drawCliqueList() {
 		draw_text(floor(numColX + textBuffer) - clipX, textY - clipY, string(i + 1));
 		
 		// name column
-		draw_text(floor(nameColX + textBuffer) - clipX, textY - clipY, string(currentClique));
+		draw_text(floor(nameColX + textBuffer) - clipX, textY - clipY, currentCliqueName);
 		
 		// chain count column
 		draw_text(floor(chainCountColX + textBuffer) - clipX, textY - clipY, string(ds_list_size(currentCliqueChainList)));

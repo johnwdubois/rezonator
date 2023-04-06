@@ -282,5 +282,9 @@ function scr_dropDownSelect(optionSelected) {
 		scr_changeActiveStacking(optionSelected);
 		with (obj_dropDown) instance_destroy();
 	}
+	else if (optionListType == global.optionListTypeCliqueRightClick) {
+		scr_cliqueRightClickOptions(optionSelected);
+		with (obj_dropDown) instance_destroy();
+	}
 
 }
