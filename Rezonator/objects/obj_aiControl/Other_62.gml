@@ -51,10 +51,7 @@ if (_id == httpRequestID) {
 		}
 		
 		// create alert box to display error
-		if (!instance_exists(obj_dialogueBox)) {
-			var inst = instance_create_layer(x, y, "InstancesDialogue", obj_dialogueBox);
-			inst.alertWindowActive = true;
-			aiErrorMsg = _errorMsg;
-		}
+		scr_createDialogBox(DIALOG_AICHAT_ERROR);
+		aiErrorMsg = _errorMsg;
 	}
 }

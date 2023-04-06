@@ -79,7 +79,7 @@ if (!alertWindowActive) {
 	draw_set_color(merge_color(global.colorThemeRezPink, c_white, blinkAlpha / 2));
 	draw_roundrect(cancelRectX1, buttonY1, cancelRectX2, buttonY2, true);
 	draw_set_color(global.colorThemeText);
-	var cancelText = (room == rm_openingScreen) ? "msg_continue" : "msg_cancel";
+	var cancelText = obj_selectControl.dialogBoxType == DIALOG_VERSION_OUTOFDATE ? "msg_continue" : "msg_cancel";
 	cancelText = scr_get_translation(cancelText);
 	scr_adaptFont(cancelText, "M", false);
 	draw_text(floor(mean(cancelRectX1, cancelRectX2)), floor(mean(buttonY1, buttonY2)), cancelText);
@@ -96,15 +96,8 @@ draw_set_color(mouseoverOk ? merge_color(global.colorThemeSelected1, global.colo
 draw_roundrect(okRectX1, buttonY1, okRectX2, buttonY2, false);
 draw_set_color(global.colorThemeBG);
 var okText = scr_get_translation("msg_okay");
-if (instance_exists(obj_openingScreen)) {
-	if (obj_openingScreen.downloadDialogue) {
-		okText = "help_label_download";
-	}
-}
-else if (instance_exists(obj_control)) {
-	if (obj_control.downloadDialogue) {
-		okText = "help_label_download";
-	}
+if (obj_selectControl.dialogBoxType == DIALOG_VERSION_OUTOFDATE) {
+	okText = "help_label_download";
 }
 else if (noButtonActive) okText = "msg_yes";
 okText = scr_get_translation(okText);

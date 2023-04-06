@@ -3,35 +3,48 @@ function scr_setDialogueText() {
 	// this script determines what text will be drawn on a dialog box
 	// there are 2 possible texts that can be set: titleText and descriptionText
 	
-	if (room == rm_openingScreen) {
-		if (obj_openingScreen.downloadDialogue) {
-			titleText = is_string(global.newVersionStrFull) ? global.newVersionStrFull : "";
-			descriptionText = scr_get_translation("msg_new-version-available");
-			exit;
-		}
-		else if (obj_openingScreen.versionUpToDate) {
-			titleText = global.currentVersionStrFull;
-			descriptionText = scr_get_translation("msg_version-up-to-date");
-			exit;
-		}
-	}
-	else if (room == rm_aiChat) {
+	if (room == rm_aiChat) {
 		if (instance_exists(obj_aiControl)) {
 			titleText = "Error";
 			descriptionText = obj_aiControl.aiErrorMsg;
 		}
 	}
-
 	
+	// get dialog box type
+	var _dialogBoxType = obj_selectControl.dialogBoxType;
+	if (is_string(_dialogBoxType) && _dialogBoxType != "") {
+		// get dialog text for title & description
+		try {
+			if (_dialogBoxType == DIALOG_VERSION_OUTOFDATE) {
+				titleText = is_string(global.newVersionStrFull) ? global.newVersionStrFull : "";
+				descriptionText = scr_get_translation("msg_new-version-available");
+			}
+			else if (_dialogBoxType == DIALOG_VERSION_UPTODATE) {
+				titleText = global.currentVersionStrFull;
+				descriptionText = scr_get_translation("msg_version-up-to-date");
+			}
+			else if (_dialogBoxType == DIALOG_AICHAT_ERROR) {
+				titleText = "Error";
+				descriptionText = obj_aiControl.aiErrorMsg;
+			}
+			else if (_dialogBoxType == DIALOG_QUESTION_URLABOUT) {
+				descriptionText = scr_get_translation("msg_open-url-about");
+			}
+			else if (_dialogBoxType == DIALOG_QUESTION_URLGUIDE) {
+				descriptionText = scr_get_translation("msg_open-url-guide");
+			}
+		}
+		catch (e) {
+			show_debug_message("scr_setDialogueText error: " + string(e.message));
+		}
+	}
+	
+	
+	
+	// OLD METHOD OF HANDLING DIALOG BOXES, NEED TO UPDATE BELOW...
 	if (obj_dialogueBox.questionWindowActive) {
 		
 		if (instance_exists(obj_control)) {
-			if (obj_control.openURLAbout) {
-				descriptionText = scr_get_translation("msg_open-url-about");
-			}
-			if (obj_control.openURLGuide) {
-				descriptionText = scr_get_translation("msg_open-url-guide");
-			}
 			if (obj_control.deleteRez) {
 				titleText = scr_get_translation("msg_clear-current-chain");
 				descriptionText = scr_get_translation("msg_warning_clear_focused_resonance");
@@ -51,10 +64,6 @@ function scr_setDialogueText() {
 			else if (obj_control.deleteChunk != "" && is_string(obj_control.deleteChunk)) {
 				descriptionText = scr_get_translation("option_delete-chunk-aswell");
 			}
-		}
-		else if (instance_exists(obj_openingScreen)) {
-			if (obj_openingScreen.openURLAbout) descriptionText = scr_get_translation("msg_open-url-about");
-			else if (obj_openingScreen.openURLGuide) descriptionText = scr_get_translation("msg_open-url-guide");
 		}
 		
 		if (clearAllStacks) {

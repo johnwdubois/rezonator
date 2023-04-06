@@ -612,6 +612,7 @@
     {"id":{"name":"spr_openingMenuImport","path":"sprites/spr_openingMenuImport/spr_openingMenuImport.yy",},},
     {"id":{"name":"scr_panelPane_drawUnitsList","path":"scripts/scr_panelPane_drawUnitsList/scr_panelPane_drawUnitsList.yy",},},
     {"id":{"name":"scr_panelPane_drawHelp","path":"scripts/scr_panelPane_drawHelp/scr_panelPane_drawHelp.yy",},},
+    {"id":{"name":"scr_createDialogBox","path":"scripts/scr_createDialogBox/scr_createDialogBox.yy",},},
     {"id":{"name":"scr_setMouseLineWordID","path":"scripts/scr_setMouseLineWordID/scr_setMouseLineWordID.yy",},},
     {"id":{"name":"FirebaseListenerUserFunctions_Firestore","path":"scripts/FirebaseListenerUserFunctions_Firestore/FirebaseListenerUserFunctions_Firestore.yy",},},
     {"id":{"name":"scr_drawToolPane","path":"scripts/scr_drawToolPane/scr_drawToolPane.yy",},},

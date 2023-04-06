@@ -851,12 +851,10 @@ navWindowTaggingEscape = false;
 navWindowTaggingSingleOptionSelect = false;
 navWindowTaggingKeyboardInput = false;
 
-openURLGuide = false;
-openURLAbout = false;
 downloadDialogue = false;
 versionUpToDate = false;
-deleteStack = false;
 deleteRez = false;
+deleteStack = false;
 deleteTrack = false;
 deleteChunk = "";
 askDeleteChunk = "";

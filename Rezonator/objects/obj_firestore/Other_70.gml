@@ -21,38 +21,22 @@ if (async_load[? "type"] == "FirebaseFirestore_Document_Read") {
 					show_debug_message("Version up to date! initialVersionCheck: " + string(global.initialVersionCheck) + ", manualVersionCheck: " + string(global.manualVersionCheck));
 					if (room == rm_openingScreen) {
 						if (global.manualVersionCheck) {
-							if (!instance_exists(obj_dialogueBox)) {
-								instance_create_layer(x, y, "InstancesDialogue", obj_dialogueBox);
-								obj_openingScreen.versionUpToDate = true;
-								obj_dialogueBox.alertWindowActive = true;
-							}
+							scr_createDialogBox(DIALOG_VERSION_UPTODATE);
 						}
 					}
 					else if (room == rm_mainScreen) {
 						if (global.manualVersionCheck) {
-							if (!instance_exists(obj_dialogueBox)) {
-								instance_create_layer(x, y, "InstancesDialogue", obj_dialogueBox);
-								obj_control.versionUpToDate = true;
-								obj_dialogueBox.alertWindowActive = true;
-							}
+							scr_createDialogBox(DIALOG_VERSION_UPTODATE);
 						}
 					}
 				}
 				else {
 					// recommend downloading new version
 					show_debug_message("CHECK OUT MY NEW REZONATOR PLEASE");
-					if (room == rm_openingScreen) {
-						with (obj_openingScreen) {
-							showDownloadDialogue = true;
-							alreadyShownDownloadDialogue = false;
-						}
-					}
-					else if (room == rm_mainScreen) {
-						if (!instance_exists(obj_dialogueBox)) {
-							instance_create_layer(x, y, "InstancesDialogue", obj_dialogueBox);
-							obj_control.downloadDialogue = true;
-							obj_dialogueBox.questionWindowActive = true;
-						}
+					scr_createDialogBox(DIALOG_VERSION_OUTOFDATE);
+					with (obj_openingScreen) {
+						showDownloadDialogue = true;
+						alreadyShownDownloadDialogue = false;
 					}
 				}
 			}

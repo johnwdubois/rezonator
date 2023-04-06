@@ -1,6 +1,7 @@
 function scr_closeDialogueBoxVariables() {
 	
 	show_debug_message("scr_closeDialogueBoxVariables");
+	with (obj_selectControl) dialogBoxType = "";
 	
 	if (inputWindowActive) {
 		with (obj_control) {
@@ -93,10 +94,8 @@ function scr_closeDialogueBoxVariables() {
 			saveBeforeGameEnd = false;
 			mergeToken = false;
 			sideLinkTokenID = "";
-			openURLAbout = false;
-			openURLGuide = false;
-			deleteStack = false;
 			deleteRez = false;
+			deleteStack = false;
 			deleteTrack = false;
 			downloadDialogue = false;
 			deleteChunk = "";
@@ -109,10 +108,6 @@ function scr_closeDialogueBoxVariables() {
 			stackerMode = "";
 			confirmStackName = false;
 		}
-		with (obj_openingScreen) {
-			openURLGuide = false;
-			openURLAbout = false;
-		}
 	}
 	if (alertWindowActive) {
 		with (obj_control) {
@@ -123,16 +118,8 @@ function scr_closeDialogueBoxVariables() {
 			mergeUnitDifferingParticipants = false;
 			versionUpToDate = false;
 		}
-		with (obj_openingScreen) {
-			versionUpToDate = false;
-		}
 		mergeStack = false;
 		chunkAlreadyExists = false;
-	}
-	if (instance_exists(obj_openingScreen)) {
-		with (obj_openingScreen) {
-			downloadDialogue = false;
-		}
 	}
 	global.inputBoxDefStr = "";
 }

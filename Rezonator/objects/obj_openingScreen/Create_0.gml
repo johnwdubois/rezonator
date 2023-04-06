@@ -435,12 +435,8 @@ hoverColorMergeHelp = 0;
 
 global.dirCopyDebugList = ds_list_create();
 
-downloadDialogue = false;
 showDownloadDialogue = false;
 alreadyShownDownloadDialogue = false;
-versionUpToDate = false;
-openURLGuide = false;
-openURLAbout = false;
 
 global.CoNLLUwithMeta = false;
 global.schemaNavTokenFieldList = -1;
