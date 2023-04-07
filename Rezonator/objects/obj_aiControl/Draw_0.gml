@@ -29,21 +29,32 @@ var promptSendY1 = instInputBox_Prompt.textBoxY;
 var promptSendX1 = promptSendX2 - promptSendWidth;
 var promptSendY2 = promptSendY1 + promptSendWidth;
 var promptSendPadding = 3;
+var promptSendHolding = false;
 var mouseoverPromptSend = point_in_rectangle(mouse_x, mouse_y, promptSendX1, promptSendY1, promptSendX2, promptSendY2) && !mouseoverCancel;
-draw_set_alpha(mouseoverPromptSend ? 1 : 0.5);
-draw_set_color(global.colorThemeBG);
-draw_roundrect(promptSendX1 + (promptSendPadding * 2), promptSendY1 + promptSendPadding, promptSendX2, promptSendY2 - promptSendPadding, false);
-draw_set_alpha(1);
-draw_sprite_ext(spr_send, 0, floor(mean(promptSendX1, promptSendX2)), floor(mean(promptSendY1, promptSendY2)), 1, 1, 0, global.colorThemeSelected2, 1);
 if (mouseoverPromptSend) {
 	scr_createTooltip(floor(mean(promptSendX1, promptSendX2)), promptSendY2, scr_get_translation("option_submit-prompt"), TOOLTIP_DIR_UP);
 	if (mouse_check_button_pressed(mb_left)) {
 		mousePressedButton = "send";
 	}
+	if (mouse_check_button(mb_left) && mousePressedButton == "send") promptSendHolding = true;
 	if (mouse_check_button_released(mb_left) && mousePressedButton == "send") {
-		sendPrompt = true;
+		if (is_string(instInputBox_Prompt.str) && instInputBox_Prompt.str != "") {
+			sendPrompt = true;
+		}
 	}
 }
+if (keyboard_check(vk_enter) && is_string(instInputBox_Prompt.str) && instInputBox_Prompt.str != "") promptSendHolding = true;
+draw_set_alpha(mouseoverPromptSend || promptSendHolding ? 1 : 0.5);
+draw_set_color(global.colorThemeBG);
+draw_roundrect(promptSendX1 + (promptSendPadding * 2), promptSendY1 + promptSendPadding, promptSendX2, promptSendY2 - promptSendPadding, false);
+draw_set_alpha(1);
+if (promptSendHolding) {
+	draw_set_color(global.colorThemeText);
+	draw_roundrect(promptSendX1 + (promptSendPadding * 2), promptSendY1 + promptSendPadding, promptSendX2, promptSendY2 - promptSendPadding, true);
+}
+draw_sprite_ext(spr_send, 0, floor(mean(promptSendX1, promptSendX2)), floor(mean(promptSendY1, promptSendY2)), 1, 1, 0, global.colorThemeSelected2, 1);
+
+
 
 // position AI prompt input box
 var _instInputBox_ApiKey = instInputBox_ApiKey;

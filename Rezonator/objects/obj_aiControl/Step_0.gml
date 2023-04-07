@@ -1,5 +1,5 @@
 // use enter key to submit prompt
-if (keyboard_check_released(vk_enter)) sendPrompt = true;
+if (keyboard_check_released(vk_enter) && is_string(instInputBox_Prompt.str) && instInputBox_Prompt.str != "") sendPrompt = true;
 
 // when sending prompt, check that prompt and api key are both valid strings and then send request
 if (sendPrompt) {

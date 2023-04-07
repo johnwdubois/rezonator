@@ -4,12 +4,12 @@ function scr_macros(){
 	
 	#region BUILD SETTINGS
 		// set BUILD to true when you want to load CJK fonts, set false if not
-		#macro BUILD false
+		#macro BUILD true
 	
 		// BUILDTYPE should be set to one of the following values:
 		// "Windows_GitHub_Master", "Mac_GitHub_Master", "Windows_GitHub_Release"
 		// "Mac_GitHub_Release", "Steam", "Windows_Website", "Mac_Website", "Web"
-		#macro BUILDTYPE "Windows_Website"  
+		#macro BUILDTYPE "Windows_Website"
 		
 		// to set whether Steam is enabled, open the Steamworks extension in the Asset Browser
 		// and set the platforms and App ID
