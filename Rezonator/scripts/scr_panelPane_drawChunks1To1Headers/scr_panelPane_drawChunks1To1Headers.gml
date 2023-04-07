@@ -50,7 +50,7 @@ function scr_panelPane_drawChunks1To1Headers(fieldList) {
 		
 		
 		if (mouseoverColHeader) {
-			scr_createTooltip(mean(headerRectX1, headerRectX2), headerRectY2, scr_get_translation("msg_change_field"), obj_tooltip.arrowFaceUp);
+			scr_createTooltip(mean(headerRectX1, headerRectX2), headerRectY2, scr_get_translation("msg_change_field"), TOOLTIP_DIR_UP);
 			
 			// draw underline
 			var underlineX1 = headerTextX;

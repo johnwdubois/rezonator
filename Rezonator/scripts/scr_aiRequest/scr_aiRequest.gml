@@ -5,6 +5,7 @@ function scr_aiRequest(prompt){
 		str = "";
 		cursorIndex = 0;
 		highlightIndex = 0;
+		xOffset = 0;
 	}
 	
 	// define url and request method

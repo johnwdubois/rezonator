@@ -126,7 +126,7 @@ if (instance_exists(obj_control)) {
 	if (mouseOverMax) {
 		draw_circle(floor(mean(maximizeX1, maximizeX2)),floor(mean(maximizeY1, maximizeY2)), sizeOfButtons/2 , false);
 		draw_set_color(global.colorThemeText);
-		scr_createTooltip(floor(mean(maximizeX1, maximizeX2)), maximizeY2, scr_get_translation("option_maximize"), obj_tooltip.arrowFaceUp);
+		scr_createTooltip(floor(mean(maximizeX1, maximizeX2)), maximizeY2, scr_get_translation("option_maximize"), TOOLTIP_DIR_UP);
 	
 		if (mouse_check_button_released(mb_left)) {
 			with (obj_panelPane) {
@@ -161,7 +161,7 @@ if (instance_exists(obj_control)) {
 	if (mouseOverMin) {
 		draw_circle(floor(mean(minimizeX1, minimizeX2)),floor(mean(minimizeY1, minimizeY2)), sizeOfButtons/2 , false);
 		draw_set_color(global.colorThemeText);
-		scr_createTooltip(floor(mean(minimizeX1, minimizeX2)), minimizeY2, scr_get_translation("option_minimize"), obj_tooltip.arrowFaceUp);
+		scr_createTooltip(floor(mean(minimizeX1, minimizeX2)), minimizeY2, scr_get_translation("option_minimize"), TOOLTIP_DIR_UP);
 		if (mouse_check_button_released(mb_left)) {
 			with (obj_panelPane) {
 				showNav = false;
@@ -193,9 +193,9 @@ if (instance_exists(obj_dropDown)) mouseOverLang = false;
 if (mouseOverLang) {
 	//draw_set_color(global.colorThemeText);
 	if (global.userLangRTL) {
-		scr_createTooltip(langTextX2, mean(langTextY1,langTextY2), scr_get_translation("menu_language"),obj_tooltip.arrowFaceLeft);
+		scr_createTooltip(langTextX2, mean(langTextY1,langTextY2), scr_get_translation("menu_language"),TOOLTIP_DIR_LEFT);
 	}else {
-		scr_createTooltip(langTextX1, mean(langTextY1,langTextY2), scr_get_translation("menu_language"),obj_tooltip.arrowFaceRight);
+		scr_createTooltip(langTextX1, mean(langTextY1,langTextY2), scr_get_translation("menu_language"),TOOLTIP_DIR_RIGHT);
 	}
 	if (mouse_check_button_released(mb_left)) {
 		var dropDownOptionList = ds_list_create();
@@ -256,9 +256,9 @@ if (instance_exists(obj_control)) {
 	}
 	else {
 		if (global.userLangRTL) and point_in_rectangle(mouse_x, mouse_y,saveIconX2,saveIconY1,saveIconX1,saveIconY2 ) {
-			scr_createTooltip(saveIconX1,fpsTextY, scr_get_translation("Unsaved Changes!"), obj_tooltip.arrowFaceLeft);
+			scr_createTooltip(saveIconX1,fpsTextY, scr_get_translation("Unsaved Changes!"), TOOLTIP_DIR_LEFT);
 		}else if (point_in_rectangle(mouse_x, mouse_y,saveIconX1,saveIconY1,saveIconX2,saveIconY2 )) {
-			scr_createTooltip(saveIconX1,fpsTextY, scr_get_translation("Unsaved Changes!"), obj_tooltip.arrowFaceRight);
+			scr_createTooltip(saveIconX1,fpsTextY, scr_get_translation("Unsaved Changes!"), TOOLTIP_DIR_RIGHT);
 		}
 		draw_sprite_ext(spr_saveWarning,0,floor(mean(saveIconX1, saveIconX2)) ,fpsTextY,spriteScale,spriteScale, 0,c_white , 1)
 		saveTextAlpha = 1;	
@@ -285,7 +285,7 @@ if (room != rm_aiChat) {
 	draw_text(floor(mean(sizeIconX1, sizeIconX2)), floor(mean(saveIconY1, saveIconY2)), "Aa");
 	var mouseoverSizeIcon = point_in_rectangle(mouse_x, mouse_y, sizeIconX1, saveIconY1, sizeIconX2, saveIconY2);
 	if (mouseoverSizeIcon) {
-		scr_createTooltip(sizeIconX1, floor(mean(saveIconY1, saveIconY2)), scr_get_translation("msg_size-slider"), obj_tooltip.arrowFaceRight);
+		scr_createTooltip(sizeIconX1, floor(mean(saveIconY1, saveIconY2)), scr_get_translation("msg_size-slider"), TOOLTIP_DIR_RIGHT);
 		if (mouse_check_button_released(mb_left)) {
 			if (!instance_exists(obj_sizeWindow)) {
 				instance_create_layer(0, 0, "InstancesDialogue", obj_sizeWindow);

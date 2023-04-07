@@ -29,3 +29,6 @@ showAwaitingResponse = false;
 
 showApiKey = false;
 aiErrorMsg = "";
+
+mousePressedButton = "";
+sendPrompt = false;

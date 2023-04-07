@@ -62,7 +62,7 @@ function scr_panelPane_drawUnits1ToManyHeaders() {
 
 		// user interaction for header click
 		if (mouseoverHeader) {
-			scr_createTooltip(mean(headerRectX1, headerRectX2), headerRectY2, scr_get_translation("msg_change_field"), obj_tooltip.arrowFaceUp);
+			scr_createTooltip(mean(headerRectX1, headerRectX2), headerRectY2, scr_get_translation("msg_change_field"), TOOLTIP_DIR_UP);
 			
 			// draw underline
 			var underlineX1 = headerTextX;
@@ -100,7 +100,7 @@ function scr_panelPane_drawUnits1ToManyHeaders() {
 		// change display token
 		if (mouseoverDisplayToken) {
 				
-			scr_createTooltip(displayTokenButtonX, displayTokenButtonY + displayTokenButtonSize, scr_get_translation("option_display-token"), obj_tooltip.arrowFaceUp);
+			scr_createTooltip(displayTokenButtonX, displayTokenButtonY + displayTokenButtonSize, scr_get_translation("option_display-token"), TOOLTIP_DIR_UP);
 			draw_set_color(global.colorThemeSelected1);
 			draw_circle(displayTokenButtonX- clipX, displayTokenButtonY- clipY, displayTokenButtonSize * 0.75, false);
 			

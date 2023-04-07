@@ -200,7 +200,7 @@ function scr_panelPane_drawSearchList() {
 					
 				}
 				
-				scr_createTooltip(delButtonX, searchRectY2, scr_get_translation("msg_remove"), obj_tooltip.arrowFaceUp);
+				scr_createTooltip(delButtonX, searchRectY2, scr_get_translation("msg_remove"), TOOLTIP_DIR_UP);
 			}
 			
 

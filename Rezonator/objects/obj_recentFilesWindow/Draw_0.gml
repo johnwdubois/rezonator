@@ -91,7 +91,7 @@ for (var i = 0; i < fileKeyListSize; i++) {
 		if (mouseOverRemove) {
 			draw_set_color(global.colorThemeSelected1);
 			draw_roundrect(removeButtonX1 - clipX, removeButtonY1 - clipY, removeButtonX2 - clipX, removeButtonY2 - clipY, false);
-			scr_createTooltip(floor(mean(removeButtonX1, removeButtonX2)), removeButtonY2, scr_get_translation("menu_remove-quick-access"), obj_tooltip.arrowFaceUp);
+			scr_createTooltip(floor(mean(removeButtonX1, removeButtonX2)), removeButtonY2, scr_get_translation("menu_remove-quick-access"), TOOLTIP_DIR_UP);
 			if (mouse_check_button_released(mb_left)) {
 				scr_deleteFromList(global.recentFilesList, fileKey);
 				scr_saveINI();
@@ -107,7 +107,7 @@ for (var i = 0; i < fileKeyListSize; i++) {
 		if (mouseOverCopyFilePath) {
 			draw_set_color(global.colorThemeSelected1);
 			draw_roundrect(copyButtonX1 - clipX, copyButtonY1 - clipY, copyButtonX2 - clipX, copyButtonY2 - clipY, false);
-			scr_createTooltip(floor(mean(copyButtonX1, copyButtonX2)), copyButtonY2, scr_get_translation("menu_copy-filepath"), obj_tooltip.arrowFaceUp);
+			scr_createTooltip(floor(mean(copyButtonX1, copyButtonX2)), copyButtonY2, scr_get_translation("menu_copy-filepath"), TOOLTIP_DIR_UP);
 			if (mouse_check_button_released(mb_left)) {
 				clipboard_set_text(filePath);
 			}
@@ -123,7 +123,7 @@ for (var i = 0; i < fileKeyListSize; i++) {
 		if (mouseOverShowFilePath) {
 			draw_set_color(global.colorThemeSelected1);
 			draw_roundrect(showFileButtonX1 - clipX, showFileButtonY1 - clipY, showFileButtonX2 - clipX, showFileButtonY2 - clipY, false);
-			scr_createTooltip(floor(mean(showFileButtonX1, showFileButtonX2)), showFileButtonY2, os_type == os_windows ? scr_get_translation("menu_show-file-windows") : scr_get_translation("menu_show-file-macos"), obj_tooltip.arrowFaceUp);
+			scr_createTooltip(floor(mean(showFileButtonX1, showFileButtonX2)), showFileButtonY2, os_type == os_windows ? scr_get_translation("menu_show-file-windows") : scr_get_translation("menu_show-file-macos"), TOOLTIP_DIR_UP);
 			if (mouse_check_button_released(mb_left)) {
 				var fileDir = string_replace_all(filePath, fileName, "");
 				scr_openDirectory(fileDir);

@@ -1,6 +1,6 @@
 var _id = async_load[? "id"];
 var _status = async_load[? "http_status"];
-show_debug_message("obj_aiControl, async http, _id: {0}, _status: {1}", _id, _status);
+//show_debug_message("obj_aiControl, async http, _id: {0}, _status: {1}", _id, _status);
 
 if (_id == httpRequestID) {
 	
@@ -22,12 +22,8 @@ if (_id == httpRequestID) {
 	}
 	catch (e) {
 		// if we couldn't parse, show an alert box
-		if (!instance_exists(obj_dialogueBox)) {
-			var inst = instance_create_layer(x, y, "InstancesDialogue", obj_dialogueBox);
-			inst.alertWindowActive = true;
-			aiErrorMsg = "Could not parse AI response.";
-		}
-		
+		scr_createDialogBox(DIALOG_AICHAT_ERROR);
+		aiErrorMsg = "Could not parse AI response.";
 		show_debug_message("obj_aiControl, Async HTTP could not parse json");
 		exit;
 	}

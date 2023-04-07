@@ -175,10 +175,10 @@ if (validWordTip || validUnitTip) {
 				}
 				
 				if (scr_get_translation(selectedTag) == scr_get_translation("menu_clear")) {
-					scr_createTooltip(boxX2, mean(rectY1, rectY2), "Clear tag", obj_tooltip.arrowFaceLeft);
+					scr_createTooltip(boxX2, mean(rectY1, rectY2), "Clear tag", TOOLTIP_DIR_LEFT);
 				}
 				else if (is_string(selectedTag) && selectedTag != "" && selectedTag != fieldValue) {
-					scr_createTooltip(boxX2, mean(rectY1, rectY2), "Quick tag: " + string(selectedTag), obj_tooltip.arrowFaceLeft);
+					scr_createTooltip(boxX2, mean(rectY1, rectY2), "Quick tag: " + string(selectedTag), TOOLTIP_DIR_LEFT);
 				}
 				
 			}

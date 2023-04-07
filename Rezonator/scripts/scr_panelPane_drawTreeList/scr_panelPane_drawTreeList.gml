@@ -180,7 +180,7 @@ function scr_panelPane_drawTreeList() {
 
 				}
 				
-				scr_createTooltip(delButtonX, treeRectY2, scr_get_translation("msg_remove"), obj_tooltip.arrowFaceUp);
+				scr_createTooltip(delButtonX, treeRectY2, scr_get_translation("msg_remove"), TOOLTIP_DIR_UP);
 			}
 			else {
 				if (mouse_check_button_released(mb_left)) {

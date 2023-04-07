@@ -31,7 +31,7 @@ function scr_audioDraw() {
 	draw_text(audioFileX, audioFileY, audioFileStr);
 	
 	if (point_in_rectangle(mouse_x, mouse_y, x, y, seekBarX1 - string_width("AAAAAAA"), y + windowHeight) && audioFile != "" && audioFileExists) {
-		scr_createTooltip(mean(x, seekBarX1 - string_width("AAAAAAA")), y, string(audioFile), obj_tooltip.arrowFaceDown);
+		scr_createTooltip(mean(x, seekBarX1 - string_width("AAAAAAA")), y, string(audioFile), TOOLTIP_DIR_DOWN);
 	}
 	
 	playheadRadSmall = strHeight * 0.2;
@@ -78,7 +78,7 @@ function scr_audioDraw() {
 	
 	if (mouseOverPlayPause) {
 		//draw_rectangle(pauseLineLeftX - (strHeight * 0.5), playPauseMouseY1, pauseLineRightX + (strHeight * 0.5), playPauseMouseY2, true);
-		scr_createTooltip(mean(pauseLineLeftX, pauseLineRightX), pauseLineY1 - (strHeight * 0.25), (audioPaused) ? scr_get_translation("help_label_play") : scr_get_translation("option_pause"), obj_tooltip.arrowFaceDown);
+		scr_createTooltip(mean(pauseLineLeftX, pauseLineRightX), pauseLineY1 - (strHeight * 0.25), (audioPaused) ? scr_get_translation("help_label_play") : scr_get_translation("option_pause"), TOOLTIP_DIR_DOWN);
 	}
 
 	

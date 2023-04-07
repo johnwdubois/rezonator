@@ -102,7 +102,7 @@
 				
 			if (mouseoverDropDown) {
 									
-				scr_createTooltip(mean(dropDownRectX1, dropDownRectX2), dropDownRectY2, scr_get_translation("option-tag"), obj_tooltip.arrowFaceUp);
+				scr_createTooltip(mean(dropDownRectX1, dropDownRectX2), dropDownRectY2, scr_get_translation("option-tag"), TOOLTIP_DIR_UP);
 				draw_set_color(global.colorThemeBorders);
 				draw_rectangle(dropDownRectX1- clipX, dropDownRectY1 - clipY , dropDownRectX2 - clipX, dropDownRectY2 - clipY, true);
 

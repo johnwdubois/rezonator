@@ -71,9 +71,6 @@ function scr_dropDownSelect(optionSelected) {
 	    scr_tokenSelection(optionSelected);
 	    with (obj_dropDown) instance_destroy();
 	}
-	else if (optionListType == global.optionListTypeStack) {
-	    scr_stackOptions(optionSelected);
-	}
 	else if (optionListType == global.optionListTypeCreateStack) {
 	    scr_createStackOptions(optionSelected);
 	}

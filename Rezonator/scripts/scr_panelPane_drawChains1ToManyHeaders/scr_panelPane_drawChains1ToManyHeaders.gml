@@ -107,7 +107,7 @@ function scr_panelPane_drawChains1ToManyHeaders() {
 			// draw sort arrow
 			if (mouseoverColHeader || mouseoverSortArrow || obj_control.chain1toManyCustomSortColIndex == i) {
 				if (mouseoverSortArrow) {
-					scr_createTooltip(sortArrowX, sortArrowY + (sprite_get_height(spr_linkArrow) * 0.25), scr_get_translation("option_sort"), obj_tooltip.arrowFaceUp);
+					scr_createTooltip(sortArrowX, sortArrowY + (sprite_get_height(spr_linkArrow) * 0.25), scr_get_translation("option_sort"), TOOLTIP_DIR_UP);
 					sortArrowScale *= 1.25;
 					if (mouse_check_button_released(mb_left)) {
 						if (obj_control.chain1toManyCustomSortColIndex == -1) {
@@ -152,7 +152,7 @@ function scr_panelPane_drawChains1ToManyHeaders() {
 				}
 
 				if (mouseoverColHeader) {
-					scr_createTooltip(mean(headerRectX1, headerRectX2), headerRectY2, scr_get_translation("msg_change_field"), obj_tooltip.arrowFaceUp);
+					scr_createTooltip(mean(headerRectX1, headerRectX2), headerRectY2, scr_get_translation("msg_change_field"), TOOLTIP_DIR_UP);
 					
 					// draw underline
 					var underlineX1 = headerTextX;

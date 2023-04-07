@@ -22,7 +22,6 @@ function scr_dropDownOptionListTypeInit() {
 	global.optionListTypeHelp = 23;
 	global.optionListTypeDelete = 26;
 	global.optionListTypeTokenSelection = 27;
-	global.optionListTypeStack = 28;
 	global.optionListTypeCreateStack = 29;
 	global.optionListTypeUnitSelection = 31;
 	global.optionListTypeSpecialFields = 32;

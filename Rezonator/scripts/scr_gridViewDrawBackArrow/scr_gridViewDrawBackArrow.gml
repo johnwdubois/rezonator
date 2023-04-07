@@ -59,7 +59,7 @@ function scr_gridViewDrawBackArrow() {
 		var tooltipText = "";
 		if (obj_control.gridView) tooltipText = scr_get_translation("label_back");
 		else tooltipText = scr_get_translation("menu_clear");
-		scr_createTooltip(backArrowRectX2, mean(backArrowRectY1, backArrowRectY2), tooltipText, obj_tooltip.arrowFaceLeft);
+		scr_createTooltip(backArrowRectX2, mean(backArrowRectY1, backArrowRectY2), tooltipText, TOOLTIP_DIR_LEFT);
 	}
 	else {
 		obj_control.mouseoverBackArrow = false;

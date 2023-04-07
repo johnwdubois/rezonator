@@ -48,7 +48,7 @@ function scr_drawToolPane() {
 	}
 	
 	if (mouseoverTool) {
-		scr_createTooltip(toolbarButtonX1, toolButtonY, scr_get_translation("option_tool"), obj_tooltip.arrowFaceRight);
+		scr_createTooltip(toolbarButtonX1, toolButtonY, scr_get_translation("option_tool"), TOOLTIP_DIR_RIGHT);
 		
 		if (mouse_check_button_released(mb_left)) {
 			var toolOptionList = ds_list_create();
@@ -84,7 +84,7 @@ function scr_drawToolPane() {
 	if (mouseoverFilter) {
 		draw_set_color(c_white);
 		scr_drawRectWidth(toolbarButtonX1, filterButtonRectY1, toolbarButtonX2, filterButtonRectY2, mouseoverRectWidth , false);
-		scr_createTooltip(toolbarButtonX1, filterButtonY, scr_get_translation("menu_filter"), obj_tooltip.arrowFaceRight);
+		scr_createTooltip(toolbarButtonX1, filterButtonY, scr_get_translation("menu_filter"), TOOLTIP_DIR_RIGHT);
 		
 		
 		if (mouse_check_button_released(mb_left)) {
@@ -116,7 +116,7 @@ function scr_drawToolPane() {
 	}
 	
 	if (mouseoverContext) {
-		scr_createTooltip(toolbarButtonX1, contextButtonY, scr_get_translation("menu_filter-context"), obj_tooltip.arrowFaceRight);
+		scr_createTooltip(toolbarButtonX1, contextButtonY, scr_get_translation("menu_filter-context"), TOOLTIP_DIR_RIGHT);
 		
 		if (mouse_check_button_released(mb_left)) {
 			var contextOptionList = ds_list_create();
@@ -161,7 +161,7 @@ function scr_drawToolPane() {
 	}
 	
 	if (mouseoverJustify) {
-		scr_createTooltip(toolbarButtonX1, justifyButtonY, scr_get_translation("menu_justify"), obj_tooltip.arrowFaceRight);
+		scr_createTooltip(toolbarButtonX1, justifyButtonY, scr_get_translation("menu_justify"), TOOLTIP_DIR_RIGHT);
 		
 		if (mouse_check_button_released(mb_left)) {
 			var justifyOptionList = ds_list_create();
@@ -189,7 +189,7 @@ function scr_drawToolPane() {
 	}
 	
 	if (mouseoverOneToOne) {
-		scr_createTooltip(toolbarButtonX1, oneToOneButtonY, !obj_panelPane.chainViewOneToMany ? scr_get_translation("option_one-to-one") : scr_get_translation("option_one-to-many"), obj_tooltip.arrowFaceRight);
+		scr_createTooltip(toolbarButtonX1, oneToOneButtonY, !obj_panelPane.chainViewOneToMany ? scr_get_translation("option_one-to-one") : scr_get_translation("option_one-to-many"), TOOLTIP_DIR_RIGHT);
 		
 		if (mouse_check_button_released(mb_left)) {
 			var current1ToMany = obj_panelPane.chainViewOneToMany;
@@ -218,7 +218,7 @@ function scr_drawToolPane() {
 	}
 	
 	if (mouseoverAudio) {
-		scr_createTooltip(toolbarButtonX1, audioButtonY, scr_get_translation("menu_media"), obj_tooltip.arrowFaceRight);
+		scr_createTooltip(toolbarButtonX1, audioButtonY, scr_get_translation("menu_media"), TOOLTIP_DIR_RIGHT);
 		
 		if (mouse_check_button_released(mb_left)) {
 			with (obj_audioUI) {
@@ -253,7 +253,7 @@ function scr_drawToolPane() {
 	}
 	
 	if (mouseoverHelp) {
-		scr_createTooltip(toolbarButtonX1, helpButtonY, scr_get_translation("menu_help"), obj_tooltip.arrowFaceRight);
+		scr_createTooltip(toolbarButtonX1, helpButtonY, scr_get_translation("menu_help"), TOOLTIP_DIR_RIGHT);
 		
 		if (mouse_check_button_released(mb_left)) {
 			var helpCollapsed = obj_panelPane.functionHelp_collapsed;
@@ -328,7 +328,7 @@ function scr_drawToolPane() {
 		scr_drawRectWidth(toolbarButtonX1, homeButtonRectY1, toolbarButtonX2, homeButtonRectY2, mouseoverRectWidth , false);
 	}
 	if (mouseoverHome) {
-		scr_createTooltip(toolbarButtonX1, homeButtonY, scr_get_translation("menu_home"), obj_tooltip.arrowFaceRight);
+		scr_createTooltip(toolbarButtonX1, homeButtonY, scr_get_translation("menu_home"), TOOLTIP_DIR_RIGHT);
 		if (mouse_check_button_released(mb_left) && !inHomeView) {
 			if (obj_control.currentView != obj_control.mainView) {
 				obj_control.currentView = obj_control.mainView;
@@ -346,7 +346,7 @@ function scr_drawToolPane() {
 	var strHeight = string_height("0");
 	var viewTextY = floor(mean(camHeight, homeButtonRectY2));
 	var mouseoverViewText = point_in_rectangle(mouse_x, mouse_y, toolbarButtonX1, viewTextY - (strHeight * 0.75), toolbarButtonX2, viewTextY + (strHeight * 0.75));
-	if (mouseoverViewText) scr_createTooltip(toolbarButtonX1, viewTextY, scr_get_translation("help_label_view-select"), obj_tooltip.arrowFaceRight);
+	if (mouseoverViewText) scr_createTooltip(toolbarButtonX1, viewTextY, scr_get_translation("help_label_view-select"), TOOLTIP_DIR_RIGHT);
 	draw_text(floor(mean(toolbarButtonX1, toolbarButtonX2)), viewTextY, scr_get_translation(obj_control.currentView));
 	
 }

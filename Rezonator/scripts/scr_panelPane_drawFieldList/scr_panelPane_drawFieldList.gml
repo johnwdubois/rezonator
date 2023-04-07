@@ -250,7 +250,7 @@ function scr_panelPane_drawFieldList() {
 							obj_dialogueBox.stringToBeRemoved = currentField;
 						}
 					}
-					scr_createTooltip(delButtonX, currentRowY2, scr_get_translation("msg_remove"), obj_tooltip.arrowFaceUp);
+					scr_createTooltip(delButtonX, currentRowY2, scr_get_translation("msg_remove"), TOOLTIP_DIR_UP);
 				}
 				// mouseover & click on lock button
 				else if (mouseOverLock) {
@@ -260,7 +260,7 @@ function scr_panelPane_drawFieldList() {
 						currentFieldSubMap[? "locked"] = !currentFieldSubMap[? "locked"];
 					
 					}
-					scr_createTooltip(lockButtonX, currentRowY2, fieldLocked ? "Unlock tags" : "Lock tags", obj_tooltip.arrowFaceUp);
+					scr_createTooltip(lockButtonX, currentRowY2, fieldLocked ? "Unlock tags" : "Lock tags", TOOLTIP_DIR_UP);
 				}
 				// mouseover & click on lock button
 				else if (mouseOverReadOnly) {
@@ -272,7 +272,7 @@ function scr_panelPane_drawFieldList() {
 					
 						}
 					}
-					scr_createTooltip(readOnlyButtonX, currentRowY2, fieldReadOnly ? "Read Only" : "Taggable", obj_tooltip.arrowFaceUp);
+					scr_createTooltip(readOnlyButtonX, currentRowY2, fieldReadOnly ? "Read Only" : "Taggable", TOOLTIP_DIR_UP);
 				}
 			
 
@@ -440,7 +440,7 @@ function scr_panelPane_drawFieldList() {
 		if (device_mouse_check_button_released(0,mb_left)) {
 			scr_saveTagJson();
 		}
-		scr_createTooltip(saveSpriteX, saveRectY2,scr_get_translation("option_save-tag-json"), obj_tooltip.arrowFaceUp);
+		scr_createTooltip(saveSpriteX, saveRectY2,scr_get_translation("option_save-tag-json"), TOOLTIP_DIR_UP);
 	}
 	draw_sprite_ext(spr_saveIcon,0,saveSpriteX,saveSpriteY,1,1,0,global.colorThemeText, 1);
 	
@@ -467,7 +467,7 @@ function scr_panelPane_drawFieldList() {
 			}
 			scr_loadTagJson();
 		}
-		scr_createTooltip(loadSpriteX, loadRectY2,scr_get_translation("option_load-tag-json"), obj_tooltip.arrowFaceUp);
+		scr_createTooltip(loadSpriteX, loadRectY2,scr_get_translation("option_load-tag-json"), TOOLTIP_DIR_UP);
 	}
 	draw_sprite_ext(spr_loadingIcon,0,loadSpriteX,loadSpriteY,1,1,0,global.colorThemeText, 1);
 	

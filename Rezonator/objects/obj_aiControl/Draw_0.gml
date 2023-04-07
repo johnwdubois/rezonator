@@ -3,6 +3,8 @@ scr_ctrlHold();
 scr_windowCameraAdjust();
 scr_windowExit();
 
+var mouseoverCancel = instance_exists(obj_dropDown) || instance_exists(obj_dialogueBox);
+
 // draw rect to hide scrolled text
 scr_adaptFont("A", "M");
 var camWidth = camera_get_view_width(view_camera[0]);
@@ -20,11 +22,34 @@ with (instInputBox_ApiKey) {
 	textBoxY = camHeight - (textBoxHeight * 2);
 }
 
+// prompt send button
+var promptSendWidth = instInputBox_Prompt.windowHeight;
+var promptSendX2 = instInputBox_ApiKey.textBoxX + instInputBox_ApiKey.windowWidth;
+var promptSendY1 = instInputBox_Prompt.textBoxY;
+var promptSendX1 = promptSendX2 - promptSendWidth;
+var promptSendY2 = promptSendY1 + promptSendWidth;
+var promptSendPadding = 3;
+var mouseoverPromptSend = point_in_rectangle(mouse_x, mouse_y, promptSendX1, promptSendY1, promptSendX2, promptSendY2) && !mouseoverCancel;
+draw_set_alpha(mouseoverPromptSend ? 1 : 0.5);
+draw_set_color(global.colorThemeBG);
+draw_roundrect(promptSendX1 + (promptSendPadding * 2), promptSendY1 + promptSendPadding, promptSendX2, promptSendY2 - promptSendPadding, false);
+draw_set_alpha(1);
+draw_sprite_ext(spr_send, 0, floor(mean(promptSendX1, promptSendX2)), floor(mean(promptSendY1, promptSendY2)), 1, 1, 0, global.colorThemeSelected2, 1);
+if (mouseoverPromptSend) {
+	scr_createTooltip(floor(mean(promptSendX1, promptSendX2)), promptSendY2, scr_get_translation("option_submit-prompt"), TOOLTIP_DIR_UP);
+	if (mouse_check_button_pressed(mb_left)) {
+		mousePressedButton = "send";
+	}
+	if (mouse_check_button_released(mb_left) && mousePressedButton == "send") {
+		sendPrompt = true;
+	}
+}
+
 // position AI prompt input box
 var _instInputBox_ApiKey = instInputBox_ApiKey;
 with (instInputBox_Prompt) {
-	windowWidth = textBoxWidth;
-	textBoxX = (camWidth / 2) - (windowWidth / 2);
+	windowWidth = textBoxWidth - promptSendWidth;
+	textBoxX = _instInputBox_ApiKey.textBoxX;
 	textBoxY = _instInputBox_ApiKey.textBoxY - (textBoxHeight * 2);
 }
 
@@ -47,7 +72,7 @@ var checkboxX1 = instInputBox_ApiKey.textBoxX;
 var checkboxY1 = floor(mean(instInputBox_ApiKey.textBoxY + instInputBox_ApiKey.windowHeight, camHeight) - (checkboxHeight / 2));
 var checkboxX2 = checkboxX1 + checkboxHeight;
 var checkboxY2 = checkboxY1 + checkboxHeight;
-var mouseoverCheckbox = point_in_rectangle(mouse_x, mouse_y, checkboxX1, checkboxY1, checkboxX2, checkboxY2);
+var mouseoverCheckbox = point_in_rectangle(mouse_x, mouse_y, checkboxX1, checkboxY1, checkboxX2, checkboxY2) && !mouseoverCancel;
 if (showApiKey) {
 	draw_set_color(c_white);
 	draw_rectangle(checkboxX1, checkboxY1, checkboxX2, checkboxY2, false);
@@ -75,7 +100,7 @@ var backButtonX1 = (instInputBox_ApiKey.textBoxX / 2) - (backButtonWidth / 2);
 var backButtonY2 = instInputBox_ApiKey.textBoxY;
 var backButtonX2 = backButtonX1 + backButtonWidth;
 var backButtonY1 = backButtonY2 - textBoxHeight;
-var mouseoverBackButton = point_in_rectangle(mouse_x, mouse_y, backButtonX1, backButtonY1, backButtonX2, backButtonY2);
+var mouseoverBackButton = point_in_rectangle(mouse_x, mouse_y, backButtonX1, backButtonY1, backButtonX2, backButtonY2) && !mouseoverCancel;
 draw_set_color(mouseoverBackButton ? global.colorThemeSelected1 : global.colorThemeBG);
 draw_roundrect(backButtonX1, backButtonY1, backButtonX2, backButtonY2, false);
 draw_set_color(global.colorThemeRezPink);
@@ -83,7 +108,10 @@ draw_roundrect(backButtonX1, backButtonY1, backButtonX2, backButtonY2, true);
 draw_set_color(global.colorThemeText);
 draw_text(floor(mean(backButtonX1, backButtonX2)), floor(mean(backButtonY1, backButtonY2)), scr_get_translation("label_back"));
 if (mouseoverBackButton) {
-	if (mouse_check_button_released(mb_left)) {
+	if (mouse_check_button_pressed(mb_left)) {
+		mousePressedButton = "back";
+	}
+	if (mouse_check_button_released(mb_left) && mousePressedButton == "back") {
 		room_goto(rm_openingScreen);
 	}
 }
@@ -119,7 +147,10 @@ draw_roundrect(importButtonX1, importButtonY1, importButtonX2, importButtonY2, t
 draw_set_color(global.colorThemeText);
 draw_text(floor(mean(importButtonX1, importButtonX2)), floor(mean(importButtonY1, importButtonY2)), scr_get_translation("menu_import"));
 if (mouseoverImportButton) {
-	if (mouse_check_button_released(mb_left)) {
+	if (mouse_check_button_pressed(mb_left)) {
+		mousePressedButton = "import";
+	}
+	if (mouse_check_button_released(mb_left) && mousePressedButton == "import") {
 		global.importFrom = "ai";
 		scr_importTXT("");
 	}
@@ -146,4 +177,8 @@ for (var i = 0; i < aiImportTypeListSize; i++) {
 	draw_text(aiImportTypeX + (aiImportTypeRad * 2), importButtonY2 + aiImportTypeRad + plusY, _aiImportType);
 	
 	plusY += aiImportTypeRad * 2.5;
+}
+
+if (!mouse_check_button(mb_left)) {
+	mousePressedButton = "";
 }

@@ -220,7 +220,7 @@ function scr_panelPane_drawFieldTags() {
 						var mouseoverCheckBox = scr_pointInRectangleClippedWindow(mouse_x,mouse_y,checkboxX1,checkboxY1,checkboxX2,checkboxY2);
 						
 						if (mouseoverCheckBox) {
-							scr_createTooltip(mean(checkboxX1, checkboxX2), checkboxY2, scr_get_translation("option_select"), obj_tooltip.arrowFaceUp);
+							scr_createTooltip(mean(checkboxX1, checkboxX2), checkboxY2, scr_get_translation("option_select"), TOOLTIP_DIR_UP);
 							if (mouse_check_button_released(mb_left)) {
 								isSelected = !isSelected;
 								if (isSelected) {
@@ -277,7 +277,7 @@ function scr_panelPane_drawFieldTags() {
 								}
 
 							}
-							scr_createTooltip(delButtonX, currentRowY2, scr_get_translation("msg_remove"), obj_tooltip.arrowFaceUp);
+							scr_createTooltip(delButtonX, currentRowY2, scr_get_translation("msg_remove"), TOOLTIP_DIR_UP);
 						}
 									
 						trashAlpha = 1;
@@ -516,7 +516,7 @@ function scr_panelPane_drawFieldTags() {
 		draw_set_color(global.colorThemeSelected1);
 		draw_set_alpha(0.7)
 		draw_roundrect(deleteOptionsX-optionsIconRad, deleteOptionsY-optionsIconRad,deleteOptionsX+optionsIconRad,deleteOptionsY+optionsIconRad, false);
-		scr_createTooltip(deleteOptionsX, deleteOptionsY + optionsIconRad, "Remove Tags", obj_tooltip.arrowFaceUp);
+		scr_createTooltip(deleteOptionsX, deleteOptionsY + optionsIconRad, "Remove Tags", TOOLTIP_DIR_UP);
 		
 		if (mouse_check_button_pressed(mb_left)) {
 			if (!instance_exists(obj_dialogueBox)) {

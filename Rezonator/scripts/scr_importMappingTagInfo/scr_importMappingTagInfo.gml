@@ -191,7 +191,7 @@ function scr_importMappingTagInfo() {
 					
 				
 				if (!instance_exists(obj_dropDown) && mouseoverDropDown) {
-					scr_createTooltip(mean(dropDownButtonX1, dropDownButtonX2), dropDownButtonY2, scr_get_translation("option_change-level"), obj_tooltip.arrowFaceUp);
+					scr_createTooltip(mean(dropDownButtonX1, dropDownButtonX2), dropDownButtonY2, scr_get_translation("option_change-level"), TOOLTIP_DIR_UP);
 
 					mouseOverLevel = true;
 					if (mouse_check_button_pressed(mb_left)) {
@@ -276,7 +276,7 @@ function scr_importMappingTagInfo() {
 					}
 					
 					if (!instance_exists(obj_dropDown) && mouseoverDropDown) {
-						scr_createTooltip(mean(dropDownButtonX1, dropDownButtonX2), dropDownButtonY2, scr_get_translation("option_change-key"), obj_tooltip.arrowFaceUp);
+						scr_createTooltip(mean(dropDownButtonX1, dropDownButtonX2), dropDownButtonY2, scr_get_translation("option_change-key"), TOOLTIP_DIR_UP);
 				
 						if (mouse_check_button_pressed(mb_left)) {
 							obj_importMapping.inDropDown = true;
@@ -340,7 +340,7 @@ function scr_importMappingTagInfo() {
 					var dropDownButtonY2 = floor(dropDownButtonY1 + buttonRectSize);
 				
 					if (!instance_exists(obj_dropDown) && mouseoverDropDown) {
-						scr_createTooltip(mean(dropDownButtonX1, dropDownButtonX2), dropDownButtonY2, scr_get_translation("option_change-special-field"), obj_tooltip.arrowFaceUp);
+						scr_createTooltip(mean(dropDownButtonX1, dropDownButtonX2), dropDownButtonY2, scr_get_translation("option_change-special-field"), TOOLTIP_DIR_UP);
 							
 				
 						if (mouse_check_button_pressed(mb_left)) {

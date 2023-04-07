@@ -1,7 +1,7 @@
 
 
 
-// arrowFaceDirection should be obj_tooltip.arrowFaceLeft, ...Right, ...up, or ...down
+// arrowFaceDirection should be TOOLTIP_DIR_LEFT, ...Right, ...up, or ...down
 
 function scr_createTooltip(tipX, tipY, tipText, arrowFaceDirection) {
 	

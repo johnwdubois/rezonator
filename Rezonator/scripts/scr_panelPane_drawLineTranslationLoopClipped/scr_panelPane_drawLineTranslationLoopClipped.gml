@@ -192,7 +192,7 @@ function scr_panelPane_drawLineTranslationLoopClipped() {
 		
 		// user interaction for token selection
 		if (mouseoverDropDownButton && !instance_exists(obj_dropDown)) {
-			scr_createTooltip(mean(dropDownRectX1, dropDownRectX2), dropDownRectY2, scr_get_translation("msg_change_field"), obj_tooltip.arrowFaceUp);
+			scr_createTooltip(mean(dropDownRectX1, dropDownRectX2), dropDownRectY2, scr_get_translation("msg_change_field"), TOOLTIP_DIR_UP);
 			draw_set_color(global.colorThemeBorders);
 			draw_rectangle(dropDownRectX1, dropDownRectY1, dropDownRectX2, dropDownRectY2, true);
 			if (mouse_check_button_released(mb_left)) {
