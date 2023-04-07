@@ -6,7 +6,7 @@ function scr_dialogueBoxNewCustomTagToken() {
 	
 	// get submap for this field
 	var tokenTagMap = global.nodeMap[? "tokenTagMap"];
-	if (obj_panelPane.functionChainList_currentTab == obj_panelPane.functionChainList_tabChunk && !obj_panelPane.chainViewOneToMany) {
+	if (obj_panelPane.functionChainList_currentTab == NAVTAB_CHUNK && !obj_panelPane.chainViewOneToMany) {
 		var fieldSubMap = tokenTagMap[? obj_control.chunk1to1FieldToChange];
 	}
 	else {
@@ -38,8 +38,8 @@ function scr_dialogueBoxNewCustomTagToken() {
 	scr_sortList(tagSet);
 	
 	//add this to selected token if not in tag pane
-	if (obj_panelPane.functionChainList_currentTab != obj_panelPane.functionChainList_tabField) {
-		if (obj_panelPane.functionChainList_currentTab == obj_panelPane.functionChainList_tabChunk && !obj_panelPane.chainViewOneToMany) {
+	if (obj_panelPane.functionChainList_currentTab != NAVTAB_TAG) {
+		if (obj_panelPane.functionChainList_currentTab == NAVTAB_CHUNK && !obj_panelPane.chainViewOneToMany) {
 			// get the chunkToChange's submap, and that chunks's tagmap
 			var chunkSubMap = global.nodeMap[? obj_control.chunk1to1ChunkToChange];
 			if (scr_isNumericAndExists(chunkSubMap, ds_type_map)) {

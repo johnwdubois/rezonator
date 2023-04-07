@@ -34,7 +34,7 @@ function scr_stackerBranch() {
 		}
 	}
 
-	obj_panelPane.functionChainList_currentTab = obj_panelPane.functionChainList_tabStackBrush;
+	obj_panelPane.functionChainList_currentTab = NAVTAB_STACK;
 			
 	// unfocus chains
 	scr_chainDeselect();

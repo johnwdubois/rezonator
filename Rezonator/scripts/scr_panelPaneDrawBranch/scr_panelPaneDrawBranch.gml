@@ -21,28 +21,28 @@ function scr_panelPaneDrawBranch() {
 					draw_rectangle(x, y, x + windowWidth, y + windowHeight, true);
 
 					// all the possible left panes
-					if (functionChainList_currentTab == functionChainList_tabLine) {
+					if (functionChainList_currentTab == NAVTAB_UNIT) {
 						scr_panelPane_drawUnitsList();
 					}
-					else if (functionChainList_currentTab == functionChainList_tabShow) {
+					else if (functionChainList_currentTab == NAVTAB_SHOW) {
 						scr_panelPane_drawShowList();
 					}
-					else if (functionChainList_currentTab == functionChainList_tabTranslations) {
+					else if (functionChainList_currentTab == NAVTAB_TRANSLATION) {
 						scr_panelPane_drawUnitsList();
 					}
-					else if (functionChainList_currentTab == functionChainList_tabField) {
+					else if (functionChainList_currentTab == NAVTAB_TAG) {
 						scr_panelPane_drawFieldList();
 					}
-					else if (functionChainList_currentTab == functionChainList_tabSearch) {
+					else if (functionChainList_currentTab == NAVTAB_SEARCH) {
 						scr_panelPane_drawSearchList();
 					}			
-					else if (functionChainList_currentTab == functionChainList_tabChunk) {
+					else if (functionChainList_currentTab == NAVTAB_CHUNK) {
 						scr_panelPane_drawChunkList();
 					}
-					else if (functionChainList_currentTab == functionChainList_tabClique) {
+					else if (functionChainList_currentTab == NAVTAB_CLIQUE) {
 						scr_panelPane_drawCliqueList();
 					}
-					else if (functionChainList_currentTab == functionChainList_tabTree) {
+					else if (functionChainList_currentTab == NAVTAB_TREE) {
 						scr_panelPane_drawTreeList();
 					}
 					else {
@@ -77,7 +77,7 @@ function scr_panelPaneDrawBranch() {
 					draw_rectangle(x, y, x + windowWidth, y + windowHeight, true);
 					if (is_numeric(functionChainContents_BGColor)) {
 						// if we are on the line tab, set the BG color to be regular
-						if (functionChainList_currentTab != functionChainList_tabRezBrush && functionChainList_currentTab != functionChainList_tabTrackBrush && functionChainList_currentTab != functionChainList_tabStackBrush) {
+						if (functionChainList_currentTab != NAVTAB_RESONANCE && functionChainList_currentTab != NAVTAB_TRACK && functionChainList_currentTab != NAVTAB_STACK) {
 							functionChainContents_BGColor = global.colorThemeBG;
 						}
 						// if the BG color is not regular, draw a rectangle with the color of the corresponding chain
@@ -93,34 +93,34 @@ function scr_panelPaneDrawBranch() {
 		
 					if (chainViewOneToMany) {
 						// one to many
-						if (functionChainList_currentTab == functionChainList_tabLine) {
+						if (functionChainList_currentTab == NAVTAB_UNIT) {
 								if (BUILDTYPE == "Web") scr_surfaceStart();
 								scr_panelPane_drawUnits1toMany();
 								scr_panelPane_drawUnits1ToManyHeaders();
 								if (BUILDTYPE == "Web") scr_surfaceEnd();
 						}
-						else if (functionChainList_currentTab == functionChainList_tabShow) {
+						else if (functionChainList_currentTab == NAVTAB_SHOW) {
 							scr_panelPane_drawShow1toMany();
 						}
-						else if (functionChainList_currentTab == functionChainList_tabTranslations) {
+						else if (functionChainList_currentTab == NAVTAB_TRANSLATION) {
 							scr_panelPane_drawLineTranslationLoopClipped();
 						}
-						else if (functionChainList_currentTab == functionChainList_tabField) {
+						else if (functionChainList_currentTab == NAVTAB_TAG) {
 							scr_panelPane_drawFieldTags();
 						}
-						else if (functionChainList_currentTab == functionChainList_tabSearch) {
+						else if (functionChainList_currentTab == NAVTAB_SEARCH) {
 							scr_panelPane_drawSearch1ToMany();
 						}
-						else if (functionChainList_currentTab == functionChainList_tabChunk) {
+						else if (functionChainList_currentTab == NAVTAB_CHUNK) {
 							if (BUILDTYPE == "Web") scr_surfaceStart();
 							scr_panelPane_drawUnits1toMany();
 							scr_panelPane_drawUnits1ToManyHeaders();
 							if (BUILDTYPE == "Web") scr_surfaceEnd();
 						}
-						else if (functionChainList_currentTab == functionChainList_tabClique) {
+						else if (functionChainList_currentTab == NAVTAB_CLIQUE) {
 							scr_panelPane_drawCliques1ToMany();
 						}
-						else if (functionChainList_currentTab == functionChainList_tabTree) {
+						else if (functionChainList_currentTab == NAVTAB_TREE) {
 							scr_panelPane_drawTree1ToMany();
 						}
 						else {
@@ -132,32 +132,32 @@ function scr_panelPaneDrawBranch() {
 					}
 					else {
 						// one to one
-						if (functionChainList_currentTab == functionChainList_tabLine) {
+						if (functionChainList_currentTab == NAVTAB_UNIT) {
 							if (BUILDTYPE == "Web") scr_surfaceStart();
 							scr_panelPane_drawUnits1to1();
 							if (BUILDTYPE == "Web") scr_surfaceEnd();
 						}
-						else if (functionChainList_currentTab == functionChainList_tabShow) {
+						else if (functionChainList_currentTab == NAVTAB_SHOW) {
 							scr_panelPane_drawShow1toMany();
 						}
-						else if (functionChainList_currentTab == functionChainList_tabField) {
+						else if (functionChainList_currentTab == NAVTAB_TAG) {
 								scr_panelPane_drawFieldTags();
 						}
-						else if (functionChainList_currentTab == functionChainList_tabTranslations) {
+						else if (functionChainList_currentTab == NAVTAB_TRANSLATION) {
 							scr_panelPane_drawLineTranslationLoopClipped();
 						}
-						else if (functionChainList_currentTab == functionChainList_tabSearch) {
+						else if (functionChainList_currentTab == NAVTAB_SEARCH) {
 							scr_panelPane_drawSearch1ToMany();
 						}
-						else if (functionChainList_currentTab == functionChainList_tabChunk) {
+						else if (functionChainList_currentTab == NAVTAB_CHUNK) {
 							if (BUILDTYPE == "Web") scr_surfaceStart();
 							scr_panelPane_drawChunks1To1();
 							if (BUILDTYPE == "Web") scr_surfaceEnd();
 						}
-						else if (functionChainList_currentTab == functionChainList_tabClique) {
+						else if (functionChainList_currentTab == NAVTAB_CLIQUE) {
 							scr_panelPane_drawCliques1ToMany();
 						}
-						else if (functionChainList_currentTab == functionChainList_tabTree) {
+						else if (functionChainList_currentTab == NAVTAB_TREE) {
 							scr_panelPane_drawTree1ToMany();
 						}
 						else {

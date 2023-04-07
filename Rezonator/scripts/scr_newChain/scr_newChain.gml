@@ -165,9 +165,9 @@ function scr_newChain(ID) {
 
 
 	with (obj_panelPane) {
-		var willHop = (functionChainList_currentTab == functionChainList_tabRezBrush && obj_toolPane.currentMode == obj_toolPane.modeRez)
-		or (functionChainList_currentTab == functionChainList_tabTrackBrush && obj_toolPane.currentMode == obj_toolPane.modeTrack)
-		or (functionChainList_currentTab == functionChainList_tabStackBrush && obj_toolPane.currentMode != obj_toolPane.modeRead)
+		var willHop = (functionChainList_currentTab == NAVTAB_RESONANCE && obj_toolPane.currentMode == obj_toolPane.modeRez)
+		or (functionChainList_currentTab == NAVTAB_TRACK && obj_toolPane.currentMode == obj_toolPane.modeTrack)
+		or (functionChainList_currentTab == NAVTAB_STACK && obj_toolPane.currentMode != obj_toolPane.modeRead)
 		
 		if (currentFunction == functionChainList and willHop) {
 			alarm[4] = 2;

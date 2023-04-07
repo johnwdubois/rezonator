@@ -1,5 +1,5 @@
 		with (obj_panelPane) {
-			functionChainList_currentTab = functionChainList_tabStackBrush;
+			functionChainList_currentTab = NAVTAB_STACK;
 			if (obj_toolPane.currentMode = obj_toolPane.modeRead) {
 				obj_toolPane.currentMode = obj_toolPane.modeTrack;
 				if (obj_control.currentView == obj_control.searchView) {

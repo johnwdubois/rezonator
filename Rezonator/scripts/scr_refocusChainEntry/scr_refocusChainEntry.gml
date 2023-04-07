@@ -91,18 +91,18 @@ function scr_refocusChainEntry(ID) {
 		}
 		
 		// determine which chainList tab and mode we should be on
-		var chainListTab = obj_panelPane.functionChainList_tabRezBrush;
+		var chainListTab = NAVTAB_RESONANCE;
 		var chainMode = obj_toolPane.modeRez;
 		if (chainType == "resonance") {
-			chainListTab = obj_panelPane.functionChainList_tabRezBrush;
+			chainListTab = NAVTAB_RESONANCE;
 			chainMode = obj_toolPane.modeRez;
 		}
 		else if (chainType == "trail") {
-			chainListTab = obj_panelPane.functionChainList_tabTrackBrush;
+			chainListTab = NAVTAB_TRACK;
 			chainMode = obj_toolPane.modeTrack;
 		}
 		else if (chainType == "stack") {
-			chainListTab = obj_panelPane.functionChainList_tabStackBrush;
+			chainListTab = NAVTAB_STACK;
 			chainMode = obj_toolPane.modeRez;
 		}
 		

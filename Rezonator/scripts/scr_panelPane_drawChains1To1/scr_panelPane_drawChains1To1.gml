@@ -30,17 +30,17 @@ function scr_panelPane_drawChains1To1() {
 	var chainType = "";
 	var chain1to1ColFieldList = -1;
 	with (chainListPanelPaneInst) {
-		if (functionChainList_currentTab == functionChainList_tabRezBrush) {
+		if (functionChainList_currentTab == NAVTAB_RESONANCE) {
 			chainListKey = "resonanceNavList";
 			chainType = "resonance";
 			chain1to1ColFieldList = obj_control.chain1to1ColFieldListRez;
 		}
-		else if (functionChainList_currentTab == functionChainList_tabTrackBrush) {
+		else if (functionChainList_currentTab == NAVTAB_TRACK) {
 			chainListKey = "trailNavList";
 			chainType = "trail";
 			chain1to1ColFieldList = obj_control.chain1to1ColFieldListTrack;
 		}
-		else if (functionChainList_currentTab == functionChainList_tabStackBrush) {
+		else if (functionChainList_currentTab == NAVTAB_STACK) {
 			chainListKey = "stackNavList";
 			chainType = "stack";
 			chain1to1ColFieldList = obj_control.chain1to1ColFieldListStack;

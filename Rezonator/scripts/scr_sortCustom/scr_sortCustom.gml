@@ -23,13 +23,13 @@ function scr_sortCustom(chainID) {
 	var fieldList = -1;
 	with (obj_panelPane) {
 		if (currentFunction == functionChainList) {
-			if (functionChainList_currentTab == functionChainList_tabRezBrush) {
+			if (functionChainList_currentTab == NAVTAB_RESONANCE) {
 				fieldList = obj_control.chain1toManyColFieldListRez;
 			}
-			else if (functionChainList_currentTab == functionChainList_tabTrackBrush) {
+			else if (functionChainList_currentTab == NAVTAB_TRACK) {
 				fieldList = obj_control.chain1toManyColFieldListTrack;
 			}
-			else if (functionChainList_currentTab == functionChainList_tabStackBrush) {
+			else if (functionChainList_currentTab == NAVTAB_STACK) {
 				fieldList = obj_control.chain1toManyColFieldListStack;
 			}
 		}

@@ -52,7 +52,7 @@ function scr_dialogueConfirm() {
 			if (obj_control.fPressed) {
 			
 				obj_control.quickPickedChainID = "";
-				obj_control.switchToTab = obj_panelPane.functionChainList_tabSearch;
+				obj_control.switchToTab = NAVTAB_SEARCH;
 			
 				show_debug_message("obj_control.inputText: " + string(obj_control.inputText));
 				if (obj_control.inputText == "buh") {
@@ -293,9 +293,9 @@ function scr_dialogueConfirm() {
 			}
 			if (clearChainMulti) {
 				var selectedChainList = -1;
-				if (obj_panelPane.functionChainList_currentTab == obj_panelPane.functionChainList_tabRezBrush) selectedChainList = obj_control.selectedRezChainList;
-				else if (obj_panelPane.functionChainList_currentTab == obj_panelPane.functionChainList_tabTrackBrush) selectedChainList = obj_control.selectedTrackChainList;
-				else if (obj_panelPane.functionChainList_currentTab == obj_panelPane.functionChainList_tabStackBrush) selectedChainList = obj_control.selectedStackChainList;
+				if (obj_panelPane.functionChainList_currentTab == NAVTAB_RESONANCE) selectedChainList = obj_control.selectedRezChainList;
+				else if (obj_panelPane.functionChainList_currentTab == NAVTAB_TRACK) selectedChainList = obj_control.selectedTrackChainList;
+				else if (obj_panelPane.functionChainList_currentTab == NAVTAB_STACK) selectedChainList = obj_control.selectedStackChainList;
 			
 				if (scr_isNumericAndExists(selectedChainList, ds_type_list)) {
 					while (ds_list_size(selectedChainList) > 0) {

@@ -11,7 +11,7 @@ if (obj_toolPane.currentMode == obj_toolPane.modeRead) {
 	}
 }
 
-obj_panelPane.functionChainList_currentTab = obj_panelPane.functionChainList_tabStackBrush;
+obj_panelPane.functionChainList_currentTab = NAVTAB_STACK;
 			
 // unfocus chains of all type
 scr_chainDeselect();

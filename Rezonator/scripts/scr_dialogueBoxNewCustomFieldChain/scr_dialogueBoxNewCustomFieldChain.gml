@@ -11,9 +11,9 @@ function scr_dialogueBoxNewCustomFieldChain() {
 	var chain1to1ColFieldList = -1;
 	with (obj_panelPane) {
 		if (currentFunction == functionChainList) {
-			if (functionChainList_currentTab == functionChainList_tabRezBrush) chain1to1ColFieldList = obj_control.chain1to1ColFieldListRez;
-			else if (functionChainList_currentTab == functionChainList_tabTrackBrush) chain1to1ColFieldList = obj_control.chain1to1ColFieldListTrack;
-			else if (functionChainList_currentTab == functionChainList_tabStackBrush) chain1to1ColFieldList = obj_control.chain1to1ColFieldListStack;
+			if (functionChainList_currentTab == NAVTAB_RESONANCE) chain1to1ColFieldList = obj_control.chain1to1ColFieldListRez;
+			else if (functionChainList_currentTab == NAVTAB_TRACK) chain1to1ColFieldList = obj_control.chain1to1ColFieldListTrack;
+			else if (functionChainList_currentTab == NAVTAB_STACK) chain1to1ColFieldList = obj_control.chain1to1ColFieldListStack;
 		}
 	}
 	

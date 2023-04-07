@@ -23,7 +23,7 @@ function scr_dialogueBoxNewCustomTagChain() {
 	scr_sortList(tagSet);
 
 	//add this to selected chain if not in tag pane
-	if (obj_panelPane.functionChainList_currentTab != obj_panelPane.functionChainList_tabField) {
+	if (obj_panelPane.functionChainList_currentTab != NAVTAB_TAG) {
 		// get the chainToChange's submap, and that chain's tagmap
 		var chainSubMap = global.nodeMap[? obj_control.chain1to1ChainToChange];
 		if (scr_isNumericAndExists(chainSubMap, ds_type_map)) {

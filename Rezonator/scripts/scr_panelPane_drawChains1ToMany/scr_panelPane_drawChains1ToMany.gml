@@ -9,9 +9,9 @@ function scr_panelPane_drawChains1ToMany() {
 	var chain1toManyColFieldList = -1;
 	with (obj_panelPane) {
 		if (currentFunction == functionChainList) {
-			if (functionChainList_currentTab == functionChainList_tabRezBrush) chain1toManyColFieldList = obj_control.chain1toManyColFieldListRez;
-			else if (functionChainList_currentTab == functionChainList_tabTrackBrush) chain1toManyColFieldList = obj_control.chain1toManyColFieldListTrack;
-			else if (functionChainList_currentTab == functionChainList_tabStackBrush) chain1toManyColFieldList = obj_control.chain1toManyColFieldListStack;
+			if (functionChainList_currentTab == NAVTAB_RESONANCE) chain1toManyColFieldList = obj_control.chain1toManyColFieldListRez;
+			else if (functionChainList_currentTab == NAVTAB_TRACK) chain1toManyColFieldList = obj_control.chain1toManyColFieldListTrack;
+			else if (functionChainList_currentTab == NAVTAB_STACK) chain1toManyColFieldList = obj_control.chain1toManyColFieldListStack;
 		}
 	}
 
@@ -69,17 +69,17 @@ function scr_panelPane_drawChains1ToMany() {
 	if (!scr_isNumericAndExists(chainSubMap, ds_type_map)) {
 		if (BUILDTYPE != "Web") scr_surfaceEnd();
 		
-		if (functionChainList_currentTab == functionChainList_tabRezBrush) {
+		if (functionChainList_currentTab == NAVTAB_RESONANCE) {
 			if (is_string(obj_chain.resonancePrevFocused) && obj_chain.resonancePrevFocused != "") {
 				with (obj_panelPane) functionChainContents_chainID = obj_chain.resonancePrevFocused;
 			}
 		}
-		else if (functionChainList_currentTab == functionChainList_tabTrackBrush) {
+		else if (functionChainList_currentTab == NAVTAB_TRACK) {
 			if (is_string(obj_chain.trailPrevFocused) && obj_chain.trailPrevFocused != "") {
 				with (obj_panelPane) functionChainContents_chainID = obj_chain.trailPrevFocused;
 			}
 		}
-		else if (functionChainList_currentTab == functionChainList_tabStackBrush) {
+		else if (functionChainList_currentTab == NAVTAB_STACK) {
 			if (is_string(obj_chain.stackPrevFocused) && obj_chain.stackPrevFocused != "") {
 				with (obj_panelPane) functionChainContents_chainID = obj_chain.stackPrevFocused;
 			}
@@ -106,9 +106,9 @@ function scr_panelPane_drawChains1ToMany() {
 	}
 	
 	// make sure that the chain type that we are trying to view matches the tab we are on
-	if ((chainType == "resonance" && functionChainList_currentTab != functionChainList_tabRezBrush)
-	|| (chainType == "trail" && functionChainList_currentTab != functionChainList_tabTrackBrush)
-	|| (chainType == "stack" && functionChainList_currentTab != functionChainList_tabStackBrush)) {
+	if ((chainType == "resonance" && functionChainList_currentTab != NAVTAB_RESONANCE)
+	|| (chainType == "trail" && functionChainList_currentTab != NAVTAB_TRACK)
+	|| (chainType == "stack" && functionChainList_currentTab != NAVTAB_STACK)) {
 		with (obj_panelPane) functionChainContents_chainID = "";
 		if (BUILDTYPE != "Web") scr_surfaceEnd();
 		exit;

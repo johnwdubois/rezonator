@@ -59,7 +59,7 @@ function scr_panelPane_drawChains1ToManyInnerLoop(chain1toManyColFieldList, chai
 		var tagMap = undefined;
 		if (!scr_isNumericAndExists(unitSubMap, ds_type_map)) continue;
 		if (!scr_isNumericAndExists(tokenSubMap, ds_type_map)) continue;
-		if (functionChainList_currentTab == functionChainList_tabStackBrush) {
+		if (functionChainList_currentTab == NAVTAB_STACK) {
 			tagMap = unitSubMap[? "tagMap"];
 		}
 		else {
@@ -84,9 +84,9 @@ function scr_panelPane_drawChains1ToManyInnerLoop(chain1toManyColFieldList, chai
 		switch (i) {
 			// RezSeq / TrailSeq / StackSeq
 			case 0:
-				if (functionChainList_currentTab == functionChainList_tabRezBrush) cellText = currentEntryTagMap[? "RezSeq"];
-				else if (functionChainList_currentTab == functionChainList_tabTrackBrush) cellText = currentEntryTagMap[? "TrailSeq"];
-				else if (functionChainList_currentTab == functionChainList_tabStackBrush) cellText = currentEntryTagMap[? "StackSeq"];
+				if (functionChainList_currentTab == NAVTAB_RESONANCE) cellText = currentEntryTagMap[? "RezSeq"];
+				else if (functionChainList_currentTab == NAVTAB_TRACK) cellText = currentEntryTagMap[? "TrailSeq"];
+				else if (functionChainList_currentTab == NAVTAB_STACK) cellText = currentEntryTagMap[? "StackSeq"];
 				
 				// if this field is not numeric, we will run the sorter/auto-tagger on this chain again
 				if (!is_numeric(cellText)) scr_sortVizSetIDList(chain);
@@ -97,7 +97,7 @@ function scr_panelPane_drawChains1ToManyInnerLoop(chain1toManyColFieldList, chai
 				break;
 			// tokenSeq / speaker
 			case 2:
-				if (functionChainList_currentTab == functionChainList_tabStackBrush) {
+				if (functionChainList_currentTab == NAVTAB_STACK) {
 					cellText = string(tagMap[? global.participantField]);
 				}
 				else {
@@ -106,7 +106,7 @@ function scr_panelPane_drawChains1ToManyInnerLoop(chain1toManyColFieldList, chai
 				break;
 			// text
 			case 3:
-				if (functionChainList_currentTab == functionChainList_tabStackBrush) {
+				if (functionChainList_currentTab == NAVTAB_STACK) {
 					// getting the text for a unit
 					if (!scr_isNumericAndExists(entryList, ds_type_list)) break;
 					cellText = scr_getUnitText(unitSubMap);

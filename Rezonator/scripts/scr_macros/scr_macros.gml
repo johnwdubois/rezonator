@@ -26,6 +26,20 @@ function scr_macros(){
 		#macro IMPORTTYPE_PROSE "import_type_prose"
 	#endregion
 	
+	#region NAV WINDOW TABS
+		#macro NAVTAB_UNIT "tab_name_unit"
+		#macro NAVTAB_STACK "tab_name_stack"
+		#macro NAVTAB_TRACK "tab_name_track"
+		#macro NAVTAB_RESONANCE "menu_resonance"
+		#macro NAVTAB_CLIQUE "tab_name_clique"
+		#macro NAVTAB_SHOW "tab_name_show"
+		#macro NAVTAB_TREE "tab_name_tree"
+		#macro NAVTAB_CHUNK "tab_name_chunk"
+		#macro NAVTAB_TAG "tab_name_tag"
+		#macro NAVTAB_SEARCH "tab_name_search"
+		#macro NAVTAB_TRANSLATION "tab_name_translate"
+	#endregion
+	
 	#region SPECIAL KEYBOARD KEYS
 		#macro vk_rcommand 91
 		#macro vk_lcommand 92

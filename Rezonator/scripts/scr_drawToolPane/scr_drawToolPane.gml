@@ -180,7 +180,7 @@ function scr_drawToolPane() {
 	var oneToOneButtonRectY1 = floor(oneToOneButtonY - (toolSprHeight / 2) - toolButtonRectBuffer);
 	var oneToOneButtonRectY2 = floor(oneToOneButtonY + (toolSprHeight / 2) + toolButtonRectBuffer);
 	var oneToOneImageIndex = obj_panelPane.chainViewOneToMany;
-	if (obj_panelPane.functionChainList_currentTab != obj_panelPane.functionChainList_tabLine) oneToOneImageIndex = obj_panelPane.chainViewOneToMany;
+	if (obj_panelPane.functionChainList_currentTab != NAVTAB_UNIT) oneToOneImageIndex = obj_panelPane.chainViewOneToMany;
 	var mouseoverOneToOne = point_in_rectangle(mouse_x, mouse_y, toolbarButtonX1, oneToOneButtonRectY1, toolbarButtonX2, oneToOneButtonRectY2) && !mouseoverCancel;
 	
 	if (mouseoverOneToOne) {

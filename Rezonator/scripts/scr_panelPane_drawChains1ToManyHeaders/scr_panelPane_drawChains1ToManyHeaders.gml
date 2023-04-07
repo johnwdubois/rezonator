@@ -14,17 +14,17 @@ function scr_panelPane_drawChains1ToManyHeaders() {
 	var entryType = "";
 	with (obj_panelPane) {
 		if (currentFunction == functionChainList) {
-			if (functionChainList_currentTab == functionChainList_tabRezBrush) {
+			if (functionChainList_currentTab == NAVTAB_RESONANCE) {
 				chain1toManyColFieldList = obj_control.chain1toManyColFieldListRez;
 				chainType ="resonance";
 				entryType = "rez";
 			}
-			else if (functionChainList_currentTab == functionChainList_tabTrackBrush) {
+			else if (functionChainList_currentTab == NAVTAB_TRACK) {
 				chain1toManyColFieldList = obj_control.chain1toManyColFieldListTrack;
 				chainType ="trail";
 				entryType = "track";
 			}
-			else if (functionChainList_currentTab == functionChainList_tabStackBrush) {
+			else if (functionChainList_currentTab == NAVTAB_STACK) {
 				chain1toManyColFieldList = obj_control.chain1toManyColFieldListStack;
 				chainType ="stack";
 				entryType = "card";
@@ -71,15 +71,15 @@ function scr_panelPane_drawChains1ToManyHeaders() {
 			var colName = "";
 			switch (i) {
 				case 0:
-					if (functionChainList_currentTab == functionChainList_tabRezBrush) colName = "RezSeq";
-					else if (functionChainList_currentTab == functionChainList_tabTrackBrush) colName = "TrailSeq";
-					else if (functionChainList_currentTab == functionChainList_tabStackBrush) colName = "StackSeq";
+					if (functionChainList_currentTab == NAVTAB_RESONANCE) colName = "RezSeq";
+					else if (functionChainList_currentTab == NAVTAB_TRACK) colName = "TrailSeq";
+					else if (functionChainList_currentTab == NAVTAB_STACK) colName = "StackSeq";
 					break;
 				case 1:
 					colName = "UnitSeq";
 					break;
 				case 2:
-					if (functionChainList_currentTab == functionChainList_tabStackBrush) {
+					if (functionChainList_currentTab == NAVTAB_STACK) {
 						colName = scr_get_translation("participant"); // stacks
 					}
 					else {
@@ -87,7 +87,7 @@ function scr_panelPane_drawChains1ToManyHeaders() {
 					}
 					break;
 				case 3:
-					if (functionChainList_currentTab == functionChainList_tabStackBrush) {
+					if (functionChainList_currentTab == NAVTAB_STACK) {
 						colName = scr_get_translation("menu_utterance"); // stacks
 					}
 					else {

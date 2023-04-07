@@ -5,7 +5,7 @@ if (!shortcutsEnabled || dialogueBoxActive) {
 }
 
 with (obj_panelPane) {
-	if (functionChainList_currentTab == functionChainList_tabShow) {
+	if (functionChainList_currentTab == NAVTAB_SHOW) {
 		exit;		
 	}
 }

@@ -4,13 +4,13 @@ function scr_fieldChains1To1Options(optionSelected) {
 	var navFieldList = -1;
 	with (obj_panelPane) {
 		if (currentFunction == functionChainList) {
-			if (functionChainList_currentTab == functionChainList_tabRezBrush) {
+			if (functionChainList_currentTab == NAVTAB_RESONANCE) {
 				navFieldList = obj_control.chain1to1ColFieldListRez;
 			}
-			else if (functionChainList_currentTab == functionChainList_tabTrackBrush) {
+			else if (functionChainList_currentTab == NAVTAB_TRACK) {
 				navFieldList = obj_control.chain1to1ColFieldListTrack;
 			}
-			else if (functionChainList_currentTab == functionChainList_tabStackBrush) {
+			else if (functionChainList_currentTab == NAVTAB_STACK) {
 				navFieldList = obj_control.chain1to1ColFieldListStack;
 			}
 		}

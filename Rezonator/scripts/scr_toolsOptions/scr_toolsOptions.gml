@@ -11,7 +11,7 @@ function scr_toolsOptions(optionSelected) {
 		case "menu_resonance":
 			with (obj_panelPane) {
 				if (currentFunction == functionChainList) {
-					functionChainList_currentTab = functionChainList_tabRezBrush;
+					functionChainList_currentTab = NAVTAB_RESONANCE;
 				}
 			}
 			with (obj_toolPane) {
@@ -31,7 +31,7 @@ function scr_toolsOptions(optionSelected) {
 		case "menu_track":
 			with (obj_panelPane) {
 				if (currentFunction == functionChainList) {
-					functionChainList_currentTab = functionChainList_tabTrackBrush;
+					functionChainList_currentTab = NAVTAB_TRACK;
 				}
 			}
 			with (obj_toolPane) {
@@ -51,7 +51,7 @@ function scr_toolsOptions(optionSelected) {
 		case "help_label_tag":
 			with (obj_panelPane) {
 				if (currentFunction = functionChainList) {
-					functionChainList_currentTab = functionChainList_tabField;
+					functionChainList_currentTab = NAVTAB_TAG;
 				}
 			}
 			with (obj_toolPane) {

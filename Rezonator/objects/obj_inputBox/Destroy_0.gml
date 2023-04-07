@@ -10,7 +10,7 @@ with (obj_panelPane) {
 // refresh entry sort if we need to
 if (instance_exists(leftPaneInst)) {
 	var currentTab = leftPaneInst.functionChainList_currentTab;
-	var onChainTab = currentTab == leftPaneInst.functionChainList_tabRezBrush || currentTab == leftPaneInst.functionChainList_tabTrackBrush || currentTab == leftPaneInst.functionChainList_tabStackBrush;
+	var onChainTab = currentTab == NAVTAB_RESONANCE || currentTab == NAVTAB_TRACK || currentTab == NAVTAB_STACK;
 	if (onChainTab && obj_control.chain1toManyCustomSortColIndex >= 0 && obj_panelPane.chainViewOneToMany) {
 		obj_control.refreshCustomSort = true;
 	}

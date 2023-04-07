@@ -23,7 +23,7 @@ function scr_dialogueBoxNewCustomTagEntry() {
 	scr_sortList(tagSet);
 	
 		//add this to selected entry if not in tag pane
-	if (obj_panelPane.functionChainList_currentTab != obj_panelPane.functionChainList_tabField) {
+	if (obj_panelPane.functionChainList_currentTab != NAVTAB_TAG) {
 		// get the entryToChange's submap, and that entry's tagmap
 		var entrySubMap = global.nodeMap[? obj_control.chain1toManyEntryToChange];
 		if (scr_isNumericAndExists(entrySubMap, ds_type_map)) {

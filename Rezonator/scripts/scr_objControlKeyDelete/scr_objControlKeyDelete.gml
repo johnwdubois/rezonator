@@ -54,14 +54,14 @@ function scr_objControlKeyDelete() {
 		}
 		
 		with (obj_panelPane) {
-			if (functionChainList_currentTab == functionChainList_tabShow && functionChainContents_showID != "") {
+			if (functionChainList_currentTab == NAVTAB_SHOW && functionChainContents_showID != "") {
 				scr_deleteShow(obj_control.selectedChainID);
 			}	
-			if (functionChainList_currentTab == functionChainList_tabTree && obj_panelPane.functionTree_treeLinkSelected != "") {
+			if (functionChainList_currentTab == NAVTAB_TREE && obj_panelPane.functionTree_treeLinkSelected != "") {
 				scr_deleteTreeLink();
 				exit;
 			}
-			if (functionChainList_currentTab == functionChainList_tabTree && obj_control.deleteEntryPressed == false) {
+			if (functionChainList_currentTab == NAVTAB_TREE && obj_control.deleteEntryPressed == false) {
 				scr_deleteTreeEntry();
 				exit;
 			}

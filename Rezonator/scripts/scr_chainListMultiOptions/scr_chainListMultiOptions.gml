@@ -9,12 +9,12 @@ function scr_chainListMultiOptions(optionSelected) {
 	var filterList = "";
 	
 	
-	if (obj_panelPane.functionChainList_currentTab == obj_panelPane.functionChainList_tabRezBrush) {
+	if (obj_panelPane.functionChainList_currentTab == NAVTAB_RESONANCE) {
 		currentSelectedChainList = obj_control.selectedRezChainList;
 		visibleList = obj_control.hiddenRezChainList;
 		filterList = obj_chain.filteredRezChainList;
 	}
-	else if (obj_panelPane.functionChainList_currentTab == obj_panelPane.functionChainList_tabTrackBrush) {
+	else if (obj_panelPane.functionChainList_currentTab == NAVTAB_TRACK) {
 		currentSelectedChainList = obj_control.selectedTrackChainList;
 		visibleList = obj_control.hiddenTrackChainList;
 		filterList = obj_chain.filteredTrackChainList;

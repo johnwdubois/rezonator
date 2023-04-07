@@ -31,19 +31,6 @@ functionTabs = "tabs";
 
 
 
-functionChainList_tabLine = "tab_name_unit";
-functionChainList_tabRezBrush = "tab_name_resonate";
-functionChainList_tabTrackBrush = "tab_name_track";
-functionChainList_tabStackBrush = "tab_name_stack";
-functionChainList_tabShow = "tab_name_show";
-functionChainList_tabField = "tab_name_tag";
-functionChainList_tabTranslations = "tab_name_translate";
-functionChainList_tabSearch = "tab_name_search";
-functionChainList_tabChunk = "tab_name_chunk";
-functionChainList_tabClique = "tab_name_clique";
-functionChainList_tabTree = "tab_name_tree";
-
-
 var defaultScrollPlusY = 16;
 scrollPlusY_tabUnit = defaultScrollPlusY;
 scrollPlusY_tabRez = defaultScrollPlusY;
@@ -66,7 +53,7 @@ treeTabScrollMin = 0;
 
 
 
-functionChainList_currentTab = functionChainList_tabLine;
+functionChainList_currentTab = NAVTAB_UNIT;
 functionTabs_tabHeight = 16;
 functionChainList_sortAsc[0] = true;
 functionChainList_sortAsc[1] = true;

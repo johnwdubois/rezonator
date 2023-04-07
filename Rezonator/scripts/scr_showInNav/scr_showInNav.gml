@@ -10,7 +10,7 @@ function scr_showInNav(nodeID) {
 	show_debug_message("scr_showInNav, nodeID: " + string(nodeID) + ", nodeType: " + string(nodeType));
 	
 	if (nodeType == "chunk") {
-		obj_control.switchToTab = obj_panelPane.functionChainList_tabChunk;
+		obj_control.switchToTab = NAVTAB_CHUNK;
 		//scroll to position after switching
 		with (obj_alarm2) { alarm[0] = 3;}
 		with (obj_panelPane) {
@@ -24,7 +24,7 @@ function scr_showInNav(nodeID) {
 		var unitList = docSubMap[? "unitList"];
 		var unitIndex = ds_list_find_index(unitList, unitID);
 		
-		obj_control.switchToTab = obj_panelPane.functionChainList_tabLine;
+		obj_control.switchToTab = NAVTAB_UNIT;
 		obj_control.showInNavID = unitID;
 		//scroll to position after switching
 		with (obj_alarm2) { alarm[0] = 3;}
@@ -39,7 +39,7 @@ function scr_showInNav(nodeID) {
 		var unitList = docSubMap[? "unitList"];
 		var unitIndex = ds_list_find_index(unitList, nodeID);
 		
-		obj_control.switchToTab = obj_panelPane.functionChainList_tabLine;
+		obj_control.switchToTab = NAVTAB_UNIT;
 		//scroll to position after switching
 		with (obj_alarm2) { alarm[0] = 3;}
 		with (obj_panelPane) {

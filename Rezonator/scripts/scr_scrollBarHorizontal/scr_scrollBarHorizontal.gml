@@ -12,7 +12,7 @@ function scr_scrollBarHorizontal(listSize,colWidth,scrollBackColor, scrollBarCol
 	var treeTab = false;
 	var chainListPane = -1;
 	with (obj_panelPane) if (currentFunction == functionChainList) chainListPane = self.id;
-	if (functionChainList_currentTab == functionChainList_tabTree) treeTab = true;
+	if (functionChainList_currentTab == NAVTAB_TREE) treeTab = true;
 	
 	var minScrollHorPlusX = (treeTab) ? windowWidth - obj_panelPane.treeTabScrollMin : windowWidth - (listSize * colWidth);
 	var maxScrollHorPlusX = 0;

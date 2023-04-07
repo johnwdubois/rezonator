@@ -22,10 +22,10 @@ function scr_getFilterList(concatenate) {
 	}
 	else {
 		filterList = obj_chain.filteredRezChainList;
-		if (obj_panelPane.functionChainList_currentTab == obj_panelPane.functionChainList_tabRezBrush) filterList = obj_chain.filteredRezChainList;
-		else if (obj_panelPane.functionChainList_currentTab == obj_panelPane.functionChainList_tabTrackBrush) filterList = obj_chain.filteredTrackChainList;
-		else if (obj_panelPane.functionChainList_currentTab == obj_panelPane.functionChainList_tabStackBrush) filterList = obj_chain.filteredStackChainList;
-		else if (obj_panelPane.functionChainList_currentTab == obj_panelPane.functionChainList_tabShow) filterList = obj_chain.filteredStackChainList;
+		if (obj_panelPane.functionChainList_currentTab == NAVTAB_RESONANCE) filterList = obj_chain.filteredRezChainList;
+		else if (obj_panelPane.functionChainList_currentTab == NAVTAB_TRACK) filterList = obj_chain.filteredTrackChainList;
+		else if (obj_panelPane.functionChainList_currentTab == NAVTAB_STACK) filterList = obj_chain.filteredStackChainList;
+		else if (obj_panelPane.functionChainList_currentTab == NAVTAB_SHOW) filterList = obj_chain.filteredStackChainList;
 	}
 	
 	return filterList;

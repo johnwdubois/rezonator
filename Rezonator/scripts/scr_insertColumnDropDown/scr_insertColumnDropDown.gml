@@ -9,13 +9,13 @@ function scr_insertColumnDropDown(fullFieldList, navFieldList, type) {
 		var entryType = "";
 		with (obj_panelPane) {
 			if (currentFunction == functionChainList) {
-				if (functionChainList_currentTab == functionChainList_tabRezBrush) {
+				if (functionChainList_currentTab == NAVTAB_RESONANCE) {
 					entryType = "rez";
 				}
-				else if (functionChainList_currentTab == functionChainList_tabTrackBrush) {
+				else if (functionChainList_currentTab == NAVTAB_TRACK) {
 					entryType = "track";
 				}
-				else if (functionChainList_currentTab == functionChainList_tabStackBrush) {
+				else if (functionChainList_currentTab == NAVTAB_STACK) {
 					entryType = "card";
 				}
 			}

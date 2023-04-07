@@ -47,11 +47,11 @@ function scr_panelPane_drawTabs() {
 		
 		var currentTab = tabList[| i];
 		var filterListSize = 0;
-		if (currentTab == functionChainList_tabRezBrush || currentTab == functionChainList_tabTrackBrush || currentTab == functionChainList_tabStackBrush) {
+		if (currentTab == NAVTAB_RESONANCE || currentTab == NAVTAB_TRACK || currentTab == NAVTAB_STACK) {
 			var filterList = -1;
-			if (currentTab == functionChainList_tabRezBrush) filterList = obj_chain.filteredRezChainList;
-			else if (currentTab == functionChainList_tabTrackBrush) filterList = obj_chain.filteredTrackChainList;
-			else if (currentTab == functionChainList_tabStackBrush) filterList = obj_chain.filteredStackChainList;
+			if (currentTab == NAVTAB_RESONANCE) filterList = obj_chain.filteredRezChainList;
+			else if (currentTab == NAVTAB_TRACK) filterList = obj_chain.filteredTrackChainList;
+			else if (currentTab == NAVTAB_STACK) filterList = obj_chain.filteredStackChainList;
 			filterListSize = ds_list_size(filterList);
 		}
 		var currentTabSelected = (currentTab == functionChainList_currentTab);
@@ -104,13 +104,13 @@ function scr_panelPane_drawTabs() {
 		// determine tabChainType for this tab
 		var tabChainType = "";
 		var tabFilterActive = false;
-		if (functionChainList_currentTab == functionChainList_tabRezBrush) {
+		if (functionChainList_currentTab == NAVTAB_RESONANCE) {
 			tabChainType = "resonance";
 		}
-		else if (functionChainList_currentTab == functionChainList_tabTrackBrush) {
+		else if (functionChainList_currentTab == NAVTAB_TRACK) {
 			tabChainType = "trail";
 		}
-		else if (functionChainList_currentTab == functionChainList_tabStackBrush) {
+		else if (functionChainList_currentTab == NAVTAB_STACK) {
 			tabChainType = "stack";
 		}
 		
@@ -137,17 +137,17 @@ function scr_panelPane_drawTabs() {
 			with (obj_panelPane) {
 				if (currentFunction == paneToSaveScroll) {
 					var myScrollPlusY = scrollPlusY;
-					if (functionChainList_currentTab == functionChainList_tabLine) with (obj_panelPane) scrollPlusY_tabUnit = myScrollPlusY;
-					else if (functionChainList_currentTab == functionChainList_tabRezBrush) with (obj_panelPane) scrollPlusY_tabRez = myScrollPlusY;
-					else if (functionChainList_currentTab == functionChainList_tabTrackBrush) with (obj_panelPane) scrollPlusY_tabTrack = myScrollPlusY;
-					else if (functionChainList_currentTab == functionChainList_tabStackBrush) with (obj_panelPane) scrollPlusY_tabStack = myScrollPlusY;
-					else if (functionChainList_currentTab == functionChainList_tabShow) with (obj_panelPane) scrollPlusY_tabShow = myScrollPlusY;
-					else if (functionChainList_currentTab == functionChainList_tabField) with (obj_panelPane) scrollPlusY_tabField = myScrollPlusY;
-					else if (functionChainList_currentTab == functionChainList_tabTranslations) with (obj_panelPane) scrollPlusY_tabTranslations = myScrollPlusY;
-					else if (functionChainList_currentTab == functionChainList_tabSearch) with (obj_panelPane) scrollPlusY_tabSearch = myScrollPlusY;
-					else if (functionChainList_currentTab == functionChainList_tabChunk) with (obj_panelPane) scrollPlusY_tabChunk = myScrollPlusY;
-					else if (functionChainList_currentTab == functionChainList_tabClique) with (obj_panelPane) scrollPlusY_tabClique = myScrollPlusY;
-					else if (functionChainList_currentTab == functionChainList_tabTree) with (obj_panelPane) scrollPlusY_tabTree = myScrollPlusY;
+					if (functionChainList_currentTab == NAVTAB_UNIT) with (obj_panelPane) scrollPlusY_tabUnit = myScrollPlusY;
+					else if (functionChainList_currentTab == NAVTAB_RESONANCE) with (obj_panelPane) scrollPlusY_tabRez = myScrollPlusY;
+					else if (functionChainList_currentTab == NAVTAB_TRACK) with (obj_panelPane) scrollPlusY_tabTrack = myScrollPlusY;
+					else if (functionChainList_currentTab == NAVTAB_STACK) with (obj_panelPane) scrollPlusY_tabStack = myScrollPlusY;
+					else if (functionChainList_currentTab == NAVTAB_SHOW) with (obj_panelPane) scrollPlusY_tabShow = myScrollPlusY;
+					else if (functionChainList_currentTab == NAVTAB_TAG) with (obj_panelPane) scrollPlusY_tabField = myScrollPlusY;
+					else if (functionChainList_currentTab == NAVTAB_TRANSLATION) with (obj_panelPane) scrollPlusY_tabTranslations = myScrollPlusY;
+					else if (functionChainList_currentTab == NAVTAB_SEARCH) with (obj_panelPane) scrollPlusY_tabSearch = myScrollPlusY;
+					else if (functionChainList_currentTab == NAVTAB_CHUNK) with (obj_panelPane) scrollPlusY_tabChunk = myScrollPlusY;
+					else if (functionChainList_currentTab == NAVTAB_CLIQUE) with (obj_panelPane) scrollPlusY_tabClique = myScrollPlusY;
+					else if (functionChainList_currentTab == NAVTAB_TREE) with (obj_panelPane) scrollPlusY_tabTree = myScrollPlusY;
 				}
 			}
 				
@@ -162,17 +162,17 @@ function scr_panelPane_drawTabs() {
 			with (obj_panelPane) {
 				if (currentFunction == functionChainList) {
 					leftPaneInst = self.id;
-					if (functionChainList_currentTab == functionChainList_tabLine) scrollPlusY = scrollPlusY_tabUnit;
-					else if (functionChainList_currentTab == functionChainList_tabRezBrush) scrollPlusY = scrollPlusY_tabRez;
-					else if (functionChainList_currentTab == functionChainList_tabTrackBrush) scrollPlusY = scrollPlusY_tabTrack;
-					else if (functionChainList_currentTab == functionChainList_tabStackBrush) scrollPlusY = scrollPlusY_tabStack;
-					else if (functionChainList_currentTab == functionChainList_tabShow) scrollPlusY = scrollPlusY_tabShow;
-					else if (functionChainList_currentTab == functionChainList_tabField) scrollPlusY = scrollPlusY_tabField;
-					else if (functionChainList_currentTab == functionChainList_tabTranslations) scrollPlusY = scrollPlusY_tabTranslations;
-					else if (functionChainList_currentTab == functionChainList_tabSearch) scrollPlusY =  scrollPlusY_tabSearch;
-					else if (functionChainList_currentTab == functionChainList_tabChunk) scrollPlusY = scrollPlusY_tabChunk;
-					else if (functionChainList_currentTab == functionChainList_tabClique) scrollPlusY =  scrollPlusY_tabClique;
-					else if (functionChainList_currentTab == functionChainList_tabTree) scrollPlusY = scrollPlusY_tabTree;
+					if (functionChainList_currentTab == NAVTAB_UNIT) scrollPlusY = scrollPlusY_tabUnit;
+					else if (functionChainList_currentTab == NAVTAB_RESONANCE) scrollPlusY = scrollPlusY_tabRez;
+					else if (functionChainList_currentTab == NAVTAB_TRACK) scrollPlusY = scrollPlusY_tabTrack;
+					else if (functionChainList_currentTab == NAVTAB_STACK) scrollPlusY = scrollPlusY_tabStack;
+					else if (functionChainList_currentTab == NAVTAB_SHOW) scrollPlusY = scrollPlusY_tabShow;
+					else if (functionChainList_currentTab == NAVTAB_TAG) scrollPlusY = scrollPlusY_tabField;
+					else if (functionChainList_currentTab == NAVTAB_TRANSLATION) scrollPlusY = scrollPlusY_tabTranslations;
+					else if (functionChainList_currentTab == NAVTAB_SEARCH) scrollPlusY =  scrollPlusY_tabSearch;
+					else if (functionChainList_currentTab == NAVTAB_CHUNK) scrollPlusY = scrollPlusY_tabChunk;
+					else if (functionChainList_currentTab == NAVTAB_CLIQUE) scrollPlusY =  scrollPlusY_tabClique;
+					else if (functionChainList_currentTab == NAVTAB_TREE) scrollPlusY = scrollPlusY_tabTree;
 					scrollPlusYDest = scrollPlusY;
 				}
 			}
@@ -188,19 +188,19 @@ function scr_panelPane_drawTabs() {
 				
 				
 			// re-determine tab data (now that we've switched tabs)
-			if (functionChainList_currentTab == functionChainList_tabRezBrush) {
+			if (functionChainList_currentTab == NAVTAB_RESONANCE) {
 				tabChainType = "resonance";
 			}
-			else if (functionChainList_currentTab == functionChainList_tabTrackBrush) {
+			else if (functionChainList_currentTab == NAVTAB_TRACK) {
 				tabChainType = "trail";
 			}
-			else if (functionChainList_currentTab == functionChainList_tabStackBrush) {
+			else if (functionChainList_currentTab == NAVTAB_STACK) {
 				tabChainType = "stack";
 			}
 
 				
 				
-			if (functionChainList_currentTab != functionChainList_tabShow) {
+			if (functionChainList_currentTab != NAVTAB_SHOW) {
 				if (functionChainList_playShowID != "") {
 					scr_setValueForAllChains("stack", false, "filter", false);
 					with (obj_panelPane) {
@@ -209,7 +209,7 @@ function scr_panelPane_drawTabs() {
 					scr_disableFilter();
 				}
 			}
-			if (functionChainList_currentTab != functionChainList_tabShow) {
+			if (functionChainList_currentTab != NAVTAB_SHOW) {
 				obj_panelPane.functionTree_treeLinkSelected = "";
 				obj_chain.currentFocusedEntryID = "";
 			}

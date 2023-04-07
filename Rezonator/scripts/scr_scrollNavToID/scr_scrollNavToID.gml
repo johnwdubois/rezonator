@@ -23,15 +23,15 @@ function scr_scrollNavToID(tab, ID, leftPane) {
 	// find the idList that goes with this tab, make sure that list exists
 	var idList = -1;
 	if (leftPane) {
-		if (tab == obj_panelPane.functionChainList_tabChunk) idList = global.nodeMap[? "chunkList"];
-		else if (tab == obj_panelPane.functionChainList_tabRezBrush) idList = global.nodeMap[? "resonanceNavList"];
-		else if (tab == obj_panelPane.functionChainList_tabTrackBrush) idList = global.nodeMap[? "trailNavList"];
-		else if (tab == obj_panelPane.functionChainList_tabStackBrush) idList = global.nodeMap[? "stackNavList"];
-		else if (tab == obj_panelPane.functionChainList_tabLine) idList = docSubMap[? "unitList"];
+		if (tab == NAVTAB_CHUNK) idList = global.nodeMap[? "chunkList"];
+		else if (tab == NAVTAB_RESONANCE) idList = global.nodeMap[? "resonanceNavList"];
+		else if (tab == NAVTAB_TRACK) idList = global.nodeMap[? "trailNavList"];
+		else if (tab == NAVTAB_STACK) idList = global.nodeMap[? "stackNavList"];
+		else if (tab == NAVTAB_UNIT) idList = docSubMap[? "unitList"];
 	}
 	else {
 		// if we're scrolling to a chain tab on the right pane, we will look at the current focused chain's entry list
-		if (tab == obj_panelPane.functionChainList_tabRezBrush || tab == obj_panelPane.functionChainList_tabTrackBrush || tab == obj_panelPane.functionChainList_tabStackBrush) {
+		if (tab == NAVTAB_RESONANCE || tab == NAVTAB_TRACK || tab == NAVTAB_STACK) {
 			var currentFocusedChainSubMap = global.nodeMap[? obj_chain.currentFocusedChainID];
 			if (scr_isNumericAndExists(currentFocusedChainSubMap, ds_type_map)) {
 				var chainListKey = (obj_control.chain1toManyCustomSortColIndex == -1) ? "vizSetIDList" : "customSetIDList";

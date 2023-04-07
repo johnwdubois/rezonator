@@ -11,10 +11,10 @@ function scr_panelPane_scrollSelection(focusedElementY, strHeight) {
 	var mouseoverRightPane = point_in_rectangle(mouse_x, mouse_y, rightPaneInst.x, rightPaneInst.y, rightPaneInst.x + rightPaneInst.windowWidth, rightPaneInst.y + rightPaneInst.windowHeight);
 	
 	// get list of thing to scroll based on tab, make sure that list exists
-	var onChunkTab = obj_panelPane.functionChainList_currentTab == obj_panelPane.functionChainList_tabChunk;
-	var onTreeTab = obj_panelPane.functionChainList_currentTab == obj_panelPane.functionChainList_tabTree;
-	var onTagTabLeft = obj_panelPane.functionChainList_currentTab == obj_panelPane.functionChainList_tabField && mouseoverLeftPane;
-	var onTagTabRight = obj_panelPane.functionChainList_currentTab == obj_panelPane.functionChainList_tabField && mouseoverRightPane;
+	var onChunkTab = obj_panelPane.functionChainList_currentTab == NAVTAB_CHUNK;
+	var onTreeTab = obj_panelPane.functionChainList_currentTab == NAVTAB_TREE;
+	var onTagTabLeft = obj_panelPane.functionChainList_currentTab == NAVTAB_TAG && mouseoverLeftPane;
+	var onTagTabRight = obj_panelPane.functionChainList_currentTab == NAVTAB_TAG && mouseoverRightPane;
 	var listKey = "";
 	if (onChunkTab) listKey = "chunkList";
 	else if (onTreeTab) listKey = "treeList";

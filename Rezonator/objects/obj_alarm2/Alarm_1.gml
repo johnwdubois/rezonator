@@ -1,21 +1,21 @@
 /// @description initialize panel pane tab list
 with (obj_control) {
 	ds_list_add(panelPaneTabList, 
-		obj_panelPane.functionChainList_tabLine,
-		obj_panelPane.functionChainList_tabChunk, // translate
-		obj_panelPane.functionChainList_tabStackBrush,
-		obj_panelPane.functionChainList_tabTrackBrush,
-		obj_panelPane.functionChainList_tabRezBrush,
-		obj_panelPane.functionChainList_tabClique,
-		obj_panelPane.functionChainList_tabTree,
-		obj_panelPane.functionChainList_tabShow,
-		obj_panelPane.functionChainList_tabField,
-		obj_panelPane.functionChainList_tabSearch
+		NAVTAB_UNIT,
+		NAVTAB_STACK,
+		NAVTAB_TRACK,
+		NAVTAB_RESONANCE,
+		NAVTAB_CLIQUE,
+		NAVTAB_SHOW,
+		NAVTAB_TREE,
+		NAVTAB_CHUNK,
+		NAVTAB_TAG,
+		NAVTAB_SEARCH
 		);	
 		
 	var translationListSize = ds_list_size(global.translationList);
 	var hasTranslation = (translationListSize > 0);
 	if (hasTranslation) {
-		ds_list_insert(obj_control.panelPaneTabList, 2, obj_panelPane.functionChainList_tabTranslations);
+		ds_list_add(obj_control.panelPaneTabList, NAVTAB_TRANSLATION);
 	}
 }

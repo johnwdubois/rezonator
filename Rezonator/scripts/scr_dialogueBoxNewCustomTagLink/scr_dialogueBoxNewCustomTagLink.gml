@@ -28,7 +28,7 @@ function scr_dialogueBoxNewCustomTagLink() {
 	
 	
 	//add this to selected unit if not in tag pane
-	if (obj_panelPane.functionChainList_currentTab != obj_panelPane.functionChainList_tabField) {
+	if (obj_panelPane.functionChainList_currentTab != NAVTAB_TAG) {
 		// get the unitToChange's submap, and that unit's tagmap
 		var linkSubMap = global.treeMap[? obj_panelPane.functionTree_treeLinkSelected];
 		if (scr_isNumericAndExists(linkSubMap, ds_type_map)) {

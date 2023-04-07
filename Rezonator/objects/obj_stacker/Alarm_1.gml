@@ -10,7 +10,7 @@ with (obj_toolPane) {
 	}
 }
 with (obj_panelPane) {
-	functionChainList_currentTab = functionChainList_tabStackBrush;
+	functionChainList_currentTab = NAVTAB_STACK;
 }
 			
 scr_chainDeselect();

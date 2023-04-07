@@ -38,8 +38,8 @@ function scr_panelPane_drawUnits1toMany() {
 			if (unitType == "unit") functionChainContents_IDList = unitSubMap[? "entryList"];
 			else if (unitType == "chunk") functionChainContents_IDList = unitSubMap[? "tokenList"];
 		}
-		if ((unitType == "unit" && obj_panelPane.functionChainList_currentTab == functionChainList_tabChunk)
-		|| (unitType == "chunk" && obj_panelPane.functionChainList_currentTab == functionChainList_tabLine)) {
+		if ((unitType == "unit" && obj_panelPane.functionChainList_currentTab == NAVTAB_CHUNK)
+		|| (unitType == "chunk" && obj_panelPane.functionChainList_currentTab == NAVTAB_UNIT)) {
 			if (BUILDTYPE != "Web") scr_surfaceEnd();
 			exit;
 		}

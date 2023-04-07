@@ -198,7 +198,7 @@ function scr_navWindowTaggingSelection(fieldList, idList, type) {
 		
 		
 		// arrow key up & down
-		var handleTokenEntries = (type == "token" && obj_panelPane.functionChainList_currentTab == obj_panelPane.functionChainList_tabLine);
+		var handleTokenEntries = (type == "token" && obj_panelPane.functionChainList_currentTab == NAVTAB_UNIT);
 		if (canArrowUpDown) {
 			if (keyboard_check(vk_up) && obj_control.navWindowTaggingCanPressUp) {
 				if (type == "token" && handleTokenEntries) {

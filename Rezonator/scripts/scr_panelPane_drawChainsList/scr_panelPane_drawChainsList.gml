@@ -5,7 +5,7 @@ function scr_panelPane_drawChainsList() {
 				set chainContents panelPane to look at that chain
 	*/
 	
-	var drawScrollbar = (chainViewOneToMany || functionChainList_currentTab == functionChainList_tabLine);
+	var drawScrollbar = (chainViewOneToMany || functionChainList_currentTab == NAVTAB_UNIT);
 	var scrollbarWidth = 0;//(drawScrollbar) ? global.scrollBarWidth : 0;
 	
 	var checkBoxScale = 1* max(global.fontSize,3)/5;
@@ -32,19 +32,19 @@ function scr_panelPane_drawChainsList() {
 	var filterList = scr_getFilterList(false);
 	var selectedList = -1;
 	var hiddenList = -1;
-	if (functionChainList_currentTab == functionChainList_tabRezBrush) {
+	if (functionChainList_currentTab == NAVTAB_RESONANCE) {
 		chainNavListKey = "resonanceNavList";
 		tabChainType = "resonance";
 		selectedList = obj_control.selectedRezChainList;
 		hiddenList = obj_control.hiddenRezChainList;
 	}
-	else if (functionChainList_currentTab == functionChainList_tabTrackBrush) {
+	else if (functionChainList_currentTab == NAVTAB_TRACK) {
 		chainNavListKey = "trailNavList";
 		tabChainType = "trail";
 		selectedList = obj_control.selectedTrackChainList;
 		hiddenList = obj_control.hiddenTrackChainList;
 	}
-	else if (functionChainList_currentTab == functionChainList_tabStackBrush) {
+	else if (functionChainList_currentTab == NAVTAB_STACK) {
 		chainNavListKey = "stackNavList";
 		tabChainType = "stack";
 		selectedList = obj_control.selectedStackChainList;
@@ -138,7 +138,7 @@ function scr_panelPane_drawChainsList() {
 			var vizSetIDList = currentChainSubMap[? "vizSetIDList"];
 			
 			// if this is a stack, verify that it has a stacking
-			if (functionChainList_currentTab == functionChainList_tabStackBrush) {
+			if (functionChainList_currentTab == NAVTAB_STACK) {
 				var currentChainStacking = currentChainSubMap[? "stacking"];
 				if (!is_string(currentChainStacking)) {
 					currentChainStacking = "Default";
@@ -209,13 +209,13 @@ function scr_panelPane_drawChainsList() {
 							if (obj_chain.currentFocusedChainID != currentChainID) {
 								// Focuses on selected chain
 								switch (functionChainList_currentTab) {
-									case functionChainList_tabRezBrush:
+									case NAVTAB_RESONANCE:
 										obj_toolPane.currentTool = obj_toolPane.toolRezBrush;
 										break;
-									case functionChainList_tabTrackBrush:
+									case NAVTAB_TRACK:
 										obj_toolPane.currentTool = obj_toolPane.toolTrackBrush;
 										break;
-									case functionChainList_tabStackBrush:
+									case NAVTAB_STACK:
 										obj_toolPane.currentTool = obj_toolPane.toolStackBrush;
 										break;
 									default:
@@ -231,12 +231,12 @@ function scr_panelPane_drawChainsList() {
 									var currentEntry = ds_list_find_value(setIDList, 0);
 									var currentEntrySubMap = ds_map_find_value(global.nodeMap, currentEntry);
 						
-									if (functionChainList_currentTab == functionChainList_tabRezBrush || functionChainList_currentTab == functionChainList_tabTrackBrush) {
+									if (functionChainList_currentTab == NAVTAB_RESONANCE || functionChainList_currentTab == NAVTAB_TRACK) {
 										var currentTokenID = currentEntrySubMap[? "token"];
 										var currentTokenSubMap = global.nodeMap[? currentTokenID];
 										currentUnitID = currentTokenSubMap[? "unit"]
 									}
-									else if (functionChainList_currentTab == functionChainList_tabStackBrush) {
+									else if (functionChainList_currentTab == NAVTAB_STACK) {
 										currentUnitID = currentEntrySubMap[? "unit"];
 									}
 					
@@ -281,7 +281,7 @@ function scr_panelPane_drawChainsList() {
 						
 						
 						var dropDownOptionList = ds_list_create();
-						if (functionChainList_currentTab == functionChainList_tabStackBrush) {
+						if (functionChainList_currentTab == NAVTAB_STACK) {
 
 							ds_list_add(dropDownOptionList, "help_label_rename", "option_recolor", "help_label_delete_plain", "help_label_caption", "option_clip", "option_create-tree", "option_add-to-show");
 							// localize
@@ -331,7 +331,7 @@ function scr_panelPane_drawChainsList() {
 					
 					
 					// setup filter/align/visible buttons
-					var mouseoverAlignChain = false; // scr_pointInCircleClippedWindow(mouse_x, mouse_y, alignChainX, optionsChainY, optionsIconRad) && !mouseoverCancel && !mouseoverFilterChain && !mouseoverVisibleChain && functionChainList_currentTab == functionChainList_tabRezBrush && ableToMouseoverOption && !mouseoverHeaderRegion;
+					var mouseoverAlignChain = false; // scr_pointInCircleClippedWindow(mouse_x, mouse_y, alignChainX, optionsChainY, optionsIconRad) && !mouseoverCancel && !mouseoverFilterChain && !mouseoverVisibleChain && functionChainList_currentTab == NAVTAB_RESONANCE && ableToMouseoverOption && !mouseoverHeaderRegion;
 					draw_set_color(merge_color(global.colorThemeSelected1, currentChainColor, 0.3));
 					
 					// mouseover & click on filter
@@ -389,7 +389,7 @@ function scr_panelPane_drawChainsList() {
 						
 						
 							var dropDownOptionList = ds_list_create();
-							if (functionChainList_currentTab == functionChainList_tabStackBrush) {
+							if (functionChainList_currentTab == NAVTAB_STACK) {
 
 								ds_list_add(dropDownOptionList, "help_label_rename", "option_recolor", "help_label_delete_plain", "help_label_caption", "option_clip", "option_create-tree", "option_add-to-show");
 							
@@ -572,10 +572,10 @@ function scr_panelPane_drawChainsList() {
 	for (var i = 0; i < 4; i++) {
 		
 		// skip checkbox header
-		//if (functionChainList_currentTab != functionChainList_tabStackBrush && i == 0) continue;
+		//if (functionChainList_currentTab != NAVTAB_STACK && i == 0) continue;
 		
 		// skip text column unless this is a stack
-		if (i >= 3 && functionChainList_currentTab != functionChainList_tabStackBrush) continue;
+		if (i >= 3 && functionChainList_currentTab != NAVTAB_STACK) continue;
 		
 		// get column width & text
 		var headerRectX1 = 0;
@@ -594,7 +594,7 @@ function scr_panelPane_drawChainsList() {
 		else if (i == 2) {
 			headerRectX1 = nameColX;
 			colWidth = nameColWidth;
-			if (functionChainList_currentTab != functionChainList_tabStackBrush) colWidth = windowWidth - headerRectX1;
+			if (functionChainList_currentTab != NAVTAB_STACK) colWidth = windowWidth - headerRectX1;
 			colText = "name";
 		}
 		else if (i == 3) {
@@ -701,7 +701,7 @@ function scr_panelPane_drawChainsList() {
 		
 		
 		// more options button
-		if ((i == 3 && functionChainList_currentTab == functionChainList_tabStackBrush) or (i == 2 && functionChainList_currentTab != functionChainList_tabStackBrush)) {
+		if ((i == 3 && functionChainList_currentTab == NAVTAB_STACK) or (i == 2 && functionChainList_currentTab != NAVTAB_STACK)) {
 			//x + windowWidth - sprite_get_width(spr_moreOptions);
 			var moreOptionsY = mean(headerRectY1, headerRectY2);
 			var moreOptionsClickable = (ds_list_size(selectedList) >= 1);
@@ -718,11 +718,11 @@ function scr_panelPane_drawChainsList() {
 				scr_createTooltip(moreOptionsX, moreOptionsY + optionsIconRad, "More", TOOLTIP_DIR_UP);
 				if (mouse_check_button_pressed(mb_left)) {
 					var dropDownOptionList = ds_list_create();
-					if (obj_panelPane.functionChainList_currentTab == obj_panelPane.functionChainList_tabStackBrush) {
+					if (obj_panelPane.functionChainList_currentTab == NAVTAB_STACK) {
 						ds_list_add(dropDownOptionList, "option_add-to-show");
 					}
 					ds_list_add(dropDownOptionList, "help_label_delete_plain", "menu_filter", "menu_hide", "option_clip");
-					if (functionChainList_currentTab == functionChainList_tabStackBrush) {
+					if (functionChainList_currentTab == NAVTAB_STACK) {
 						ds_list_add(dropDownOptionList, "option_create-tree");
 					}
 					
@@ -753,7 +753,7 @@ function scr_panelPane_drawChainsList() {
 	}
 	
 	// display currently active stacking
-	if (functionChainList_currentTab == functionChainList_tabStackBrush) {
+	if (functionChainList_currentTab == NAVTAB_STACK) {
 		var activeStackingSubMap = global.stackingMap[? obj_control.activeStacking];
 		if (scr_isNumericAndExists(activeStackingSubMap, ds_type_map)) {
 			var activeStackingStrHeight = string_height("0");
