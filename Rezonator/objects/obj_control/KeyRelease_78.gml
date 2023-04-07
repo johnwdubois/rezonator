@@ -1,3 +1,4 @@
+/// @description Toggle show/hide for nav window
 if (!shortcutsEnabled) exit;
 if (instance_exists(obj_dialogueBox) || instance_exists(obj_dropDown)) exit;
 

@@ -170,6 +170,14 @@ showNavRight = true;
 tokenContentsHeaderListSize = 3;
 unitContentsHeaderListSize = 2;
 
+// if we are importing AI chat, hide nav window by default
+if (global.project == "import" && global.importType == IMPORTTYPE_AICHAT) {
+	showNav = false;
+	showNavLeft = false;
+	showNavRight = false;
+}
+
+
 chosenCol = 0;
 ascendYScale = 1;
 selectedColToken = 0;
