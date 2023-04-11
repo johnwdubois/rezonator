@@ -4,10 +4,9 @@ scr_multiDropDownMouseover();
 scr_ctrlHold();
 
 if (showDownloadDialogue && !alreadyShownDownloadDialogue) {
-	if (!instance_exists(obj_dialogueBox) && !instance_exists(obj_loadingBar)) {
+	if (!instance_exists(obj_loadingBar)) {
+		scr_createDialogBox(DIALOG_VERSION_OUTOFDATE, true);
 		alreadyShownDownloadDialogue = true;
-		instance_create_layer(x, y, "InstancesDialogue", obj_dialogueBox);
-		scr_setDialogType(DIALOG_VERSION_OUTOFDATE);
 	}
 }
 

@@ -10,7 +10,7 @@
   "option_windows_description_info": "Rezonator",
   "option_windows_disable_sandbox": true,
   "option_windows_display_cursor": true,
-  "option_windows_display_name": "Rezonator 1.3.1",
+  "option_windows_display_name": "Rezonator 1.3.2",
   "option_windows_enable_steam": false,
   "option_windows_executable_name": "${project_name}",
   "option_windows_icon": "${options_dir}/windows/icons/icon.ico",
@@ -29,6 +29,6 @@
   "option_windows_steam_use_alternative_launcher": false,
   "option_windows_texture_page": "2048x2048",
   "option_windows_use_splash": false,
-  "option_windows_version": "1.3.1.0",
+  "option_windows_version": "1.3.2.0",
   "option_windows_vsync": true,
 }

@@ -33,7 +33,7 @@ if (async_load[? "type"] == "FirebaseFirestore_Document_Read") {
 				else {
 					// recommend downloading new version
 					show_debug_message("CHECK OUT MY NEW REZONATOR PLEASE");
-					scr_createDialogBox(DIALOG_VERSION_OUTOFDATE);
+					scr_createDialogBox(DIALOG_VERSION_OUTOFDATE, true);
 					with (obj_openingScreen) {
 						showDownloadDialogue = true;
 						alreadyShownDownloadDialogue = false;
