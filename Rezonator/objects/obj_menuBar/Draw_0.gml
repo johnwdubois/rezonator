@@ -225,18 +225,15 @@ var saveIconY2 = fpsTextY + (sizeOfSave/2);
 
 
 
-var fpsTextX = minimizeX1- sizeOfButtons;
 
 
 draw_set_color(c_white);
 if (instance_exists(obj_control)) {
 	if (obj_control.showFPS) {
-		if (!obj_control.allSaved) {
-			fpsTextX = saveIconX1 - string_width("0");
-		}
+		var fpsTextX = minimizeX1 - (sizeOfButtons * 8);
 		draw_set_halign(fa_right);
 		draw_set_valign(fa_middle);
-		draw_text(saveIconX1, fpsTextY, "FPS: " + string(fps));
+		draw_text(fpsTextX, fpsTextY, "FPS: " + string(fps));
 	}
 
 	// show unsaved warning

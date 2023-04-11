@@ -102,7 +102,9 @@ function scr_panelPane_drawUnits1ToManyHeaders() {
 				
 			scr_createTooltip(displayTokenButtonX, displayTokenButtonY + displayTokenButtonSize, scr_get_translation("option_display-token"), TOOLTIP_DIR_UP);
 			draw_set_color(global.colorThemeSelected1);
-			draw_circle(displayTokenButtonX- clipX, displayTokenButtonY- clipY, displayTokenButtonSize * 0.75, false);
+			var displayTokenCircleHover = CleanCircle(displayTokenButtonX - clipX, displayTokenButtonY- clipY, displayTokenButtonSize * 0.75);
+			displayTokenCircleHover.Draw();
+			
 			
 			if (mouse_check_button_released(mb_left)) {
 				global.displayTokenField = currentField;
@@ -111,11 +113,13 @@ function scr_panelPane_drawUnits1ToManyHeaders() {
 		}
 
 		draw_set_color(global.colorThemeBorders);
-		draw_circle(displayTokenButtonX- clipX, displayTokenButtonY- clipY, displayTokenButtonSize, true);
+		var displayTokenCircle = CleanRing(displayTokenButtonX - clipX, displayTokenButtonY- clipY, displayTokenButtonSize, displayTokenButtonSize + 3, 0, 360);
+		displayTokenCircle.Draw();
 
 		if (global.displayTokenField == currentField) {
 			draw_set_color(merge_color(global.colorThemeBorders, global.colorThemeBG, 0.1));
-			draw_circle(displayTokenButtonX- clipX, displayTokenButtonY- clipY, displayTokenButtonSize * 0.75, false);
+			var displayTokenCircleFill = CleanCircle(displayTokenButtonX - clipX, displayTokenButtonY- clipY, displayTokenButtonSize * 0.75);
+			displayTokenCircleFill.Draw();
 			draw_set_color(global.colorThemeBorders);
 		}
 		else {
