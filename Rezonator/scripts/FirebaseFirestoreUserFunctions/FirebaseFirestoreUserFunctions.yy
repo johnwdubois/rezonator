@@ -1,7 +1,7 @@
 {
   "resourceType": "GMScript",
   "resourceVersion": "1.0",
-  "name": "firebasefirestoreuserfunctions",
+  "name": "FirebaseFirestoreUserFunctions",
   "isCompatibility": false,
   "isDnD": false,
   "parent": {

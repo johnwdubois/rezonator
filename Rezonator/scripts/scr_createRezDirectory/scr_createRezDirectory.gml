@@ -24,13 +24,16 @@ function scr_createRezDirectory() {
 		global.documentsDirString = "C:\\Users\\" + userStr + "\\Documents";
 	}
 	else if (os_type == os_linux) {
-		global.documentsDirString = "/Users/" + string(userStr) + "/Documents";
+		global.documentsDirString = "~/Documents";
 	}
 	global.rezonatorDirString = global.documentsDirString + delimiter + "Rezonator" + delimiter + global.currentVersionStrFull;
 	global.rezonatorDefaultDiscourseDirString = global.rezonatorDirString + delimiter + "Data";
 	global.rezonatorSchemaDirString = global.rezonatorDirString + delimiter + "Schemas";
 	global.rezonatorREZFileDir = global.rezonatorDirString + delimiter + "Data" + delimiter + "SBCorpus" + delimiter + "REZ";
 	global.rezonatorMyREZFileDir = global.rezonatorDirString + delimiter + "Data" + delimiter + "MyData";
+	
+	show_debug_message("scr_createRezDirectory, documentsDirString exists: " + string(global.documentsDirString) + ", exists: " + string(directory_exists(global.documentsDirString)));
+	show_debug_message("scr_createRezDirectory, rezonatorDirString exists: " + string(global.rezonatorDirString) + ", exists: " + string(directory_exists(global.rezonatorDirString)));
 	
 	// copy directory to user's Documents folder
 	ds_list_clear(global.dirCopyDebugList);

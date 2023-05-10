@@ -457,7 +457,7 @@ global.restoreAutosave = false;
 global.autosaveLastSavedFilename = "";
 global.importFrom = "file";
 
-
+global.firebaseProjectID = "rezonator-13b47";
 
 selectOpenButton = false;
 openedFile = "";

@@ -4,4 +4,5 @@ if (room == rm_openingScreen && !global.initialVersionCheck) {
 	var docPath = "Platforms/"+ string(BUILDTYPE);
 	show_debug_message("obj_firestore, checking version number at docPath:" + string(docPath));
 	FirebaseFirestore(docPath).Read();
+	show_debug_message("after read");
 }

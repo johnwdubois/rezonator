@@ -5,7 +5,7 @@
   "isCompatibility": false,
   "isDnD": false,
   "parent": {
-    "name": "Extensions",
-    "path": "folders/Firebase Firestore/Extensions.yy",
+    "name": "Firebase Utils",
+    "path": "folders/Firebase Utils.yy",
   },
 }

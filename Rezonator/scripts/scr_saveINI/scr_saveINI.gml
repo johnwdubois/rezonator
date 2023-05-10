@@ -87,7 +87,7 @@ function scr_saveINI() {
 
 
 		var jsonString = json_encode(wrapper, true);
-		scr_saveFileBuffer(working_directory + filename_name(fileName), fileName, jsonString);
+		scr_saveFileBuffer(fileName, jsonString);
 
 		show_debug_message(string(working_directory) + string(filename_name(fileName)));
 		ds_map_destroy(wrapper);

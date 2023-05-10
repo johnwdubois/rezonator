@@ -6,7 +6,7 @@ function scr_loadINI() {
 	
 		// get filepath for ini
 		var fileName = "";
-		if (os_type == os_macosx) {
+		if (os_type == os_windows) {
 			fileName = global.rezonatorDirString + "\\~usersettings.ini";
 		}
 		else {
@@ -14,8 +14,9 @@ function scr_loadINI() {
 		}
 	
 		// Check if the name is valid, or if the user exited the window
+		show_debug_message("scr_loadINI, fileName: " + string(fileName));
 		if (fileName == "" || fileName == "undefined" || !file_exists(fileName)) {
-			show_message(scr_get_translation("error_ini-loading"));
+			show_debug_message(scr_get_translation("error_ini-loading"));
 			exit;
 		}
 	

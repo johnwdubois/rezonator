@@ -8,8 +8,8 @@ function scr_macros(){
 	
 		// BUILDTYPE should be set to one of the following values:
 		// "Windows_GitHub_Master", "Mac_GitHub_Master", "Windows_GitHub_Release"
-		// "Mac_GitHub_Release", "Steam", "Windows_Website", "Mac_Website", "Web"
-		#macro BUILDTYPE "Windows_Website"
+		// "Mac_GitHub_Release", "Steam", "Windows_Website", "Mac_Website", "Ubuntu_Website", "Web"
+		#macro BUILDTYPE "Ubuntu_Website"
 		
 		// to set whether Steam is enabled, open the Steamworks extension in the Asset Browser
 		// and set the platforms and App ID

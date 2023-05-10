@@ -24,12 +24,41 @@ function FirebaseREST_firestore_value(value, dsType)
 				var keyMap = ds_map_create();
 				
 				if (ds_map_is_map(value, key)) {
-					show_debug_message("mappy!");
+					show_debug_message("buhbuh mappy!");
+					
+					var mapValueMap = ds_map_create();
+					var valuesMap = ds_map_create();
+					var subValueCurrentKey = ds_map_find_first(subValue);
+					while (!is_undefined(subValueCurrentKey)) {
+						var currentValueMap = ds_map_create();
+						var currentSubValueValue = subValue[? subValueCurrentKey];
+						var currentValueMapKey = is_string(currentSubValueValue) ? "stringValue" : "doubleValue";
+						currentValueMap[? currentValueMapKey] = currentSubValueValue;
+						ds_map_add_map(valuesMap, subValueCurrentKey, currentValueMap);
+						subValueCurrentKey = ds_map_find_next(subValue, subValueCurrentKey);
+					}
+					ds_map_add_map(mapValueMap, "fields", valuesMap);
+					ds_map_add_map(keyMap, "mapValue", mapValueMap);
+					
+					
 				}
 				else if (ds_map_is_list(value, key)) {
 					show_debug_message("listo: " + scr_getStringOfList(subValue));
-					//ds_map_add_list()
-					//subKey = "arrayValue";
+
+					var arrayValueMap = ds_map_create();
+					var valuesList = ds_list_create();
+					var listSize = ds_list_size(subValue);
+					for (var i = 0; i < listSize; i++) {
+						var currentValueMap = ds_map_create();
+						currentValueMap[? "stringValue"] = string(subValue[| i]);
+						ds_list_add(valuesList, currentValueMap);
+						ds_list_mark_as_map(valuesList, i);
+					}
+					ds_map_add_list(arrayValueMap, "values", valuesList);
+					ds_map_add_map(keyMap, "arrayValue", arrayValueMap);
+					
+					
+					/*
 					var newMap = FirebaseREST_Firestore_jsonEncode(json_encode(subValue));
 					var newMapDecode = json_decode(newMap);
 					var newMapKey = ds_map_find_first(newMapDecode);
@@ -37,6 +66,8 @@ function FirebaseREST_firestore_value(value, dsType)
 					show_debug_message("newMap: " + string(newMap) + ", newMapKey: " + string(newMapKey));
 					show_debug_message("newSubMap: " + string(json_encode(newSubMap)));
 					ds_map_add_map(keyMap, subKey, newSubMap);
+					*/
+					
 					//ds_map_add_list(keyMap, subKey, json_decode(newMap));
 					//ds_map_add_list(keyMap, subKey, subValue);
 				}

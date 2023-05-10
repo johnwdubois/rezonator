@@ -1,4 +1,14 @@
 
+#macro FirebaseFirestore_Library_useSDK ((extension_get_option_value("YYFirebaseFirestore","Config") == "SDKs_When_Available" and (os_type == os_android or os_type == os_ios or os_browser != browser_not_a_browser)) or extension_get_option_value("YYFirebaseFirestore","Config") == "SDKs_Only")
+#macro Firestore_Query_less_than "LESS_THAN"
+#macro Firestore_Query_less_than_or_equal "LESS_THAN_OR_EQUAL"
+#macro Firestore_Query_greater_than "GREATER_THAN"
+#macro Firestore_Query_greater_than_or_equal "GREATER_THAN_OR_EQUAL"
+#macro Firestore_Query_equal "EQUAL"
+#macro Firestore_Query_not_equal "NOT_EQUAL"
+#macro Firestore_Query_ASCENDING "ASCENDING"
+#macro Firestore_Query_DESCENDING "DESCENDING"
+
 function FirebaseFirestore(path = undefined)
 {
 	return new Firebase_Firestore_builder(path)
@@ -6,20 +16,20 @@ function FirebaseFirestore(path = undefined)
 
 function FirebaseFirestore_updatedPath(path)
 {
-	if (is_undefined(path))
+	if(is_undefined(path))
 	{
-		_isDocument = false
-		_isCollection = false
+		_isDocument = 0.0//false
+		_isCollection = 0.0//false
 	}	
-	else if (FirebaseREST_Firestore_path_isDocument(path))
+	else if(FirebaseREST_Firestore_path_isDocument(path))
 	{
-		_isDocument = true
-		_isCollection = false
+		_isDocument = 1.0//true
+		_isCollection = 0.0//false
 	}
 	else
 	{
-		_isDocument = false
-		_isCollection = true
+		_isDocument = 0.0//false
+		_isCollection = 1.0//true
 	}
 }
 
@@ -82,7 +92,7 @@ function Firebase_Firestore_builder(path) constructor
 	/// @function OrderBy(path)
 	static OrderBy = function(path)
 	{
-		if (argument_count == 2)
+		if(argument_count == 2)
 		{
 			_orderBy_field = path
 			_orderBy_direction = argument[1]
@@ -96,18 +106,18 @@ function Firebase_Firestore_builder(path) constructor
 	/// @function Where(path, op, value)
 	static Where = function(path, op, value) 
 	{
-		if (is_undefined(_operations))
+		if(is_undefined(_operations))
 			_operations = []
 		
 		op = FirebaseFirestore_operationFromSymbol(op);
-
+			
 		array_push(_operations, {operation: op, path: path, value: value})
 		return self;
 	}
 
 	static WhereEqual = function(path,value)
 	{
-		if (is_undefined(_operations))
+		if(is_undefined(_operations))
 			_operations = []
 		array_push(_operations,{operation: Firestore_Query_equal,path: path,value: value})
 		return self
@@ -115,7 +125,7 @@ function Firebase_Firestore_builder(path) constructor
 	
 	static WhereGreaterThan = function(path,value)
 	{
-		if (is_undefined(_operations))
+		if(is_undefined(_operations))
 			_operations = []
 		array_push(_operations,{operation: Firestore_Query_greater_than,path: path,value: value})
 		return self
@@ -123,7 +133,7 @@ function Firebase_Firestore_builder(path) constructor
 	
 	static WhereGreaterThanOrEqual = function(path,value)
 	{
-		if (is_undefined(_operations))
+		if(is_undefined(_operations))
 			_operations = []
 		array_push(_operations,{operation: Firestore_Query_greater_than_or_equal,path: path,value: value})
 		return self
@@ -131,23 +141,23 @@ function Firebase_Firestore_builder(path) constructor
 	
 	static WhereLessThan = function(path,value)
 	{
-		if (is_undefined(_operations))
-			_operations = []
-		array_push(_operations,{operation: Firestore_Query_less_than,path: path,value: value})
-		return self
-	}
-	
-	static WhereLessThanOrEqual = function(path,value)
-	{
-		if (is_undefined(_operations))
+		if(is_undefined(_operations))
 			_operations = []
 		array_push(_operations,{operation: Firestore_Query_less_than_or_equal,path: path,value: value})
 		return self
 	}
 	
+	static WhereLessThanOrEqual = function(path,value)
+	{
+		if(is_undefined(_operations))
+			_operations = []
+		array_push(_operations,{operation: Firestore_Query_equal,path: path,value: value})
+		return self
+	}
+	
 	static WhereNotEqual = function(path,value)
 	{
-		if (is_undefined(_operations))
+		if(is_undefined(_operations))
 			_operations = []
 		array_push(_operations,{operation: Firestore_Query_not_equal,path: path,value: value})
 		return self
@@ -182,9 +192,9 @@ function Firebase_Firestore_builder(path) constructor
 		_action = "Set"
 		_value = value
 		
-		if (FirebaseFirestore_Library_useSDK)
+		if(FirebaseFirestore_Library_useSDK)
 			return FirebaseFirestore_SDK(json_stringify(self))
-		if (FirebaseREST_Firestore_path_isDocument(_path))
+		if(FirebaseREST_Firestore_path_isDocument(_path))
 			return RESTFirebaseFirestore_Document_Set(_path,value)
 		else
 			return RESTFirebaseFirestore_Collection_Add(_path,value)
@@ -195,9 +205,9 @@ function Firebase_Firestore_builder(path) constructor
     {
 		_action = "Update"
 		_value = value
-		if (FirebaseFirestore_Library_useSDK)
+		if(FirebaseFirestore_Library_useSDK)
 			return FirebaseFirestore_SDK(json_stringify(self))
-		if (FirebaseREST_Firestore_path_isDocument(_path))
+		if(FirebaseREST_Firestore_path_isDocument(_path))
 			return RESTFirebaseFirestore_Document_Update(_path,value)
 		else
 		{
@@ -210,11 +220,9 @@ function Firebase_Firestore_builder(path) constructor
     static Read = function()
     {
 		_action = "Read"
-		if (FirebaseFirestore_Library_useSDK) {
-			show_debug_message("FirebaseFirestoreUserFunctions, static read");
+		if(FirebaseFirestore_Library_useSDK)
 			return FirebaseFirestore_SDK(json_stringify(self))
-		}
-		if (FirebaseREST_Firestore_path_isDocument(_path))
+		if(FirebaseREST_Firestore_path_isDocument(_path))
 			return RESTFirebaseFirestore_Document_Read(_path)
 		else
 			return RESTFirebaseFirestore_Collection_Read(_path)
@@ -224,15 +232,12 @@ function Firebase_Firestore_builder(path) constructor
 	static Query = function()
 	{
 		_action = "Query"
-		if (FirebaseFirestore_Library_useSDK)
+		if(FirebaseFirestore_Library_useSDK)
 		{
-			show_debug_message("here1");
 			return FirebaseFirestore_SDK(json_stringify(self))
 		}
-		if (FirebaseREST_Firestore_path_isCollection(_path)) {
-			show_debug_message("here2, _path: " + string(_path));
+		if(FirebaseREST_Firestore_path_isCollection(_path))
 			return RESTFirebaseFirestore_Collection_Query(self)
-		}
 		else
 			show_debug_message("Firestore: You can't query documents")
 	}
@@ -241,9 +246,9 @@ function Firebase_Firestore_builder(path) constructor
     static Listener = function()
     {
 		_action = "Listener"
-		if (FirebaseFirestore_Library_useSDK)
+		if(FirebaseFirestore_Library_useSDK)
 			return FirebaseFirestore_SDK(json_stringify(self))
-		if (FirebaseREST_Firestore_path_isDocument(_path))
+		if(FirebaseREST_Firestore_path_isDocument(_path))
 			return RESTFirebaseFirestore_Document_Listener(_path)
 		else
 			return RESTFirebaseFirestore_Collection_Listener(_path)
@@ -253,9 +258,9 @@ function Firebase_Firestore_builder(path) constructor
 	static Delete = function()
     {
 		_action = "Delete"
-		if (FirebaseFirestore_Library_useSDK)
+		if(FirebaseFirestore_Library_useSDK)
 			return FirebaseFirestore_SDK(json_stringify(self))
-		if (FirebaseREST_Firestore_path_isDocument(_path))
+		if(FirebaseREST_Firestore_path_isDocument(_path))
 			return RESTFirebaseFirestore_Document_Delete(_path)
 		else
 		{
@@ -268,19 +273,19 @@ function Firebase_Firestore_builder(path) constructor
 	{
 		_action = "ListenerRemove"
 		_value = listener
-		if (FirebaseFirestore_Library_useSDK)
+		if(FirebaseFirestore_Library_useSDK)
 			return FirebaseFirestore_SDK(json_stringify(self))
-		with (listener)
+		with(listener)
 		    instance_destroy()
 	}
 	
 	static ListenerRemoveAll = function()
 	{
 		_action = "ListenerRemoveAll"
-		if (FirebaseFirestore_Library_useSDK)
+		if(FirebaseFirestore_Library_useSDK)
 			return FirebaseFirestore_SDK(json_stringify(self))
-		with (Obj_FirebaseREST_Listener_Firestore)
-		if (string_count("Listener",event))
+		with(Obj_FirebaseREST_Listener_Firestore)
+		if(string_count("Listener",event))
 			instance_destroy()
 	}
 }

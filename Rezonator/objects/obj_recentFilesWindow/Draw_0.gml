@@ -192,7 +192,9 @@ draw_set_alpha(1);
 
 
 // draw open directory button
-var openDirTextKey = os_type == os_windows ? "menu_open-rez-folder-windows" : "menu_open-rez-folder-macos";
+var openDirTextKey = "menu_open-rez-folder-windows";
+if (os_type == os_macosx) openDirTextKey = "menu_open-rez-folder-macos";
+else if (os_type == os_linux) openDirTextKey = "menu_open-rez-folder-linux";
 var openDirText = scr_get_translation(openDirTextKey)
 var openDirButtonX1 = recentFilesWindowX1;
 var openDirButtonY1 = recentFilesWindowY2 + string_height("A") * 0.5;

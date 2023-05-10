@@ -545,6 +545,7 @@
 	"menu_read": "Read",
 	"menu_open-rez-folder-windows": "Open REZ folder in Explorer",
 	"menu_open-rez-folder-macos": "Open REZ folder in Finder",
+	"menu_open-rez-folder-linux": "Open REZ folder in Files",
 	"menu_show-file-windows": "Show file in Explorer",
 	"menu_show-file-macos": "Show file in Finder",
 	"menu_restore-autosave": "Restore autosave",
