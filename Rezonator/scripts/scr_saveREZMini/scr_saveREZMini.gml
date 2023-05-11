@@ -1,4 +1,4 @@
-function scr_saveREZMini(){
+function scr_saveREZMini(stackingID = "Default"){
 	
 	// get node list
 	var nodeList = global.nodeMap[? "nodeList"];
@@ -8,7 +8,7 @@ function scr_saveREZMini(){
 	}
 	
 	var root = {};
-	var unitArr = [];
+	var fullUnitArr = [];
 	
 	var nodeListSize = ds_list_size(nodeList);
 	for (var i = 0; i < nodeListSize; i++) {
@@ -70,32 +70,76 @@ function scr_saveREZMini(){
 			root[$ _nodeID] = _unitStruct;
 			
 			// add unit ID to unit array
-			array_push(unitArr, _nodeID);
+			array_push(fullUnitArr, _nodeID);
 		}
 	}
 	
 	// save unit array to root struct
-	root[$ "unitList"] = unitArr;
+	root[$ "unitList"] = fullUnitArr;
 	
 	// save json
-	var json = json_stringify(root, true);
-	var filename = get_save_filename_ext("JSON file|*.json", "", program_directory, "Save JSON");
-	scr_saveFileBuffer(filename, json);
-	show_debug_message($"scr_saveREZMini, json: {json}");
+	//var json = json_stringify(root, true);
+	//var filename = get_save_filename_ext("JSON file|*.json", "", program_directory, "Save JSON");
+	//scr_saveFileBuffer(filename, json);
+	//show_debug_message($"scr_saveREZMini, json: {json}");
 	
 	global.firebaseProjectID = "exampleexperiment-e2a4d";
-	
-	// send root doc to firebase
 	var collectionID = "sbc002";
-	FirebaseFirestore(collectionID + "/root").Set(json_stringify(unitArr));
 	
-	// send unit docs to firebase
-	var unitArrLen = array_length(unitArr);
-	for (var i = 0; i < unitArrLen; i++) {
-		var _unitID = unitArr[i];
-		var _unitStruct = root[$ _unitID];
-		var _json = json_stringify(_unitStruct);
-		show_debug_message($"_unitID: {_unitID}, _json: {_json}");
-		FirebaseFirestore(collectionID + "/" + string(_unitID)).Set(_json);
+	// collect every unitID that is within the given stacking
+	var subUnitArr = [];
+	if (is_string(stackingID) && stackingID != "") {
+		
+		// get current stack
+		var stackList = global.nodeMap[? "stackList"];
+		var stackListSize = ds_list_size(stackList);
+		for (var i = 0; i < stackListSize; i++) {
+			var _stackID = stackList[| i];
+			var _stackSubMap = global.nodeMap[? _stackID];
+			if (!scr_isNumericAndExists(_stackSubMap, ds_type_map)) continue;
+			
+			// check if this stack is part of the desired stacking
+			var _stacking = _stackSubMap[? "stacking"];
+			if (_stacking == stackingID) {
+				var _vizSetIDList = _stackSubMap[? "vizSetIDList"];
+				if (!scr_isNumericAndExists(_vizSetIDList, ds_type_list)) continue;
+				var _vizSetIDListSize = ds_list_size(_vizSetIDList);
+				
+				// collect every unit within the stack into subUnitArr and _setUnitArr
+				var _setUnitArr = [];
+				for (var j = 0; j < _vizSetIDListSize; j++) {
+					var _entryID = _vizSetIDList[| j];
+					var _entrySubMap = global.nodeMap[? _entryID];
+					if (!scr_isNumericAndExists(_entrySubMap, ds_type_map)) continue;
+					var _unitID = _entrySubMap[? "unit"];
+					if (is_string(_unitID) && _unitID != "") {
+						array_push(subUnitArr, _unitID);
+						array_push(_setUnitArr, _unitID);
+					}
+				}
+				
+				// send json to Firebase for this set of units
+				var _json = json_stringify({units: _setUnitArr});
+				var _setID = scr_generateRandomID();
+				FirebaseFirestore(collectionID + "/windows/sets/" + _setID).Set(_json);
+			}
+		}
 	}
+	
+	var unitArrLen = array_length(subUnitArr);
+	if (unitArrLen >= 1) {
+		
+		// send root doc to firebase
+		FirebaseFirestore(collectionID + "/doc/units/unitList").Set(json_stringify(fullUnitArr));
+	
+		// send unit docs to firebase
+		for (var i = 0; i < unitArrLen; i++) {
+			var _unitID = subUnitArr[i];
+			var _unitStruct = root[$ _unitID];
+			var _json = json_stringify(_unitStruct);
+			show_debug_message($"_unitID: {_unitID}, _json: {_json}");
+			FirebaseFirestore(collectionID + "/doc/units/" + string(_unitID)).Set(_json);
+		}
+	}
+	
 }

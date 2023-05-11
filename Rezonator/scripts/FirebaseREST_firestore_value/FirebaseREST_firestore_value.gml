@@ -5,7 +5,7 @@ function FirebaseREST_firestore_value(value, dsType)
 	
 	var isMap = (dsType == ds_type_map);
 	var isList = (dsType == ds_type_list);
-	show_debug_message("FirebaseREST_firestore_value, value: " + string(value) + ", isMap: " + string(isMap) + ", isList: " + string(isList));
+	//show_debug_message("FirebaseREST_firestore_value, value: " + string(value) + ", isMap: " + string(isMap) + ", isList: " + string(isList));
 	
 	var map = ds_map_create()
 	if (is_real(value)) {
@@ -16,15 +16,15 @@ function FirebaseREST_firestore_value(value, dsType)
 			var map_keys = ds_map_create();
 			var key = ds_map_find_first(value);
 			while (!is_undefined(key)) {
-				show_debug_message("FirebaseREST_firestore_value, key: " + string(key));
+			//	show_debug_message("FirebaseREST_firestore_value, key: " + string(key));
 		
 				var subValue = value[? key];
-				show_debug_message("FirebaseREST_firestore_value, isMap, subValue: " + string(subValue));
+				//show_debug_message("FirebaseREST_firestore_value, isMap, subValue: " + string(subValue));
 				var subKey = (is_string(subValue)) ? "stringValue" : "doubleValue";
 				var keyMap = ds_map_create();
 				
 				if (ds_map_is_map(value, key)) {
-					show_debug_message("buhbuh mappy!");
+				///	show_debug_message("buhbuh mappy!");
 					
 					var mapValueMap = ds_map_create();
 					var valuesMap = ds_map_create();
@@ -43,7 +43,7 @@ function FirebaseREST_firestore_value(value, dsType)
 					
 				}
 				else if (ds_map_is_list(value, key)) {
-					show_debug_message("listo: " + scr_getStringOfList(subValue));
+				//	show_debug_message("listo: " + scr_getStringOfList(subValue));
 
 					var arrayValueMap = ds_map_create();
 					var valuesList = ds_list_create();
@@ -85,7 +85,7 @@ function FirebaseREST_firestore_value(value, dsType)
 			var map_field = ds_map_create();
 			ds_map_add_map(map_field,"fields",map_keys);
 			var json_send = json_encode(map_field);
-			show_debug_message("FirebaseREST_firestore_value map, json_send: " + string(json_send));
+			//show_debug_message("FirebaseREST_firestore_value map, json_send: " + string(json_send));
 			ds_map_destroy(map_field);
 		
 			ds_map_add(map, "mapValue", json_send);
@@ -93,13 +93,13 @@ function FirebaseREST_firestore_value(value, dsType)
 		}
 		else if (isList) {
 			
-			show_debug_message("isList!!, listvalue: " + scr_getStringOfList(value));
+			//show_debug_message("isList!!, listvalue: " + scr_getStringOfList(value));
 			
 			var list_keys = ds_list_create();
 			var listSize = ds_list_size(value);
 			for (var i = 0; i < listSize; i++) {
 				var subValue = value[| i];
-				show_debug_message("FirebaseREST_firestore_value, isList, subValue: " + string(subValue));
+				//show_debug_message("FirebaseREST_firestore_value, isList, subValue: " + string(subValue));
 				var subKey = (is_string(subValue)) ? "stringValue" : "doubleValue";
 				var keyMap = ds_map_create();
 				
@@ -108,7 +108,7 @@ function FirebaseREST_firestore_value(value, dsType)
 					show_debug_message("isList mappy!");
 					subKey = "mapValue";
 					var newMap = FirebaseREST_Firestore_jsonEncode(json_encode(subValue));
-					show_debug_message("newMap: " + string(newMap));
+					//show_debug_message("newMap: " + string(newMap));
 					ds_map_add_map(keyMap, subKey, json_decode(newMap));
 				}
 				else {
@@ -122,7 +122,7 @@ function FirebaseREST_firestore_value(value, dsType)
 			var map_field = ds_map_create();
 			ds_map_add_list(map_field,"values",list_keys);
 			var json_send = json_encode(map_field);
-			show_debug_message("FirebaseREST_firestore_value list, json_send: " + string(json_send));
+			//show_debug_message("FirebaseREST_firestore_value list, json_send: " + string(json_send));
 			ds_map_destroy(map_field);
 			ds_map_add(map, "arrayValue", json_send);
 			
