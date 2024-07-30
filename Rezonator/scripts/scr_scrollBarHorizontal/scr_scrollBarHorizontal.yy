@@ -1,11 +1,13 @@
 {
-  "resourceType": "GMScript",
-  "resourceVersion": "1.0",
-  "name": "scr_scrollBarHorizontal",
-  "isCompatibility": false,
-  "isDnD": false,
-  "parent": {
-    "name": "scrollBar",
-    "path": "folders/Scripts/scrollBar.yy",
+  "$GMScript":"",
+  "%Name":"scr_scrollBarHorizontal",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"scr_scrollBarHorizontal",
+  "parent":{
+    "name":"scrollBar",
+    "path":"folders/Scripts/scrollBar.yy",
   },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

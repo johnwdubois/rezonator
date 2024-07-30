@@ -1,11 +1,13 @@
 {
-  "resourceType": "GMScript",
-  "resourceVersion": "1.0",
-  "name": "scr_treeRefresh",
-  "isCompatibility": false,
-  "isDnD": false,
-  "parent": {
-    "name": "Tree",
-    "path": "folders/Scripts/Tree.yy",
+  "$GMScript":"",
+  "%Name":"scr_treeRefresh",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"scr_treeRefresh",
+  "parent":{
+    "name":"Tree",
+    "path":"folders/Scripts/Tree.yy",
   },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

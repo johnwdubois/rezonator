@@ -1,11 +1,13 @@
 {
-  "resourceType": "GMScript",
-  "resourceVersion": "1.0",
-  "name": "scr_setChainAutoTags",
-  "isCompatibility": false,
-  "isDnD": false,
-  "parent": {
-    "name": "chains",
-    "path": "folders/Scripts/chains.yy",
+  "$GMScript":"",
+  "%Name":"scr_setChainAutoTags",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"scr_setChainAutoTags",
+  "parent":{
+    "name":"chains",
+    "path":"folders/Scripts/chains.yy",
   },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

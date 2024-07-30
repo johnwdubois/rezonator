@@ -1,11 +1,13 @@
 {
-  "resourceType": "GMScript",
-  "resourceVersion": "1.0",
-  "name": "scr_drawGridViewerClipped",
-  "isCompatibility": false,
-  "isDnD": false,
-  "parent": {
-    "name": "gridViewer",
-    "path": "folders/Scripts/gridViewer.yy",
+  "$GMScript":"",
+  "%Name":"scr_drawGridViewerClipped",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"scr_drawGridViewerClipped",
+  "parent":{
+    "name":"gridViewer",
+    "path":"folders/Scripts/gridViewer.yy",
   },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

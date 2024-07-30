@@ -1,11 +1,13 @@
 {
-  "resourceType": "GMScript",
-  "resourceVersion": "1.0",
-  "name": "scr_cellEdit",
-  "isCompatibility": false,
-  "isDnD": false,
-  "parent": {
-    "name": "tagInputBox",
-    "path": "folders/Scripts/UI/inputBox/tagInputBox.yy",
+  "$GMScript":"",
+  "%Name":"scr_cellEdit",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"scr_cellEdit",
+  "parent":{
+    "name":"tagInputBox",
+    "path":"folders/Scripts/UI/inputBox/tagInputBox.yy",
   },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

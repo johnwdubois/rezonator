@@ -1,11 +1,13 @@
 {
-  "resourceType": "GMScript",
-  "resourceVersion": "1.0",
-  "name": "utf8_unit_codepoint",
-  "isCompatibility": false,
-  "isDnD": false,
-  "parent": {
-    "name": "API",
-    "path": "folders/Scripts/UTF-8/API.yy",
+  "$GMScript":"",
+  "%Name":"utf8_unit_codepoint",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"utf8_unit_codepoint",
+  "parent":{
+    "name":"API",
+    "path":"folders/Scripts/UTF-8/API.yy",
   },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

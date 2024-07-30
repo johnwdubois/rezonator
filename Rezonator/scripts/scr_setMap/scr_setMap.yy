@@ -1,11 +1,13 @@
 {
-  "resourceType": "GMScript",
-  "resourceVersion": "1.0",
-  "name": "scr_setMap",
-  "isCompatibility": false,
-  "isDnD": false,
-  "parent": {
-    "name": "functions",
-    "path": "folders/Scripts/functions.yy",
+  "$GMScript":"",
+  "%Name":"scr_setMap",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"scr_setMap",
+  "parent":{
+    "name":"functions",
+    "path":"folders/Scripts/functions.yy",
   },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

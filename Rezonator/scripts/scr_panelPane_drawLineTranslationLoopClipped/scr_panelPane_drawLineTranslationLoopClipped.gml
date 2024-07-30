@@ -33,6 +33,8 @@ function scr_panelPane_drawLineTranslationLoopClipped() {
 	var unitList = discourseSubMap[? "unitList"];
 	var unitListSize = ds_list_size(unitList);
 	
+	var inst_PanelPane_chainList = self.id;
+	
 	
 	for (var i = 0; i < unitListSize; i++) {
 	

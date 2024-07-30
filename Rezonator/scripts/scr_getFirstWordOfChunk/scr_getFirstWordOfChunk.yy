@@ -1,11 +1,13 @@
 {
-  "resourceType": "GMScript",
-  "resourceVersion": "1.0",
-  "name": "scr_getFirstWordOfChunk",
-  "isCompatibility": false,
-  "isDnD": false,
-  "parent": {
-    "name": "chunks",
-    "path": "folders/Scripts/chunks.yy",
+  "$GMScript":"",
+  "%Name":"scr_getFirstWordOfChunk",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"scr_getFirstWordOfChunk",
+  "parent":{
+    "name":"chunks",
+    "path":"folders/Scripts/chunks.yy",
   },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

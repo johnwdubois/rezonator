@@ -1,11 +1,13 @@
 {
-  "resourceType": "GMScript",
-  "resourceVersion": "1.0",
-  "name": "scr_sortList",
-  "isCompatibility": false,
-  "isDnD": false,
-  "parent": {
-    "name": "list",
-    "path": "folders/Scripts/functions/list.yy",
+  "$GMScript":"",
+  "%Name":"scr_sortList",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"scr_sortList",
+  "parent":{
+    "name":"list",
+    "path":"folders/Scripts/functions/list.yy",
   },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

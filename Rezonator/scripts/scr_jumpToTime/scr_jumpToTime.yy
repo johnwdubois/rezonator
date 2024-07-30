@@ -1,11 +1,13 @@
 {
-  "resourceType": "GMScript",
-  "resourceVersion": "1.0",
-  "name": "scr_jumpToTime",
-  "isCompatibility": false,
-  "isDnD": false,
-  "parent": {
-    "name": "navigation",
-    "path": "folders/Scripts/functions/navigation.yy",
+  "$GMScript":"",
+  "%Name":"scr_jumpToTime",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"scr_jumpToTime",
+  "parent":{
+    "name":"navigation",
+    "path":"folders/Scripts/functions/navigation.yy",
   },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

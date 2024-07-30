@@ -1,11 +1,13 @@
 {
-  "resourceType": "GMScript",
-  "resourceVersion": "1.0",
-  "name": "scr_dialogueBoxNewCustomTagEntry",
-  "isCompatibility": false,
-  "isDnD": false,
-  "parent": {
-    "name": "dialogueBox",
-    "path": "folders/Scripts/UI/dialogueBox.yy",
+  "$GMScript":"",
+  "%Name":"scr_dialogueBoxNewCustomTagEntry",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"scr_dialogueBoxNewCustomTagEntry",
+  "parent":{
+    "name":"dialogueBox",
+    "path":"folders/Scripts/UI/dialogueBox.yy",
   },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

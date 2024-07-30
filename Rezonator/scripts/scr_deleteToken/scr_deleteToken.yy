@@ -1,11 +1,13 @@
 {
-  "resourceType": "GMScript",
-  "resourceVersion": "1.0",
-  "name": "scr_deleteToken",
-  "isCompatibility": false,
-  "isDnD": false,
-  "parent": {
-    "name": "token",
-    "path": "folders/Scripts/functions/token.yy",
+  "$GMScript":"",
+  "%Name":"scr_deleteToken",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"scr_deleteToken",
+  "parent":{
+    "name":"token",
+    "path":"folders/Scripts/functions/token.yy",
   },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

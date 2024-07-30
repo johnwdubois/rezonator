@@ -1,11 +1,13 @@
 {
-  "resourceType": "GMScript",
-  "resourceVersion": "1.0",
-  "name": "scr_setValueForSelectedNodes",
-  "isCompatibility": false,
-  "isDnD": false,
-  "parent": {
-    "name": "nodeMap",
-    "path": "folders/Scripts/functions/nodeMap.yy",
+  "$GMScript":"",
+  "%Name":"scr_setValueForSelectedNodes",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"scr_setValueForSelectedNodes",
+  "parent":{
+    "name":"nodeMap",
+    "path":"folders/Scripts/functions/nodeMap.yy",
   },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

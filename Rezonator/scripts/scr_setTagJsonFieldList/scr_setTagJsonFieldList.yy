@@ -1,11 +1,13 @@
 {
-  "resourceType": "GMScript",
-  "resourceVersion": "1.0",
-  "name": "scr_setTagJsonFieldList",
-  "isCompatibility": false,
-  "isDnD": false,
-  "parent": {
-    "name": "tagJSON",
-    "path": "folders/Scripts/tagJSON.yy",
+  "$GMScript":"",
+  "%Name":"scr_setTagJsonFieldList",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"scr_setTagJsonFieldList",
+  "parent":{
+    "name":"tagJSON",
+    "path":"folders/Scripts/tagJSON.yy",
   },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

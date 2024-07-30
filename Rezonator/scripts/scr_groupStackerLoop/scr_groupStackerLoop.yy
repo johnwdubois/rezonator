@@ -1,11 +1,13 @@
 {
-  "resourceType": "GMScript",
-  "resourceVersion": "1.0",
-  "name": "scr_groupStackerLoop",
-  "isCompatibility": false,
-  "isDnD": false,
-  "parent": {
-    "name": "stacker",
-    "path": "folders/Scripts/chains/stacker.yy",
+  "$GMScript":"",
+  "%Name":"scr_groupStackerLoop",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"scr_groupStackerLoop",
+  "parent":{
+    "name":"stacker",
+    "path":"folders/Scripts/chains/stacker.yy",
   },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

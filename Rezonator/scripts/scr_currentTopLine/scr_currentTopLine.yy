@@ -1,11 +1,13 @@
 {
-  "resourceType": "GMScript",
-  "resourceVersion": "1.0",
-  "name": "scr_currentTopLine",
-  "isCompatibility": false,
-  "isDnD": false,
-  "parent": {
-    "name": "drawLine",
-    "path": "folders/Scripts/drawLine.yy",
+  "$GMScript":"",
+  "%Name":"scr_currentTopLine",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"scr_currentTopLine",
+  "parent":{
+    "name":"drawLine",
+    "path":"folders/Scripts/drawLine.yy",
   },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

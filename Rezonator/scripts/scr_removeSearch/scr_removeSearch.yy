@@ -1,11 +1,13 @@
 {
-  "resourceType": "GMScript",
-  "resourceVersion": "1.0",
-  "name": "scr_removeSearch",
-  "isCompatibility": false,
-  "isDnD": false,
-  "parent": {
-    "name": "search",
-    "path": "folders/Scripts/functions/search.yy",
+  "$GMScript":"",
+  "%Name":"scr_removeSearch",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"scr_removeSearch",
+  "parent":{
+    "name":"search",
+    "path":"folders/Scripts/functions/search.yy",
   },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

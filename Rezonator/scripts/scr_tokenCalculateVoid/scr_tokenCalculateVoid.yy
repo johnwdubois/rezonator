@@ -1,11 +1,13 @@
 {
-  "resourceType": "GMScript",
-  "resourceVersion": "1.0",
-  "name": "scr_tokenCalculateVoid",
-  "isCompatibility": false,
-  "isDnD": false,
-  "parent": {
-    "name": "token",
-    "path": "folders/Scripts/functions/token.yy",
+  "$GMScript":"",
+  "%Name":"scr_tokenCalculateVoid",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"scr_tokenCalculateVoid",
+  "parent":{
+    "name":"token",
+    "path":"folders/Scripts/functions/token.yy",
   },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

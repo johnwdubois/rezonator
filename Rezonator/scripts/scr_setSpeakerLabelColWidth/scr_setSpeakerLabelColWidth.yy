@@ -1,11 +1,13 @@
 {
-  "resourceType": "GMScript",
-  "resourceVersion": "1.0",
-  "name": "scr_setSpeakerLabelColWidth",
-  "isCompatibility": false,
-  "isDnD": false,
-  "parent": {
-    "name": "drawLine",
-    "path": "folders/Scripts/drawLine.yy",
+  "$GMScript":"",
+  "%Name":"scr_setSpeakerLabelColWidth",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"scr_setSpeakerLabelColWidth",
+  "parent":{
+    "name":"drawLine",
+    "path":"folders/Scripts/drawLine.yy",
   },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

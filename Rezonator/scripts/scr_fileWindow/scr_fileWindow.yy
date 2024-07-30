@@ -1,11 +1,13 @@
 {
-  "resourceType": "GMScript",
-  "resourceVersion": "1.0",
-  "name": "scr_fileWindow",
-  "isCompatibility": false,
-  "isDnD": false,
-  "parent": {
-    "name": "importScreen",
-    "path": "folders/Scripts/import/importScreen.yy",
+  "$GMScript":"",
+  "%Name":"scr_fileWindow",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"scr_fileWindow",
+  "parent":{
+    "name":"importScreen",
+    "path":"folders/Scripts/import/importScreen.yy",
   },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

@@ -1,11 +1,13 @@
 {
-  "resourceType": "GMScript",
-  "resourceVersion": "1.0",
-  "name": "scr_renameClique",
-  "isCompatibility": false,
-  "isDnD": false,
-  "parent": {
-    "name": "cliques",
-    "path": "folders/Scripts/cliques.yy",
+  "$GMScript":"",
+  "%Name":"scr_renameClique",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"scr_renameClique",
+  "parent":{
+    "name":"cliques",
+    "path":"folders/Scripts/cliques.yy",
   },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

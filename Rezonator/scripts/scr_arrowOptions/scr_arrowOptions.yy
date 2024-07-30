@@ -1,11 +1,13 @@
 {
-  "resourceType": "GMScript",
-  "resourceVersion": "1.0",
-  "name": "scr_arrowOptions",
-  "isCompatibility": false,
-  "isDnD": false,
-  "parent": {
-    "name": "dropDownLists",
-    "path": "folders/Scripts/UI/dropDownLists.yy",
+  "$GMScript":"",
+  "%Name":"scr_arrowOptions",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"scr_arrowOptions",
+  "parent":{
+    "name":"dropDownLists",
+    "path":"folders/Scripts/UI/dropDownLists.yy",
   },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

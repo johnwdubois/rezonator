@@ -1,11 +1,13 @@
 {
-  "resourceType": "GMScript",
-  "resourceVersion": "1.0",
-  "name": "scr_gridToCSV",
-  "isCompatibility": false,
-  "isDnD": false,
-  "parent": {
-    "name": "export",
-    "path": "folders/Scripts/export.yy",
+  "$GMScript":"",
+  "%Name":"scr_gridToCSV",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"scr_gridToCSV",
+  "parent":{
+    "name":"export",
+    "path":"folders/Scripts/export.yy",
   },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

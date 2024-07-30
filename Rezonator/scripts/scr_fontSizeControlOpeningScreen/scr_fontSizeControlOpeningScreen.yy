@@ -1,11 +1,13 @@
 {
-  "resourceType": "GMScript",
-  "resourceVersion": "1.0",
-  "name": "scr_fontSizeControlOpeningScreen",
-  "isCompatibility": false,
-  "isDnD": false,
-  "parent": {
-    "name": "fonts",
-    "path": "folders/Scripts/functions/fonts.yy",
+  "$GMScript":"",
+  "%Name":"scr_fontSizeControlOpeningScreen",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"scr_fontSizeControlOpeningScreen",
+  "parent":{
+    "name":"fonts",
+    "path":"folders/Scripts/functions/fonts.yy",
   },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

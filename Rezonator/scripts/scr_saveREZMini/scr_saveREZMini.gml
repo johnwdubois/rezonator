@@ -31,6 +31,7 @@ function scr_saveREZMini(stackingID = "Default"){
 			if (scr_isNumericAndExists(_tagMap, ds_type_map)) _participant = _tagMap[? global.participantField];
 			_unitStruct[$ "participant"] = _participant;
 			
+			var _chunkStruct = {};
 			var _tokenArr = [];
 			var _entryList = _nodeSubMap[? "entryList"];
 			if (scr_isNumericAndExists(_entryList, ds_type_list)) {
@@ -46,6 +47,31 @@ function scr_saveREZMini(stackingID = "Default"){
 					var _tokenID = _entrySubMap[? "token"];
 					var _tokenSubMap = global.nodeMap[? _tokenID];
 					if (!scr_isNumericAndExists(_tokenSubMap, ds_type_map)) continue;
+					
+					var _tokenInChunkList = _tokenSubMap[? "inChunkList"];
+					if (scr_isNumericAndExists(_tokenInChunkList, ds_type_list)) {
+						var _tokenInChunkListSize = ds_list_size(_tokenInChunkList);
+						for (var k = 0; k < _tokenInChunkListSize; k++) {
+							
+							// add new chunk to chunk struct, only if we have not added this chunk already
+							var _chunkID = _tokenInChunkList[| k];
+							if (!struct_exists(_chunkStruct, _chunkID) && is_string(_chunkID)) {
+							
+								var _chunkSubMap = global.nodeMap[? _chunkID];
+								var _chunkTokenList = _chunkSubMap[? "tokenList"];
+							
+								// make a little array based on chunkTokenList
+								var _chunkTokenArr = [];
+								var _chunkTokenListSize = ds_list_size(_chunkTokenList);
+								for (var l = 0; l < _chunkTokenListSize; l++) {
+									var _chunkTokenID = _chunkTokenList[| l];
+									array_push(_chunkTokenArr, _chunkTokenID);
+								}
+								
+								_chunkStruct[$ _chunkID] = _chunkTokenArr;
+							}
+						}
+					}
 					
 					// get token text and kind
 					var _tokenTagMap = _tokenSubMap[? "tagMap"];
@@ -65,6 +91,7 @@ function scr_saveREZMini(stackingID = "Default"){
 			
 			// save token array to unit struct
 			_unitStruct[$ "tokens"] = _tokenArr;
+			_unitStruct[$ "chunks"] = _chunkStruct;
 			
 			// save unit struct to root struct
 			root[$ _nodeID] = _unitStruct;
@@ -83,8 +110,9 @@ function scr_saveREZMini(stackingID = "Default"){
 	//scr_saveFileBuffer(filename, json);
 	//show_debug_message($"scr_saveREZMini, json: {json}");
 	
+	var corpusPath = "corpus/sbc/doc/sbc002";
+	
 	global.firebaseProjectID = "exampleexperiment-e2a4d";
-	var collectionID = "sbc002";
 	
 	// collect every unitID that is within the given stacking
 	var subUnitArr = [];
@@ -118,10 +146,9 @@ function scr_saveREZMini(stackingID = "Default"){
 					}
 				}
 				
-				// send json to Firebase for this set of units
+				// send stack to Firestore
 				var _json = json_stringify({units: _setUnitArr});
-				var _setID = scr_generateRandomID();
-				FirebaseFirestore(collectionID + "/windows/sets/" + _setID).Set(_json);
+				FirebaseFirestore(corpusPath + "/excerpt/" + _stackID).Set(_json);
 			}
 		}
 	}
@@ -130,7 +157,7 @@ function scr_saveREZMini(stackingID = "Default"){
 	if (unitArrLen >= 1) {
 		
 		// send root doc to firebase
-		FirebaseFirestore(collectionID + "/doc/units/unitList").Set(json_stringify(fullUnitArr));
+		FirebaseFirestore(corpusPath).Set(json_stringify({unitSequence : fullUnitArr}));
 	
 		// send unit docs to firebase
 		for (var i = 0; i < unitArrLen; i++) {
@@ -138,7 +165,7 @@ function scr_saveREZMini(stackingID = "Default"){
 			var _unitStruct = root[$ _unitID];
 			var _json = json_stringify(_unitStruct);
 			show_debug_message($"_unitID: {_unitID}, _json: {_json}");
-			FirebaseFirestore(collectionID + "/doc/units/" + string(_unitID)).Set(_json);
+			FirebaseFirestore(corpusPath + "/unit/" + string(_unitID)).Set(_json);
 		}
 	}
 	

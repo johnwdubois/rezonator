@@ -1,11 +1,13 @@
 {
-  "resourceType": "GMScript",
-  "resourceVersion": "1.0",
-  "name": "scr_clipAllStacks",
-  "isCompatibility": false,
-  "isDnD": false,
-  "parent": {
-    "name": "export",
-    "path": "folders/Scripts/export.yy",
+  "$GMScript":"",
+  "%Name":"scr_clipAllStacks",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"scr_clipAllStacks",
+  "parent":{
+    "name":"export",
+    "path":"folders/Scripts/export.yy",
   },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

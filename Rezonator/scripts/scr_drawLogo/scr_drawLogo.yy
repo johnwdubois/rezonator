@@ -1,11 +1,13 @@
 {
-  "resourceType": "GMScript",
-  "resourceVersion": "1.0",
-  "name": "scr_drawLogo",
-  "isCompatibility": false,
-  "isDnD": false,
-  "parent": {
-    "name": "openingScreen",
-    "path": "folders/Scripts/openingScreen.yy",
+  "$GMScript":"",
+  "%Name":"scr_drawLogo",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"scr_drawLogo",
+  "parent":{
+    "name":"openingScreen",
+    "path":"folders/Scripts/openingScreen.yy",
   },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

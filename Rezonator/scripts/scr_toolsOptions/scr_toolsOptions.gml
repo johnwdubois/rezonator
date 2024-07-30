@@ -60,6 +60,7 @@ function scr_toolsOptions(optionSelected) {
 			with (obj_dropDown) {
 				instance_destroy();	
 			}
+			obj_wordTip.wordTipDisplay = true;
 			break;
 		case "menu_stacker":
 			scr_destroyAllDropDownsOtherThanSelf();

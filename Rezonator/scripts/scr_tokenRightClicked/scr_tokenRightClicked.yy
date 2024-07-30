@@ -1,11 +1,13 @@
 {
-  "resourceType": "GMScript",
-  "resourceVersion": "1.0",
-  "name": "scr_tokenRightClicked",
-  "isCompatibility": false,
-  "isDnD": false,
-  "parent": {
-    "name": "drawChains",
-    "path": "folders/Scripts/chains/drawChains.yy",
+  "$GMScript":"",
+  "%Name":"scr_tokenRightClicked",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"scr_tokenRightClicked",
+  "parent":{
+    "name":"drawChains",
+    "path":"folders/Scripts/chains/drawChains.yy",
   },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

@@ -1,11 +1,13 @@
 {
-  "resourceType": "GMScript",
-  "resourceVersion": "1.0",
-  "name": "scr_windowCameraAdjust",
-  "isCompatibility": false,
-  "isDnD": false,
-  "parent": {
-    "name": "window",
-    "path": "folders/Scripts/UI/window.yy",
+  "$GMScript":"",
+  "%Name":"scr_windowCameraAdjust",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"scr_windowCameraAdjust",
+  "parent":{
+    "name":"window",
+    "path":"folders/Scripts/UI/window.yy",
   },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

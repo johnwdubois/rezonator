@@ -1,11 +1,13 @@
 {
-  "resourceType": "GMScript",
-  "resourceVersion": "1.0",
-  "name": "scr_URLOpenReliable",
-  "isCompatibility": false,
-  "isDnD": false,
-  "parent": {
-    "name": "functions",
-    "path": "folders/Scripts/functions.yy",
+  "$GMScript":"",
+  "%Name":"scr_URLOpenReliable",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"scr_URLOpenReliable",
+  "parent":{
+    "name":"functions",
+    "path":"folders/Scripts/functions.yy",
   },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

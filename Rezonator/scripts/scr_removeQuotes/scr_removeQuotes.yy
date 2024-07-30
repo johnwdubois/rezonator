@@ -1,11 +1,13 @@
 {
-  "resourceType": "GMScript",
-  "resourceVersion": "1.0",
-  "name": "scr_removeQuotes",
-  "isCompatibility": false,
-  "isDnD": false,
-  "parent": {
-    "name": "Firebase Firestore",
-    "path": "folders/Firebase Firestore.yy",
+  "$GMScript":"",
+  "%Name":"scr_removeQuotes",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"scr_removeQuotes",
+  "parent":{
+    "name":"Firebase Firestore",
+    "path":"folders/Firebase Firestore.yy",
   },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

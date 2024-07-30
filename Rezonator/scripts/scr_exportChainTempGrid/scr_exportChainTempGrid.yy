@@ -1,11 +1,13 @@
 {
-  "resourceType": "GMScript",
-  "resourceVersion": "1.0",
-  "name": "scr_exportChainTempGrid",
-  "isCompatibility": false,
-  "isDnD": false,
-  "parent": {
-    "name": "export",
-    "path": "folders/Scripts/export.yy",
+  "$GMScript":"",
+  "%Name":"scr_exportChainTempGrid",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"scr_exportChainTempGrid",
+  "parent":{
+    "name":"export",
+    "path":"folders/Scripts/export.yy",
   },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

@@ -1,11 +1,13 @@
 {
-  "resourceType": "GMScript",
-  "resourceVersion": "1.0",
-  "name": "scr_changeActiveStacking",
-  "isCompatibility": false,
-  "isDnD": false,
-  "parent": {
-    "name": "stacking",
-    "path": "folders/Scripts/chains/stacking.yy",
+  "$GMScript":"",
+  "%Name":"scr_changeActiveStacking",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"scr_changeActiveStacking",
+  "parent":{
+    "name":"stacking",
+    "path":"folders/Scripts/chains/stacking.yy",
   },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

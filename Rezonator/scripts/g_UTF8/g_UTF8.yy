@@ -1,11 +1,13 @@
 {
-  "resourceType": "GMScript",
-  "resourceVersion": "1.0",
-  "name": "g_UTF8",
-  "isCompatibility": false,
-  "isDnD": false,
-  "parent": {
-    "name": "UTF-8",
-    "path": "folders/Scripts/UTF-8.yy",
+  "$GMScript":"",
+  "%Name":"g_UTF8",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"g_UTF8",
+  "parent":{
+    "name":"UTF-8",
+    "path":"folders/Scripts/UTF-8.yy",
   },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

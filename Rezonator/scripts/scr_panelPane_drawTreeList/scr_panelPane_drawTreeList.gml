@@ -1,5 +1,3 @@
-
-
 function scr_panelPane_drawTreeList() {
 	
 	var ltr = (obj_control.drawLineState == obj_control.lineState_ltr);
@@ -183,7 +181,8 @@ function scr_panelPane_drawTreeList() {
 				scr_createTooltip(delButtonX, treeRectY2, scr_get_translation("msg_remove"), TOOLTIP_DIR_UP);
 			}
 			else {
-				if (mouse_check_button_released(mb_left)) {
+				if (mouseoverTreeRect && mouse_check_button_released(mb_left)) {
+					show_debug_message("scr_panelPane_drawTreeList, jumping to unit: " + string(unitToJumpTo));
 					scr_jumpToUnitDoubleClick(unitToJumpTo);
 				}
 			}

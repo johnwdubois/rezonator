@@ -1,11 +1,13 @@
 {
-  "resourceType": "GMScript",
-  "resourceVersion": "1.0",
-  "name": "scr_lockFields",
-  "isCompatibility": false,
-  "isDnD": false,
-  "parent": {
-    "name": "functions",
-    "path": "folders/Scripts/import/functions.yy",
+  "$GMScript":"",
+  "%Name":"scr_lockFields",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"scr_lockFields",
+  "parent":{
+    "name":"functions",
+    "path":"folders/Scripts/import/functions.yy",
   },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

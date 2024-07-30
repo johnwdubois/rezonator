@@ -1,11 +1,13 @@
 {
-  "resourceType": "GMScript",
-  "resourceVersion": "1.0",
-  "name": "scr_gridDeleteRow",
-  "isCompatibility": false,
-  "isDnD": false,
-  "parent": {
-    "name": "grid",
-    "path": "folders/Scripts/functions/grid.yy",
+  "$GMScript":"",
+  "%Name":"scr_gridDeleteRow",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"scr_gridDeleteRow",
+  "parent":{
+    "name":"grid",
+    "path":"folders/Scripts/functions/grid.yy",
   },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

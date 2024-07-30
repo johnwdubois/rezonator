@@ -1,11 +1,13 @@
 {
-  "resourceType": "GMScript",
-  "resourceVersion": "1.0",
-  "name": "scr_deleteField",
-  "isCompatibility": false,
-  "isDnD": false,
-  "parent": {
-    "name": "nodeMap",
-    "path": "folders/Scripts/functions/nodeMap.yy",
+  "$GMScript":"",
+  "%Name":"scr_deleteField",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"scr_deleteField",
+  "parent":{
+    "name":"nodeMap",
+    "path":"folders/Scripts/functions/nodeMap.yy",
   },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }
