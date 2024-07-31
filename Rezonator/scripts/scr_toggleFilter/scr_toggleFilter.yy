@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"scr_toggleFilter",
   "isCompatibility":false,
   "isDnD":false,

@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"scr_setDialogueText",
   "isCompatibility":false,
   "isDnD":false,

@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"scr_entryTagMapOptions",
   "isCompatibility":false,
   "isDnD":false,

@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"scr_clearCliqueMap",
   "isCompatibility":false,
   "isDnD":false,

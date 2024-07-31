@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"scr_sortVizSetIDList",
   "isCompatibility":false,
   "isDnD":false,

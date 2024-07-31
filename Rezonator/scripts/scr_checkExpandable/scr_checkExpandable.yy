@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"scr_checkExpandable",
   "isCompatibility":false,
   "isDnD":false,

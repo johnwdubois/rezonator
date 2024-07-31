@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"scr_randomStackerLoop",
   "isCompatibility":false,
   "isDnD":false,

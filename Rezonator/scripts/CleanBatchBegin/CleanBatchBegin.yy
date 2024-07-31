@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"CleanBatchBegin",
   "isCompatibility":false,
   "isDnD":false,

@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"scr_sortElan",
   "isCompatibility":false,
   "isDnD":false,

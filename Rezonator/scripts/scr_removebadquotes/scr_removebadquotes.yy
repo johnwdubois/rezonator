@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"scr_removeBadQuotes",
   "isCompatibility":false,
   "isDnD":false,

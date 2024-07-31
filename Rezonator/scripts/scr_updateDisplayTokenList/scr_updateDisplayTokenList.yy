@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"scr_updateDisplayTokenList",
   "isCompatibility":false,
   "isDnD":false,

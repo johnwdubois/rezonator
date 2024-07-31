@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"scr_nodeMapDefaultData",
   "isCompatibility":false,
   "isDnD":false,

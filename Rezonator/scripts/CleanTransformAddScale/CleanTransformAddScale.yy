@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"CleanTransformAddScale",
   "isCompatibility":false,
   "isDnD":false,

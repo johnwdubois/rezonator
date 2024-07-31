@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"CleanTransformAddRotate",
   "isCompatibility":false,
   "isDnD":false,

@@ -31,7 +31,7 @@ function scr_refreshChainOrderMap(cliqueID) {
 				if (scr_isNumericAndExists(currentChainSubMap, ds_type_map)) {
 				
 					var currentChainSetIDList = currentChainSubMap[? "setIDList"];
-					if (scr_isNumericAndExists(currentChainSubMap, ds_type_list)) {
+					if (scr_isNumericAndExists(currentChainSubMap, ds_type_map)) {
 						var currentChainSetIDListSize = ds_list_size(currentChainSetIDList);
 					
 						// loop over every entry in this chain to see what it will push

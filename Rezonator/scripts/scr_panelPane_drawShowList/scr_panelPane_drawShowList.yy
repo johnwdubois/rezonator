@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"scr_panelPane_drawShowList",
   "isCompatibility":false,
   "isDnD":false,

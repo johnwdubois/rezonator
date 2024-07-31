@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"scr_setNavFieldListsFromSchemaPart",
   "isCompatibility":false,
   "isDnD":false,

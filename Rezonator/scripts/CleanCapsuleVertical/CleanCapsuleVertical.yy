@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"CleanCapsuleVertical",
   "isCompatibility":false,
   "isDnD":false,

@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"scr_drawDialogueBox_input",
   "isCompatibility":false,
   "isDnD":false,

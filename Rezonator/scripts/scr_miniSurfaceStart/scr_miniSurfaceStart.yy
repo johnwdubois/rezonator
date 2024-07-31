@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"scr_miniSurfaceStart",
   "isCompatibility":false,
   "isDnD":false,

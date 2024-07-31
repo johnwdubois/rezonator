@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"scr_getUnitList",
   "isCompatibility":false,
   "isDnD":false,

@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"scr_showSpeakerName",
   "isCompatibility":false,
   "isDnD":false,

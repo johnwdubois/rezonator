@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"utf8_unit_sequence_length",
   "isCompatibility":false,
   "isDnD":false,

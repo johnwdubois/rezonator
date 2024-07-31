@@ -65,7 +65,9 @@ function scr_panelPane_drawCliques1ToMany() {
 								for (var j = 0; j < currentChainOrderListSize; j++) {
 									var currentChain = currentChainOrderList[| j];
 									var currentChainSubMap = global.nodeMap[? currentChain];
-									ds_list_add(currentChainOrderListNames, currentChainSubMap[? "name"]);
+									if (scr_isNumericAndExists(currentChainSubMap, ds_type_map)) {
+										ds_list_add(currentChainOrderListNames, currentChainSubMap[? "name"]);
+									}
 								}
 							}
 						}
@@ -109,7 +111,7 @@ function scr_panelPane_drawCliques1ToMany() {
 				ds_list_destroy(currentChainOrderListNames);
 				
 				// double click to hop to chain
-				if (mouseoverCliqueRect && mouse_check_button_released(mb_left)) {
+				if (mouseoverCliqueRect && mouse_check_button_released(mb_left) && scr_isNumericAndExists(currentItemSubMap, ds_type_map)) {
 					if (cliquePaneSwitchButton == "option_chain") {
 						var setIDList = currentItemSubMap[? "setIDList"];
 						if (scr_isNumericAndExists(setIDList, ds_type_list)) {

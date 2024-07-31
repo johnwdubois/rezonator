@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"scr_regularExpressionDestroy",
   "isCompatibility":false,
   "isDnD":false,

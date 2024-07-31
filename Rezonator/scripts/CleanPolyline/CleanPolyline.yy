@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"CleanPolyline",
   "isCompatibility":false,
   "isDnD":false,

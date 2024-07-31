@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"scr_loadREZHandleWrapper",
   "isCompatibility":false,
   "isDnD":false,

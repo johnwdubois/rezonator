@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"scr_createFlyout",
   "isCompatibility":false,
   "isDnD":false,

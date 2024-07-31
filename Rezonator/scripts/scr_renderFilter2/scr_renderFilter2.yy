@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"scr_renderFilter2",
   "isCompatibility":false,
   "isDnD":false,

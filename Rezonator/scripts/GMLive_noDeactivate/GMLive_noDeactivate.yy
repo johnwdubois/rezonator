@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"GMLive_noDeactivate",
   "isCompatibility":false,
   "isDnD":false,

@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"scr_turnStackerLoop",
   "isCompatibility":false,
   "isDnD":false,

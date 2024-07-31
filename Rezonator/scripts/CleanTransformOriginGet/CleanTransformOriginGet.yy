@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"CleanTransformOriginGet",
   "isCompatibility":false,
   "isDnD":false,

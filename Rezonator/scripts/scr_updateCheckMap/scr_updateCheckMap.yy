@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"scr_updateCheckMap",
   "isCompatibility":false,
   "isDnD":false,

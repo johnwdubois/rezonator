@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"scr_chainTagInit",
   "isCompatibility":false,
   "isDnD":false,

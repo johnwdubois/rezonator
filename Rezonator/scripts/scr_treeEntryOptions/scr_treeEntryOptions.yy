@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"scr_treeEntryOptions",
   "isCompatibility":false,
   "isDnD":false,

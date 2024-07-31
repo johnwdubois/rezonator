@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"scr_focusRelevantChainOnToken",
   "isCompatibility":false,
   "isDnD":false,

@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"scr_importGridToNodeMap_fieldsRowUnit",
   "isCompatibility":false,
   "isDnD":false,

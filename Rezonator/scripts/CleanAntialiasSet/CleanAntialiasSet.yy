@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"CleanAntialiasSet",
   "isCompatibility":false,
   "isDnD":false,

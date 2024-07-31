@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"scr_URLOpenReliable",
   "isCompatibility":false,
   "isDnD":false,

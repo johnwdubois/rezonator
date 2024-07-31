@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"scr_cliqueGeneration",
   "isCompatibility":false,
   "isDnD":false,

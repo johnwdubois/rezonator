@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"scr_chunk1To1TagOptions",
   "isCompatibility":false,
   "isDnD":false,

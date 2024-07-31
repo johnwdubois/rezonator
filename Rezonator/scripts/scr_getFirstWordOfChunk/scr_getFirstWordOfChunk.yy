@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"scr_getFirstWordOfChunk",
   "isCompatibility":false,
   "isDnD":false,

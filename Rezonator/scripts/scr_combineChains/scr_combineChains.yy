@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"scr_combineChains",
   "isCompatibility":false,
   "isDnD":false,

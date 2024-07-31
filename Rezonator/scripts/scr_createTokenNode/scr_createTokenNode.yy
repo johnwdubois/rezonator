@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"scr_createTokenNode",
   "isCompatibility":false,
   "isDnD":false,

@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"scr_getFirstUnitOfChain",
   "isCompatibility":false,
   "isDnD":false,

@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"scr_tokenRightClicked",
   "isCompatibility":false,
   "isDnD":false,

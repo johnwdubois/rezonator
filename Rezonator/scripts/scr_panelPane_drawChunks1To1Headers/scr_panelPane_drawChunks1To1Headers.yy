@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"scr_panelPane_drawChunks1To1Headers",
   "isCompatibility":false,
   "isDnD":false,

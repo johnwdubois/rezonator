@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"CleanBatchDrawVertexBuffer",
   "isCompatibility":false,
   "isDnD":false,

@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"scr_chain1ToManyFieldOptions",
   "isCompatibility":false,
   "isDnD":false,

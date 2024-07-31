@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"scr_refreshDisplayCol",
   "isCompatibility":false,
   "isDnD":false,

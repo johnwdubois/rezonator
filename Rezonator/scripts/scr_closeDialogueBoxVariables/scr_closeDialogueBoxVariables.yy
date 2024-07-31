@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"scr_closeDialogueBoxVariables",
   "isCompatibility":false,
   "isDnD":false,

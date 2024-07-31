@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"utf8_unit_codepoint",
   "isCompatibility":false,
   "isDnD":false,

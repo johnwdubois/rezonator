@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"scr_fillFieldLevelMap",
   "isCompatibility":false,
   "isDnD":false,

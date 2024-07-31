@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"scr_tagPaneOptions",
   "isCompatibility":false,
   "isDnD":false,

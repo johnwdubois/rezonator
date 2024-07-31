@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"scr_cliqueDetection",
   "isCompatibility":false,
   "isDnD":false,

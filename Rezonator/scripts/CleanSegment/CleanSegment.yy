@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"CleanSegment",
   "isCompatibility":false,
   "isDnD":false,

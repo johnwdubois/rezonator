@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"scr_jumpToTime",
   "isCompatibility":false,
   "isDnD":false,

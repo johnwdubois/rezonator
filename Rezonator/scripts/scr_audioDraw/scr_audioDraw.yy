@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"scr_audioDraw",
   "isCompatibility":false,
   "isDnD":false,

@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"scr_toggle1to1",
   "isCompatibility":false,
   "isDnD":false,

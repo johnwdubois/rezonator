@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"scr_importGridToNodeMap_plainText",
   "isCompatibility":false,
   "isDnD":false,

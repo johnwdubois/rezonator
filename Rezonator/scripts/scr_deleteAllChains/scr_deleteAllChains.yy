@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"scr_deleteAllChains",
   "isCompatibility":false,
   "isDnD":false,

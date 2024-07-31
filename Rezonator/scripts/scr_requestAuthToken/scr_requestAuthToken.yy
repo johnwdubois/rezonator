@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"scr_requestAuthToken",
   "isCompatibility":false,
   "isDnD":false,

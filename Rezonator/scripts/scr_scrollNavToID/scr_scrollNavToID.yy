@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"scr_scrollNavToID",
   "isCompatibility":false,
   "isDnD":false,

@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"scr_scrollBarHorizontal",
   "isCompatibility":false,
   "isDnD":false,

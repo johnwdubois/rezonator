@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"scr_alignChain2ElectricBoogaloo",
   "isCompatibility":false,
   "isDnD":false,

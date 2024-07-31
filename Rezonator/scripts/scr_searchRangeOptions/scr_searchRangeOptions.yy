@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"scr_searchRangeOptions",
   "isCompatibility":false,
   "isDnD":false,

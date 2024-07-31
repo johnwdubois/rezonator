@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"scr_preImportFileTypeWindow",
   "isCompatibility":false,
   "isDnD":false,
