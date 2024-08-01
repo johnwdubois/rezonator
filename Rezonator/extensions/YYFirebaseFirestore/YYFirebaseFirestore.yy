@@ -11,7 +11,7 @@
   "androidsourcedir":"",
   "author":"",
   "classname":"YYFirebaseFirestore",
-  "copyToTargets":3035426170322551022,
+  "copyToTargets":3035426170322550958,
   "description":"",
   "exportToGame":true,
   "extensionVersion":"2.4.0",

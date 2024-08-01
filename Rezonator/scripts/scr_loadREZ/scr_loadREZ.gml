@@ -105,11 +105,6 @@ function scr_loadREZ() {
 	
 	scr_openFileRefreshCliques();
 	scr_lockChunks(true);
-
-	var x1 = irandom(1);
-	var y1 = irandom(1);
-	if (x1 == y1) show_debug_message("hello terry :)");
-	else show_debug_message("oh my god");
 	
 	// when opening a rez file, use full unit list (do not open)
 	var docNodeSubMap = global.nodeMap[? global.discourseNode];

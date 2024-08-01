@@ -6,6 +6,10 @@
         "value": "rezonator-13b47"
       }
     },
-    "d0bc7dea-7df6-4506-8c8a-78f04b930a4e": null
+    "d0bc7dea-7df6-4506-8c8a-78f04b930a4e": {
+      "Default": {
+        "value": "REST_API_Only"
+      }
+    }
   }
 }
