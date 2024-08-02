@@ -500,12 +500,6 @@ gridSpaceVertical = clamp(gridSpaceVertical, gridSpaceVerticalMin, gridSpaceVert
 
 
 
-// hide participant names
-if (!gridView) {
-	if (global.ctrlHold and keyboard_check_pressed(ord("H"))) {
-		scr_showSpeakerName(!obj_control.showSpeakerName);
-	}
-}
 
 // Check for mouse over of the Panel Pane
 // It's gotta stop the drag but not require the user to click into the main screen first

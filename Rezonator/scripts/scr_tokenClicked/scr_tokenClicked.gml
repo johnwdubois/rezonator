@@ -140,24 +140,13 @@ function scr_tokenClicked(tokenID) {
 	}
 	
 	// if we are in read mode, don't go any further
-	if (obj_toolPane.currentMode == obj_toolPane.modeRead or shouldExit) {
+	if (obj_toolPane.currentMode == obj_toolPane.modeRead || shouldExit) {
 		exit;
 	}
 
 	// if there is not a focused chain, we create a new chain
 	if (!ds_map_exists(global.nodeMap, obj_chain.currentFocusedChainID)) {
 		scr_newChain(tokenID);
-	}
-	else {
-		if (scr_checkUnitSideLink(unitID, obj_chain.currentFocusedChainID)) {
-			var inst = instance_create_layer(0, 0, "InstancesDialogue", obj_dialogueBox);
-			with (inst) {
-				questionWindowActive = true;
-				confirmSideLink = true;
-			}
-			obj_control.sideLinkTokenID = tokenID;
-			exit;
-		}
 	}
 
 	// add new link and refresh chain grid
