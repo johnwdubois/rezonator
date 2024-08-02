@@ -1,5 +1,7 @@
 function scr_dialogueConfirm() {
 	
+	show_debug_message("scr_dialogueConfirm");
+	
 	// get dialog box type
 	var _dialogBoxType = obj_selectControl.dialogBoxType;
 	if (is_string(_dialogBoxType) && _dialogBoxType != "") {

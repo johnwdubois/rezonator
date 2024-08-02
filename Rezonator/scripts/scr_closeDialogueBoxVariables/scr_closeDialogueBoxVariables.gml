@@ -1,6 +1,6 @@
 function scr_closeDialogueBoxVariables() {
 	
-	show_debug_message("scr_closeDialogueBoxVariables");
+	show_debug_message("scr_closeDialogueBoxVariables, obj_selectControl.dialogBoxType: " + string(obj_selectControl.dialogBoxType));
 	with (obj_selectControl) dialogBoxType = "";
 	
 	if (inputWindowActive) {
