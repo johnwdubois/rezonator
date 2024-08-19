@@ -4,7 +4,7 @@ function scr_macros(){
 	
 	#region BUILD SETTINGS
 		// set BUILD to true when you want to load CJK fonts, set false if not
-		#macro BUILD true
+		#macro BUILD false
 	
 		// BUILDTYPE should be set to one of the following values:
 		// "Windows_GitHub_Master", "Mac_GitHub_Master", "Windows_GitHub_Release"

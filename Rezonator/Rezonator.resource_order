@@ -696,6 +696,7 @@
     {"name":"scr_verifyRezCheckDS","order":16,"path":"scripts/scr_verifyRezCheckDS/scr_verifyRezCheckDS.yy",},
     {"name":"scr_viewOptions","order":6,"path":"scripts/scr_viewOptions/scr_viewOptions.yy",},
     {"name":"scr_windowExit","order":26,"path":"scripts/scr_windowExit/scr_windowExit.yy",},
+    {"name":"scr_windowSetCursor","order":37,"path":"scripts/scr_windowSetCursor/scr_windowSetCursor.yy",},
     {"name":"scr_zoomOptions","order":12,"path":"scripts/scr_zoomOptions/scr_zoomOptions.yy",},
     {"name":"utf8_read","order":1,"path":"scripts/utf8_read/utf8_read.yy",},
     {"name":"utf8_unit_codepoint","order":2,"path":"scripts/utf8_unit_codepoint/utf8_unit_codepoint.yy",},

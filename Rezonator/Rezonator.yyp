@@ -866,6 +866,7 @@
     {"id":{"name":"scr_viewOptions","path":"scripts/scr_viewOptions/scr_viewOptions.yy",},},
     {"id":{"name":"scr_windowCameraAdjust","path":"scripts/scr_windowCameraAdjust/scr_windowCameraAdjust.yy",},},
     {"id":{"name":"scr_windowExit","path":"scripts/scr_windowExit/scr_windowExit.yy",},},
+    {"id":{"name":"scr_windowSetCursor","path":"scripts/scr_windowSetCursor/scr_windowSetCursor.yy",},},
     {"id":{"name":"scr_zoomOptions","path":"scripts/scr_zoomOptions/scr_zoomOptions.yy",},},
     {"id":{"name":"utf8_codepoint_info","path":"scripts/utf8_codepoint_info/utf8_codepoint_info.yy",},},
     {"id":{"name":"utf8_read","path":"scripts/utf8_read/utf8_read.yy",},},

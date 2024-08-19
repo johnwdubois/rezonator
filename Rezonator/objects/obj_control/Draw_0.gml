@@ -3,7 +3,7 @@
 
 */
 
-window_set_cursor(cr_default);
+scr_windowSetCursor(cr_default);
 
 // color theme control
 scr_colorThemeControl();

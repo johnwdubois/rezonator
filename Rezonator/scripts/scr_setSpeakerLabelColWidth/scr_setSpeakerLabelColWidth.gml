@@ -41,7 +41,7 @@ function scr_setSpeakerLabelColWidth() {
 		
 		if (mouseoverColX) {
 			mouseoverSpeakerLabelWidth = true;
-			window_set_cursor(cr_size_we);
+			scr_windowSetCursor(cr_size_we);
 			if (mouse_check_button_pressed(mb_left)) {
 				speakerLabelColXHolding = i;
 				speakerLabelColXHoldingPrev = colX;
@@ -51,7 +51,7 @@ function scr_setSpeakerLabelColWidth() {
 		
 		// if we are dragging this column
 		if (speakerLabelColXHolding == i) {
-			window_set_cursor(cr_size_we);
+			scr_windowSetCursor(cr_size_we);
 			global.delayInput = 5;
 			
 			var newColX = max(mouse_x, minColWidth);

@@ -7,7 +7,7 @@ if (BUILDTYPE != "Web") window_command_hook(window_command_close);
 
 global.ctrlHold = false;
 
-window_set_cursor(cr_default);
+scr_windowSetCursor(cr_default);
 
 scr_colorThemeGridInit();
 
