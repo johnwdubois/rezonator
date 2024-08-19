@@ -1,5 +1,3 @@
-
-
 function scr_1to1Options(optionSelected) {
 	
 	var leftPaneInst = -1;
@@ -9,8 +7,7 @@ function scr_1to1Options(optionSelected) {
 		if (currentFunction == functionChainContents) rightPaneInst = self.id;
 	}
 	
-	
-	
+	show_debug_message("scr_1to1Options, optionSelected: " + string(optionSelected));
 	
 	if (optionSelected == "option_one-to-one") {
 		

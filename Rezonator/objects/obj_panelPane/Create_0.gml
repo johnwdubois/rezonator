@@ -260,6 +260,8 @@ chain1toMColAmount = 6;
 chain1to1ColAmount = 2;
 chunk1to1ColAmount = 1;
 
+scrollPlusY_LSync = -1;
+scrollPlusY_RSync = -1;
 
 #macro EVENT_TICK 0
 #macro EVENT_STOP 1

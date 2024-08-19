@@ -1,15 +1,15 @@
 /// @description initialize panel pane tab list
 with (obj_control) {
-	ds_list_add(panelPaneTabList, 
+	ds_list_add(panelPaneTabList,
 		NAVTAB_UNIT,
-		NAVTAB_STACK,
+		NAVTAB_CHUNK,
 		NAVTAB_TRACK,
 		NAVTAB_RESONANCE,
 		NAVTAB_CLIQUE,
-		NAVTAB_SHOW,
+		NAVTAB_STACK,
 		NAVTAB_TREE,
-		NAVTAB_CHUNK,
 		NAVTAB_TAG,
+		NAVTAB_SHOW,
 		NAVTAB_SEARCH
 		);	
 		

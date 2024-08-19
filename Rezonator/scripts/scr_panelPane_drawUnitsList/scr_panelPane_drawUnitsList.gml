@@ -1,6 +1,6 @@
 function scr_panelPane_drawUnitsList() {
-
-
+	
+	if (live_call()) return live_result;
 	
 
 	var strHeight = string_height("0") * 1.5;

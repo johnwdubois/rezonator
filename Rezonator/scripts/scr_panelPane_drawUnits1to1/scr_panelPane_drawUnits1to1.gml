@@ -2,7 +2,6 @@ function scr_panelPane_drawUnits1to1() {
 
 	if (BUILDTYPE != "Web") scr_surfaceStart();
 	
-	
 	// Access the lineList panelPane object to get it's scrollPlusY
 
 	var lineListPanelPaneInst = 0;
@@ -12,12 +11,11 @@ function scr_panelPane_drawUnits1to1() {
 		}
 	}
 
-
-
 	var strHeight = leftPaneStrHeight;
 	var drawScrollbar = !chainViewOneToMany;
 	var relativeScrollPlusY = (drawScrollbar) ? scrollPlusY : lineListPanelPaneInst.scrollPlusY;
 	var mouseoverCancel = instance_exists(obj_dropDown) || instance_exists(obj_dialogueBox) || instance_exists(obj_sizeWindow) || mouseoverHorScrollBar;
+
 	
 
 	// Set text margin area

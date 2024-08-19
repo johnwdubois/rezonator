@@ -192,8 +192,7 @@ function scr_drawToolPane() {
 		scr_createTooltip(toolbarButtonX1, oneToOneButtonY, !obj_panelPane.chainViewOneToMany ? scr_get_translation("option_one-to-one") : scr_get_translation("option_one-to-many"), TOOLTIP_DIR_RIGHT);
 		
 		if (mouse_check_button_released(mb_left)) {
-			var current1ToMany = obj_panelPane.chainViewOneToMany;
-			with (obj_panelPane) chainViewOneToMany = !current1ToMany;
+			scr_toggle1to1();
 		}
 	}
 	
