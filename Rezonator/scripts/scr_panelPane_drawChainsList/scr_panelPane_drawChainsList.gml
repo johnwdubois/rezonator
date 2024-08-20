@@ -548,7 +548,7 @@ function scr_panelPane_drawChainsList() {
 	
 
 	// draw focus outline
-	if (focusedRowRectY1 > -1 and focusedRowRectY2 > -1 && obj_panelPane.chainViewOneToMany) {
+	if (focusedRowRectY1 > -1 && focusedRowRectY2 > -1) {
 		draw_set_color(global.colorThemeBorders);
 		draw_line_width(x - clipX, focusedRowRectY1 - clipY, x + windowWidth - clipX, focusedRowRectY1 - clipY, 4);
 		draw_line_width(x - clipX, focusedRowRectY2 - clipY, x + windowWidth - clipX, focusedRowRectY2 - clipY, 4);

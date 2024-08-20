@@ -22,3 +22,20 @@ and !obj_control.gridView and currentFunction != functionChainList and currentFu
 		scr_chainDeselect();
 	}
 }
+
+
+// sync the left pane to the right pane when switching from 1-to-1 to 1-to-many
+if (currentFunction == functionChainList) {
+	if (chainViewOneToMany && scrollPlusY_RSync != -1) {
+		scrollPlusYDest = scrollPlusY_RSync;
+		scrollPlusY_RSync = -1;
+	}
+}
+	
+// sync the right pane to the left pane when switching from 1-to-many to 1-to-1
+if (currentFunction == functionChainContents) {
+	if (!chainViewOneToMany && scrollPlusY_LSync != -1) {
+		scrollPlusYDest = scrollPlusY_LSync;
+		scrollPlusY_LSync = -1;
+	}
+}

@@ -164,15 +164,6 @@ function scr_newChain(ID) {
 	obj_chain.currentFocusedChainID = obj_chain.currentChainID;
 
 
-	with (obj_panelPane) {
-		var willHop = (functionChainList_currentTab == NAVTAB_RESONANCE && obj_toolPane.currentMode == obj_toolPane.modeRez)
-		or (functionChainList_currentTab == NAVTAB_TRACK && obj_toolPane.currentMode == obj_toolPane.modeTrack)
-		or (functionChainList_currentTab == NAVTAB_STACK && obj_toolPane.currentMode != obj_toolPane.modeRead)
-		
-		if (currentFunction == functionChainList and willHop) {
-			alarm[4] = 2;
-		}
-	}
 	if (global.steamAPI) {
 		if (!steam_get_achievement("SA_chain")) {
 			steam_set_achievement("SA_chain");

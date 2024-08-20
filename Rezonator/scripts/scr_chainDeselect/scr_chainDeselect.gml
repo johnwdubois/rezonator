@@ -1,5 +1,9 @@
 function scr_chainDeselect() {
-	if (instance_exists(obj_dropDown)) {show_debug_message("scr_chainDeselect() but drop down exists");exit;}
+	
+	if (instance_exists(obj_dropDown)) {
+		show_debug_message("scr_chainDeselect but drop down exists");
+		exit;
+	}
 	
 	obj_chain.currentFocusedChainID = "";
 	obj_chain.dragStartOriginalChain = "";

@@ -116,6 +116,7 @@ function scr_drawNodeList() {
 	
 	// search
 	if (global.ctrlHold && keyboard_check_pressed(ord("F"))) {
+		show_debug_message("search!");
 		if (os_type != os_macosx) {
 			nodeListSearch = get_string("", "");
 		

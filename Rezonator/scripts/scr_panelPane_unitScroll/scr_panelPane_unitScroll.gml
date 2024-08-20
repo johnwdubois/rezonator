@@ -93,21 +93,5 @@ function scr_panelPane_unitScroll(focusedElementY, strHeight) {
 			scr_clearNavWindowTagging(true);
 		}
 	}
-	
-	// sync the left pane to the right pane when switching from 1-to-1 to 1-to-many
-	with (leftNavInst) {
-		if (chainViewOneToMany && scrollPlusY_RSync != -1) {
-			scrollPlusYDest = scrollPlusY_RSync;
-			scrollPlusY_RSync = -1;
-		}
-	}
-	
-	// sync the right pane to the left pane when switching from 1-to-many to 1-to-1
-	with (rightNavInst) {
-		if (!chainViewOneToMany && scrollPlusY_LSync != -1) {
-			scrollPlusYDest = scrollPlusY_LSync;
-			scrollPlusY_LSync = -1;
-		}
-	}
 
 }
