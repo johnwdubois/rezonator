@@ -115,6 +115,7 @@
     {"$GMIncludedFile":"","%Name":".DS_Store","CopyToMask":-1,"filePath":"datafiles/IncludedFiles/Data","name":".DS_Store","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
     {"$GMIncludedFile":"","%Name":".DS_Store","CopyToMask":-1,"filePath":"datafiles/IncludedFiles/Data/SBCorpus","name":".DS_Store","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
     {"$GMIncludedFile":"","%Name":".SBC001.ogg","CopyToMask":-1,"filePath":"datafiles/IncludedFiles/Data/SBCorpus/OGG","name":".SBC001.ogg","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
+    {"$GMIncludedFile":"","%Name":".SBC002.ogg","CopyToMask":-1,"filePath":"datafiles/IncludedFiles/Data/SBCorpus/OGG","name":".SBC002.ogg","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
     {"$GMIncludedFile":"","%Name":"README.txt","CopyToMask":-1,"filePath":"datafiles/IncludedFiles/Data/SBCorpus/OGG","name":"README.txt","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
     {"$GMIncludedFile":"","%Name":"sbc001.rez","CopyToMask":-1,"filePath":"datafiles/IncludedFiles/Data/SBCorpus/REZ_beautify","name":"sbc001.rez","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
     {"$GMIncludedFile":"","%Name":"sbc002.rez","CopyToMask":-1,"filePath":"datafiles/IncludedFiles/Data/SBCorpus/REZ_beautify","name":"sbc002.rez","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
