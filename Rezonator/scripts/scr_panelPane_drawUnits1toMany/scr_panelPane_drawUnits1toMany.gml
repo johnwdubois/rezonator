@@ -1,7 +1,5 @@
 function scr_panelPane_drawUnits1toMany() {
 	
-	if (live_call()) return live_result;
-	
 	if (BUILDTYPE != "Web") scr_surfaceStart();
 
 	// Set opacity, alignment, and font of contents list

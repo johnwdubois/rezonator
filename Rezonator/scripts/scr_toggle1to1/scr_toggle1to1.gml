@@ -1,7 +1,5 @@
 function scr_toggle1to1() {
 	
-	if (live_call()) return live_result;
-	
 	// get panelL and panelR scroll values
 	var _panelLScroll = -1;
 	var _panelRScroll = -1;

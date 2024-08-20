@@ -1,7 +1,5 @@
 function scr_panelPane_unitScroll(focusedElementY, strHeight) {
 	
-	if (live_call(focusedElementY, strHeight)) return live_result;
-	
 	var displayUnitListSize = ds_list_size(obj_control.displayUnitList);
 	var headerHeight = functionTabs_tabHeight;
 	
