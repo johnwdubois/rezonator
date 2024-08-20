@@ -6,6 +6,15 @@ function scr_panelPane_drawHelp() {
 	var camHeight = camera_get_view_height(camera_get_active());
 	x = camWidth - windowWidth;
 	y = obj_toolPane.originalWindowHeight + obj_toolPane.windowHeight;
+	
+	// clicking outside of help pane collapses it
+	if (!functionHelp_collapsed) {
+		if (!point_in_rectangle(mouse_x, mouse_y, functionHelp_helpWindowRectX1, functionHelp_helpWindowRectY1, camWidth, functionHelp_helpWindowRectY2)) {
+			if (mouse_check_button_released(mb_left)) {
+				with (obj_panelPane) functionHelp_collapsed = true;
+			}
+		}
+	}
 
 	// Check for mouse location over "Help" button
 	var mouseoverHelp = false;

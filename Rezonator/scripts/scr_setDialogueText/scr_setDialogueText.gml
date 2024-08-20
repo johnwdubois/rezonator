@@ -42,15 +42,12 @@ function scr_setDialogueText() {
 		
 		if (instance_exists(obj_control)) {
 			if (obj_control.deleteRez) {
-				titleText = scr_get_translation("msg_clear-current-chain");
 				descriptionText = scr_get_translation("msg_warning_clear_focused_resonance");
 			}
 			else if (obj_control.deleteTrack) {
-				titleText = scr_get_translation("msg_clear-current-chain");
 				descriptionText = scr_get_translation("msg_warning_clear_focused_trail");
 			}
 			else if (obj_control.deleteStack) {
-				titleText = scr_get_translation("msg_clear-current-chain");
 				descriptionText = scr_get_translation("msg_warning_clear_focused_stack");
 			}
 			else if (obj_control.downloadDialogue) {

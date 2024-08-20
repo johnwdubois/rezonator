@@ -1,6 +1,7 @@
 function scr_toolsOptions(optionSelected) {
 	//toolsOptions
 	var optionIndex = ds_list_find_index(optionList, optionSelected);
+	show_debug_message("scr_toolsOptions, optionSelected: " + string(optionSelected));
 
 	switch (optionSelected)
 	{
