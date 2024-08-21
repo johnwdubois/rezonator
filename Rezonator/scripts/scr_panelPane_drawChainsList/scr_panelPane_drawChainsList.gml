@@ -1,5 +1,7 @@
 function scr_panelPane_drawChainsList() {
 	
+	if (live_call()) return live_result;
+	
 	/*
 		Purpose: draw the chains for whatever tab you are on, if a user clicks on a chain then focus it and
 				set chainContents panelPane to look at that chain
@@ -205,8 +207,9 @@ function scr_panelPane_drawChainsList() {
 						
 						// left-click on chain in chainNavList
 						if (device_mouse_check_button_released(0, mb_left) and !mouseoverCancel and !mouseoverCheckbox) {
-		
+							
 							if (obj_chain.currentFocusedChainID != currentChainID) {
+								
 								// Focuses on selected chain
 								switch (functionChainList_currentTab) {
 									case NAVTAB_RESONANCE:
@@ -223,34 +226,35 @@ function scr_panelPane_drawChainsList() {
 								}
 				
 								obj_chain.currentFocusedChainID = currentChainID;
-				
-			
-								if (obj_control.doubleClickTimer > -1) {	
-									var currentUnitIDList = -1;
-									var currentUnitID = -1;
-									var currentEntry = ds_list_find_value(setIDList, 0);
-									var currentEntrySubMap = ds_map_find_value(global.nodeMap, currentEntry);
-						
-									if (functionChainList_currentTab == NAVTAB_RESONANCE || functionChainList_currentTab == NAVTAB_TRACK) {
-										var currentTokenID = currentEntrySubMap[? "token"];
-										var currentTokenSubMap = global.nodeMap[? currentTokenID];
-										currentUnitID = currentTokenSubMap[? "unit"]
-									}
-									else if (functionChainList_currentTab == NAVTAB_STACK) {
-										currentUnitID = currentEntrySubMap[? "unit"];
-									}
-					
-									// Set first unit of the double clicked chain to center display row, if possible
-									var currentUnitSubMap = global.nodeMap[? currentUnitID];
-									if (scr_isNumericAndExists(currentUnitSubMap, ds_type_map)) {
-										var linePixelY = currentUnitSubMap[? "pixelY"];
-										obj_control.scrollPlusYDest = -linePixelY + (camera_get_view_height(camera_get_active()) / 2) - 100;
-									}
-								}
-								else {
-									obj_control.doubleClickTimer = 0;
-								}
+								obj_control.doubleClickTimer = 0;
 							}
+							
+							
+							if (obj_control.doubleClickTimer >= 1) {
+									
+									
+								var currentUnitIDList = -1;
+								var currentUnitID = -1;
+								var currentEntry = ds_list_find_value(setIDList, 0);
+								var currentEntrySubMap = ds_map_find_value(global.nodeMap, currentEntry);
+						
+								if (functionChainList_currentTab == NAVTAB_RESONANCE || functionChainList_currentTab == NAVTAB_TRACK) {
+									var currentTokenID = currentEntrySubMap[? "token"];
+									var currentTokenSubMap = global.nodeMap[? currentTokenID];
+									currentUnitID = currentTokenSubMap[? "unit"]
+								}
+								else if (functionChainList_currentTab == NAVTAB_STACK) {
+									currentUnitID = currentEntrySubMap[? "unit"];
+								}
+					
+								scr_jumpToUnitTop(currentUnitID);
+							}
+							else {
+								obj_control.doubleClickTimer = 0;
+							}
+							
+							show_debug_message("obj_control.doubleClickTimer: " + string(obj_control.doubleClickTimer));
+
 							
 							// hold SHIFT and click to select range of chains
 							if (keyboard_check(vk_shift)) {
