@@ -272,34 +272,35 @@ function scr_audioDraw() {
 	draw_set_valign(fa_middle);
 	draw_text(floor(mean(loadAudioButtonX1, loadAudioButtonX2)), floor(mean(loadAudioButtonY1, loadAudioButtonY2)), scr_get_translation("option_import-audio"));
 	
+	// predict audio file name and directory
+	var _audioFilename = "";
+	var _delimiter = (os_type == os_windows) ? "\\" : "/";
+	var _audioDir = (directory_exists(string(global.previousAudioDirectory)) && global.previousAudioDirectory != "") ?
+		global.previousAudioDirectory
+		: global.rezonatorDirString + _delimiter + "Data" + _delimiter + "SBCorpus" + _delimiter + "OGG";
+	
+	// check if user is using file sbc001.rez or sbc002.rez
+	var _rezFilename = "";
+	var _lastDelimPos = string_last_pos(_delimiter, global.fileSaveName);
+	if (_lastDelimPos >= 1) {
+		_rezFilename = string_copy(global.fileSaveName, _lastDelimPos + string_length(_delimiter), string_length(global.fileSaveName) - _lastDelimPos);
+		if (_rezFilename == "sbc001.rez") _audioFilename = _audioDir + _delimiter + "sbc001.ogg";
+		else if (_rezFilename == "sbc002.rez") _audioFilename = _audioDir + _delimiter + "sbc002.ogg";
+	}
+	
 	if (mouseoverLoadAudio) {
 		if (mouse_check_button_released(mb_left)) {
-			var fileFolder = (directory_exists(string(global.previousAudioDirectory)) && global.previousAudioDirectory != "") ? global.previousAudioDirectory : working_directory;
-			
-			var getAudioFile = get_open_filename_ext("ogg file|*.ogg", "", fileFolder, scr_get_translation("msg_file_audio"));
-			if (getAudioFile != "" and file_exists(getAudioFile)) {
-				audio_stop_all();
-				audioFile = "";
-				audioStream = -1;
-				audioSound = -1;
-				audioLength = 0;
-				audioPos = 0;
-				audioPaused = true;
-				
-				if (global.steamAPI) {
-					if (!steam_get_achievement("SA_play-audio")) {
-						steam_set_achievement("SA_play-audio");
-					}
-				}
-				audioFile = getAudioFile;
-				global.previousAudioDirectory = filename_path(audioFile);
-				audioStream = audio_create_stream(audioFile);
-				audioSound = audio_play_sound(audioStream, 100, false);
-				visible = true;
-			}
+			audioFile = "";
+			_audioFilename = get_open_filename_ext("ogg file|*.ogg", "", _audioDir, scr_get_translation("msg_file_audio"));
 		}
 	}
-	var maxSpace  = x+windowWidth - (seekBarX2 + timeXBuffer*2 +string_width(timeRemaining));
+	
+	// import audio file if we have a valid filename
+	if (audioFile == "" && _audioFilename != "" && is_string(_audioFilename) && file_exists(_audioFilename)) {
+		scr_importAudio(_audioFilename);
+	}
+	
+	var maxSpace = x + windowWidth - (seekBarX2 + timeXBuffer*2 +string_width(timeRemaining));
 	
 	//draw volume control
 	var fillInColor = c_white;
