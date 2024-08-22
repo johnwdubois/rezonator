@@ -47,8 +47,45 @@ function scr_chainRecolorOptions(optionSelected) {
 				var colorToSet = scr_randomChainColor();
 				chainSubMap[? "chainColor"] = colorToSet;
 			}
-			
-			
+			else if (optionSelected == "Match Participant color") {
+				
+				// get the focused entry in this chain
+				var _focusedEntryID = chainSubMap[? "focused"];
+				var _focusedEntrySubMap = global.nodeMap[? _focusedEntryID];
+				try {
+					
+					var _unitID = "";
+					
+					var _focusedEntryType = _focusedEntrySubMap[? "type"];
+					if (_focusedEntryType == "rez" || _focusedEntryType == "track") {
+						
+						// get the token associated with this entry
+						var _tokenID = _focusedEntrySubMap[? "token"];
+						var _tokenSubMap = global.nodeMap[? _tokenID];
+						
+						// get the unit associated with this token
+						_unitID = _tokenSubMap[? "unit"];
+					}
+					else if (_focusedEntryType == "card") {
+						
+						// get unit associated with this entry
+						_unitID = _focusedEntrySubMap[? "unit"];
+					}
+					
+					// get participant color for this unit
+					var _unitSubMap = global.nodeMap[? _unitID];
+					var _unitTagMap = _unitSubMap[? "tagMap"];
+					var _unitParticipant = _unitTagMap[? global.participantField];
+					var _participantColor = scr_strToColor(string(_unitParticipant));
+					var _participantColorHue = color_get_hue(_participantColor);
+					
+					// set color in chainSubMap
+					chainSubMap[? "chainColor"] = make_color_hsv(_participantColorHue, 200, 230);
+				}
+				catch(e) {
+					show_debug_message("scr_chainRecolorOptions ERROR: " + string(e.message));
+				}
+			}
 		}
 	}
 }
