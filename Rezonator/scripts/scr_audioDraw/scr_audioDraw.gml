@@ -274,7 +274,7 @@ function scr_audioDraw() {
 	
 	// predict audio file name and directory
 	var _audioFilename = "";
-	var _delimiter = (os_type == os_windows) ? "\\" : "/";
+	var _delimiter = os_type == os_windows ? "\\" : "/";
 	var _audioDir = (directory_exists(string(global.previousAudioDirectory)) && global.previousAudioDirectory != "") ?
 		global.previousAudioDirectory
 		: global.rezonatorDirString + _delimiter + "Data" + _delimiter + "SBCorpus" + _delimiter + "OGG";
@@ -287,6 +287,8 @@ function scr_audioDraw() {
 		if (_rezFilename == "sbc001.rez") _audioFilename = _audioDir + _delimiter + "sbc001.ogg";
 		else if (_rezFilename == "sbc002.rez") _audioFilename = _audioDir + _delimiter + "sbc002.ogg";
 	}
+	//show_debug_message("_audioFilename: " + string(_audioFilename));
+	
 	
 	if (mouseoverLoadAudio) {
 		if (mouse_check_button_released(mb_left)) {

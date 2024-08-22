@@ -1,7 +1,5 @@
 function scr_panelPane_drawChainsList() {
 	
-	if (live_call()) return live_result;
-	
 	/*
 		Purpose: draw the chains for whatever tab you are on, if a user clicks on a chain then focus it and
 				set chainContents panelPane to look at that chain
