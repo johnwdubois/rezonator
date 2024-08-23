@@ -123,7 +123,7 @@ function scr_fillHelpMenuGrid() {
 	ds_grid_set(functionHelp_helpGridShortcuts, functionHelp_helpGrid_colHide, 8, false);
 
 	// Shortcuts -> Text direction
-	ds_grid_set(functionHelp_helpGridShortcuts, functionHelp_helpGrid_colKey, 9, "ALT SHIFT i");
+	ds_grid_set(functionHelp_helpGridShortcuts, functionHelp_helpGrid_colKey, 9, "ALT SHIFT L");
 	ds_grid_set(functionHelp_helpGridShortcuts, functionHelp_helpGrid_colFunc, 9, "help_shortcut_text-direction");
 	ds_grid_set(functionHelp_helpGridShortcuts, functionHelp_helpGrid_colHide, 9, false);
 	

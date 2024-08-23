@@ -1,5 +1,6 @@
 function scr_scrollNavToID(tab, ID, leftPane) {
 	
+	if (!obj_panelPane.showNav) exit;
 	show_debug_message("scr_scrollNavToID, tab: " + string(tab) + ", ID: " + string(ID) + ", leftPane: " + string(leftPane));
 	
 	if (tab == NAVTAB_UNIT) leftPane = obj_panelPane.chainViewOneToMany;

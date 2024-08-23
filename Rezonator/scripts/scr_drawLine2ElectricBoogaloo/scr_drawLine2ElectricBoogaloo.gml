@@ -1,6 +1,5 @@
 function scr_drawLine2ElectricBoogaloo() {
 	
-	
 	scr_adaptFont("0", "M");
 	
 	var camHeight = camera_get_view_height(camera_get_active());
@@ -109,6 +108,8 @@ function scr_drawLine2ElectricBoogaloo() {
 	
 	unitClosestToMouse = "";
 	var minUnitDistToMouse = 999999999999;
+	
+	//show_debug_message("drawRangeStart: " + string(drawRangeStart) + ", drawRangeEnd: " + string(drawRangeEnd))
 	
 	// loop through units
 	var unitPlusY = wordTopMargin + (gridSpaceVertical * 0.5);

@@ -15,6 +15,7 @@ scr_panelPaneDrawBranch();
 
 // Checks mouseover for all panelPane windows
 var mouseover = point_in_rectangle(mouse_x, mouse_y, x, y, x + windowWidth, y + windowHeight);
+if (currentFunction == functionTabs && !showNav) mouseover = false;
 
 if (device_mouse_check_button_released(0, mb_left) and mouseover
 and !obj_control.gridView and currentFunction != functionChainList and currentFunction != functionChainContents) {

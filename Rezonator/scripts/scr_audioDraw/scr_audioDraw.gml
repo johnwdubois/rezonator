@@ -283,6 +283,7 @@ function scr_audioDraw() {
 	var _rezFilename = "";
 	var _lastDelimPos = string_last_pos(_delimiter, global.fileSaveName);
 	if (_lastDelimPos >= 1) {
+
 		_rezFilename = string_copy(global.fileSaveName, _lastDelimPos + string_length(_delimiter), string_length(global.fileSaveName) - _lastDelimPos);
 		if (_rezFilename == "sbc001.rez") _audioFilename = _audioDir + _delimiter + "sbc001.ogg";
 		else if (_rezFilename == "sbc002.rez") _audioFilename = _audioDir + _delimiter + "sbc002.ogg";

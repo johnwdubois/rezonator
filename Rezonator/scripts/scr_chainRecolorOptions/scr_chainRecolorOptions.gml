@@ -81,6 +81,8 @@ function scr_chainRecolorOptions(optionSelected) {
 					
 					// set color in chainSubMap
 					chainSubMap[? "chainColor"] = make_color_hsv(_participantColorHue, 200, 230);
+					
+					with (obj_dropDown) instance_destroy();
 				}
 				catch(e) {
 					show_debug_message("scr_chainRecolorOptions ERROR: " + string(e.message));

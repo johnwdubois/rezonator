@@ -1,4 +1,5 @@
 function scr_drawLineEntryList(unitID, unitSubMap, entryList, pixelY, OOBCheck) {
+	
 	if (OOBCheck) {
 		if (pixelY + gridSpaceVertical < wordTopMargin || pixelY - gridSpaceVertical > camera_get_view_height(view_camera[0])) exit;
 	}
@@ -13,6 +14,7 @@ function scr_drawLineEntryList(unitID, unitSubMap, entryList, pixelY, OOBCheck) 
 	draw_set_halign(halign);
 	
 	var camWidth = camera_get_view_width(camera_get_active());
+	var camHeight = camera_get_view_height(camera_get_active());
 	var shapeTextX = 0;
 	var spaceWidth = string_width(" ");
 	
@@ -141,7 +143,7 @@ function scr_drawLineEntryList(unitID, unitSubMap, entryList, pixelY, OOBCheck) 
 			// get this token's inChainsList, and update the chainShowList accordingly
 			var inChainsList = currentTokenSubMap[? "inChainsList"];
 			var inEntryList = currentTokenSubMap[? "inEntryList"];
-			scr_updateChainShowList(inChainsList, inEntryList, obj_chain.chainShowList, currentTokenSubMap[? "inChunkList"], currentToken, tokenRectX1, tokenRectY1, tokenRectX2, tokenRectY2, mouseOverToken);	
+			scr_updateChainShowList(inChainsList, inEntryList, obj_chain.chainShowList, currentTokenSubMap[? "inChunkList"], currentToken, tokenRectX1, tokenRectY1, tokenRectX2, tokenRectY2, mouseOverToken, camHeight);	
 		
 			var drawTokenBorder = false;
 			if (rightClickID == currentToken) {

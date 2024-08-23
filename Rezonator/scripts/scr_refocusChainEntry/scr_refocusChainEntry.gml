@@ -1,5 +1,3 @@
-
-
 function scr_refocusChainEntry(ID) {
 	
 	show_debug_message("scr_refocusChainEntry, ID: " + string(ID));
