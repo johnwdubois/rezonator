@@ -4,24 +4,10 @@ function scr_URLOpenReliable(url) {
 	// so we use execute shell to launch the browser
 	if (BUILDTYPE == "Web") {
 		url_open(url);
+	} else {
+		var escapedfolder = string_replace_all(url, "\"", "\\\"");
+		if (os_type = os_windows) execute_shell("cmd", "explorer \"" + escapedfolder + "\"");
+		else if (os_type = os_macosx) execute_shell("open", "\"" + escapedfolder + "\"");
+		else if (os_type = os_linux) execute_shell("xdg-open", "\"" + escapedfolder + "\"");
 	}
-	else if (os_type == os_windows) {
-		
-		var _url = url;
-		var _path = game_save_id + "/shortcut.url";
-		var _txt = file_text_open_write(_path);
-		// note: use '' instead of @'' in GMS1
-		file_text_write_string(_txt, @'[{000214A0-0000-0000-C000-000000000046}]
-		Prop3=19,11
-		[InternetShortcut]
-		IDList=
-		URL=' + _url);
-		file_text_close(_txt);
-		execute_shell_simple(_path);
-		
-	}
-	else {
-		url_open(url);
-	}
-
 }
