@@ -1,9 +1,9 @@
 {
   "$GMScript":"v1",
-  "%Name":"scr_removeUnitFromAllStacks",
+  "%Name":"scr_createNewLayer",
   "isCompatibility":false,
   "isDnD":false,
-  "name":"scr_removeUnitFromAllStacks",
+  "name":"scr_createNewLayer",
   "parent":{
     "name":"stackingAndLayers",
     "path":"folders/Scripts/chains/stackingAndLayers.yy",

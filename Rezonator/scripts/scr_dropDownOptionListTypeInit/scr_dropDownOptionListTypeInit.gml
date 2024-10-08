@@ -83,5 +83,6 @@ function scr_dropDownOptionListTypeInit() {
 	global.optionListTypeHTML5REZFile = 95;
 	global.optionListTypeStacking = 96;
 	global.optionListTypeCliqueRightClick = 97;
+	global.optionListTypeTrailLayer = 98;
 
 }

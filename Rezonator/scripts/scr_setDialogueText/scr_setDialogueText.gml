@@ -354,8 +354,11 @@ function scr_setDialogueText() {
 			descriptionText = "Insert a space at the position you would like to split the token"; // localize
 		}
 		
-		if (obj_control.createNewStacking) {
+		if (obj_control.createNewLayer == "NewStacking") {
 			descriptionText = scr_get_translation("msg_name-new-stacking");
+		}
+		else if (obj_control.createNewLayer == "NewTrailLayer") {
+			descriptionText = scr_get_translation("msg_name-new-trail-layer");
 		}
 		
 		if (instance_exists(obj_stacker)) {

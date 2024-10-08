@@ -160,6 +160,9 @@ function scr_newChain(ID) {
 		newChainSubMap[? "inClique"] = chainInCliqueID;
 		show_debug_message("newChain, chainInCliqueID: " + string(chainInCliqueID));
 	}
+	else if (chainType == "trail") {
+		newChainSubMap[? "layer"] = obj_control.activeTrailLayer;
+	}
 
 	obj_chain.currentFocusedChainID = obj_chain.currentChainID;
 

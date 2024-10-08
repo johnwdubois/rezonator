@@ -61,6 +61,13 @@ function scr_nodeMapDefaultData() {
 	var defaultStackingSubMap = ds_map_create();
 	defaultStackingSubMap[? "name"] = "Default";
 	ds_map_add_map(global.stackingMap, "Default", defaultStackingSubMap);
+	
+	// create the trailLayer map
+	global.trailLayerMap = ds_map_create();
+	ds_map_add(global.trailLayerMap, "type", "map");
+	var defaultTrailLayerSubMap = ds_map_create();
+	defaultTrailLayerSubMap[? "name"] = "Default";
+	ds_map_add_map(global.trailLayerMap, "Default", defaultTrailLayerSubMap);
 
 	// create lists of nodes for these panes
 	ds_map_add_list(global.nodeMap, "searchNodeList", ds_list_create());
@@ -70,6 +77,11 @@ function scr_nodeMapDefaultData() {
 	var _stackingList = ds_list_create();
 	ds_list_add(_stackingList, "Default");
 	ds_map_add_list(global.nodeMap, "stackingList", _stackingList);
+	
+	// making trailLayerList with default value
+	var _trailLayerList = ds_list_create();
+	ds_list_add(_trailLayerList, "Default");
+	ds_map_add_list(global.nodeMap, "trailLayerList", _trailLayerList);
 
 	// add map to nodeMap
 	ds_map_add_map(global.nodeMap, "searchMap", global.searchMap);
@@ -78,6 +90,7 @@ function scr_nodeMapDefaultData() {
 	ds_map_add_map(global.nodeMap, "treeMap", global.treeMap);
 	ds_map_add_map(global.nodeMap, "participantMap", global.participantMap);
 	ds_map_add_map(global.nodeMap, "stackingMap", global.stackingMap);
+	ds_map_add_map(global.nodeMap, "trailLayerMap", global.trailLayerMap);
 	
 	// add map to nodeList, so they're viewable in nodeMapViewer
 	var _nodeList = global.nodeMap[? "nodeList"];
@@ -89,4 +102,5 @@ function scr_nodeMapDefaultData() {
 	ds_list_add(_nodeList, "chainShowMap");
 	ds_list_add(_nodeList, "chunkShowMap");
 	ds_list_add(_nodeList, "stackingMap");
+	ds_list_add(_nodeList, "trailLayerMap");
 }

@@ -14,7 +14,7 @@ function scr_changeActiveStacking(stacking){
 		if (!instance_exists(obj_dialogueBox)) {
 			var inst = instance_create_layer(x, y, "InstancesDialogue", obj_dialogueBox);
 			with (inst) inputWindowActive = true;
-			with (obj_control) createNewStacking = true;
+			with (obj_control) createNewLayer = "NewStacking";
 		}
 	}
 	else {

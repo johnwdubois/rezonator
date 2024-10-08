@@ -1,4 +1,4 @@
-function scr_verifyRezCheckDS(key, ds_type, nodeList){
+function scr_verifyRezCheckDS(key, ds_type, nodeList = undefined){
 	
 	// check if the nodeMap contains this key
 	var ds = global.nodeMap[? key];

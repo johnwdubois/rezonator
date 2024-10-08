@@ -120,8 +120,9 @@ function scr_loadREZ() {
 		}
 	}
 	
-	// change to the stackType from when the rez file was saved
-	scr_changeActiveStacking(obj_control.activeStacking);
+	// change to the layer for each type from when the rez file was saved
+	scr_changeActiveLayer("stack", obj_control.activeStacking);
+	scr_changeActiveLayer("trail", obj_control.activeTrailLayer);
 	
 	if (global.restoreAutosave) {
 		

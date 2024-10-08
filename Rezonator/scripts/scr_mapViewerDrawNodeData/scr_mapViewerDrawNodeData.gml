@@ -57,7 +57,7 @@ function scr_mapViewerDrawNodeData() {
 			// check if this value is a map
 			var isMap = (subMapKey == "tagMap" || nodeShow == "tokenTagMap" || nodeShow == "unitTagMap" || nodeShow == "searchMap" || nodeShow == "cliqueMap"
 				|| nodeShow == "treeMap" || nodeShow == "chainTagMap" || nodeShow == "entryTagMap" || nodeShow == "linkTagMap" || nodeShow == "participantMap"
-				|| nodeShow == "stackingMap");
+				|| nodeShow == "stackingMap" || nodeShow == "trailLayerMap");
 
 			if (isMap && scr_isNumericAndExists(subMapVal, ds_type_map)) {
 				subMapValStr = "";

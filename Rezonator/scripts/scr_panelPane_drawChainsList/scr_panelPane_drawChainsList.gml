@@ -754,40 +754,61 @@ function scr_panelPane_drawChainsList() {
 		}
 	}
 	
-	// display currently active stacking
-	if (functionChainList_currentTab == NAVTAB_STACK) {
-		var activeStackingSubMap = global.stackingMap[? obj_control.activeStacking];
-		if (scr_isNumericAndExists(activeStackingSubMap, ds_type_map)) {
-			var activeStackingStrHeight = string_height("0");
-			var activeStackingName = activeStackingSubMap[? "name"];
-			var activeStackingStr = "Stacking: " + string(activeStackingName);
+	// display currently active layer/stacking
+	if (functionChainList_currentTab == NAVTAB_STACK || functionChainList_currentTab == NAVTAB_TRACK) {
+		
+		var _layerMap = undefined;
+		var _activeLayer = "";
+		var _layerList = undefined;
+		var _optionNewLayer = "";
+		var _optionListType = "";
+		if (functionChainList_currentTab == NAVTAB_STACK) {
+			_layerMap = global.stackingMap;
+			_activeLayer = obj_control.activeStacking;
+			_layerList = global.nodeMap[? "stackingList"];
+			_optionNewLayer = "option_new-stacking";
+			_optionListType = global.optionListTypeStacking;
+		}
+		else if (functionChainList_currentTab == NAVTAB_TRACK) {
+			_layerMap = global.trailLayerMap;
+			_activeLayer = obj_control.activeTrailLayer;
+			_layerList = global.nodeMap[? "trailLayerList"];
+			_optionNewLayer = "option_new-trail-layer";
+			_optionListType = global.optionListTypeTrailLayer;
+		}
+		
+		var _activeLayerSubMap = _layerMap[? _activeLayer];
+		if (scr_isNumericAndExists(_activeLayerSubMap, ds_type_map)) {
+
+			var activeLayerStrHeight = string_height("0");
+			var activeLayerName = _activeLayerSubMap[? "name"];
+			var activeLayerStr = "Layer: " + string(activeLayerName);
 			var spaceWidth = string_width(" ");
-			var activeStackingX2 = x + windowWidth - spaceWidth;
-			var activeStackingX1 = activeStackingX2 - min(string_width(activeStackingStr), windowWidth * 0.25) - (spaceWidth * 2);
-			var activeStackingY1 = y + (headerHeight / 2) - (activeStackingStrHeight / 2);
-			var activeStackingY2 = activeStackingY1 + activeStackingStrHeight;
-			var mouseoverActiveStacking = point_in_rectangle(mouse_x, mouse_y, activeStackingX1, activeStackingY1, activeStackingX2, activeStackingY2) && !mouseoverCancel;
+			var activeLayerX2 = x + windowWidth - spaceWidth;
+			var activeLayerX1 = activeLayerX2 - min(string_width(activeLayerStr), windowWidth * 0.25) - (spaceWidth * 2);
+			var activeLayerY1 = y + (headerHeight / 2) - (activeLayerStrHeight / 2);
+			var activeLayerY2 = activeLayerY1 + activeLayerStrHeight;
+			var mouseoverActiveLayer = point_in_rectangle(mouse_x, mouse_y, activeLayerX1, activeLayerY1, activeLayerX2, activeLayerY2) && !mouseoverCancel;
 			
 			// draw highlight effect if mousing over or if stacking dropdown exists
 			var activeStackingDrawMouseover = false;
-			if (mouseoverActiveStacking) activeStackingDrawMouseover = true;
+			if (mouseoverActiveLayer) activeStackingDrawMouseover = true;
 			if (instance_exists(obj_dropDown)) {
 				if (obj_dropDown.optionListType == global.optionListTypeStacking) activeStackingDrawMouseover = true;
 			}
 			if (activeStackingDrawMouseover) {
 				draw_set_color(global.colorThemeSelected1);
-				draw_roundrect(activeStackingX1, activeStackingY1, activeStackingX2, activeStackingY2, false);
+				draw_roundrect(activeLayerX1, activeLayerY1, activeLayerX2, activeLayerY2, false);
 			}
 			
 			// click to change active stacking
-			if (mouseoverActiveStacking) {
+			if (mouseoverActiveLayer) {
 				if (mouse_check_button_released(mb_left)) {
-					var stackingList = global.nodeMap[? "stackingList"];
-					if (scr_isNumericAndExists(stackingList, ds_type_list)) {
+					if (scr_isNumericAndExists(_layerList, ds_type_list)) {
 						var stackingOptionList = ds_list_create();
-						ds_list_copy(stackingOptionList,stackingList);
-						ds_list_add(stackingOptionList, "option_new-stacking");
-						scr_createDropDown(activeStackingX1, activeStackingY2, stackingOptionList, global.optionListTypeStacking);
+						ds_list_copy(stackingOptionList, _layerList);
+						ds_list_add(stackingOptionList, _optionNewLayer);
+						scr_createDropDown(activeLayerX1, activeLayerY2, stackingOptionList, _optionListType);
 					}
 				}
 			}
@@ -796,7 +817,7 @@ function scr_panelPane_drawChainsList() {
 			draw_set_halign(fa_center);
 			draw_set_valign(fa_middle);
 			draw_set_color(global.colorThemeText);
-			draw_text(floor(mean(activeStackingX1, activeStackingX2)), floor(mean(activeStackingY1, activeStackingY2)), activeStackingStr);
+			draw_text(floor(mean(activeLayerX1, activeLayerX2)), floor(mean(activeLayerY1, activeLayerY2)), activeLayerStr);
 		}
 	}
 	

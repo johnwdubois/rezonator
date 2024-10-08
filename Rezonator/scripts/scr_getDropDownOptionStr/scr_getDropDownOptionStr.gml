@@ -32,6 +32,15 @@ function scr_getDropDownOptionStr(optionStr) {
 			}
 		}
 	}
+	else if (optionListType == global.optionListTypeTrailLayer) {
+		// get name of trail layer instead
+		if (optionStr != "option_new-trail-layer") {
+			var trailLayerSubMap = global.trailLayerMap[? optionStr];
+			if (scr_isNumericAndExists(trailLayerSubMap, ds_type_map)) {
+				fullOptionStr = trailLayerSubMap[? "name"];
+			}
+		}
+	}
 	else if (optionListType == global.optionListTypeSelectShow) {
 		// get name of stacking instead
 		if (optionStr != "option_create-show") {

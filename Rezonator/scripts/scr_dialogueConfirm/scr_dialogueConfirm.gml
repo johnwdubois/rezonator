@@ -213,15 +213,16 @@ function scr_dialogueConfirm() {
 				}
 			}
 		
-			// naming a new blank stacking
-			if (obj_control.createNewStacking) {
-				scr_createNewStacking(obj_control.inputText, obj_control.inputText, "");
+			// naming a new blank layer
+			if (obj_control.createNewLayer == "NewStacking") {
+				scr_createNewLayer(obj_control.inputText, "stack", obj_control.inputText, "");
+			}
+			else if (obj_control.createNewLayer == "NewTrailLayer") {
+				scr_createNewLayer(obj_control.inputText, "trail", obj_control.inputText, "");
 			}
 		
 			scr_closeDialogueBoxVariables();
 			instance_destroy();
-
-	
 		}
 		if (questionWindowActive) {
 		
@@ -332,7 +333,7 @@ function scr_dialogueConfirm() {
 			}
 		
 			if (is_string(stackingToActivate) && stackingToActivate != "") {
-				scr_changeActiveStacking(stackingToActivate);
+				scr_changeActiveLayer("stack", stackingToActivate);
 			}
 		
 			if (instance_exists(obj_control)) {

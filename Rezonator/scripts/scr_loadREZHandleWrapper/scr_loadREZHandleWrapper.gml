@@ -86,6 +86,7 @@ function scr_loadREZHandleWrapper(wrapper) {
 				global.searchMap = global.nodeMap[? "searchMap"];		
 				global.treeMap = global.nodeMap[? "treeMap"];
 				global.stackingMap = global.nodeMap[? "stackingMap"];
+				global.trailLayerMap = global.nodeMap[? "trailLayerMap"];
 				global.colorMap = global.nodeMap[? "colorMap"];
 				obj_chain.chainShowMap = global.nodeMap[? "chainShowMap"];
 				

@@ -1,7 +1,7 @@
 function scr_randomStackerLoop() {
 	
 	// set active stackType
-	scr_createNewStacking(obj_stacker.stacker_stackingName, obj_stacker.stacker_stacksName, "Random");
+	scr_createNewLayer(obj_stacker.stacker_stackingName, "stack", obj_stacker.stacker_stacksName, "Random");
 	
 	// Set script variables
 	var currentUnitList = ds_list_create();

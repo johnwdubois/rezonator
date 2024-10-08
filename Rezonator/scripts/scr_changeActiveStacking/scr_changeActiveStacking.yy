@@ -5,8 +5,8 @@
   "isDnD":false,
   "name":"scr_changeActiveStacking",
   "parent":{
-    "name":"stacking",
-    "path":"folders/Scripts/chains/stacking.yy",
+    "name":"stackingAndLayers",
+    "path":"folders/Scripts/chains/stackingAndLayers.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",

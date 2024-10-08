@@ -68,6 +68,8 @@ function scr_verifyRez() {
 		var nodeList = scr_verifyRezCheckDS("nodeList", ds_type_list);
 		var linkFieldList = scr_verifyRezCheckDS("linkFieldList", ds_type_list);
 		var stackingList = scr_verifyRezCheckDS("stackingList", ds_type_list);
+		var trailLayerList = scr_verifyRezCheckDS("trailLayerList", ds_type_list);
+		
 		scr_verifyRezCheckDS("showList", ds_type_list);
 		scr_verifyRezCheckDS("chunkList", ds_type_list)
 		scr_verifyRezCheckDS("treeList", ds_type_list);
@@ -102,6 +104,7 @@ function scr_verifyRez() {
 		global.searchMap = scr_verifyRezCheckDS("searchMap", ds_type_map, nodeList);
 		global.colorMap = scr_verifyRezCheckDS("colorMap", ds_type_map, nodeList);
 		global.stackingMap = scr_verifyRezCheckDS("stackingMap", ds_type_map, nodeList);
+		global.trailLayerMap = scr_verifyRezCheckDS("trailLayerMap", ds_type_map, nodeList);
 	
 		// make sure stacking map & list contain default value
 		if (scr_isNumericAndExists(stackingList, ds_type_list)) scr_addToListOnce(stackingList, "Default");
@@ -110,6 +113,16 @@ function scr_verifyRez() {
 				var defaultStackingSubMap = ds_map_create();
 				defaultStackingSubMap[? "name"] = "Default";
 				ds_map_add_map(global.stackingMap, "Default", defaultStackingSubMap);
+			}
+		}
+		
+		// make sure trailLayer map & list contain default value
+		if (scr_isNumericAndExists(trailLayerList, ds_type_list)) scr_addToListOnce(trailLayerList, "Default");
+		if (scr_isNumericAndExists(global.trailLayerMap, ds_type_map)) {
+			if (!ds_map_exists(global.trailLayerMap, "Default")) {
+				var defaultTrailLayerSubMap = ds_map_create();
+				defaultTrailLayerSubMap[? "name"] = "Default";
+				ds_map_add_map(global.trailLayerMap, "Default", defaultTrailLayerSubMap);
 			}
 		}
 		

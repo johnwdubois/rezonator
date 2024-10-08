@@ -43,7 +43,7 @@ function scr_closeDialogueBoxVariables() {
 			splitTokenField = "";
 			splitTokenCopyTags = true;
 			setChainName = false;
-			createNewStacking = false;
+			createNewLayer = "";
 		}
 		with (obj_stacker) {
 			confirmStackName = false;

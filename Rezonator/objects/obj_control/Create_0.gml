@@ -666,8 +666,14 @@ linkFieldSelected = "";
 
 quickPickedChainID = "";
 
+
+
 activeStacking = "Default";
-createNewStacking = false;
+createNewLayer = ""; // options: NewStacking, NewTrailLayer
+activeTrailLayer = "Default";
+
+
+
 
 readModeHints = 0;
 
@@ -756,7 +762,11 @@ listOfWords = ds_list_create();
 
 
 panelPaneTabList = ds_list_create();
-with (obj_alarm2) alarm[1] = 2;
+show_debug_message("obj_alarm2 instances: " + string(instance_number(obj_alarm2)));
+with (obj_alarm2) {
+	show_debug_message("obj_alarm2, alarm 1 started");
+	alarm[1] = 2;
+}
 
 displayUnitList = -1
 

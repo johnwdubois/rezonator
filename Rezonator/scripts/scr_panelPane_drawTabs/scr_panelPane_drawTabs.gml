@@ -22,8 +22,6 @@ function scr_panelPane_drawTabs() {
 	}
 
 	var buttonScale = (1+global.fontSize/10);
-
-
 	
 	
 	var tabList = obj_control.panelPaneTabList;

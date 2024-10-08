@@ -17,7 +17,7 @@ function scr_turnStackerLoop() {
 	}
 	
 	// set active stackType
-	scr_createNewStacking(obj_stacker.stacker_stackingName, obj_stacker.stacker_stacksName, "Turn");
+	scr_createNewLayer(obj_stacker.stacker_stackingName, "stack", obj_stacker.stacker_stacksName, "Turn");
 	show_debug_message(global.unitImportTurnDelimColName)
 	
 	//Set variables for loop

@@ -13,7 +13,7 @@ function scr_psentStackerLoop() {
 	}
 	
 	// set active stackType
-	scr_createNewStacking(obj_stacker.stacker_stackingName, obj_stacker.stacker_stacksName, "Utterance");
+	scr_createNewLayer(obj_stacker.stacker_stackingName, "stack", obj_stacker.stacker_stacksName, "Utterance");
 	
 	//Set variables for loop
 	var currentPsent = 0;

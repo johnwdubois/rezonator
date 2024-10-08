@@ -1,4 +1,5 @@
 /// @description initialize panel pane tab list
+show_debug_message("obj_alarm2, alarm 1 hit");
 with (obj_control) {
 	ds_list_add(panelPaneTabList,
 		NAVTAB_UNIT,
