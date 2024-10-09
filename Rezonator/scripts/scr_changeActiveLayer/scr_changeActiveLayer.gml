@@ -46,7 +46,6 @@ function scr_changeActiveLayer(_layerType, _layerID) {
 		scr_setValueForAllChains(_layerType, false, "visible", true);
 	
 		// let's clear the navList so we only see chains of the new layer
-		var _navList = global.nodeMap[? "trailNavList"];
 		ds_list_clear(_navList);
 	
 		// now, we need to clear any references to chains that are no longer of the active layer
