@@ -220,6 +220,9 @@ function scr_dialogueConfirm() {
 			else if (obj_control.createNewLayer == "NewTrailLayer") {
 				scr_createNewLayer(obj_control.inputText, "trail", obj_control.inputText, "");
 			}
+			else if (obj_control.createNewLayer == "NewResonanceLayer") {
+				scr_createNewLayer(obj_control.inputText, "resonance", obj_control.inputText, "");
+			}
 		
 			scr_closeDialogueBoxVariables();
 			instance_destroy();

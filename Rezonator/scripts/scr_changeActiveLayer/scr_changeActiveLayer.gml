@@ -7,8 +7,16 @@ function scr_changeActiveLayer(_layerType, _layerID) {
 		exit;
 	}
 	
+	// make sure this is not already the active layer for this type
+	if ((_layerType == "stack" && _layerID == obj_control.activeStacking)
+	|| (_layerType == "trail" && _layerID == obj_control.activeTrailLayer)
+	|| (_layerType == "resonance" && _layerID == obj_control.activeResonanceLayer)) {
+		show_debug_message("scr_changeActiveLayer, this later is already active");
+		exit;
+	}
+	
 	// check if making new layer
-	if (_layerID == "option_new-stacking" || _layerID == "option_new-trail-layer") {
+	if (_layerID == "option_new-stacking" || _layerID == "option_new-trail-layer" || _layerID == "option_new-resonance-layer") {
 		
 		// create dialog box to ask for new layer name
 		if (!instance_exists(obj_dialogueBox)) {
@@ -17,6 +25,7 @@ function scr_changeActiveLayer(_layerType, _layerID) {
 			with (obj_control) {
 				if (_layerType == "stack") createNewLayer = "NewStacking";
 				else if (_layerType == "trail") createNewLayer = "NewTrailLayer";
+				else if (_layerType == "resonance") createNewLayer = "NewResonanceLayer";
 			}
 		}
 	}
@@ -37,6 +46,11 @@ function scr_changeActiveLayer(_layerType, _layerID) {
 		else if (_layerType == "trail") {
 			_chainList = global.nodeMap[? "trailList"];
 			_navList = global.nodeMap[? "trailNavList"];
+			_layerFieldName = "layer";
+		}
+		else if (_layerType == "resonance") {
+			_chainList = global.nodeMap[? "resonanceList"];
+			_navList = global.nodeMap[? "resonanceNavList"];
 			_layerFieldName = "layer";
 		}
 	
@@ -99,6 +113,12 @@ function scr_changeActiveLayer(_layerType, _layerID) {
 		with (obj_control) {
 			if (_layerType == "stack") activeStacking = _layerID;
 			else if (_layerType == "trail") activeTrailLayer = _layerID;
+			else if (_layerType == "resonance") {
+				activeResonanceLayer = _layerID;
+				scr_refreshAlignment();
+			}
 		}
+		
+		with (obj_chain) currentFocusedChainID = "";
 	}
 }

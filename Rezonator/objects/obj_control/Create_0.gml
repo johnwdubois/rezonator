@@ -668,9 +668,10 @@ quickPickedChainID = "";
 
 
 
+createNewLayer = ""; // options: NewStacking, NewTrailLayer, NewResonanceLayer
 activeStacking = "Default";
-createNewLayer = ""; // options: NewStacking, NewTrailLayer
 activeTrailLayer = "Default";
+activeResonanceLayer = "Default";
 
 
 

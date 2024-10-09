@@ -84,5 +84,6 @@ function scr_dropDownOptionListTypeInit() {
 	global.optionListTypeStacking = 96;
 	global.optionListTypeCliqueRightClick = 97;
 	global.optionListTypeTrailLayer = 98;
+	global.optionListTypeResonanceLayer = 99;
 
 }

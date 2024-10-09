@@ -158,6 +158,7 @@ function scr_newChain(ID) {
 	}
 	else if (chainType == "resonance") {
 		newChainSubMap[? "inClique"] = chainInCliqueID;
+		newChainSubMap[? "layer"] = obj_control.activeResonanceLayer;
 		show_debug_message("newChain, chainInCliqueID: " + string(chainInCliqueID));
 	}
 	else if (chainType == "trail") {

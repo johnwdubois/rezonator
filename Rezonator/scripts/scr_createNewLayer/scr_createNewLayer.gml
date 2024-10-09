@@ -12,6 +12,10 @@ function scr_createNewLayer(_layerName, _layerType, stackName = undefined, stack
 		_layerList = global.nodeMap[? "trailLayerList"];
 		_layerMap = global.trailLayerMap;
 	}
+	else if (_layerType == "resonance") {
+		_layerList = global.nodeMap[? "resonanceLayerList"];
+		_layerMap = global.resonanceLayerMap;
+	}
 	
 	// verify layer's data structures exist
 	if (!scr_isNumericAndExists(_layerMap, ds_type_map) || !scr_isNumericAndExists(_layerList, ds_type_list)) {

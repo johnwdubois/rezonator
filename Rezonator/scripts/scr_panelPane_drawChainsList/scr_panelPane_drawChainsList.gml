@@ -755,7 +755,7 @@ function scr_panelPane_drawChainsList() {
 	}
 	
 	// display currently active layer/stacking
-	if (functionChainList_currentTab == NAVTAB_STACK || functionChainList_currentTab == NAVTAB_TRACK) {
+	if (functionChainList_currentTab == NAVTAB_STACK || functionChainList_currentTab == NAVTAB_TRACK || functionChainList_currentTab == NAVTAB_RESONANCE) {
 		
 		var _layerMap = undefined;
 		var _activeLayer = "";
@@ -775,6 +775,13 @@ function scr_panelPane_drawChainsList() {
 			_layerList = global.nodeMap[? "trailLayerList"];
 			_optionNewLayer = "option_new-trail-layer";
 			_optionListType = global.optionListTypeTrailLayer;
+		}
+		else if (functionChainList_currentTab == NAVTAB_RESONANCE) {
+			_layerMap = global.resonanceLayerMap;
+			_activeLayer = obj_control.activeResonanceLayer;
+			_layerList = global.nodeMap[? "resonanceLayerList"];
+			_optionNewLayer = "option_new-resonance-layer";
+			_optionListType = global.optionListTypeResonanceLayer;
 		}
 		
 		var _activeLayerSubMap = _layerMap[? _activeLayer];

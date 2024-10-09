@@ -69,6 +69,7 @@ function scr_verifyRez() {
 		var linkFieldList = scr_verifyRezCheckDS("linkFieldList", ds_type_list);
 		var stackingList = scr_verifyRezCheckDS("stackingList", ds_type_list);
 		var trailLayerList = scr_verifyRezCheckDS("trailLayerList", ds_type_list);
+		var resonanceLayerList = scr_verifyRezCheckDS("resonanceLayerList", ds_type_list);
 		
 		scr_verifyRezCheckDS("showList", ds_type_list);
 		scr_verifyRezCheckDS("chunkList", ds_type_list)
@@ -105,6 +106,7 @@ function scr_verifyRez() {
 		global.colorMap = scr_verifyRezCheckDS("colorMap", ds_type_map, nodeList);
 		global.stackingMap = scr_verifyRezCheckDS("stackingMap", ds_type_map, nodeList);
 		global.trailLayerMap = scr_verifyRezCheckDS("trailLayerMap", ds_type_map, nodeList);
+		global.resonanceLayerMap = scr_verifyRezCheckDS("resonanceLayerMap", ds_type_map, nodeList);
 	
 		// make sure stacking map & list contain default value
 		if (scr_isNumericAndExists(stackingList, ds_type_list)) scr_addToListOnce(stackingList, "Default");
@@ -123,6 +125,16 @@ function scr_verifyRez() {
 				var defaultTrailLayerSubMap = ds_map_create();
 				defaultTrailLayerSubMap[? "name"] = "Default";
 				ds_map_add_map(global.trailLayerMap, "Default", defaultTrailLayerSubMap);
+			}
+		}
+		
+		// make sure resonanceLayer map & list contain default value
+		if (scr_isNumericAndExists(resonanceLayerList, ds_type_list)) scr_addToListOnce(resonanceLayerList, "Default");
+		if (scr_isNumericAndExists(global.resonanceLayerMap, ds_type_map)) {
+			if (!ds_map_exists(global.resonanceLayerMap, "Default")) {
+				var defaultResonanceLayerSubMap = ds_map_create();
+				defaultResonanceLayerSubMap[? "name"] = "Default";
+				ds_map_add_map(global.resonanceLayerMap, "Default", defaultResonanceLayerSubMap);
 			}
 		}
 		

@@ -68,6 +68,13 @@ function scr_nodeMapDefaultData() {
 	var defaultTrailLayerSubMap = ds_map_create();
 	defaultTrailLayerSubMap[? "name"] = "Default";
 	ds_map_add_map(global.trailLayerMap, "Default", defaultTrailLayerSubMap);
+	
+	// create the resonanceLayer map
+	global.resonanceLayerMap = ds_map_create();
+	ds_map_add(global.resonanceLayerMap, "type", "map");
+	var defaultResonanceLayerSubMap = ds_map_create();
+	defaultResonanceLayerSubMap[? "name"] = "Default";
+	ds_map_add_map(global.resonanceLayerMap, "Default", defaultResonanceLayerSubMap);
 
 	// create lists of nodes for these panes
 	ds_map_add_list(global.nodeMap, "searchNodeList", ds_list_create());
@@ -82,6 +89,11 @@ function scr_nodeMapDefaultData() {
 	var _trailLayerList = ds_list_create();
 	ds_list_add(_trailLayerList, "Default");
 	ds_map_add_list(global.nodeMap, "trailLayerList", _trailLayerList);
+	
+	// making resonanceLayerList with default value
+	var _resonanceLayerList = ds_list_create();
+	ds_list_add(_resonanceLayerList, "Default");
+	ds_map_add_list(global.nodeMap, "resonanceLayerList", _resonanceLayerList);
 
 	// add map to nodeMap
 	ds_map_add_map(global.nodeMap, "searchMap", global.searchMap);
@@ -91,6 +103,7 @@ function scr_nodeMapDefaultData() {
 	ds_map_add_map(global.nodeMap, "participantMap", global.participantMap);
 	ds_map_add_map(global.nodeMap, "stackingMap", global.stackingMap);
 	ds_map_add_map(global.nodeMap, "trailLayerMap", global.trailLayerMap);
+	ds_map_add_map(global.nodeMap, "resonanceLayerMap", global.resonanceLayerMap);
 	
 	// add map to nodeList, so they're viewable in nodeMapViewer
 	var _nodeList = global.nodeMap[? "nodeList"];
@@ -103,4 +116,5 @@ function scr_nodeMapDefaultData() {
 	ds_list_add(_nodeList, "chunkShowMap");
 	ds_list_add(_nodeList, "stackingMap");
 	ds_list_add(_nodeList, "trailLayerMap");
+	ds_list_add(_nodeList, "resonanceLayerMap");
 }

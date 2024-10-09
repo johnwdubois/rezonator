@@ -287,5 +287,9 @@ function scr_dropDownSelect(optionSelected) {
 		scr_changeActiveLayer("trail", optionSelected);
 		with (obj_dropDown) instance_destroy();
 	}
+	else if (optionListType == global.optionListTypeResonanceLayer) {
+		scr_changeActiveLayer("resonance", optionSelected);
+		with (obj_dropDown) instance_destroy();
+	}
 
 }

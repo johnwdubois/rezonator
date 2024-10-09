@@ -360,6 +360,9 @@ function scr_setDialogueText() {
 		else if (obj_control.createNewLayer == "NewTrailLayer") {
 			descriptionText = scr_get_translation("msg_name-new-trail-layer");
 		}
+		else if (obj_control.createNewLayer == "NewResonanceLayer") {
+			descriptionText = scr_get_translation("msg_name-new-resonance-layer");
+		}
 		
 		if (instance_exists(obj_stacker)) {
 			if (obj_stacker.confirmStackName) {

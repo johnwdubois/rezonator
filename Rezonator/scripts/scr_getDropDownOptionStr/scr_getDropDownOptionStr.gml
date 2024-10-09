@@ -41,6 +41,15 @@ function scr_getDropDownOptionStr(optionStr) {
 			}
 		}
 	}
+	else if (optionListType == global.optionListTypeResonanceLayer) {
+		// get name of trail layer instead
+		if (optionStr != "option_new-resonance-layer") {
+			var resonanceLayerSubMap = global.resonanceLayerMap[? optionStr];
+			if (scr_isNumericAndExists(resonanceLayerSubMap, ds_type_map)) {
+				fullOptionStr = resonanceLayerSubMap[? "name"];
+			}
+		}
+	}
 	else if (optionListType == global.optionListTypeSelectShow) {
 		// get name of stacking instead
 		if (optionStr != "option_create-show") {
