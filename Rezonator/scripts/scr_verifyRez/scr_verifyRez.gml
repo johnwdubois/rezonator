@@ -102,6 +102,7 @@ function scr_verifyRez() {
 		// make sure important maps exist
 		global.treeMap = scr_verifyRezCheckDS("treeMap", ds_type_map, nodeList);
 		global.cliqueMap = scr_verifyRezCheckDS("cliqueMap", ds_type_map, nodeList);
+		global.cliqueMap_inactiveLayers = scr_verifyRezCheckDS("cliqueMap_inactiveLayers", ds_type_map, nodeList);
 		global.searchMap = scr_verifyRezCheckDS("searchMap", ds_type_map, nodeList);
 		global.colorMap = scr_verifyRezCheckDS("colorMap", ds_type_map, nodeList);
 		global.stackingMap = scr_verifyRezCheckDS("stackingMap", ds_type_map, nodeList);

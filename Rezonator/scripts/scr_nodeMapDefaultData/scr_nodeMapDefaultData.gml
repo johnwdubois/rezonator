@@ -43,6 +43,10 @@ function scr_nodeMapDefaultData() {
 	global.cliqueMap = ds_map_create();
 	ds_map_add(global.cliqueMap, "type", "map");
 	
+	// create the clique_inactiveLayers MAP
+	global.cliqueMap_inactiveLayers = ds_map_create();
+	ds_map_add(global.cliqueMap_inactiveLayers, "type", "map");
+	
 	// create the color MAP
 	global.colorMap = ds_map_create();
 	ds_map_add(global.colorMap, "type", "map");
@@ -98,6 +102,7 @@ function scr_nodeMapDefaultData() {
 	// add map to nodeMap
 	ds_map_add_map(global.nodeMap, "searchMap", global.searchMap);
 	ds_map_add_map(global.nodeMap, "cliqueMap", global.cliqueMap);
+	ds_map_add_map(global.nodeMap, "cliqueMap_inactiveLayers", global.cliqueMap_inactiveLayers);
 	ds_map_add_map(global.nodeMap, "colorMap", global.colorMap);
 	ds_map_add_map(global.nodeMap, "treeMap", global.treeMap);
 	ds_map_add_map(global.nodeMap, "participantMap", global.participantMap);
@@ -109,6 +114,7 @@ function scr_nodeMapDefaultData() {
 	var _nodeList = global.nodeMap[? "nodeList"];
 	ds_list_add(_nodeList, "searchMap");
 	ds_list_add(_nodeList, "cliqueMap");
+	ds_list_add(_nodeList, "cliqueMap_inactiveLayers");
 	ds_list_add(_nodeList, "treeMap");
 	ds_list_add(_nodeList, "colorMap");
 	ds_list_add(_nodeList, "participantMap");
@@ -117,4 +123,5 @@ function scr_nodeMapDefaultData() {
 	ds_list_add(_nodeList, "stackingMap");
 	ds_list_add(_nodeList, "trailLayerMap");
 	ds_list_add(_nodeList, "resonanceLayerMap");
+	
 }

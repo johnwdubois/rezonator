@@ -383,7 +383,6 @@
     {"id":{"name":"scr_chainTagInit","path":"scripts/scr_chainTagInit/scr_chainTagInit.yy",},},
     {"id":{"name":"scr_chainTagMapOptions","path":"scripts/scr_chainTagMapOptions/scr_chainTagMapOptions.yy",},},
     {"id":{"name":"scr_changeActiveLayer","path":"scripts/scr_changeActiveLayer/scr_changeActiveLayer.yy",},},
-    {"id":{"name":"scr_changeActiveStacking","path":"scripts/scr_changeActiveStacking/scr_changeActiveStacking.yy",},},
     {"id":{"name":"scr_checkChunkAlreadyExists","path":"scripts/scr_checkChunkAlreadyExists/scr_checkChunkAlreadyExists.yy",},},
     {"id":{"name":"scr_checkExpandable","path":"scripts/scr_checkExpandable/scr_checkExpandable.yy",},},
     {"id":{"name":"scr_checkForTagSet","path":"scripts/scr_checkForTagSet/scr_checkForTagSet.yy",},},

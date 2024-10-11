@@ -183,12 +183,10 @@ function scr_newLink(ID) {
 		}
 	}
 	
-	
 	if (nodeID == "") {
 		show_debug_message("scr_newLink ... ERROR: nodeID is blank string. Exiting...");
 		exit;
 	}
-		
 		
 	// if this is a rez or track, we will make sure we are adding to the word's inChainsList
 	if (nodeType == "rez" || nodeType == "track" || nodeType == "card") {

@@ -114,6 +114,7 @@ encounteredChainList = ds_list_create();
 encounteredChunkList = ds_list_create();
 traversedUnitList = ds_list_create();
 cliqueList =  ds_list_create();
+cliqueList_inactiveLayers = ds_list_create();
 currentClique = "";
 cycleDetected = false;
 newChainRefreshClique = "";

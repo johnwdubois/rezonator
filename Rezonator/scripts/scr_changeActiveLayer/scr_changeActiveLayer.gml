@@ -109,12 +109,60 @@ function scr_changeActiveLayer(_layerType, _layerID) {
 			}
 		}
 		
-		// set this stacking to be the active stacking
+		// set this layer to be the active layer
 		with (obj_control) {
 			if (_layerType == "stack") activeStacking = _layerID;
 			else if (_layerType == "trail") activeTrailLayer = _layerID;
 			else if (_layerType == "resonance") {
 				activeResonanceLayer = _layerID;
+				
+				// get rid of any references from units to cliques
+				var _docSubMap = global.nodeMap[? global.discourseNode];
+				var _unitList = _docSubMap[? "unitList"];
+				scr_setValueForAllNodesInList(_unitList, "inClique", "");
+				
+				// let's move everything in cliqueMap and cliqueList to the inactiveLayers equivalents
+				// and then we will find the clique data that is in the relevant layer and bring it in
+				var _cliqueList = obj_chain.cliqueList;
+				var _cliqueListSize = ds_list_size(_cliqueList);
+				for (var i = 0; i < _cliqueListSize; i++) {
+					var _cliqueID = _cliqueList[| i];
+					var _cliqueSubMap = global.cliqueMap[? _cliqueID];
+					scr_addToListOnce(obj_chain.cliqueList_inactiveLayers, _cliqueID);
+					ds_map_add_map(global.cliqueMap_inactiveLayers, _cliqueID, _cliqueSubMap);
+					ds_map_delete(global.cliqueMap, _cliqueID);
+				}
+				
+				ds_list_clear(_cliqueList);
+				
+				// at this point, cliqueMap and cliqueList are empty, so let's fill them up with cliques from the new active layer
+				var _cliqueList_inactiveLayers = obj_chain.cliqueList_inactiveLayers;
+				var _cliqueListSize_inactiveLayers = ds_list_size(_cliqueList_inactiveLayers);
+				for (var i = 0; i < _cliqueListSize_inactiveLayers; i++) {
+					var _cliqueID = _cliqueList_inactiveLayers[| i];
+					var _cliqueSubMap = global.cliqueMap_inactiveLayers[? _cliqueID];
+					if (scr_isNumericAndExists(_cliqueSubMap, ds_type_map)) {
+						var _cliqueLayer = _cliqueSubMap[? "layer"];
+						if (_cliqueLayer == _layerID) {
+							
+							// if this clique is in the new active layer, we will bring it into cliqueList and cliqueMap
+							scr_addToListOnce(_cliqueList, _cliqueID);
+							ds_map_add_map(global.cliqueMap, _cliqueID, _cliqueSubMap);
+							
+							// we will also update the "inClique" field for units in this clique
+							var _cliqueUnitList = _cliqueSubMap[? "unitList"];
+							var _cliqueUnitListSize = ds_list_size(_cliqueUnitList);
+							for (var j = 0; j < _cliqueUnitListSize; j++) {
+								var _cliqueUnitID = _cliqueUnitList[| j];
+								var _cliqueUnitSubMap = global.nodeMap[? _cliqueUnitID];
+								if (scr_isNumericAndExists(_cliqueUnitSubMap, ds_type_map)) {
+									_cliqueUnitSubMap[? "inClique"] = _cliqueID;
+								}
+							}
+						}
+					}
+				}
+				
 				scr_refreshAlignment();
 			}
 		}
