@@ -92,14 +92,28 @@ function scr_changeActiveLayer(_layerType, _layerID) {
 				else _entryTokenOrUnitID = _entrySubMap[? "token"];
 				var _entryTokenOrUnitSubMap = global.nodeMap[? _entryTokenOrUnitID];
 				var _inChainsList = _entryTokenOrUnitSubMap[? "inChainsList"];
-
 				
 				// add or delete the chain from the inChainsList, depending on active layer
-				if (_chainLayer == _layerID) {
-					scr_addToListOnce(_inChainsList, _chainID);
+				if (scr_isNumericAndExists(_inChainsList, ds_type_list)) {
+					if (_chainLayer == _layerID) {
+						scr_addToListOnce(_inChainsList, _chainID);
+					}
+					else {
+						scr_deleteFromList(_inChainsList, _chainID);
+					}
 				}
-				else {
-					scr_deleteFromList(_inChainsList, _chainID);
+				
+				// for tokens, we also must get take this entry out of the token's inEntryList
+				if (_layerType == "resonance" || _layerType == "trail") {
+					var _inEntryList = _entryTokenOrUnitSubMap[? "inEntryList"];
+					if (scr_isNumericAndExists(_inEntryList, ds_type_list)) {
+						if (_chainLayer == _layerID) {
+							scr_addToListOnce(_inEntryList, _entryID);
+						}
+						else {
+							scr_deleteFromList(_inEntryList, _entryID);
+						}
+					}
 				}
 			}
 			

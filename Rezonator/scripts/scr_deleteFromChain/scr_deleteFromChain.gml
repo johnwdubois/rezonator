@@ -268,7 +268,7 @@ function scr_deleteFromChain(sortVizSetList) {
 	if (focusedEntryType == "rez" || focusedEntryType == "track") {
 		scr_removeChainFromInChainsList(obj_chain.currentFocusedChainID, focusedEntry, focusedEntryToken);
 		if (focusedEntryType == "rez" ) {
-			if (obj_chain.quickLinkDeleted == false) {
+			if (!obj_chain.quickLinkDeleted) {
 				scr_refreshCliqueDelete(chainInCliqueID, obj_chain.currentFocusedChainID, focusedEntry);
 				scr_refreshCliques();
 			}
