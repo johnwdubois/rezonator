@@ -11,6 +11,13 @@ function scr_dialogueConfirm() {
 		else if (_dialogBoxType == DIALOG_QUESTION_URLABOUT) scr_URLOpenReliable("https://rezonator.com/about/");
 		else if (_dialogBoxType == DIALOG_QUESTION_URLGUIDE) scr_URLOpenReliable("https://johnwdubois.github.io/rezonator/");
 		else if (_dialogBoxType == DIALOG_INPUT_RENAMECLIQUE) scr_renameClique(obj_panelPane.functionClique_cliqueSelected, obj_control.inputText);
+		else if (_dialogBoxType == DIALOG_QUESTION_REMOVECHUNKFROMCHAINSBEFOREDELETE) {
+			scr_removeChunkFromAllChains(obj_control.chunkToRemoveFromChains, global.nodeMap[? "resonanceList"]);
+			scr_removeChunkFromAllChains(obj_control.chunkToRemoveFromChains, global.nodeMap[? "trailList"]);
+			scr_deleteChunk(obj_control.chunkToRemoveFromChains);
+			obj_control.chunkToRemoveFromChains = "";
+			obj_chain.currentFocusedChainID = "";
+		}
 		
 		// turn off dialog box variables and destroy dialog box
 		scr_closeDialogueBoxVariables();

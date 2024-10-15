@@ -29,6 +29,9 @@ function scr_setDialogueText() {
 			else if (_dialogBoxType == DIALOG_INPUT_RENAMECLIQUE) {
 				descriptionText = scr_get_translation("option_rename-clique");
 			}
+			else if (_dialogBoxType == DIALOG_QUESTION_REMOVECHUNKFROMCHAINSBEFOREDELETE) {
+				descriptionText = "This chunk is in a number of trails and/or resonances across different layers. Remove this chunk from all its trails and/or resonances and also delete the chunk?"
+			}
 		}
 		catch (e) {
 			show_debug_message("scr_setDialogueText error: " + string(e.message));

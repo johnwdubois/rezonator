@@ -879,6 +879,7 @@ mouseoverBackArrow = false;
 mouseoverBackArrowStopClick = false;
 
 createChunkNoChain = false;
+chunkToRemoveFromChains = "";
 
 //lock fields
 with (obj_alarm3) alarm[4] = 2;

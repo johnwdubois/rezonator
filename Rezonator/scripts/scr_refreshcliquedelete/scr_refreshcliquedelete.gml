@@ -4,7 +4,9 @@ function scr_refreshCliqueDelete(cliqueID, deletedChainID, deletedEntryID) {
 	
 	var deleteClique = false;
 	show_debug_message("scr_refreshCliqueDelete: " + string(cliqueID) + ", deletedChainID: " + string(deletedChainID));
-	var cliqueSubMap = global.cliqueMap[? cliqueID];	
+	var cliqueSubMap = global.cliqueMap[? cliqueID];
+	if (!scr_isNumericAndExists(cliqueSubMap, ds_type_map)) exit;
+	
 	var cliqueChainList = cliqueSubMap[? "chainList"];
 	
 	// we copy the chainlist before we do any deleting to see if we can still reach every chain

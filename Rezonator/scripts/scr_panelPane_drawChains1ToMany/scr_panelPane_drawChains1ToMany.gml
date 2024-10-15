@@ -87,6 +87,16 @@ function scr_panelPane_drawChains1ToMany() {
 		exit;
 	}
 	
+	// make sure this chain is of the active layer
+	var _chainLayer = chainSubMap[? "layer"];
+	if ((functionChainList_currentTab == NAVTAB_RESONANCE && _chainLayer != obj_control.activeResonanceLayer)
+	|| (functionChainList_currentTab == NAVTAB_TRACK && _chainLayer != obj_control.activeTrailLayer)
+	|| (functionChainList_currentTab == NAVTAB_STACK && _chainLayer != obj_control.activeStacking)) {
+		with (obj_panelPane) functionChainContents_chainID = "";
+		if (BUILDTYPE != "Web") scr_surfaceEnd();
+		exit;
+	}
+	
 	if (functionChainContents_chainIDPrev != chainID) {
 		show_debug_message("functionChainContents_chainIDPrev changed");
 		if (obj_control.chain1toManyCustomSortColIndex != -1) obj_control.refreshCustomSort = true;
