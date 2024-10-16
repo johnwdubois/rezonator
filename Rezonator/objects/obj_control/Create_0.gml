@@ -575,7 +575,6 @@ inChunk = false;
 
 
 deleteNewWord = false;
-deleteChunkWord = false;
 fromDropDown = false;
 wideDropDown = false;
 

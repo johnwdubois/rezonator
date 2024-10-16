@@ -200,15 +200,7 @@ function scr_rightClickWordOptions(optionSelected) {
 		}
 	}
 	else if (optionSelected == "option_delete-chunk") {
-		obj_control.deleteChunkWord = true;
-		var chunkSubMap = global.nodeMap[?obj_control.rightClickID];
-		var inChainsList = chunkSubMap[? "inChainsList"];
-		if (ds_list_size(inChainsList) > 0) {
-			scr_deleteFromChain(true);
-		}
 		scr_deleteChunk(obj_control.rightClickID);
-			
-		obj_control.deleteChunkWord = false;
 		instance_destroy();
 	}
 	else if (optionSelected == "option_delete-token") {
