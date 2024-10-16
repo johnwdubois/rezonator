@@ -189,7 +189,10 @@ function scr_panelPane_drawCliqueList() {
 		
 		// draw highlight effect if mousing over or if layer dropdown exists
 		var _activeLayerDrawMouseover = false;
-		if (mouseoverActiveLayer) _activeLayerDrawMouseover = true;
+		if (mouseoverActiveLayer) {
+			_activeLayerDrawMouseover = true;
+			scr_createTooltip(mean(activeLayerX1, activeLayerX2), activeLayerY2, scr_get_translation("menu_layer_resonance"), TOOLTIP_DIR_UP);
+		}
 		if (instance_exists(obj_dropDown)) {
 			if (functionChainList_currentTab == NAVTAB_RESONANCE && obj_dropDown.optionListType == global.optionListTypeResonanceLayer) _activeLayerDrawMouseover = true;				
 		}

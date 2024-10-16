@@ -762,12 +762,14 @@ function scr_panelPane_drawChainsList() {
 		var _layerList = undefined;
 		var _optionNewLayer = "";
 		var _optionListType = "";
+		var _toolTipStr = "";
 		if (functionChainList_currentTab == NAVTAB_STACK) {
 			_layerMap = global.stackingMap;
 			_activeLayer = obj_control.activeStacking;
 			_layerList = global.nodeMap[? "stackingList"];
 			_optionNewLayer = "option_new-stacking";
 			_optionListType = global.optionListTypeStacking;
+			_toolTipStr = scr_get_translation("menu_layer_stack");
 		}
 		else if (functionChainList_currentTab == NAVTAB_TRACK) {
 			_layerMap = global.trailLayerMap;
@@ -775,6 +777,7 @@ function scr_panelPane_drawChainsList() {
 			_layerList = global.nodeMap[? "trailLayerList"];
 			_optionNewLayer = "option_new-trail-layer";
 			_optionListType = global.optionListTypeTrailLayer;
+			_toolTipStr = scr_get_translation("menu_layer_trail");
 		}
 		else if (functionChainList_currentTab == NAVTAB_RESONANCE) {
 			_layerMap = global.resonanceLayerMap;
@@ -782,6 +785,7 @@ function scr_panelPane_drawChainsList() {
 			_layerList = global.nodeMap[? "resonanceLayerList"];
 			_optionNewLayer = "option_new-resonance-layer";
 			_optionListType = global.optionListTypeResonanceLayer;
+			_toolTipStr = scr_get_translation("menu_layer_resonance");
 		}
 		
 		var _activeLayerSubMap = _layerMap[? _activeLayer];
@@ -799,7 +803,10 @@ function scr_panelPane_drawChainsList() {
 			
 			// draw highlight effect if mousing over or if layer dropdown exists
 			var _activeLayerDrawMouseover = false;
-			if (mouseoverActiveLayer) _activeLayerDrawMouseover = true;
+			if (mouseoverActiveLayer) {
+				_activeLayerDrawMouseover = true;
+				scr_createTooltip(mean(activeLayerX1, activeLayerX2), activeLayerY2, _toolTipStr, TOOLTIP_DIR_UP);
+			}
 			if (instance_exists(obj_dropDown)) {
 				if ((functionChainList_currentTab == NAVTAB_RESONANCE && obj_dropDown.optionListType == global.optionListTypeResonanceLayer)
 				|| (functionChainList_currentTab == NAVTAB_TRACK && obj_dropDown.optionListType == global.optionListTypeTrailLayer)
