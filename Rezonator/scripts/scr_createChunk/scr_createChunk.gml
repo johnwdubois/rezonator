@@ -238,7 +238,10 @@ function scr_createChunk() {
 	}
 
 	global.delayInput = 5;
-	obj_control.createChunkNoChain = false;
+	with (obj_control) {
+		createChunkNoChain = false;
+		chunkRecentlyCreated = chunkID;
+	}
 	
 	return chunkID;
 	

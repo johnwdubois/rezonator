@@ -466,6 +466,7 @@
     {"name":"scr_loadTagJsonFields","order":1,"path":"scripts/scr_loadTagJsonFields/scr_loadTagJsonFields.yy",},
     {"name":"scr_lockChunks","order":13,"path":"scripts/scr_lockChunks/scr_lockChunks.yy",},
     {"name":"scr_lockFields","order":33,"path":"scripts/scr_lockFields/scr_lockFields.yy",},
+    {"name":"scr_lockRecentlyCreatedChunk","order":16,"path":"scripts/scr_lockRecentlyCreatedChunk/scr_lockRecentlyCreatedChunk.yy",},
     {"name":"scr_macros","order":23,"path":"scripts/scr_macros/scr_macros.yy",},
     {"name":"scr_mapDeepDestroy","order":32,"path":"scripts/scr_mapDeepDestroy/scr_mapDeepDestroy.yy",},
     {"name":"scr_mappingTagOptions","order":11,"path":"scripts/scr_mappingTagOptions/scr_mappingTagOptions.yy",},

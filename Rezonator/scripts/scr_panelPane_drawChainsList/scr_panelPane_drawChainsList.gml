@@ -789,7 +789,7 @@ function scr_panelPane_drawChainsList() {
 
 			var activeLayerStrHeight = string_height("0");
 			var activeLayerName = _activeLayerSubMap[? "name"];
-			var activeLayerStr = "Layer: " + string(activeLayerName);
+			var activeLayerStr = string(activeLayerName);
 			var spaceWidth = string_width(" ");
 			var activeLayerX2 = x + windowWidth - spaceWidth;
 			var activeLayerX1 = activeLayerX2 - min(string_width(activeLayerStr), windowWidth * 0.25) - (spaceWidth * 2);
@@ -797,18 +797,20 @@ function scr_panelPane_drawChainsList() {
 			var activeLayerY2 = activeLayerY1 + activeLayerStrHeight;
 			var mouseoverActiveLayer = point_in_rectangle(mouse_x, mouse_y, activeLayerX1, activeLayerY1, activeLayerX2, activeLayerY2) && !mouseoverCancel;
 			
-			// draw highlight effect if mousing over or if stacking dropdown exists
-			var activeStackingDrawMouseover = false;
-			if (mouseoverActiveLayer) activeStackingDrawMouseover = true;
+			// draw highlight effect if mousing over or if layer dropdown exists
+			var _activeLayerDrawMouseover = false;
+			if (mouseoverActiveLayer) _activeLayerDrawMouseover = true;
 			if (instance_exists(obj_dropDown)) {
-				if (obj_dropDown.optionListType == global.optionListTypeStacking) activeStackingDrawMouseover = true;
+				if ((functionChainList_currentTab == NAVTAB_RESONANCE && obj_dropDown.optionListType == global.optionListTypeResonanceLayer)
+				|| (functionChainList_currentTab == NAVTAB_TRACK && obj_dropDown.optionListType == global.optionListTypeTrailLayer)
+				|| (functionChainList_currentTab == NAVTAB_STACK && obj_dropDown.optionListType == global.optionListTypeStacking)) _activeLayerDrawMouseover = true;				
 			}
-			if (activeStackingDrawMouseover) {
+			if (_activeLayerDrawMouseover) {
 				draw_set_color(global.colorThemeSelected1);
 				draw_roundrect(activeLayerX1, activeLayerY1, activeLayerX2, activeLayerY2, false);
 			}
 			
-			// click to change active stacking
+			// click to change active layer
 			if (mouseoverActiveLayer) {
 				if (mouse_check_button_released(mb_left)) {
 					if (scr_isNumericAndExists(_layerList, ds_type_list)) {

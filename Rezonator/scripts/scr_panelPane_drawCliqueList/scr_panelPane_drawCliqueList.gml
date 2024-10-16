@@ -1,5 +1,4 @@
 function scr_panelPane_drawCliqueList() {
-	
 
 	var strHeight = string_height("0") * 1.5;
 	var numColX = x;
@@ -7,7 +6,7 @@ function scr_panelPane_drawCliqueList() {
 	var nameColX = numColX + numColWidth;
 	var nameColWidth = windowWidth * 0.3;
 	var chainCountColX = nameColX + nameColWidth;
-	var chainCountColWidth = windowWidth * 0.3;
+	var chainCountColWidth = windowWidth * 0.2;
 	var unitCountColX = chainCountColX + chainCountColWidth;
 	
 	var textBuffer = 8;
@@ -172,12 +171,51 @@ function scr_panelPane_drawCliqueList() {
 		draw_set_color(global.colorThemeText);
 		draw_text(headerTextX, headerTextY, colText);
 		
-
-		
-		
 		headerPlusX += colWidth;
 	}
-
-
+	
+	// display active resonance layer
+	var _activeLayerSubMap = global.resonanceLayerMap[? obj_control.activeResonanceLayer];
+	if (scr_isNumericAndExists(_activeLayerSubMap, ds_type_map)) {
+		var activeLayerStrHeight = string_height("0");
+		var activeLayerName = _activeLayerSubMap[? "name"];
+		var activeLayerStr = string(activeLayerName);
+		var spaceWidth = string_width(" ");
+		var activeLayerX2 = x + windowWidth - spaceWidth;
+		var activeLayerX1 = activeLayerX2 - min(string_width(activeLayerStr), windowWidth * 0.25) - (spaceWidth * 2);
+		var activeLayerY1 = y + (headerHeight / 2) - (activeLayerStrHeight / 2);
+		var activeLayerY2 = activeLayerY1 + activeLayerStrHeight;
+		var mouseoverActiveLayer = point_in_rectangle(mouse_x, mouse_y, activeLayerX1, activeLayerY1, activeLayerX2, activeLayerY2);
+		
+		// draw highlight effect if mousing over or if layer dropdown exists
+		var _activeLayerDrawMouseover = false;
+		if (mouseoverActiveLayer) _activeLayerDrawMouseover = true;
+		if (instance_exists(obj_dropDown)) {
+			if (functionChainList_currentTab == NAVTAB_RESONANCE && obj_dropDown.optionListType == global.optionListTypeResonanceLayer) _activeLayerDrawMouseover = true;				
+		}
+		if (_activeLayerDrawMouseover) {
+			draw_set_color(global.colorThemeSelected1);
+			draw_roundrect(activeLayerX1, activeLayerY1, activeLayerX2, activeLayerY2, false);
+		}
+			
+		// click to change active layer
+		if (mouseoverActiveLayer) {
+			if (mouse_check_button_released(mb_left)) {
+				var _layerList = global.nodeMap[? "resonanceLayerList"];
+				if (scr_isNumericAndExists(_layerList, ds_type_list)) {
+					var stackingOptionList = ds_list_create();
+					ds_list_copy(stackingOptionList, _layerList);
+					ds_list_add(stackingOptionList, "option_new-resonance-layer");
+					scr_createDropDown(activeLayerX1, activeLayerY2, stackingOptionList, global.optionListTypeResonanceLayer);
+				}
+			}
+		}
+		
+		// draw text of active stacking
+		draw_set_halign(fa_center);
+		draw_set_valign(fa_middle);
+		draw_set_color(global.colorThemeText);
+		draw_text(floor(mean(activeLayerX1, activeLayerX2)), floor(mean(activeLayerY1, activeLayerY2)), activeLayerStr);
+	}
 
 }

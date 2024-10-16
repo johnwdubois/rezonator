@@ -15,38 +15,52 @@ function scr_newChain(ID) {
 	show_debug_message("scr_newChain... ID: " + string(ID));
 
 	var chainName = "";
-	var chainSeq = 0;
 	var chainType = "";
+	
+	// determine what type of chain this will be
+	if (idType == "token" || idType == "chunk") {
+		if (obj_toolPane.currentMode == obj_toolPane.modeRez) chainType = "resonance";
+		else if (obj_toolPane.currentMode == obj_toolPane.modeTrack) chainType = "trail";
+	}
+	else if (idType == "unit") chainType = "stack";
 
 	var aligned = false;
 	var chainInCliqueID = "";
+	
+	// get chainList and navList relevant to this type
+	var chainListKey = "resonanceList";
+	var chainNavListKey = "resonanceNavList";
+	if (chainType == "resonance") {
+		chainListKey = "resonanceList";
+		chainNavListKey = "resonanceNavList";
+	}
+	else if (chainType == "trail") {
+		chainListKey = "trailList";
+		chainNavListKey = "trailNavList";
+	}
+	else if (chainType == "stack") {
+		chainListKey = "stackList";
+		chainNavListKey = "stackNavList";
+	}
+	var chainList = global.nodeMap[? chainListKey];
+	var chainNavList = global.nodeMap[? chainNavListKey];
+	var chainSeq = ds_list_size(chainNavList) + 1;
 
-
-	// set up chain variables depending on what type of ID is passed in
-	if (idType == "token" || idType == "chunk") {
-		if (obj_toolPane.currentMode == obj_toolPane.modeRez) {
-			aligned = true;
-			obj_chain.rezChainNameCounter++;
-			chainSeq = obj_chain.rezChainNameCounter;
-			chainName = "Rez " + string(chainSeq);
-			chainType = "resonance";
-			if (obj_control.shapeStartText == true) {
-				obj_control.shapeStartText = false;
-				obj_control.shape = obj_control.shapeBlock;
-			}
-		}
-		else if (obj_toolPane.currentMode == obj_toolPane.modeTrack) {
-			obj_chain.trackChainNameCounter++;
-			chainSeq = obj_chain.trackChainNameCounter;
-			chainName = "Trail " + string(chainSeq);
-			chainType = "trail";
+	// set up chain variables depending on chainType
+	if (chainType == "resonance") {
+		aligned = true;
+		obj_chain.rezChainNameCounter++;
+		chainName = "Rez " + string(chainSeq);
+		if (obj_control.shapeStartText) {
+			obj_control.shapeStartText = false;
+			obj_control.shape = obj_control.shapeBlock;
 		}
 	}
-	else if (idType == "unit") {
-		var stackNavList = global.nodeMap[? "stackNavList"];
-		chainSeq = ds_list_size(stackNavList) + 1;
-		chainType = "stack";
-		
+	else if (chainType == "trail") {
+		obj_chain.trackChainNameCounter++;
+		chainName = "Trail " + string(chainSeq);
+	}
+	else if (chainType == "stack") {
 		var stackNamePt1 = "";
 		var stackNamePt2 = string(chainSeq);
 		if (obj_control.activeStacking == "Default") stackNamePt1 = scr_get_translation("tab_name_stack");
@@ -68,14 +82,17 @@ function scr_newChain(ID) {
 		}
 		
 		chainName = stackNamePt1 + " " + stackNamePt2;
-		show_debug_message("newChain, stack name: " + string(chainName))
+		show_debug_message("newChain, stack name: " + string(chainName));
 	}
 	
 	// get random hex chainID
 	obj_chain.currentChainID = scr_addToNodeMap(chainType);
 	var newChainSubMap = global.nodeMap[? obj_chain.currentChainID];
-	
 	show_debug_message("scr_newChain... chainID: " + string(obj_chain.currentChainID) + ", chainType: " + string(chainType) + ", chainName:" + string(chainName));
+	
+	// add this new chain to chainList and chainNavList
+	ds_list_add(chainList, obj_chain.currentChainID);
+	ds_list_add(chainNavList, obj_chain.currentChainID);
 	
 	with (obj_chain) {
 		if (chainType == "resonance") resonancePrevFocused = currentFocusedChainID;
@@ -123,26 +140,6 @@ function scr_newChain(ID) {
 		obj_chain.dragStartOriginalChain = obj_chain.currentChainID;
 		show_debug_message("...dragStartOriginalChain: " + string(obj_chain.dragStartOriginalChain));
 	}
-	
-	// get chainList and navList and add this new chain to both
-	var chainListKey = "resonanceList";
-	var chainNavListKey = "resonanceNavList";
-	if (chainType == "resonance") {
-		chainListKey = "resonanceList";
-		chainNavListKey = "resonanceNavList";
-	}
-	else if (chainType == "trail") {
-		chainListKey = "trailList";
-		chainNavListKey = "trailNavList";
-	}
-	else if (chainType == "stack") {
-		chainListKey = "stackList";
-		chainNavListKey = "stackNavList";
-	}
-	var chainList = global.nodeMap[? chainListKey];
-	var chainNavList = global.nodeMap[? chainNavListKey];
-	ds_list_add(chainList, obj_chain.currentChainID);
-	ds_list_add(chainNavList, obj_chain.currentChainID);
 
 
 	var chainColor = scr_randomChainColor();

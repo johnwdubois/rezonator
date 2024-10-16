@@ -14,6 +14,6 @@ function scr_chainDeselect() {
 		functionChainContents_showID = "";
 	}
 	
-	
+	scr_lockRecentlyCreatedChunk();
 
 }

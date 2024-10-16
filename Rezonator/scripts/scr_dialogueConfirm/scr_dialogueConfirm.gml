@@ -221,14 +221,16 @@ function scr_dialogueConfirm() {
 			}
 		
 			// naming a new blank layer
-			if (obj_control.createNewLayer == "NewStacking") {
-				scr_createNewLayer(obj_control.inputText, "stack", obj_control.inputText, "");
-			}
-			else if (obj_control.createNewLayer == "NewTrailLayer") {
-				scr_createNewLayer(obj_control.inputText, "trail", obj_control.inputText, "");
-			}
-			else if (obj_control.createNewLayer == "NewResonanceLayer") {
-				scr_createNewLayer(obj_control.inputText, "resonance", obj_control.inputText, "");
+			if (string_length(obj_control.inputText) >= 1) {
+				if (obj_control.createNewLayer == "NewStacking") {
+					scr_createNewLayer(obj_control.inputText, "stack", obj_control.inputText, "");
+				}
+				else if (obj_control.createNewLayer == "NewTrailLayer") {
+					scr_createNewLayer(obj_control.inputText, "trail", obj_control.inputText, "");
+				}
+				else if (obj_control.createNewLayer == "NewResonanceLayer") {
+					scr_createNewLayer(obj_control.inputText, "resonance", obj_control.inputText, "");
+				}
 			}
 		
 			scr_closeDialogueBoxVariables();

@@ -300,9 +300,7 @@ function scr_newLink(ID) {
 		with (obj_chain) newChainRefreshClique = "";
 	}
 	
+	scr_lockRecentlyCreatedChunk();
 	
 	show_debug_message("scr_newLink ... end of script for ID: " + string(ID));
-	
-	
-
 }

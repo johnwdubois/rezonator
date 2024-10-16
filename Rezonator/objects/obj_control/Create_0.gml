@@ -879,6 +879,7 @@ mouseoverBackArrowStopClick = false;
 
 createChunkNoChain = false;
 chunkToRemoveFromChains = "";
+chunkRecentlyCreated = ""; // ID of most recently created chunk
 
 //lock fields
 with (obj_alarm3) alarm[4] = 2;
