@@ -1,5 +1,3 @@
-
-
 function scr_createTree(tokenList) {
 	
 	// make sure tokenList and treeList exist
@@ -12,16 +10,20 @@ function scr_createTree(tokenList) {
 		show_debug_message("scr_createTree, treeList does not exist");
 		exit;
 	}
+	var _treeNavList = global.nodeMap[? "treeNavList"];
+	if (!scr_isNumericAndExists(_treeNavList, ds_type_list)) {
+		show_debug_message("scr_createTree, treeNavList does not exist");
+		exit;
+	}
 	
 	// get ID for this tree, and give it a subMap within the treeMap
-	var treeNode = scr_generateRandomID();
-	//show_debug_message("scr_createTree, treeNode: " + string(treeNode) + ", tokenList: " + scr_getStringOfList(tokenList));
-	ds_map_add_map(global.treeMap, treeNode, ds_map_create());
-
+	var _treeID = scr_generateRandomID();
+	ds_map_add_map(global.treeMap, _treeID, ds_map_create());
 	
 	// add some cool data to the tree
-	ds_list_add(treeList, treeNode);
-	var treeSubMap = global.treeMap[? treeNode];
+	ds_list_add(treeList, _treeID);
+	ds_list_add(_treeNavList, _treeID);
+	var treeSubMap = global.treeMap[? _treeID];
 	var treeLinkIDList = ds_list_create();
 	var treeSetIDList = ds_list_create();
 	ds_map_add_list(treeSubMap, "linkIDList", treeLinkIDList);
@@ -29,21 +31,18 @@ function scr_createTree(tokenList) {
 	ds_map_add_list(treeSubMap, "tokenList", tokenList);
 	ds_map_add(treeSubMap, "name", "Tree " + string(ds_list_size(treeList)));
 	ds_map_add(treeSubMap, "type", "tree");
+	ds_map_add(treeSubMap, "layer", obj_control.activeStacking);
 	
 	// add some dope entries to this tree
 	var tokenListSize = ds_list_size(tokenList);
 	for (var i = 0; i < tokenListSize; i++) {
-		
 		var currentToken = tokenList[| i];
-		scr_createTreeEntry(treeNode, currentToken, i, false);
-		
+		scr_createTreeEntry(_treeID, currentToken, i, false);
 	}
 	
 	// set the new tree to be focused in nav window
 	with (obj_panelPane) {
-		functionTree_treeSelected = treeNode;
+		functionTree_treeSelected = _treeID;
 	}
-	
-	
 	
 }

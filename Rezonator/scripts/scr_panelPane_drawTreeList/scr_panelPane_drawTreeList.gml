@@ -23,13 +23,13 @@ function scr_panelPane_drawTreeList() {
 	var mouseoverHeaderRegion = point_in_rectangle(mouse_x, mouse_y, x, y, x + windowWidth, y + headerHeight);
 	
 	// get the tree list & make sure it exists
-	var treeList = global.nodeMap[? "treeList"];
-	if (!scr_isNumericAndExists(treeList, ds_type_list)) {
-		show_debug_message("scr_panelPane_drawTreeList ... treeList does not exist");
+	var _treeNavList = global.nodeMap[? "treeNavList"];
+	if (!scr_isNumericAndExists(_treeNavList, ds_type_list)) {
+		show_debug_message("scr_panelPane_drawTreeList ... _treeNavList does not exist");
 		exit;
 	}
 	
-	var treeListSize = ds_list_size(treeList);
+	var _treeNavListSize = ds_list_size(_treeNavList);
 	scr_surfaceStart();
 	draw_set_halign(fa_left);
 	draw_set_valign(fa_middle);
@@ -38,7 +38,7 @@ function scr_panelPane_drawTreeList() {
 	var maxTokenListSize = 15;
 	
 	// loop over trees
-	for (var i = 0; i < treeListSize; i++) {
+	for (var i = 0; i < _treeNavListSize; i++) {
 		
 		// don't bother drawing this stuff if it won't be on screen
 		if (y + headerHeight + scrollPlusY + textPlusY < y - strHeight
@@ -48,7 +48,7 @@ function scr_panelPane_drawTreeList() {
 		}
 		
 		// get data for currentClique
-		var currentTree = treeList[| i];
+		var currentTree = _treeNavList[| i];
 		var currentTreeSubMap = global.treeMap[? currentTree];
 		if (!scr_isNumericAndExists(currentTreeSubMap, ds_type_map)) {
 			textPlusY += strHeight;
@@ -200,7 +200,7 @@ function scr_panelPane_drawTreeList() {
 	}
 	
 	
-	scr_scrollBar(treeListSize, -1, strHeight, headerHeight,
+	scr_scrollBar(_treeNavListSize, -1, strHeight, headerHeight,
 			global.colorThemeSelected1, global.colorThemeSelected2,
 			global.colorThemeSelected1, global.colorThemeSelected2, spr_ascend, windowWidth, windowHeight);
 			
@@ -255,6 +255,53 @@ function scr_panelPane_drawTreeList() {
 		
 		
 		headerPlusX += colWidth;
+	}
+	
+	// display active stack layer
+	var _activeLayerSubMap = global.stackingMap[? obj_control.activeStacking];
+	if (scr_isNumericAndExists(_activeLayerSubMap, ds_type_map)) {
+		var activeLayerStrHeight = string_height("0");
+		var activeLayerName = _activeLayerSubMap[? "name"];
+		var activeLayerStr = string(activeLayerName);
+		var spaceWidth = string_width(" ");
+		var activeLayerX2 = x + windowWidth - spaceWidth;
+		var activeLayerX1 = activeLayerX2 - min(string_width(activeLayerStr), windowWidth * 0.25) - (spaceWidth * 2);
+		var activeLayerY1 = y + (headerHeight / 2) - (activeLayerStrHeight / 2);
+		var activeLayerY2 = activeLayerY1 + activeLayerStrHeight;
+		var mouseoverActiveLayer = point_in_rectangle(mouse_x, mouse_y, activeLayerX1, activeLayerY1, activeLayerX2, activeLayerY2);
+		
+		// draw highlight effect if mousing over or if layer dropdown exists
+		var _activeLayerDrawMouseover = false;
+		if (mouseoverActiveLayer) {
+			_activeLayerDrawMouseover = true;
+			scr_createTooltip(mean(activeLayerX1, activeLayerX2), activeLayerY2, scr_get_translation("menu_layer_stack"), TOOLTIP_DIR_UP);
+		}
+		if (instance_exists(obj_dropDown)) {
+			if (obj_dropDown.optionListType == global.optionListTypeStacking) _activeLayerDrawMouseover = true;				
+		}
+		if (_activeLayerDrawMouseover) {
+			draw_set_color(global.colorThemeSelected1);
+			draw_roundrect(activeLayerX1, activeLayerY1, activeLayerX2, activeLayerY2, false);
+		}
+			
+		// click to change active layer
+		if (mouseoverActiveLayer) {
+			if (mouse_check_button_released(mb_left)) {
+				var _layerList = global.nodeMap[? "stackingList"];
+				if (scr_isNumericAndExists(_layerList, ds_type_list)) {
+					var _layerOptionList = ds_list_create();
+					ds_list_copy(_layerOptionList, _layerList);
+					ds_list_add(_layerOptionList, "option_new-stacking");
+					scr_createDropDown(activeLayerX1, activeLayerY2, _layerOptionList, global.optionListTypeStacking);
+				}
+			}
+		}
+		
+		// draw text of active layer
+		draw_set_halign(fa_center);
+		draw_set_valign(fa_middle);
+		draw_set_color(global.colorThemeText);
+		draw_text(floor(mean(activeLayerX1, activeLayerX2)), floor(mean(activeLayerY1, activeLayerY2)), activeLayerStr);
 	}
 	
 

@@ -181,6 +181,9 @@ function scr_changeActiveLayer(_layerType, _layerID) {
 			}
 		}
 		
+		// if we are changing stack layers, let's also refresh the tree list
+		if (_layerType == "stack") scr_refreshTreeNavList();
+		
 		with (obj_chain) currentFocusedChainID = "";
 	}
 }

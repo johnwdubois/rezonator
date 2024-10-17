@@ -194,7 +194,7 @@ function scr_panelPane_drawCliqueList() {
 			scr_createTooltip(mean(activeLayerX1, activeLayerX2), activeLayerY2, scr_get_translation("menu_layer_resonance"), TOOLTIP_DIR_UP);
 		}
 		if (instance_exists(obj_dropDown)) {
-			if (functionChainList_currentTab == NAVTAB_RESONANCE && obj_dropDown.optionListType == global.optionListTypeResonanceLayer) _activeLayerDrawMouseover = true;				
+			if (obj_dropDown.optionListType == global.optionListTypeResonanceLayer) _activeLayerDrawMouseover = true;				
 		}
 		if (_activeLayerDrawMouseover) {
 			draw_set_color(global.colorThemeSelected1);
@@ -206,15 +206,15 @@ function scr_panelPane_drawCliqueList() {
 			if (mouse_check_button_released(mb_left)) {
 				var _layerList = global.nodeMap[? "resonanceLayerList"];
 				if (scr_isNumericAndExists(_layerList, ds_type_list)) {
-					var stackingOptionList = ds_list_create();
-					ds_list_copy(stackingOptionList, _layerList);
-					ds_list_add(stackingOptionList, "option_new-resonance-layer");
-					scr_createDropDown(activeLayerX1, activeLayerY2, stackingOptionList, global.optionListTypeResonanceLayer);
+					var _layerOptionList = ds_list_create();
+					ds_list_copy(_layerOptionList, _layerList);
+					ds_list_add(_layerOptionList, "option_new-resonance-layer");
+					scr_createDropDown(activeLayerX1, activeLayerY2, _layerOptionList, global.optionListTypeResonanceLayer);
 				}
 			}
 		}
 		
-		// draw text of active stacking
+		// draw text of active layer
 		draw_set_halign(fa_center);
 		draw_set_valign(fa_middle);
 		draw_set_color(global.colorThemeText);

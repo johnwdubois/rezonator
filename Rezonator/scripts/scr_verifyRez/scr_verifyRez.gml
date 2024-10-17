@@ -74,6 +74,7 @@ function scr_verifyRez() {
 		scr_verifyRezCheckDS("showList", ds_type_list);
 		scr_verifyRezCheckDS("chunkList", ds_type_list)
 		scr_verifyRezCheckDS("treeList", ds_type_list);
+		scr_verifyRezCheckDS("treeNavList", ds_type_list);
 
 		// get chain field map, if supplied
 		var chainFieldMap = global.nodeMap[? "chainTagMap"];
@@ -157,6 +158,14 @@ function scr_verifyRez() {
 			}
 		}
 	}
+	
+	// make sure every stack, trail, and resonance have a layer
+	scr_assignDefaultLayerToChainsWithoutLayer("resonance");
+	scr_assignDefaultLayerToChainsWithoutLayer("trail");
+	scr_assignDefaultLayerToChainsWithoutLayer("stack");
+	scr_assignDefaultLayerToChainsWithoutLayer("tree");
+	
+	scr_refreshTreeNavList();
 	
 	return false;
 	
