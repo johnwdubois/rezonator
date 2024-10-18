@@ -30,7 +30,10 @@ function scr_setDialogueText() {
 				descriptionText = scr_get_translation("option_rename-clique");
 			}
 			else if (_dialogBoxType == DIALOG_QUESTION_REMOVECHUNKFROMCHAINSBEFOREDELETE) {
-				descriptionText = "This chunk is in a number of trails and/or resonances across different layers. Remove this chunk from all its trails and/or resonances and also delete the chunk?"
+				descriptionText = "This chunk is in a number of trails and/or resonances across different layers. Remove this chunk from all its trails and/or resonances and also delete the chunk?";
+			}
+			else if (_dialogBoxType == DIALOG_QUESTION_REMOVETOKENFROMCHAINSBEFOREDELETE) {
+				descriptionText = "This token is in a number of trails and/or resonances across different layers. Remove this token from all its trails and/or resonances and also delete the token?";
 			}
 		}
 		catch (e) {
@@ -134,6 +137,9 @@ function scr_setDialogueText() {
 			var displayToken = tokenTagMap[?global.displayTokenField];
 			titleText = "Delete selected token?";
 			descriptionText = string(displayToken);
+			if (obj_control.inactiveChainsThatTokenIsIn >= 1) {
+				descriptionText += "\n\nThis token is in " + string(obj_control.inactiveChainsThatTokenIsIn) + " trails and/or resonances across different layers. Remove this token from all its trails and/or resonances and also delete the token?";
+			}
 		}
 		
 		if (splitUnit) {

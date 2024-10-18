@@ -1,9 +1,9 @@
 {
   "$GMScript":"v1",
-  "%Name":"scr_getInactiveChainsThatChunkIsIn",
+  "%Name":"scr_removeTokenFromAllChains",
   "isCompatibility":false,
   "isDnD":false,
-  "name":"scr_getInactiveChainsThatChunkIsIn",
+  "name":"scr_removeTokenFromAllChains",
   "parent":{
     "name":"chunks",
     "path":"folders/Scripts/chunks.yy",

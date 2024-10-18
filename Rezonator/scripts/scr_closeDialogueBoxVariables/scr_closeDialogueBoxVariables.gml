@@ -99,6 +99,7 @@ function scr_closeDialogueBoxVariables() {
 			deleteTrack = false;
 			downloadDialogue = false;
 			deleteChunk = "";
+			inactiveChainsThatTokenIsIn = -1;
 		}
 		with (obj_chain) {
 			mergeStackID = "";

@@ -879,6 +879,8 @@ mouseoverBackArrowStopClick = false;
 
 createChunkNoChain = false;
 chunkToRemoveFromChains = "";
+tokenToRemoveFromChains = "";
+inactiveChainsThatTokenIsIn = -1;
 chunkRecentlyCreated = ""; // ID of most recently created chunk
 
 //lock fields

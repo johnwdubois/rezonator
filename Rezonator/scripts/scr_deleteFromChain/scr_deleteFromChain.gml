@@ -70,8 +70,8 @@ function scr_deleteFromChain(sortVizSetList) {
 	if (focusedEntryIsChunk) {
 		
 		// if this chunk is in any chains on other layers, we will not delete it
-		var _inactiveResonancesThatChunkIsIn = scr_getInactiveChainsThatChunkIsIn(focusedEntryToken, "resonance");
-		var _inactiveTrailsThatChunkIsIn = scr_getInactiveChainsThatChunkIsIn(focusedEntryToken, "trail");
+		var _inactiveResonancesThatChunkIsIn = scr_getInactiveChainsThatIDIsIn(focusedEntryToken, "resonance");
+		var _inactiveTrailsThatChunkIsIn = scr_getInactiveChainsThatIDIsIn(focusedEntryToken, "trail");
 		if (array_length(_inactiveResonancesThatChunkIsIn) < 1 && array_length(_inactiveTrailsThatChunkIsIn) < 1) {
 			var focusedEntryChunkSubMap = global.nodeMap[? focusedEntryToken];
 			if (scr_isNumericAndExists(focusedEntryChunkSubMap, ds_type_map)) {

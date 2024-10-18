@@ -18,6 +18,13 @@ function scr_dialogueConfirm() {
 			obj_control.chunkToRemoveFromChains = "";
 			obj_chain.currentFocusedChainID = "";
 		}
+		else if (_dialogBoxType == DIALOG_QUESTION_REMOVETOKENFROMCHAINSBEFOREDELETE) {
+			scr_removeTokenFromAllChains(obj_control.tokenToRemoveFromChains, global.nodeMap[? "resonanceList"]);
+			scr_removeTokenFromAllChains(obj_control.tokenToRemoveFromChains, global.nodeMap[? "trailList"]);
+			scr_deleteToken(obj_control.tokenToRemoveFromChains);
+			obj_control.tokenToRemoveFromChains = "";
+			obj_chain.currentFocusedChainID = "";
+		}
 		
 		// turn off dialog box variables and destroy dialog box
 		scr_closeDialogueBoxVariables();

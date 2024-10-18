@@ -12,8 +12,8 @@ function scr_deleteChunk(chunkID) {
 	
 	
 	// first, let's check if this chunk is in any chains in any inactive layers
-	var _inactiveResonancesThatChunkIsIn = scr_getInactiveChainsThatChunkIsIn(chunkID, "resonance");
-	var _inactiveTrailsThatChunkIsIn = scr_getInactiveChainsThatChunkIsIn(chunkID, "trail");
+	var _inactiveResonancesThatChunkIsIn = scr_getInactiveChainsThatIDIsIn(chunkID, "resonance");
+	var _inactiveTrailsThatChunkIsIn = scr_getInactiveChainsThatIDIsIn(chunkID, "trail");
 	var _inactiveChainsThatChunkIsIn = array_length(_inactiveResonancesThatChunkIsIn) + array_length(_inactiveTrailsThatChunkIsIn);
 	show_debug_message("_inactiveChainsThatChunkIsIn: " + string(_inactiveChainsThatChunkIsIn));
 	if (_inactiveChainsThatChunkIsIn >= 1) {

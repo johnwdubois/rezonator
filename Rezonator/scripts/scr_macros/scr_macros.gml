@@ -92,6 +92,7 @@ function scr_macros(){
 		#macro DIALOG_QUESTION_SAVEBEFOREGAMEEND "dialog_question_saveBeforeGameEnd"
 		#macro DIALOG_QUESTION_MERGETOKEN "dialog_question_mergeToken"
 		#macro DIALOG_QUESTION_REMOVECHUNKFROMCHAINSBEFOREDELETE "dialog_question_removeChunkFromChainsBeforeDelete"
+		#macro DIALOG_QUESTION_REMOVETOKENFROMCHAINSBEFOREDELETE "dialog_question_removeTokenFromChainsBeforeDelete"
 		#macro DIALOG_INPUT_RENAMECLIQUE "dialog_rename_clique"
 	#endregion
 	

@@ -5,7 +5,6 @@ function scr_deleteToken(tokenID) {
 	var tokenSubMap = global.nodeMap[? tokenID];
 	if (!scr_isNumericAndExists(tokenSubMap, ds_type_map)) exit;
 	
-	
 	// get the unit for this token, and find what index this token is in that unit's entry list
 	var unitID = tokenSubMap[? "unit"];
 	var unitSubMap = global.nodeMap[? unitID];
@@ -53,6 +52,13 @@ function scr_deleteToken(tokenID) {
             }
         }
     }
+	
+	// remove this token from all chains that it is in across all layers
+    scr_removeTokenFromAllChains(tokenID, global.nodeMap[? "resonanceList"]);
+    scr_removeTokenFromAllChains(tokenID, global.nodeMap[? "trailList"]);
+    scr_removeTokenFromAllChains(tokenID, global.nodeMap[? "stackList"]);
+	
+	with (obj_chain) currentFocusedChainID = "";
 	
 	entryListSize = ds_list_size(entryList);
 	if (entryListSize <= 1) {
