@@ -26,25 +26,48 @@ function scr_newChain(ID) {
 
 	var aligned = false;
 	var chainInCliqueID = "";
+	var _layerMap = undefined;
 	
-	// get chainList and navList relevant to this type
+	// get chainList, navList, and layerMap relevant to this type
+	var _activeLayer = "";
 	var chainListKey = "resonanceList";
 	var chainNavListKey = "resonanceNavList";
 	if (chainType == "resonance") {
 		chainListKey = "resonanceList";
 		chainNavListKey = "resonanceNavList";
+		_activeLayer = obj_control.activeResonanceLayer;
+		_layerMap = global.resonanceLayerMap[? _activeLayer];
 	}
 	else if (chainType == "trail") {
 		chainListKey = "trailList";
 		chainNavListKey = "trailNavList";
+		_activeLayer = obj_control.activeTrailLayer;
+		_layerMap = global.trailLayerMap[? _activeLayer];
 	}
 	else if (chainType == "stack") {
 		chainListKey = "stackList";
 		chainNavListKey = "stackNavList";
+		_activeLayer = obj_control.activeStacking;
+		_layerMap = global.stackingMap[? _activeLayer];
+		show_debug_message("obj_control.activeStacking: " + string(obj_control.activeStacking));
 	}
 	var chainList = global.nodeMap[? chainListKey];
 	var chainNavList = global.nodeMap[? chainNavListKey];
-	var chainSeq = ds_list_size(chainNavList) + 1;
+	
+	// if layerMap is not valid, then let's spawn a new layer right now
+	if (!scr_isNumericAndExists(_layerMap, ds_type_map)) {		
+		var _activeLayerName = is_string(_activeLayer) && _activeLayer != "" ? _activeLayer : "_Default";
+		scr_createNewLayer(_activeLayerName, chainType);
+		if (chainType == "resonance") _layerMap = global.resonanceLayerMap[? obj_control.activeResonanceLayer];
+		else if (chainType == "trail") _layerMap = global.trailLayerMap[? obj_control.activeTrailLayer];
+		else if (chainType == "stack") _layerMap = global.stackingMap[? obj_control.activeStacking];
+	}
+	
+	// attempt to get chainSeq from layer map, and create the field if it doesn't exist
+	var chainSeq = _layerMap[? "chainSeq"];
+	if (!is_numeric(chainSeq)) chainSeq = ds_list_size(chainNavList);
+	chainSeq++;
+	_layerMap[? "chainSeq"] = chainSeq;
 
 	// set up chain variables depending on chainType
 	if (chainType == "resonance") {

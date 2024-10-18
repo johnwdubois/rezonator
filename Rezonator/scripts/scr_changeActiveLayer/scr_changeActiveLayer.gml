@@ -35,6 +35,7 @@ function scr_changeActiveLayer(_layerType, _layerID) {
 		scr_chainDeselect();
 	
 		// _layerType should be "stack"/"trail"
+		var _layerMap = undefined;
 		var _chainList = undefined;
 		var _navList = undefined;
 		var _layerFieldName = "";
@@ -42,16 +43,19 @@ function scr_changeActiveLayer(_layerType, _layerID) {
 			_chainList = global.nodeMap[? "stackList"];
 			_navList = global.nodeMap[? "stackNavList"];
 			_layerFieldName = "stacking";
+			_layerMap = global.stackingMap;
 		}
 		else if (_layerType == "trail") {
 			_chainList = global.nodeMap[? "trailList"];
 			_navList = global.nodeMap[? "trailNavList"];
 			_layerFieldName = "layer";
+			_layerMap = global.trailLayerMap;
 		}
 		else if (_layerType == "resonance") {
 			_chainList = global.nodeMap[? "resonanceList"];
 			_navList = global.nodeMap[? "resonanceNavList"];
 			_layerFieldName = "layer";
+			_layerMap = global.resonanceLayerMap;
 		}
 	
 		// let's also clear the filter/hide/selected lists
@@ -61,6 +65,9 @@ function scr_changeActiveLayer(_layerType, _layerID) {
 	
 		// let's clear the navList so we only see chains of the new layer
 		ds_list_clear(_navList);
+		
+		// find the default layer for this layer type
+		var _defaultLayer = scr_findDefaultLayer(_layerMap);
 	
 		// now, we need to clear any references to chains that are no longer of the active layer
 		var _chainListSize = ds_list_size(_chainList);
@@ -75,7 +82,7 @@ function scr_changeActiveLayer(_layerType, _layerID) {
 			// if this chain doesn't have a layer, let's set it to default
 			var _chainLayer = _chainSubMap[? _layerFieldName];
 			if (!is_string(_chainLayer)) {
-				_chainLayer = "Default";
+				_chainLayer = _defaultLayer;
 				_chainSubMap[? _layerFieldName] = _chainLayer;
 			}
 			

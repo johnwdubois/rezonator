@@ -3,6 +3,7 @@ function scr_panelPane_drawTree1ToMany() {
 	ds_list_clear(obj_control.inRectEntryIDList);
 
 	var mouseOverEntryID = "";
+	
 	// get tree submap, make sure it exists
 	if (!scr_isNumericAndExists(global.treeMap, ds_type_map)) {exit;}
 	var treeSubMap = global.treeMap[? functionTree_treeSelected];
@@ -10,6 +11,8 @@ function scr_panelPane_drawTree1ToMany() {
 	var setIDList = treeSubMap[? "setIDList"];
 	if (!scr_isNumericAndExists(setIDList, ds_type_list)) exit;
 	var setIDListSize = ds_list_size(setIDList);
+	var _treeLayer = treeSubMap[? "layer"];
+	if (_treeLayer != obj_control.activeStacking) exit;
 	
 	
 	// draw light BG rect

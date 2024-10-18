@@ -20,6 +20,13 @@ function scr_createTree(tokenList) {
 	var _treeID = scr_generateRandomID();
 	ds_map_add_map(global.treeMap, _treeID, ds_map_create());
 	
+	// get treeSeq from stack layer map
+	var _stackLayerMap = global.stackingMap[? obj_control.activeStacking];
+	var _treeSeq = _stackLayerMap[? "treeSeq"];
+	if (!is_numeric(_treeSeq)) _treeSeq = ds_list_size(_treeNavList);
+	_treeSeq++;
+	_stackLayerMap[? "treeSeq"] = _treeSeq;
+	
 	// add some cool data to the tree
 	ds_list_add(treeList, _treeID);
 	ds_list_add(_treeNavList, _treeID);
@@ -29,7 +36,7 @@ function scr_createTree(tokenList) {
 	ds_map_add_list(treeSubMap, "linkIDList", treeLinkIDList);
 	ds_map_add_list(treeSubMap, "setIDList", treeSetIDList);
 	ds_map_add_list(treeSubMap, "tokenList", tokenList);
-	ds_map_add(treeSubMap, "name", "Tree " + string(ds_list_size(treeList)));
+	ds_map_add(treeSubMap, "name", "Tree " + string(_treeSeq));
 	ds_map_add(treeSubMap, "type", "tree");
 	ds_map_add(treeSubMap, "layer", obj_control.activeStacking);
 	

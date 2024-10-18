@@ -59,45 +59,35 @@ function scr_nodeMapDefaultData() {
 	global.participantMap = ds_map_create();
 	ds_map_add(global.participantMap, "type", "map");
 	
-	// create the stacking map
-	global.stackingMap = ds_map_create();
-	ds_map_add(global.stackingMap, "type", "map");
-	var defaultStackingSubMap = ds_map_create();
-	defaultStackingSubMap[? "name"] = "Default";
-	ds_map_add_map(global.stackingMap, "Default", defaultStackingSubMap);
-	
-	// create the trailLayer map
-	global.trailLayerMap = ds_map_create();
-	ds_map_add(global.trailLayerMap, "type", "map");
-	var defaultTrailLayerSubMap = ds_map_create();
-	defaultTrailLayerSubMap[? "name"] = "Default";
-	ds_map_add_map(global.trailLayerMap, "Default", defaultTrailLayerSubMap);
-	
-	// create the resonanceLayer map
-	global.resonanceLayerMap = ds_map_create();
-	ds_map_add(global.resonanceLayerMap, "type", "map");
-	var defaultResonanceLayerSubMap = ds_map_create();
-	defaultResonanceLayerSubMap[? "name"] = "Default";
-	ds_map_add_map(global.resonanceLayerMap, "Default", defaultResonanceLayerSubMap);
-
-	// create lists of nodes for these panes
-	ds_map_add_list(global.nodeMap, "searchNodeList", ds_list_create());
-	ds_map_add_list(global.nodeMap, "treeList", ds_list_create());
-	
 	// making stackingList with default value
 	var _stackingList = ds_list_create();
-	ds_list_add(_stackingList, "Default");
 	ds_map_add_list(global.nodeMap, "stackingList", _stackingList);
 	
 	// making trailLayerList with default value
 	var _trailLayerList = ds_list_create();
-	ds_list_add(_trailLayerList, "Default");
 	ds_map_add_list(global.nodeMap, "trailLayerList", _trailLayerList);
 	
 	// making resonanceLayerList with default value
 	var _resonanceLayerList = ds_list_create();
-	ds_list_add(_resonanceLayerList, "Default");
 	ds_map_add_list(global.nodeMap, "resonanceLayerList", _resonanceLayerList);
+	
+	// create the layer maps for stack/trail/resonance
+	global.stackingMap = ds_map_create();
+	ds_map_add(global.stackingMap, "type", "map");
+	global.trailLayerMap = ds_map_create();
+	ds_map_add(global.trailLayerMap, "type", "map");
+	global.resonanceLayerMap = ds_map_create();
+	ds_map_add(global.resonanceLayerMap, "type", "map");
+
+	// add layer maps to nodeMap
+	ds_map_add_map(global.nodeMap, "stackingMap", global.stackingMap);
+	ds_map_add_map(global.nodeMap, "trailLayerMap", global.trailLayerMap);
+	ds_map_add_map(global.nodeMap, "resonanceLayerMap", global.resonanceLayerMap);
+
+	// create lists of nodes for these panes
+	ds_map_add_list(global.nodeMap, "searchNodeList", ds_list_create());
+	ds_map_add_list(global.nodeMap, "treeList", ds_list_create());
+	ds_map_add_list(global.nodeMap, "treeNavList", ds_list_create());
 
 	// add map to nodeMap
 	ds_map_add_map(global.nodeMap, "searchMap", global.searchMap);
@@ -106,9 +96,6 @@ function scr_nodeMapDefaultData() {
 	ds_map_add_map(global.nodeMap, "colorMap", global.colorMap);
 	ds_map_add_map(global.nodeMap, "treeMap", global.treeMap);
 	ds_map_add_map(global.nodeMap, "participantMap", global.participantMap);
-	ds_map_add_map(global.nodeMap, "stackingMap", global.stackingMap);
-	ds_map_add_map(global.nodeMap, "trailLayerMap", global.trailLayerMap);
-	ds_map_add_map(global.nodeMap, "resonanceLayerMap", global.resonanceLayerMap);
 	
 	// add map to nodeList, so they're viewable in nodeMapViewer
 	var _nodeList = global.nodeMap[? "nodeList"];

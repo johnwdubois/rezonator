@@ -21,6 +21,7 @@ switch (currentStackerFuntion) {
 	case stackerFunctionGroup:
 		obj_control.activeStacking = "Group";
 		scr_groupStackerLoop();
+		scr_destroyEmptyLayers("stack");
 		break;
 		
 	case stackerFunctionPsent:
@@ -35,4 +36,4 @@ switch (currentStackerFuntion) {
 		break;
 }
 currentStackerFuntion = stackerFunctionDefault;
-obj_control.activeStacking = "Default";
+obj_control.activeStacking = scr_findDefaultLayer(global.stackingMap);

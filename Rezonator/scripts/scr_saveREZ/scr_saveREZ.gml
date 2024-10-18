@@ -129,6 +129,8 @@ function scr_saveREZ(autosave) {
 			
 				ds_map_add(map, "insertTokenStr", obj_control.insertTokenStr);
 				ds_map_add(map, "activeStacking", obj_control.activeStacking);
+				ds_map_add(map, "activeTrailLayer", obj_control.activeTrailLayer);
+				ds_map_add(map, "activeResonanceLayer", obj_control.activeResonanceLayer);
 			
 				ds_map_add(map, "lastSavedFilename", lastSavedFilename);
 			

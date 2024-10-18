@@ -218,3 +218,5 @@ quickLinkDeleted = false;
 mergeStackID = "";
 
 alarm[10] = 1;
+
+scr_verifyDefaultLayers();

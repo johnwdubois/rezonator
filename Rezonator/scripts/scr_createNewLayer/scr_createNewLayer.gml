@@ -1,5 +1,7 @@
 function scr_createNewLayer(_layerName, _layerType, stackName = undefined, stackerType = undefined){
 	
+	show_debug_message("scr_createNewLayer, _layerName: " + string(_layerName) + ", _layerType: " + string(_layerType));
+	
 	var _layerList = undefined;
 	var _layerMap = undefined;
 	

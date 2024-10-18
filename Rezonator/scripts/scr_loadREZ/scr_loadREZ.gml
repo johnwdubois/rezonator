@@ -123,6 +123,7 @@ function scr_loadREZ() {
 	// change to the layer for each type from when the rez file was saved
 	scr_changeActiveLayer("stack", obj_control.activeStacking);
 	scr_changeActiveLayer("trail", obj_control.activeTrailLayer);
+	scr_changeActiveLayer("resonance", obj_control.activeResonanceLayer);
 	
 	if (global.restoreAutosave) {
 		

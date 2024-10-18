@@ -111,32 +111,23 @@ function scr_verifyRez() {
 		global.resonanceLayerMap = scr_verifyRezCheckDS("resonanceLayerMap", ds_type_map, nodeList);
 	
 		// make sure stacking map & list contain default value
-		if (scr_isNumericAndExists(stackingList, ds_type_list)) scr_addToListOnce(stackingList, "Default");
 		if (scr_isNumericAndExists(global.stackingMap, ds_type_map)) {
-			if (!ds_map_exists(global.stackingMap, "Default")) {
-				var defaultStackingSubMap = ds_map_create();
-				defaultStackingSubMap[? "name"] = "Default";
-				ds_map_add_map(global.stackingMap, "Default", defaultStackingSubMap);
+			if (ds_map_size(global.stackingMap) < 2) {
+				scr_createNewLayer("_Default", "stack", "Stack", "");
 			}
 		}
 		
 		// make sure trailLayer map & list contain default value
-		if (scr_isNumericAndExists(trailLayerList, ds_type_list)) scr_addToListOnce(trailLayerList, "Default");
 		if (scr_isNumericAndExists(global.trailLayerMap, ds_type_map)) {
-			if (!ds_map_exists(global.trailLayerMap, "Default")) {
-				var defaultTrailLayerSubMap = ds_map_create();
-				defaultTrailLayerSubMap[? "name"] = "Default";
-				ds_map_add_map(global.trailLayerMap, "Default", defaultTrailLayerSubMap);
+			if (ds_map_size(global.trailLayerMap) < 2) {
+				scr_createNewLayer("_Default", "trail");
 			}
-		}
+		}	
 		
 		// make sure resonanceLayer map & list contain default value
-		if (scr_isNumericAndExists(resonanceLayerList, ds_type_list)) scr_addToListOnce(resonanceLayerList, "Default");
 		if (scr_isNumericAndExists(global.resonanceLayerMap, ds_type_map)) {
-			if (!ds_map_exists(global.resonanceLayerMap, "Default")) {
-				var defaultResonanceLayerSubMap = ds_map_create();
-				defaultResonanceLayerSubMap[? "name"] = "Default";
-				ds_map_add_map(global.resonanceLayerMap, "Default", defaultResonanceLayerSubMap);
+			if (ds_map_size(global.resonanceLayerMap) < 2) {
+				scr_createNewLayer("_Default", "resonance");
 			}
 		}
 		
