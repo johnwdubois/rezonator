@@ -1,11 +1,13 @@
 {
-  "resourceType": "GMScript",
-  "resourceVersion": "1.0",
-  "name": "scr_exportChainEntryGridNewRow",
-  "isCompatibility": false,
-  "isDnD": false,
-  "parent": {
-    "name": "export",
-    "path": "folders/Scripts/export.yy",
+  "$GMScript":"v1",
+  "%Name":"scr_exportChainEntryGridNewRow",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"scr_exportChainEntryGridNewRow",
+  "parent":{
+    "name":"export",
+    "path":"folders/Scripts/export.yy",
   },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

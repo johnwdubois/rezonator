@@ -1,11 +1,13 @@
 {
-  "resourceType": "GMScript",
-  "resourceVersion": "1.0",
-  "name": "scr_refreshPrevToken",
-  "isCompatibility": false,
-  "isDnD": false,
-  "parent": {
-    "name": "alignment",
-    "path": "folders/Scripts/alignment.yy",
+  "$GMScript":"v1",
+  "%Name":"scr_refreshPrevToken",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"scr_refreshPrevToken",
+  "parent":{
+    "name":"alignment",
+    "path":"folders/Scripts/alignment.yy",
   },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

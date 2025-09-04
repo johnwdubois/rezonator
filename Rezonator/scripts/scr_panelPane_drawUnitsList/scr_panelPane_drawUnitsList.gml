@@ -1,8 +1,5 @@
 function scr_panelPane_drawUnitsList() {
-
-
 	
-
 	var strHeight = string_height("0") * 1.5;
 	var spaceWidth = string_width(" ");
 	

@@ -1,11 +1,13 @@
 {
-  "resourceType": "GMScript",
-  "resourceVersion": "1.0",
-  "name": "scr_prevTokenInSequence",
-  "isCompatibility": false,
-  "isDnD": false,
-  "parent": {
-    "name": "token",
-    "path": "folders/Scripts/functions/token.yy",
+  "$GMScript":"v1",
+  "%Name":"scr_prevTokenInSequence",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"scr_prevTokenInSequence",
+  "parent":{
+    "name":"token",
+    "path":"folders/Scripts/functions/token.yy",
   },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

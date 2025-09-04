@@ -1,11 +1,13 @@
 {
-  "resourceType": "GMScript",
-  "resourceVersion": "1.0",
-  "name": "scr_surfaceStartHelp",
-  "isCompatibility": false,
-  "isDnD": false,
-  "parent": {
-    "name": "scrollBar",
-    "path": "folders/Scripts/scrollBar.yy",
+  "$GMScript":"v1",
+  "%Name":"scr_surfaceStartHelp",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"scr_surfaceStartHelp",
+  "parent":{
+    "name":"scrollBar",
+    "path":"folders/Scripts/scrollBar.yy",
   },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

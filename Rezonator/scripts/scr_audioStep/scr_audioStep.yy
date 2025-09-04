@@ -1,11 +1,13 @@
 {
-  "resourceType": "GMScript",
-  "resourceVersion": "1.0",
-  "name": "scr_audioStep",
-  "isCompatibility": false,
-  "isDnD": false,
-  "parent": {
-    "name": "audio",
-    "path": "folders/Scripts/audio.yy",
+  "$GMScript":"v1",
+  "%Name":"scr_audioStep",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"scr_audioStep",
+  "parent":{
+    "name":"audio",
+    "path":"folders/Scripts/audio.yy",
   },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

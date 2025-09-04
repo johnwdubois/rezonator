@@ -1,6 +1,7 @@
 function scr_toolsOptions(optionSelected) {
 	//toolsOptions
 	var optionIndex = ds_list_find_index(optionList, optionSelected);
+	show_debug_message("scr_toolsOptions, optionSelected: " + string(optionSelected));
 
 	switch (optionSelected)
 	{
@@ -60,6 +61,7 @@ function scr_toolsOptions(optionSelected) {
 			with (obj_dropDown) {
 				instance_destroy();	
 			}
+			obj_wordTip.wordTipDisplay = true;
 			break;
 		case "menu_stacker":
 			scr_destroyAllDropDownsOtherThanSelf();

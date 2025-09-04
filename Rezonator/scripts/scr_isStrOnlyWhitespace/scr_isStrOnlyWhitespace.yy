@@ -1,11 +1,13 @@
 {
-  "resourceType": "GMScript",
-  "resourceVersion": "1.0",
-  "name": "scr_isStrOnlyWhitespace",
-  "isCompatibility": false,
-  "isDnD": false,
-  "parent": {
-    "name": "string",
-    "path": "folders/Scripts/functions/string.yy",
+  "$GMScript":"v1",
+  "%Name":"scr_isStrOnlyWhitespace",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"scr_isStrOnlyWhitespace",
+  "parent":{
+    "name":"string",
+    "path":"folders/Scripts/functions/string.yy",
   },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

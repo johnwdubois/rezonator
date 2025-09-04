@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"scr_importAudio",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"scr_importAudio",
+  "parent":{
+    "name":"audio",
+    "path":"folders/Scripts/audio.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

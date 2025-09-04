@@ -68,9 +68,13 @@ function scr_verifyRez() {
 		var nodeList = scr_verifyRezCheckDS("nodeList", ds_type_list);
 		var linkFieldList = scr_verifyRezCheckDS("linkFieldList", ds_type_list);
 		var stackingList = scr_verifyRezCheckDS("stackingList", ds_type_list);
+		var trailLayerList = scr_verifyRezCheckDS("trailLayerList", ds_type_list);
+		var resonanceLayerList = scr_verifyRezCheckDS("resonanceLayerList", ds_type_list);
+		
 		scr_verifyRezCheckDS("showList", ds_type_list);
 		scr_verifyRezCheckDS("chunkList", ds_type_list)
 		scr_verifyRezCheckDS("treeList", ds_type_list);
+		scr_verifyRezCheckDS("treeNavList", ds_type_list);
 
 		// get chain field map, if supplied
 		var chainFieldMap = global.nodeMap[? "chainTagMap"];
@@ -99,17 +103,31 @@ function scr_verifyRez() {
 		// make sure important maps exist
 		global.treeMap = scr_verifyRezCheckDS("treeMap", ds_type_map, nodeList);
 		global.cliqueMap = scr_verifyRezCheckDS("cliqueMap", ds_type_map, nodeList);
+		global.cliqueMap_inactiveLayers = scr_verifyRezCheckDS("cliqueMap_inactiveLayers", ds_type_map, nodeList);
 		global.searchMap = scr_verifyRezCheckDS("searchMap", ds_type_map, nodeList);
 		global.colorMap = scr_verifyRezCheckDS("colorMap", ds_type_map, nodeList);
 		global.stackingMap = scr_verifyRezCheckDS("stackingMap", ds_type_map, nodeList);
+		global.trailLayerMap = scr_verifyRezCheckDS("trailLayerMap", ds_type_map, nodeList);
+		global.resonanceLayerMap = scr_verifyRezCheckDS("resonanceLayerMap", ds_type_map, nodeList);
 	
 		// make sure stacking map & list contain default value
-		if (scr_isNumericAndExists(stackingList, ds_type_list)) scr_addToListOnce(stackingList, "Default");
 		if (scr_isNumericAndExists(global.stackingMap, ds_type_map)) {
-			if (!ds_map_exists(global.stackingMap, "Default")) {
-				var defaultStackingSubMap = ds_map_create();
-				defaultStackingSubMap[? "name"] = "Default";
-				ds_map_add_map(global.stackingMap, "Default", defaultStackingSubMap);
+			if (ds_map_size(global.stackingMap) < 2) {
+				scr_createNewLayer("_Default", "stack", "Stack", "");
+			}
+		}
+		
+		// make sure trailLayer map & list contain default value
+		if (scr_isNumericAndExists(global.trailLayerMap, ds_type_map)) {
+			if (ds_map_size(global.trailLayerMap) < 2) {
+				scr_createNewLayer("_Default", "trail");
+			}
+		}	
+		
+		// make sure resonanceLayer map & list contain default value
+		if (scr_isNumericAndExists(global.resonanceLayerMap, ds_type_map)) {
+			if (ds_map_size(global.resonanceLayerMap) < 2) {
+				scr_createNewLayer("_Default", "resonance");
 			}
 		}
 		
@@ -131,6 +149,14 @@ function scr_verifyRez() {
 			}
 		}
 	}
+	
+	// make sure every stack, trail, and resonance have a layer
+	scr_assignDefaultLayerToChainsWithoutLayer("resonance");
+	scr_assignDefaultLayerToChainsWithoutLayer("trail");
+	scr_assignDefaultLayerToChainsWithoutLayer("stack");
+	scr_assignDefaultLayerToChainsWithoutLayer("tree");
+	
+	scr_refreshTreeNavList();
 	
 	return false;
 	

@@ -1,5 +1,7 @@
 function scr_createDialogBox(type, _cancelOption = false, _noOption = false){
 	
+	show_debug_message("scr_createDialogBox, type: " + string(type));
+	
 	// create dialog box
 	if (!instance_exists(obj_dialogueBox)) {
 		instance_create_layer(x, y, "InstancesDialogue", obj_dialogueBox);

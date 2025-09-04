@@ -1,11 +1,13 @@
 {
-  "resourceType": "GMScript",
-  "resourceVersion": "1.0",
-  "name": "scr_setNavFieldListsFromSchemaPart",
-  "isCompatibility": false,
-  "isDnD": false,
-  "parent": {
-    "name": "panelPane",
-    "path": "folders/Scripts/UI/panelPane.yy",
+  "$GMScript":"v1",
+  "%Name":"scr_setNavFieldListsFromSchemaPart",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"scr_setNavFieldListsFromSchemaPart",
+  "parent":{
+    "name":"panelPane",
+    "path":"folders/Scripts/UI/panelPane.yy",
   },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

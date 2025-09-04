@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"scr_refreshTreeNavList",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"scr_refreshTreeNavList",
+  "parent":{
+    "name":"Tree",
+    "path":"folders/Scripts/Tree.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

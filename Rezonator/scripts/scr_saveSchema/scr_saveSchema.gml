@@ -56,7 +56,7 @@ function scr_saveSchema() {
 	jsonString = scr_jsonBeautify(jsonString);
 
 
-	scr_saveFileBuffer(working_directory + filename_name(fileName), fileName, jsonString);
+	scr_saveFileBuffer(fileName, jsonString);
 
 
 	ds_map_destroy(wrapper);

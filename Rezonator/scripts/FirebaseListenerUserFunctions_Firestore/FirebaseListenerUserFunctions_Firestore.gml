@@ -1,7 +1,7 @@
 
 function Firebase_Listener_Refresh_Firestore(ind)
 {
-	with (ind)
+	with(ind)
 	{
 		ind.alarm[0] = -1
 		event_perform(ev_alarm,0)

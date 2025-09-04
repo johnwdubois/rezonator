@@ -1,11 +1,13 @@
 {
-  "resourceType": "GMScript",
-  "resourceVersion": "1.0",
-  "name": "scr_splitSentence",
-  "isCompatibility": false,
-  "isDnD": false,
-  "parent": {
-    "name": "split",
-    "path": "folders/Scripts/functions/string/split.yy",
+  "$GMScript":"v1",
+  "%Name":"scr_splitSentence",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"scr_splitSentence",
+  "parent":{
+    "name":"split",
+    "path":"folders/Scripts/functions/string/split.yy",
   },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

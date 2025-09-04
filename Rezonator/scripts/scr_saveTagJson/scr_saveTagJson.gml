@@ -77,7 +77,7 @@ function scr_saveTagJson() {
 	ds_map_add_list(wrapper, "ROOT", rootList);
 	var jsonString = json_encode(wrapper);
 	jsonString = scr_jsonBeautify(jsonString);
-	scr_saveFileBuffer(working_directory + filename_name(fileName), fileName, jsonString);
+	scr_saveFileBuffer(fileName, jsonString);
 	ds_map_destroy(wrapper);
 	
 	#region destroy the temporary copy lists

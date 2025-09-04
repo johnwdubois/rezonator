@@ -1,11 +1,13 @@
 {
-  "resourceType": "GMScript",
-  "resourceVersion": "1.0",
-  "name": "scr_sortCliqueChainList",
-  "isCompatibility": false,
-  "isDnD": false,
-  "parent": {
-    "name": "cliques",
-    "path": "folders/Scripts/cliques.yy",
+  "$GMScript":"v1",
+  "%Name":"scr_sortCliqueChainList",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"scr_sortCliqueChainList",
+  "parent":{
+    "name":"cliques",
+    "path":"folders/Scripts/cliques.yy",
   },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

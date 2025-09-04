@@ -36,7 +36,7 @@ draw_circle(fontSliderPickX, fontSliderY, sliderPickRad, false);
 draw_set_color(global.colorThemeText);
 draw_set_halign(fa_center);
 draw_set_valign(fa_middle);
-draw_text(windowCenterX, fontSliderY - strHeight, scr_get_translation("tag_text"));
+draw_text(windowCenterX, fontSliderY - strHeight, scr_get_translation("option_text-size"));
 if (mouseoverFontSlider && !fontSliderHolding) {
 	if (mouse_check_button_pressed(mb_left)) {
 		fontSliderHolding = true;

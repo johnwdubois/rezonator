@@ -29,6 +29,12 @@ function scr_setDialogueText() {
 			else if (_dialogBoxType == DIALOG_INPUT_RENAMECLIQUE) {
 				descriptionText = scr_get_translation("option_rename-clique");
 			}
+			else if (_dialogBoxType == DIALOG_QUESTION_REMOVECHUNKFROMCHAINSBEFOREDELETE) {
+				descriptionText = "This chunk is in a number of trails and/or resonances across different layers. Remove this chunk from all its trails and/or resonances and also delete the chunk?";
+			}
+			else if (_dialogBoxType == DIALOG_QUESTION_REMOVETOKENFROMCHAINSBEFOREDELETE) {
+				descriptionText = "This token is in a number of trails and/or resonances across different layers. Remove this token from all its trails and/or resonances and also delete the token?";
+			}
 		}
 		catch (e) {
 			show_debug_message("scr_setDialogueText error: " + string(e.message));
@@ -42,15 +48,12 @@ function scr_setDialogueText() {
 		
 		if (instance_exists(obj_control)) {
 			if (obj_control.deleteRez) {
-				titleText = scr_get_translation("msg_clear-current-chain");
 				descriptionText = scr_get_translation("msg_warning_clear_focused_resonance");
 			}
 			else if (obj_control.deleteTrack) {
-				titleText = scr_get_translation("msg_clear-current-chain");
 				descriptionText = scr_get_translation("msg_warning_clear_focused_trail");
 			}
 			else if (obj_control.deleteStack) {
-				titleText = scr_get_translation("msg_clear-current-chain");
 				descriptionText = scr_get_translation("msg_warning_clear_focused_stack");
 			}
 			else if (obj_control.downloadDialogue) {
@@ -134,6 +137,9 @@ function scr_setDialogueText() {
 			var displayToken = tokenTagMap[?global.displayTokenField];
 			titleText = "Delete selected token?";
 			descriptionText = string(displayToken);
+			if (obj_control.inactiveChainsThatTokenIsIn >= 1) {
+				descriptionText += "\n\nThis token is in " + string(obj_control.inactiveChainsThatTokenIsIn) + " trails and/or resonances across different layers. Remove this token from all its trails and/or resonances and also delete the token?";
+			}
 		}
 		
 		if (splitUnit) {
@@ -357,8 +363,14 @@ function scr_setDialogueText() {
 			descriptionText = "Insert a space at the position you would like to split the token"; // localize
 		}
 		
-		if (obj_control.createNewStacking) {
+		if (obj_control.createNewLayer == "NewStacking") {
 			descriptionText = scr_get_translation("msg_name-new-stacking");
+		}
+		else if (obj_control.createNewLayer == "NewTrailLayer") {
+			descriptionText = scr_get_translation("msg_name-new-trail-layer");
+		}
+		else if (obj_control.createNewLayer == "NewResonanceLayer") {
+			descriptionText = scr_get_translation("msg_name-new-resonance-layer");
 		}
 		
 		if (instance_exists(obj_stacker)) {

@@ -66,6 +66,7 @@ global.colorMap = -1;
 global.searchMap = -1;
 
 global.cliqueMap = -1;
+global.cliqueMap_inactiveLayers = -1;
 
 
 

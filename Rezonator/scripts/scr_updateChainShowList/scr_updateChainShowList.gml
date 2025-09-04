@@ -1,6 +1,4 @@
-
-
-function scr_updateChainShowList(inChainsList, inEntryList, chainShowList, inBoxList,tokenID,rectX1,rectY1,rectX2,rectY2, mouseOverToken) {
+function scr_updateChainShowList(inChainsList, inEntryList, chainShowList, inBoxList, tokenID, rectX1, rectY1, rectX2, rectY2, mouseOverToken, camHeight) {
 	
 	// get size of inChainsList
 	var inChainsListSize = 0;
@@ -74,7 +72,7 @@ function scr_updateChainShowList(inChainsList, inEntryList, chainShowList, inBox
 		}
 	}
 	
-	
+	var _tokenOnScreen = rectY1 < camHeight && rectY2 > 0;
 	
 	// get size of inBoxList
 	var inBoxListSize = 0;
@@ -88,36 +86,39 @@ function scr_updateChainShowList(inChainsList, inEntryList, chainShowList, inBox
 		// check if this chunk is in any chains that should be added to chainShowList
 		var currentChunkSubMap = global.nodeMap[? currentChunk];
 		if (scr_isNumericAndExists(currentChunkSubMap, ds_type_map)) {
+		
+			if (_tokenOnScreen) {
 			
-			var currentChunkNest = currentChunkSubMap[? "nest"];
-			if (ds_map_exists(obj_chain.chunkShowMap, string(currentChunkNest))) {
-				var nestList = obj_chain.chunkShowMap[? string(currentChunkNest) ];
-				scr_addToListOnce(nestList, currentChunk);
-			}
-			else {
-				var nestList = ds_list_create();
-				ds_list_add(nestList, currentChunk);
-				ds_map_add_list(obj_chain.chunkShowMap, string(currentChunkNest), nestList);
-			}
+				var currentChunkNest = currentChunkSubMap[? "nest"];
+				if (ds_map_exists(obj_chain.chunkShowMap, string(currentChunkNest))) {
+					var nestList = obj_chain.chunkShowMap[? string(currentChunkNest) ];
+					scr_addToListOnce(nestList, currentChunk);
+				}
+				else {
+					var nestList = ds_list_create();
+					ds_list_add(nestList, currentChunk);
+					ds_map_add_list(obj_chain.chunkShowMap, string(currentChunkNest), nestList);
+				}
 
 
-			var currentChunkInChainsList = currentChunkSubMap[? "inChainsList"];
-			var currentChunkInEntryList = currentChunkSubMap[? "inEntryList"];
-			if (scr_isNumericAndExists(currentChunkInChainsList, ds_type_list) && scr_isNumericAndExists(currentChunkInEntryList, ds_type_list)) {
-				var currentChunkInChainsListSize = ds_list_size(currentChunkInChainsList);
-				for (var j = 0; j < currentChunkInChainsListSize; j++) {
-					var currentChain = currentChunkInChainsList[| j];
-					scr_addToListOnce(chainShowList, currentChain);
-					var currentChainSubMap = global.nodeMap[? currentChain];
-					var currentChainType = currentChainSubMap[? "type"];
+				var currentChunkInChainsList = currentChunkSubMap[? "inChainsList"];
+				var currentChunkInEntryList = currentChunkSubMap[? "inEntryList"];
+				if (scr_isNumericAndExists(currentChunkInChainsList, ds_type_list) && scr_isNumericAndExists(currentChunkInEntryList, ds_type_list)) {
+					var currentChunkInChainsListSize = ds_list_size(currentChunkInChainsList);
+					for (var j = 0; j < currentChunkInChainsListSize; j++) {
+						var currentChain = currentChunkInChainsList[| j];
+						scr_addToListOnce(chainShowList, currentChain);
+						var currentChainSubMap = global.nodeMap[? currentChain];
+						var currentChainType = currentChainSubMap[? "type"];
 					
-					var currentChunkInEntryListSize = ds_list_size(currentChunkInEntryList);
-					for (var k = 0; k < currentChunkInEntryListSize; k++) {
-						var currentChunkEntry = currentChunkInEntryList[| k];
-						var currentChunkEntrySubMap = global.nodeMap[? currentChunkEntry];
-						var currentChunkEntryType = currentChunkEntrySubMap[? "type"];
-						if ((currentChainType == "resonance" && currentChunkEntryType == "rez") || (currentChainType == "trail" && currentChunkEntryType == "track")) {
-							scr_updateChainShowMap(currentChain, currentChunkEntry, scr_getFirstWordOfChunk(currentChunk));
+						var currentChunkInEntryListSize = ds_list_size(currentChunkInEntryList);
+						for (var k = 0; k < currentChunkInEntryListSize; k++) {
+							var currentChunkEntry = currentChunkInEntryList[| k];
+							var currentChunkEntrySubMap = global.nodeMap[? currentChunkEntry];
+							var currentChunkEntryType = currentChunkEntrySubMap[? "type"];
+							if ((currentChainType == "resonance" && currentChunkEntryType == "rez") || (currentChainType == "trail" && currentChunkEntryType == "track")) {
+								scr_updateChainShowMap(currentChain, currentChunkEntry, scr_getFirstWordOfChunk(currentChunk));
+							}
 						}
 					}
 				}

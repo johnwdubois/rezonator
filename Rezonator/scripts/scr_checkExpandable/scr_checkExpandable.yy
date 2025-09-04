@@ -1,11 +1,13 @@
 {
-  "resourceType": "GMScript",
-  "resourceVersion": "1.0",
-  "name": "scr_checkExpandable",
-  "isCompatibility": false,
-  "isDnD": false,
-  "parent": {
-    "name": "dropDown",
-    "path": "folders/Scripts/UI/dropDown.yy",
+  "$GMScript":"v1",
+  "%Name":"scr_checkExpandable",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"scr_checkExpandable",
+  "parent":{
+    "name":"dropDown",
+    "path":"folders/Scripts/UI/dropDown.yy",
   },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

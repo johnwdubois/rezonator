@@ -77,6 +77,7 @@ focusedChainWrongTool = false;
 
 
 
+
 mouseLineHide = false;
 
 mouseLineWordID = "";
@@ -114,6 +115,7 @@ encounteredChainList = ds_list_create();
 encounteredChunkList = ds_list_create();
 traversedUnitList = ds_list_create();
 cliqueList =  ds_list_create();
+cliqueList_inactiveLayers = ds_list_create();
 currentClique = "";
 cycleDetected = false;
 newChainRefreshClique = "";
@@ -216,3 +218,5 @@ quickLinkDeleted = false;
 mergeStackID = "";
 
 alarm[10] = 1;
+
+scr_verifyDefaultLayers();

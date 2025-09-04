@@ -1,11 +1,13 @@
 {
-  "resourceType": "GMScript",
-  "resourceVersion": "1.0",
-  "name": "scr_getGridNameString",
-  "isCompatibility": false,
-  "isDnD": false,
-  "parent": {
-    "name": "grid",
-    "path": "folders/Scripts/functions/grid.yy",
+  "$GMScript":"v1",
+  "%Name":"scr_getGridNameString",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"scr_getGridNameString",
+  "parent":{
+    "name":"grid",
+    "path":"folders/Scripts/functions/grid.yy",
   },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

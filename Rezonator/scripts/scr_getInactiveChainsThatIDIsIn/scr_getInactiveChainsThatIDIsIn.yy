@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"scr_getInactiveChainsThatIDIsIn",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"scr_getInactiveChainsThatIDIsIn",
+  "parent":{
+    "name":"chunks",
+    "path":"folders/Scripts/chunks.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

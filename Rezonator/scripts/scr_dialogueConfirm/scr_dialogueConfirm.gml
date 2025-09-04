@@ -1,5 +1,7 @@
 function scr_dialogueConfirm() {
 	
+	show_debug_message("scr_dialogueConfirm");
+	
 	// get dialog box type
 	var _dialogBoxType = obj_selectControl.dialogBoxType;
 	if (is_string(_dialogBoxType) && _dialogBoxType != "") {
@@ -9,6 +11,20 @@ function scr_dialogueConfirm() {
 		else if (_dialogBoxType == DIALOG_QUESTION_URLABOUT) scr_URLOpenReliable("https://rezonator.com/about/");
 		else if (_dialogBoxType == DIALOG_QUESTION_URLGUIDE) scr_URLOpenReliable("https://johnwdubois.github.io/rezonator/");
 		else if (_dialogBoxType == DIALOG_INPUT_RENAMECLIQUE) scr_renameClique(obj_panelPane.functionClique_cliqueSelected, obj_control.inputText);
+		else if (_dialogBoxType == DIALOG_QUESTION_REMOVECHUNKFROMCHAINSBEFOREDELETE) {
+			scr_removeChunkFromAllChains(obj_control.chunkToRemoveFromChains, global.nodeMap[? "resonanceList"]);
+			scr_removeChunkFromAllChains(obj_control.chunkToRemoveFromChains, global.nodeMap[? "trailList"]);
+			scr_deleteChunk(obj_control.chunkToRemoveFromChains);
+			obj_control.chunkToRemoveFromChains = "";
+			obj_chain.currentFocusedChainID = "";
+		}
+		else if (_dialogBoxType == DIALOG_QUESTION_REMOVETOKENFROMCHAINSBEFOREDELETE) {
+			scr_removeTokenFromAllChains(obj_control.tokenToRemoveFromChains, global.nodeMap[? "resonanceList"]);
+			scr_removeTokenFromAllChains(obj_control.tokenToRemoveFromChains, global.nodeMap[? "trailList"]);
+			scr_deleteToken(obj_control.tokenToRemoveFromChains);
+			obj_control.tokenToRemoveFromChains = "";
+			obj_chain.currentFocusedChainID = "";
+		}
 		
 		// turn off dialog box variables and destroy dialog box
 		scr_closeDialogueBoxVariables();
@@ -211,15 +227,21 @@ function scr_dialogueConfirm() {
 				}
 			}
 		
-			// naming a new blank stacking
-			if (obj_control.createNewStacking) {
-				scr_createNewStacking(obj_control.inputText, obj_control.inputText, "");
+			// naming a new blank layer
+			if (string_length(obj_control.inputText) >= 1) {
+				if (obj_control.createNewLayer == "NewStacking") {
+					scr_createNewLayer(obj_control.inputText, "stack", obj_control.inputText, "");
+				}
+				else if (obj_control.createNewLayer == "NewTrailLayer") {
+					scr_createNewLayer(obj_control.inputText, "trail", obj_control.inputText, "");
+				}
+				else if (obj_control.createNewLayer == "NewResonanceLayer") {
+					scr_createNewLayer(obj_control.inputText, "resonance", obj_control.inputText, "");
+				}
 			}
 		
 			scr_closeDialogueBoxVariables();
 			instance_destroy();
-
-	
 		}
 		if (questionWindowActive) {
 		
@@ -330,7 +352,7 @@ function scr_dialogueConfirm() {
 			}
 		
 			if (is_string(stackingToActivate) && stackingToActivate != "") {
-				scr_changeActiveStacking(stackingToActivate);
+				scr_changeActiveLayer("stack", stackingToActivate);
 			}
 		
 			if (instance_exists(obj_control)) {

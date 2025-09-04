@@ -345,23 +345,6 @@ function scr_drawChunks() {
 				if (hoverChunkTokenListSize >= 1) {
 				
 					if (is_string(obj_chain.currentFocusedChainID) && obj_chain.currentFocusedChainID != "") {
-						var hoverChunkFirstToken = hoverChunkTokenList[| 0];
-						var hoverChunkFirstTokenSubMap = global.nodeMap[? hoverChunkFirstToken];
-						if (scr_isNumericAndExists(hoverChunkFirstTokenSubMap, ds_type_map)) {
-							var hoverChunkUnit = hoverChunkFirstTokenSubMap[? "unit"];
-							if (scr_checkUnitSideLink(hoverChunkUnit, obj_chain.currentFocusedChainID)) {
-								var inst = instance_create_layer(0, 0, "InstancesDialogue", obj_dialogueBox);
-								with (inst) {
-									questionWindowActive = true;
-									confirmSideLink = true;
-								}
-								obj_control.sideLinkTokenID = obj_control.hoverChunkID;
-								exit;
-							}
-						}
-					}
-				
-					if (is_string(obj_chain.currentFocusedChainID) && obj_chain.currentFocusedChainID != "") {
 						// add chunk to pre-existing chain
 						var chainSubMap = global.nodeMap[? obj_chain.currentFocusedChainID];
 						if (scr_isNumericAndExists(chainSubMap, ds_type_map)) {

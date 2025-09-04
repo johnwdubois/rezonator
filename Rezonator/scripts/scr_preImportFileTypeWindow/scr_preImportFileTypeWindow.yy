@@ -1,11 +1,13 @@
 {
-  "resourceType": "GMScript",
-  "resourceVersion": "1.0",
-  "name": "scr_preImportFileTypeWindow",
-  "isCompatibility": false,
-  "isDnD": false,
-  "parent": {
-    "name": "preImportScreen",
-    "path": "folders/Scripts/import/preImportScreen.yy",
+  "$GMScript":"v1",
+  "%Name":"scr_preImportFileTypeWindow",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"scr_preImportFileTypeWindow",
+  "parent":{
+    "name":"preImportScreen",
+    "path":"folders/Scripts/import/preImportScreen.yy",
   },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

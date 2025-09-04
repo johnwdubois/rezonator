@@ -19,6 +19,9 @@ function scr_newClique(chainID, unitID) {
 	// give new clique a name
 	newCliqueSubMap[? "name"] = "Clique " + string(ds_list_size(obj_chain.cliqueList));
 	
+	// assign new clique to active resonance layer
+	newCliqueSubMap[? "layer"] = obj_control.activeResonanceLayer;
+	
 	return newCliqueID;
 
 }

@@ -5,7 +5,7 @@ function scr_audioStep() {
 	
 	// drag to resize audio window
 	if (point_in_rectangle(mouse_x, mouse_y, x, y - 5, x + windowWidth, y + 5)) {
-		window_set_cursor(cr_size_ns);
+		scr_windowSetCursor(cr_size_ns);
 	
 		if (mouse_check_button_pressed(mb_left)) {
 			windowResizeYHolding = true;

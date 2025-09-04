@@ -1,11 +1,13 @@
 {
-  "resourceType": "GMScript",
-  "resourceVersion": "1.0",
-  "name": "scr_checkUnitStillInClique",
-  "isCompatibility": false,
-  "isDnD": false,
-  "parent": {
-    "name": "cliques",
-    "path": "folders/Scripts/cliques.yy",
+  "$GMScript":"v1",
+  "%Name":"scr_checkUnitStillInClique",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"scr_checkUnitStillInClique",
+  "parent":{
+    "name":"cliques",
+    "path":"folders/Scripts/cliques.yy",
   },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

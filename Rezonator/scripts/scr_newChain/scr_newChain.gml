@@ -15,38 +15,75 @@ function scr_newChain(ID) {
 	show_debug_message("scr_newChain... ID: " + string(ID));
 
 	var chainName = "";
-	var chainSeq = 0;
 	var chainType = "";
+	
+	// determine what type of chain this will be
+	if (idType == "token" || idType == "chunk") {
+		if (obj_toolPane.currentMode == obj_toolPane.modeRez) chainType = "resonance";
+		else if (obj_toolPane.currentMode == obj_toolPane.modeTrack) chainType = "trail";
+	}
+	else if (idType == "unit") chainType = "stack";
 
 	var aligned = false;
 	var chainInCliqueID = "";
+	var _layerMap = undefined;
+	
+	// get chainList, navList, and layerMap relevant to this type
+	var _activeLayer = "";
+	var chainListKey = "resonanceList";
+	var chainNavListKey = "resonanceNavList";
+	if (chainType == "resonance") {
+		chainListKey = "resonanceList";
+		chainNavListKey = "resonanceNavList";
+		_activeLayer = obj_control.activeResonanceLayer;
+		_layerMap = global.resonanceLayerMap[? _activeLayer];
+	}
+	else if (chainType == "trail") {
+		chainListKey = "trailList";
+		chainNavListKey = "trailNavList";
+		_activeLayer = obj_control.activeTrailLayer;
+		_layerMap = global.trailLayerMap[? _activeLayer];
+	}
+	else if (chainType == "stack") {
+		chainListKey = "stackList";
+		chainNavListKey = "stackNavList";
+		_activeLayer = obj_control.activeStacking;
+		_layerMap = global.stackingMap[? _activeLayer];
+		show_debug_message("obj_control.activeStacking: " + string(obj_control.activeStacking));
+	}
+	var chainList = global.nodeMap[? chainListKey];
+	var chainNavList = global.nodeMap[? chainNavListKey];
+	
+	// if layerMap is not valid, then let's spawn a new layer right now
+	if (!scr_isNumericAndExists(_layerMap, ds_type_map)) {		
+		var _activeLayerName = is_string(_activeLayer) && _activeLayer != "" ? _activeLayer : "_Default";
+		scr_createNewLayer(_activeLayerName, chainType);
+		if (chainType == "resonance") _layerMap = global.resonanceLayerMap[? obj_control.activeResonanceLayer];
+		else if (chainType == "trail") _layerMap = global.trailLayerMap[? obj_control.activeTrailLayer];
+		else if (chainType == "stack") _layerMap = global.stackingMap[? obj_control.activeStacking];
+	}
+	
+	// attempt to get chainSeq from layer map, and create the field if it doesn't exist
+	var chainSeq = _layerMap[? "chainSeq"];
+	if (!is_numeric(chainSeq)) chainSeq = ds_list_size(chainNavList);
+	chainSeq++;
+	_layerMap[? "chainSeq"] = chainSeq;
 
-
-	// set up chain variables depending on what type of ID is passed in
-	if (idType == "token" || idType == "chunk") {
-		if (obj_toolPane.currentMode == obj_toolPane.modeRez) {
-			aligned = true;
-			obj_chain.rezChainNameCounter++;
-			chainSeq = obj_chain.rezChainNameCounter;
-			chainName = "Rez " + string(chainSeq);
-			chainType = "resonance";
-			if (obj_control.shapeStartText == true) {
-				obj_control.shapeStartText = false;
-				obj_control.shape = obj_control.shapeBlock;
-			}
-		}
-		else if (obj_toolPane.currentMode == obj_toolPane.modeTrack) {
-			obj_chain.trackChainNameCounter++;
-			chainSeq = obj_chain.trackChainNameCounter;
-			chainName = "Trail " + string(chainSeq);
-			chainType = "trail";
+	// set up chain variables depending on chainType
+	if (chainType == "resonance") {
+		aligned = true;
+		obj_chain.rezChainNameCounter++;
+		chainName = "Rez " + string(chainSeq);
+		if (obj_control.shapeStartText) {
+			obj_control.shapeStartText = false;
+			obj_control.shape = obj_control.shapeBlock;
 		}
 	}
-	else if (idType == "unit") {
-		var stackNavList = global.nodeMap[? "stackNavList"];
-		chainSeq = ds_list_size(stackNavList) + 1;
-		chainType = "stack";
-		
+	else if (chainType == "trail") {
+		obj_chain.trackChainNameCounter++;
+		chainName = "Trail " + string(chainSeq);
+	}
+	else if (chainType == "stack") {
 		var stackNamePt1 = "";
 		var stackNamePt2 = string(chainSeq);
 		if (obj_control.activeStacking == "Default") stackNamePt1 = scr_get_translation("tab_name_stack");
@@ -68,14 +105,17 @@ function scr_newChain(ID) {
 		}
 		
 		chainName = stackNamePt1 + " " + stackNamePt2;
-		show_debug_message("newChain, stack name: " + string(chainName))
+		show_debug_message("newChain, stack name: " + string(chainName));
 	}
 	
 	// get random hex chainID
 	obj_chain.currentChainID = scr_addToNodeMap(chainType);
 	var newChainSubMap = global.nodeMap[? obj_chain.currentChainID];
-	
 	show_debug_message("scr_newChain... chainID: " + string(obj_chain.currentChainID) + ", chainType: " + string(chainType) + ", chainName:" + string(chainName));
+	
+	// add this new chain to chainList and chainNavList
+	ds_list_add(chainList, obj_chain.currentChainID);
+	ds_list_add(chainNavList, obj_chain.currentChainID);
 	
 	with (obj_chain) {
 		if (chainType == "resonance") resonancePrevFocused = currentFocusedChainID;
@@ -123,26 +163,6 @@ function scr_newChain(ID) {
 		obj_chain.dragStartOriginalChain = obj_chain.currentChainID;
 		show_debug_message("...dragStartOriginalChain: " + string(obj_chain.dragStartOriginalChain));
 	}
-	
-	// get chainList and navList and add this new chain to both
-	var chainListKey = "resonanceList";
-	var chainNavListKey = "resonanceNavList";
-	if (chainType == "resonance") {
-		chainListKey = "resonanceList";
-		chainNavListKey = "resonanceNavList";
-	}
-	else if (chainType == "trail") {
-		chainListKey = "trailList";
-		chainNavListKey = "trailNavList";
-	}
-	else if (chainType == "stack") {
-		chainListKey = "stackList";
-		chainNavListKey = "stackNavList";
-	}
-	var chainList = global.nodeMap[? chainListKey];
-	var chainNavList = global.nodeMap[? chainNavListKey];
-	ds_list_add(chainList, obj_chain.currentChainID);
-	ds_list_add(chainNavList, obj_chain.currentChainID);
 
 
 	var chainColor = scr_randomChainColor();
@@ -158,21 +178,16 @@ function scr_newChain(ID) {
 	}
 	else if (chainType == "resonance") {
 		newChainSubMap[? "inClique"] = chainInCliqueID;
+		newChainSubMap[? "layer"] = obj_control.activeResonanceLayer;
 		show_debug_message("newChain, chainInCliqueID: " + string(chainInCliqueID));
+	}
+	else if (chainType == "trail") {
+		newChainSubMap[? "layer"] = obj_control.activeTrailLayer;
 	}
 
 	obj_chain.currentFocusedChainID = obj_chain.currentChainID;
 
 
-	with (obj_panelPane) {
-		var willHop = (functionChainList_currentTab == NAVTAB_RESONANCE && obj_toolPane.currentMode == obj_toolPane.modeRez)
-		or (functionChainList_currentTab == NAVTAB_TRACK && obj_toolPane.currentMode == obj_toolPane.modeTrack)
-		or (functionChainList_currentTab == NAVTAB_STACK && obj_toolPane.currentMode != obj_toolPane.modeRead)
-		
-		if (currentFunction == functionChainList and willHop) {
-			alarm[4] = 2;
-		}
-	}
 	if (global.steamAPI) {
 		if (!steam_get_achievement("SA_chain")) {
 			steam_set_achievement("SA_chain");

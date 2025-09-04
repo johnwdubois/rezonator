@@ -1,6 +1,4 @@
 function scr_panelPane_drawTabs() {
-
-
 	
 	// Set opacity, font, and alignment of text in chain tabs
 	draw_set_alpha(1);
@@ -9,6 +7,7 @@ function scr_panelPane_drawTabs() {
 	scr_adaptFont("0", "M");
 	
 	var strHeight = string_height("0");
+	var _textHPadding = floor(strHeight * 0.35);
 	var sprHeight = sprite_get_height(spr_filterIcons);
 	var textMarginLeft = 5;
 	var mouseoverCancel = instance_exists(obj_dropDown) || instance_exists(obj_dialogueBox) || instance_exists(obj_sizeWindow);
@@ -23,8 +22,6 @@ function scr_panelPane_drawTabs() {
 	}
 
 	var buttonScale = (1+global.fontSize/10);
-
-
 	
 	
 	var tabList = obj_control.panelPaneTabList;
@@ -228,9 +225,9 @@ function scr_panelPane_drawTabs() {
 		//draw_rectangle(tabRectX1, tabRectY1, tabRectX2, tabRectY2, true);
 		draw_set_color(global.colorThemeText);
 		scr_adaptFont(scr_get_translation(currentTab), "M");
-		draw_set_halign(fa_center);
+		draw_set_halign(fa_left);
 		draw_set_valign(fa_middle);
-		draw_text(floor(mean(tabRectX2, tabRectX1)),floor(mean(tabRectY2, tabRectY1+edgeBufferY)), scr_get_translation(currentTab));
+		draw_text(tabRectX1 + _textHPadding, floor(mean(tabRectY2, tabRectY1 + edgeBufferY)), scr_get_translation(currentTab));
 
 	}
 	

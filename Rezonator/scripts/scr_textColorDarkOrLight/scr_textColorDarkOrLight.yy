@@ -1,11 +1,13 @@
 {
-  "resourceType": "GMScript",
-  "resourceVersion": "1.0",
-  "name": "scr_textColorDarkOrLight",
-  "isCompatibility": false,
-  "isDnD": false,
-  "parent": {
-    "name": "theme",
-    "path": "folders/Scripts/functions/theme.yy",
+  "$GMScript":"v1",
+  "%Name":"scr_textColorDarkOrLight",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"scr_textColorDarkOrLight",
+  "parent":{
+    "name":"theme",
+    "path":"folders/Scripts/functions/theme.yy",
   },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

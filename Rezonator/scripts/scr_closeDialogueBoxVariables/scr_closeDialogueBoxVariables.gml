@@ -1,6 +1,6 @@
 function scr_closeDialogueBoxVariables() {
 	
-	show_debug_message("scr_closeDialogueBoxVariables");
+	show_debug_message("scr_closeDialogueBoxVariables, obj_selectControl.dialogBoxType: " + string(obj_selectControl.dialogBoxType));
 	with (obj_selectControl) dialogBoxType = "";
 	
 	if (inputWindowActive) {
@@ -43,7 +43,7 @@ function scr_closeDialogueBoxVariables() {
 			splitTokenField = "";
 			splitTokenCopyTags = true;
 			setChainName = false;
-			createNewStacking = false;
+			createNewLayer = "";
 		}
 		with (obj_stacker) {
 			confirmStackName = false;
@@ -99,6 +99,7 @@ function scr_closeDialogueBoxVariables() {
 			deleteTrack = false;
 			downloadDialogue = false;
 			deleteChunk = "";
+			inactiveChainsThatTokenIsIn = -1;
 		}
 		with (obj_chain) {
 			mergeStackID = "";

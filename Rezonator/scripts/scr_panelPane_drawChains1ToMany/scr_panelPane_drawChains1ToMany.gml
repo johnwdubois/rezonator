@@ -1,10 +1,7 @@
 function scr_panelPane_drawChains1ToMany() {
 	/*
 		Purpose: whatever chain is focused on in the chainList panelPane, draw information on the individual contents of that chain
-	*/
-	
-	
-	
+	*/	
 	
 	var chain1toManyColFieldList = -1;
 	with (obj_panelPane) {
@@ -87,6 +84,17 @@ function scr_panelPane_drawChains1ToMany() {
 		exit;
 	}
 	
+	// make sure this chain is of the active layer
+	var _layerKey = functionChainList_currentTab == NAVTAB_STACK ? "stacking" : "layer";
+	var _chainLayer = chainSubMap[? _layerKey];
+	if ((functionChainList_currentTab == NAVTAB_RESONANCE && _chainLayer != obj_control.activeResonanceLayer)
+	|| (functionChainList_currentTab == NAVTAB_TRACK && _chainLayer != obj_control.activeTrailLayer)
+	|| (functionChainList_currentTab == NAVTAB_STACK && _chainLayer != obj_control.activeStacking)) {
+		with (obj_panelPane) functionChainContents_chainID = "";
+		if (BUILDTYPE != "Web") scr_surfaceEnd();
+		exit;
+	}
+	
 	if (functionChainContents_chainIDPrev != chainID) {
 		show_debug_message("functionChainContents_chainIDPrev changed");
 		if (obj_control.chain1toManyCustomSortColIndex != -1) obj_control.refreshCustomSort = true;
@@ -97,6 +105,7 @@ function scr_panelPane_drawChains1ToMany() {
 	var chainType = chainSubMap[? "type"];
 	var chainAligned = chainSubMap[? "alignChain"];
 	var chainFocusedEntry = chainSubMap[? "focused"];
+
 	
 	// make sure that we have a valid chain type
 	if (chainType != "resonance" && chainType != "trail" && chainType != "stack") {
@@ -138,7 +147,7 @@ function scr_panelPane_drawChains1ToMany() {
 		else if (chainType == "stack") stackPrevFocused = chainID;
 	}
 	
-
+	
 		
 	// loop over the vizSetIDList and draw the data in each of the chain entries
 	if (scr_isNumericAndExists(functionChainContents_IDList, ds_type_list)) {

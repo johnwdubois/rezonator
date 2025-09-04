@@ -327,7 +327,7 @@ function scr_drawChains() {
 							draw_line_width(trackChainLineX1, trackChainLineY1, trackChainLineX2, trackChainLineY2, currentChainFocused ? 3 : 2);
 						}
 						else {
-							scr_drawCurvedLine(trackChainLineX1, lineY1 + (currentWordStringHeight1 / 2), trackChainLineX2, lineY2 - (currentWordStringHeight2 / 2), currentChainColor, currentChainFocused ? 3 : 2);
+							scr_drawCurvedLine(trackChainLineX1, lineY1 + (currentWordStringHeight1 / 2), trackChainLineX2, lineY2 - (currentWordStringHeight2 / 2), currentChainColor, currentChainFocused ? 6 : 3);
 						}
 
 					}

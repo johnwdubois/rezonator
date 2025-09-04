@@ -9,6 +9,20 @@ function scr_deleteChunk(chunkID) {
 	var chunkSubMap = global.nodeMap[? chunkID];
 	if (!scr_isNumericAndExists(chunkSubMap, ds_type_map)) exit;
 	
+	
+	
+	// first, let's check if this chunk is in any chains in any inactive layers
+	var _inactiveResonancesThatChunkIsIn = scr_getInactiveChainsThatIDIsIn(chunkID, "resonance");
+	var _inactiveTrailsThatChunkIsIn = scr_getInactiveChainsThatIDIsIn(chunkID, "trail");
+	var _inactiveChainsThatChunkIsIn = array_length(_inactiveResonancesThatChunkIsIn) + array_length(_inactiveTrailsThatChunkIsIn);
+	show_debug_message("_inactiveChainsThatChunkIsIn: " + string(_inactiveChainsThatChunkIsIn));
+	if (_inactiveChainsThatChunkIsIn >= 1) {
+		obj_control.chunkToRemoveFromChains = chunkID;
+		scr_createDialogBox(DIALOG_QUESTION_REMOVECHUNKFROMCHAINSBEFOREDELETE, true);
+		exit;
+	}
+	
+	
 	// remove this chunk from all chains that it is in, then destroy the inChainsList
 	var inChainsList = chunkSubMap[? "inChainsList"];
 	if (scr_isNumericAndExists(inChainsList, ds_type_list)) {

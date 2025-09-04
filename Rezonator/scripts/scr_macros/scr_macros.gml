@@ -8,7 +8,7 @@ function scr_macros(){
 	
 		// BUILDTYPE should be set to one of the following values:
 		// "Windows_GitHub_Master", "Mac_GitHub_Master", "Windows_GitHub_Release"
-		// "Mac_GitHub_Release", "Steam", "Windows_Website", "Mac_Website", "Web"
+		// "Mac_GitHub_Release", "Steam", "Windows_Website", "Mac_Website", "Ubuntu_Website", "Web"
 		#macro BUILDTYPE "Windows_Website"
 		
 		// to set whether Steam is enabled, open the Steamworks extension in the Asset Browser
@@ -91,6 +91,8 @@ function scr_macros(){
 		#macro DIALOG_QUESTION_SAVEBEFOREOPEN "dialog_question_saveBeforeOpen"
 		#macro DIALOG_QUESTION_SAVEBEFOREGAMEEND "dialog_question_saveBeforeGameEnd"
 		#macro DIALOG_QUESTION_MERGETOKEN "dialog_question_mergeToken"
+		#macro DIALOG_QUESTION_REMOVECHUNKFROMCHAINSBEFOREDELETE "dialog_question_removeChunkFromChainsBeforeDelete"
+		#macro DIALOG_QUESTION_REMOVETOKENFROMCHAINSBEFOREDELETE "dialog_question_removeTokenFromChainsBeforeDelete"
 		#macro DIALOG_INPUT_RENAMECLIQUE "dialog_rename_clique"
 	#endregion
 	

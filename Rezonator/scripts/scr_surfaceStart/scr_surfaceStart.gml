@@ -54,7 +54,7 @@ function scr_surfaceStart() {
 					mouseoverPanelPane = true;
 				}
 				if (room != rm_importScreen && room != rm_openingScreen && !instance_exists(obj_dropDown)) {
-					window_set_cursor(cr_size_ns);
+					scr_windowSetCursor(cr_size_ns);
 				}
 				if (mouse_check_button_pressed(mb_left) && !instance_exists(obj_dropDown) ) {
 					windowResizeYHolding = true;
@@ -101,11 +101,11 @@ function scr_surfaceStart() {
 		if (mouse_check_button(mb_left)) {
 			if (windowResizeXHolding) {
 				windowWidth = mouse_x - x;
-				window_set_cursor(cr_size_we);
+				scr_windowSetCursor(cr_size_we);
 			}
 			else if (windowResizeYHolding) {
 				if (room != rm_openingScreen && !instance_exists(obj_dropDown)) {
-					window_set_cursor(cr_size_ns);
+					scr_windowSetCursor(cr_size_ns);
 				}
 		
 				if (object_index == obj_panelPane) {

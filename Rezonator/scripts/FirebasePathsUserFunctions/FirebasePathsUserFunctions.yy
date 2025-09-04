@@ -1,11 +1,13 @@
 {
-  "resourceType": "GMScript",
-  "resourceVersion": "1.0",
-  "name": "FirebasePathsUserFunctions",
-  "isCompatibility": false,
-  "isDnD": false,
-  "parent": {
-    "name": "Extensions",
-    "path": "folders/Firebase Firestore/Extensions.yy",
+  "$GMScript":"v1",
+  "%Name":"FirebasePathsUserFunctions",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"FirebasePathsUserFunctions",
+  "parent":{
+    "name":"Firebase Utils",
+    "path":"folders/Firebase Utils.yy",
   },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

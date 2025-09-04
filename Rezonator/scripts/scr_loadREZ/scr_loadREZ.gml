@@ -105,11 +105,6 @@ function scr_loadREZ() {
 	
 	scr_openFileRefreshCliques();
 	scr_lockChunks(true);
-
-	var x1 = irandom(1);
-	var y1 = irandom(1);
-	if (x1 == y1) show_debug_message("hello terry :)");
-	else show_debug_message("oh my god");
 	
 	// when opening a rez file, use full unit list (do not open)
 	var docNodeSubMap = global.nodeMap[? global.discourseNode];
@@ -125,8 +120,10 @@ function scr_loadREZ() {
 		}
 	}
 	
-	// change to the stackType from when the rez file was saved
-	scr_changeActiveStacking(obj_control.activeStacking);
+	// change to the layer for each type from when the rez file was saved
+	scr_changeActiveLayer("stack", obj_control.activeStacking);
+	scr_changeActiveLayer("trail", obj_control.activeTrailLayer);
+	scr_changeActiveLayer("resonance", obj_control.activeResonanceLayer);
 	
 	if (global.restoreAutosave) {
 		

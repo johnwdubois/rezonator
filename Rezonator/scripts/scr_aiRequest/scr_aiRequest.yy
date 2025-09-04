@@ -1,11 +1,13 @@
 {
-  "resourceType": "GMScript",
-  "resourceVersion": "1.0",
-  "name": "scr_aiRequest",
-  "isCompatibility": false,
-  "isDnD": false,
-  "parent": {
-    "name": "ai",
-    "path": "folders/Scripts/ai.yy",
+  "$GMScript":"v1",
+  "%Name":"scr_aiRequest",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"scr_aiRequest",
+  "parent":{
+    "name":"ai",
+    "path":"folders/Scripts/ai.yy",
   },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

@@ -1,11 +1,13 @@
 {
-  "resourceType": "GMScript",
-  "resourceVersion": "1.0",
-  "name": "scr_generateRandomID",
-  "isCompatibility": false,
-  "isDnD": false,
-  "parent": {
-    "name": "nodeMap",
-    "path": "folders/Scripts/functions/nodeMap.yy",
+  "$GMScript":"v1",
+  "%Name":"scr_generateRandomID",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"scr_generateRandomID",
+  "parent":{
+    "name":"nodeMap",
+    "path":"folders/Scripts/functions/nodeMap.yy",
   },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

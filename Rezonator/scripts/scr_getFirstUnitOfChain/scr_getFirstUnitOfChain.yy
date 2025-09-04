@@ -1,11 +1,13 @@
 {
-  "resourceType": "GMScript",
-  "resourceVersion": "1.0",
-  "name": "scr_getFirstUnitOfChain",
-  "isCompatibility": false,
-  "isDnD": false,
-  "parent": {
-    "name": "filter",
-    "path": "folders/Scripts/filter.yy",
+  "$GMScript":"v1",
+  "%Name":"scr_getFirstUnitOfChain",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"scr_getFirstUnitOfChain",
+  "parent":{
+    "name":"filter",
+    "path":"folders/Scripts/filter.yy",
   },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

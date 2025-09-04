@@ -200,20 +200,15 @@ function scr_rightClickWordOptions(optionSelected) {
 		}
 	}
 	else if (optionSelected == "option_delete-chunk") {
-		obj_control.deleteChunkWord = true;
-		var chunkSubMap = global.nodeMap[?obj_control.rightClickID];
-		var inChainsList = chunkSubMap[? "inChainsList"];
-		if (ds_list_size(inChainsList) > 0) {
-			scr_deleteFromChain(true);
-		}
 		scr_deleteChunk(obj_control.rightClickID);
-			
-		obj_control.deleteChunkWord = false;
 		instance_destroy();
 	}
 	else if (optionSelected == "option_delete-token") {
 		if (!instance_exists(obj_dialogueBox)) {
 			instance_create_layer(x, y, "InstancesDialogue", obj_dialogueBox);
+			var _inactiveResonancesThatTokenIsIn = scr_getInactiveChainsThatIDIsIn(obj_control.rightClickID, "resonance");
+			var _inactiveTrailsThatTokenIsIn = scr_getInactiveChainsThatIDIsIn(obj_control.rightClickID, "trail");
+			with (obj_control) inactiveChainsThatTokenIsIn = array_length(_inactiveResonancesThatTokenIsIn) + array_length(_inactiveTrailsThatTokenIsIn);
 			obj_dialogueBox.questionWindowActive = true;
 			obj_dialogueBox.deleteToken = true;
 		}

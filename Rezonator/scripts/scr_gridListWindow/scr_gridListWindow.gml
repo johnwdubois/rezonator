@@ -33,7 +33,7 @@ function scr_gridListWindow() {
 	
 	if (mouse_check_button(mb_left)) {
 		if (obj_gridViewer.windowResizeYHolding) {
-			window_set_cursor(cr_size_ns);
+			scr_windowSetCursor(cr_size_ns);
 			windowHeight = clamp(mouse_y - y, 150, camera_get_view_height(camera_get_active()) * 0.75);
 		}
 	

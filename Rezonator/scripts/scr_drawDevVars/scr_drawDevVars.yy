@@ -1,11 +1,13 @@
 {
-  "resourceType": "GMScript",
-  "resourceVersion": "1.0",
-  "name": "scr_drawDevVars",
-  "isCompatibility": false,
-  "isDnD": false,
-  "parent": {
-    "name": "UI",
-    "path": "folders/Scripts/UI.yy",
+  "$GMScript":"v1",
+  "%Name":"scr_drawDevVars",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"scr_drawDevVars",
+  "parent":{
+    "name":"UI",
+    "path":"folders/Scripts/UI.yy",
   },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

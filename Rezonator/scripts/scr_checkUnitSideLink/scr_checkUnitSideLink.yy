@@ -1,11 +1,13 @@
 {
-  "resourceType": "GMScript",
-  "resourceVersion": "1.0",
-  "name": "scr_checkUnitSideLink",
-  "isCompatibility": false,
-  "isDnD": false,
-  "parent": {
-    "name": "chains",
-    "path": "folders/Scripts/chains.yy",
+  "$GMScript":"v1",
+  "%Name":"scr_checkUnitSideLink",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"scr_checkUnitSideLink",
+  "parent":{
+    "name":"chains",
+    "path":"folders/Scripts/chains.yy",
   },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

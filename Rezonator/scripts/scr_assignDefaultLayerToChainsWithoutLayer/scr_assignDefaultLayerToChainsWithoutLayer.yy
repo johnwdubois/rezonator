@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"scr_assignDefaultLayerToChainsWithoutLayer",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"scr_assignDefaultLayerToChainsWithoutLayer",
+  "parent":{
+    "name":"stackingAndLayers",
+    "path":"folders/Scripts/chains/stackingAndLayers.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

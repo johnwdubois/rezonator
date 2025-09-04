@@ -4,6 +4,10 @@ function scr_combineChains(focusedChain, clickedChain) {
 	
 	show_debug_message("scr_combineChains: " + string(focusedChain) + ", " + string(clickedChain));
 	
+	if (focusedChain == clickedChain) {
+		exit;
+	}
+	
 	// get the submaps for our chains and make sure they exist
 	var focusedChainSubMap = ds_map_find_value(global.nodeMap, focusedChain);
 	var clickedChainSubMap = ds_map_find_value(global.nodeMap, clickedChain);

@@ -1,11 +1,13 @@
 {
-  "resourceType": "GMScript",
-  "resourceVersion": "1.0",
-  "name": "scr_get_translation",
-  "isCompatibility": false,
-  "isDnD": false,
-  "parent": {
-    "name": "localization",
-    "path": "folders/Scripts/UI/localization.yy",
+  "$GMScript":"v1",
+  "%Name":"scr_get_translation",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"scr_get_translation",
+  "parent":{
+    "name":"localization",
+    "path":"folders/Scripts/UI/localization.yy",
   },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

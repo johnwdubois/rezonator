@@ -1,11 +1,13 @@
 {
-  "resourceType": "GMScript",
-  "resourceVersion": "1.0",
-  "name": "scr_randomChainColor",
-  "isCompatibility": false,
-  "isDnD": false,
-  "parent": {
-    "name": "drawChains",
-    "path": "folders/Scripts/chains/drawChains.yy",
+  "$GMScript":"v1",
+  "%Name":"scr_randomChainColor",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"scr_randomChainColor",
+  "parent":{
+    "name":"drawChains",
+    "path":"folders/Scripts/chains/drawChains.yy",
   },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

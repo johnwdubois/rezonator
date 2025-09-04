@@ -7,7 +7,7 @@ if (BUILDTYPE != "Web") window_command_hook(window_command_close);
 
 global.ctrlHold = false;
 
-window_set_cursor(cr_default);
+scr_windowSetCursor(cr_default);
 
 scr_colorThemeGridInit();
 
@@ -457,7 +457,7 @@ global.restoreAutosave = false;
 global.autosaveLastSavedFilename = "";
 global.importFrom = "file";
 
-
+global.firebaseProjectID = "rezonator-13b47";
 
 selectOpenButton = false;
 openedFile = "";

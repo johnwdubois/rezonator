@@ -5,10 +5,10 @@ camMidX = camWidth / 2;
 camMidY = camHeight / 2;
 
 // box vars
-var boxHeightMax1 = inputWindowActive ? 400 : 270
-var boxHeightMax2 = inputWindowActive ? (camHeight / 3) : (camHeight / 4);
-boxHeight = max(boxHeightMax1, boxHeightMax2); 
-boxWidth = max(640, camWidth / 3);
+var boxHeightMax1 = inputWindowActive ? 400 : 270;
+var boxHeightMax2 = inputWindowActive ? (camHeight / 1.5) : (camHeight / 3);
+boxHeight = max(boxHeightMax1, boxHeightMax2);
+boxWidth = max(640, camWidth / 2);
 boxRectX1 = camMidX - boxWidth/2;
 boxRectY1 = camMidY - boxHeight/2;
 boxRectX2 = camMidX + boxWidth/2;

@@ -1,11 +1,13 @@
 {
-  "resourceType": "GMScript",
-  "resourceVersion": "1.0",
-  "name": "scr_inputBoxStep",
-  "isCompatibility": false,
-  "isDnD": false,
-  "parent": {
-    "name": "inputBox",
-    "path": "folders/Scripts/UI/inputBox.yy",
+  "$GMScript":"v1",
+  "%Name":"scr_inputBoxStep",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"scr_inputBoxStep",
+  "parent":{
+    "name":"inputBox",
+    "path":"folders/Scripts/UI/inputBox.yy",
   },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

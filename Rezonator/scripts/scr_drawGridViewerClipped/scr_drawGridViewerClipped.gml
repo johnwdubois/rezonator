@@ -304,7 +304,7 @@ function scr_drawGridViewerClipped() {
 		ds_list_clear(gridViewColPrevList);
 	}
 
-	//window_set_cursor(cr_default);
+	//scr_windowSetCursor(cr_default);
 
 	for (var i = 1; i < gridWidth; i++) {
 	
@@ -317,7 +317,7 @@ function scr_drawGridViewerClipped() {
 	
 	
 		if (point_in_rectangle(mouse_x, mouse_y, colX - 3, windowY1 + colNameHeight, colX + 3, windowY2 - global.scrollBarWidth)) {
-			window_set_cursor(cr_size_we);
+			scr_windowSetCursor(cr_size_we);
 			draw_set_alpha(0.8);
 		
 			if (mouse_check_button_pressed(mb_left) and gridViewColXHolding == -1) {
@@ -372,7 +372,7 @@ function scr_drawGridViewerClipped() {
 		
 	
 		if (gridViewColXHolding == i) {
-			window_set_cursor(cr_size_we);
+			scr_windowSetCursor(cr_size_we);
 		
 			draw_set_alpha(0.8);
 		

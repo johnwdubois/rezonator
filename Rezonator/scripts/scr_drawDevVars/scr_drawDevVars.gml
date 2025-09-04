@@ -67,7 +67,7 @@ function scr_drawDevVars() {
 	draw_text(devVarX, wordTopMargin + (strHeight * 32), "filteredStackChainList: " + scr_getStringOfList(obj_chain.filteredStackChainList));
 	draw_text(devVarX, wordTopMargin + (strHeight * 33), "selectedStackChainList: " + scr_getStringOfList(selectedStackChainList));
 	draw_text(devVarX, wordTopMargin + (strHeight * 34), "functionChainContents_showID: " + string(obj_panelPane.functionChainContents_showID));
-	draw_text(devVarX, wordTopMargin + (strHeight * 35), "functionChainList_playShowID: " + string(obj_panelPane.functionChainList_playShowID));
+	draw_text(devVarX, wordTopMargin + (strHeight * 35), "importFilename: " + string(global.importFilename));
 	
 	draw_text(devVarX - 580, wordTopMargin + (strHeight * 1), "showNav: " + string(obj_panelPane.showNav));
 	draw_text(devVarX - 580, wordTopMargin + (strHeight * 2), "currentView: " + string(obj_control.currentView));

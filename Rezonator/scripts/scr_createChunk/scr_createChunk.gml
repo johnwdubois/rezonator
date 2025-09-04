@@ -206,24 +206,14 @@ function scr_createChunk() {
 					var firstToken = scr_getFirstWordOfChunk(chunkID);
 					var firstTokenSubMap = global.nodeMap[? firstToken];
 					var unitID = firstTokenSubMap[? "unit"];
-					if (scr_checkUnitSideLink(unitID, obj_chain.currentFocusedChainID)) {
-						var inst = instance_create_layer(0, 0, "InstancesDialogue", obj_dialogueBox);
-						with (inst) {
-							questionWindowActive = true;
-							confirmSideLink = true;
-						}
-						obj_control.sideLinkTokenID = chunkID;
-						exit;
+
+					var focusedChainSubMap = global.nodeMap[? obj_chain.currentFocusedChainID];
+					if (focusedChainSubMap[? "type"] != "stack") {
+						scr_newLink(chunkID);
 					}
 					else {
-						var focusedChainSubMap = global.nodeMap[? obj_chain.currentFocusedChainID];
-						if (focusedChainSubMap[? "type"] != "stack") {
-							scr_newLink(chunkID);
-						}
-						else {
-							scr_newChain(chunkID);
-							scr_newLink(chunkID);
-						}
+						scr_newChain(chunkID);
+						scr_newLink(chunkID);
 					}
 				}
 				else {
@@ -248,7 +238,10 @@ function scr_createChunk() {
 	}
 
 	global.delayInput = 5;
-	obj_control.createChunkNoChain = false;
+	with (obj_control) {
+		createChunkNoChain = false;
+		chunkRecentlyCreated = chunkID;
+	}
 	
 	return chunkID;
 	

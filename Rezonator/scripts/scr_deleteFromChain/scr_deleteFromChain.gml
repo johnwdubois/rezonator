@@ -68,10 +68,16 @@ function scr_deleteFromChain(sortVizSetList) {
 	
 	// if this entry is a chunk, we will check if the chunk is locked, if it is not then we will delete it
 	if (focusedEntryIsChunk) {
-		var focusedEntryChunkSubMap = global.nodeMap[? focusedEntryToken];
-		if (scr_isNumericAndExists(focusedEntryChunkSubMap, ds_type_map)) {
-			if (!focusedEntryChunkSubMap[? "lock"]) {
-				scr_addToListOnce(obj_control.deleteChunkList, focusedEntryToken);
+		
+		// if this chunk is in any chains on other layers, we will not delete it
+		var _inactiveResonancesThatChunkIsIn = scr_getInactiveChainsThatIDIsIn(focusedEntryToken, "resonance");
+		var _inactiveTrailsThatChunkIsIn = scr_getInactiveChainsThatIDIsIn(focusedEntryToken, "trail");
+		if (array_length(_inactiveResonancesThatChunkIsIn) < 1 && array_length(_inactiveTrailsThatChunkIsIn) < 1) {
+			var focusedEntryChunkSubMap = global.nodeMap[? focusedEntryToken];
+			if (scr_isNumericAndExists(focusedEntryChunkSubMap, ds_type_map)) {
+				if (!focusedEntryChunkSubMap[? "lock"]) {
+					scr_addToListOnce(obj_control.deleteChunkList, focusedEntryToken);
+				}
 			}
 		}
 	}
@@ -268,7 +274,7 @@ function scr_deleteFromChain(sortVizSetList) {
 	if (focusedEntryType == "rez" || focusedEntryType == "track") {
 		scr_removeChainFromInChainsList(obj_chain.currentFocusedChainID, focusedEntry, focusedEntryToken);
 		if (focusedEntryType == "rez" ) {
-			if (obj_chain.quickLinkDeleted == false) {
+			if (!obj_chain.quickLinkDeleted) {
 				scr_refreshCliqueDelete(chainInCliqueID, obj_chain.currentFocusedChainID, focusedEntry);
 				scr_refreshCliques();
 			}

@@ -276,11 +276,19 @@ function scr_dropDownSelect(optionSelected) {
 		with (obj_dropDown) instance_destroy();
 	}
 	else if (optionListType == global.optionListTypeStacking) {
-		scr_changeActiveStacking(optionSelected);
+		scr_changeActiveLayer("stack", optionSelected);
 		with (obj_dropDown) instance_destroy();
 	}
 	else if (optionListType == global.optionListTypeCliqueRightClick) {
 		scr_cliqueRightClickOptions(optionSelected);
+		with (obj_dropDown) instance_destroy();
+	}
+	else if (optionListType == global.optionListTypeTrailLayer) {
+		scr_changeActiveLayer("trail", optionSelected);
+		with (obj_dropDown) instance_destroy();
+	}
+	else if (optionListType == global.optionListTypeResonanceLayer) {
+		scr_changeActiveLayer("resonance", optionSelected);
 		with (obj_dropDown) instance_destroy();
 	}
 
