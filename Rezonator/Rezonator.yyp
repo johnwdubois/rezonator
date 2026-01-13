@@ -99,7 +99,6 @@
   "ForcedPrefabProjectReferences":[],
   "IncludedFiles":[
     {"$GMIncludedFile":"","%Name":".DS_Store","CopyToMask":-1,"filePath":"datafiles","name":".DS_Store","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
-    {"$GMIncludedFile":"","%Name":"Firebase Web Setup - Release.zip","CopyToMask":-1,"filePath":"datafiles","name":"Firebase Web Setup - Release.zip","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
     {"$GMIncludedFile":"","%Name":"Firebase_Firestore_Documentation.pdf","CopyToMask":-1,"filePath":"datafiles","name":"Firebase_Firestore_Documentation.pdf","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
     {"$GMIncludedFile":"","%Name":".DS_Store","CopyToMask":-1,"filePath":"datafiles/IncludedFiles","name":".DS_Store","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
     {"$GMIncludedFile":"","%Name":"~usersettings.ini","CopyToMask":-1,"filePath":"datafiles/IncludedFiles","name":"~usersettings.ini","resourceType":"GMIncludedFile","resourceVersion":"2.0",},

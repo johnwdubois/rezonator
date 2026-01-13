@@ -31,7 +31,9 @@ toolSpriteScale = 1;
 modeRead = 0;
 modeRez = 1;
 modeTrack = 2;
-currentMode = modeTrack;
+// currentMode = modeTrack;
+// alexluu: https://github.com/johnwdubois/rezonator/issues/1521
+currentMode = modeRead;
 
 setModeMain = modeRead;
 setModeSearch = modeRead;

@@ -93,7 +93,9 @@ function scr_loadREZ() {
 
 	ds_list_destroy(newInstList);
 	
-	var exitToOpeningScreen = scr_verifyRez(rezFileVersion);
+	// var exitToOpeningScreen = scr_verifyRez(rezFileVersion);
+	// alexluu: fix syntactic errors (Rezonator 1.4.3)
+	var exitToOpeningScreen = scr_verifyRez();
 	if (exitToOpeningScreen) {
 		show_debug_message("scr_loadREZ ... verifyREZ has failed, exiting to opening screen");
 		room_goto(rm_openingScreen);

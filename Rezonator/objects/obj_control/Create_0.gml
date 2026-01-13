@@ -821,7 +821,9 @@ unitToFlash = "";
 offIndex = false;
 multiWordTag = false;
 setChainName = false;
-recentlyAddedEndnote = ",";
+// recentlyAddedEndnote = ",";
+// alexluu: https://github.com/johnwdubois/rezonator/issues/1517#issuecomment-3725432820
+recentlyAddedEndToken = ",";
 
 insertTokenStr = "";
 

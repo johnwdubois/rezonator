@@ -267,6 +267,11 @@ function scr_dropDownSelect(optionSelected) {
 		scr_newTokenOptions(optionSelected);
 		with (obj_dropDown) instance_destroy();
 	}
+	// alexluu: https://github.com/johnwdubois/rezonator/issues/1517	
+	else if (optionListType == global.optionListTypeCompletionMark) {
+		scr_newTokenOptions(optionSelected);
+		with (obj_dropDown) instance_destroy();
+	}
 	else if (optionListType == global.optionListTypeTurnStacker) {
 		scr_turnStackerOptions(optionSelected);
 		with (obj_dropDown) instance_destroy();

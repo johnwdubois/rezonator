@@ -85,10 +85,15 @@ for (var menuHeaderLoop = 0; menuHeaderLoop < menuBarGridHeight; menuHeaderLoop+
 			
 			if (ds_list_size(dropDownOptionList) > 0 and instance_number(obj_dropDown) == 0) {
 				if (global.userLangRTL) {
-					scr_createDropDown(menuHeaderRectX2, menuHeight, dropDownOptionList, currentOptionListType, true);
+					// scr_createDropDown(menuHeaderRectX2, menuHeight, dropDownOptionList, currentOptionListType, true);
+					// alexluu: fix syntactic errors (Rezonator 1.4.3)
+					scr_createDropDown(menuHeaderRectX2, menuHeight, dropDownOptionList, currentOptionListType);
+					
 				}
 				else {
-					scr_createDropDown(menuHeaderRectX1, menuHeight, dropDownOptionList, currentOptionListType, true);
+					// scr_createDropDown(menuHeaderRectX1, menuHeight, dropDownOptionList, currentOptionListType, true);
+					// alexluu: fix syntactic errors (Rezonator 1.4.3)
+					scr_createDropDown(menuHeaderRectX1, menuHeight, dropDownOptionList, currentOptionListType);
 				}
 			}
 		}

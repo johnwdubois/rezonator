@@ -204,7 +204,9 @@ function scr_drawLineEntryList(unitID, unitSubMap, entryList, pixelY, OOBCheck) 
 				// if pressing the comma key while moused over a token, spawn an endnote
 				if (keyboard_check_released(188)) {
 					rightClickID = currentToken;
-					scr_newTokenOptions(recentlyAddedEndnote);
+					// scr_newTokenOptions(recentlyAddedEndnote);
+					// alexluu: https://github.com/johnwdubois/rezonator/issues/1517#issuecomment-3725432820
+					scr_newTokenOptions(recentlyAddedEndToken);
 					rightClickID = "";
 				}
 

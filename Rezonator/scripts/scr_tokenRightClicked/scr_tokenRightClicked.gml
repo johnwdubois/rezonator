@@ -49,7 +49,11 @@ function scr_tokenRightClicked() {
 		ds_list_add(dropDownOptionList, "word_tip", "option_zero"); //"help_label_new_token", "Add endnote", "option_delete-token", "option_split-token"); // localize
 		if (!isLastToken) ds_list_add(dropDownOptionList, "option_extend-chunk-next");
 		if (!isFirstToken) ds_list_add(dropDownOptionList, "option_extend-chunk-previous");
-		ds_list_add(dropDownOptionList, "tab_name_tag", "menu_edit");
+		// ds_list_add(dropDownOptionList, "tab_name_tag", "menu_edit");
+		// alexluu: https://github.com/johnwdubois/rezonator/issues/1516#issuecomment-3725485004
+		ds_list_add(dropDownOptionList, "tab_name_tag");
+		ds_list_add(dropDownOptionList, "help_label_new_token", "Add endnote", "Add completion mark", "option_delete-token", "option_split-token");
+		if (!isFirstToken) ds_list_add(dropDownOptionList, "option_merge-token", "option_split-unit");
 		
 		// Create the dropdown
 		if (ds_list_size(dropDownOptionList) > 0 and obj_control.ableToCreateDropDown) {

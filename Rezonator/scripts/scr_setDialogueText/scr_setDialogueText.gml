@@ -85,6 +85,11 @@ function scr_setDialogueText() {
 			titleText = scr_get_translation("Clear All Chunks");
 			descriptionText = scr_get_translation("This will remove all chunks created");
 		}
+		// alexluu: https://github.com/johnwdubois/rezonator/issues/1500
+		if (clearAllTrees) {
+			titleText = scr_get_translation("Clear All Trees");
+			descriptionText = scr_get_translation("This will remove all trees created");
+		}
 		if (clearChain) {
 			titleText = scr_get_translation("Clear Current Chain");
 			descriptionText = scr_get_translation("msg_warning_clear_focused_chain");

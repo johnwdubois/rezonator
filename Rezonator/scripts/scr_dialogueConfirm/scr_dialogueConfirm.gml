@@ -273,6 +273,16 @@ function scr_dialogueConfirm() {
 				}
 			
 			}
+			// alexluu: https://github.com/johnwdubois/rezonator/issues/1500
+			if (clearAllTrees) {
+				
+				// delete all trees!!
+				var treeListSize = global.nodeMap[? "treeList"];
+				repeat(treeListSize) {
+					scr_deleteTree(global.nodeMap[? "treeList"][|0]);
+				}
+			
+			}
 		
 		
 			if (removeTagToken) scr_removeFromTagSetOptions(string(stringToBeRemoved), "token");

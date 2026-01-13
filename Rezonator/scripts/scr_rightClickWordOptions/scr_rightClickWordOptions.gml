@@ -64,7 +64,9 @@ function scr_rightClickWordOptions(optionSelected) {
 		instance_destroy();
 	}
 	else if (optionSelected == "option_set-chain-name") {
-		scr_setChainName();
+		// scr_setChainName();
+		// alexluu: fix syntactic errors (Rezonator 1.4.3)
+		scr_setChainName(obj_control.inputText); //?
 		instance_destroy();
 	}
 	else if (optionSelected == "option_rename-trail" || optionSelected == "option_rename-resonance") {
@@ -249,6 +251,15 @@ function scr_rightClickWordOptions(optionSelected) {
 		ds_list_add(dropDownOptionList, ",", ".", "?", "—", "--");
 		scr_createDropDown(obj_dropDown.x + obj_dropDown.windowWidth, y + (obj_dropDown.optionSpacing * optionIndex), dropDownOptionList, global.optionListTypeAddEndnote);
 	}
+	// alexluu: https://github.com/johnwdubois/rezonator/issues/1517
+	else if (optionSelected == "Add completion mark") {
+		scr_destroyAllDropDownsOtherThanSelf();
+		var dropDownOptionList = ds_list_create();
+		ds_list_add(dropDownOptionList, "{TRP}", "{P}", "{A}", "{S}", "{PS}", "{PA}", "{AS}", "{PSA}");
+		scr_createDropDown(obj_dropDown.x + obj_dropDown.windowWidth, y + (obj_dropDown.optionSpacing * optionIndex), dropDownOptionList, global.optionListTypeCompletionMark);
+	}
+	// alexluu: https://github.com/johnwdubois/rezonator/issues/1516#issuecomment-3725485004
+	/*
 	else if (optionSelected == "menu_edit") {
 		scr_destroyAllDropDownsOtherThanSelf();
 		
@@ -260,11 +271,14 @@ function scr_rightClickWordOptions(optionSelected) {
 		var isFirstToken = (unitFirstEntrySubMap[? "token"] == obj_control.rightClickID);
 		
 		var dropDownOptionList = ds_list_create();
-		ds_list_add(dropDownOptionList, "help_label_new_token", "Add endnote", "option_delete-token", "option_split-token");
+		// ds_list_add(dropDownOptionList, "help_label_new_token", "Add endnote", "option_delete-token", "option_split-token");
+		// alexluu: https://github.com/johnwdubois/rezonator/issues/1517
+		ds_list_add(dropDownOptionList, "help_label_new_token", "Add endnote", "Add completion mark", "option_delete-token", "option_split-token");
 		if (!isFirstToken) ds_list_add(dropDownOptionList, "option_merge-token", "option_split-unit");
 		
 		scr_createDropDown(obj_dropDown.x + obj_dropDown.windowWidth, obj_dropDown.y + (obj_dropDown.optionSpacing * optionIndex), dropDownOptionList, global.optionListTypeRightClickWord);
 	}
+	*/
 	else if (optionSelected == "option_extend-chunk-previous") {
 		scr_extendChunk(obj_control.rightClickID, true);
 		with (obj_dropDown) instance_destroy();

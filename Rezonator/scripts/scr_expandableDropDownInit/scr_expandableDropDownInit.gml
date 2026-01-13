@@ -129,6 +129,11 @@ function scr_expandableDropDownInit() {
 	var addEndnoteList = ds_list_create();
 	ds_list_add(addEndnoteList, global.optionListTypeRightClickWord);
 	ds_map_add_list(global.expandableDropDownMap, "Add endnote", addEndnoteList);
+	
+	// alexluu: https://github.com/johnwdubois/rezonator/issues/1517
+	var addCompletionMarkList = ds_list_create();
+	ds_list_add(addCompletionMarkList, global.optionListTypeRightClickWord);
+	ds_map_add_list(global.expandableDropDownMap, "Add completion mark", addCompletionMarkList);
 
 	var insertColumnList = ds_list_create();
 	ds_list_add(insertColumnList, global.optionListTypeFieldUnits1ToMany, global.optionListTypeFieldUnits1To1, global.optionListTypeFieldChains1ToMany, global.optionListTypeFieldChains1To1);
@@ -139,7 +144,9 @@ function scr_expandableDropDownInit() {
 	ds_map_add_list(global.expandableDropDownMap, "menu_chains_pl", hideChainsList);
 	
 	var editList = ds_list_create();
-	ds_list_add(editList, global.optionListTypeRightClickWord, global.optionListTypeSpeakerLabel);
+	// ds_list_add(editList, global.optionListTypeRightClickWord, global.optionListTypeSpeakerLabel);
+	// alexluu: https://github.com/johnwdubois/rezonator/issues/1516#issuecomment-3725485004
+	ds_list_add(editList, global.optionListTypeSpeakerLabel);
 	ds_map_add_list(global.expandableDropDownMap, "menu_edit", editList);
 	
 

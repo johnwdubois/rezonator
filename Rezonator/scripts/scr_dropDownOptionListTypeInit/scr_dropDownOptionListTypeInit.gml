@@ -30,7 +30,7 @@ function scr_dropDownOptionListTypeInit() {
 	global.optionListTypeTokenTagMap = 35;
 	global.optionListTypeUnitTagMap = 38;
 	global.optionListTypeAutosave = 40;
-	global.optionListTypeEdit = 42;
+	global.optionListTypeEdit = 42; // alexluu: Menu Bar
 	global.optionListTypeNav = 44;
 	global.optionListTypeLanguage = 45;
 	global.optionListTypeImportGrid = 46;
@@ -85,5 +85,7 @@ function scr_dropDownOptionListTypeInit() {
 	global.optionListTypeCliqueRightClick = 97;
 	global.optionListTypeTrailLayer = 98;
 	global.optionListTypeResonanceLayer = 99;
+	// alexluu: https://github.com/johnwdubois/rezonator/issues/1517
+	global.optionListTypeCompletionMark = 100;
 
 }

@@ -58,7 +58,9 @@ function scr_newTokenOptions(optionSelected) {
 		obj_control.alarm[11] = 60;
 		obj_control.rightClicked = false;
 		obj_control.before = beforeState;
-		obj_control.recentlyAddedEndnote = optionSelected;
+		// obj_control.recentlyAddedEndnote = optionSelected;
+		// alexluu: https://github.com/johnwdubois/rezonator/issues/1517#issuecomment-3725432820
+		obj_control.recentlyAddedEndToken = optionSelected;
 	}
 
 	with (obj_dropDown) {

@@ -19,7 +19,9 @@ function scr_exportChunkTempGrid() {
 		if (scr_isNumericAndExists(chunkSubMap,ds_type_map)) {
 			var tokenList = chunkSubMap[? "tokenList"];
 			ds_grid_set(chunkGrid,1,i,scr_getStringOfList(tokenList));
-			ds_grid_set(chunkGrid,2,i,scr_getChunkText(chunkID, global.tokenImportDisplayTokenColName));		
+			// ds_grid_set(chunkGrid,2,i,scr_getChunkText(chunkID, global.tokenImportDisplayTokenColName));
+			// alexluu: fix syntactic errors (Rezonator 1.4.3)
+			ds_grid_set(chunkGrid,2,i,scr_getChunkText(chunkID));
 		}
 		
 		// get chunk tags

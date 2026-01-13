@@ -14,7 +14,7 @@
   "option_mac_copyright":"(c) 2018 CompanyName",
   "option_mac_disable_sandbox":true,
   "option_mac_display_cursor":true,
-  "option_mac_display_name":"Rezonator 1.4.3",
+  "option_mac_display_name":"Rezonator 1.4.4",
   "option_mac_enable_retina":true,
   "option_mac_enable_steam":true,
   "option_mac_icon_png":"${options_dir}/mac/icons/1024.png",
@@ -30,9 +30,9 @@
   "option_mac_start_fullscreen":false,
   "option_mac_team_id":"SGU37PG886",
   "option_mac_texture_page":"2048x2048",
-  "option_mac_version":"1.4.3",
+  "option_mac_version":"1.4.4",
   "option_mac_vsync":true,
   "option_mac_x86_64":true,
   "resourceType":"GMMacOptions",
-  "resourceVersion":"2.0"
+  "resourceVersion":"2.0",
 }

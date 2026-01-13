@@ -115,7 +115,11 @@ function RESTFirebaseFirestore_Collection_Query(struct)
 		var map_FieldFilter = ds_map_create()
 		ds_map_add_map(map_FieldFilter,"field",FirebaseREST_firestore_fieldReference(struct._operations[a].path))
 		ds_map_add(map_FieldFilter,"op",struct._operations[a].operation)
-		ds_map_add_map(map_FieldFilter,"value",FirebaseREST_firestore_value(struct._operations[a].value))
+		// ds_map_add_map(map_FieldFilter,"value",FirebaseREST_firestore_value(struct._operations[a].value))
+		// alexluu: fix syntactic errors (Rezonator 1.4.3)
+		// https://manual.gamemaker.io/monthly/en/#t=GameMaker_Language%2FGML_Overview%2FData_Types.htm
+		ds_map_add_map(map_FieldFilter,"value",
+		               FirebaseREST_firestore_value(struct._operations[a].value, typeof(struct._operations[a].value)))
 		var map_toList = ds_map_create()
 		ds_map_add_map(map_toList,"fieldFilter",map_FieldFilter)
 		ds_list_add(list_filters,map_toList)

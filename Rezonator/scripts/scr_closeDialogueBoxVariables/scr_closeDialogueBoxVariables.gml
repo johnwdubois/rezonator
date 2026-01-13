@@ -57,6 +57,8 @@ function scr_closeDialogueBoxVariables() {
 		clearAllChunks = false;
 		clearAllRez = false;
 		clearAllLinks = false;
+		// alexluu: https://github.com/johnwdubois/rezonator/issues/1500
+		clearAllTrees = false;
 		clearChain = false;
 		clearChainMulti = false;
 		combineChains = false;

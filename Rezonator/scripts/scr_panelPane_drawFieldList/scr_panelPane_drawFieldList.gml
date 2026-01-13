@@ -296,19 +296,40 @@ function scr_panelPane_drawFieldList() {
 				// draw field name
 				draw_text(floor(fieldNameColX + textBuffer) - clipX, textY - clipY, string(currentField));
 				
+				// alexluu: draw column "Type" for "Chain"/"Entry"
+				// fixing https://github.com/johnwdubois/rezonator/issues/1435
 				if (fieldPaneSwitchButton == fieldPaneChainMode || fieldPaneSwitchButton == fieldPaneEntryMode ) {
 					var inRez = currentFieldSubMap[? "rez"];
 					var inStack = currentFieldSubMap[? "card"];
 					var inTrail = currentFieldSubMap[? "track"];
 					var chainList = ds_list_create();
-					if (inRez) {
-						ds_list_add(chainList,"Resonance");
+					if (inRez) {						
+						// ds_list_add(chainList,"Resonance");
+						// https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Language_Features/If_Else_and_Conditional_Operators.htm
+						if (fieldPaneSwitchButton == fieldPaneChainMode){
+							ds_list_add(chainList,"Resonance");
+						}
+						else{
+							ds_list_add(chainList,"Rez");
+						}						
 					}
 					if (inTrail) {
-						ds_list_add(chainList,"Trail");
+						// ds_list_add(chainList,"Trail");
+						if (fieldPaneSwitchButton == fieldPaneChainMode){
+							ds_list_add(chainList,"Trail");
+						}
+						else{
+							ds_list_add(chainList,"Track");
+						}
 					}
 					if (inStack) {
-						ds_list_add(chainList,"Stack");
+						// ds_list_add(chainList,"Stack");
+						if (fieldPaneSwitchButton == fieldPaneChainMode){
+							ds_list_add(chainList,"Stack");
+						}
+						else{
+							ds_list_add(chainList,"Card");
+						}
 					}
 					// draw field name
 					draw_text(floor(typeColX + textBuffer) - clipX, textY - clipY, string(scr_getStringOfList(chainList)));
@@ -465,7 +486,10 @@ function scr_panelPane_drawFieldList() {
 				show_message("Loading Tag JSON is currently not available for browser use.");
 				exit;
 			}
-			scr_loadTagJson();
+			// scr_loadTagJson();
+			// alexluu: fix syntactic errors (Rezonator 1.4.3)
+			scr_loadTagJson(global.includedTagSchemaFileList[|0]); // ?
+			
 		}
 		scr_createTooltip(loadSpriteX, loadRectY2,scr_get_translation("option_load-tag-json"), TOOLTIP_DIR_UP);
 	}

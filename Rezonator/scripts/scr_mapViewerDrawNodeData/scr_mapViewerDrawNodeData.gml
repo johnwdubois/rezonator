@@ -148,7 +148,10 @@ function scr_mapViewerDrawNodeData() {
 			// draw out the values!
 			draw_set_color((subMapKey == "type") ? c_green : global.colorThemeText);
 			draw_set_alpha(1);
-			draw_text(textX - clipX, textY - clipY, string(subMapKey) + ":    " + subMapValStr,);
+			// draw_text(textX - clipX, textY - clipY, string(subMapKey) + ":    " + subMapValStr,);
+			// alexluu: fix syntactic errors (Rezonator 1.4.3)
+			// https://manual.gamemaker.io/monthly/en/#t=GameMaker_Language%2FGML_Reference%2FDrawing%2FText%2Fdraw_text.htm
+			draw_text(textX - clipX, textY - clipY, string(subMapKey) + ":    " + subMapValStr);
 			subMapKey = ds_map_find_next(subMap, subMapKey);
 			
 			plusY += strHeight;

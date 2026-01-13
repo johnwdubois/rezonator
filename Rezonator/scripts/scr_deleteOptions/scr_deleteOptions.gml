@@ -34,12 +34,24 @@ function scr_deleteOptions(optionSelected) {
 			}
 
 			break;
-		case "tab_name_chunk":
+		// case "tab_name_chunk":
+		// alexluu: https://github.com/johnwdubois/rezonator/issues/1500
+		case "Chunks": //vs. "Chunk" ("tab_name_chunk")
 		
 
 			if (!instance_exists(obj_dialogueBox)) {
 				instance_create_layer(x, y, "InstancesDialogue", obj_dialogueBox);
 				obj_dialogueBox.clearAllChunks = true;
+				obj_dialogueBox.questionWindowActive = true;
+			}
+
+			break;			
+		case "Trees": //vs. "Tree" ("tab_name_tree")
+		
+
+			if (!instance_exists(obj_dialogueBox)) {
+				instance_create_layer(x, y, "InstancesDialogue", obj_dialogueBox);
+				obj_dialogueBox.clearAllTrees = true;
 				obj_dialogueBox.questionWindowActive = true;
 			}
 

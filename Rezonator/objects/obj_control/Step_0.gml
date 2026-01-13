@@ -660,11 +660,16 @@ if (mouse_check_button_released(mb_left) && !mouseoverTagCell
 
 
 if (mouse_check_button_pressed(mb_right)) {
-	scr_clearNavWindowTagging();
+	// scr_clearNavWindowTagging();
+	// alexluu: fix syntactic errors (Rezonator 1.4.3)
+	scr_clearNavWindowTagging(true); // ?
+	
 }
 if (mouse_check_button_pressed(mb_left) && !mouseoverPanelPane && navWindowTaggingID != "") {
 	with (obj_inputBox) instance_destroy();
-	scr_clearNavWindowTagging();
+	// scr_clearNavWindowTagging();
+	// alexluu: fix syntactic errors (Rezonator 1.4.3)
+	scr_clearNavWindowTagging(true); // ?
 }
 
 
