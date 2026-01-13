@@ -1,5 +1,5 @@
 {
-  "$GMSprite":"",
+  "$GMSprite":"v2",
   "%Name":"spr_filterIcons",
   "bboxMode":0,
   "bbox_bottom":22,
@@ -12,9 +12,9 @@
   "edgeFiltering":false,
   "For3D":false,
   "frames":[
-    {"$GMSpriteFrame":"","%Name":"db923a0d-e41d-4a59-8315-5cae1104bc4f","name":"db923a0d-e41d-4a59-8315-5cae1104bc4f","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
-    {"$GMSpriteFrame":"","%Name":"a5a88112-2ba3-439e-ad4a-6f13ddacb5f6","name":"a5a88112-2ba3-439e-ad4a-6f13ddacb5f6","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
-    {"$GMSpriteFrame":"","%Name":"fd28a889-77f2-4146-ad2a-f01c44ac5c9c","name":"fd28a889-77f2-4146-ad2a-f01c44ac5c9c","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
+    {"$GMSpriteFrame":"v1","%Name":"db923a0d-e41d-4a59-8315-5cae1104bc4f","name":"db923a0d-e41d-4a59-8315-5cae1104bc4f","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
+    {"$GMSpriteFrame":"v1","%Name":"a5a88112-2ba3-439e-ad4a-6f13ddacb5f6","name":"a5a88112-2ba3-439e-ad4a-6f13ddacb5f6","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
+    {"$GMSpriteFrame":"v1","%Name":"fd28a889-77f2-4146-ad2a-f01c44ac5c9c","name":"fd28a889-77f2-4146-ad2a-f01c44ac5c9c","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
   ],
   "gridX":0,
   "gridY":0,

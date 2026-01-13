@@ -1,5 +1,5 @@
 {
-  "$GMSprite":"",
+  "$GMSprite":"v2",
   "%Name":"spr_openButton",
   "bboxMode":0,
   "bbox_bottom":19,
@@ -12,7 +12,7 @@
   "edgeFiltering":false,
   "For3D":false,
   "frames":[
-    {"$GMSpriteFrame":"","%Name":"f59fa411-c9f4-4a60-a51f-f4fa7dc27f0f","name":"f59fa411-c9f4-4a60-a51f-f4fa7dc27f0f","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
+    {"$GMSpriteFrame":"v1","%Name":"f59fa411-c9f4-4a60-a51f-f4fa7dc27f0f","name":"f59fa411-c9f4-4a60-a51f-f4fa7dc27f0f","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
   ],
   "gridX":0,
   "gridY":0,

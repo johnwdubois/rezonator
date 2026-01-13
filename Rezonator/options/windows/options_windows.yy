@@ -1,5 +1,5 @@
 {
-  "$GMWindowsOptions":"",
+  "$GMWindowsOptions":"v1",
   "%Name":"Windows",
   "name":"Windows",
   "option_windows_allow_fullscreen_switching":true,
@@ -7,6 +7,7 @@
   "option_windows_company_info":"Rezonator Analytics Inc",
   "option_windows_copyright_info":"(c) 2022 Rezonator Analytics Inc",
   "option_windows_copy_exe_to_dest":true,
+  "option_windows_d3dswapeffectdiscard":false,
   "option_windows_description_info":"Rezonator",
   "option_windows_disable_sandbox":true,
   "option_windows_display_cursor":true,
@@ -32,5 +33,5 @@
   "option_windows_version":"1.4.3.0",
   "option_windows_vsync":true,
   "resourceType":"GMWindowsOptions",
-  "resourceVersion":"2.0"
+  "resourceVersion":"2.0",
 }

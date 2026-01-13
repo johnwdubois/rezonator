@@ -1,5 +1,5 @@
 {
-  "$GMSprite":"",
+  "$GMSprite":"v2",
   "%Name":"spr_proseGridTool",
   "bboxMode":0,
   "bbox_bottom":68,
@@ -12,8 +12,8 @@
   "edgeFiltering":false,
   "For3D":false,
   "frames":[
-    {"$GMSpriteFrame":"","%Name":"3a4d2326-5b73-469e-8a1c-0eace34472e7","name":"3a4d2326-5b73-469e-8a1c-0eace34472e7","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
-    {"$GMSpriteFrame":"","%Name":"3780b38a-1fbf-406f-b483-0e1e8f25c325","name":"3780b38a-1fbf-406f-b483-0e1e8f25c325","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
+    {"$GMSpriteFrame":"v1","%Name":"3a4d2326-5b73-469e-8a1c-0eace34472e7","name":"3a4d2326-5b73-469e-8a1c-0eace34472e7","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
+    {"$GMSpriteFrame":"v1","%Name":"3780b38a-1fbf-406f-b483-0e1e8f25c325","name":"3780b38a-1fbf-406f-b483-0e1e8f25c325","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
   ],
   "gridX":0,
   "gridY":0,

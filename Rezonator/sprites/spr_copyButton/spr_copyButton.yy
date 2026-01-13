@@ -1,5 +1,5 @@
 {
-  "$GMSprite":"",
+  "$GMSprite":"v2",
   "%Name":"spr_copyButton",
   "bboxMode":0,
   "bbox_bottom":23,
@@ -12,7 +12,7 @@
   "edgeFiltering":false,
   "For3D":false,
   "frames":[
-    {"$GMSpriteFrame":"","%Name":"3616a2e3-e491-4dc8-a6ec-becd23e41ce7","name":"3616a2e3-e491-4dc8-a6ec-becd23e41ce7","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
+    {"$GMSpriteFrame":"v1","%Name":"3616a2e3-e491-4dc8-a6ec-becd23e41ce7","name":"3616a2e3-e491-4dc8-a6ec-becd23e41ce7","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
   ],
   "gridX":0,
   "gridY":0,

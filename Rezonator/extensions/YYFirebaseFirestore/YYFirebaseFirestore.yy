@@ -16,18 +16,12 @@
   "exportToGame":true,
   "extensionVersion":"2.4.0",
   "files":[
-    {"$GMExtensionFile":"","%Name":"","constants":[],"copyToTargets":-1,"filename":"FirebaseFirestore.ext","final":"","functions":[
+    {"$GMExtensionFile":"v1","%Name":"","constants":[],"copyToTargets":-1,"filename":"FirebaseFirestore.ext","final":"","functions":[
         {"$GMExtensionFunction":"","%Name":"FirebaseFirestore_SDK","argCount":0,"args":[1,],"documentation":"","externalName":"FirebaseFirestore_SDK","help":"FirebaseFirestore_SDK(fluent_json)","hidden":false,"kind":4,"name":"FirebaseFirestore_SDK","resourceType":"GMExtensionFunction","resourceVersion":"2.0","returnType":2,},
-      ],"init":"","kind":4,"name":"","order":[
-        {"name":"FirebaseFirestore_SDK","path":"extensions/YYFirebaseFirestore/YYFirebaseFirestore.yy",},
-      ],"origname":"","ProxyFiles":[],"resourceType":"GMExtensionFile","resourceVersion":"2.0","uncompress":false,"usesRunnerInterface":false,},
-    {"$GMExtensionFile":"","%Name":"","constants":[],"copyToTargets":-1,"filename":"FirebaseFirestore.js","final":"","functions":[
+      ],"init":"","kind":4,"name":"","origname":"","ProxyFiles":[],"resourceType":"GMExtensionFile","resourceVersion":"2.0","uncompress":false,"usesRunnerInterface":false,},
+    {"$GMExtensionFile":"v1","%Name":"","constants":[],"copyToTargets":-1,"filename":"FirebaseFirestore.js","final":"","functions":[
         {"$GMExtensionFunction":"","%Name":"FirebaseFirestore_SDK","argCount":0,"args":[1,],"documentation":"","externalName":"FirebaseFirestore_SDK","help":"FirebaseFirestore_SDK(json)","hidden":false,"kind":5,"name":"FirebaseFirestore_SDK","resourceType":"GMExtensionFunction","resourceVersion":"2.0","returnType":1,},
-      ],"init":"","kind":5,"name":"","order":[
-        {"name":"FirebaseFirestore_SDK","path":"extensions/YYFirebaseFirestore/YYFirebaseFirestore.yy",},
-        {"name":"FirebaseFirestore_SDK","path":"extensions/YYFirebaseFirestore/YYFirebaseFirestore.yy",},
-        {"name":"FirebaseFirestore_SDK","path":"extensions/YYFirebaseFirestore/YYFirebaseFirestore.yy",},
-      ],"origname":"","ProxyFiles":[],"resourceType":"GMExtensionFile","resourceVersion":"2.0","uncompress":false,"usesRunnerInterface":false,},
+      ],"init":"","kind":5,"name":"","origname":"","ProxyFiles":[],"resourceType":"GMExtensionFile","resourceVersion":"2.0","uncompress":false,"usesRunnerInterface":false,},
   ],
   "gradleinject":"\r\n        implementation 'com.google.firebase:firebase-firestore'\r\n",
   "hasConvertedCodeInjection":true,
