@@ -29,7 +29,9 @@ function scr_macros(){
 	#region NAV WINDOW TABS
 		#macro NAVTAB_UNIT "tab_name_unit"
 		#macro NAVTAB_STACK "tab_name_stack"
-		#macro NAVTAB_TRACK "tab_name_track"
+		// #macro NAVTAB_TRACK "tab_name_track"
+		// alexluu: "Track" -> "Trail" on interface
+		#macro NAVTAB_TRACK "Trail"
 		#macro NAVTAB_RESONANCE "menu_resonance"
 		#macro NAVTAB_CLIQUE "tab_name_clique"
 		#macro NAVTAB_SHOW "tab_name_show"

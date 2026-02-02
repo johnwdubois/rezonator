@@ -52,7 +52,9 @@ function scr_drawToolPane() {
 		
 		if (mouse_check_button_released(mb_left)) {
 			var toolOptionList = ds_list_create();
-			ds_list_add(toolOptionList, "help_label_tag", "menu_track", "menu_resonance");
+			// ds_list_add(toolOptionList, "help_label_tag", "menu_track", "menu_resonance");
+			// alexluu: "Track" -> "Trail" on interface
+			ds_list_add(toolOptionList, "help_label_tag", "Trail", "menu_resonance");
 			scr_createFlyout(toolbarButtonX1 - flyoutXBuffer, toolButtonY, toolOptionList, global.optionListTypeToolButton, spr_toolsNew, false);
 		}
 	}
